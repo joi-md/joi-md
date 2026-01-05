@@ -302,6 +302,8 @@
   url: 'https://atcoder.jp/contests/joi2025ho/tasks/joi2025ho_d'
 - path: '2025-ho/e'
   url: 'https://atcoder.jp/contests/joi2025ho/tasks/joi2025ho_e'
+- path: '2013-sp/day3/c'
+  url: 'https://atcoder.jp/contests/joisc2013-day3/tasks/joisc2013_mountain'
 - path: '2025-sp/a'
   url: 'https://atcoder.jp/contests/joisp2025/tasks/joisp2025_a'
 - path: '2025-sp/b'
@@ -326,3 +328,4 @@
   url: 'https://atcoder.jp/contests/joisp2025/tasks/joisp2025_k'
 - path: '2025-sp/l'
   url: 'https://atcoder.jp/contests/joisp2025/tasks/joisp2025_l'
+
