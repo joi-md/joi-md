@@ -1,0 +1,130 @@
+<span class="lang">
+<span class="lang-ja">
+<p>配点： <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p><var>2N+2</var> 個の座席が横一列に並んでいる．左から <var>i</var> 番目の座席 (<var>1 \leqq i \leqq 2N+2</var>) の<b>座り心地</b>は <var>A_i</var> である．</p>
+<p><var>2</var> 人組で訪れたグループ客が <var>N</var> 組と，単身で訪れた VIP 客 <var>2</var> 人がおり，これら <var>2N+2</var> 人の客に <var>1</var> 人 <var>1</var> 個の座席を割り当てる．
+ただし，<var>2</var> 人以上の客に同じ座席を割り当ててはいけない．</p>
+<p>いま，同じグループに属する <var>2</var> 人には隣り合う座席を割り当てる必要がある．
+このとき，VIP 客 <var>2</var> 人に割り当てる <var>2</var> 個の座席の座り心地の合計をなるべく大きくしたい．</p>
+<p>座席の情報が与えられたとき，VIP 客 <var>2</var> 人に割り当てる <var>2</var> 個の座席の座り心地の合計の最大値を求めるプログラムを作成せよ．</p>
+<hr />
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力は以下の形式で標準入力から与えられる．</p>
+<pre><var>N</var>
+<var>A_1</var> <var>A_2</var> <var>\cdots</var> <var>A_{2N+2}</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に，VIP 客 <var>2</var> 人に割り当てる <var>2</var> 個の座席の座り心地の合計の最大値を <var>1</var> 行で出力せよ．</p>
+<hr />
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li> <var>1 \leqq N \leqq 200\,000</var>．
+<li> <var>1 \leqq A_i \leqq 10^9</var> (<var>1 \leqq i \leqq 2N+2</var>)．
+<li> 入力される値はすべて整数である．
+</ul>
+
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li> (<var>10</var> 点) <var>N = 1</var>．
+<li> (<var>10</var> 点) <var>N \leqq 2</var>．
+<li> (<var>10</var> 点) <var>N \leqq 3</var>．
+<li> (<var>30</var> 点) <var>N \leqq 2\,000</var>．
+<li> (<var>40</var> 点) 追加の制約はない．
+</ol>
+
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>2
+20 60 40 30 10 50
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>90
+</pre>
+<p>以下のように割り当てることで，VIP 客 <var>2</var> 人の座席の座り心地の合計は <var>90</var> になる．</p>
+<ul>
+<li> <var>1</var> 組目のグループには左から <var>1, 2</var> 番目の座席を割り当てる．
+<li> <var>2</var> 組目のグループには左から <var>4, 5</var> 番目の座席を割り当てる．
+<li> VIP 客 <var>2</var> 人には左から <var>3, 6</var> 番目の座席を割り当てる．
+</ul>
+
+<p>VIP 客 <var>2</var> 人の座席の座り心地の合計を <var>90</var> より大きくすることはできないので，<var>90</var> を出力する．</p>
+<p>この入力例は小課題 <var>2,3,4,5</var> の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>1
+1000000000 1000000000 1 1
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>2000000000
+</pre>
+<p>この入力例はすべての小課題の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>4
+4 10 8 6 7 6 7 8 12 3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>16
+</pre>
+<p>この入力例は小課題 <var>4,5</var> の制約を満たす．</p></section>
+</div>
+</span>
+</span>
