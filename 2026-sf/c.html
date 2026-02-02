@@ -1,0 +1,172 @@
+<span class="lang">
+<span class="lang-ja">
+<p>配点： <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>ビーバーのビ太郎は，これから服屋で <var>0</var> 枚以上の服を購入しようとしている．服屋では全部で <var>100</var> 種類の服が販売されており，
+服の種類には <var>1</var> から <var>100</var> までの番号が付けられている．服屋にはそれぞれの種類の服の在庫が十分な数用意されており，
+ビ太郎がいくら服を買っても品切れになることはない．</p>
+<p>ビ太郎は，購入した服を着ることで<b>体感温度</b>を調節することができる．気温が <var>t</var> 度であり，
+ビ太郎が種類 <var>s_1, s_2, \ldots, s_k</var> の <var>k</var> 枚の服を着ている場合，ビ太郎の体感温度は <var>t + s_1 + s_2 + \cdots + s_k</var> 度である．
+ただし，ビ太郎は <var>0</var> 枚以上の好きな枚数の服を着ることができる (服を着ていない，すなわち <var>k = 0</var> の場合は体感温度は <var>t</var> 度である)．
+また，ビ太郎は同じ種類の服を一度に複数枚着ることもでき，その種類の服を着た分だけ体感温度は重複して上昇することに注意せよ．</p>
+<p>ビ太郎は天気予報により，今後 <var>N</var> 日間の気温は順に <var>A_1</var> 度，<var>A_2</var> 度，<var>\ldots</var>，<var>A_N</var> 度になることを知った．ビ太郎は服屋で適切に服を
+購入することで，今後 <var>N</var> 日間のいずれの日も，うまく着る服を選ぶことで体感温度を <var>23</var> 度にできるようにしたいと考えている．
+また，そのような服の購入が可能である場合は，購入する服の枚数を最小限にしたいと考えている．</p>
+<p>今後 <var>N</var> 日の気温の情報が与えられたとき，ビ太郎がいずれの日も体感温度を <var>23</var> 度にできるような服の購入は可能であるか判定し，
+可能である場合は購入する服の数が最小となるような服の買い方の一例を求めるプログラムを作成せよ．</p>
+<hr />
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力は以下の形式で標準入力から与えられる．</p>
+<pre><var>N</var>
+<var>A_1</var> <var>A_2</var> <var>\cdots</var> <var>A_N</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に以下の形式で出力せよ．</p>
+<p>ビ太郎がいずれの日も体感温度を <var>23</var> 度にできるような服の購入が不可能である場合，<code>No</code> と出力せよ．</p>
+<p>ビ太郎がいずれの日も体感温度を <var>23</var> 度にできるような服の購入が可能である場合，<var>1</var> 行目に <code>Yes</code> と出力せよ．
+さらに，ビ太郎が購入する服の数の最小値を <var>k</var> とし，購入する <var>k</var> 枚の服の種類をそれぞれ <var>s_1, s_2, \ldots, s_k</var> として，
+<var>2</var> 行目に <var>k</var> を出力し，<var>3</var> 行目に <var>k</var> 個の整数 <var>s_1, s_2, \ldots, s_k</var> を空白区切りで出力せよ．
+<var>k</var> 個の整数 <var>s_1, s_2, \ldots, s_k</var> はどの順番で出力してもよい．また，条件を満たす服の購入の仕方が複数存在する場合，そのうちどれを出力してもよい．</p>
+<hr />
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li> <var>1 \leqq N \leqq 81</var>．
+<li> <var>-40 \leqq A_i \leqq 40</var> (<var>1 \leqq i \leqq N</var>)．
+<li> <var>A_i < A_{i + 1}</var> (<var>1 \leqq i \leqq N - 1</var>)．
+<li> 入力される値はすべて整数である．
+</ul>
+
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li> (<var>6</var> 点) <var>N = 1</var>．
+<li> (<var>14</var> 点) <var>N \leqq 3</var>．
+<li> (<var>15</var> 点) <var>A_{i + 1} = A_i + 1</var> (<var>1 \leqq i \leqq N - 1</var>)，<var>A_N = 23</var>．
+<li> (<var>16</var> 点) <var>A_i \geqq 12</var> (<var>1 \leqq i \leqq N</var>)．
+<li> (<var>9</var> 点) <var>A_i \geqq 4</var> (<var>1 \leqq i \leqq N</var>)．
+<li> (<var>21</var> 点) <var>A_i \geqq -8</var> (<var>1 \leqq i \leqq N</var>)．
+<li> (<var>19</var> 点) 追加の制約はない．
+</ol>
+
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>3
+17 20 23
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>Yes
+2
+3 3
+</pre>
+<p>ビ太郎は種類 <var>3</var> の服を <var>2</var> 枚購入することで，今後 <var>3</var> 日間のいずれの日も体感温度を <var>23</var> 度となるようにすることができる．具体的には，
+以下のように服を着ることでいずれの日も体感温度が <var>23</var> 度となるようにすることができる．</p>
+<ul>
+<li> <var>1</var> 日目は，種類 <var>3</var> の服を <var>2</var> 枚着る．
+<li> <var>2</var> 日目は，種類 <var>3</var> の服を <var>1</var> 枚着る．
+<li> <var>3</var> 日目は，服を <var>1</var> 枚も着ない．
+</ul>
+
+<p><var>1</var> 枚以下の服の購入で今後 <var>3</var> 日間のいずれの日も体感温度が <var>23</var> 度となるようにすることはできない．</p>
+<p>この入力例は小課題 <var>2, 4, 5, 6, 7</var> の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>1
+24
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>No
+</pre>
+<p>気温が <var>24</var> 度の日は体感温度を <var>23</var> 度となるようにすることができない．
+したがって，どのように服を購入しても，今後 <var>1</var> 日間のいずれの日も体感温度が <var>23</var> 度となるようにすることはできない．</p>
+<p>この入力例は小課題 <var>1, 2, 4, 5, 6, 7</var> の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>5
+-1 3 6 10 16
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>Yes
+3
+4 7 13
+</pre>
+<p>この入力例は小課題 <var>6, 7</var> の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 4</h3>
+<pre>3
+21 22 23
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 4</h3>
+<pre>Yes
+2
+1 1
+</pre>
+<p>この入力例は小課題 <var>2, 3, 4, 5, 6, 7</var> の制約を満たす．</p></section>
+</div>
+</span>
+</span>
