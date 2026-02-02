@@ -338,3 +338,5 @@
   url: 'https://atcoder.jp/contests/joi2026sf/tasks/joi2026_semifinal_d'
 - path: '2026-sf/e'
   url: 'https://atcoder.jp/contests/joi2026sf/tasks/joi2026_semifinal_e'
+- path: '2026-sf/f'
+  url: 'https://atcoder.jp/contests/joi2026sf/tasks/joi2026_semifinal_f'
