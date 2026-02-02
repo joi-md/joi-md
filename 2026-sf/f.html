@@ -38,12 +38,12 @@
 <var>S</var>
 <var>T</var>
 <var>Q</var>
-<var>(\text{Query} 1)</var>
-<var>(\text{Query} 2)</var>
+<var>(\text{Query }1)</var>
+<var>(\text{Query }2)</var>
 <var>\vdots</var>
-<var>(\text{Query} Q)</var>
+<var>(\text{Query }Q)</var>
 </pre>
-<p>各 <var>(\text{Query} j)</var> (<var>1 \leqq j \leqq Q</var>) にはいくつかの整数や文字が空白区切りで書かれている．そのうち最初に書かれているものは整数 <var>1, 2</var> のいずれかであり，これを <var>P_j</var> とすると，この行の内容は以下のいずれかである．</p>
+<p>各 <var>(\text{Query }j)</var> (<var>1 \leqq j \leqq Q</var>) にはいくつかの整数や文字が空白区切りで書かれている．そのうち最初に書かれているものは整数 <var>1, 2</var> のいずれかであり，これを <var>P_j</var> とすると，この行の内容は以下のいずれかである．</p>
 <ul>
 <li><var>P_j = 1</var> のとき，この行には続いて <var>1</var> 個の整数 <var>X_j</var> と <var>2</var> 個の文字 <var>Y_j, Z_j</var> がこの順に書かれている．これはあなたが <var>j</var> 日目に取る行動がパターン <var>1</var> であり，タイル <var>X_j</var> の表面の色を文字 <var>Y_j</var> で表される色に変更し，タイル <var>X_j</var> の裏面の色を文字 <var>Z_j</var> で表される色に変更することを表す．ただし，<var>Y_j, Z_j</var> は <code>B</code>, <code>W</code> のいずれかである．</li>
 <li><var>P_j = 2</var> のとき，この行には続いて <var>3</var> 個の整数 <var>L_j, R_j, M_j</var> がこの順に書かれている．これはあなたが <var>j</var> 日目に取る行動がパターン <var>2</var> であり，タイル <var>L_j, L_j + 1, \dots, R_j</var> をこの順に左から右へ一列に並べ，この列に対して操作を行い，列の中で表面が白色であるタイルをちょうど <var>M_j</var> 枚にすることができるかを判定する思考実験を行うことを表す．</li>
