@@ -42,7 +42,7 @@ $L_Q$ $R_Q$ $X_Q$
 
 ### Output
 
-Write $Q$ lines to the standard output. On the $j$-th line ($1 \leq j \leq Q$), output <code>Yes</code> if tourist $j$ can achieve his or her goal, and <code>No</code> otherwise.
+Write $Q$ lines to the standard output. On the $j$-th line ($1 \leq j \leq Q$), output `Yes` if tourist $j$ can achieve his or her goal, and `No` otherwise.
 
 ---
 
@@ -108,13 +108,13 @@ First, tourist $1$ has a ride pass $(3, 7)$ and $0$ boliviano cash initially. He
 <li> It is possible to move as station $1 \rightarrow 2 \rightarrow 4$ by using lines $3, 2$ in this order.
 </ul>
 
-Therefore, output <code>Yes</code> on the $1$-st line.
+Therefore, output `Yes` on the $1$-st line.
 
 Next, tourist $2$ has a ride pass $(5, 6)$ and $0$ boliviano cash initially. However, He or she can't achieve his or her goal. Because, this pass enables tourist $2$ to ride $2$ lines, lines $3, 4$, and he or she can't move station $4$ from station $1$ by using these $2$ lines. Moreover, since tourist $2$ has only $0$ boliviano as cash, he or she can't exchange the pass with another pass.
 
-Hence, output <code>No</code> on the $2$-nd line.
+Hence, output `No` on the $2$-nd line.
 
-Also, tourist $3$ can't achieve his or her goal, and tourist $4$ can achieve his or her goal. Thus, output <code>No</code> on the $3$-rd line, and output <code>Yes</code> on the $4$-th line.
+Also, tourist $3$ can't achieve his or her goal, and tourist $4$ can achieve his or her goal. Thus, output `No` on the $3$-rd line, and output `Yes` on the $4$-th line.
 
 This sample input satisfies the constraints of all the Subtasks.
 
@@ -153,13 +153,13 @@ First, tourist $1$ has a ride pass $(5, 6)$ and $10$ boliviano cash initially. H
 <li> He or she exchange a ride pass $(5, 6)$ for a ride pass $(1, 5)$. It costs $|5 - 1| + |6 - 5| = 5$ boliviano as a fee.
 </ol>
 
-Therefore, output <code>Yes</code> on the $1$-st line.
+Therefore, output `Yes` on the $1$-st line.
 
 Next, tourist $2$ has a ride pass $(3, 4)$ and $1$ boliviano cash initially. He or she can't achieve his or her goal with any exchange.
 
-Consequently, output <code>No</code> on the $2$-nd line.
+Consequently, output `No` on the $2$-nd line.
 
-Since Tourist $3$ can achieve his or her goal, output <code>Yes</code> on the $3$-rd line.
+Since Tourist $3$ can achieve his or her goal, output `Yes` on the $3$-rd line.
 
 This sample input satisfies the constraints of Subtasks $2,3,5,6,7$.
 
