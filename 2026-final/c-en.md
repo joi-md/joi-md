@@ -1,5 +1,7 @@
 Score: $100$ points
 
+[Distributed Files](https://img.atcoder.jp/joi2026final/multi.zip?_gl=1*18on2p7*_ga*MjkxNTEwOTk5LjE3NzQyMzI5MTM.*_ga_RC512FD18N*czE3NzQzNjU4NjgkbzE2JGcxJHQxNzc0MzY2MDIzJGo0MCRsMCRoMA..)
+
 ### Problem Statement
 
 President K has prepared a game for the contestants of the JOI Final Stage.

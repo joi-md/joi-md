@@ -1,5 +1,7 @@
 配点： $100$ 点
 
+[配布ファイル](https://img.atcoder.jp/joi2026final/multi.zip?_gl=1*18on2p7*_ga*MjkxNTEwOTk5LjE3NzQyMzI5MTM.*_ga_RC512FD18N*czE3NzQzNjU4NjgkbzE2JGcxJHQxNzc0MzY2MDIzJGo0MCRsMCRoMA..)
+
 ### 問題文
 
 K 理事長は JOI ファイナルステージの参加者にゲームを用意した．
