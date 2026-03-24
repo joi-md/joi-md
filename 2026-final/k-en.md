@@ -40,7 +40,7 @@ If this never happens, city $i$ never ignites its cauldron.
 
 </ul>
 
-Mr.~K will stay at JOI Kingdom.
+Mr. K will stay at JOI Kingdom.
 
 During his stay, JOI Kingdom will have $Q$ events related to its festival.
 
@@ -53,11 +53,11 @@ Event $k$ ($1 \leq k \leq Q$) is one of the following $3$ types:
 
 <li> Type $2$: The travel time of highway $E_k$ changes to $X_k$.
 
-<li> Type $3$: Mr.~K visits city $V_k$. Assuming a festival starts at this moment, you must determine whether {city \nolinebreak $V_k$} would ignite its cauldron, and if so, calculate the time that the cauldron is ignited.
+<li> Type $3$: Mr. K visits city $V_k$. Assuming a festival starts at this moment, you must determine whether {city \nolinebreak $V_k$} would ignite its cauldron, and if so, calculate the time that the cauldron is ignited.
 
 </ul>
 
-Write a program which, given the structure of JOI Kingdom, popularity of each city, travel time of each highway, and details of the events, for each Type $3$ event, determines when the city Mr.~K visits ignites its cauldron.
+Write a program which, given the structure of JOI Kingdom, popularity of each city, travel time of each highway, and details of the events, for each Type $3$ event, determines when the city Mr. K visits ignites its cauldron.
 
 ---
 
@@ -98,7 +98,7 @@ This means that the travel time of highway $E_k$ changes to $X_k$.
 
 <li> If $P_k = 3$, there is one more integer $V_k$ written.
 
-This means Mr.~K visits city $V_k$ and, assuming a festival starts at this moment, you must determine the time that the cauldron at city $V_k$ is ignited.
+This means Mr. K visits city $V_k$ and, assuming a festival starts at this moment, you must determine the time that the cauldron at city $V_k$ is ignited.
 
 </ul>
 
@@ -107,7 +107,7 @@ This means Mr.~K visits city $V_k$ and, assuming a festival starts at this momen
 To standard output, output the following in one line for each event $k$ ($1 \leq k \leq Q$) with $P_k = 3$, in the increasing order of $k$.
 
 <ul>
-<li> If the city Mr.~K visits would ignite its cauldron, output the time that the cauldron is ignited.
+<li> If the city Mr. K visits would ignite its cauldron, output the time that the cauldron is ignited.
 <li> Otherwise, output <code>-1</code>.
 </ul>
 
