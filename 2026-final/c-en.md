@@ -77,16 +77,14 @@ Implement a strategy for the contestants so that the game succeeds in as few rou
 Your submission must include <code>multi.h</code> using a <code>#include</code> preprocessing directive, and must implement the following function.
 
 <ul>
-<li> <code>std::vector<unsigned long long> strategy(int N, int r, int i, </code> 
-
- <code>    std::vector<unsigned long long> A, std::vector<unsigned long long> B)</code>
+<li> <code>std::vector&lt;unsigned long long&gt; strategy(int N, int r, int i, std::vector&lt;unsigned long long&gt; A, std::vector&lt;unsigned long long&gt; B)</code>
 <ul>
 <li> The argument <code>N</code> represents the number of rows and columns of the table $A$.
 <li> The arguments <code>r</code> and <code>i</code> represent the contestant number $(r, i)$.
 <li> The argument <code>A</code> is a sequence of non-negative integers of length $N$, where <code>A[j]</code> ($0 \leq j \leq N - 1$) represents the integer $A_{i,j}$ written in the cell in the $(i + 1)$-st row from the top and the $(j + 1)$-st column from the left of the table $A$.
 <li> The argument <code>B</code> is a sequence of non-negative integers of length $N$, where <code>B[j]</code> ($0 \leq j \leq N - 1$) represents the integer $B_{r,i,j}$ sent from contestant $(r-1, j)$ to contestant $(r, i)$.
-If $r = 0$, then $<code>B[j]</code> = 0$.
-<li> This function must return a sequence of non-negative integers of length $1$ or $N$, representing the action taken by contestant $(r, i)$ given the information in the arguments $<code>A</code>, <code>B</code>$.
+If $r = 0$, then $\texttt{B[j]} = 0$.
+<li> This function must return a sequence of non-negative integers of length $1$ or $N$, representing the action taken by contestant $(r, i)$ given the information in the arguments <code>A</code>, <code>B</code>.
 If the returned sequence has length other than $1$ or $N$, the submission is judged as <strong>Wrong Answer [1]</strong>.
 <ul>
 <li> To answer that the value of $X$ is $x$, this function must return a sequence of length $1$, namely $(x)$.
@@ -143,7 +141,7 @@ However, outputting debugging information and the like to standard error output 
 
 ### Scoring
 
-If, among the test cases of a subtask, there is even one that is judged as <strong>Wrong Answer [1]--[4]</strong>,
+If, among the test cases of a subtask, there is even one that is judged as <strong>Wrong Answer [1]–[4]</strong>,
 Time Limit Exceeded, Memory Limit Exceeded, or Runtime Error, then the score for that subtask is $0$.
 Otherwise, let $S$ be the maximum number of rounds used over all games in that subtask.
 Then the score for that subtask is determined as follows.
@@ -152,7 +150,7 @@ Then the score for that subtask is determined as follows.
 
 <ul>
 <li> Regardless of the value of $S$, the score for that subtask is $100\%$ of the points for the subtask.
-If $S > 6$, the contest site may display ``Output is partially correct'', but this does not affect the score.
+If $S > 6$, the contest site may display "Output is partially correct", but this does not affect the score.
 </ul>
 
 #### In the case of subtasks other than Subtask 3
@@ -190,7 +188,7 @@ Note that the actual grader used for evaluation differs from the sample grader.
 The sample grader runs as a single process.
 This program reads input from standard input and writes the results to standard output.
 
-#---
+---
 
 ### Input for the Sample Grader
 
@@ -213,8 +211,8 @@ The sample grader outputs $T$ lines to standard output.
 On the $t$-th line ($1 \leq t \leq T$), it outputs the result of the $t$-th game in the following format (the quotation marks are not actually printed).
 
 <ul>
-<li> If the game succeeds, the number of rounds used in that game is output as in ``<code>Accepted: 22</code>''.
-<li> If any of the Wrong Answer conditions applies, the type of Wrong Answer is output as in ``<code>Wrong Answer [4]</code>''.
+<li> If the game succeeds, the number of rounds used in that game is output as in <code>Accepted: 22</code>.
+<li> If any of the Wrong Answer conditions applies, the type of Wrong Answer is output as in <code>Wrong Answer [4]</code>.
 </ul>
 
 If the program being executed satisfies more than one Wrong Answer condition, only one of them will be displayed.
@@ -234,7 +232,7 @@ Below is an example of input read by the sample grader and the corresponding seq
 3
 ~~~
 
-<img src="https://img.atcoder.jp/joi2026final/multi-fig1-en.png" class="img-responsive center-block" style="max-width: 100%">
+<img src="https://img.atcoder.jp/joi2026final/multi-fig1-en.png" class="img-responsive center-block" style="width: 500px; max-width: 100%">
 
 In round $0$, the following interactions take place.
 
