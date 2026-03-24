@@ -1,0 +1,387 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>The JOI-Garden has a rectangular shape divided into a grid of <var>H</var> rows and <var>W</var> columns.
+The cell in the <var>i</var>-th row from the top and the <var>j</var>-th column from the left is called cell <var>(i,j)</var>.</p>
+<p>When rain falls on a cell, the moisture level of that cell increases.
+The moisture level of a cell never changes except when it rains.
+If the moisture level of a cell becomes at least <var>X</var>, the cell turns into mud, which is dangerous.
+Therefore, every morning, JOI-kun, the manager of the JOI-Garden, may designate at most one rectangular off-limits area that contains all cells whose moisture level is at least <var>X</var>.
+More precisely, JOI-kun chooses four integers <var>u,d,l,r</var> (<var>1\leq  u\leq  d\leq  H,1\leq  l\leq  r\leq  W</var>), and the rectangular region consisting of all cells <var>(i,j)</var> satisfying <var>u\leq  i\leq  d</var> and <var>l\leq  j\leq  r</var> becomes off-limits.</p>
+<p>Initially, the moisture level of every cell in the JOI Garden is <var>0</var>.</p>
+<p>Starting today, it will rain once every evening for <var>N</var> days.
+On the evening of the <var>(k - 1)</var>-th day after (<var>1\leq  k\leq  N</var>), rain falls on every cell <var>(i,j)</var> satisfying <var>U_k\leq  i\leq  D_k</var> and <var>L_k\leq  j\leq  R_k</var>, and the moisture level of each such cell increases by <var>C_k</var>.</p>
+<p>For each <var>k=1,2,\ldots ,N</var>, write a program that computes the minimum possible number of cells contained in the off-limits area that JOI-kun sets on the morning of the <var>k</var>-th day after.</p>
+<hr />
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input.</p>
+<pre><var>H</var> <var>W</var> <var>N</var> <var>X</var>
+<var>U_1</var> <var>D_1</var> <var>L_1</var> <var>R_1</var> <var>C_1</var>
+<var>U_2</var> <var>D_2</var> <var>L_2</var> <var>R_2</var> <var>C_2</var>
+<var>\vdots</var>
+<var>U_N</var> <var>D_N</var> <var>L_N</var> <var>R_N</var> <var>C_N</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>Write <var>N</var> lines to the standard output.
+The <var>k</var>-th line (<var>1 \leq  k \leq  N</var>) of the output should contain the minimum possible number of cells contained in the off-limits area that JOI-kun sets on the morning of day <var>k</var>.</p>
+<hr />
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li> <var>1 \leq  H \leq  10^9</var>.
+<li> <var>1 \leq  W \leq  10^9</var>.
+<li> <var>1 \leq  N \leq  200\,000</var>.
+<li> <var>1 \leq  X \leq  2\times 10^{14}</var>.
+<li> <var>1 \leq  U_k \leq  D_k \leq  H</var> (<var>1 \leq  k \leq  N</var>).
+<li> <var>1 \leq  L_k \leq  R_k \leq  W</var> (<var>1 \leq  k \leq  N</var>).
+<li> <var>1 \leq  C_k \leq  10^9</var> (<var>1 \leq  k \leq  N</var>).
+<li> Given values are all integers.
+</ul>
+
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li> (<var>3</var> points) <var>X = 1</var>.
+<li> (<var>24</var> points) <var>W = 1</var>.
+<li> (<var>15</var> points) <var>N \leq  300</var>.
+<li> (<var>30</var> points) <var>N \leq  5\,000</var>.
+<li> (<var>28</var> points) No additional constraints.
+</ol>
+
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>3 3 5 10
+3 3 1 1 5
+1 3 1 2 7
+1 3 3 3 4
+1 1 1 2 12
+3 3 3 3 6
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>0
+1
+1
+6
+9
+</pre>
+<p>The following is one example of how the moisture levels increase each day and how the off-limits area can be chosen so that the number of contained cells is minimized.</p>
+<ul>
+<li> On the evening of day <var>0</var>, the moisture level of cell <var>(3,1)</var> increases by <var>5</var>.
+On the morning of day <var>1</var>, there are no cells whose moisture level of at least <var>10</var>, so no off-limits area is set.
+<li> On the evening of day <var>1</var>, the moisture level of cells <var>(1,1)</var>, <var>(1,2)</var>, <var>(2,1)</var>, <var>(2,2)</var>, <var>(3,1)</var>, and <var>(3,2)</var> each increase by <var>7</var>.
+On the morning of day <var>2</var>, cell <var>(3,1)</var> has moisture level of at least <var>10</var>. JOI-kun chooses <var>u=d=3</var> and <var>l=r=1</var>, thereby setting a off-limits area that contains <var>1</var> cell.
+<li> On the evening of day <var>2</var>, the moisture level of cells <var>(1,3)</var>, <var>(2,3)</var>, and <var>(3,3)</var> each increase by <var>4</var>.
+On the morning of day <var>3</var>, cell <var>(3,1)</var> has moisture level of at least <var>10</var>. JOI-kun chooses <var>u=d=3</var> and <var>l=r=1</var>, thereby setting a off-limits area that contains <var>1</var> cell.
+<li> On the evening of day <var>3</var>, the moisture level of cells <var>(1,1)</var>, and <var>(1,2)</var> each increase by <var>12</var>.
+On the morning of day <var>4</var>, cells <var>(1,1)</var>,<var>(1,2)</var>, and <var>(3,1)</var> has moisture level of at least <var>10</var>. JOI-kun chooses <var>u=1</var>, <var>d=3</var>, <var>l=1</var>, <var>r=2</var>, thereby setting a off-limits area that contains <var>6</var> cells.
+<li> On the evening of day <var>4</var>, the moisture level of cell <var>(3,3)</var> increases by <var>6</var>.
+On the morning of day <var>5</var>, cells <var>(1,1)</var>, <var>(1,2)</var>, <var>(3,1)</var>, and <var>(3,3)</var> has moisture level of at least <var>10</var>. JOI-kun chooses <var>u=1</var>, <var>d=3</var>, <var>l=1</var>, <var>r=3</var>, thereby setting a off-limits area that contains <var>9</var> cells.
+</ul>
+
+<p>This sample input satisfies the constraints of Subtasks 3, 4, and 5.</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>9 1 5 1
+3 3 1 1 4
+5 8 1 1 1
+3 5 1 1 3
+8 8 1 1 4
+8 9 1 1 5
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>1
+6
+6
+6
+7
+</pre>
+<p>This sample input satisfies the constraints of all the subtasks.</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 3</h3>
+<pre>4596 9794 15 141929907
+600 3070 2222 8763 472026497
+47 2644 3276 6033 930213777
+638 945 304 1100 992702990
+370 2211 2178 2977 783902937
+277 2601 1559 8989 842013671
+566 3272 3124 8456 254633541
+91 4241 2655 8035 303526265
+1342 3662 3909 7175 685435928
+1176 4012 2827 8429 614977118
+255 2461 1482 5835 794902067
+982 2314 941 3952 342731056
+1603 2215 6730 7105 332440107
+2301 4568 6898 9561 591652619
+124 2097 3520 8882 168525684
+1845 3599 5592 7145 555656973
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 3</h3>
+<pre>16165282
+19783008
+25583040
+25583040
+26266464
+28021036
+36437770
+36437770
+36437770
+36437770
+36437770
+36437770
+41864676
+41864676
+41864676
+</pre>
+<p>This sample input satisfies the constraints of Subtasks 3, 4, and 5.</p></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点： <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>JOI 庭園は縦 <var>H</var> 行，横 <var>W</var> 列のマス目状に区切られた長方形の形をしている．
+上から数えて <var>i</var> 行目，左から数えて <var>j</var> 列目のマスは区画 <var>(i,j)</var> と呼ばれている．</p>
+<p>区画に雨が降ることにより，その区画の水分量が増加する．
+雨が降る以外に区画の水分量が変化することはない．
+水分量が <var>X</var> 以上になった区画はぬかるみになり，危険である．
+そのため JOI 庭園の管理者である JOI 君は，朝が来るごとに，水分量が <var>X</var> 以上である区画をすべて含むような長方形の立ち入り禁止の領域を <var>1</var> つまで設定する．
+正確には，<var>4</var> つの整数 <var>u,d,l,r</var> (<var>1 \leqq u \leqq d \leqq H,1 \leqq l \leqq r \leqq W</var>) を選び，<var>u \leqq i \leqq d</var> と <var>l \leqq j \leqq r</var> を両方満たす区画 <var>(i,j)</var> 全体からなる領域を立ち入り禁止にする．</p>
+<p>現在，JOI 庭園のすべての区画の水分量は <var>0</var> である．
+今日から <var>N</var> 日間，毎日夕方に 1 回ずつ，JOI 庭園に雨が降る．
+今日から <var>k-1</var> 日後 (<var>1 \leqq k \leqq N</var>) の夕方には，<var>U_k \leqq i \leqq D_k</var> と <var>L_k \leqq j \leqq R_k</var> を両方満たすような区画 <var>(i,j)</var> に雨が降り，
+それらの区画の水分量がそれぞれ <var>C_k</var> だけ増加する．</p>
+<p><var>k=1,2,\ldots ,N</var> のそれぞれについて，<var>k</var> 日後の朝に JOI 君が設定する立ち入り禁止の領域に含まれる区画の個数としてありうる最小の値を求めるプログラムを作成せよ．</p>
+<hr />
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力は以下の形式で標準入力から与えられる．</p>
+<pre><var>H</var> <var>W</var> <var>N</var> <var>X</var>
+<var>U_1</var> <var>D_1</var> <var>L_1</var> <var>R_1</var> <var>C_1</var>
+<var>U_2</var> <var>D_2</var> <var>L_2</var> <var>R_2</var> <var>C_2</var>
+<var>\vdots</var>
+<var>U_N</var> <var>D_N</var> <var>L_N</var> <var>R_N</var> <var>C_N</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に <var>N</var> 行出力せよ．
+<var>k</var> 行目 (<var>1 \leqq k \leqq N</var>) には，<var>k</var> 日後の朝に JOI 君が設定する立ち入り禁止の領域に含まれる区画の個数としてありうる最小の値を出力せよ．</p>
+<hr />
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li> <var>1 \leqq H \leqq 10^9</var>．
+<li> <var>1 \leqq W \leqq 10^9</var>．
+<li> <var>1 \leqq N \leqq 200\,000</var>．
+<li> <var>1 \leqq X \leqq 2\times 10^{14}</var>．
+<li> <var>1 \leqq U_k \leqq D_k \leqq H</var> (<var>1 \leqq k \leqq N</var>)．
+<li> <var>1 \leqq L_k \leqq R_k \leqq W</var> (<var>1 \leqq k \leqq N</var>)．
+<li> <var>1 \leqq C_k \leqq 10^9</var> (<var>1 \leqq k \leqq N</var>)．
+<li> 入力される値はすべて整数である．
+</ul>
+
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li> (<var>3</var> 点) <var>X = 1</var>．
+<li> (<var>24</var> 点) <var>W = 1</var>．
+<li> (<var>15</var> 点) <var>N \leqq 300</var>．
+<li> (<var>30</var> 点) <var>N \leqq 5\,000</var>．
+<li> (<var>28</var> 点) 追加の制約はない．
+</ol>
+
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>3 3 5 10
+3 3 1 1 5
+1 3 1 2 7
+1 3 3 3 4
+1 1 1 2 12
+3 3 3 3 6
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>0
+1
+1
+6
+9
+</pre>
+<p>以下は，各日の水分量の増加と，含まれる区画の個数が最小となるような立ち入り禁止の領域の設定方法の一例である．</p>
+<ul>
+<li> <var>0</var> 日後の夕方に，区画 <var>(3,1)</var> の水分量が <var>5</var> だけ増加する．
+<var>1</var> 日後の朝の時点では，水分量が <var>10</var> 以上の区画はないため，立ち入り禁止の領域は設定されない．
+<li> <var>1</var> 日後の夕方に，区画 <var>(1,1)</var>，<var>(1,2)</var>，<var>(2,1)</var>，<var>(2,2)</var>，<var>(3,1)</var>，<var>(3,2)</var> の水分量がそれぞれ <var>7</var> だけ増加する．
+<var>2</var> 日後の朝の時点では，水分量が <var>10</var> 以上の区画は区画 <var>(3,1)</var> である．JOI 君は，<var>u=d=3</var>，<var>l=r=1</var> を選ぶことにより <var>1</var> つの区画を含む立ち入り禁止の領域を設定する．
+<li> <var>2</var> 日後の夕方に，区画 <var>(1,3)</var>，<var>(2,3)</var>，<var>(3,3)</var> の水分量がそれぞれ <var>4</var> だけ増加する．
+<var>3</var> 日後の朝の時点では，水分量が <var>10</var> 以上の区画は区画 <var>(3,1)</var> である．JOI 君は，<var>u=d=3</var>，<var>l=r=1</var> を選ぶことにより <var>1</var> つの区画を含む立ち入り禁止の領域を設定する．
+<li> <var>3</var> 日後の夕方に，区画 <var>(1,1)</var>，<var>(1,2)</var> の水分量がそれぞれ <var>12</var> だけ増加する．
+<var>4</var> 日後の朝の時点では，水分量が <var>10</var> 以上の区画は区画 <var>(1,1)</var>，<var>(1,2)</var>，<var>(3,1)</var> である．JOI 君は，<var>u=1</var>，<var>d=3</var>，<var>l=1</var>，<var>r=2</var> を選ぶことにより <var>6</var> つの区画を含む立ち入り禁止の領域を設定する．
+<li> <var>4</var> 日後の夕方に，区画 <var>(3,3)</var> の水分量がそれぞれ <var>6</var> だけ増加する．
+<var>5</var> 日後の朝の時点では，水分量が <var>10</var> 以上の区画は区画 <var>(1,1)</var>，<var>(1,2)</var>，<var>(3,1)</var>，<var>(3,3)</var> である．JOI 君は，<var>u=1</var>，<var>d=3</var>，<var>l=1</var>，<var>r=3</var> を選ぶことにより <var>9</var> つの区画を含む立ち入り禁止の領域を設定する．
+</ul>
+
+<p>この入力例は小課題 <var>3,4,5</var> の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>9 1 5 1
+3 3 1 1 4
+5 8 1 1 1
+3 5 1 1 3
+8 8 1 1 4
+8 9 1 1 5
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>1
+6
+6
+6
+7
+</pre>
+<p>この入力例はすべての小課題の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>4596 9794 15 141929907
+600 3070 2222 8763 472026497
+47 2644 3276 6033 930213777
+638 945 304 1100 992702990
+370 2211 2178 2977 783902937
+277 2601 1559 8989 842013671
+566 3272 3124 8456 254633541
+91 4241 2655 8035 303526265
+1342 3662 3909 7175 685435928
+1176 4012 2827 8429 614977118
+255 2461 1482 5835 794902067
+982 2314 941 3952 342731056
+1603 2215 6730 7105 332440107
+2301 4568 6898 9561 591652619
+124 2097 3520 8882 168525684
+1845 3599 5592 7145 555656973
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>16165282
+19783008
+25583040
+25583040
+26266464
+28021036
+36437770
+36437770
+36437770
+36437770
+36437770
+36437770
+41864676
+41864676
+41864676
+</pre>
+<p>この入力例は小課題 <var>3,4,5</var> の制約を満たす．</p></section>
+</div>
+</span>
+</span>

@@ -1,0 +1,500 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>President K has prepared a game for the contestants of the JOI Final Stage.
+President K secretly has an <var>N \times N</var> table <var>A</var>, each of whose cells contains a non-negative integer.
+Let <var>A_{i,j}</var> denote the integer written in the cell in the <var>(i + 1)</var>-st row from the top (<var>0 \leq i \leq N - 1</var>) and the <var>(j + 1)</var>-st column from the left (<var>0 \leq j \leq N - 1</var>).
+The table <var>A</var> satisfies the following conditions.</p>
+<ul>
+<li> For each <var>i</var> such that <var>0 \leq i \leq N - 1</var>, we have <var>A_{i,i} = 0</var>.
+<li> For each <var>i, j</var> such that <var>0 \leq i < j \leq N - 1</var>, we have <var>A_{i,j} = A_{j,i}</var>.
+</ul>
+
+<p>Consider the weighted undirected graph with <var>N</var> vertices in which the edge between vertex <var>i</var> and vertex <var>j</var> (<var>0 \leq i &lt; j \leq N - 1</var>) has weight <var>A_{i,j}</var>.
+Let <var>X</var> be the weight of a minimum spanning tree of this graph.
+In other words, <var>X</var> is the value obtained by the following procedure.
+The goal of the game is for all contestants to cooperate and determine the value of <var>X</var>.</p>
+<ol>
+<li> Set <var>x = 0</var>.
+<li> Consider an undirected graph <var>G</var> with <var>N</var> vertices.
+The vertices of <var>G</var> are numbered <var>0, 1, \dots, N - 1</var>.
+Initially, <var>G</var> has no edges.
+<li> Repeat the following operation <var>N - 1</var> times.
+Let <var>X</var> be the value of <var>x</var> after these <var>N - 1</var> operations.
+<ol>
+<li> Call the vertices of <var>G</var> that are currently reachable from vertex <var>0</var> by using some edges the <strong>near vertices</strong>,
+and call the other vertices the <strong>far vertices</strong>.
+Choose a pair <var>(i, j)</var> consisting of a near vertex <var>i</var> and a far vertex <var>j</var> so that the value
+<var>A_{i,j} \times N^2 + i \times N + j</var> is minimized.
+It can be proved that there is at least one near vertex and at least one far vertex, and that <var>(i, j)</var> is uniquely determined.
+<li> Add the edge connecting vertex <var>i</var> and vertex <var>j</var> to <var>G</var>.
+<li> Update <var>x \gets x + A_{i,j}</var>.
+</ol>
+</ol>
+
+<p>Define <var>R = \lfloor 5120 / N \rfloor</var> (where <var>\lfloor x \rfloor</var> denotes the greatest integer not exceeding <var>x</var>).
+There are <var>R \times N</var> contestants in the JOI Final Stage, divided into <var>R</var> groups of <var>N</var> contestants each.
+The groups are numbered <var>0</var> through <var>R-1</var>, and the contestants in group <var>r</var> (<var>0 \leq r \leq R-1</var>) are numbered
+<var>(r, 0), (r, 1), \dots, (r, N-1)</var>.</p>
+<p>The game proceeds by repeating the following <strong>rounds</strong>, in the order round <var>0, 1, 2, \dots</var>, at most <var>R</var> times.
+During the game, the contestants are not allowed to communicate with one another, but they may share a strategy in advance.</p>
+<p>Round <var>r</var> (<var>0 \leq r \leq R-1</var>) proceeds as follows.</p>
+<ul>
+<li> For <var>i = 0, 1, \dots, N-1</var> in this order, President K and contestant <var>(r, i)</var> perform the following interaction.
+<ol>
+<li> President K gives contestant <var>(r, i)</var> the following information.
+<ul>
+<li> the contestant's number <var>(r, i)</var>,
+<li> the information in the <var>(i + 1)</var>-st row of the table <var>A</var>, namely <var>A_{i,0}, A_{i,1}, \dots, A_{i,N-1}</var>,
+<li> the integers <var>B_{r,i,0}, B_{r,i,1}, \dots, B_{r,i,N-1}</var>, each of which is an integer between <var>0</var> and <var>2^{64}-1</var>, inclusive, sent to contestant <var>(r, i)</var> from the contestants in the previous round.
+<ul>
+<li> If <var>r > 0</var>, these integers are determined in interaction 3 described below.
+<li> If <var>r = 0</var>, then for convenience we define <var>B_{r,i,0} = B_{r,i,1} = \dots = B_{r,i,N-1} = 0</var>.
+</ul>
+</ul>
+<li> If contestant <var>(r, i)</var> is able to determine the value of <var>X</var>, they answer President K with that value.
+If any contestant gives an answer, the game ends immediately.
+<li> For each <var>j = 0, 1, \dots, N-1</var>, contestant <var>(r, i)</var> determines an integer <var>B_{r+1,j,i}</var>, which must be between <var>0</var> and <var>2^{64}-1</var>, inclusive, to send to contestant <var>(r+1, j)</var>, and tells it to President K.
+Even when <var>r = R - 1</var>, so that contestant <var>(r+1, j)</var> does not exist, contestant <var>(r, i)</var> must still determine <var>B_{r+1,j,i}</var> and tell it to President K.
+</ol>
+</ul>
+
+<p>If an answered value of <var>X</var> is incorrect, or if nobody answers the value of <var>X</var> by the end of round <var>R - 1</var>, the game fails.
+If the correct value of <var>X</var> is answered by the end of round <var>R - 1</var>, the game succeeds.
+A smaller number of rounds used yields a higher score
+(if an answer is given in round <var>r</var>, the number of rounds is counted as <var>r + 1</var>).</p>
+<p>Implement a strategy for the contestants so that the game succeeds in as few rounds as possible.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Implementation Details</h3>
+<p>Your submission must include <code>multi.h</code> using a <code>#include</code> preprocessing directive, and must implement the following function.</p>
+<ul>
+<li> <code>std::vector&lt;unsigned long long&gt; strategy(int N, int r, int i, std::vector&lt;unsigned long long&gt; A, std::vector&lt;unsigned long long&gt; B)</code>
+<ul>
+<li> The argument <code>N</code> represents the number of rows and columns of the table <var>A</var>.
+<li> The arguments <code>r</code> and <code>i</code> represent the contestant number <var>(r, i)</var>.
+<li> The argument <code>A</code> is a sequence of non-negative integers of length <var>N</var>, where <code>A[j]</code> (<var>0 \leq j \leq N - 1</var>) represents the integer <var>A_{i,j}</var> written in the cell in the <var>(i + 1)</var>-st row from the top and the <var>(j + 1)</var>-st column from the left of the table <var>A</var>.
+<li> The argument <code>B</code> is a sequence of non-negative integers of length <var>N</var>, where <code>B[j]</code> (<var>0 \leq j \leq N - 1</var>) represents the integer <var>B_{r,i,j}</var> sent from contestant <var>(r-1, j)</var> to contestant <var>(r, i)</var>.
+If <var>r = 0</var>, then <var>\texttt{B[j]} = 0</var>.
+<li> This function must return a sequence of non-negative integers of length <var>1</var> or <var>N</var>, representing the action taken by contestant <var>(r, i)</var> given the information in the arguments <code>A</code>, <code>B</code>.
+If the returned sequence has length other than <var>1</var> or <var>N</var>, the submission is judged as <strong>Wrong Answer [1]</strong>.
+<ul>
+<li> To answer that the value of <var>X</var> is <var>x</var>, this function must return a sequence of length <var>1</var>, namely <var>(x)</var>.
+If the answered value is incorrect, the submission is judged as <strong>Wrong Answer [2]</strong>.
+<li> If no answer is given, this function must return a sequence <var>B'</var> of length <var>N</var>.
+<ul>
+<li> For each <var>j = 0, 1, \dots, N-1</var>, <var>B'[j]</var> represents the integer <var>B_{r+1,j,i}</var> sent by contestant <var>(r, i)</var> to contestant <var>(r+1, j)</var>.
+It must be an integer between <var>0</var> and <var>2^{64}-1</var>, inclusive.
+Note that even when <var>r = R - 1</var> and contestant <var>(r+1, j)</var> does not exist, <strong>the length of <var>B'</var> must still be <var>N</var></strong>.
+</ul>
+<li> By the end of round <var>R - 1</var>, at least one contestant must give an answer.
+If no contestant gives an answer, the submission is judged as <strong>Wrong Answer [3]</strong>.
+</ul>
+<li> <strong>The return value of this function must be determined solely by its arguments.</strong>
+In particular, note that the return value must not depend on previous calls to <code>strategy</code> or on runtime randomness.
+If this function returns different values for the same arguments, the submission is judged as <strong>Wrong Answer [4]</strong>.
+<li> It is guaranteed that the given arguments can actually occur when playing the game using some table <var>A</var> and the submitted function <code>strategy</code>.
+However, <strong>note that calls are not necessarily made in the order of rounds <var>0, 1, \dots, R - 1</var></strong>.
+<li> <strong>The grader will play one or more games in a single execution.</strong>
+In one execution, this function is called at most <var>10\,240</var> times.
+</ul>
+</ul>
+
+<h4>Important Notes</h4>
+<ul>
+<li> You may freely implement other functions or declare global variables for internal use.
+<li> Your submitted program must not communicate in any way with standard input, standard output, or any other files.
+However, outputting debugging information and the like to standard error output is allowed.
+</ul>
+
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li> <var>2 \leq N \leq 256</var>.
+<li> <var>0 \leq A_{i,j} < 2^{48}</var> (<var>0 \leq i \leq N - 1</var>, <var>0 \leq j \leq N - 1</var>).
+<li> <var>A_{i,i} = 0</var> (<var>0 \leq i \leq N - 1</var>).
+<li> <var>A_{i,j} = A_{j,i}</var> (<var>0 \leq i < j \leq N - 1</var>).
+<li> <var>N</var> and <var>A_{i,j}</var> (<var>0 \leq i \leq N - 1</var>, <var>0 \leq j \leq N - 1</var>) are integers.
+</ul>
+
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li> (<var>5</var> points) <var>N \leq 64</var>, <var>A_{i,j} \leq 1</var> (<var>0 \leq i \leq N - 1</var>, <var>0 \leq j \leq N - 1</var>).
+<li> (<var>10</var> points) <var>A_{i,j} \leq 1</var> (<var>0 \leq i \leq N - 1</var>, <var>0 \leq j \leq N - 1</var>).
+<li> (<var>15</var> points) <var>N \leq 64</var>.
+<li> (<var>40</var> points) <var>A_{i,j} < 2^{20}</var> (<var>0 \leq i \leq N - 1</var>, <var>0 \leq j \leq N - 1</var>).
+<li> (<var>15</var> points) <var>A_{i,j} < 2^{40}</var> (<var>0 \leq i \leq N - 1</var>, <var>0 \leq j \leq N - 1</var>).
+<li> (<var>15</var> points) There are no additional constraints.
+</ol>
+
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Scoring</h3>
+<p>If, among the test cases of a subtask, there is even one that is judged as <strong>Wrong Answer [1]–[4]</strong>,
+Time Limit Exceeded, Memory Limit Exceeded, or Runtime Error, then the score for that subtask is <var>0</var>.
+Otherwise, let <var>S</var> be the maximum number of rounds used over all games in that subtask.
+Then the score for that subtask is determined as follows.</p>
+<h4>In the case of Subtask 3</h4>
+<ul>
+<li> Regardless of the value of <var>S</var>, the score for that subtask is <var>100\%</var> of the points for the subtask.
+If <var>S > 6</var>, the contest site may display "Output is partially correct", but this does not affect the score.
+</ul>
+
+<h4>In the case of subtasks other than Subtask 3</h4>
+<ul>
+<li> If <var>S \leq 6</var>, the score for that subtask is <var>100\%</var> of the points for the subtask.
+<li> If <var>7 \leq S \leq 9</var>, the score for that subtask is <var>(100 - 20 \cdot (S - 6))\%</var> of the points for the subtask.
+<li> If <var>10 \leq S \leq 19</var>, the score for that subtask is <var>(40 - S)\%</var> of the points for the subtask.
+<li> If <var>20 \leq S</var>, the score for that subtask is <var>20\%</var> of the points for the subtask.
+</ul>
+
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Compilation and Test Run</h3>
+<p>A sample grader for testing your program is included in the archive downloadable from the contest site.
+This archive also contains a sample file that you must submit.</p>
+<p>The sample grader consists of a single file.
+That file is <code>grader.cpp</code>.
+To test your program, place the files <code>grader.cpp</code>, <code>multi.cpp</code>, and <code>multi.h</code> in the same Presidenty, and execute the following command.</p>
+<pre>g++ -std=gnu++20 -O2 -o grader grader.cpp multi.cpp
+</pre>
+<p>Alternatively, you may execute the file <code>compile.sh</code> included in the archive.
+In that case, run the following command.</p>
+<pre>./compile.sh
+</pre>
+<p>If the compilation succeeds, an executable file named <code>grader</code> is generated.</p>
+<p>Note that the actual grader used for evaluation differs from the sample grader.
+The sample grader runs as a single process.
+This program reads input from standard input and writes the results to standard output.</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Input for the Sample Grader</h3>
+<p>The sample grader plays one or more games in a single execution.</p>
+<p>First, the sample grader reads the number of games <var>T</var> from standard input.
+Then, for each of the <var>T</var> games, it reads the information of the table <var>A</var> in the following format.</p>
+<pre><var>N</var> 
+<var>A_{0,1}</var> <var>A_{0,2}</var> <var>A_{0,3}</var> <var>\cdots</var> <var>A_{0,N-1}</var> 
+<var>A_{1,2}</var> <var>A_{1,3}</var> <var>\cdots</var> <var>A_{1,N-1}</var> 
+<var>\vdots</var> 
+<var>A_{N-2,N-1}</var> 
+</pre>
+<h4>Output for the Sample Grader</h4>
+<p>The sample grader outputs <var>T</var> lines to standard output.
+On the <var>t</var>-th line (<var>1 \leq t \leq T</var>), it outputs the result of the <var>t</var>-th game in the following format (the quotation marks are not actually printed).</p>
+<ul>
+<li> If the game succeeds, the number of rounds used in that game is output as in <code>Accepted: 22</code>.
+<li> If any of the Wrong Answer conditions applies, the type of Wrong Answer is output as in <code>Wrong Answer [4]</code>.
+</ul>
+
+<p>If the program being executed satisfies more than one Wrong Answer condition, only one of them will be displayed.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Communication</h3>
+<p>Below is an example of input read by the sample grader and the corresponding sequence of function calls.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>1
+3
+1 2
+3
+</pre>
+<p><img src="https://img.atcoder.jp/joi2026final/multi-fig1-en.png" class="img-responsive center-block" style="width: 500px; max-width: 100%"></p>
+<p>In round <var>0</var>, the following interactions take place.</p>
+<ul>
+<li> Contestant <var>(0, 0)</var> does not answer the value of <var>X</var>, and sends <var>B_{1,0,0} = 0</var> to contestant <var>(1, 0)</var>, <var>B_{1,1,0} = 1</var> to contestant <var>(1, 1)</var>, and <var>B_{1,2,0} = 2</var> to contestant <var>(1, 2)</var>.
+<li> Contestant <var>(0, 1)</var> does not answer the value of <var>X</var>, and sends <var>B_{1,0,1} = 3</var> to contestant <var>(1, 0)</var>, <var>B_{1,1,1} = 4</var> to contestant <var>(1, 1)</var>, and <var>B_{1,2,1} = 5</var> to contestant <var>(1, 2)</var>.
+<li> Contestant <var>(0, 2)</var> does not answer the value of <var>X</var>, and sends <var>B_{1,0,2} = 6</var> to contestant <var>(1, 0)</var>, <var>B_{1,1,2} = 7</var> to contestant <var>(1, 1)</var>, and <var>B_{1,2,2} = 8</var> to contestant <var>(1, 2)</var>.
+</ul>
+
+<p>Since no contestant answered the value of <var>X</var>, the game proceeds to the next round.</p>
+<p>In round <var>1</var>, the following interaction takes place.</p>
+<ul>
+<li> Contestant <var>(1, 0)</var> receives <var>B_{1,0,0} = 0</var> from contestant <var>(0, 0)</var>, <var>B_{1,0,1} = 3</var> from contestant <var>(0, 1)</var>, and <var>B_{1,0,2} = 6</var> from contestant <var>(0, 2)</var>, and answers that <var>X = 3</var>.
+Since the value of <var>X</var> has been answered, the game ends at this point.
+</ul>
+
+<p>Because the answered value of <var>X</var> is correct, the game succeeds.
+The number of rounds used in this game is <var>2</var>.</p>
+<p>This sample input satisfies the constraints of Subtasks <var>3, 4, 5,</var> and <var>6</var>.</p>
+<p>Among the files downloadable from the contest site, <code>sample-01-in.txt</code> corresponds to Sample Input 1.
+The archive downloadable from the contest site also contains further sample inputs:
+<code>sample-02-in.txt</code>, <code>sample-03-in.txt</code>, and <code>sample-04-in.txt</code>.
+<code>sample-02-in.txt</code> satisfies the constraints of all subtasks,
+<code>sample-03-in.txt</code> satisfies the constraints of Subtasks <var>3, 4, 5,</var> and <var>6</var>,
+and <code>sample-04-in.txt</code> satisfies the constraints of Subtasks <var>4, 5,</var> and <var>6</var>.</p></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点： <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>K 理事長は JOI ファイナルステージの参加者にゲームを用意した．
+K 理事長は各マスに非負整数が書かれた <var>N \times N</var> マスの表 <var>A</var> を隠し持っている．
+<var>A</var> の上から <var>i + 1</var> 行目 (<var>0 \leqq i \leqq N - 1</var>)，左から <var>j + 1</var> 列目 (<var>0 \leqq j \leqq N - 1</var>) のマスに書かれた非負整数を <var>A_{i,j}</var> とする．
+ここで，<var>A</var> は以下の条件を満たす．</p>
+<ul>
+<li> <var>0 \leqq i \leqq N - 1</var> を満たす各 <var>i</var> に対して，<var>A_{i,i} = 0</var>．
+<li> <var>0 \leqq i < j \leqq N - 1</var> を満たす各 <var>i, j</var> に対して，<var>A_{i,j} = A_{j,i}</var>．
+</ul>
+
+<p>頂点 <var>i</var> と頂点 <var>j</var> の間 (<var>0 \leqq i &lt; j \leqq N - 1</var>) の辺の重みが <var>A_{i,j}</var> であるような <var>N</var> 頂点の重み付き無向グラフの最小全域木の重みを <var>X</var> とする．
+すなわち，<var>X</var> は以下の手順で求められる値である．参加者全員で協力して <var>X</var> の値を求めることがこのゲームの目標である．</p>
+<ol>
+<li> <var>x = 0</var> とする．
+<li> <var>N</var> 頂点の無向グラフ <var>G</var> を考える．<var>G</var> の頂点には <var>0, 1, \dots, N - 1</var> の番号が付けられている．はじめ，<var>G</var> には辺が張られていない．
+<li> 以下の操作を <var>N - 1</var> 回繰り返す．<var>N - 1</var> 回の操作が終了した後の <var>x</var> の値を <var>X</var> とする．
+<ol>
+<li> 現在いくつかの辺を通って頂点 <var>0</var> から到達可能である <var>G</var> の頂点を<strong>近い頂点</strong>，
+それ以外の <var>G</var> の頂点を<strong>遠い頂点</strong>と呼ぶ．
+近い頂点 <var>i</var> と遠い頂点 <var>j</var> の組 <var>(i, j)</var> を，<var>A_{i,j} \times N^2 + i \times N + j</var> の値が最小になるように選ぶ．
+近い頂点と遠い頂点がそれぞれ <var>1</var> つ以上存在し，<var>(i, j)</var> が一意に定まることが証明できる．
+<li> 頂点 <var>i</var> と頂点 <var>j</var> を結ぶ辺を <var>G</var> に追加する．
+<li> <var>x \gets x + A_{i,j}</var> と更新する．
+</ol>
+</ol>
+
+<p><var>R = \lfloor 5120 / N \rfloor</var> と定義する (<var>\lfloor x \rfloor</var> は <var>x</var> を超えない最大の整数を表す)．
+JOI ファイナルステージには <var>R \times N</var> 人の参加者がおり，<var>N</var> 人ずつ <var>R</var> 個のグループに分けられている．
+各グループには <var>0</var> から <var>R-1</var> までの番号が付けられており，グループ <var>r</var> (<var>0 \leqq r \leqq R-1</var>) の参加者にはそれぞれ <var>(r, 0), (r, 1), \dots, (r, N-1)</var> の番号が付けられている．</p>
+<p>ゲームは以下の<strong>ラウンド</strong>をラウンド <var>0, 1, 2, \dots</var> の順に最大 <var>R</var> 回繰り返すことで行われる．
+ゲーム中は参加者同士でコミュニケーションを取ることはできないが，事前に戦略を共有することができる．</p>
+<p>ラウンド <var>r</var> (<var>0 \leqq r \leqq R-1</var>) は以下の手順で行われる．</p>
+<ul>
+<li> <var>i = 0, 1, \dots, N-1</var> の順に，K 理事長と参加者 <var>(r, i)</var> は以下のやりとりを行う．
+<ol>
+<li> K 理事長は，参加者 <var>(r, i)</var> に以下の情報を与える．
+<ul>
+<li> 参加者の番号 <var>(r, i)</var>
+<li> 表 <var>A</var> の <var>i + 1</var> 行目の情報 <var>A_{i,0}, A_{i,1}, \dots, A_{i,N-1}</var>
+
+<li> 前のラウンドの各参加者から参加者 <var>(r, i)</var> に送られた，<var>0</var> 以上 <var>2^{64}</var> 未満の整数 <var>B_{r,i,0}, B_{r,i,1}, \dots, B_{r,i,N-1}</var>
+<ul>
+<li> <var>r > 0</var> の場合，これらの整数は以下で説明するやりとり 3 において決定される．
+<li> <var>r = 0</var> の場合，便宜上 <var>B_{r,i,0} = B_{r,i,1} = \dots = B_{r,i,N-1} = 0</var> とする．
+</ul>
+</ul>
+<li> 参加者 <var>(r, i)</var> が <var>X</var> の値を求めることができたなら，K 理事長に <var>X</var> の値を回答する．ある参加者が回答を行ったら，その時点でゲームは終了する．
+<li> 参加者 <var>(r, i)</var> は，各 <var>j = 0, 1, \dots, N-1</var> について，参加者 <var>(r+1, j)</var> に送る <var>0</var> 以上 <var>2^{64}</var> 未満の整数 <var>B_{r+1,j,i}</var> を決定し，K 理事長に伝える．
+<var>r = R - 1</var> のとき参加者 <var>(r+1, j)</var> は存在しないが，その場合でも <var>B_{r+1,j,i}</var> を決定し，K 理事長に伝える必要がある．
+</ol>
+</ul>
+
+<p>回答した <var>X</var> の値が間違っている場合や，ラウンド <var>R - 1</var> までに誰も <var>X</var> の値を回答しなかった場合，ゲームは失敗となる．
+ラウンド <var>R - 1</var> までに正しい <var>X</var> の値を回答した場合ゲームは成功となり，行われたラウンド数 (ラウンド <var>r</var> に回答を行った場合，ラウンド数は <var>r + 1</var>) が少ないほど高い評価を得られる．</p>
+<p>できるだけ少ないラウンド数でゲームを成功させるような，参加者たちの戦略を実装せよ．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>実装の詳細</h3>
+<p>あなたの回答プログラムは，<code>multi.h</code> を <code>#include</code> プリプロセッサ指令で読み込み，以下の関数を実装しなければならない．</p>
+<ul>
+<li> <code>std::vector&lt;unsigned long long&gt; strategy(int N, int r, int i, std::vector&lt;unsigned long long&gt; A, std::vector&lt;unsigned long long&gt; B)</code>
+<ul>
+<li> 引数 <code>N</code> は表 <var>A</var> の行および列の個数 <var>N</var> を表す．
+<li> 引数 <code>r</code>, <code>i</code> は参加者の番号 <var>(r, i)</var> を表す．
+<li> 引数 <code>A</code> は長さ <var>N</var> の非負整数列であり，<code>A[j]</code> (<var>0 \leqq j \leqq N - 1</var>) は表 <var>A</var> の上から <var>i + 1</var> 行目，左から <var>j + 1</var> 列目のマスに書かれた非負整数 <var>A_{i,j}</var> を表す．
+<li> 引数 <code>B</code> は長さ <var>N</var> の非負整数列であり，<code>B[j]</code> (<var>0 \leqq j \leqq N - 1</var>) は参加者 <var>(r-1, j)</var> から参加者 <var>(r, i)</var> に送られた <var>0</var> 以上 <var>2^{64}</var> 未満の整数 <var>B_{r,i,j}</var> を表す．
+<var>r = 0</var> の場合は <var>\texttt{B[j]} = 0</var> である．
+<li> この関数は，引数 <code>A</code>, <code>B</code> の情報が与えられたときに参加者 <var>(r, i)</var> のする行動を表す，長さが <var>1</var> または <var>N</var> である非負整数列を返さなければならない．
+返り値の非負整数列の長さが <var>1</var> でも <var>N</var> でもない場合，<strong>不正解[1]</strong> と判定される．
+<ul>
+<li> <var>X</var> の値が <var>x</var> であると回答する場合，この関数は長さ <var>1</var> の非負整数列 <var>(x)</var> を返さなければならない．回答した値が間違っている場合，<strong>不正解[2]</strong> と判定される．
+<li> 回答を行わない場合，この関数は長さ <var>N</var> の非負整数列 <var>B'</var> を返さなければならない．
+<ul>
+<li> 各 <var>j = 0, 1, \dots, N-1</var> について，<var>B'[j]</var> は参加者 <var>(r, i)</var> が参加者 <var>(r+1, j)</var> に送る整数 <var>B_{r+1,j,i}</var> を表す．
+これは <var>0</var> 以上 <var>2^{64}</var> 未満の整数でなければならない．
+<var>r = R - 1</var> のとき参加者 <var>(r+1, j)</var> は存在しないが，<strong>その場合でも <var>B'</var> の長さは <var>N</var> でなければならないことに注意せよ．</strong>
+</ul>
+<li> ラウンド <var>R - 1</var> が終わるまでに，いずれかの参加者が回答を行わなければならない．どの参加者も回答を行わなかった場合，<strong>不正解[3]</strong> と判定される．
+</ul>
+<li> <strong>この関数の返り値は引数のみから決定しなければならない．</strong>
+特に，以前の <code>strategy</code> の呼び出しや実行時の乱数によって返り値が変化してはならないことに注意せよ．
+この関数が同じ引数に対して異なる値を返した場合，<strong>不正解[4]</strong> と判定される．
+<li> 与えられる引数は，ある表 <var>A</var> と提出された関数 <code>strategy</code> を使用してゲームを行った際に実際に表れるものであることが保証される．
+ただし，<strong>ラウンド <var>0, 1, \dots, R - 1</var> の順に呼び出されるとは限らないことに注意せよ．</strong>
+<li> <strong>採点プログラムは 1 回の実行で 1 回以上のゲームを行う．</strong><var>1</var> 回の実行において，この関数は最大 <var>10\,240</var> 回呼び出される．
+</ul>
+</ul>
+
+<h4>重要な注意</h4>
+<ul>
+<li> 内部での使用のために他の関数を実装したり，グローバル変数を宣言するのは自由である．
+<li> あなたの提出したプログラムは，標準入力・標準出力，あるいは他のファイルといかなる方法でもやりとりしてはならない．
+ただし，標準エラー出力にデバッグ情報等を出力することは許される．
+</ul>
+
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li> <var>2 \leqq N \leqq 256</var>．
+<li> <var>0 \leqq A_{i,j} < 2^{48}</var> (<var>0 \leqq i \leqq N - 1</var>，<var>0 \leqq j \leqq N - 1</var>)．
+<li> <var>A_{i,i} = 0</var> (<var>0 \leqq i \leqq N - 1</var>)．
+<li> <var>A_{i,j} = A_{j,i}</var> (<var>0 \leqq i < j \leqq N - 1</var>)．
+<li> <var>N, A_{i,j}</var> (<var>0 \leqq i \leqq N - 1</var>，<var>0 \leqq j \leqq N - 1</var>) は整数である．
+</ul>
+
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li> (<var>5</var> 点) <var>N \leqq 64</var>，<var>A_{i,j} \leqq 1</var> (<var>0 \leqq i \leqq N - 1</var>，<var>0 \leqq j \leqq N - 1</var>)．
+<li> (<var>10</var> 点) <var>A_{i,j} \leqq 1</var> (<var>0 \leqq i \leqq N - 1</var>，<var>0 \leqq j \leqq N - 1</var>)．
+<li> (<var>15</var> 点) <var>N \leqq 64</var>．
+<li> (<var>40</var> 点) <var>A_{i,j} < 2^{20}</var> (<var>0 \leqq i \leqq N - 1</var>，<var>0 \leqq j \leqq N - 1</var>)．
+<li> (<var>15</var> 点) <var>A_{i,j} < 2^{40}</var> (<var>0 \leqq i \leqq N - 1</var>，<var>0 \leqq j \leqq N - 1</var>)．
+<li> (<var>15</var> 点) 追加の制約はない．
+</ol>
+
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>採点基準</h3>
+<p>ある小課題のテストケースの中で，<var>1</var> つでも <strong>不正解[1] 〜 [4]</strong> と判定されたものや，
+実行時間制限超過，メモリ制限超過，実行時エラーと判定されたものがあった場合，その小課題の得点は <var>0</var> 点となる．
+それ以外の場合，その小課題のすべてのゲームにわたる，行われたラウンド数の最大値を <var>S</var> として，その小課題の得点は以下のように決定される．</p>
+<h4>小課題 3 の場合</h4>
+<ul>
+<li> <var>S</var> にかかわらず，その小課題の配点の <var>100\%</var>．
+<var>S > 6</var> である場合，コンテストサイトにおいて「出力は部分的に正しい」と表記されることがあるが，得点には影響しない．
+</ul>
+
+<h4>小課題 3 以外の場合</h4>
+<ul>
+<li> <var>S \leqq 6</var> のとき，その小課題の配点の <var>100\%</var>．
+<li> <var>7 \leqq S \leqq 9</var> のとき，その小課題の配点の <var>(100 - 20 \cdot (S - 6))\%</var>．
+<li> <var>10 \leqq S \leqq 19</var> のとき，その小課題の配点の <var>(40 - S)\%</var>．
+<li> <var>20 \leqq S</var> のとき，その小課題の配点の <var>20\%</var>．
+</ul>
+
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>コンパイル・実行の方法</h3>
+<p>作成したプログラムをテストするための，採点プログラムのサンプルが，
+コンテストサイトからダウンロードできるアーカイブの中に含まれている．
+このアーカイブには，提出しなければならないファイルのサンプルも含まれている．</p>
+<p>採点プログラムのサンプルは <var>1</var> つのファイルからなる.
+そのファイルは <code>grader.cpp</code> である．
+作成したプログラムをテストするには，
+これらのファイル <code>grader.cpp</code>, <code>multi.cpp</code>, <code>multi.h</code> を同じディレクトリに置き，次のようにコマンドを実行する．</p>
+<pre>g++ -std=gnu++20 -O2 -o grader grader.cpp multi.cpp
+</pre>
+<p>なお，アーカイブの中に含まれている <code>compile.sh</code> というファイルを代わりに実行してもよい．その場合，次のようにコマンドを実行する．</p>
+<pre>./compile.sh
+</pre>
+<p>コンパイルが成功すれば，<code>grader</code> という実行ファイルが生成される．</p>
+<p>実際の採点プログラムは，採点プログラムのサンプルとは異なることに注意すること．
+採点プログラムのサンプルは単一のプロセスとして起動する．
+このプログラムは，標準入力から入力を読み込み，標準出力に結果を出力する．</p>
+<h4>採点プログラムのサンプルの入力</h4>
+<p>採点プログラムのサンプルは <var>1</var> 回の実行で <var>1</var> 回以上のゲームを行う．</p>
+<p>まず，採点プログラムのサンプルは標準入力からゲームの回数 <var>T</var> を受け取る．
+その後，<var>T</var> 回にわたって，以下の形式で表 <var>A</var> の情報を読み込む．</p>
+<pre><var>N</var> 
+<var>A_{0,1}</var> <var>A_{0,2}</var> <var>A_{0,3}</var> <var>\cdots</var> <var>A_{0,N-1}</var> 
+<var>A_{1,2}</var> <var>A_{1,3}</var> <var>\cdots</var> <var>A_{1,N-1}</var> 
+<var>\vdots</var> 
+<var>A_{N-2,N-1}</var> 
+</pre>
+<h4>採点プログラムのサンプルの出力</h4>
+<p>採点プログラムのサンプルは標準出力へ <var>T</var> 行出力する．
+<var>t</var> 行目 (<var>1 \leqq t \leqq T</var>) には <var>t</var> 回目のゲームの結果を以下の形式で出力する (引用符は実際には出力されない)．</p>
+<ul>
+<li> ゲームが成功した場合，そのゲームで行われたラウンド数が <code><code>Accepted: 22</code></code> のように出力される．
+<li> いずれかの不正解の条件に当てはまった場合，不正解の種類が <code><code>Wrong Answer [4]</code></code> のように出力される．
+</ul>
+
+<p>実行するプログラムが複数の不正解の条件を満たした場合，表示される不正解の種類はそれらのうち <var>1</var> つのみである．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>やりとりの例</h3>
+<p>採点プログラムのサンプルが読み込む入力の例と，それに対応する関数の呼び出しの例を以下に示す．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>1
+3
+1 2
+3
+</pre>
+<p><img src="https://img.atcoder.jp/joi2026final/multi-fig1.png" class="img-responsive center-block" style="width: 500px; max-width: 100%"></p>
+<p>ラウンド <var>0</var> では以下のやりとりが行われる．</p>
+<ul>
+<li> 参加者 <var>(0, 0)</var> は <var>X</var> の値を回答せず，参加者 <var>(1, 0)</var> に <var>B_{1,0,0} = 0</var> を，参加者 <var>(1, 1)</var> に <var>B_{1,1,0} = 1</var> を，参加者 <var>(1, 2)</var> に <var>B_{1,2,0} = 2</var> を送る．
+<li> 参加者 <var>(0, 1)</var> は <var>X</var> の値を回答せず，参加者 <var>(1, 0)</var> に <var>B_{1,0,1} = 3</var> を，参加者 <var>(1, 1)</var> に <var>B_{1,1,1} = 4</var> を，参加者 <var>(1, 2)</var> に <var>B_{1,2,1} = 5</var> を送る．
+<li> 参加者 <var>(0, 2)</var> は <var>X</var> の値を回答せず，参加者 <var>(1, 0)</var> に <var>B_{1,0,2} = 6</var> を，参加者 <var>(1, 1)</var> に <var>B_{1,1,2} = 7</var> を，参加者 <var>(1, 2)</var> に <var>B_{1,2,2} = 8</var> を送る．
+</ul>
+
+<p>どの参加者も <var>X</var> の値を回答しなかったので，ゲームは次のラウンドに進む．</p>
+<p>ラウンド <var>1</var> では以下のやりとりが行われる．</p>
+<ul>
+<li> 参加者 <var>(1, 0)</var> は参加者 <var>(0, 0)</var> から <var>B_{1,0,0} = 0</var> を，参加者 <var>(0, 1)</var> から <var>B_{1,0,1} = 3</var> を，参加者 <var>(0, 2)</var> から <var>B_{1,0,2} = 6</var> を受け取り，<var>X = 3</var> であると回答する．
+<var>X</var> の値を回答したため，この時点でゲームは終了する．
+</ul>
+
+<p>正しい <var>X</var> の値を回答したため，ゲームは成功となる．このゲームで行われたラウンド数は <var>2</var> である．</p>
+<p>この入力例は小課題 <var>3, 4, 5, 6</var> の制約を満たす．</p>
+<p>コンテストサイトからダウンロードできるファイルのうち，<code>sample-01-in.txt</code> は入力例 1 に対応する．
+また，コンテストサイトからダウンロードできるアーカイブの中には，さらなる入力例 <code>sample-02-in.txt</code>, <code>sample-03-in.txt</code>, <code>sample-04-in.txt</code> が存在する．
+<code>sample-02-in.txt</code> はすべての小課題の制約を満たし，
+<code>sample-03-in.txt</code> は小課題 <var>3, 4, 5, 6</var> の制約を満たし，
+<code>sample-04-in.txt</code> は小課題 <var>4, 5, 6</var> の制約を満たす．</p></section>
+</div>
+</span>
+</span>

@@ -1,0 +1,527 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>JOI Kingdom consists of <var>N</var> cities and <var>N-1</var> highways.</p>
+<p>The cities are numbered <var>1</var> through <var>N</var>, and the highways are numbered <var>1</var> through <var>N-1</var>.</p>
+<p>It is possible to travel from any city to any other city by traversing a number of highways.</p>
+<p>Each city has a <strong>popularity</strong>, represented by a non-negative integer.</p>
+<p>The popularity of city <var>i</var> (<var>1 \leq i \leq N</var>) is initially <var>C_i</var>.</p>
+<p>Each highway has a <strong>travel time</strong>, represented by a positive integer.</p>
+<p>Highway <var>j</var> (<var>1 \leq j \leq N-1</var>) connects city <var>A_j</var> and city <var>B_j</var>, and its travel time is initially <var>D_j</var>.</p>
+<p>Each city in JOI Kingdom has a cauldron.</p>
+<p>JOI Kingdom keeps its tradition that, in a festival, cities ignite their cauldrons, and these ignitions signal the departure of parades from those cities.</p>
+<p>City <var>u</var> is <strong>adjacent</strong> to city <var>v</var> if these two cities are directly connected by a highway.</p>
+<p>At the exact moment when a city ignites its cauldron, one parade will depart from this city for each of its adjacent cities, spending time equal to the travel time of the corresponding highway.</p>
+<p>To be precise, for two adjacent cities <var>v</var> and <var>u</var>, the parade from city <var>v</var> reaches city <var>u</var> at time <var>t+d</var>, where <var>t</var> is the time when the cauldron of city <var>v</var> is ignited, and <var>d</var> is the travel time of the highway connecting cities <var>v</var> and <var>u</var>.</p>
+<p>Some cities ignite their cauldron the moment the festival starts, while other cities only do so after the festival heats up enough.</p>
+<p>Let the time <var>0</var> be the start of the festival.</p>
+<p>For the city <var>i</var> whose popularity is <var>c</var>, the time when city <var>i</var> ignites its cauldron is determined as follows:</p>
+<ul>
+<li> If <var>c = 0</var>, city <var>i</var> ignites its cauldron at time <var>0</var>.
+
+<li> If <var>c \geq 1</var>, city <var>i</var> ignites its cauldron at the time when the number of parades that have arrived from adjacent cities becomes at least <var>c</var>.
+If this never happens, city <var>i</var> never ignites its cauldron.
+
+</ul>
+
+<p>Mr.~K will stay at JOI Kingdom.</p>
+<p>During his stay, JOI Kingdom will have <var>Q</var> events related to its festival.</p>
+<p>These events are numbered <var>1</var> through <var>Q</var> from earliest to latest.</p>
+<p>Event <var>k</var> (<var>1 \leq k \leq Q</var>) is one of the following <var>3</var> types:</p>
+<ul>
+<li> Type <var>1</var>: The popularity of city <var>V_k</var> changes to <var>X_k</var>.
+
+<li> Type <var>2</var>: The travel time of highway <var>E_k</var> changes to <var>X_k</var>.
+
+<li> Type <var>3</var>: Mr.~K visits city <var>V_k</var>. Assuming a festival starts at this moment, you must determine whether {city \nolinebreak <var>V_k</var>} would ignite its cauldron, and if so, calculate the time that the cauldron is ignited.
+
+</ul>
+
+<p>Write a program which, given the structure of JOI Kingdom, popularity of each city, travel time of each highway, and details of the events, for each Type <var>3</var> event, determines when the city Mr.~K visits ignites its cauldron.</p>
+<hr />
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input.</p>
+<pre><var>N</var>
+<var>A_1</var> <var>B_1</var> <var>D_1</var>
+<var>\vdots</var>
+<var>A_{N-1}</var> <var>B_{N-1}</var> <var>D_{N-1}</var>
+<var>C_1</var>
+<var>\vdots</var>
+<var>C_N</var>
+<var>Q</var>
+(Query <var>1</var>)
+<var>\vdots</var>
+(Query <var>Q</var>)
+</pre>
+<p>(Query <var>k</var>) represents the details of event <var>k</var> (<var>1 \leq k \leq Q</var>).</p>
+<p>In (Query <var>k</var>), space-separated integers are written.</p>
+<p>Let <var>P_k</var> be the first integer.
+<var>P_k</var> is <var>1</var>, <var>2</var>, or <var>3</var>, which means the type of event <var>k</var>.
+Then (Query <var>k</var>) means as follows:</p>
+<ul>
+<li> If <var>P_k = 1</var>, there are two more integers <var>V_k, X_k</var> written in this order.
+
+This means that the popularity of city <var>V_k</var> changes to <var>X_k</var>.
+
+<li> If <var>P_k = 2</var>, there are two more integers <var>E_k, X_k</var> written in this order.
+
+This means that the travel time of highway <var>E_k</var> changes to <var>X_k</var>.
+
+<li> If <var>P_k = 3</var>, there is one more integer <var>V_k</var> written.
+
+This means Mr.~K visits city <var>V_k</var> and, assuming a festival starts at this moment, you must determine the time that the cauldron at city <var>V_k</var> is ignited.
+
+</ul>
+
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>To standard output, output the following in one line for each event <var>k</var> (<var>1 \leq k \leq Q</var>) with <var>P_k = 3</var>, in the increasing order of <var>k</var>.</p>
+<ul>
+<li> If the city Mr.~K visits would ignite its cauldron, output the time that the cauldron is ignited.
+<li> Otherwise, output <code>-1</code>.
+</ul>
+
+<hr />
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li> <var>2 \leq N \leq 150\,000</var>.
+<li> <var>0 \leq C_i \leq N</var> (<var>1 \leq i \leq N</var>).
+<li> <var>1 \leq A_j < B_j \leq N</var> (<var>1 \leq j \leq N-1</var>).
+<li> <var>1 \leq D_j \leq 1\,000\,000</var> (<var>1 \leq j \leq N-1</var>).
+<li> It is possible to travel from any city to any other city by traversing a number of highways.
+
+<li> <var>1 \leq Q \leq 150\,000</var>.
+<li> If <var>P_k = 1</var>, we have <var>1 \leq V_k \leq N</var>, \, <var>0 \leq X_k \leq N</var> (<var>1 \leq k \leq Q</var>).
+<li> If <var>P_k = 2</var>, we have <var>1 \leq E_k \leq N-1</var>, \, <var>1 \leq X_k \leq 1\,000\,000</var> (<var>1 \leq k \leq Q</var>).
+<li> If <var>P_k = 3</var>, we have <var>1 \leq V_k \leq N</var> (<var>1 \leq k \leq Q</var>).
+
+<li> Given values are all integers.
+
+</ul>
+
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li> (<var>6</var> points) <var>N \leq 2\,000</var>, \, <var>Q \leq 2\,000</var>.
+<li> (<var>7</var> points) <var>A_j = 1</var>, \, <var>B_j = j+1</var> (<var>1 \leq j \leq N-1</var>). \,
+If <var>P_k = 3</var>, we have <var>V_k = 1</var> (<var>1 \leq k \leq Q</var>).
+<li> (<var>14</var> points) <var>N-1</var> is divisible by <var>3</var>.
+<var>A_j = ((j - 1) \bmod \frac{N-1}{3}) + 1</var>, \,
+<var>B_j = j+1</var> (<var>1 \leq j \leq N-1</var>). \,
+If <var>P_k = 3</var>, we have <var>V_k = 1</var> (<var>1 \leq k \leq Q</var>).
+<li> (<var>25</var> points) <var>P_k \neq 1</var>. \, If <var>P_k = 3</var>, we have <var>V_k = 1</var> (<var>1 \leq k \leq Q</var>).
+<li> (<var>12</var> points) If <var>P_k = 3</var>, we have <var>V_k = 1</var> (<var>1 \leq k \leq Q</var>).
+<li> (<var>22</var> points) <var>P_k \neq 1</var> (<var>1 \leq k \leq Q</var>).
+<li> (<var>14</var> points) No additional constraints.
+</ol>
+
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>7
+1 2 30
+2 3 30
+1 4 70
+2 5 20
+1 6 10
+2 7 50
+2
+3
+0
+0
+0
+1
+0
+8
+3 1
+1 6 0
+3 1
+2 6 10
+3 1
+1 2 7
+1 6 7
+3 1
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>80
+70
+60
+-1
+</pre>
+<p>In the festival considered in event <var>1</var>, the times when the cities ignite their cauldrons are as follows:</p>
+<ul>
+<li> At time <var>0</var>, cities <var>3,4,5,7</var> ignite their cauldrons.
+
+<li> At time <var>50</var>, city <var>2</var> ignites its cauldron. By then, the parades from cities <var>3,5,7</var> have reached city <var>2</var>.
+
+<li> At time <var>80</var>, city <var>1</var> ignites its cauldron. By then, the parades from cities <var>2,4</var> have reached city <var>1</var>.
+
+<li> At time <var>90</var>, city <var>6</var> ignites its cauldron. By then, the parade from city <var>1</var> has reached city <var>6</var>.
+
+</ul>
+
+<p>Since city <var>1</var> would ignite its cauldron at time <var>80</var>, output <var>80</var>.</p>
+<p>In the festival considered in event <var>3</var>, the times when the cities ignite their cauldrons are as follows:</p>
+<ul>
+<li> At time <var>0</var>, cities <var>3,4,5,6,7</var> ignite their cauldrons.
+
+<li> At time <var>50</var>, city <var>2</var> ignites its cauldron. By then, the parades from cities <var>3,5,7</var> have reached city <var>2</var>.
+
+<li> At time <var>70</var>, city <var>1</var> ignites its cauldron. By then, the parades from cities <var>4,6</var> have reached city <var>1</var>.
+
+</ul>
+
+<p>Since city <var>1</var> would ignite its cauldron at time <var>70</var>, output <var>70</var>.</p>
+<p>In the festival considered in event <var>5</var>, the times when the cities ignite their cauldrons are as follows:</p>
+<ul>
+<li> At time <var>0</var>, cities <var>3,4,5,6,7</var> ignite their cauldrons.
+
+<li> At time <var>30</var>, city <var>2</var> ignites its cauldron. By then, the parades from cities <var>3,5,7</var> have reached city <var>2</var>.
+
+<li> At time <var>60</var>, city <var>1</var> ignites its cauldron. By then, the parades from cities <var>2,6</var> have reached city <var>1</var>.
+
+</ul>
+
+<p>Since city <var>1</var> would ignite its cauldron at time <var>60</var>, output <var>60</var>.</p>
+<p>In the festival considered in event <var>8</var>, the times when the cities ignite their cauldrons are as follows:</p>
+<ul>
+<li> At time <var>0</var>, cities <var>3,4,5,7</var> ignite their cauldrons.
+
+</ul>
+
+<p>Cities <var>1,2,6</var> would never ignite their cauldrons. 
+Since city <var>1</var> would never ignite its cauldron, output <code>-1</code>.</p>
+<p>This sample input satisfies the constraints of Subtasks <var>1,3,5,7</var>.</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>6
+1 2 10
+1 3 30
+1 4 50
+1 5 30
+1 6 10
+2
+0
+0
+0
+0
+1
+10
+3 1
+2 3 20
+3 1
+1 6 0
+3 1
+1 1 4
+3 1
+1 2 6
+1 3 6
+3 1
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>30
+20
+10
+30
+-1
+</pre>
+<p>This sample input satisfies the constraints of Subtasks <var>1,2,5,7</var>.</p></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点： <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>JOI 国は <var>N</var> 個の街と <var>N-1</var> 本の国道からなり，
+街には <var>1</var> から <var>N</var> までの番号が，国道には <var>1</var> から <var>N-1</var> までの番号が付けられている．
+どの街からどの街へも，何本かの国道を通ることで移動できる．</p>
+<p>それぞれの街は，非負整数で表される<strong>人気度</strong>をもつ．
+街 <var>i</var> (<var>1 \leqq i \leqq N</var>) の人気度ははじめ <var>C_i</var> である．
+それぞれの国道は，正の整数で表される<strong>所要時間</strong>をもつ．
+国道 <var>j</var> (<var>1 \leqq j \leqq N-1</var>) は街 <var>A_j</var> と街 <var>B_j</var> を双方向につないでおり，その所要時間ははじめ <var>D_j</var> である．</p>
+<p>JOI 国の街には聖火台が <var>1</var> つずつ設置されている．
+JOI 国のお祭りでは，街の聖火台に火をつけ，それを合図に街からパレードを出発させる伝統がある．</p>
+<p>街 <var>v</var> と街 <var>u</var> が国道で直接つながれているとき，街 <var>u</var> は街 <var>v</var> に<strong>隣接する</strong>という．
+ある街の聖火台に火がつけられた時点で，隣接する街のそれぞれに向けて <var>1</var> つずつパレードが出発し，
+それが通る国道の所要時間と同じ時間をかけて歩いたあと，向かいの街に到着する．
+つまり，互いに隣接する街 <var>v, u</var> について，街 <var>v</var> の聖火台に火がつけられた時刻を <var>t</var>，街 <var>v, u</var> を直接つなぐ国道の所要時間を <var>d</var> とすると，
+街 <var>v</var> から出発するパレードが街 <var>u</var> に到着する時刻は <var>t+d</var> である．</p>
+<p>街によっては，お祭りが始まった瞬間に火をつけるところもあれば，お祭りが盛り上がってきたタイミングで火をつけるところもある．
+お祭りが始まるタイミングを時刻 <var>0</var> とする．
+街 <var>i</var> の聖火台に火をつける時刻は，街 <var>i</var> の人気度を <var>c</var> とすると，以下のように決定される．</p>
+<ul>
+<li> <var>c = 0</var> の場合，時刻 <var>0</var> に火をつける．
+<li> <var>c \geqq 1</var> の場合，隣接する街から来て到着したパレードが <var>c</var> 個以上にはじめてなった時刻に火をつける．
+そのようなことが起こらない場合，火はつけない．
+</ul>
+
+<p>これから K 理事長が JOI 国に滞在する．
+そのあいだに， JOI 国のお祭りについて <var>Q</var> 回の出来事がある．
+これらの出来事には，起きるのが早い順に <var>1</var> から <var>Q</var> までの番号が付けられている．
+出来事 <var>k</var> (<var>1 \leqq k \leqq Q</var>)は以下の <var>3</var> 種類のいずれかである．</p>
+<ul>
+<li> タイプ <var>1</var>: 街 <var>V_k</var> の人気度が <var>X_k</var> に変更される．
+<li> タイプ <var>2</var>: 国道 <var>E_k</var> の所要時間が <var>X_k</var> に変更される．
+<li> タイプ <var>3</var>: K 理事長が街 <var>V_k</var> に来る．このとき，仮にこの時点でお祭りが始まるとして，街 <var>V_k</var> の聖火台に火がつけられるかどうかを判定し，つけられる場合はその時刻を求めなければならない．
+</ul>
+
+<p>JOI 国の構造，街の人気度，国道の所要時間，および滞在中の出来事の情報が与えられたとき，
+タイプ <var>3</var> の出来事において K 理事長がいる街の聖火台に火がつけられる時刻を計算するプログラムを作成せよ．</p>
+<hr />
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力は以下の形式で標準入力から与えられる．</p>
+<pre><var>N</var>
+<var>A_1</var> <var>B_1</var> <var>D_1</var>
+<var>\vdots</var>
+<var>A_{N-1}</var> <var>B_{N-1}</var> <var>D_{N-1}</var>
+<var>C_1</var>
+<var>\vdots</var>
+<var>C_N</var>
+<var>Q</var>
+(Query <var>1</var>)
+<var>\vdots</var>
+(Query <var>Q</var>)
+</pre>
+<p>(Query <var>k</var>) は出来事 <var>k</var> の情報を表す(<var>1 \leqq k \leqq Q</var>)．
+(Query <var>k</var>) にはいくつかの整数が空白区切りで書かれている．
+そのうち最初に書かれているものは出来事の種類を表す整数であり，<var>1,2,3</var> のいずれかである．
+これを <var>P_k</var> とすると，この行の内容は以下の <var>3</var> 種類のいずれかである．</p>
+<ul>
+<li> <var>P_k = 1</var> のとき，この行には続いて <var>2</var> 個の整数 <var>V_k, X_k</var> がこの順に書かれている．
+これは，街 <var>V_k</var> の人気度が <var>X_k</var> に変更されることを表す．
+
+<li> <var>P_k = 2</var> のとき，この行には続いて <var>2</var> 個の整数 <var>E_k, X_k</var> がこの順に書かれている．
+これは，国道 <var>E_k</var> の所要時間が <var>X_k</var> に変更されることを表す．
+
+<li> <var>P_k = 3</var> のとき，この行には続いて整数 <var>V_k</var> が書かれている．
+これは，K 理事長がこのとき街 <var>V_k</var> におり，仮にこの時点でお祭りが始まるとしたときに街 <var>V_k</var> の聖火台に火がつけられる時刻を求める必要があることを表す．
+
+</ul>
+
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p><var>P_k = 3</var> である出来事 <var>k</var> (<var>1 \leqq k \leqq Q</var>) それぞれに対して，
+K 理事長がいる街の聖火台に火がつけられる場合はその時刻を，
+火がつけられない場合は <code>-1</code> を，
+<var>k</var> の昇順に改行区切りで出力せよ．</p>
+<hr />
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li> <var>2 \leqq N \leqq 150\,000</var>．
+<li> <var>0 \leqq C_i \leqq N</var> (<var>1 \leqq i \leqq N</var>)．
+<li> <var>1 \leqq A_j < B_j \leqq N</var> (<var>1 \leqq j \leqq N-1</var>)．
+<li> <var>1 \leqq D_j \leqq 1\,000\,000</var> (<var>1 \leqq j \leqq N-1</var>)．
+<li> どの街からどの街へも，何本かの国道を通ることで移動できる．
+<li> <var>1 \leqq Q \leqq 150\,000</var>．
+<li> <var>P_k = 1</var> のとき，<var>1 \leqq V_k \leqq N</var>，<var>0 \leqq X_k \leqq N</var> (<var>1 \leqq k \leqq Q</var>)．
+<li> <var>P_k = 2</var> のとき，<var>1 \leqq E_k \leqq N-1</var>，<var>1 \leqq X_k \leqq 1\,000\,000</var> (<var>1 \leqq k \leqq Q</var>)．
+<li> <var>P_k = 3</var> のとき，<var>1 \leqq V_k \leqq N</var> (<var>1 \leqq k \leqq Q</var>)．
+<li> 入力される値はすべて整数である．
+</ul>
+
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li> (<var>6</var> 点) <var>N \leqq 2\,000</var>，<var>Q \leqq 2\,000</var>．
+<li> (<var>7</var> 点) <var>A_j = 1</var>，<var>B_j = j+1</var> (<var>1 \leqq j \leqq N-1</var>)．
+<var>P_k = 3</var> のとき <var>V_k = 1</var> (<var>1 \leqq k \leqq Q</var>)．
+<li> (<var>14</var> 点) <var>N-1</var> は <var>3</var> の倍数．
+<var>A_j = ((j - 1) \bmod \frac{N-1}{3}) + 1</var>，
+<var>B_j = j+1</var> (<var>1 \leqq j \leqq N-1</var>)．
+<var>P_k = 3</var> のとき <var>V_k = 1</var> (<var>1 \leqq k \leqq Q</var>)．
+<li> (<var>25</var> 点) <var>P_k \neq 1</var>．<var>P_k = 3</var> のとき <var>V_k = 1</var> (<var>1 \leqq k \leqq Q</var>)．
+<li> (<var>12</var> 点) <var>P_k = 3</var> のとき <var>V_k = 1</var> (<var>1 \leqq k \leqq Q</var>)．
+<li> (<var>22</var> 点) <var>P_k \neq 1</var> (<var>1 \leqq k \leqq Q</var>)．
+<li> (<var>14</var> 点) 追加の制約はない．
+</ol>
+
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>7
+1 2 30
+2 3 30
+1 4 70
+2 5 20
+1 6 10
+2 7 50
+2
+3
+0
+0
+0
+1
+0
+8
+3 1
+1 6 0
+3 1
+2 6 10
+3 1
+1 2 7
+1 6 7
+3 1
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>80
+70
+60
+-1
+</pre>
+<p>出来事 <var>1</var> で想定されるお祭りにおいて，各街の聖火台に火がつく時刻は，時系列順に以下のとおりである．</p>
+<ul>
+<li> 時刻 <var>0</var> に，街 <var>3,4,5,7</var> の聖火台に火がつく．
+<li> 時刻 <var>50</var> に，街 <var>2</var> の聖火台に火がつく．この時点で，街 <var>2</var> には 街 <var>3,5,7</var> からパレードが到着している．
+<li> 時刻 <var>80</var> に，街 <var>1</var> の聖火台に火がつく．この時点で，街 <var>1</var> には 街 <var>2,4</var> からパレードが到着している．
+<li> 時刻 <var>90</var> に，街 <var>6</var> の聖火台に火がつく．この時点で，街 <var>6</var> には 街 <var>1</var> からパレードが到着している．
+</ul>
+
+<p>街 <var>1</var> の聖火台に火がつく時刻は <var>80</var> なので，<var>80</var> を出力する．</p>
+<p>出来事 <var>3</var> で想定されるお祭りにおいて，各街の聖火台に火がつく時刻は，時系列順に以下のとおりである．</p>
+<ul>
+<li> 時刻 <var>0</var> に，街 <var>3,4,5,6,7</var> の聖火台に火がつく．
+<li> 時刻 <var>50</var> に，街 <var>2</var> の聖火台に火がつく．この時点で，街 <var>2</var> には 街 <var>3,5,7</var> からパレードが到着している．
+<li> 時刻 <var>70</var> に，街 <var>1</var> の聖火台に火がつく．この時点で，街 <var>1</var> には 街 <var>4,6</var> からパレードが到着している．
+</ul>
+
+<p>街 <var>1</var> の聖火台に火がつく時刻は <var>70</var> なので，<var>70</var> を出力する．</p>
+<p>出来事 <var>5</var> で想定されるお祭りにおいて，各街の聖火台に火がつく時刻は，時系列順に以下のとおりである．</p>
+<ul>
+<li> 時刻 <var>0</var> に，街 <var>3,4,5,6,7</var> の聖火台に火がつく．
+<li> 時刻 <var>30</var> に，街 <var>2</var> の聖火台に火がつく．この時点で，街 <var>2</var> には 街 <var>3,5,7</var> からパレードが到着している．
+<li> 時刻 <var>60</var> に，街 <var>1</var> の聖火台に火がつく．この時点で，街 <var>1</var> には 街 <var>2,6</var> からパレードが到着している．
+</ul>
+
+<p>街 <var>1</var> の聖火台に火がつく時刻は <var>60</var> なので，<var>60</var> を出力する．</p>
+<p>出来事 <var>8</var> で想定されるお祭りにおいて，各街の聖火台に火がつく時刻は，時系列順に以下のとおりである．</p>
+<ul>
+<li> 時刻 <var>0</var> に，街 <var>3,4,5,7</var> の聖火台に火がつく．
+</ul>
+
+<p>街 <var>1,2,6</var> の聖火台に火がつくことはない．街 <var>1</var> の聖火台に火がつくことはないので，<code>-1</code> を出力する．</p>
+<p>この入力例は小課題 <var>1,3,5,7</var> の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>6
+1 2 10
+1 3 30
+1 4 50
+1 5 30
+1 6 10
+2
+0
+0
+0
+0
+1
+10
+3 1
+2 3 20
+3 1
+1 6 0
+3 1
+1 1 4
+3 1
+1 2 6
+1 3 6
+3 1
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>30
+20
+10
+30
+-1
+</pre>
+<p>この入力例は小課題 <var>1,2,5,7</var> の制約を満たす．</p></section>
+</div>
+</span>
+</span>

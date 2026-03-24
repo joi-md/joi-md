@@ -1,0 +1,306 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>There are <var>N</var> points on a straight path, numbered <var>1, 2, \ldots, N</var> from left to right.
+The path is one-way from left to right.</p>
+<p>There are also <var>M</var> teleporter devices numbered <var>1, 2, \ldots, M</var>.
+By using device <var>i</var> (<var>1 \leq i \leq M</var>), one can warp from point <var>S_i</var> to point <var>T_i</var> (<var>S_i &lt; T_i</var>).</p>
+<p>Bitaro is currently at point <var>1</var> and wants to reach point <var>N</var>.
+When Bitaro is at point <var>j</var> (<var>1 \leq j \leq N-1</var>), he can take one of the following actions:</p>
+<ul>
+<li> Move on foot to point <var>j+1</var>.
+<li> Choose an <var>i</var> (<var>1 \leq i \leq M</var>) satisfying <var>S_i = j</var>, use device <var>i</var>, and warp to point <var>T_i</var>.
+</ul>
+
+<p>It is known that warp travel places stress on the body.
+You are concerned about Bitaro's safety, so you decide to destroy zero or more teleporter devices so that, no matter which route Bitaro takes, the number of warp travels is at most <var>K</var>.
+Device <var>i</var> can be destroyed by paying cost <var>C_i</var>; if so, Bitaro can no longer use that device.</p>
+<p>Find the minimum possible total cost you need to pay when destroying zero or more teleporter devices so that, regardless of Bitaro's route, the number of warp travels is at most <var>K</var>.</p>
+<hr />
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input.</p>
+<pre><var>N</var> <var>M</var> <var>K</var>
+<var>S_1</var> <var>T_1</var> <var>C_1</var>
+<var>S_2</var> <var>T_2</var> <var>C_2</var>
+<var>\vdots</var>
+<var>S_M</var> <var>T_M</var> <var>C_M</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>Write one line to the standard output containing the minimum possible total cost.</p>
+<hr />
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li> <var>2 \leq N \leq 100\,000</var>.
+<li> <var>1 \leq K \leq M \leq 100\,000</var>.
+<li> <var>1 \leq S_i < T_i \leq N</var> (<var>1 \leq i \leq M</var>).
+<li> <var>1 \leq C_i \leq 10^9</var> (<var>1 \leq i \leq M</var>).
+<li> Given values are all integers.
+</ul>
+
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li> (<var>5</var> points) <var>K=1</var>.
+<li> (<var>3</var> points) <var>N \leq 20</var>, <var>M \leq 20</var>.
+<li> (<var>29</var> points) <var>N \leq 500</var>, <var>M \leq 500</var>.
+<li> (<var>23</var> points) <var>N \leq 4\,000</var>, <var>M \leq 4\,000</var>.
+<li> (<var>24</var> points) <var>N \leq 40\,000</var>, <var>M \leq 40\,000</var>.
+<li> (<var>16</var> points) No additional constraints.
+</ol>
+
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>8 4 1
+1 4 3
+2 3 5
+3 6 2
+5 8 2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>4
+</pre>
+<p>Consider the case where devices <var>3</var> and <var>4</var> are destroyed.</p>
+<p>Then Bitaro can use only devices <var>1</var> and <var>2</var>.
+When moving from point <var>1</var> to point <var>8</var>, Bitaro will always make at most one warp travel, so the condition is satisfied.</p>
+<p>In this case, the total paid cost is <var>4</var>.
+Since it is impossible to make the cost at most <var>3</var>, the correct output is <var>4</var>.</p>
+<p>This input example satisfies the constraints of all subtasks.</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>12 7 2
+1 5 3
+4 8 2
+2 4 5
+2 4 8
+7 9 4
+9 11 7
+3 10 5
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>6
+</pre>
+<p>Destroying devices <var>2</var> and <var>5</var> is optimal.</p>
+<p>This input example satisfies the constraints of subtasks <var>2,3,4,5,6</var>.</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 3</h3>
+<pre>6 3 2
+1 4 2
+2 5 4
+3 6 3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 3</h3>
+<pre>0
+</pre>
+<p>In this case, there is no need to destroy any device.</p>
+<p>This input example satisfies the constraints of subtasks <var>2,3,4,5,6</var>.</p></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>一本道に <var>N</var> 個の地点があり，左から順に <var>1, 2, \ldots, N</var> の番号が付けられている．道は左から右への一方通行である．</p>
+<p>また，<var>1, 2, \ldots, M</var> の番号が付いた <var>M</var> 個のテレポーター装置がある．
+装置 <var>i</var> (<var>1 \leqq i \leqq M</var>) を使用すると地点 <var>S_i</var> から地点 <var>T_i</var> (<var>S_i &lt; T_i</var>) にワープ移動することができる．</p>
+<p>ビ太郎は現在地点 <var>1</var> におり，地点 <var>N</var> に向かおうとしている．
+ビ太郎が地点 <var>j</var> (<var>1 \leqq j \leqq N-1</var>) にいるときにとることができる行動は次のいずれかである．</p>
+<ul>
+<li> 地点 <var>j+1</var> に歩いて移動する．
+<li> <var>S_i=j</var> を満たす <var>i</var> (<var>1 \leqq i \leqq M</var>) を選ぶ．装置 <var>i</var> を使用し，地点 <var>T_i</var> にワープ移動する．
+</ul>
+
+<p>ワープ移動をすると体に負担がかかることが知られている．
+ビ太郎の体の安全について心配するあなたは，ビ太郎がどのような経路をとったとしてもワープ移動の回数が <var>K</var> 以下となるよう，<var>0</var> 個以上のテレポーター装置を破壊することにした．
+テレポーター装置 <var>i</var> はコスト <var>C_i</var> を支払うことで破壊することができ，その場合ビ太郎はその装置を使用することが不可能となる．</p>
+<p>ビ太郎がどのような経路をとったとしてもワープ移動の回数が <var>K</var> 以下となるように <var>0</var> 個以上のテレポーター装置を破壊するとき，支払うコストの総和としてありうる最小値を求めよ．</p>
+<hr />
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力は以下の形式で標準入力から与えられる．</p>
+<pre><var>N</var> <var>M</var> <var>K</var>
+<var>S_1</var> <var>T_1</var> <var>C_1</var>
+<var>S_2</var> <var>T_2</var> <var>C_2</var>
+<var>\vdots</var>
+<var>S_M</var> <var>T_M</var> <var>C_M</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に，支払うコストの総和としてありうる最小値を <var>1</var> 行で出力せよ．</p>
+<hr />
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li> <var>2 \leqq N \leqq 100\,000</var>．
+<li> <var>1 \leqq K \leqq M \leqq 100\,000</var>．
+<li> <var>1 \leqq S_i < T_i \leqq N</var> (<var>1 \leqq i \leqq M</var>)．
+<li> <var>1 \leqq C_i \leqq 10^9</var> (<var>1\leqq i \leqq M</var>)．
+<li> 入力される値はすべて整数である．
+</ul>
+
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li> (<var>5</var> 点) <var>K=1</var>．
+<li> (<var>3</var> 点) <var>N\leqq 20</var>，<var>M\leqq 20</var>．
+<li> (<var>29</var> 点) <var>N\leqq 500</var>，<var>M\leqq 500</var>．
+<li> (<var>23</var> 点) <var>N\leqq 4\,000</var>，<var>M\leqq 4\,000</var>．
+<li> (<var>24</var> 点) <var>N\leqq 40\,000</var>，<var>M\leqq 40\,000</var>．
+<li> (<var>16</var> 点) 追加の制約はない．
+</ol>
+
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>8 4 1
+1 4 3
+2 3 5
+3 6 2
+5 8 2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>4
+</pre>
+<p>装置 <var>3, 4</var> を破壊した場合を考える．</p>
+<p>ビ太郎が使用可能な装置は <var>1, 2</var> のみとなる．地点 <var>1</var> から地点 <var>8</var> に移動するときにビ太郎がワープ移動をする回数は必ず <var>1</var> 回以下となるため，条件を満たす．</p>
+<p>このとき，支払うコストの総和は <var>4</var> である．
+コストを <var>3</var> 以下にすることはできないので，<var>4</var> を出力する．</p>
+<p>この入力例はすべての小課題の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>12 7 2
+1 5 3
+4 8 2
+2 4 5
+2 4 8
+7 9 4
+9 11 7
+3 10 5
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>6
+</pre>
+<p>装置 <var>2, 5</var> を破壊するのが最適である．</p>
+<p>この入力例は小課題 <var>2,3,4,5,6</var> の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>6 3 2
+1 4 2
+2 5 4
+3 6 3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>0
+</pre>
+<p>この場合，装置を破壊する必要はない．</p>
+<p>この入力例は小課題 <var>2,3,4,5,6</var> の制約を満たす．</p></section>
+</div>
+</span>
+</span>
