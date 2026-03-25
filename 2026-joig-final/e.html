@@ -1,0 +1,188 @@
+<span class="lang">
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>ローマのとある郊外に，<var>1</var> 本の十分に長い線路がある．この線路は数直線とみなすことができ，線路沿いの各地点は <var>1</var> 個の整数による座標で表される．
+この線路に沿って <var>N</var> 個の駅があり，座標の小さい順に <var>1</var> から <var>N</var> までの番号が付けられている．駅 <var>i</var> (<var>1 \leqq i \leqq N</var>) の位置は座標 <var>A_i</var> である．<var>2</var> つ以上の駅が同じ座標に存在することはない．</p>
+<p>この線路上を列車が走っている．列車は座標が小さい地点から大きい地点に向かう方向にのみ運行しており，すべての駅に停車する．</p>
+<p>運賃は乗車駅と降車駅の距離に応じて決まり，ある整数列 <var>(B_1, B_2, ..., B_K)</var> を用いて以下のように計算される．ここで，<var>1 = B_1 &lt; B_2 &lt; \cdots &lt; B_K</var> が成り立つ．なお，乗車駅と降車駅は相異なる必要がある．</p>
+<pre>乗車駅と降車駅の距離を <var>d</var> (<var>d\geqq 1</var>) とし，<var>B_j \leqq d</var> を満たす最大の整数 <var>j</var> (<var>1 \leqq j \leqq K</var>) を <var>j_\text{max}</var> とする．このとき，運賃は <var>j_\text{max}</var> である．
+</pre>
+<p>イタリア観光に来たビ太郎は，この列車に <var>Q</var> 回乗車する計画があり，各回の運賃を計算しようと思っている．
+<var>k</var> 回目 (<var>1 \leqq k \leqq Q</var>) の乗車計画では，列車に乗って駅 <var>l_k</var> から駅 <var>r_k</var> まで行きたいと思っている．ここで，<var>l_k &lt; r_k</var> である．</p>
+<p>ビ太郎は疲れているので，列車に乗らず駅の間を移動することはしない．しかし，途中下車して運賃を一度精算し，再度その駅から乗車することはできる．
+途中下車はどの駅でも可能であり，回数に制限はない．
+例えば，駅 <var>s_1, s_2, \cdots, s_m</var> で途中下車した場合 (<var>l_k &lt; s_1 &lt; s_2 &lt; \cdots &lt; s_m &lt; r_k</var>)，距離 <var>A_{s_1} - A_{l_k}, A_{s_2} - A_{s_1}, A_{s_3} - A_{s_2}, \cdots, A_{s_m} - A_{s_{m-1}}, A_{r_k} - A_{s_m}</var> の分の運賃を支払うことになる．</p>
+<p>ビ太郎は適切に途中下車することで，駅 <var>l_k</var> から駅 <var>r_k</var> まで行くのに必要な運賃の合計を最小化したい．</p>
+<p>駅と運賃と乗車計画の情報が与えられたとき，それぞれの乗車計画について，ビ太郎が支払う必要のある運賃の合計の最小値を求めるプログラムを作成せよ．</p>
+<hr />
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力は以下の形式で標準入力から与えられる．</p>
+<pre><var>N</var> 
+<var>A_1</var> <var>A_2</var> <var>\cdots</var> <var>A_{N}</var> 
+<var>K</var> 
+<var>B_1</var> <var>B_2</var> <var>\cdots</var> <var>B_{K}</var> 
+<var>Q</var> 
+<var>l_1</var> <var>r_1</var> 
+<var>l_2</var> <var>r_2</var> 
+<var>\vdots</var> 
+<var>l_Q</var> <var>r_Q</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に <var>Q</var> 行出力せよ．<var>k</var> 行目 (<var>1 \leqq k \leqq Q</var>) には <var>k</var> 回目の乗車計画についてビ太郎が支払う必要のある運賃の合計の最小値を出力せよ．</p>
+<hr />
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li> <var>2 \leqq N \leqq 150\,000</var>．
+<li> <var>1 \leqq A_1 &lt; A_2 &lt; \cdots &lt; A_N \leqq 10^9</var>．
+<li> <var>1 \leqq K \leqq 20</var>．
+<li> <var>1 = B_1 &lt; B_2 &lt; \cdots &lt; B_K \leqq 10^9</var>．
+<li> <var>1 \leqq Q \leqq 150\,000</var>．
+<li> <var>1 \leqq l_k &lt; r_k \leqq N</var> (<var>1 \leqq k \leqq Q</var>)．
+<li> 入力される値はすべて整数である．
+</ul>
+
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li> (<var>8</var> 点) <var>K \leqq 2</var>．
+<li> (<var>11</var> 点) <var>N \leqq 500</var>．
+<li> (<var>29</var> 点) <var>Q = 1</var>．
+<li> (<var>20</var> 点) <var>K \leqq 5</var>．
+<li> (<var>32</var> 点) 追加の制約はない．
+</ol>
+
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>8
+1 3 4 5 8 9 12 14
+8
+1 2 5 6 7 9 10 11
+3
+1 5
+3 5
+1 7
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>4
+2
+6
+</pre>
+<p><var>1</var> 回目の乗車計画では，ビ太郎は列車に乗って駅 <var>l_1=1</var> から駅 <var>r_1=5</var> まで行きたいと思っている．
+このとき，例えば以下のように行動することができる．</p>
+<ul>
+<li> まず，駅 <var>1</var> で乗車し，駅 <var>3</var> で途中下車する．このときの乗車距離は <var>A_3 - A_1 = 3</var> であり，<var>B_j \leqq 3</var> を満たす最大の整数 <var>j</var> (<var>1 \leqq j \leqq K</var>) は <var>2</var> であるので，運賃は <var>2</var> である．
+<li> 次に，駅 <var>3</var> で再度乗車し，駅 <var>5</var> で降車する．このときの乗車距離は <var>A_5 - A_3 = 4</var> であり，<var>B_j \leqq 4</var> を満たす最大の整数 <var>j</var> (<var>1 \leqq j \leqq K</var>) は <var>2</var> であるので，運賃は <var>2</var> である．
+</ul>
+
+<p>この場合の運賃の合計は <var>2 + 2 = 4</var> であり，これより運賃の合計を小さくすることはできない．よって，<var>1</var> 行目に <var>4</var> を出力する．</p>
+<p><var>2</var> 回目の乗車計画では，ビ太郎は列車に乗って駅 <var>l_2=3</var> から駅 <var>r_2=5</var> まで行きたいと思っている．
+このとき，例えば以下のように行動することができる．</p>
+<ul>
+<li> 駅 <var>3</var> で乗車し，駅 <var>5</var> で下車する．このときの乗車距離は <var>A_5 - A_3 = 4</var> であり，<var>B_j \leqq 4</var> を満たす最大の整数 <var>j</var> (<var>1 \leqq j \leqq K</var>) は <var>2</var> であるので，運賃は <var>2</var> である．
+</ul>
+
+<p>この場合の運賃の合計は <var>2</var> であり，これより運賃の合計を小さくすることはできない．よって，<var>2</var> 行目に <var>2</var> を出力する．</p>
+<p><var>3</var> 回目の乗車計画では，ビ太郎は列車に乗って駅 <var>l_3=1</var> から駅 <var>r_3=7</var> まで行きたいと思っている．
+このとき，例えば以下のように行動することができる．</p>
+<ul>
+<li> まず，駅 <var>1</var> で乗車し，駅 <var>4</var> で途中下車する．このときの乗車距離は <var>A_4 - A_1 = 4</var> であり，<var>B_j \leqq 4</var> を満たす最大の整数 <var>j</var> (<var>1 \leqq j \leqq K</var>) は <var>2</var> であるので，運賃は <var>2</var> である．
+<li> 次に，駅 <var>4</var> で再度乗車し，駅 <var>6</var> で途中下車する．このときの乗車距離は <var>A_6 - A_4 = 4</var> であり，<var>B_j \leqq 4</var> を満たす最大の整数 <var>j</var> (<var>1 \leqq j \leqq K</var>) は <var>2</var> であるので，運賃は <var>2</var> である．
+<li> 次に，駅 <var>6</var> で再度乗車し，駅 <var>7</var> で降車する．このときの乗車距離は <var>A_7 - A_6 = 3</var> であり，<var>B_j \leqq 3</var> を満たす最大の整数 <var>j</var> (<var>1 \leqq j \leqq K</var>) は <var>2</var> であるので，運賃は <var>2</var> である．
+</ul>
+
+<p>この場合の運賃の合計は <var>2 + 2 + 2 = 6</var> であり，これより運賃の合計を小さくすることはできない．よって，<var>3</var> 行目に <var>6</var> を出力する．</p>
+<p>この入力例は小課題 <var>2,5</var> の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>10
+3 6 16 19 32 40 41 53 59 78
+2
+1 15
+1
+3 10
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>2
+</pre>
+<p>この入力例はすべての小課題の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>10
+11 13 39 42 53 54 66 69 77 83
+15
+1 5 13 31 40 41 52 57 59 66 70 79 97 103 115
+5
+1 6
+2 9
+1 8
+2 7
+3 9
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>6
+7
+6
+6
+4
+</pre>
+<p>この入力例は小課題 <var>2,5</var> の制約を満たす．</p></section>
+</div>
+</span>
+</span>

@@ -1,0 +1,204 @@
+<span class="lang">
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>JOI 君が住む IOI 国には <var>N</var> 個の街があり，<var>1</var> から <var>N</var> までの番号が付けられている．
+また，IOI 国には <var>N-1</var> 本の道路があり，<var>1</var> から <var>N-1</var> までの番号が付けられている．
+道路 <var>j</var> (<var>1 \leqq j \leqq N-1</var>) は街 <var>U_j</var> と街 <var>V_j</var> を双方向に結んでいる．
+どの街からどの街へも何本かの道路を通ることによって移動することができる．</p>
+<p>これから IOI 国でスタンプラリーが開催される．
+それぞれの街には <var>1</var> つのスタンプ台が設置される予定である．
+街 <var>i</var> (<var>1 \leqq i \leqq N</var>) のスタンプ台は時刻 <var>T_i</var> に設置される．</p>
+<p>JOI 君はスタンプラリーに参加することにした．
+JOI 君は時刻 <var>0</var> にいずれかの街から行動を開始する．
+また，JOI 君は時刻 <var>0</var> の時点で体力が <var>D</var> である．</p>
+<p>JOI 君は時刻 <var>t</var> に街 <var>i</var> にいるとき，次の行動をとる．</p>
+<ol>
+<li> まず，現在いる街に既にスタンプ台が設置されている場合はスタンプを押す．
+すなわち，<var>T_i \leqq t</var> の場合はスタンプを押す．
+<li> 次に，スタンプラリーを終了するか別の街に移動するかを選ぶ．
+ただし，街 <var>i</var> と道路で結ばれた街で，まだ訪れたことのない街が存在し，かつ，現在の体力が <var>1</var> 以上であるときに限り，別の街に移動することを選ぶことができる．
+<li> JOI 君が別の街に移動することを選んだ場合，JOI 君は街 <var>i</var> と道路で結ばれた街のうち，まだ訪れたことのない街 <var>j</var> を選び，移動する．
+体力が <var>1</var> 減少し，時刻 <var>t+1</var> に街 <var>j</var> に到着する．
+<li> JOI 君がスタンプラリーを終了することを選んだ場合，それまでに一度以上スタンプを押した場合はスタンプラリー成功となり，その場でプレゼントを受け取ることができる．そうでない場合はスタンプラリー失敗となる．
+</ol>
+
+<p>街の移動にかかる時間以外は無視できるものとする．
+JOI 君が同じ街に留まることはできないことに注意せよ．</p>
+<p>大会の運営者であるあなたは，JOI 君がスタンプラリーに成功した場合のためにそれぞれの街にプレゼントを用意しておく必要があるが，プレゼントの数には限りがあるため，必要最小限の街にプレゼントを用意したい．
+しかしながら，あなたは JOI 君がどの街から行動を開始するかについての情報を持っていない．
+そこで，あなたはそれぞれの <var>s</var> (<var>1 \leqq s \leqq N</var>) について，JOI 君が街 <var>s</var> から行動を開始したときに，プレゼントを用意しておく必要のある街の数，すなわち，JOI 君が街 <var>g</var> でスタンプラリーを終了をしたときにスタンプラリー成功となる可能性があるような <var>g</var> (<var>1\leqq g\leqq N</var>) の数を求めたい．</p>
+<p>IOI 国の街と道路の情報，JOI 君の体力，およびスタンプ台の設置時刻が与えられたとき，それぞれの街について，
+その街から JOI 君が行動を開始したときにプレゼントを用意しておく必要のある街の数を求めるプログラムを作成せよ．</p>
+<hr />
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力は以下の形式で標準入力から与えられる．</p>
+<pre><var>N</var> <var>D</var>
+<var>T_1</var> <var>T_2</var> <var>\cdots</var> <var>T_N</var>
+<var>U_1</var> <var>V_1</var>
+<var>U_2</var> <var>V_2</var>
+<var>\vdots</var>
+<var>U_{N-1}</var> <var>V_{N-1}</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に，<var>N</var> 行出力せよ．
+<var>s</var> 行目 (<var>1\leqq s \leqq N</var>) には，JOI 君が街 <var>s</var> から行動を開始したときにプレゼントを用意しておく必要のある街の数を出力せよ．</p>
+<hr />
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li> <var>2 \leqq N \leqq 400\,000</var>．
+<li> <var>0 \leqq D \leqq N-1</var>．
+<li> <var>0 \leqq T_i \leqq N</var> (<var>1 \leqq i \leqq N</var>)．
+<li> <var>1 \leqq U_j &lt; V_j \leqq N</var> (<var>1 \leqq j \leqq N-1</var>)．
+<li> どの街からどの街へも何本かの道路を通ることによって移動することができる．
+<li> 入力される値はすべて整数である．
+</ul>
+
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li> (<var>5</var> 点) <var>D\leqq 1</var>．
+<li> (<var>9</var> 点) <var>N\leqq 3\,000</var>，<var>(U_j,V_j)=(j,j+1)</var> (<var>1\leqq j \leqq N-1</var>)．
+<li> (<var>17</var> 点) <var>N\leqq 3\,000</var>．
+<li> (<var>17</var> 点) <var>(U_j,V_j)=(j,j+1)</var> (<var>1\leqq j \leqq N-1</var>)．
+<li> (<var>33</var> 点) <var>D=N-1</var>，<var>N \leqq 150\,000</var>．
+<li> (<var>19</var> 点) 追加の制約はない．
+</ol>
+
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>5 2
+2 2 0 1 3
+1 2
+2 3
+2 4
+4 5
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>2
+3
+4
+2
+2
+</pre>
+<p><var>s=1</var> のとき，JOI 君の行動の一例を示す．</p>
+<ul>
+<li> JOI 君は時刻 <var>0</var> に街 <var>1</var> にいる状態で，次の行動をとる．
+<ul>
+<li> 街 <var>1</var> にはまだスタンプ台が設置されていないため，JOI 君はスタンプを押さない．
+<li> JOI 君の現在の体力は <var>2</var> である．街 <var>1</var> と道路で結ばれた街のうち，まだ訪れたことのない街の一つである街 <var>2</var> に移動する．
+<li> JOI 君の体力が <var>1</var> 減少し，時刻 <var>1</var> に街 <var>2</var> に到着する．
+</ul>
+<li> JOI 君は時刻 <var>1</var> に街 <var>2</var> にいる状態で，次の行動をとる．
+<ul>
+<li> 街 <var>2</var> にはまだスタンプ台が設置されていないため，JOI 君はスタンプを押さない．
+<li> JOI 君の現在の体力は <var>1</var> である．街 <var>2</var> と道路で結ばれた街のうち，まだ訪れたことのない街の一つである街 <var>3</var> に移動する．
+<li> JOI 君の体力が <var>1</var> 減少し，時刻 <var>2</var> に街 <var>3</var> に到着する．
+</ul>
+<li> JOI 君は時刻 <var>2</var> に街 <var>3</var> にいる状態で，次の行動をとる．
+<ul>
+<li> 街 <var>3</var> には既にスタンプ台が設置されているため，JOI 君はスタンプを押す．
+<li> JOI 君はここでスタンプラリーを終了することを選ぶ．これまでに一度以上スタンプを押しているため，スタンプラリー成功となる．その場でプレゼントを受け取る．
+</ul>
+</ul>
+<p>よって，JOI 君が街 <var>1</var> から行動を開始し，街 <var>3</var> でスタンプラリーを終了したときにスタンプラリー成功となる可能性があるため，街 <var>3</var> にプレゼントを用意しておく必要がある．
+JOI 君が街 <var>1</var> から行動を開始したときにプレゼントを用意しておく必要のある街は街 <var>3</var> と街 <var>4</var> のみであるため，<var>1</var> 行目には <var>2</var> を出力する．</p>
+<p>また，JOI 君が街 <var>2</var> から行動を開始したときにプレゼントを用意しておく必要のある街は街 <var>3</var>，街 <var>4</var> と街 <var>5</var> のみであるため，<var>2</var> 行目には <var>3</var> を出力する．</p>
+<p>この入力例は小課題 <var>3,6</var> の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>5 1
+0 1 2 1 2
+1 2
+2 3
+3 4
+4 5
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>2
+1
+2
+0
+1
+</pre>
+<p>この入力例は小課題 <var>1,2,3,4,6</var> の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>7 6
+2 3 0 4 1 3 4
+1 2
+2 3
+2 4
+1 5
+1 6
+6 7
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>2
+2
+7
+5
+1
+2
+5
+</pre>
+<p>この入力例は小課題 <var>3,5,6</var> の制約を満たす．</p></section>
+</div>
+</span>
+</span>
