@@ -9,8 +9,9 @@
 この線路に沿って <var>N</var> 個の駅があり，座標の小さい順に <var>1</var> から <var>N</var> までの番号が付けられている．駅 <var>i</var> (<var>1 \leqq i \leqq N</var>) の位置は座標 <var>A_i</var> である．<var>2</var> つ以上の駅が同じ座標に存在することはない．</p>
 <p>この線路上を列車が走っている．列車は座標が小さい地点から大きい地点に向かう方向にのみ運行しており，すべての駅に停車する．</p>
 <p>運賃は乗車駅と降車駅の距離に応じて決まり，ある整数列 <var>(B_1, B_2, ..., B_K)</var> を用いて以下のように計算される．ここで，<var>1 = B_1 &lt; B_2 &lt; \cdots &lt; B_K</var> が成り立つ．なお，乗車駅と降車駅は相異なる必要がある．</p>
-<pre>乗車駅と降車駅の距離を <var>d</var> (<var>d\geqq 1</var>) とし，<var>B_j \leqq d</var> を満たす最大の整数 <var>j</var> (<var>1 \leqq j \leqq K</var>) を <var>j_\text{max}</var> とする．このとき，運賃は <var>j_\text{max}</var> である．
-</pre>
+<ul>
+<li>乗車駅と降車駅の距離を <var>d</var> (<var>d\geqq 1</var>) とし，<var>B_j \leqq d</var> を満たす最大の整数 <var>j</var> (<var>1 \leqq j \leqq K</var>) を <var>j_\text{max}</var> とする．このとき，運賃は <var>j_\text{max}</var> である．</li>
+</ul>
 <p>イタリア観光に来たビ太郎は，この列車に <var>Q</var> 回乗車する計画があり，各回の運賃を計算しようと思っている．
 <var>k</var> 回目 (<var>1 \leqq k \leqq Q</var>) の乗車計画では，列車に乗って駅 <var>l_k</var> から駅 <var>r_k</var> まで行きたいと思っている．ここで，<var>l_k &lt; r_k</var> である．</p>
 <p>ビ太郎は疲れているので，列車に乗らず駅の間を移動することはしない．しかし，途中下車して運賃を一度精算し，再度その駅から乗車することはできる．
