@@ -157,7 +157,7 @@ $R_Q$
 <li> $L_i \leqq L$ を満たすすべてのターンについて勝利したような最大の整数 $L$．ただし，テストケース内のすべてのターンに勝利した場合は $L = 51$ とする．
 </ul>
 
-<img src="https://img.atcoder.jp/joig2026final/casino-fig1.png" class="img-responsive center-block" style="max-width: 100%; width: 330px;">
+<img src="https://img.atcoder.jp/joig2026final/casino-fig1.png" class="img-responsive center-block" style="max-width: 100%; width: 500px;">
 
 ### やりとりの例
 
