@@ -1,44 +1,39 @@
 <span class="lang">
 <span class="lang-en">
-<p>Score: <var>100</var> points</p>
+<p>Score : <var>100</var> points</p>
 
 <div class="part">
 <section>
 <h3>Problem Statement</h3>
-<p>JOI Kingdom consists of <var>N</var> cities and <var>N-1</var> highways.</p>
-<p>The cities are numbered <var>1</var> through <var>N</var>, and the highways are numbered <var>1</var> through <var>N-1</var>.</p>
-<p>It is possible to travel from any city to any other city by traversing a number of highways.</p>
-<p>Each city has a <strong>popularity</strong>, represented by a non-negative integer.</p>
-<p>The popularity of city <var>i</var> (<var>1 \leq i \leq N</var>) is initially <var>C_i</var>.</p>
-<p>Each highway has a <strong>travel time</strong>, represented by a positive integer.</p>
-<p>Highway <var>j</var> (<var>1 \leq j \leq N-1</var>) connects city <var>A_j</var> and city <var>B_j</var>, and its travel time is initially <var>D_j</var>.</p>
-<p>Each city in JOI Kingdom has a cauldron.</p>
-<p>JOI Kingdom keeps its tradition that, in a festival, cities ignite their cauldrons, and these ignitions signal the departure of parades from those cities.</p>
-<p>City <var>u</var> is <strong>adjacent</strong> to city <var>v</var> if these two cities are directly connected by a highway.</p>
-<p>At the exact moment when a city ignites its cauldron, one parade will depart from this city for each of its adjacent cities, spending time equal to the travel time of the corresponding highway.</p>
-<p>To be precise, for two adjacent cities <var>v</var> and <var>u</var>, the parade from city <var>v</var> reaches city <var>u</var> at time <var>t+d</var>, where <var>t</var> is the time when the cauldron of city <var>v</var> is ignited, and <var>d</var> is the travel time of the highway connecting cities <var>v</var> and <var>u</var>.</p>
-<p>Some cities ignite their cauldron the moment the festival starts, while other cities only do so after the festival heats up enough.</p>
-<p>Let the time <var>0</var> be the start of the festival.</p>
-<p>For the city <var>i</var> whose popularity is <var>c</var>, the time when city <var>i</var> ignites its cauldron is determined as follows:</p>
+<p>JOI Kingdom consists of <var>N</var> cities and <var>N-1</var> highways.
+The cities are numbered <var>1</var> through <var>N</var>, and the highways are numbered <var>1</var> through <var>N-1</var>.
+It is possible to travel from any city to any other city by traversing a number of highways.</p>
+<p>Each city has a <strong>popularity</strong>, represented by a non-negative integer.
+The popularity of city <var>i</var> (<var>1 \leq i \leq N</var>) is initially <var>C_i</var>.
+Each highway has a <strong>travel time</strong>, represented by a positive integer.
+Highway <var>j</var> (<var>1 \leq j \leq N-1</var>) connects city <var>A_j</var> and city <var>B_j</var>, and its travel time is initially <var>D_j</var>.</p>
+<p>Each city in JOI Kingdom has a cauldron.
+JOI Kingdom keeps its tradition that, in a festival, cities ignite their cauldrons, and these ignitions signal the departure of parades from those cities.</p>
+<p>City <var>u</var> is <strong>adjacent</strong> to city <var>v</var> if these two cities are directly connected by a highway.
+At the exact moment when a city ignites its cauldron, one parade will depart from this city for each of its adjacent cities, spending time equal to the travel time of the corresponding highway.
+To be precise, for two adjacent cities <var>v</var> and <var>u</var>, the parade from city <var>v</var> reaches city <var>u</var> at time <var>t+d</var>, where <var>t</var> is the time when the cauldron of city <var>v</var> is ignited, and <var>d</var> is the travel time of the highway connecting cities <var>v</var> and <var>u</var>.</p>
+<p>Some cities ignite their cauldron the moment the festival starts, while other cities only do so after the festival heats up enough.
+Let the time <var>0</var> be the start of the festival.
+For the city <var>i</var> whose popularity is <var>c</var>, the time when city <var>i</var> ignites its cauldron is determined as follows:</p>
 <ul>
 <li> If <var>c = 0</var>, city <var>i</var> ignites its cauldron at time <var>0</var>.
-
 <li> If <var>c \geq 1</var>, city <var>i</var> ignites its cauldron at the time when the number of parades that have arrived from adjacent cities becomes at least <var>c</var>.
 If this never happens, city <var>i</var> never ignites its cauldron.
-
 </ul>
 
-<p>Mr. K will stay at JOI Kingdom.</p>
-<p>During his stay, JOI Kingdom will have <var>Q</var> events related to its festival.</p>
-<p>These events are numbered <var>1</var> through <var>Q</var> from earliest to latest.</p>
+<p>Mr. K will stay at JOI Kingdom.
+During his stay, JOI Kingdom will have <var>Q</var> events related to its festival.
+These events are numbered <var>1</var> through <var>Q</var> from earliest to latest.</p>
 <p>Event <var>k</var> (<var>1 \leq k \leq Q</var>) is one of the following <var>3</var> types:</p>
 <ul>
 <li> Type <var>1</var>: The popularity of city <var>V_k</var> changes to <var>X_k</var>.
-
 <li> Type <var>2</var>: The travel time of highway <var>E_k</var> changes to <var>X_k</var>.
-
 <li> Type <var>3</var>: Mr. K visits city <var>V_k</var>. Assuming a festival starts at this moment, you must determine whether {city \nolinebreak <var>V_k</var>} would ignite its cauldron, and if so, calculate the time that the cauldron is ignited.
-
 </ul>
 
 <p>Write a program which, given the structure of JOI Kingdom, popularity of each city, travel time of each highway, and details of the events, for each Type <var>3</var> event, determines when the city Mr. K visits ignites its cauldron.</p>
@@ -63,22 +58,19 @@ If this never happens, city <var>i</var> never ignites its cauldron.
 <var>\vdots</var>
 (Query <var>Q</var>)
 </pre>
-<p>(Query <var>k</var>) represents the details of event <var>k</var> (<var>1 \leq k \leq Q</var>).</p>
-<p>In (Query <var>k</var>), space-separated integers are written.</p>
-<p>Let <var>P_k</var> be the first integer.
+<p>(Query <var>k</var>) represents the details of event <var>k</var> (<var>1 \leq k \leq Q</var>).
+In (Query <var>k</var>), space-separated integers are written.
+Let <var>P_k</var> be the first integer.
 <var>P_k</var> is <var>1</var>, <var>2</var>, or <var>3</var>, which means the type of event <var>k</var>.
 Then (Query <var>k</var>) means as follows:</p>
 <ul>
 <li> If <var>P_k = 1</var>, there are two more integers <var>V_k, X_k</var> written in this order.
-
 This means that the popularity of city <var>V_k</var> changes to <var>X_k</var>.
 
 <li> If <var>P_k = 2</var>, there are two more integers <var>E_k, X_k</var> written in this order.
-
 This means that the travel time of highway <var>E_k</var> changes to <var>X_k</var>.
 
 <li> If <var>P_k = 3</var>, there is one more integer <var>V_k</var> written.
-
 This means Mr. K visits city <var>V_k</var> and, assuming a festival starts at this moment, you must determine the time that the cauldron at city <var>V_k</var> is ignited.
 
 </ul>
@@ -108,17 +100,14 @@ This means Mr. K visits city <var>V_k</var> and, assuming a festival starts at t
 <ul>
 <li> <var>2 \leq N \leq 150\,000</var>.
 <li> <var>0 \leq C_i \leq N</var> (<var>1 \leq i \leq N</var>).
-<li> <var>1 \leq A_j < B_j \leq N</var> (<var>1 \leq j \leq N-1</var>).
+<li> <var>1 \leq A_j &lt; B_j \leq N</var> (<var>1 \leq j \leq N-1</var>).
 <li> <var>1 \leq D_j \leq 1\,000\,000</var> (<var>1 \leq j \leq N-1</var>).
 <li> It is possible to travel from any city to any other city by traversing a number of highways.
-
 <li> <var>1 \leq Q \leq 150\,000</var>.
-<li> If <var>P_k = 1</var>, we have <var>1 \leq V_k \leq N</var>, \, <var>0 \leq X_k \leq N</var> (<var>1 \leq k \leq Q</var>).
-<li> If <var>P_k = 2</var>, we have <var>1 \leq E_k \leq N-1</var>, \, <var>1 \leq X_k \leq 1\,000\,000</var> (<var>1 \leq k \leq Q</var>).
+<li> If <var>P_k = 1</var>, we have <var>1 \leq V_k \leq N</var>,  <var>0 \leq X_k \leq N</var> (<var>1 \leq k \leq Q</var>).
+<li> If <var>P_k = 2</var>, we have <var>1 \leq E_k \leq N-1</var>,  <var>1 \leq X_k \leq 1\,000\,000</var> (<var>1 \leq k \leq Q</var>).
 <li> If <var>P_k = 3</var>, we have <var>1 \leq V_k \leq N</var> (<var>1 \leq k \leq Q</var>).
-
 <li> Given values are all integers.
-
 </ul>
 
 </section>
@@ -128,14 +117,14 @@ This means Mr. K visits city <var>V_k</var> and, assuming a festival starts at t
 <section>
 <h3>Subtasks</h3>
 <ol>
-<li> (<var>6</var> points) <var>N \leq 2\,000</var>, \, <var>Q \leq 2\,000</var>.
-<li> (<var>7</var> points) <var>A_j = 1</var>, \, <var>B_j = j+1</var> (<var>1 \leq j \leq N-1</var>). \,
+<li> (<var>6</var> points) <var>N \leq 2\,000</var>, <var>Q \leq 2\,000</var>.
+<li> (<var>7</var> points) <var>A_j = 1</var>, <var>B_j = j+1</var> (<var>1 \leq j \leq N-1</var>). 
 If <var>P_k = 3</var>, we have <var>V_k = 1</var> (<var>1 \leq k \leq Q</var>).
 <li> (<var>14</var> points) <var>N-1</var> is divisible by <var>3</var>.
-<var>A_j = ((j - 1) \bmod \frac{N-1}{3}) + 1</var>, \,
-<var>B_j = j+1</var> (<var>1 \leq j \leq N-1</var>). \,
+<var>A_j = ((j - 1) \bmod \frac{N-1}{3}) + 1</var>, 
+<var>B_j = j+1</var> (<var>1 \leq j \leq N-1</var>). 
 If <var>P_k = 3</var>, we have <var>V_k = 1</var> (<var>1 \leq k \leq Q</var>).
-<li> (<var>25</var> points) <var>P_k \neq 1</var>. \, If <var>P_k = 3</var>, we have <var>V_k = 1</var> (<var>1 \leq k \leq Q</var>).
+<li> (<var>25</var> points) <var>P_k \neq 1</var>.  If <var>P_k = 3</var>, we have <var>V_k = 1</var> (<var>1 \leq k \leq Q</var>).
 <li> (<var>12</var> points) If <var>P_k = 3</var>, we have <var>V_k = 1</var> (<var>1 \leq k \leq Q</var>).
 <li> (<var>22</var> points) <var>P_k \neq 1</var> (<var>1 \leq k \leq Q</var>).
 <li> (<var>14</var> points) No additional constraints.
@@ -186,42 +175,31 @@ If <var>P_k = 3</var>, we have <var>V_k = 1</var> (<var>1 \leq k \leq Q</var>).
 <p>In the festival considered in event <var>1</var>, the times when the cities ignite their cauldrons are as follows:</p>
 <ul>
 <li> At time <var>0</var>, cities <var>3,4,5,7</var> ignite their cauldrons.
-
 <li> At time <var>50</var>, city <var>2</var> ignites its cauldron. By then, the parades from cities <var>3,5,7</var> have reached city <var>2</var>.
-
 <li> At time <var>80</var>, city <var>1</var> ignites its cauldron. By then, the parades from cities <var>2,4</var> have reached city <var>1</var>.
-
 <li> At time <var>90</var>, city <var>6</var> ignites its cauldron. By then, the parade from city <var>1</var> has reached city <var>6</var>.
-
 </ul>
 
 <p>Since city <var>1</var> would ignite its cauldron at time <var>80</var>, output <var>80</var>.</p>
 <p>In the festival considered in event <var>3</var>, the times when the cities ignite their cauldrons are as follows:</p>
 <ul>
 <li> At time <var>0</var>, cities <var>3,4,5,6,7</var> ignite their cauldrons.
-
 <li> At time <var>50</var>, city <var>2</var> ignites its cauldron. By then, the parades from cities <var>3,5,7</var> have reached city <var>2</var>.
-
 <li> At time <var>70</var>, city <var>1</var> ignites its cauldron. By then, the parades from cities <var>4,6</var> have reached city <var>1</var>.
-
 </ul>
 
 <p>Since city <var>1</var> would ignite its cauldron at time <var>70</var>, output <var>70</var>.</p>
 <p>In the festival considered in event <var>5</var>, the times when the cities ignite their cauldrons are as follows:</p>
 <ul>
 <li> At time <var>0</var>, cities <var>3,4,5,6,7</var> ignite their cauldrons.
-
 <li> At time <var>30</var>, city <var>2</var> ignites its cauldron. By then, the parades from cities <var>3,5,7</var> have reached city <var>2</var>.
-
 <li> At time <var>60</var>, city <var>1</var> ignites its cauldron. By then, the parades from cities <var>2,6</var> have reached city <var>1</var>.
-
 </ul>
 
 <p>Since city <var>1</var> would ignite its cauldron at time <var>60</var>, output <var>60</var>.</p>
 <p>In the festival considered in event <var>8</var>, the times when the cities ignite their cauldrons are as follows:</p>
 <ul>
 <li> At time <var>0</var>, cities <var>3,4,5,7</var> ignite their cauldrons.
-
 </ul>
 
 <p>Cities <var>1,2,6</var> would never ignite their cauldrons. 
