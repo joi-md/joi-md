@@ -2,6 +2,11 @@
 
 [配布ファイル](https://img.atcoder.jp/joi2026final/casino.zip?_gl=1*13kd1yr*_ga*MjkxNTEwOTk5LjE3NzQyMzI5MTM.*_ga_RC512FD18N*czE3NzQzNjg4MzIkbzE3JGcxJHQxNzc0MzY5MTkzJGo2MCRsMCRoMA..)
 
+> #### AtCoder での提出方法
+>
+> - `Azzurro.h`, `Bordeaux.h` を include し，問題文で指定された関数を実装してください．
+> - **標準入出力やファイルへの入出力を使用しないでください．**
+
 ### 問題文
 
 イタリアのカジノを訪れた Azzurro と Bordeaux の $2$ 人組は，ディーラーの Chiaro に提案されたゲームを遊ぶことにした．
@@ -202,5 +207,4 @@ DR
 </ol>
 
 この入力例は<strong>制約を満たさない</strong>ことに注意すること．コンテストサイトからダウンロードできるファイルのうち，<code>sample-01-in.txt</code> は入力例 $1$ に対応する．コンテストサイトからダウンロードできるファイルのうち，<code>sample-02-in.txt</code>は制約を満たす．
-
 

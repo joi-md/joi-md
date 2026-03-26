@@ -2,6 +2,11 @@ Score: $100$ points
 
 [Distributed Files](https://img.atcoder.jp/joi2026final/casino.zip?_gl=1*13kd1yr*_ga*MjkxNTEwOTk5LjE3NzQyMzI5MTM.*_ga_RC512FD18N*czE3NzQzNjg4MzIkbzE3JGcxJHQxNzc0MzY5MTkzJGo2MCRsMCRoMA..)
 
+> #### How to Submit to AtCoder
+>
+> - Include <code>Azzurro.h</code> and <code>Bordeaux.h</code>, and implement the functions specified in the statement.
+> - <strong>Do not use standard input/output or file input/output.</strong>
+
 ### Problem Statement
 
 Azzurro and Bordeaux, a pair visiting a casino in Italy, decided to play a game proposed by the dealer Chiaro.
