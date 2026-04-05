@@ -1,0 +1,187 @@
+<span class="lang">
+<span class="lang-ja">
+<p>配点： <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3></h3>
+<p>葵は <var>N</var> 枚のカードを持っていて，カードには <var>1</var> から <var>N</var> までの番号が付けられている．各カードには <var>1</var> つの正の整数が書かれており，カード <var>i</var> (<var>1 \leqq i \leqq N</var>) に書かれた整数は <var>A_i</var> である．</p>
+<p>葵はカードと黒板を用いて <var>Q</var> 回の遊びを行う．<var>j</var> 回目 (<var>1 \leqq j \leqq Q</var>) に行う遊びは以下のようなものである．</p>
+<ul>
+<li>黒板に <var>0</var> を書き込む．</li>
+<li>机にカード <var>L_j, L_j + 1, \dots, R_j</var> をこの順に左から右へ一列に並べる．</li>
+<li>以下の行動を <var>R_j - L_j + 1</var> 回行う．<var>k</var> 回目 (<var>1 \leqq k \leqq R_j - L_j + 1</var>) の行動は以下のようなものである．<ul>
+<li>現在黒板に書き込まれている整数を <var>x</var> とし，机に並べたカードの列の中で左から <var>k</var> 番目のカードに書かれている整数を <var>y</var> とする．<var>x</var> を黒板から消し，<var>x + y</var> または <var>x - y</var> を黒板に書き込む．<var>x - y</var> を黒板に書き込んだ場合，ういろう（和菓子）を <var>1</var> 個食べる．</li>
+<li>ただし，<var>0</var> より小さい整数を黒板に書き込むことはできない．</li>
+</ul>
+</li>
+</ul>
+<p>あなたは，それぞれの遊びにおいて葵が食べるういろうの個数としてありうる最大の値を知りたい．</p>
+<p>カードと遊びの情報が与えられたとき，それぞれの遊びにおいて葵が食べるういろうの個数としてありうる最大の値を求めるプログラムを作成せよ．</p>
+<hr />
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力は以下の形式で標準入力から与えられる．</p>
+<pre><var>N</var>
+<var>A_1</var> <var>A_2</var> <var>\cdots</var> <var>A_N</var>
+<var>Q</var>
+<var>L_1</var> <var>R_1</var>
+<var>L_2</var> <var>R_2</var>
+<var>\vdots</var>
+<var>L_Q</var> <var>R_Q</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に <var>Q</var> 行出力せよ．<var>j</var> 行目 (<var>1 \leqq j \leqq Q</var>) には，<var>j</var> 回目の遊びにおいて，葵が食べるういろうの個数としてありうる最大の値を出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>1 \leqq N \leqq 200\,000</var>．</li>
+<li><var>1 \leqq A_i \leqq 100</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>1 \leqq Q \leqq 200\,000</var>．</li>
+<li><var>1 \leqq L_j \leqq R_j \leqq N</var> (<var>1 \leqq j \leqq Q</var>)．</li>
+<li>入力される値はすべて整数である．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>7</var> 点) <var>N \leqq 20</var>，<var>Q \leqq 20</var>．</li>
+<li>(<var>11</var> 点) <var>N \leqq 300</var>，<var>Q \leqq 20</var>．</li>
+<li>(<var>15</var> 点) <var>N \leqq 5\,000</var>，<var>Q \leqq 20</var>．</li>
+<li>(<var>24</var> 点) <var>Q \leqq 20</var>．</li>
+<li>(<var>21</var> 点) <var>A_i \leqq 2</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li>(<var>14</var> 点) <var>A_i \leqq 20</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li>(<var>8</var> 点) 追加の制約はない．</li>
+</ol>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>5
+3 4 7 2 8
+2
+1 3
+4 4
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>1
+0
+</pre>
+<p><var>1</var> 回目の遊びでは，以下のような場合が考えられる．</p>
+<ul>
+<li>最初に，黒板に <var>0</var> を書き込む．</li>
+<li>次に，机にカード <var>1, 2, 3</var> をこの順に左から右へ一列に並べる．</li>
+<li>現在黒板に書き込まれている整数は <var>0</var> で，机に並べたカードの列の中で左から <var>1</var> 番目のカードに書かれている整数は <var>3</var> である．<var>0</var> を黒板から消し，<var>3</var> を黒板に書き込む．</li>
+<li>現在黒板に書き込まれている整数は <var>3</var> で，机に並べたカードの列の中で左から <var>2</var> 番目のカードに書かれている整数は <var>4</var> である．<var>3</var> を黒板から消し，<var>7</var> を黒板に書き込む．</li>
+<li>現在黒板に書き込まれている整数は <var>7</var> で，机に並べたカードの列の中で左から <var>3</var> 番目のカードに書かれている整数は <var>7</var> である．<var>7</var> を黒板から消し，<var>0</var> を黒板に書き込む．ういろうを <var>1</var> 個食べる．</li>
+</ul>
+<p>このとき，<var>1</var> 回目の遊びで葵が食べるういろうの個数は <var>1</var> 個である．<var>1</var> 回目の遊びで葵が食べるういろうの個数は <var>2</var> 個以上にならないことが示せる．したがって，<var>1</var> を出力する．</p>
+<p><var>2</var> 回目の遊びでは，以下のような場合が考えられる．</p>
+<ul>
+<li>最初に，黒板に <var>0</var> を書き込む．</li>
+<li>次に，机にカード <var>4</var> を並べる．</li>
+<li>現在黒板に書き込まれている整数は <var>0</var> で，机に並べたカードの列の中で左から <var>1</var> 番目のカードに書かれている整数は <var>2</var> である．<var>0</var> を黒板から消し，<var>2</var> を黒板に書き込む．</li>
+</ul>
+<p>このとき，<var>2</var> 回目の遊びで葵が食べるういろうの個数は <var>0</var> 個である．<var>2</var> 回目の遊びで葵が食べるういろうの個数は <var>1</var> 個以上にならないことが示せる．したがって，<var>0</var> を出力する．</p>
+<p>この入力例は小課題 <var>1,2,3,4,6,7</var> の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>14
+1 2 2 1 2 1 1 2 1 2 2 1 1 1
+5
+1 2
+1 14
+5 11
+3 12
+4 7
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>0
+8
+4
+6
+2
+</pre>
+<p><var>1</var> 回目の遊びでは，以下のような場合が考えられる．</p>
+<ul>
+<li>最初に，黒板に <var>0</var> を書き込む．</li>
+<li>次に，机にカード <var>1, 2</var> をこの順に左から右へ一列に並べる．</li>
+<li>現在黒板に書き込まれている整数は <var>0</var> で，机に並べたカードの列の中で左から <var>1</var> 番目のカードに書かれている整数は <var>1</var> である．<var>0</var> を黒板から消し，<var>1</var> を黒板に書き込む．</li>
+<li>現在黒板に書き込まれている整数は <var>1</var> で，机に並べたカードの列の中で左から <var>2</var> 番目のカードに書かれている整数は <var>2</var> である．<var>1</var> を黒板から消し，<var>3</var> を黒板に書き込む．</li>
+</ul>
+<p>このとき，<var>1</var> 回目の遊びで葵が食べるういろうの個数は <var>0</var> 個である．<var>1</var> 回目の遊びで葵が食べるういろうの個数は <var>1</var> 個以上にならないことが示せる．したがって，<var>0</var> を出力する．</p>
+<p>この入力例はすべての小課題の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>8
+16 23 45 76 43 97 12 43
+7
+1 8
+3 7
+2 7
+4 5
+5 8
+2 6
+3 5
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>3
+2
+2
+1
+2
+2
+1
+</pre>
+<p>この入力例は小課題 <var>1,2,3,4,7</var> の制約を満たす．</p></section>
+</div>
+</span>
+</span>

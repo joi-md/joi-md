@@ -1,0 +1,158 @@
+<span class="lang">
+<span class="lang-ja">
+<p>配点： <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3></h3>
+<p>EGOI 国では東西に <var>N</var> 本の電波塔が立ち並び，その間で情報の通信を行うことで，国民にインターネット通信を提供している．
+電波塔には，西から順に <var>1</var> から <var>N</var> までの番号が付けられている．
+電波塔 <var>i</var> (<var>1 \leqq i \leqq N</var>) は，西から波長が <var>A_i</var> 以上 <var>A_i + L</var> 以下の電波を受信することと，東へ波長 <var>B_i</var> の電波を送信することが可能である．
+つまり，<var>1 \leqq i_1 &lt; i_2 \leqq N</var> について，<var>A_{i_2} \leqq B_{i_1} \leqq A_{i_2} + L</var> が成り立つとき，電波塔 <var>i_1</var> から電波塔 <var>i_2</var> に情報を伝達することができる．</p>
+<p>最近の EGOI 国では，さらに安定したインターネット通信が求められている．EGOI 国政府は，「番号順に情報を伝達できるように電波塔を <var>1</var> 本以上選ぶ方法の個数」を通信の安定性の基準とすることにした．
+具体的には，以下の条件を満たす <var>1</var> 本以上の塔の選び方の数を求めたい．</p>
+<ul>
+<li>選んだ塔の番号を小さい方から順に <var>i_1, i_2, \dots, i_k</var> としたとき，すべての <var>j</var> (<var>1\leqq j\leqq k-1</var>) に対して <var>A_{i_{j+1}} \leqq B_{i_j} \leqq A_{i_{j+1}} + L</var> が成り立つ．</li>
+</ul>
+<p>電波塔の送受信できる波長の情報が与えられたとき，条件を満たす塔の選び方の個数を <var>1\,000\,000\,007</var> で割ったあまりを求めるプログラムを作成せよ．</p>
+<hr />
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力は以下の形式で標準入力から与えられる．</p>
+<pre><var>N</var> <var>L</var>
+<var>A_1</var> <var>B_1</var>
+<var>A_2</var> <var>B_2</var>
+<var>\vdots</var>
+<var>A_N</var> <var>B_N</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に，条件を満たす塔の選び方の個数を <var>1\,000\,000\,007</var> で割ったあまりを <var>1</var> 行で出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>2 \leqq N \leqq 300\,000</var>．</li>
+<li><var>0 \leqq L \leqq 300\,000</var>．</li>
+<li><var>1 \leqq A_i \leqq 300\,000</var> (<var>1\leqq i \leqq N</var>)．</li>
+<li><var>1 \leqq B_i \leqq 300\,000</var> (<var>1\leqq i \leqq N</var>)．</li>
+<li>入力される値はすべて整数である．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>20</var> 点) <var>N \leqq 16</var>．</li>
+<li>(<var>20</var> 点) <var>N \leqq 5\,000</var>．</li>
+<li>(<var>25</var> 点) <var>L = 0</var>．</li>
+<li>(<var>35</var> 点) 追加の制約はない．</li>
+</ol>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>3 0
+1 3
+2 3
+3 2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>5
+</pre>
+<p>電波塔 <var>1, 2, 3</var> を選んだ場合を考える．</p>
+<ul>
+<li><var>A_2 \leqq B_1 \leqq A_2 + L</var> でないため，電波塔 <var>1</var> から電波塔 <var>2</var> に情報を伝達することはできない．</li>
+<li><var>A_3 \leqq B_2 \leqq A_3 + L</var> であるため，電波塔 <var>2</var> から電波塔 <var>3</var> に情報を伝達することはできる．</li>
+</ul>
+<p>よって，この選び方は条件を満たさない．</p>
+<p>電波塔 <var>1, 3</var> を選んだ場合を考える．</p>
+<ul>
+<li><var>A_3 \leqq B_1 \leqq A_3 + L</var> であるため，電波塔 <var>1</var> から電波塔 <var>3</var> に情報を伝達することはできる．</li>
+</ul>
+<p>よって，この選び方は条件を満たす．</p>
+<p>条件を満たす塔の選び方は，<var>\lbrace1\rbrace, \lbrace2\rbrace, \lbrace3\rbrace, \lbrace1, 3\rbrace, \lbrace2, 3\rbrace</var> の <var>5</var> 通りである．
+よって，<var>5</var> を <var>1\,000\,000\,007</var> で割ったあまりである <var>5</var> を出力する．</p>
+<p>この入力例はすべての小課題の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>8 2
+1 3
+5 1
+6 7
+7 5
+5 2
+2 1
+3 1
+1 6
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>36
+</pre>
+<p>この入力例は小課題 <var>1,2,4</var> の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>10 3
+1 5
+2 3
+2 4
+5 4
+10 7
+7 9
+4 3
+3 7
+7 7
+6 5
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>109
+</pre>
+<p>この入力例は小課題 <var>1,2,4</var> の制約を満たす．</p></section>
+</div>
+</span>
+</span>

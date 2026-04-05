@@ -1,0 +1,151 @@
+<span class="lang">
+<span class="lang-ja">
+<p>配点： <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3></h3>
+<p>葵さんは雪遊びをしている．
+葵さんの目の前には <var>N</var> 個の雪玉が一直線上に並んでおり，
+左から <var>i</var> 番目 (<var>1 \leqq i \leqq N</var>) の雪玉の大きさは <var>A_i</var> である．</p>
+<p>葵さんは，最終的に大きな <var>1</var> つの雪玉を作りたいと考えている．
+そのために，以下の一連の操作を雪玉が <var>1</var> つになるか操作ができなくなるまで繰り返すことにした．</p>
+<ol>
+<li>隣接する <var>2</var> つの雪玉を選ぶ．このとき，左側の雪玉の大きさを <var>l</var>，右側の雪玉の大きさを <var>r</var> とすると，<var>0 \leqq l-r \leqq 1</var> でなければならない．</li>
+<li>選んだ <var>2</var> つの雪玉を合成する．その結果，選んだ <var>2</var> つの雪玉は大きさ <var>l+r</var> の雪玉 <var>1</var> つに置き換えられる．つまり，操作を行う前に左から大きさ <var>s_1,s_2,\ldots,s_k</var> の <var>k</var> 個の雪玉が並んでいるとき，左から <var>t</var> 番目 (<var>1 \leqq t \leqq k-1</var>) の雪玉と <var>t+1</var> 番目の雪玉を合成すると，操作後には左から大きさ <var>s_1,s_2,\ldots,s_{t-1},s_t+s_{t+1},s_{t+2},\ldots,s_k</var> の <var>k-1</var> 個の雪玉が並ぶ．</li>
+</ol>
+<p>並んでいる雪玉の情報が与えられたとき，葵さんが適切に操作を行うことで雪玉を <var>1</var> つにすることができるか判定するプログラムを作成せよ．</p>
+<hr />
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力は以下の形式で標準入力から与えられる．</p>
+<pre><var>N</var>
+<var>A_1</var> <var>A_2</var> <var>\cdots</var> <var>A_N</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に <var>1</var> 行出力せよ．
+葵さんが雪玉を <var>1</var> つにすることができるなら <code>Yes</code> を，そうでないなら <code>No</code> を出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>2 \leqq N \leqq 500\,000</var>．</li>
+<li><var>1 \leqq A_i \leqq 10^{12}</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li>入力される値はすべて整数である．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>15</var> 点) <var>A_1 = A_2 = \cdots = A_N</var>．</li>
+<li>(<var>18</var> 点) <var>N \leqq 8</var>．</li>
+<li>(<var>18</var> 点) <var>N \leqq 200</var>．</li>
+<li>(<var>19</var> 点) <var>N \leqq 5\,000</var>．</li>
+<li>(<var>30</var> 点) 追加の制約はない．</li>
+</ol>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>5
+1 1 1 1 1
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>Yes
+</pre>
+<p>例えば， 葵さんは次のように操作を行うことで最終的に雪玉を <var>1</var> つにすることができる．</p>
+<ol>
+<li>左から <var>4</var> 番目と <var>5</var> 番目の雪玉を選択し，合成する．操作後には左から大きさ <var>1,1,1,2</var> の雪玉が並ぶ．</li>
+<li>左から <var>1</var> 番目と <var>2</var> 番目の雪玉を選択し，合成する．操作後には左から大きさ <var>2,1,2</var> の雪玉が並ぶ．</li>
+<li>左から <var>1</var> 番目と <var>2</var> 番目の雪玉を選択し，合成する．操作後には左から大きさ <var>3,2</var> の雪玉が並ぶ．</li>
+<li>左から <var>1</var> 番目と <var>2</var> 番目の雪玉を選択し，合成する．操作後には左から大きさ <var>5</var> の雪玉が並ぶ．</li>
+</ol>
+<p>この入力例はすべての小課題の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>3
+2 2 2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>No
+</pre>
+<p>葵さんがどのように操作を行っても雪玉を <var>1</var> つにすることはできない．</p>
+<p>この入力例はすべての小課題の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>8
+5 4 3 2 1 2 3 4
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>No
+</pre>
+<p>この入力例は小課題 <var>2,3,4,5</var> の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 4</h3>
+<pre>16
+3 2 1 6 2 1 3 2 1 3 12 6 1 1 1 2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 4</h3>
+<pre>Yes
+</pre>
+<p>この入力例は小課題 <var>3,4,5</var> の制約を満たす．</p></section>
+</div>
+</span>
+</span>

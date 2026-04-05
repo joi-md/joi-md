@@ -1,0 +1,171 @@
+<span class="lang">
+<span class="lang-ja">
+<p>配点： <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3></h3>
+<p>葵はティーパーティーを開催しようと計画している．
+このティーパーティーには葵を含めた <var>M</var> 人が参加予定であり，参加者には <var>1</var> から <var>M</var> までの番号が付けられている．
+葵は各参加者に，<var>1</var> 切れのケーキと <var>1</var> 杯の紅茶を配るつもりである．</p>
+<p>ティーパーティーのために，葵は <var>N</var> 切れのケーキ (<var>N \geqq M</var>) と <var>M</var> 杯の紅茶を準備した．
+ケーキには <var>1</var> から <var>N</var> まで，紅茶には <var>1</var> から <var>M</var> までの番号が付けられている．
+ケーキ <var>i</var> (<var>1 \leqq i \leqq N</var>) のブランドは <var>A_i</var> で，おいしさは <var>B_i</var> である．
+紅茶 <var>j</var> (<var>1 \leqq j \leqq M</var>) のブランドは <var>C_j</var> で，おいしさは <var>D_j</var> である．
+葵は参加者の <strong>幸福度</strong> の総和ができるだけ大きくなるように，参加者にケーキと紅茶を配りたい．
+参加者 <var>k</var> (<var>1 \leqq k \leqq M</var>) にケーキ <var>i</var> (<var>1 \leqq i \leqq N</var>) と紅茶 <var>j</var> (<var>1 \leqq j \leqq M</var>) を配ったとき，参加者 <var>k</var> の幸福度は以下のように定まる．</p>
+<ul>
+<li><var>A_i = C_j</var> のとき，参加者 <var>k</var> の幸福度は <var>B_i + D_j</var> である．</li>
+<li><var>A_i \neq C_j</var> のとき，参加者 <var>k</var> の幸福度は <var>B_i</var> である．</li>
+</ul>
+<p>葵が準備したケーキと紅茶を適切に配るとき，すべての参加者の幸福度の総和として考えられる最大値を求めよ．
+なお，今回配らなかったケーキについては，葵が別の日に食べるため考えなくてよいものとする．</p>
+<hr />
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力は以下の形式で標準入力から与えられる．</p>
+<pre><var>N</var> <var>M</var>
+<var>A_1</var> <var>A_2</var> <var>\cdots</var> <var>A_N</var>
+<var>B_1</var> <var>B_2</var> <var>\cdots</var> <var>B_N</var>
+<var>C_1</var> <var>C_2</var> <var>\cdots</var> <var>C_M</var>
+<var>D_1</var> <var>D_2</var> <var>\cdots</var> <var>D_M</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に，葵が準備したケーキと紅茶を適切に配るときの，すべての参加者の幸福度の総和として考えられる最大値を <var>1</var> 行で出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>1 \leqq M \leqq N \leqq 200\,000</var>．</li>
+<li><var>1 \leqq A_i \leqq N</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>0 \leqq B_i \leqq 10^9</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>1 \leqq C_j \leqq N</var> (<var>1 \leqq j \leqq M</var>)．</li>
+<li><var>0 \leqq D_j \leqq 10^9</var> (<var>1 \leqq j \leqq M</var>)．</li>
+<li>入力される値はすべて整数である．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>8</var> 点) <var>D_j = 0</var> (<var>1 \leqq j \leqq M</var>)．</li>
+<li>(<var>19</var> 点) <var>B_i = 0</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li>(<var>31</var> 点) <var>A_i = i</var> (<var>1 \leqq i \leqq N</var>)，<var>C_j = j</var> (<var>1 \leqq j \leqq M</var>)．</li>
+<li>(<var>42</var> 点) 追加の制約はない．</li>
+</ol>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>4 3
+1 1 2 3
+2 1 2 4
+1 1 2
+3 1 1
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>12
+</pre>
+<p>葵が準備したケーキと紅茶を適切に配るとき，すべての参加者の幸福度の総和の最大値は <var>12</var> である．</p>
+<ul>
+<li>参加者 <var>1</var> にケーキ <var>1</var> と紅茶 <var>1</var> を配る．参加者 <var>1</var> の幸福度は <var>2 + 3 = 5</var> である．</li>
+<li>参加者 <var>2</var> にケーキ <var>3</var> と紅茶 <var>3</var> を配る．参加者 <var>2</var> の幸福度は <var>2 + 1 = 3</var> である．</li>
+<li>参加者 <var>3</var> にケーキ <var>4</var> と紅茶 <var>2</var> を配る．参加者 <var>3</var> の幸福度は <var>4</var> である．</li>
+</ul>
+<p>どのように配っても，すべての参加者の幸福度の総和が <var>12</var> より大きくならないため，<var>12</var> を出力する．</p>
+<p>この入力例は小課題 <var>4</var> の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>5 3
+1 2 3 4 5
+4695 53325 57544 74342 81986
+1 2 3
+59037 23296 16434
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>232949
+</pre>
+<p>この入力例は小課題 <var>3,4</var> の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>4 3
+2 1 3 1
+52 49 72 31
+3 1 3
+0 0 0
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>173
+</pre>
+<p>この入力例は小課題 <var>1,4</var> の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 4</h3>
+<pre>5 2
+1 1 2 3 5
+0 0 0 0 0
+1 1
+3 1
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 4</h3>
+<pre>4
+</pre>
+<p>この入力例は小課題 <var>2,4</var> の制約を満たす．</p></section>
+</div>
+</span>
+</span>

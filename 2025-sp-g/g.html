@@ -1,0 +1,191 @@
+<span class="lang">
+<span class="lang-ja">
+<p>配点： <var>100</var> 点</p>
+<blockquote>
+<h4>AtCoder での提出方法について</h4>
+<p><var>N=4,32,48</var> の <var>3</var> つの入力があるので，入力で場合分けしてあなたの結果を出力してください．</p>
+</blockquote>
+<hr />
+
+<div class="part">
+<section>
+<h3></h3>
+<p>K 理事長は春季トレーニングの参加者にゲームを用意した．</p>
+<p>春季トレーニングには <var>N</var> 人の参加者がおり，それぞれ <var>1</var> から <var>N</var> までの番号が付けられている．
+それぞれの参加者は <var>1</var> つボードを持っている．
+ゲームは以下の手順で行われる．</p>
+<ol>
+<li>K 理事長は，<var>N</var> 人の参加者の中から <strong>親</strong> となる参加者を <var>1</var> 人選ぶ．親でない参加者は <strong>子</strong> となる．どの参加者が親であるかは，参加者には伝えられない．</li>
+<li>K 理事長は，親のボードに文字 <code>T</code> を，すべての子のボードに文字 <code>F</code> を書く．</li>
+<li>各参加者は自分のボードに書かれた文字を読む．
+その後，参加者の間で事前に定めた <strong>戦略</strong> に従って，以下のターンを <var>L</var> 回行う．<ol>
+<li>各参加者は自分のボードに書かれた文字を消し，新たに <code>T</code> か <code>F</code> を書き込む．その後，各参加者はボードを K 理事長に渡す．</li>
+<li><var>i = 1, 2, \dots, N</var> について，以下を行う．<ul>
+<li>参加者 <var>i</var> は，ある参加者 <var>p</var> (<var>1 \leqq \mathit{p} \leqq N</var>) を指定し，その番号 <var>\mathit{p}</var> を K 理事長に伝える．K 理事長は，参加者 <var>\mathit{p}</var> のボードを参加者 <var>i</var> に見せ，そのボードに書かれた文字を参加者 <var>i</var> は読む．このとき，参加者 <var>i</var> は自分自身を指定してもよい．</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>各参加者は，誰が親であるかを答える．</li>
+</ol>
+<p>戦略を事前にうまく定めておくことによって，親としてどの参加者が選ばれたとしても，最終的に全員が親である参加者の番号を答えられるようにすることがこのゲームの目標である．
+また，できるだけ小さいターン数 <var>L</var> で目標を達成したい．</p>
+<p><strong>戦略</strong> とは，ターン数を表す非負整数 <var>L</var> および参加者の行動を決定する以下のような方法の組である．</p>
+<ul>
+<li>参加者 <var>i</var> (<var>1 \leqq i \leqq N</var>) が，<var>t</var> ターン目 (<var>1 \leqq t \leqq L</var>) が始まるまでに読んだ文字が順に <var>a_0,a_1,\ldots,a_{t - 1}</var> であったとき，それらの情報 (<var>i,t,a_0,a_1,\ldots,a_{t - 1}</var>) のみから，参加者 <var>i</var> が <var>t</var> ターン目でボードに書く文字および指定する参加者の番号を定める方法．</li>
+<li>参加者 <var>i</var> (<var>1 \leqq i \leqq N</var>) が，<var>L</var> ターン目の終了までに読んだ文字が順に <var>a_0,a_1,\ldots,a_{L}</var> であったとき，それらの情報 (<var>i,L,a_0,a_1,\ldots,a_{L}</var>) のみから，参加者 <var>i</var> が最終的に答える参加者の番号を定める方法．</li>
+</ul>
+<p>目標を達成できるようなある戦略を定め，その戦略に従ったときに，親が <var>1,2,\ldots,N</var> だった場合のそれぞれについて，各参加者が各ターンにおいてボードに書く値および次に指定する参加者を出力せよ．</p>
+<hr />
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力は以下の形式で標準入力から与えられる．</p>
+<pre><var>N</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に，以下の形式で出力せよ．</p>
+<pre><var>L</var>
+<var>\text{acts}_1</var>
+<var>\text{acts}_2</var>
+<var>\vdots</var>
+<var>\text{acts}_N</var>
+</pre>
+<p><var>\text{acts}_s</var> は，参加者 <var>s</var> が親であった場合の各参加者の各ターンにおける行動を表す．
+<var>\text{acts}_s</var> は以下の形式で出力せよ．</p>
+<p>まず <var>1</var> 行目に <var>s</var> を出力せよ．</p>
+<p><var>i + 1</var> 行目には，参加者 <var>i</var> が <var>t</var> ターン目でボードに書く文字 <var>c_{i,t}</var> と指定する参加者の番号 <var>p_{i,t}</var> を，各ターン <var>t</var> (<var>1 \leqq t \leqq L</var>) について順に出力せよ．</p>
+<pre><var>s</var>
+<var>c_{1,1}</var> <var>p_{1,1}</var> <var>c_{1,2}</var> <var>p_{1,2}</var> <var>\cdots</var> <var>c_{1,L}</var> <var>p_{1,L}</var> 
+<var>c_{2,1}</var> <var>p_{2,1}</var> <var>c_{2,2}</var> <var>p_{2,2}</var> <var>\cdots</var> <var>c_{2,L}</var> <var>p_{2,L}</var> 
+<var>\vdots</var> 
+<var>c_{N,1}</var> <var>p_{N,1}</var> <var>c_{N,2}</var> <var>p_{N,2}</var> <var>\cdots</var> <var>c_{N,L}</var> <var>p_{N,L}</var> 
+</pre>
+<p>出力が正しいと判定されるのは，目標を達成できるようなある戦略が存在して，出力がその戦略に従った結果であるとき，かつそのときのみである．</p>
+<p>具体的には，出力が正しいと判定されるのは以下の <var>2</var> つの条件を共に満たした場合である．</p>
+<ul>
+<li>任意の参加者 <var>i</var> (<var>1 \leqq i \leqq N</var>)，ターン <var>t</var> (<var>1 \leqq t \leqq L</var>)，参加者 <var>x,y</var> (<var>1 \leqq x,y \leqq N</var>，<var>x \neq y</var>) に対して，参加者 <var>x</var> が親であるときに参加者 <var>i</var> が <var>t</var> ターン目が始まるまでに読んだ文字の情報と，参加者 <var>y</var> が親であるときに参加者 <var>i</var> が <var>t</var> ターン目が始まるまでに読んだ文字の情報が等しいならば，参加者 <var>i</var> がターン <var>t</var> にボードに書き込む文字および指定する参加者が等しい．</li>
+<li>任意の参加者 <var>i</var> (<var>1 \leqq i \leqq N</var>)，参加者 <var>x, y</var> (<var>1 \leqq x,y \leqq N</var>，<var>x \neq y</var>) に対して，参加者 <var>x</var> が親であるときに参加者 <var>i</var> が <var>L</var> ターン目の終了までに読んだ文字の情報と，参加者 <var>y</var> が親であるときに参加者 <var>i</var> が <var>L</var> ターン目の終了までに読んだ文字の情報が異なる．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>N</var> は <var>4,32,48</var> のいずれかである．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>採点基準</h3>
+<p><var>3</var> 個の入力データの得点の合計が課題の得点である．</p>
+<p>各入力データに対し，得点は以下のように計算される．</p>
+<p>あなたの出力が誤っている場合，すなわちフォーマットが間違っている場合や，「目標を達成できるようなある戦略が存在して，出力がその戦略に従った結果である」という条件が満たされないとき，あなたの得点は <var>0</var> 点となる．</p>
+<p>あなたの出力が正しい場合，以下で定める点数となる．</p>
+<p>各入力データにおける，<var>N</var> の値と配点は，以下の通りである．</p>
+<style>
+style + table {
+    border-collapse: collapse;
+    border: 1px solid black;
+    margin: 1em;
+}
+style + table th, 
+style + table td {
+    border: 1px solid black;
+    padding: 0.25rem 1rem;
+}
+</style>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">小課題</th>
+<th style="text-align: center;">入力データ</th>
+<th style="text-align: center;"><var>N</var></th>
+<th style="text-align: left;">得点</th>
+<th style="text-align: center;">配点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><var>1</var></td>
+<td style="text-align: center;"><code>input_01.txt</code></td>
+<td style="text-align: center;"><var>4</var></td>
+<td style="text-align: left;"><var>4 &lt; L</var> の場合 <var>0</var> 点 <br> <var>2 &lt; L \leqq 4</var> の場合 <var>16 - 7 \times (L - 2)</var> 点 <br> <var>L \leqq 2</var> の場合 <var>16</var> 点</td>
+<td style="text-align: center;"><var>16</var></td>
+</tr>
+<tr>
+<td style="text-align: center;"><var>2</var></td>
+<td style="text-align: center;"><code>input_02.txt</code></td>
+<td style="text-align: center;"><var>32</var></td>
+<td style="text-align: left;"><var>27 &lt; L</var> の場合 <var>0</var> 点 <br> <var>8 &lt; L \leqq 27</var> の場合 <var>60 - 3 \times (L - 8)</var> 点 <br> <var>L \leqq 8</var> の場合 <var>60</var> 点</td>
+<td style="text-align: center;"><var>60</var></td>
+</tr>
+<tr>
+<td style="text-align: center;"><var>3</var></td>
+<td style="text-align: center;"><code>input_03.txt</code></td>
+<td style="text-align: center;"><var>48</var></td>
+<td style="text-align: left;"><var>9 &lt; L</var> の場合 <var>0</var> 点 <br> <var>L \leqq 9</var> の場合 <var>24</var> 点</td>
+<td style="text-align: center;"><var>24</var></td>
+</tr>
+</tbody>
+</table>
+<p>ただし，<var>0</var> 点の場合，採点システム上では <strong>出力は正しくない</strong> と表示されることに注意せよ．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>3
+1
+T 1 T 2 T 3
+F 1 F 2 F 3
+F 1 F 2 F 3
+2
+F 1 F 2 F 3
+T 1 T 2 T 3
+F 1 F 2 F 3
+3
+F 1 F 2 F 3
+F 1 F 2 F 3
+T 1 T 2 T 3
+</pre>
+<p>この出力例は，以下のような戦略に従った結果である．</p>
+<ul>
+<li><var>L = 3</var> とする．</li>
+<li>参加者 <var>i</var> (<var>1 \leqq i \leqq N</var>) は，<var>t</var> (<var>1 \leqq t \leqq L</var>) ターン目では，自分が親であるならば <code>T</code> を，子であるならば <code>F</code> をボードに書く．自分が親であるかどうかは，初めに K 理事長によって自分のボードに書かれた文字を読むことで分かることに注意せよ．</li>
+<li>参加者 <var>i</var> (<var>1 \leqq i \leqq N</var>) は，<var>t</var> (<var>1 \leqq t \leqq L</var>) ターン目では，これまでに読んだ文字の情報に関わらず参加者 <var>t</var> を指定する．</li>
+<li>それぞれの参加者は，<var>3</var> ターン目の終了時点で，自分を含むすべての参加者がボードに書いた文字を <var>1</var> 回以上ずつ読んでいる．それぞれの参加者は，ボードに <code>T</code> と書いていた参加者の番号を最終的に答える．</li>
+</ul>
+<p>この戦略に従った結果，親としてどの参加者が選ばれたとしても，最終的に全員が親である参加者の番号を正しく答えることができており，目標が達成されている．
+そのため，この出力例は正しいと判定される．</p>
+<p>この入力例は制約を満たさず，また実際の入力データに含まれないことに注意せよ．</p></section>
+</div>
+</span>
+</span>

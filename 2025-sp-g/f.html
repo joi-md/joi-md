@@ -1,0 +1,165 @@
+<span class="lang">
+<span class="lang-ja">
+<p>配点： <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3></h3>
+<p>日本列島は地殻変動の盛んな列島である．
+日本列島のある海域は南北 <var>H</var> 行，東西 <var>W</var> 列のマス目で表される．
+北から <var>r</var> 行目，西から <var>c</var> 列目 (<var>1 \leqq r \leqq H</var>，<var>1 \leqq c \leqq W</var>) のマスをマス <var>(r,c)</var> と書く．
+各マスは <strong>陸</strong> または <strong>海</strong> のいずれかである．
+最初に海域に存在する陸はちょうど <var>N</var> マスであり，それ以外のマスは海である．
+最初の時点でそれらの陸の位置はマス <var>(R_1, C_1), (R_2, C_2), \dots, (R_N, C_N)</var> である．</p>
+<p>日本列島では毎日正午に地殻変動が起こる．
+<var>t</var> 日目 <var>(t \geqq 1)</var> の正午に起こる地殻変動は以下のように表される．</p>
+<ul>
+<li><var>1 \leqq r \leqq H-1</var>，<var>1 \leqq c \leqq W</var> のうち <var>t</var> 日目の朝にマス <var>(r, c)</var> が陸でマス <var>(r+1, c)</var> が海であるようなすべての <var>(r, c)</var> について，マス <var>(r+1, c)</var> が新たに陸となる．</li>
+</ul>
+<p>どの陸からどの陸へも東西南北に隣り合っている陸のみを辿って到達できる場合，日本列島は連結であると定める．
+地殻変動が進むにつれ日本列島が連結になることがある．</p>
+<p>最初の時点での海域の情報が与えられたとき，地殻変動が繰り返されることで日本列島が連結になることがあるか判定し，連結になる場合には何回の地殻変動後に初めて連結になるかを求めるプログラムを作成せよ．</p>
+<hr />
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力は以下の形式で標準入力から与えられる．</p>
+<pre><var>H</var> <var>W</var> <var>N</var>
+<var>R_1</var> <var>C_1</var>
+<var>R_2</var> <var>C_2</var>
+<var>\vdots</var>
+<var>R_N</var> <var>C_N</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に，日本列島が連結になる場合には何回の地殻変動後に初めて連結になるかを <var>1</var> 行で出力せよ．
+ただし，最初の時点で連結である場合は <code>0</code> を出力せよ．
+また，この先日本列島が連結になることがない場合は <code>-1</code> を出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>1 \leqq H \leqq 200\,000</var>．</li>
+<li><var>1 \leqq W \leqq 200\,000</var>．</li>
+<li><var>2 \leqq N \leqq \min(H \times W,\ 200\,000)</var>．</li>
+<li><var>1 \leqq R_i \leqq H</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>1 \leqq C_i \leqq W</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>(R_i, C_i) \neq (R_j, C_j)</var> (<var>1 \leqq i &lt; j \leqq N</var>)．</li>
+<li>入力される値はすべて整数である．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>5</var> 点) <var>W = 1</var>．</li>
+<li>(<var>9</var> 点) <var>N = 2</var>．</li>
+<li>(<var>8</var> 点) <var>H \leqq 500</var>，<var>W \leqq 500</var>，<var>N \leqq 500</var>．</li>
+<li>(<var>28</var> 点) <var>N \leqq 2\,000</var>．</li>
+<li>(<var>13</var> 点) <var>H \times W \leqq 200\,000</var>．</li>
+<li>(<var>13</var> 点) <var>H \times N \leqq 200\,000</var>．</li>
+<li>(<var>24</var> 点) 追加の制約はない．</li>
+</ol>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>4 4 5
+1 1
+1 3
+3 2
+3 3
+4 4
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>2
+</pre>
+<p>以下の図は最初の時点での海域の状況である．塗りつぶされたマスが陸を表し，空白のマスが海を表す．</p>
+<div style="text-align: center;">
+<img alt="33c09866b226eb567a7d94bd83c55c3e.png" src="https://img.atcoder.jp/joigsp2025/33c09866b226eb567a7d94bd83c55c3e.png" style="max-width: 100%; width: 300px;" />
+</div>
+
+<p><var>1</var> 回目の地殻変動で新たに陸となるのはマス <var>(2, 1), (2, 3), (4, 2), (4, 3)</var> の <var>4</var> 個である．
+<var>1</var> 回目の地殻変動の直後ではマス <var>(1, 1)</var> からマス <var>(4, 4)</var> などに東西南北に隣り合っている陸のみを辿って到達できないため，日本列島は連結ではない．
+以下の図は <var>1</var> 回目の地殻変動の直後の海域の状況である．新たに斜線部のマスが陸となり，それ以外のマスは変化しない．</p>
+<div style="text-align: center;">
+<img alt="60e4f4b495347e769f52c974bcfd60c2.png" src="https://img.atcoder.jp/joigsp2025/60e4f4b495347e769f52c974bcfd60c2.png" style="max-width: 100%; width: 300px;" />
+</div>
+
+<p><var>2</var> 回目の地殻変動で新たに陸となるのはマス <var>(3, 1)</var> の <var>1</var> 個である．
+<var>2</var> 回目の直後の海域の状況は以下の図のようになる．</p>
+<div style="text-align: center;">
+<img alt="ccb260441c5aaba18d776ed62984d820.png" src="https://img.atcoder.jp/joigsp2025/ccb260441c5aaba18d776ed62984d820.png" style="max-width: 100%; width: 300px;" />
+</div>
+
+<p><var>2</var> 回目の地殻変動で初めて日本列島が連結になるため，<var>2</var> を出力する．</p>
+<p>この入力例は小課題 <var>3, 4, 5, 6, 7</var> の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>3 3 2
+1 1
+3 3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>-1
+</pre>
+<p>日本列島が連結になることはないため，<code>-1</code> を出力する．</p>
+<p>この入力例は小課題 <var>2, 3, 4, 5, 6, 7</var> の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>2 2 2
+1 1
+1 2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>0
+</pre>
+<p>地殻変動が起こる前から日本列島は連結であるため，<code>0</code> を出力する．</p>
+<p>この入力例は小課題 <var>2, 3, 4, 5, 6, 7</var> の制約を満たす．</p></section>
+</div>
+</span>
+</span>

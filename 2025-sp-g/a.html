@@ -1,0 +1,104 @@
+<span class="lang">
+<span class="lang-ja">
+<p>配点： <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3></h3>
+<p>ビ太郎は <var>N</var> 枚のカードを持っていて，カードには <var>1</var> から <var>N</var> までの番号が付けられている．各カードには <var>1</var> つの正の整数が書かれており，カード <var>i</var> (<var>1 \leqq i \leqq N</var>) に書かれた整数は <var>A_i</var> である．</p>
+<p>以下の条件を満たす <var>K</var> 枚のカードの組を <strong>ストレート</strong> と呼ぶ．</p>
+<ul>
+<li>書かれた整数が昇順になるように <var>K</var> 枚のカードを横一列に机に置いたとき，隣り合う <var>2</var> 枚のカードに書かれた整数の差はすべて <var>1</var> である．</li>
+</ul>
+<p>ビ太郎は <var>N</var> 枚のカードの中から，ストレートとなるような <var>K</var> 枚のカードを選びたい．</p>
+<p>カードの情報が与えられたとき，ビ太郎がストレートとなるような <var>K</var> 枚のカードを選べるかどうか判定するプログラムを作成せよ．</p>
+<hr />
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力は以下の形式で標準入力から与えられる．</p>
+<pre><var>N</var> <var>K</var>
+<var>A_1</var> <var>A_2</var> <var>\cdots</var> <var>A_N</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に <var>1</var> 行出力せよ．
+ビ太郎がストレートとなるような <var>K</var> 枚のカードを選べる場合は <code>Yes</code> を，そうでない場合は <code>No</code> を出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>2 \leqq N \leqq 300\,000</var>．</li>
+<li><var>2 \leqq K \leqq N</var>．</li>
+<li><var>1 \leqq A_i \leqq 10^9</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li>入力される値はすべて整数である．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>30</var> 点) <var>K = 2</var>．</li>
+<li>(<var>30</var> 点) <var>A_i \leqq 300\,000</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li>(<var>40</var> 点) 追加の制約はない．</li>
+</ol>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>5 2
+1 1 2 4 3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>Yes
+</pre>
+<p>カード <var>1, 3</var> に書かれた整数はそれぞれ <var>1, 2</var> であるから，カード <var>1, 3</var> の組はストレートである．
+ビ太郎はストレートとなるような <var>K = 2</var> 枚のカードを選ぶことができるので，<code>Yes</code> を出力する．</p>
+<p>この入力例はすべての小課題の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>7 4
+1 1 2 3 3 5 6
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>No
+</pre>
+<p>ビ太郎はストレートとなるような <var>K = 4</var> 枚のカードを選ぶことができない．したがって，<code>No</code> を出力する．</p>
+<p>この入力例は小課題 <var>2, 3</var> の制約を満たす．</p></section>
+</div>
+</span>
+</span>

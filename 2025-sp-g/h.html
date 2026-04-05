@@ -1,0 +1,359 @@
+<span class="lang">
+<span class="lang-ja">
+<p>配点： <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3></h3>
+<p>勇者ビ太郎は，モンスターから村を守る防衛戦のクエストに挑もうとしている．
+防衛戦の難易度は <var>1</var> 以上 <var>L</var> 以下の整数で表され，この値は挑戦時に選択することができる．
+難易度 <var>\ell</var> (<var>1 \leqq \ell \leqq L</var>) の防衛戦では，出現するモンスターの HP が (難易度 <var>1</var> の場合を基準として) <var>\ell</var> 倍になる．</p>
+<p>防衛戦は <var>T</var> 秒間行われ，<var>N</var> 体のモンスターが次々と現れる．
+モンスターには <var>1</var> から <var>N</var> までの番号が付けられている．
+防衛戦が開始されてから <var>t</var> 秒後 (<var>0 \leqq t \leqq T</var>) のことを，時刻 <var>t</var> と呼ぶ．
+モンスター <var>i</var> (<var>1 \leqq i \leqq N</var>) は時刻 <var>S_i</var> (<var>0 \leqq S_i &lt; T</var>) に出現し，
+その強さは <var>P_i</var> で，その HP は，防衛戦の難易度を <var>\ell</var> として，<var>\ell \times H_i</var> である．</p>
+<p>防衛戦の間，ビ太郎は以下の操作を何度でも行うことができる．</p>
+<ul>
+<li>現在出現しているモンスターの中から <var>1</var> 体を選び，<var>1</var> 秒かけてそのモンスターに攻撃する．そのモンスターの HP は <var>1</var> 減少する．HP が <var>0</var> になったモンスターは倒れ，これ以上攻撃することはできない．</li>
+</ul>
+<p>時刻 <var>T</var> になると防衛戦は終了し，防衛戦の <strong>評価値</strong> が以下のように計算される．</p>
+<ul>
+<li>時刻 <var>T</var> の直後の時点でのモンスター <var>i</var> (<var>1 \leqq i \leqq N</var>) の HP を <var>h_i</var> とすると，評価値は <var>h_1 P_1 + h_2 P_2 + \dots + h_N P_N</var> である．</li>
+</ul>
+<p>評価値がクエストにより定められた基準値 <var>m</var> 以下であるとき，かつそのときに限り，ビ太郎はクエストを達成することができる．</p>
+<p>より高い難易度でクエストを達成するほど報酬も豪華になるため，ビ太郎は，クエストを達成することができる最大の難易度を求めたい．
+しかし，基準値は事前には知らされないため，ビ太郎は，<var>Q</var> 個の基準値の候補 <var>M_1, M_2, \dots, M_Q</var> について，
+クエストを達成することができる最大の難易度を求めることにした．</p>
+<p>防衛戦の情報と基準値の候補の情報が与えられたとき，それぞれの基準値の候補について，クエストを達成することが可能かどうか判定し，
+可能な場合は，クエストを達成することができる最大の難易度を求めるプログラムを作成せよ．</p>
+<hr />
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力は以下の形式で標準入力から与えられる．</p>
+<pre><var>N</var> <var>L</var> <var>T</var>
+<var>S_1</var> <var>H_1</var> <var>P_1</var>
+<var>S_2</var> <var>H_2</var> <var>P_2</var>
+<var>\vdots</var>
+<var>S_N</var> <var>H_N</var> <var>P_N</var>
+<var>Q</var>
+<var>M_1</var>
+<var>M_2</var>
+<var>\vdots</var>
+<var>M_Q</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p><var>Q</var> 行出力せよ．
+<var>j</var> 行目 (<var>1 \leqq j \leqq Q</var>) には，<var>m = M_j</var> としたときの，クエストを達成することができる最大の難易度を出力せよ．どの難易度でもクエストを達成することができない場合は，代わりに <code>0</code> を出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>1 \leqq N \leqq 6\,000</var>．</li>
+<li><var>1 \leqq L \leqq 10\,000\,000</var>．</li>
+<li><var>1 \leqq T \leqq 10^{18}</var>．</li>
+<li><var>0 \leqq S_i &lt; T</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>1 \leqq H_i</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>1 \leqq P_i</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>H_1 P_1 + H_2 P_2 + \cdots + H_N P_N \leqq 10^{11}</var>．</li>
+<li><var>1 \leqq Q \leqq 1\,000\,000</var>．</li>
+<li><var>0 \leqq M_j \leqq 10^{18}</var> (<var>1 \leqq j \leqq Q</var>)．</li>
+<li><var>M_1 &lt; M_2 &lt; \cdots &lt; M_Q</var>．</li>
+<li>入力される値はすべて整数である．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>5</var> 点) <var>N \leqq 30</var>，<var>Q = 1</var>，<var>M_1 = 0</var>，<var>L = 1</var>．</li>
+<li>(<var>10</var> 点) <var>N \leqq 30</var>，<var>Q = 1</var>，<var>M_1 = 0</var>．</li>
+<li>(<var>14</var> 点) <var>N \leqq 30</var>，<var>Q \leqq 3</var>．</li>
+<li>(<var>10</var> 点) <var>Q \leqq 3</var>．</li>
+<li>(<var>33</var> 点) <var>N \leqq 30</var>．</li>
+<li>(<var>7</var> 点) <var>N \leqq 400</var>．</li>
+<li>(<var>16</var> 点) <var>N \leqq 1\,800</var>．</li>
+<li>(<var>5</var> 点) 追加の制約はない．</li>
+</ol>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>2 2 10
+0 9 2
+8 5 1
+3
+0
+20
+40
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>0
+1
+2
+</pre>
+<p>難易度 <var>1</var> の防衛戦では，以下のように行動することで評価値 <var>4</var> を達成することができる．評価値 <var>3</var> 以下を達成することはできない．</p>
+<style>  
+style + table {  
+    border-collapse: collapse;  
+    border: 1px solid black;  
+    margin: 1em auto;  
+    th, td {  
+        padding: 0.25rem 1rem;  
+        border: 1px solid black;
+    }
+}  
+</style>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">時刻</th>
+<th style="text-align: center;">出来事</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><var>0</var></td>
+<td style="text-align: center;">モンスター <var>1</var> (HP <var>9</var>) が出現する．</td>
+</tr>
+<tr>
+<td style="text-align: center;"><var>0</var> – <var>8</var></td>
+<td style="text-align: center;">モンスター <var>1</var> に <var>8</var> 回攻撃する．モンスター <var>1</var> の HP が <var>9</var> から <var>1</var> まで減少する．</td>
+</tr>
+<tr>
+<td style="text-align: center;"><var>8</var></td>
+<td style="text-align: center;">モンスター <var>2</var> (HP <var>5</var>) が出現する．</td>
+</tr>
+<tr>
+<td style="text-align: center;"><var>8</var> – <var>9</var></td>
+<td style="text-align: center;">モンスター <var>2</var> に <var>1</var> 回攻撃する．モンスター <var>2</var> の HP が <var>5</var> から <var>4</var> まで減少する．</td>
+</tr>
+<tr>
+<td style="text-align: center;"><var>9</var> – <var>10</var></td>
+<td style="text-align: center;">モンスター <var>1</var> に <var>1</var> 回攻撃する．モンスター <var>1</var> の HP が <var>1</var> から <var>0</var> まで減少する．</td>
+</tr>
+<tr>
+<td style="text-align: center;"><var>10</var></td>
+<td style="text-align: center;">モンスター <var>1</var> が倒れる．</td>
+</tr>
+<tr>
+<td style="text-align: center;"><var>10</var></td>
+<td style="text-align: center;">防衛戦が終了する．評価値は <var>0 \times P_1 + 4 \times P_2 = 4</var> となる．</td>
+</tr>
+</tbody>
+</table>
+<p>また，難易度 <var>2</var> の防衛戦では，以下のように行動することで評価値 <var>26</var> を達成することができる．評価値 <var>25</var> 以下を達成することはできない．</p>
+<style>
+</style>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">時刻</th>
+<th style="text-align: center;">出来事</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><var>0</var></td>
+<td style="text-align: center;">モンスター <var>1</var> (HP <var>18</var>) が出現する．</td>
+</tr>
+<tr>
+<td style="text-align: center;"><var>0</var> – <var>8</var></td>
+<td style="text-align: center;">モンスター <var>1</var> に <var>8</var> 回攻撃する．モンスター <var>1</var> の HP が <var>18</var> から <var>10</var> まで減少する．</td>
+</tr>
+<tr>
+<td style="text-align: center;"><var>8</var></td>
+<td style="text-align: center;">モンスター <var>2</var> (HP <var>10</var>) が出現する．</td>
+</tr>
+<tr>
+<td style="text-align: center;"><var>8</var> – <var>10</var></td>
+<td style="text-align: center;">モンスター <var>1</var> に <var>2</var> 回攻撃する．モンスター <var>1</var> の HP が <var>10</var> から <var>8</var> まで減少する．</td>
+</tr>
+<tr>
+<td style="text-align: center;"><var>10</var></td>
+<td style="text-align: center;">防衛戦が終了する．評価値は <var>8 \times P_1 + 10 \times P_2 = 26</var> となる．</td>
+</tr>
+</tbody>
+</table>
+<p>さらに，この入力例においては <var>L = 2</var> であるため，難易度 <var>3</var> 以上の防衛戦を選択することができない．したがって，出力は以下のようになる．</p>
+<ul>
+<li><var>1</var> 個目の基準値 <var>M_1 = 0</var> ではどの難易度でもクエストを達成することができないため，<var>1</var> 行目には <code>0</code> を出力する．</li>
+<li><var>2</var> 個目の基準値 <var>M_2 = 20</var> では最大で難易度 <var>1</var> の防衛戦までクエストを達成することができるため，<var>2</var> 行目には <var>1</var> を出力する．</li>
+<li><var>3</var> 個目の基準値 <var>M_3 = 40</var> では最大で難易度 <var>2</var> の防衛戦までクエストを達成することができるため，<var>3</var> 行目には <var>2</var> を出力する．</li>
+</ul>
+<p>この入力例は小課題 <var>3, 4, 5, 6, 7, 8</var> の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>3 1 100000000000
+60000000000 30000000000 1
+30000000000 45000000000 1
+10000000000 10000000000 1
+1
+0
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>0
+</pre>
+<p>この入力例はすべての小課題の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>3 10000000 100000000
+60000000 4 1
+30000000 6 1
+0 2 1
+1
+0
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>7000000
+</pre>
+<p>この入力例は小課題 <var>2, 3, 4, 5, 6, 7, 8</var> の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 4</h3>
+<pre>5 20 100
+0 3 1
+20 2 2
+40 1 3
+60 4 4
+80 2 5
+11
+0
+50
+100
+150
+200
+250
+300
+350
+400
+450
+500
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 4</h3>
+<pre>6
+8
+10
+12
+13
+15
+16
+18
+19
+20
+20
+</pre>
+<p>この入力例は小課題 <var>5, 6, 7, 8</var> の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 5</h3>
+<pre>15 10000000 1000000000000
+160278118759 43084 33592
+442653603914 19490 23090
+824219815410 50858 89563
+502303340628 56629 45080
+495062829942 87342 28821
+234536700105 45384 34328
+396080693809 78081 50812
+734374391045 40873 92012
+122606844331 25451 30426
+204076581972 58431 13989
+495156368673 54276 41670
+812963939390 27614 50228
+405067019838 96324 18477
+464546304875 67562 45956
+528559327980 41759 15546
+10
+216000000000000
+1728000000000000
+5832000000000000
+13824000000000000
+27000000000000000
+46656000000000000
+74088000000000000
+110592000000000000
+157464000000000000
+216000000000000000
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 5</h3>
+<pre>995176
+1135557
+1431775
+1824183
+2359362
+3059523
+3942014
+5106209
+6594716
+8448125
+</pre>
+<p>この入力例は小課題 <var>5, 6, 7, 8</var> の制約を満たす．</p></section>
+</div>
+</span>
+</span>
