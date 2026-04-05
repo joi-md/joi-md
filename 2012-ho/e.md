@@ -17,7 +17,7 @@ JOI 国の国民には，お祭りが好きな人が多く，現在，$K$ 個の
 |||
 |---|---|
 |$2 \leqq N \leqq 100000 \,(= 10^5)$&emsp;|JOI 国の街の個数|
-|$1 \leqq N \leqq 200000 \,(= 2\times 10^5)$&emsp;|JOI 国の道路の本数|
+|$1 \leqq M \leqq 200000 \,(= 2\times 10^5)$&emsp;|JOI 国の道路の本数|
 |$1 \leqq K \leqq N$&emsp;|お祭りが開催されている街の個数|
 |$1 \leqq Q \leqq 100000 \,(= 10^5)$&emsp;|クエリの個数|
 |$1 \leqq L_i \leqq 1000$&emsp;|$i$ 番目の道路の長さ|

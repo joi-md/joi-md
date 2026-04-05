@@ -1,0 +1,266 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>The country of JOI is an equilateral triangle with side length <var>L</var> whose vertices are points <var>A</var>, <var>B</var>, and <var>C</var>.
+Here, <var>L</var> is a positive integer.
+Side <var>AB</var> connects vertices <var>A</var> and <var>B</var> in the east-west direction, and vertex <var>A</var> is the westernmost point of the country of JOI, while vertex <var>B</var> is the easternmost point.
+Vertex <var>C</var> is the northernmost point of the country of JOI.</p>
+<p>The country of JOI is divided into <var>L^2</var> <strong>regions</strong>, each of which is an equilateral triangle with side length <var>1</var>.
+A point that is a vertex of some region is called a <strong>lattice point</strong>.
+For integers <var>x, y</var> satisfying <var>0\leq y\leq L</var> and <var>0\leq x\leq L-y</var>, the lattice point that is the <var>(1+y)</var>-st from the south and the <var>(1+x)</var>-st from the west is denoted by <var>(x,y)</var>.
+In particular, <var>A</var>, <var>B</var>, and <var>C</var> are denoted by <var>(0,0)</var>, <var>(L,0)</var>, and <var>(0,L)</var>, respectively.
+For example, the following figure shows the regions and the lattice points when <var>L=5</var>.</p>
+<p><img src="https://img.atcoder.jp/joi2026final/rainfall-fig1.png" class="img-responsive center-block" style="max-width: 100%; width: 400px;"></p>
+<p>In the country of JOI, weather forecasts for the next <var>N</var> days have been announced.
+On day <var>i</var>, rain is forecast to fall in the triangular region <var>T_i</var> whose vertices are lattice points <var>(X_i, Y_i)</var>, <var>(X_i + Z_i, Y_i)</var>, and <var>(X_i, Y_i + Z_i)</var>.
+An region is said to be forecast to receive rain on day <var>i</var> if the entire region is contained in <var>T_i</var>.</p>
+<p>In order to prepare for disasters caused by rainfall, it is necessary to determine, for each <var>k=1,2,\ldots,K</var>, the number of regions that are forecast to receive rain on at least <var>k</var> days.</p>
+<p>Given the size of the country of JOI, the weather forecasts, and <var>K</var>, write a program which, for each <var>k=1,2,\ldots,K</var>, computes the number of regions that are forecast to receive rain on at least <var>k</var> days.</p>
+<hr />
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Input is given from Standard Input in the following format:</p>
+<pre><var>L</var> <var>N</var> <var>K</var>
+<var>X_1</var> <var>Y_1</var> <var>Z_1</var>
+<var>X_2</var> <var>Y_2</var> <var>Z_2</var>
+<var>\vdots</var>
+<var>X_N</var> <var>Y_N</var> <var>Z_N</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>Print <var>K</var> lines to Standard Output.
+The <var>k</var>-th line (<var>1\leq k\leq K</var>) should contain the number of regions that are forecast to receive rain on at least <var>k</var> days.</p>
+<hr />
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li> <var>2\leq L\leq 10^9</var>.
+<li> <var>2 \leq N \leq 200\,000</var>.
+<li> <var>1 \leq K \leq 5</var>.
+<li> <var>0\leq X_i\leq L</var> (<var>1\leq i\leq N</var>).
+<li> <var>0\leq Y_i\leq L</var> (<var>1\leq i\leq N</var>).
+<li> <var>1 \leq Z_i\leq L</var> (<var>1\leq i\leq N</var>).
+<li> <var>X_i+Y_i+Z_i\leq L</var> (<var>1\leq i\leq N</var>).
+<li> All input values are integers.
+</ul>
+
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li> (<var>4</var> points) <var>N = 2</var>, <var>K = 2</var>.
+<li> (<var>5</var> points) <var>L\leq 100</var>, <var>N\leq 100</var>.
+<li> (<var>5</var> points) <var>L\leq 1\,000</var>.
+<li> (<var>7</var> points) <var>N\leq 2\,000</var>.
+<li> (<var>10</var> points) <var>X_i = 0</var> (<var>1\leq i\leq N</var>), <var>K = 1</var>.
+<li> (<var>10</var> points) <var>X_i = 0</var> (<var>1\leq i\leq N</var>).
+<li> (<var>23</var> points) <var>K = 1</var>.
+<li> (<var>18</var> points) <var>K \leq 2</var>.
+<li> (<var>18</var> points) There are no additional constraints.
+</ol>
+
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>5 2 2
+1 0 3
+0 1 4
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>21
+4
+</pre>
+<p>If we illustrate, for each region, the number of days on which rain is forecast to fall, we obtain the following figure.</p>
+<p><img src="https://img.atcoder.jp/joi2026final/rainfall-fig2.png" class="img-responsive center-block" style="max-width: 100%; width: 400px;"></p>
+<p>This sample input satisfies the constraints for Subtasks <var>1, 2, 3, 4, 8,</var> and <var>9</var>.</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>5 4 5
+1 0 4
+0 1 3
+2 0 2
+1 2 2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>21
+10
+2
+0
+0
+</pre>
+<p>If we illustrate, for each region, the number of days on which rain is forecast to fall, we obtain the following figure.</p>
+<p><img src="https://img.atcoder.jp/joi2026final/raillfall-fig3.png" class="img-responsive center-block" style="max-width: 100%; width: 400px;"></p>
+<p>This sample input satisfies the constraints for Subtasks <var>2, 3, 4,</var> and <var>9</var>.</p></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点： <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>JOI 国は，点 <var>A, B, C</var> を頂点とする一辺の長さが <var>L</var> の正三角形である．ここで <var>L</var> は正整数である．辺 <var>AB</var> は頂点 <var>A, B</var> を東西方向に結んでおり，頂点 <var>A</var> は JOI 国の最西端，頂点 <var>B</var> は JOI 国の最東端である．頂点 <var>C</var> は JOI 国の最北端である．</p>
+<p>JOI 国は，一辺の長さが <var>1</var> の正三角形の<strong>区画</strong> <var>L^2</var> 個に区切られている．ある区画の頂点であるような点は<strong>格子点</strong>と呼ばれている．<var>0\leqq y\leqq L</var>，<var>0\leqq x\leqq L-y</var> を満たす整数 <var>x,y</var> に対して，南側から <var>1+y</var> 番目，西側から <var>1+x</var> 番目の格子点は <var>(x,y)</var> と表される．特に <var>A</var> は <var>(0,0)</var>，<var>B</var> は <var>(L,0)</var>，<var>C</var> は <var>(0,L)</var> と表される．例えば次の図は <var>L=5</var> の場合の区画，格子点を表している．</p>
+<p><img src="https://img.atcoder.jp/joi2026final/rainfall-fig1.png" class="img-responsive center-block" style="max-width: 100%; width: 400px;"></p>
+<p>JOI 国ではこれから <var>N</var> 日の間の天気予報が発表された．
+<var>i</var> 日目には，格子点 <var>(X_i, Y_i)</var>, <var>(X_i + Z_i, Y_i)</var>, <var>(X_i, Y_i + Z_i)</var> を頂点とする正三角形状の地域 <var>T_i</var> に雨が降ると予報されている．
+<var>i</var> 日目に雨が降ると予報されている区画とは，区画全体が <var>T_i</var> に含まれるような区画のことである．</p>
+<p>降雨による災害に備えるため，<var>k=1,2,\ldots,K</var> について，<var>k</var> 日以上雨が降ると予報されている区画の個数を調べる必要がある．</p>
+<p>JOI 国の大きさ，天気予報の情報，<var>K</var> が与えられたときに，<var>k=1,2,\ldots,K</var> について，<var>k</var> 日以上雨が降ると予報されている区画の個数を求めるプログラムを作成せよ．</p>
+<hr />
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力は以下の形式で標準入力から与えられる．</p>
+<pre><var>L</var> <var>N</var> <var>K</var>
+<var>X_1</var> <var>Y_1</var> <var>Z_1</var>
+<var>X_2</var> <var>Y_2</var> <var>Z_2</var>
+<var>\vdots</var>
+<var>X_N</var> <var>Y_N</var> <var>Z_N</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に <var>K</var> 行出力せよ．<var>k</var> 行目 (<var>1\leqq k\leqq K</var>) には，<var>k</var> 日以上雨が降ると予報されている区画の個数を出力せよ．</p>
+<hr />
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li> <var>2\leqq L\leqq 10^9</var>．
+<li> <var>2 \leqq N \leqq 200\,000</var>．
+<li> <var>1 \leqq K \leqq 5</var>．
+<li> <var>0\leqq X_i\leqq L</var> (<var>1\leqq i\leqq N</var>)．
+<li> <var>0\leqq Y_i\leqq L</var> (<var>1\leqq i\leqq N</var>)．
+<li> <var>1 \leqq Z_i\leqq L</var> (<var>1\leqq i\leqq N</var>)．
+<li> <var>X_i+Y_i+Z_i\leqq L</var> (<var>1\leqq i\leqq N</var>)．
+<li> 入力される値はすべて整数である．
+</ul>
+
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li> (<var>4</var> 点) <var>N = 2</var>，<var>K = 2</var>．
+<li> (<var>5</var> 点) <var>L\leqq 100</var>，<var>N\leqq 100</var>．
+<li> (<var>5</var> 点) <var>L\leqq 1\,000</var>．
+<li> (<var>7</var> 点) <var>N\leqq 2\,000</var>．
+<li> (<var>10</var> 点) <var>X_i = 0</var> (<var>1\leqq i\leqq N</var>)，<var>K = 1</var>．
+<li> (<var>10</var> 点) <var>X_i = 0</var> (<var>1\leqq i\leqq N</var>)．
+<li> (<var>23</var> 点) <var>K = 1</var>．
+<li> (<var>18</var> 点) <var>K \leqq 2</var>．
+<li> (<var>18</var> 点) 追加の制約はない．
+</ol>
+
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>5 2 2
+1 0 3
+0 1 4
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>21
+4
+</pre>
+<p>それぞれの区画について，雨が降ると予報されている日数を図示すると，次の図のようになる．</p>
+<p><img src="https://img.atcoder.jp/joi2026final/rainfall-fig2.png" class="img-responsive center-block" style="max-width: 100%; width: 400px;"></p>
+<p>この入力例は小課題 <var>1, 2, 3, 4, 8, 9</var> の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>5 4 5
+1 0 4
+0 1 3
+2 0 2
+1 2 2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>21
+10
+2
+0
+0
+</pre>
+<p>それぞれの区画について，雨が降ると予報されている日数を図示すると，次の図のようになる．</p>
+<p><img src="https://img.atcoder.jp/joi2026final/raillfall-fig3.png" class="img-responsive center-block" style="max-width: 100%; width: 400px;"></p>
+<p>この入力例は小課題 <var>2, 3, 4, 9</var> の制約を満たす．</p></section>
+</div>
+</span>
+</span>

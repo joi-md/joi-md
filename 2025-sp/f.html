@@ -43,8 +43,8 @@
 <p>あなたは <var>1</var> つのファイルを提出しなければならない．</p>
 <p>あなたの提出するファイルは <code>thief.cpp</code> という名前である．<code>thief.cpp</code> は <code>#include</code> プリプロセッサ指令によって <code>thief.h</code> を読み込み，以下の関数を実装していなければならない．</p>
 <ul>
-<li><code>void solve(int N, int M, std::vector&lt;int&gt; U, std::vector&lt;int&gt; V)</code>この関数は各テストケースにおいて <var>1</var> 回だけ呼び出される．
-    この関数は各テストケースにおいて <var>1</var> 回だけ呼び出される．<ul>
+<li><code>void solve(int N, int M, std::vector&lt;int&gt; U, std::vector&lt;int&gt; V)</code>  <ul>
+<li>この関数は各テストケースにおいて <var>1</var> 回だけ呼び出される．</li>
 <li>引数 <code>N</code> は星の個数 <var>N</var> である．</li>
 <li>引数 <code>M</code> はワープ装置の個数 <var>M</var> である．</li>
 <li>引数 <code>U</code>, <code>V</code> は長さ <var>N</var> の配列であり，<var>0 \leqq i \leqq M - 1</var> について，<code>U[i]</code>, <code>V[i]</code> はワープ装置 <var>i</var> が双方向に結ぶ星の番号 <var>U_i, V_i</var> である．</li>
@@ -54,6 +54,7 @@
 <p><code>thief.cpp</code> 内では以下の関数を呼び出すことができる．</p>
 <ul>
 <li><code>int query(std::vector&lt;int&gt; x)</code><ul>
+<li>この関数を用いて，質問を行う．</li>
 <li>引数 <code>x</code> は長さ <var>M</var> の配列である．<var>0 \leqq i \leqq M - 1</var> について，<code>x[i]</code> が <var>0</var> のときワープ装置 <var>i</var> について，星 <var>U_i</var> から星 <var>V_i</var> へ一方向に結ぶようにすることを，<var>1</var> のときワープ装置 <var>i</var> について，星 <var>V_i</var> から星 <var>U_i</var> へ一方向に結ぶようにすることを表す．</li>
 <li>戻り値は <var>0</var> または <var>1</var> である．戻り値が <var>0</var> のときいくつかのワープ装置を用いて星 <var>A</var> から星 <var>B</var> へ移動できないことを，<var>1</var> のとき星 <var>A</var> から星 <var>B</var> へ移動できることを表す．</li>
 <li>引数 <code>x</code> の長さは <var>M</var> でなければならない．これが満たされていない場合，<strong>不正解 [1]</strong> と判定される．</li>

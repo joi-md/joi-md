@@ -1,0 +1,206 @@
+<span class="lang">
+<span class="lang-ja">
+<p>配点： <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>JOI 国は <var>N</var> 個の島からなる国であり，各島には <var>1</var> から <var>N</var> までの番号が付けられている．現在，この国には島と島の間を結ぶ橋が存在しておらず，住民は不便な生活を送っている．</p>
+<p>そこで，JOI 国の大臣であるあなたは国家事業として新たに橋を架けることにした．橋を架ける建設計画が <var>M</var> 個あり，<var>j</var> 番目 (<var>1 \leqq j \leqq M</var>) の建設計画は，費用 <var>C_j</var> をかけて，島 <var>A_j</var> と島 <var>B_j</var> の間を双方向に結ぶ橋を架けるものである．ここで，<var>C_1, C_2, \ldots, C_M</var> は相異なることが保証される．また，すべての建設計画を実行した場合において，すべての島がいくつかの橋によって互いに到達可能になることが保証される．</p>
+<p>JOI 国の予算は限られているので，あなたは，次のように国家事業を実施することに決めた．</p>
+<ol>
+<li> <var>N</var> 個の島の中からひとつの島 <var>s</var> を選び，その島を首都とする．
+<li> 以下の操作を <var>N - 1</var> 回行う．
+<ul>
+<li> 各操作をする前の時点で，いくつかの橋を用いて首都から到達可能である島を<b>近い島</b>，そうでない島を<b>遠い島</b>とする．
+架ける橋の一端が近い島，もう一端が遠い島であるような建設計画のうち，費用が最も安いものを選び，実行する．
+</ul>
+<li> 操作を <var>N - 1</var> 回行った後，国家事業を終了する．
+</ol>
+
+<p>ここで，建設計画の満たす制約より，以下の事柄を証明できる．</p>
+<ul>
+<li> 各操作において，選ぶことのできる建設計画は必ず存在する．さらに，実行される建設計画は一意に定まる．
+<li> この事業が終了した時点で，すべての島がいくつかの橋によって互いに到達可能になる．
+</ul>
+
+<p>JOI 国への移住を検討している凛は，どの島に住むかの参考にするため，次のように各島の<b>不便度</b>を計算することにした．
+島 <var>i</var> (<var>1 \leqq i \leqq N</var>) の不便度は次のように定義される．</p>
+<ul>
+<li> 島 <var>s</var> (<var>1 \leqq s \leqq N</var>) を首都として国家事業を実施したときに，島 <var>i</var> が首都から到達可能になるまでに実行された建設計画の数を <var>D_{s, i}</var> とする．ここで，<var>s = i</var> のときは <var>D_{s, i}</var> は <var>0</var> とする．
+<li> 島 <var>i</var> の不便度は，すべての <var>1 \leqq s \leqq N</var> に対する <var>D_{s, i}</var> の総和とする．
+</ul>
+
+<p>凛は，引っ越し先の候補としている <var>Q</var> 個の島 <var>X_1, X_2, \ldots, X_Q</var> の不便度を計算したい．建設計画と引っ越し先の候補の島の情報が与えられたとき，これらの島の不便度を求めるプログラムを作成せよ．</p>
+<hr />
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力は以下の形式で標準入力から与えられる．</p>
+<pre><var>N</var> <var>M</var> <var>Q</var>
+<var>A_1</var> <var>B_1</var> <var>C_1</var>
+<var>A_2</var> <var>B_2</var> <var>C_2</var>
+<var>\vdots</var>
+<var>A_M</var> <var>B_M</var> <var>C_M</var>
+<var>X_1</var>
+<var>X_2</var>
+<var>\vdots</var>
+<var>X_Q</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p><var>Q</var> 行出力せよ．<var>k</var> 行目には，島 <var>X_k</var> (<var>1 \leqq k \leqq Q</var>) の不便度を出力せよ．</p>
+<hr />
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li> <var>2 \leqq N \leqq 300\,000</var>．
+<li> <var>1 \leqq M \leqq 600\,000</var>．
+<li> <var>1 \leqq Q \leqq N</var>．
+<li> <var>1 \leqq A_j < B_j \leqq N</var> (<var>1 \leqq j \leqq M</var>)．
+<li> すべての建設計画を実行した場合において，すべての島がいくつかの橋によって互いに到達可能になる．
+<li> <var>1 \leqq C_j \leqq 10^9</var> (<var>1 \leqq j \leqq M</var>)．
+<li> <var>C_1, C_2,\ldots,C_M</var> は相異なる．
+<li> <var>1 \leqq X_k\leqq N</var> (<var>1 \leqq k \leqq Q</var>)．
+<li> <var>X_1, X_2, \ldots, X_Q</var> は相異なる．
+<li> 入力される値はすべて整数である．
+</ul>
+
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li> (<var>5</var> 点) <var>N \leqq 2\,000</var>，<var>M \leqq 2\,000</var>．
+<li> (<var>8</var> 点) <var>N \leqq 2\,000</var>．
+<li> (<var>9</var> 点) <var>M = N - 1</var>，<var>A_j = j, B_j = j + 1</var> (<var>1 \leqq j \leqq M</var>)，<var>Q = 1</var>．
+<li> (<var>18</var> 点) <var>M = N - 1</var>，<var>A_j = j, B_j = j + 1</var> (<var>1 \leqq j \leqq M</var>)．
+<li> (<var>28</var> 点) <var>Q = 1</var>．
+<li> (<var>32</var> 点) 追加の制約はない．
+</ol>
+
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>4 5 2
+1 3 2
+1 4 4
+2 3 1
+2 4 5
+3 4 3
+1
+3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>7
+3
+</pre>
+<p>例えば，島 <var>1</var> を首都として，国家事業を実施した場合を考える．このとき，次のように建設計画が実行される．</p>
+<ol>
+<li> <var>1</var> 番目の建設計画が実行される．首都からは新たに島 <var>3</var> が到達可能になる．
+<li> <var>3</var> 番目の建設計画が実行される．首都からは新たに島 <var>2</var> が到達可能になる．
+<li> <var>5</var> 番目の建設計画が実行される．首都からは新たに島 <var>4</var> が到達可能になる．
+</ol>
+
+<p>以上より，<var>D_{1, 1} = 0, D_{1, 2} = 2, D_{1, 3} = 1, D_{1, 4} = 3</var> となる．</p>
+<p><var>D_{2, 1} = 2, D_{3, 1} = 2, D_{4, 1} = 3</var> であるため，島 <var>1</var> の不便度は <var>D_{1, 1} + D_{2, 1} + D_{3, 1} + D_{4, 1} = 0 + 2 + 2 + 3 = 7</var> である．また，<var>D_{2, 3} = 1, D_{3, 3} = 0, D_{4, 3} = 1</var> であるため，島 <var>3</var> の不便度は <var>D_{1, 3} + D_{2, 3} + D_{3, 3} + D_{4, 3} = 1 + 1 + 0 + 1 = 3</var> である．</p>
+<p>この入力例は小課題 <var>1, 2, 6</var> の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>5 4 5
+1 2 3
+2 3 1
+3 4 4
+4 5 2
+1
+2
+3
+4
+5
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>12
+8
+7
+10
+13
+</pre>
+<p>この入力例は小課題 <var>1, 2, 4, 6</var> の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>10 20 1
+1 2 808642746
+1 3 990324141
+1 4 69919024
+1 5 794837863
+3 6 84751636
+1 7 491226767
+3 8 314795065
+1 9 347506932
+1 10 709806198
+2 3 103026123
+9 10 270175384
+4 8 133038160
+4 10 592110162
+2 10 708615085
+6 10 262209760
+5 10 75049025
+7 9 367273075
+6 9 264231132
+3 10 909786421
+2 7 135810916
+10
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>43
+</pre>
+<p>この入力例は小課題 <var>1, 2, 5, 6</var> の制約を満たす．</p></section>
+</div>
+</span>
+</span>

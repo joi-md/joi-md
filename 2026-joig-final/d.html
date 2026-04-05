@@ -1,0 +1,203 @@
+<span class="lang">
+<span class="lang-ja">
+<p>配点： <var>100</var> 点</p>
+<p><a href="https://img.atcoder.jp/joi2026final/casino.zip?_gl=1*13kd1yr*_ga*MjkxNTEwOTk5LjE3NzQyMzI5MTM.*_ga_RC512FD18N*czE3NzQzNjg4MzIkbzE3JGcxJHQxNzc0MzY5MTkzJGo2MCRsMCRoMA..">配布ファイル</a></p>
+<blockquote>
+<h4>AtCoder での提出方法</h4>
+<ul>
+<li><code>Azzurro.h</code>, <code>Bordeaux.h</code> を include し，問題文で指定された関数を実装してください．</li>
+<li><strong>標準入出力やファイルへの入出力を使用しないでください．</strong></li>
+</ul>
+</blockquote>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>イタリアのカジノを訪れた Azzurro と Bordeaux の <var>2</var> 人組は，ディーラーの Chiaro に提案されたゲームを遊ぶことにした．</p>
+<p>このゲームでは，<var>N</var> 行 <var>N</var> 列 (<var>N = 8</var>) のマス目を介して情報を伝える．マス目の各行には上から順に <var>0</var> から <var>N - 1</var> までの行番号が，各列には左から順に <var>0</var> から <var>N - 1</var> までの列番号が付けられている．行番号が <var>r</var> であり，列番号が <var>c</var> であるマスを <var>(r, c)</var> と表記する．</p>
+<p>このゲームでは，Azzurro と Bordeaux が別々の部屋に隔離された状態で <var>Q</var> 回の<strong>ターン</strong>が行われる．<var>i</var> 回目 (<var>1 \leqq i \leqq Q</var>) のターンは次のように進行する．</p>
+<ol>
+<li> Azzurro は Chiaro から，整数 <var>N, L_i</var> (<var>1 \leqq L_i \leqq 51</var>) および '<code>A</code>' と '<code>B</code>' からなる <var>L_i</var> 文字の文字列 <var>S_i</var> が書かれたカードと，すべてのマスが白色で塗られた <var>N</var> 行 <var>N</var> 列のマス目を受け取る．
+<li> Azzurro は，<var>N^2</var> 個のマスについて，各マスを青色か赤色で塗る．その後，Chiaro にマス目を渡す．
+<li> Chiaro は，以下の操作を Azzurro と Bordeaux から見えない場所で行う．
+<ol>
+<li> 下または右に隣接するマスへの移動のみを繰り返して <var>(0, 0)</var> から <var>(N - 1, N - 1)</var> まで到達する経路を <var>1</var> つ選ぶ．
+<li> 経路上にあるすべてのマスについて，そのマスが青色で塗られているならば赤色で塗り直し，赤色で塗られているならば青色で塗り直す．
+</ol>
+<li> Bordeaux は Chiaro から，整数 <var>N, L_i</var> が書かれたカードとマス目を受け取る．
+<li> Bordeaux は '<code>A</code>' と '<code>B</code>' からなる <var>L_i</var> 文字の文字列を紙に書く．書いた文字列が <var>S_i</var> と一致していれば，Azzurro と Bordeaux の勝利となる．
+</ol>
+
+<p>Azzurro と Bordeaux がこのゲームで勝利するための戦略を実装せよ．なお，この課題の採点方法については，<strong>採点基準</strong>の項を参照すること．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>実装の詳細</h3>
+<p>あなたは <var>2</var> つのファイルを提出しなければならない．</p>
+<p><var>1</var> つ目のファイルは <code>Azzurro.cpp</code> という名前である．このファイルは Azzurro の戦略を実装したファイルであり，以下の関数を実装していなければならない．また，<code>#include</code> プリプロセッサ指令によって <code>Azzurro.h</code> を読み込むこと．</p>
+<ul>
+<li> <code>std::vector&lt;std::vector&lt;int&gt;&gt; Azzurro(int N, int L, std::string S)</code>
+
+この関数は合計 <var>Q</var> 回呼び出される．<var>i</var> 回目 (<var>1 \leqq i \leqq Q</var>) の呼び出しは，ゲームにおける <var>i</var> 回目のターンの手順 1.，手順 2. に相当する．
+
+<ul>
+
+<li> 引数 <code>N</code> は <var>i</var> 回目のターンの手順 1. で Azzurro が受け取るカードに書かれた整数 <var>N</var> である．
+<li> 引数 <code>L</code> は <var>i</var> 回目のターンの手順 1. で Azzurro が受け取るカードに書かれた整数 <var>L_i</var> である．
+<li> 引数 <code>S</code> は <var>i</var> 回目のターンの手順 1. で Azzurro が受け取るカードに書かれた文字列 <var>S_i</var> である．
+</ul>
+
+関数 <code>Azzurro</code> の <var>1</var> 回の呼び出しについて，各要素が <var>0</var> または <var>1</var> である <var>N \times N</var> の <var>2</var> 次元配列 <var>\texttt{x}</var> を返さなければならない．これが満たされない場合，<strong>不正解 [1]</strong> と判定される．
+
+<ul>
+<li> <var>\texttt{x}[\texttt{r}][\texttt{c}] = 0</var> (<var>0 \leqq \texttt{r} \leqq N - 1</var>，<var>0 \leqq \texttt{c} \leqq N - 1</var>) のとき，マス <var>(\texttt{r}, \texttt{c})</var> を青色で塗ることを表す．
+<li> <var>\texttt{x}[\texttt{r}][\texttt{c}] = 1</var> (<var>0 \leqq \texttt{r} \leqq N - 1</var>，<var>0 \leqq \texttt{c} \leqq N - 1</var>) のとき，マス <var>(\texttt{r}, \texttt{c})</var> を赤色で塗ることを表す．
+</ul>
+</ul>
+
+<p><var>2</var> つ目のファイルは <code>Bordeaux.cpp</code> という名前である．このファイルは Bordeaux の戦略を実装したファイルであり，以下の関数を実装していなければならない．また，<code>#include</code> プリプロセッサ指令によって <code>Bordeaux.h</code> を読み込むこと．</p>
+<ul>
+<li> <code>std::string Bordeaux(int N, int L, std::vector&lt;std::vector&lt;int&gt;&gt; T)</code>
+
+この関数は Azzurro がマス目を塗り終わるたびに <var>1</var> 回，合計で <var>Q</var> 回呼び出される．<var>i</var> 回目 (<var>1 \leqq i \leqq Q</var>) の呼び出しは，ゲームにおける <var>i</var> 回目のターンの手順 4.，手順 5. に相当する．
+
+<ul>
+
+<li> 引数 <code>N</code> は，<var>i</var> 回目のターンの手順 4. で Bordeaux が受け取るカードに書かれた整数 <var>N</var> である．
+<li> 引数 <code>L</code> は，<var>i</var> 回目のターンの手順 4. で Bordeaux が受け取るカードに書かれた整数 <var>L_i</var> である．
+<li> 引数 <code>T</code> は，<var>i</var> 回目のターンの手順 4. で Bordeaux が受け取るマス目の各マスの色を表す <var>N \times N</var> の <var>2</var> 次元配列である．マス <var>(\texttt{r}, \texttt{c})</var> (<var>0 \leqq \texttt{r} \leqq N - 1</var>，<var>0 \leqq \texttt{c} \leqq N - 1</var>) の色は，<var>\texttt{T[r][c]} = 0</var> であれば青色，<var>\texttt{T[r][c]} = 1</var> であれば赤色である．
+</ul>
+
+関数 <code>Bordeaux</code> の <var>1</var> 回の呼び出しについて，'<code>A</code>' と '<code>B</code>' からなる <var>L_i</var> 文字の文字列 <code>s</code> を返さなければならない．これが満たされない場合，<strong>不正解 [2]</strong> と判定される．
+</ul>
+
+<h4>重要な注意</h4>
+<ul>
+<li> 内部での使用のために他の関数を実装したり，グローバル変数を宣言するのは自由である．
+ただし，提出された <var>2</var> つのプログラムは，採点プログラムとまとめてリンクされて <var>1</var> つの実行ファイルになるので，
+各ファイル内のすべてのグローバル変数と内部関数を無名名前空間内で宣言して，他のファイルとの干渉を避ける必要がある．
+採点時には，このプログラムは Azzurro 側，Bordeaux 側として <var>2</var> 個のプロセスとして実行されるので，
+Azzurro 側と Bordeaux 側でプログラム中のグローバル変数を共有することはできない．
+<li> あなたの提出したプログラムは，標準入力・標準出力，あるいは他のファイルといかなる方法でもやりとりしてはならない．
+ただし，標準エラー出力にデバッグ情報等を出力することは許される．
+</ul>
+
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>コンパイル・実行の方法</h3>
+<p>作成したプログラムをテストするための，採点プログラムのサンプルが，コンテストサイトからダウンロードできるアーカイブの中に含まれている．このアーカイブには，提出しなければならないファイルのサンプルも含まれている．</p>
+<p>採点プログラムのサンプルは <var>1</var> つのファイルからなる．そのファイルは <code>grader.cpp</code> である．作成したプログラムをテストするには，<code>grader.cpp</code>，<code>Azzurro.cpp</code>，<code>Bordeaux.cpp</code>，<code>Azzurro.h</code>，<code>Bordeaux.h</code> を同じディレクトリに置き，次のようにコマンドを実行する．</p>
+<pre>g++ -std=gnu++20 -O2 -o grader grader.cpp Azzurro.cpp Bordeaux.cpp
+</pre>
+<p>なお，アーカイブの中に含まれている <code>compile.sh</code> というファイルを代わりに実行してもよい．その場合，次のようにコマンドを実行する．</p>
+<pre>./compile.sh
+</pre>
+<p>コンパイルが成功すれば，<code>grader</code> という実行ファイルが生成される．</p>
+<p>実際の採点プログラムは，採点プログラムのサンプルとは異なることに注意すること．採点プログラムのサンプルは単一のプロセスとして起動する．このプログラムは，標準入力から入力を読み込み，標準出力に結果を出力する．</p>
+<p>なお，実際の採点プログラムにおいて，<strong>Chiaro の選ぶ経路はあらかじめ定まっている．</strong>すなわち，あなたの提出したプログラムにおける関数 <code>Azzurro</code> や関数 <code>Bordeaux</code> が呼び出される前に，Chiaro の選ぶ経路は確定している．</p>
+<h4>採点プログラムのサンプルの入力</h4>
+<p>採点プログラムのサンプルは標準入力から以下の形式で入力を読み込む．</p>
+<pre><var>Q</var> <var>N</var> 
+<var>L_1</var> 
+<var>S_1</var> 
+<var>R_1</var> 
+<var>L_2</var> 
+<var>S_2</var> 
+<var>R_2</var> 
+<var>\vdots</var> 
+<var>L_Q</var> 
+<var>S_Q</var> 
+<var>R_Q</var>
+</pre>
+<p>ここで，<var>R_i</var> (<var>1 \leqq i \leqq Q</var>) は，'<code>D</code>' と '<code>R</code>' を <var>N - 1</var> 文字ずつ含む <var>2(N - 1)</var> 文字の文字列である．この文字列は Chiaro が <var>i</var> 回目のターンで選ぶ，下または右に隣接するマスへの移動のみを繰り返して <var>(0, 0)</var> から <var>(N - 1, N - 1)</var> まで到達する経路を表す．その経路は，<var>(0, 0)</var> からスタートして，<var>j = 1, 2, \cdots , 2(N - 1)</var> の順に，<var>R_i</var> の <var>j</var> 文字目が '<code>D</code>' であれば下に隣接するマスに，'<code>R</code>' であれば右に隣接するマスに移動する，という操作を繰り返すことで最終的に <var>(N - 1, N - 1)</var> に到達する経路である．</p>
+<h4>採点プログラムのサンプルの出力</h4>
+<p>採点プログラムのサンプルは標準出力へ以下の情報を出力する（引用符は実際には出力されない）．</p>
+<ul>
+<li> 正解の場合，<var>L^{*}</var> の値が "<code>Accepted: 26</code></code>" のように出力される．<var>L^{*}</var> の値については採点基準の項を参照せよ．
+<li> 不正解の場合，不正解の種類が "<code>Wrong Answer [1]</code>" のように出力される．
+</ul>
+
+<p>実行するプログラムが複数の不正解の条件を満たした場合，表示される不正解の種類はそれらのうち <var>1</var> つのみである．採点プログラムのサンプルは，不正解の条件を満たした場合，途中で実行を打ち切ることがある．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<p>すべての入力データは以下の条件を満たす．</p>
+<ul>
+<li> <var>1 \leqq Q \leqq 30\,000</var>．
+<li> <var>N = 8</var>．
+<li> <var>1 \leqq L_i \leqq 51</var> (<var>1 \leqq i \leqq Q</var>)．
+<li> <var>Q, L_i</var> (<var>1 \leqq i \leqq Q</var>) は整数である．
+<li> <var>S_i</var> (<var>1 \leqq i \leqq Q</var>) は '<code>A</code>' と '<code>B</code>' からなる <var>L_i</var> 文字の文字列である．
+<li> <var>R_i</var> (<var>1 \leqq i \leqq Q</var>) は '<code>D</code>' と '<code>R</code>' を <var>N - 1</var> 文字ずつ含む <var>2(N - 1)</var> 文字の文字列である．
+</ul>
+
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>採点基準</h3>
+<p>この課題のテストケースの中で，<var>1</var> つでも<strong>不正解 [1]</strong> または<strong>不正解 [2]</strong>（実装の詳細を参照）と判定されたものや，実行時エラー（実行時間制限超過，メモリ制限違反，異常終了など）と判定されたものがあった場合，他のテストケースでどのターンに勝利したかにかかわらず無条件で <var>0</var> 点となる．</p>
+<p>そうでない場合，この課題のすべてのテストケースに対する以下の値の最小値を <var>L^{*}</var> とするとき，下表のように得点が与えられる．</p>
+<ul>
+<li> <var>L_i \leqq L</var> を満たすすべてのターンについて勝利したような最大の整数 <var>L</var>．ただし，テストケース内のすべてのターンに勝利した場合は <var>L = 51</var> とする．
+</ul>
+
+<p><img src="https://img.atcoder.jp/joig2026final/casino-fig1.png" class="img-responsive center-block" style="max-width: 100%; width: 500px;"></p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>やりとりの例</h3>
+<p>採点プログラムのサンプルが読み込む入力の例と，それに対応する関数の呼び出しの例を以下に示す．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>2 2
+1
+B
+RD
+3
+ABB
+DR
+</pre>
+<p><img src="https://img.atcoder.jp/joi2026final/casino-fig1.png" class="img-responsive center-block" style="max-width: 100%; width: 500px;"></p>
+<p>この入力例は <var>Q \ (= 2)</var> 回のターンからなり，<var>2</var> 回のターンでは <var>N</var> 行 <var>N</var> 列 (<var>N = 2</var>) のマス目を使用する．この例では，<var>1</var> 回目のターンは次のように進行する．</p>
+<ol>
+<li> Azzurro は <var>(0, 1)</var> と <var>(1, 0)</var> を青色に，<var>(0, 0)</var> と <var>(1, 1)</var> を赤色に塗る．その後，Chiaro にマス目を渡す．
+<li> Chiaro は，以下の操作を Azzurro と Bordeaux から見えない場所で行う．
+<ol>
+<li> 下または右に隣接するマスへの移動のみを繰り返して <var>(0, 0)</var> から <var>(N - 1, N - 1)</var> まで到達する経路として，<var>(0, 0) \rightarrow (0, 1) \rightarrow (1, 1)</var> を選ぶ．
+<li> この経路上にある <var>3</var> つのマス <var>(0, 0), (0, 1), (1, 1)</var> について，そのマスに塗られた色を変更する．これにより，<var>(0, 0), (0, 1), (1, 1)</var> の色はそれぞれ青色，赤色，青色に変更される．
+</ol>
+<li> Bordeaux は "<code>B</code>" と紙に書くことで，このターンでは勝利できる．
+</ol>
+
+<p>また，<var>2</var> 回目のターンは次のように進行する．</p>
+<ol>
+<li> Azzurro はすべてのマスを青色に塗る．その後，Chiaro にマス目を渡す．
+<li> Chiaro は，以下の操作を Azzurro と Bordeaux から見えない場所で行う．
+<ol>
+<li> 下または右に隣接するマスへの移動のみを繰り返して <var>(0, 0)</var> から <var>(N - 1, N - 1)</var> まで到達する経路として，<var>(0, 0) \rightarrow (1, 0) \rightarrow (1, 1)</var> を選ぶ．
+<li> この経路上にある <var>3</var> つのマス <var>(0, 0), (1, 0), (1, 1)</var> について，そのマスに塗られた色を変更する．これにより，<var>(0, 0), (1, 0), (1, 1)</var> の色はすべて赤色に変更される．
+</ol>
+<li> Bordeaux は "<code>ABB</code>" と紙に書くことで，このターンでは勝利できる．
+</ol>
+
+<p>この入力例は<strong>制約を満たさない</strong>ことに注意すること．コンテストサイトからダウンロードできるファイルのうち，<code>sample-01-in.txt</code> は入力例 <var>1</var> に対応する．コンテストサイトからダウンロードできるファイルのうち，<code>sample-02-in.txt</code>は制約を満たす．</p></section>
+</div>
+</span>
+</span>

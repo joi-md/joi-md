@@ -1,0 +1,386 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>JOI Bakery is a bakery famous for its mouth-watering croissants.
+JOI Bakery has <var>N</var> bakers numbered from <var>1</var> to <var>N</var>.
+Baker <var>i</var> (<var>1 \leq i \leq N</var>) takes <var>i</var> minutes to make one croissant.
+One baker cannot make multiple croissants at the same time.</p>
+<p>Today, <var>M</var> customers numbered from <var>1</var> to <var>M</var> are scheduled to visit JOI Bakery, and each customer plans to order one croissant.
+Customer <var>j</var> (<var>1 \leq j \leq M</var>) will order a croissant at time <var>T_j</var>, where time <var>t</var> denotes the time <var>t</var> minutes from now.
+However, a customer who cannot receive their croissant within <var>L</var> minutes of ordering will give up and leave the shop.
+In other words, to fulfill the order of customer <var>j</var> (<var>1 \leq j \leq M</var>), the croissant must be finished by time <var>T_j + L</var> (including exactly at time <var>T_j + L</var>).</p>
+<p>Manager K, who manages JOI Bakery, plans to have exactly one baker work today and is considering which baker to send and at what time.
+Since bakers focus intensely on bread-making during their shift, <strong>they ignore all orders placed after their start time (not including exactly at the start time)</strong>.
+That is, a baker starting work at time <var>t</var> cannot fulfill orders from customers <var>j</var> (<var>1 \leq j \leq M</var>) such that <var>T_j &gt; t</var>.</p>
+<p>Manager K is currently considering <var>Q</var> work plans.
+The <var>q</var>-th plan (<var>1 \leq q \leq Q</var>) is to have baker <var>A_q</var> start work at time <var>B_q</var>.
+To help with the decision, for each of the <var>Q</var> plans, he wants to know the maximum number of customers whose orders can be fulfilled if that plan is executed.
+Note that the time it takes for a baker to start making a croissant after arriving, and the time it takes to start making a new croissant after finishing one, can be ignored.</p>
+<p>Given information about the customers visiting JOI Bakery and the work plans, create a program to find the maximum number of customers whose orders can be fulfilled for each plan.</p>
+<hr />
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input.</p>
+<pre><var>N</var> <var>M</var> <var>L</var> <var>Q</var>
+<var>T_1</var> <var>T_2</var> <var>\cdots</var> <var>T_M</var>
+<var>A_1</var> <var>B_1</var>
+<var>A_2</var> <var>B_2</var>
+<var>\vdots</var>
+<var>A_Q</var> <var>B_Q</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>Write <var>Q</var> lines to the standard output.
+The <var>q</var>-th line (<var>1 \leq q \leq Q</var>) of the output should contain an integer representing the maximum number of customers whose orders can be fulfilled in the <var>q</var>-th work plan.</p>
+<hr />
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li> <var>1 \leq N \leq 4\times 10^{12}</var>.
+<li> <var>1 \leq M \leq 2\,000\,000</var>.
+<li> <var>1 \leq L \leq 2\times 10^{12}</var>.
+<li> <var>1 \leq Q \leq 400\,000</var>.
+<li> <var>0 \leq T_j \leq 2\times 10^{12}</var> (<var>1 \leq j \leq M</var>).
+<li> <var>T_j \leq T_{j+1}</var> (<var>1 \leq j \leq M-1</var>).
+<li> <var>1 \leq A_q \leq N</var> (<var>1 \leq q \leq Q</var>).
+<li> <var>0 \leq B_q \leq 4\times 10^{12}</var> (<var>1 \leq q \leq Q</var>).
+<li> Given values are all integers.
+</ul>
+
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li> (<var>8</var> points) <var>M \leq 10</var>, <var>Q \leq 100\,000</var>.
+<li> (<var>12</var> points) <var>M \leq 500</var>, <var>Q \leq 100\,000</var>.
+<li> (<var>30</var> points) <var>T_M \leq B_q < T_1+L</var> (<var>1 \leq q \leq Q</var>).
+<li> (<var>10</var> points) <var>T_M \leq B_q</var> (<var>1 \leq q \leq Q</var>).
+<li> (<var>22</var> points) <var>M \leq 500\,000</var>, <var>Q \leq 100\,000</var>.
+<li> (<var>18</var> points) No additional constraints.
+</ol>
+
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>4 4 6 4
+0 2 3 8
+2 3
+1 6
+3 3
+4 7
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>3
+2
+2
+0
+</pre>
+<p>Regarding the 1st work plan, baker <var>2</var> starting at time <var>3</var> can fulfill the orders of <var>3</var> customers 1, 2, and 3, for example, as follows:</p>
+<ul>
+<li> First, to fulfill customer 1's order, start making a croissant at time <var>3</var> and finish it 2 minutes later at time <var>5</var>. (This satisfies the condition to finish by time <var>T_1 + L = 0 + 6 = 6</var>.)
+<li> Next, to fulfill customer 2's order, start making a croissant at time <var>5</var> and finish it 2 minutes later at time <var>7</var>. (This satisfies the condition to finish by time <var>T_2 + L = 2 + 6 = 8</var>.)
+<li> Finally, to fulfill customer 3's order, start making a croissant at time <var>7</var> and finish it 2 minutes later at time <var>9</var>. (This satisfies the condition to finish by time <var>T_3 + L = 3 + 6 = 9</var>.)
+</ul>
+<p>Customer 4's order is ignored because it arrives after the baker's start time, so it cannot be fulfilled. Thus, a maximum of 3 customers' orders can be fulfilled, so the 1st line outputs 3.</p>
+<p>Regarding the 2nd work plan, baker <var>1</var> starting at time <var>6</var> can fulfill the orders of 2 customers 2 and 3, for example, as follows:</p>
+<ul>
+<li> First, to fulfill customer 3's order, start making a croissant at time <var>6</var> and finish it 1 minute later at time <var>7</var>. (This satisfies the condition to finish by time <var>T_3 + L = 3 + 6 = 9</var>.)
+<li> Next, to fulfill customer 2's order, start making a croissant at time <var>7</var> and finish it 1 minute later at time <var>8</var>. (This satisfies the condition to finish by time <var>T_2 + L = 2 + 6 = 8</var>.)
+</ul>
+<p>Customer 4's order is ignored because it arrives after the start time. Also, the order of customer 1, which needs to be finished by time 6, cannot be fulfilled. Thus, a maximum of 2 customers' orders can be fulfilled, so the 2nd line outputs 2.</p>
+<p>Regarding the 3rd work plan, baker <var>3</var> starting at time <var>3</var> can fulfill orders for customers 1 and 3, or customers 2 and 3, but cannot fulfill all orders for customers 1, 2, and 3. They also cannot fulfill the order for customer 4 which arrives after the start time. Thus, a maximum of 2 customers' orders can be fulfilled, so the 3rd line outputs 2.</p>
+<p>Regarding the 4th work plan, baker <var>4</var> starting at time <var>7</var> cannot fulfill any customer's order. Thus, the 4th line outputs 0.</p>
+<p>This sample input satisfies the constraints of Subtasks <var>1,2,5,</var> and <var>6</var>.</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>20 5 12 4
+1 2 4 8 10
+1 12
+3 10
+3 11
+15 10
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>5
+4
+3
+0
+</pre>
+<p>This sample input satisfies the constraints of all the subtasks.</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 3</h3>
+<pre>100000 6 272273 10
+5 9 209 8128 17202 50102
+164 9
+11 24
+835 9267
+2 256
+2 314156
+18475 142
+1826 18978
+44757 1
+4 1646
+218 44
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 3</h3>
+<pre>2
+2
+4
+3
+1
+2
+5
+0
+3
+2
+</pre>
+<p>This sample input satisfies the constraints of Subtasks <var>1,2,5,</var> and <var>6</var>.</p></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点： <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>JOI ベーカリーは頬が落ちるほど美味しいクロワッサンで有名なパン屋さんである．
+JOI ベーカリーには <var>1</var> から <var>N</var> までの番号が付けられた <var>N</var> 人のパン職人が在籍しており，職人 <var>i</var> (<var>1\leqq i \leqq N</var>) は <var>1</var> つのクロワッサンを作るのに <var>i</var> 分かかる．
+<var>1</var> 人の職人が同時に複数のクロワッサンを作ることはできない．</p>
+<p>JOI ベーカリーには今日これから，<var>1</var> から <var>M</var> までの番号が付けられた <var>M</var> 人の客が来店し，それぞれの客がクロワッサンを <var>1</var> つ注文する予定である．
+今から <var>t</var> 分後のことを時刻 <var>t</var> と呼ぶことにすると，客 <var>j</var> (<var>1\leqq j \leqq M</var>) がクロワッサンを注文するのは時刻 <var>T_j</var> である．
+ただし，注文後 <var>L</var> 分以内にクロワッサンを受け取ることのできなかった客は，諦めて店から去ってしまう．
+すなわち，客 <var>j</var>  (<var>1\leqq j \leqq M</var>) の注文に応えるには，時刻 <var>T_j+L</var> まで（時刻 <var>T_j+L</var> ちょうどを含む）にクロワッサンを作り終えなければならない．</p>
+<p>JOI ベーカリーを管理する K 店長は，今日はちょうど <var>1</var> 人の職人を店に出勤させることを予定しており，どの職人をどの時刻に出勤させるのがよいか考えている．
+職人たちは勤務中はパン作りに集中してしまうため，<strong>出勤時刻より後（出勤時刻ちょうどを含まない）に入った注文をすべて無視してしまう</strong>．
+すなわち，時刻 <var>t</var> に出勤する職人は，<var>T_j &gt; t</var> を満たすような客 <var>j</var> (<var>1\leqq j \leqq M</var>) の注文に応えることができない．</p>
+<p>K 店長は現在 <var>Q</var> 個の出勤案を検討しており，<var>q</var> 番目の案 (<var>1\leqq q \leqq Q</var>) は職人 <var>A_q</var> を時刻 <var>B_q</var> に出勤させるというものである．
+検討の材料とするため，<var>Q</var> 個の案それぞれについて，その案を実行した際に最大で何人の客の注文に応えることができるか知りたい．
+なお，職人が出勤してからクロワッサンを作り始めるまでにかかる時間や，クロワッサンを <var>1</var> つ作り終えてから新しいクロワッサンを作り始めるまでにかかる時間は無視できるものとする．</p>
+<p>JOI ベーカリーに来店する客と出勤案の情報が与えられたとき，それぞれの案において最大で何人の客の注文に応えることができるかを求めるプログラムを作成せよ．</p>
+<hr />
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力は以下の形式で標準入力から与えられる．</p>
+<pre><var>N</var> <var>M</var> <var>L</var> <var>Q</var>
+<var>T_1</var> <var>T_2</var> <var>\cdots</var> <var>T_M</var>
+<var>A_1</var> <var>B_1</var>
+<var>A_2</var> <var>B_2</var>
+<var>\vdots</var>
+<var>A_Q</var> <var>B_Q</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に <var>Q</var> 行で出力せよ．
+<var>q</var> 行目 (<var>1\leqq q \leqq Q</var>) には，<var>q</var> 番目の出勤案において最大で何人の客の注文に応えることができるかを表す整数を出力せよ．</p>
+<hr />
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li> <var>1 \leqq N \leqq 4\times 10^{12}</var>．
+<li> <var>1 \leqq M \leqq 2\,000\,000</var>．
+<li> <var>1 \leqq L \leqq 2\times 10^{12}</var>．
+<li> <var>1 \leqq Q \leqq 400\,000</var>．
+<li> <var>0 \leqq T_j \leqq 2\times 10^{12}</var> (<var>1 \leqq j \leqq M</var>)．
+<li> <var>T_j \leqq T_{j+1}</var> (<var>1 \leqq j \leqq M-1</var>)．
+<li> <var>1 \leqq A_q \leqq N</var> (<var>1 \leqq q \leqq Q</var>)．
+<li> <var>0 \leqq B_q \leqq 4\times 10^{12}</var> (<var>1 \leqq q \leqq Q</var>)．
+<li> 入力される値はすべて整数である．
+</ul>
+
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li> (<var>8</var> 点) <var>M \leqq 10</var>，<var>Q \leqq 100\,000</var>．
+<li> (<var>12</var> 点) <var>M \leqq 500</var>，<var>Q \leqq 100\,000</var>．
+<li> (<var>30</var> 点) <var>T_M \leqq B_q < T_1+L</var> (<var>1 \leqq q \leqq Q</var>)．
+<li> (<var>10</var> 点) <var>T_M \leqq B_q</var> (<var>1 \leqq q \leqq Q</var>)．
+<li> (<var>22</var> 点) <var>M \leqq 500\,000</var>，<var>Q \leqq 100\,000</var>．
+<li> (<var>18</var> 点) 追加の制約はない．
+</ol>
+
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>4 4 6 4
+0 2 3 8
+2 3
+1 6
+3 3
+4 7
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>3
+2
+2
+0
+</pre>
+<p><var>1</var> 番目の出勤案について，時刻 <var>3</var> に出勤した職人 <var>2</var> は，例えば以下のようにして <var>3</var> 人の客 <var>1,2,3</var> の注文に応えることができる．</p>
+<ul>
+<li> まず，客 <var>1</var> の注文に応えるため，時刻 <var>3</var> にクロワッサンを <var>1</var> つ作り始め，<var>2</var> 分後の時刻 <var>5</var> に作り終える．（これは，時刻 <var>T_1+L=0+6=6</var> までに作り終えるという条件を満たしている．）
+<li> 次に，客 <var>2</var> の注文に応えるため，時刻 <var>5</var> にクロワッサンを <var>1</var> つ作り始め，<var>2</var> 分後の時刻 <var>7</var> に作り終える．（これは，時刻 <var>T_2+L=2+6=8</var> までに作り終えるという条件を満たしている．）
+<li> 最後に，客 <var>3</var> の注文に応えるため，時刻 <var>7</var> にクロワッサンを <var>1</var> つ作り始め，<var>2</var> 分後の時刻 <var>9</var> に作り終える．（これは，時刻 <var>T_3+L=3+6=9</var> までに作り終えるという条件を満たしている．）
+</ul>
+<p>客 <var>4</var> の注文は出勤時刻よりも後に入るため無視してしまい，応えることができない．
+よって，最大で <var>3</var> 人の客の注文に応えることができ，<var>1</var> 行目には <var>3</var> を出力する．</p>
+<p><var>2</var> 番目の出勤案について，時刻 <var>6</var> に出勤した職人 <var>1</var> は，例えば以下のようにして <var>2</var> 人の客 <var>2,3</var> の注文に応えることができる．</p>
+<ul>
+<li> まず，客 <var>3</var> の注文に応えるため，時刻 <var>6</var> にクロワッサンを <var>1</var> つ作り始め，<var>1</var> 分後の時刻 <var>7</var> に作り終える．（これは，時刻 <var>T_3+L=3+6=9</var> までに作り終えるという条件を満たしている．）
+<li> 次に，客 <var>2</var> の注文に応えるため，時刻 <var>7</var> にクロワッサンを <var>1</var> つ作り始め，<var>1</var> 分後の時刻 <var>8</var> に作り終える．（これは，時刻 <var>T_2+L=2+6=8</var> までに作り終えるという条件を満たしている．）
+</ul>
+<p>客 <var>4</var> の注文は出勤時刻よりも後に入るため無視してしまい，応えることができない．
+また，時刻 <var>6</var> までに作り終える必要のある客 <var>1</var> の注文にも応えることができない．
+よって，最大で <var>2</var> 人の客の注文に応えることができ，<var>2</var> 行目には <var>2</var> を出力する．</p>
+<p><var>3</var> 番目の出勤案について，時刻 <var>3</var> に出勤した職人 <var>3</var> は，客 <var>1,3</var> の注文に応えることや客 <var>2,3</var> の注文に応えることはできるが，
+客 <var>1,2,3</var> の注文すべてに応えることはできず，また出勤時刻よりも後に入る客 <var>4</var> の注文にも応えることができない．
+よって，最大で <var>2</var> 人の客の注文に応えることができ，<var>3</var> 行目には <var>2</var> を出力する．</p>
+<p><var>4</var> 番目の出勤案について，時刻 <var>7</var> に出勤した職人 <var>4</var> は，どの客の注文にも応えることができない．
+よって，<var>4</var> 行目には <var>0</var> を出力する．</p>
+<p>この入力例は小課題 <var>1,2,5,6</var> の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>20 5 12 4
+1 2 4 8 10
+1 12
+3 10
+3 11
+15 10
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>5
+4
+3
+0
+</pre>
+<p>この入力例はすべての小課題の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>100000 6 272273 10
+5 9 209 8128 17202 50102
+164 9
+11 24
+835 9267
+2 256
+2 314156
+18475 142
+1826 18978
+44757 1
+4 1646
+218 44
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>2
+2
+4
+3
+1
+2
+5
+0
+3
+2
+</pre>
+<p>この入力例は小課題 <var>1,2,5,6</var> の制約を満たす．</p></section>
+</div>
+</span>
+</span>

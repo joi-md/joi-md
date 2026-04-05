@@ -1,0 +1,431 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score : <var>100</var> points</p>
+<p><a href="https://img.atcoder.jp/joi2026final/voltage.zip?_gl=1*13kd1yr*_ga*MjkxNTEwOTk5LjE3NzQyMzI5MTM.*_ga_RC512FD18N*czE3NzQzNjg4MzIkbzE3JGcxJHQxNzc0MzY5MTkzJGo2MCRsMCRoMA..">Distributed Files</a></p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>Do you know <em>Just Odd Inventions Co., Ltd.</em>?  This company engages in nothing but just odd inventions.
+We abbreviate it as JOI.</p>
+<p>In one of JOI's laboratories, there is a complicated electric circuit.
+The circuit consists of <var>N</var> nodes and <var>M</var> thin electric resistors.
+The nodes are numbered <var>0</var> through <var>N - 1</var>, and the resistors are numbered <var>0</var> through <var>M - 1</var>.
+Each node can be set to one of two states: <strong>high voltage</strong> or <strong>low voltage</strong>.
+Resistor <var>i</var> (<var>0 \leq i \leq M - 1</var>) is connected from node <var>A_i</var> to another node <var>B_i</var>.
+Current flows through this resistor if and only if node <var>A_i</var> is set to high voltage and node <var>B_i</var> is set to low voltage.
+In all other cases, no current flows through it.
+Also, for any two nodes, there is at most one resistor connecting them, regardless of its direction.</p>
+<p>You are a researcher at JOI, and you are going to conduct an experiment using this circuit.
+The resistors in the circuit are so thin that you cannot visually determine which pairs of nodes they connect.
+However, there is one clue: while the voltages are being set, the temperature of the circuit rises according to the number of resistors through which current flows.
+Therefore, after setting the voltages, you decide to touch the circuit and read its temperature.
+Although you cannot measure the exact temperature of the circuit, you can perform two voltage settings and compare which one makes the circuit hotter.
+That is, by specifying two voltage settings, you can obtain one of the following pieces of information:</p>
+<ul>
+<li> In the first voltage setting, the number of resistors through which current flows is larger.
+<li> In the two voltage settings, the number of resistors through which current flows is the same.
+<li> In the second voltage setting, the number of resistors through which current flows is larger.
+</ul>
+
+<p>Your goal is to repeat such temperature comparisons and determine all resistors in the circuit, that is, all ordered pairs <var>(a, b)</var> such that there is a resistor from node <var>a</var> to node <var>b</var>.
+You are given in advance the number of nodes <var>N</var> and the number of resistors <var>M</var>.
+You also know that every resistor connects two distinct nodes, and that for any two nodes there is at most one resistor connecting them, regardless of direction.
+Under these conditions, determine the entire set of ordered pairs <var>(a, b)</var> corresponding to the resistors in the circuit, from the information obtained by the temperature comparisons.
+Note that, depending on the structure of the circuit, it may be impossible to determine the resistors uniquely no matter what comparisons are performed or how many are performed.
+In that case, you must report that it is impossible to determine them uniquely.</p>
+<p>To prevent deterioration of the resistors, you are allowed to compare temperatures at most <var>30\,000</var> times.</p>
+<p>Incidentally, what kind of invention JOI is making with this odd circuit is top secret even within the company, and nobody except the president knows it.</p>
+<p>Given the numbers of nodes and resistors in the circuit, write a program that determines the resistors in the circuit, or reports that this is impossible, using at most <var>30\,000</var> temperature comparisons.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Implementation Details</h3>
+<p>Your submitted program must include <code>voltage.h</code> using the <code>#include</code> preprocessor directive, and must implement the following function.</p>
+<ul>
+<li> <code>bool solve(int N, int M)</code>
+<ul>
+<li> This function is called exactly once in each execution.
+<li> The argument <code>N</code> represents the number of nodes in the circuit, <var>N</var>.
+<li> The argument <code>M</code> represents the number of resistors in the circuit, <var>M</var>.
+<li> This function must return <code>false</code> if the resistor connections cannot be uniquely determined no matter what temperature comparisons are performed or how many are performed; otherwise, it must return <code>true</code>.
+<li> If this function returns <code>true</code> when the resistor connections cannot be determined uniquely, your program is judged as <strong>Wrong Answer [1]</strong>.
+<li> If this function returns <code>false</code> even though the circuit can be determined from temperature comparisons, your program is judged as <strong>Wrong Answer [2]</strong>.
+</ul>
+</ul>
+
+<p>Your program may call the following functions.</p>
+<ul>
+<li> <code>int query(std::vector&lt;int&gt; x, std::vector&lt;int&gt; y)</code>
+<ul>
+<li> By using this function, you can perform two voltage settings and compare their temperatures.
+<li> The argument <code>x</code> specifies the first voltage setting, and the argument <code>y</code> specifies the second voltage setting.
+<li> The arguments <code>x</code> and <code>y</code> must be arrays of length <var>N</var> consisting of <var>0</var>'s and <var>1</var>'s.
+<li> If <code>x[k]</code> (<var>0 \leq k \leq N - 1</var>) is <var>1</var>, then in the first voltage setting, node <var>k</var> is set to high voltage;
+if <code>x[k]</code> is <var>0</var>, then node <var>k</var> is set to low voltage.
+<li> If <code>y[k]</code> (<var>0 \leq k \leq N - 1</var>) is <var>1</var>, then in the second voltage setting, node <var>k</var> is set to high voltage;
+if <code>y[k]</code> is <var>0</var>, then node <var>k</var> is set to low voltage.
+<li> The return value of this function is the result of comparing the temperatures of the circuit under the first and second voltage settings, and is one of <var>-1</var>, <var>0</var>, or <var>1</var>.
+<ul>
+<li> If the return value is <var>-1</var>, then the number of resistors through which current flows is larger in the first voltage setting than in the second.
+<li> If the return value is <var>0</var>, then the numbers of resistors through which current flows are equal in the first and second voltage settings.
+<li> If the return value is <var>1</var>, then the number of resistors through which current flows is larger in the second voltage setting than in the first.
+</ul>
+<li> If the length of <code>x</code> is not <var>N</var>, your program is judged as <strong>Wrong Answer [3]</strong>.
+<li> If <code>x</code> contains a value other than <var>0</var> or <var>1</var>, your program is judged as <strong>Wrong Answer [4]</strong>.
+<li> If the length of <code>y</code> is not <var>N</var>, your program is judged as <strong>Wrong Answer [5]</strong>.
+<li> If <code>y</code> contains a value other than <var>0</var> or <var>1</var>, your program is judged as <strong>Wrong Answer [6]</strong>.
+<li> You must not call this function more than <var>30\,000</var> times.
+If this function is called more than <var>30\,000</var> times, your program is judged as <strong>Wrong Answer [7]</strong>.
+</ul>
+
+<li> <code>void answer(int a, int b)</code>
+<ul>
+<li> Use this function to report a resistor that you have identified.
+<li> The arguments <code>a</code> and <code>b</code> indicate that there is a resistor directed from node <var>a</var> to node <var>b</var>.
+<li> It must hold that <var>0 \leq a \leq N - 1</var> and <var>0 \leq b \leq N - 1</var>.
+If this condition is not satisfied, your program is judged as <strong>Wrong Answer [8]</strong>.
+<li> You must not call this function two or more times with the same pair <var>(a, b)</var>.
+If this condition is violated, your program is judged as <strong>Wrong Answer [9]</strong>.
+<li> You must not call this function more than <var>M</var> times.
+If this function is called more than <var>M</var> times, your program is judged as <strong>Wrong Answer [10]</strong>.
+<li> When the function <code>solve</code> returns <code>true</code>, the function <code>answer</code> must have been called exactly <var>M</var> times by then.
+If this condition is not satisfied, your program is judged as <strong>Wrong Answer [11]</strong>.
+<li> When the function <code>solve</code> returns <code>true</code>, for every pair <var>(a, b)</var> passed as arguments to <code>answer</code> up to that point, there must actually exist a resistor directed from node <var>a</var> to node <var>b</var>.
+If this condition is not satisfied, your program is judged as <strong>Wrong Answer [12]</strong>.
+</ul>
+</ul>
+
+<h4>Important Notices</h4>
+<ul>
+<li> You may implement additional helper functions or declare global variables for internal use.
+<li> Your submitted program must not use standard input/output or any other file interaction. However, you may use standard error output for debugging.
+</ul>
+
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Compilation and Execution</h3>
+<p>You can download an archive file from the contest webpage which contains the sample grader to test your program. The archive file also contains a sample source file of your program.</p>
+<p>The sample grader is the file <code>grader.cpp</code>. To test your program, place the files <code>grader.cpp</code>, <code>voltage.cpp</code>, and <code>voltage.h</code> in the same directory, and compile them using the following command:</p>
+<pre>g++ -std=gnu++20 -O2 -o grader grader.cpp voltage.cpp
+</pre>
+<p>Alternatively, you can execute the <code>compile.sh</code> file included in the archive by running:</p>
+<pre>./compile.sh
+</pre>
+<p>If compilation is successful, an executable file named <code>grader</code> will be generated.</p>
+<p>Note that the actual grader is different from the sample grader.
+The sample grader is launched as a single process, which will read input data from the standard input and write the results to the standard output.</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Input for the Sample Grader</h3>
+<p>The sample grader reads input from standard input in the following format:</p>
+<pre><var>N</var> <var>M</var>
+<var>A_0</var> <var>B_0</var>
+<var>\vdots</var>
+<var>A_{M-1}</var> <var>B_{M-1}</var>
+</pre>
+<h4>Output of the Sample Grader</h4>
+<p>The sample grader outputs the following information to standard output (quotation marks are not included in the actual output).</p>
+<ul>
+<li> If your program is judged as one of Wrong Answer [3] – [12], the type of Wrong Answer is printed as in "<code>Wrong Answer [5]</code>".
+<li> Otherwise, the number of calls to the function <code>query</code> and the return value of the function <code>solve</code> are printed as in "<code>Accepted: 30 true</code>".
+The sample grader, unlike the actual grader, does not judge whether the verdict should be Wrong Answer [1] or [2], that is, whether the return value of the function <code>solve</code> is correct.
+</ul>
+
+<p>The sample grader terminates execution as soon as any of the conditions for Wrong Answer [3] – [12] is met.
+If multiple incorrect conditions are met, only one of them is displayed.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Notices on Grading</h3>
+<p>The actual grader is not adaptive; it has a fixed answer from the beginning of the interaction.</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li> <var>2 \leq N \leq 600</var>.
+<li> <var>1 \leq M \leq 1\,000</var>.
+<li> <var>0 \leq A_i \leq N - 1</var> (<var>0 \leq i \leq M - 1</var>).
+<li> <var>0 \leq B_i \leq N - 1</var> (<var>0 \leq i \leq M - 1</var>).
+<li> <var>A_i \neq B_i</var> (<var>0 \leq i \leq M - 1</var>).
+<li> <var>(A_i, B_i) \neq (A_j, B_j)</var> and <var>(A_i, B_i) \neq (B_j, A_j)</var> (<var>0 \leq i &lt; j \leq M - 1</var>).
+<li> <var>N</var>, <var>M</var>, <var>A_i</var>, and <var>B_i</var> are integers (<var>0 \leq i \leq M - 1</var>).
+</ul>
+
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li> (10 points) <var>N \leq 100</var>, <var>M = N - 1</var>, <var>B_i = A_{i+1}</var> (<var>0 \leq i \leq N - 3</var>), and the <var>N</var> values <var>A_0, A_1, \ldots, A_{N-2}, B_{N-2}</var> are all distinct.
+<li> (12 points) <var>M = N - 1</var>, <var>B_i = A_{i+1}</var> (<var>0 \leq i \leq N - 3</var>), and the <var>N</var> values <var>A_0, A_1, \ldots, A_{N-2}, B_{N-2}</var> are all distinct.
+<li> (27 points) <var>N \leq 100</var>, <var>A_i \neq A_j</var> (<var>0 \leq i &lt; j \leq M - 1</var>).
+<li> (18 points) <var>A_i \neq A_j</var> (<var>0 \leq i &lt; j \leq M - 1</var>).
+<li> (17 points) <var>N \leq 100</var>.
+<li> (16 points) No additional constraints.
+</ol>
+
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Example Interaction</h3>
+<p>Below is an example of input that the sample grader reads and the corresponding function calls.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>5 6
+0 2
+2 1
+0 3
+3 2
+3 4
+4 1
+</pre>
+<p><img src="https://img.atcoder.jp/joi2026final/voltage-fig1-en.png" class="img-responsive center-block" style="max-width: 100%; width: 600px;"></p>
+<p>In the first call to <code>query</code>, the two voltage settings and the resistors through which current flows are as follows.</p>
+<ul>
+<li> In the first setting, nodes <var>0</var> and <var>1</var> are set to low voltage, and nodes <var>2</var>, <var>3</var>, and <var>4</var> are set to high voltage.
+At this time, current flows through resistors <var>1</var> and <var>5</var>.
+<li> In the second setting, nodes <var>3</var> and <var>4</var> are set to low voltage, and nodes <var>0</var>, <var>1</var>, and <var>2</var> are set to high voltage.
+At this time, current flows through resistor <var>2</var>.
+</ul>
+<p>Since the number of resistors through which current flows is larger in the first voltage setting, the return value is <var>-1</var>.</p>
+<p>This sample input satisfies the constraints for subtasks <var>5, 6</var>.</p>
+<p>Among the files available for download from the contest site: <code>sample-01-in.txt</code> corresponds to Sample Input 1.
+Additionally, <code>sample-02-in.txt</code> satisfies the constraints for all subtasks, and <code>sample-03-in.txt</code> satisfies the constraints for subtasks <var>3, 4, 5, 6</var>.</p></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+<p><a href="https://img.atcoder.jp/joi2026final/voltage.zip?_gl=1*13kd1yr*_ga*MjkxNTEwOTk5LjE3NzQyMzI5MTM.*_ga_RC512FD18N*czE3NzQzNjg4MzIkbzE3JGcxJHQxNzc0MzY5MTkzJGo2MCRsMCRoMA..">配布ファイル</a></p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>あなたは Just Odd Inventions 社を知っているだろうか？　この会社の業務は「ただ奇妙な発明 (just odd
+inventions)」をすることである．ここでは略して JOI 社と呼ぶ．</p>
+<p>JOI 社のとある実験室には，複雑な電気回路がある．
+回路は <var>N</var> 個の節点と <var>M</var> 本の細長い電気抵抗からなり，節点には <var>0</var> から <var>N - 1</var> までの，電気抵抗には <var>0</var> から <var>M - 1</var> までの番号が付けられている．
+各節点は「高電圧」または「低電圧」のいずれかの状態に設定することができる．
+電気抵抗 <var>i</var> (<var>0 \leqq i \leqq M - 1</var>) は節点 <var>A_i</var> から異なる節点 <var>B_i</var> に向けて繋がれており，節点 <var>A_i</var> が「高電圧」，節点 <var>B_i</var> が「低電圧」の状態にあるときにのみ電流が流れる．
+それ以外の場合には電流は流れない．
+また，任意の <var>2</var> つの節点を繋ぐ電気抵抗は，その向きに関わらず高々 <var>1</var> 本しか存在しない．</p>
+<p>JOI 社の研究員であるあなたは，この回路を用いて実験を行うことになった．
+この回路の電気抵抗はあまりにも細長いため，電気抵抗がどの節点を結んでいるのかを目視で確認することはできない．
+しかし，各節点の電圧を設定している間，電流が流れている電気抵抗の本数に応じて回路の温度が上昇するという手がかりがある．
+そこであなたは，電圧を設定した後，回路に触れることで温度を読み取ることにした．
+あなたは回路の温度を正確に読み取ることはできないが，電圧の設定を <var>2</var> 回行い，どちらの設定においてより温度が高くなったかを比較することはできる．
+つまり，電圧の設定を <var>2</var> 回指定することで，以下のいずれかの情報が得られる．</p>
+<ul>
+<li> <var>1</var> 回目の電圧の設定の方が，電流が流れる電気抵抗の本数が多い．
+<li> <var>2</var> 回の電圧の設定において，電流が流れる電気抵抗の本数は同じである．
+<li> <var>2</var> 回目の電圧の設定の方が，電流が流れる電気抵抗の本数が多い．
+</ul>
+
+<p>あなたの目的は，この温度の比較を繰り返すことで，どの節点からどの節点へ向かう電気抵抗が存在するかをすべて特定することである．
+あらかじめ，節点の数 <var>N</var>，電気抵抗の本数 <var>M</var> は与えられている．
+また，電気抵抗は異なる節点を繋いでいること，および任意の <var>2</var> つの節点を繋ぐ電気抵抗はその向きに関わらず高々 <var>1</var> 本であることも分かっている．
+これらの条件のもと，温度の比較によって得られた情報から，回路に存在する電気抵抗が繋ぐ節点のペア <var>(a, b)</var> の集合をすべて特定せよ．
+ただし，回路の構造によっては，いかなる比較を何回行ったとしても，電気抵抗の繋がりを一意に特定できない場合がある．
+その場合には，特定不能であることを報告する必要がある．</p>
+<p>電気抵抗の劣化を防ぐため，実際に温度を比較するのは <var>30\,000</var> 回までしか行うことが許されない．</p>
+<p>なお，JOI 社がこの奇妙な回路を用いてどのような発明をしているかは，社内でも最高機密であり社長以外の誰も知らない．</p>
+<p>回路の節点と電気抵抗の本数が与えられたとき，<var>30\,000</var> 回以下の温度の比較で，回路の電気抵抗を特定するかもしくは特定不能であることを報告するプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>実装の詳細</h3>
+<p>あなたの回答プログラムは，<code>voltage.h</code> を <code>#include</code> プリプロセッサ指令で読み込み，以下の関数を実装しなければならない．</p>
+<ul>
+<li> <code>bool solve(int N, int M)</code>
+<ul>
+<li> この関数は <var>1</var> 回の実行で <var>1</var> 回だけ呼び出される．       
+<li> 引数 <code>N</code> は 回路の節点の数 <var>N</var> である．
+<li> 引数 <code>M</code> は 回路の電気抵抗の本数 <var>M</var> である．
+<li> この関数は，いかなる温度の比較を何回行ったとしても電気抵抗の繋がりを一意に特定できない場合には <code>false</code> を，それ以外の場合には <code>true</code> を返さなければならない．
+<li> 電気抵抗の繋がりを特定不能であるのに <code>true</code> を返した場合，<strong>不正解[1]</strong> と判定される．
+<li> 温度の比較によって回路が特定できるのに <code>false</code> を返した場合，<strong>不正解[2]</strong> と判定される．
+</ul>
+</ul>
+
+<p>あなたのプログラムは以下の関数を呼び出すことができる．</p>
+<ul>
+<li> <code>int query(std::vector&lt;int&gt; x, std::vector&lt;int&gt; y)</code>
+<ul>
+<li> あなたはこの関数を用いて電圧の設定を <var>2</var> 回行い，温度を比較できる．
+<li> 引数 <code>x</code> は <var>1</var> 回目の電圧の設定を，引数 <code>y</code> は <var>2</var> 回目の電圧の設定を指定する．
+<li> 引数 <code>x</code> と <code>y</code> は <var>0</var> と <var>1</var> からなる長さ <var>N</var> の配列でなければならない．
+<li> <code>x[k]</code> (<var>0 \leqq k \leqq N - 1</var>) が <var>1</var> ならば <var>1</var> 回目の電圧の設定において，節点 <var>k</var> は「高電圧」に，
+<code>x[k]</code> が <var>0</var> ならば節点 <var>k</var> は「低電圧」に設定することを表す．
+<li> <code>y[k]</code> (<var>0 \leqq k \leqq N - 1</var>) が <var>1</var> ならば <var>2</var> 回目の電圧の設定において，節点 <var>k</var> は「高電圧」に，
+<code>y[k]</code> が <var>0</var> ならば節点 <var>k</var> は「低電圧」に設定することを表す．
+<li> この関数の戻り値は <var>1</var> 回目の電圧の設定と <var>2</var> 回目の電圧の設定において，温度を比較した結果であり，<var>-1,0,1</var>のいずれかの値である．
+<ul>
+<li> 戻り値が<var>-1</var>のとき，<var>1</var> 回目の方が，<var>2</var> 回目の電圧の設定より，電流が流れる電気抵抗の本数が多いことを表す．
+<li> 戻り値が<var>0</var>のとき，<var>1</var> 回目と<var>2</var> 回目の電圧の設定において電流が流れる電気抵抗の本数が等しいことを表す．
+<li> 戻り値が<var>1</var>のとき，<var>2</var> 回目の方が，<var>1</var> 回目の電圧の設定より，電流が流れる電気抵抗の本数が多いことを表す．
+</ul>
+<li> 引数 <code>x</code> の長さが <var>N</var> でない場合，<strong>不正解[3]</strong> と判定される．
+<li> 引数 <code>x</code> に <var>0</var> でも <var>1</var> でもない値が含まれる場合，<strong>不正解[4]</strong> と判定される．
+<li> 引数 <code>y</code> の長さが <var>N</var> でない場合，<strong>不正解[5]</strong> と判定される．
+<li> 引数 <code>y</code> に <var>0</var> でも <var>1</var> でもない値が含まれる場合，<strong>不正解[6]</strong> と判定される．
+<li> この関数を <var>30\,000</var> 回より多く呼び出してはならない．<var>30\,000</var> 回より多く呼び出した場合，<strong>不正解[7]</strong> と判定される．
+</ul>
+
+<li> <code>void answer(int a, int b)</code>
+<ul>
+<li> この関数を用いて，特定した電気抵抗を解答する．
+<li> 引数 <code>a</code>, <code>b</code> は節点 <var>a</var> から節点 <var>b</var> に向けて繋がれている電気抵抗があることを表す．
+<li> <var>0 \leqq a \leqq N - 1</var> かつ <var>0 \leqq b \leqq N - 1</var> でなければならない．これが満たされない場合 <strong>不正解[8]</strong> と判定される．
+<li> 同じ <var>(a, b)</var> の組を引数として <var>2</var> 回以上呼び出してはならない．これが満たされない場合 <strong>不正解[9]</strong> と判定される．
+<li> この関数を <var>M</var> 回より多く呼び出してはならない．<var>M</var> 回より多く呼び出した場合，<strong>不正解[10]</strong> と判定される．
+<li> 関数 <code>solve</code> が <code>true</code> を返したとき，それまでに関数 <code>answer</code> はちょうど <var>M</var> 回呼び出されている必要がある．
+これが満たされない場合，<strong>不正解[11]</strong> と判定される．
+<li> 関数 <code>solve</code> が <code>true</code> を返したとき，それまでに関数 <code>answer</code> の引数として渡されたすべての組 <var>(a, b)</var> について，節点 <var>a</var> から節点 <var>b</var> へ向けて繋がれている電気抵抗が実際に存在していなければならない．
+これが満たされない場合，<strong>不正解[12]</strong> と判定される．
+</ul>
+</ul>
+
+<h4>重要な注意</h4>
+<ul>
+<li> 内部での使用のために他の関数を実装したり，グローバル変数を宣言するのは自由である．
+<li> あなたの提出したプログラムは，標準入力・標準出力，あるいは他のファイルといかなる方法でもやりとりしてはならない．
+ただし，標準エラー出力にデバッグ情報等を出力することは許される．
+</ul>
+
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>コンパイル・実行の方法</h3>
+<p>作成したプログラムをテストするための，採点プログラムのサンプルが，
+コンテストサイトからダウンロードできるアーカイブの中に含まれている．
+このアーカイブには，提出しなければならないファイルのサンプルも含まれている．</p>
+<p>採点プログラムのサンプルは <var>1</var> つのファイルからなる.
+そのファイルは <code>grader.cpp</code> である．
+作成したプログラムをテストするには，
+これらのファイル <code>grader.cpp</code>, <code>voltage.cpp</code>, <code>voltage.h</code> を同じディレクトリに置き，次のようにコマンドを実行する．</p>
+<pre>g++ -std=gnu++20 -O2 -o grader grader.cpp voltage.cpp
+</pre>
+<p>なお，アーカイブの中に含まれている <code>compile.sh</code> というファイルを代わりに実行してもよい．その場合，次のようにコマンドを実行する．</p>
+<pre>./compile.sh
+</pre>
+<p>コンパイルが成功すれば，<code>grader</code> という実行ファイルが生成される．</p>
+<p>実際の採点プログラムは，採点プログラムのサンプルとは異なることに注意すること．
+採点プログラムのサンプルは単一のプロセスとして起動する．
+このプログラムは，標準入力から入力を読み込み，標準出力に結果を出力する．</p>
+<h4>採点プログラムのサンプルの入力</h4>
+<p>採点プログラムのサンプルは標準入力から以下の形式で入力を読み込む．</p>
+<pre><var>N</var> <var>M</var>
+<var>A_0</var> <var>B_0</var>
+<var>\vdots</var>
+<var>A_{M-1}</var> <var>B_{M-1}</var>
+</pre>
+<h4>採点プログラムのサンプルの出力</h4>
+<p>採点プログラムのサンプルは標準出力へ以下の情報を出力する (引用符は実際には出力されない)．</p>
+<ul>
+<li> 不正解 [3] ～ [12] のいずれかの場合，不正解の種類が "<code>Wrong Answer [5]</code></code>" のように出力される．
+<li> そうでない場合，関数 <code>query</code> の呼び出し回数と，関数 <code>solve</code> の戻り値が "<code>Accepted: 30 true</code></code>" のように出力される．
+採点プログラムのサンプルは，実際の採点プログラムと違って不正解 [1], [2] であるか，つまり関数 <code>solve</code> の戻り値が正しいかを判定しないことに注意せよ．
+</ul>
+
+<p>採点プログラムのサンプルは，不正解 [3] ～ [12] のいずれかの不正解の条件が満たされた時点で実行を終了する．
+実行するプログラムが不正解 [3] ～ [12] のうち，複数の条件を満たした場合，表示される不正解の種類はそれらのうち <var>1</var> つのみである．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>採点に関する注意</h3>
+<p>実際の採点プログラムは適応的 (adaptive) ではなく，やりとりの初めから固定された答えを持つ．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li> <var>2 \leqq N \leqq 500</var>．
+<li> <var>1 \leqq M \leqq 1\,000</var>．
+<li> <var>0 \leqq A_i \leqq N - 1</var> (<var>0 \leqq i \leqq M - 1</var>)．
+<li> <var>0 \leqq B_i \leqq N - 1</var> (<var>0 \leqq i \leqq M - 1</var>)．
+<li> <var>A_i \neq B_i</var> (<var>0 \leqq i \leqq M - 1</var>)．
+<li> (<var>A_i, B_i</var>) <var>\neq</var> (<var>A_j, B_j</var>) かつ (<var>A_i, B_i</var>) <var>\neq</var> (<var>B_j, A_j</var>) (<var>0 \leqq i &lt; j \leqq M - 1</var>)．
+<li> <var>N, M, A_i, B_i</var> は整数である (<var>0 \leqq i \leqq M - 1</var>)．
+</ul>
+
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li> (<var>10</var> 点) <var>N \leqq 100</var>，<var>M = N - 1</var>，<var>B_i = A_{i+1}</var> (<var>0 \leqq i \leqq N - 3</var>)，<var>N</var> 個の値 <var>A_0, A_1, \ldots ,A_{N-2}, B_{N-2}</var> はすべて異なる．
+<li> (<var>12</var> 点) <var>M = N - 1</var>，<var>B_i = A_{i+1}</var> (<var>0 \leqq i \leqq N - 3</var>)，<var>N</var> 個の値 <var>A_0, A_1, \ldots ,A_{N-2}, B_{N-2}</var> はすべて異なる．
+<li> (<var>27</var> 点) <var>N \leqq 100</var>，<var>A_i \neq A_j</var> (<var>0 \leqq i &lt; j \leqq M - 1</var>)．
+<li> (<var>18</var> 点) <var>A_i \neq A_j</var> (<var>0 \leqq i &lt; j \leqq M - 1</var>)．
+<li> (<var>17</var> 点) <var>N \leqq 100</var>．
+<li> (<var>16</var> 点) 追加の制約はない．
+</ol>
+
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>やりとりの例</h3>
+<p>採点プログラムのサンプルが読み込む入力の例と，それに対応する関数の呼び出しの例を以下に示す．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>5 6
+0 2
+2 1
+0 3
+3 2
+3 4
+4 1
+</pre>
+<p><img src="https://img.atcoder.jp/joi2026final/voltage-fig1.png" class="img-responsive center-block" style="max-width: 100%; width: 600px;"></p>
+<p><var>1</var> 回目の <var>\texttt{query}</var> の呼び出しにおける <var>2</var> 回の電圧の設定と，電流が流れる電気抵抗は以下の通りである．</p>
+<ul>
+<li> <var>1</var> 回目は節点 <var>0, 1</var> を「低電圧」に，節点 <var>2, 3, 4</var> を「高電圧」に設定する．このとき，電気抵抗 <var>1, 5</var> に電流が流れる．
+<li> <var>2</var> 回目は節点 <var>3, 4</var> を「低電圧」に，節点 <var>0, 1, 2</var> を「高電圧」に設定する．このとき，電気抵抗 <var>2</var> に電流が流れる．
+</ul>
+<p><var>1</var> 回目の電圧の設定の方が電流が流れる電気抵抗の本数が多いため，戻り値は <var>-1</var> である．</p>
+<p>この入力例は小課題 <var>5, 6</var> の制約を満たす．</p>
+<p>コンテストサイトからダウンロードできるファイルのうち，<code>sample-01-in.txt</code> は入力例 <var>1</var> に対応する．
+また，<code>sample-02-in.txt</code> はすべての小課題の制約を満たし，<code>sample-03-in.txt</code> は小課題 <var>3, 4, 5, 6</var> の制約を満たす．</p></section>
+</div>
+</span>
+</span>

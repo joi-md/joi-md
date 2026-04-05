@@ -1,0 +1,136 @@
+<span class="lang">
+<span class="lang-ja">
+<p>配点： <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>JOI 国には <var>N</var> 個の街があり，街には <var>1</var> から <var>N</var> までの番号が付けられている．
+これらの街の間には <var>N-1</var> 本の道があり，<var>1</var> から <var>N - 1</var>までの番号が付けられている．
+道 <var>i</var> (<var>1 \leqq i \leqq N-1</var>) は街 <var>P_i</var> (<var>P_i \leqq i</var>) と街 <var>i + 1</var> とを相互に結んでいる．
+街 <var>1</var> からどの街へも何本かの道を通って移動できることが保証されている．
+また，JOI 国には道に並行する川が <var>N - 1</var> 本あり，川には <var>1</var> から <var>N - 1</var> までの番号が付けられている．
+川 <var>i</var> (<var>1 \leqq i \leqq N-1</var>) は道 <var>i</var> と並行しており，街 <var>P_i</var> から街 <var>i + 1</var> の向きに流れている．</p>
+<p><var>N</var> 個の街にはそれぞれ <var>1</var> つずつランプが置いてある．
+各ランプには<b>強さ</b>が定められている．
+街 <var>t</var> (<var>1 \leqq t \leqq N</var>) にあるランプの強さが <var>l</var> であるとき，その街から <var>l</var> 本未満の道を通って到達できる街はこのランプによって照らされている．
+最初の時点では，ランプの強さはすべて <var>0</var> であり，どの街も照らされていない．</p>
+<p>あなたは<b>川下り</b>を <var>0</var> 回以上の好きな回数行うことが出来る．
+川下りは街 <var>1</var> にいる状態から始めて，まず街 <var>1</var> にあるランプの強さを <var>1</var> 増やす．
+そして，以下の操作を順に繰り返す．</p>
+<ol>
+<li> 川下りを終了するか決める．ただし今いる街から流れる川が存在しないときは必ず終了する．
+<li> 川下りを続ける場合，今いる街から流れる川を <var>1</var> つ選び，その川の流れに沿って移動する．移動した先の街のランプの強さを <var>1</var> 増やす．
+</ol>
+
+<p>川下りを街 <var>t</var> で終了した場合， この川下りにかかるコストは <var>C_t</var> である． 
+あなたは，川下りを <var>0</var> 回以上の好きな回数行うことで，すべての街がいずれかのランプによって照らされるようにしたい．
+その上で，川下りにかかるコストの合計を最小化する必要がある．</p>
+<p>道とコストの情報が与えられたとき，すべての街がいずれかのランプによって照らされるようにするための川下りにかかるコストの合計の最小値を求めるプログラムを作成せよ．</p>
+<hr />
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力は以下の形式で標準入力から与えられる．</p>
+<pre><var>N</var>
+<var>P_1</var> <var>P_2</var> <var>\cdots</var> <var>P_{N-1}</var>
+<var>C_1</var> <var>C_2</var> <var>\cdots</var> <var>C_N</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に，すべての街がいずれかのランプによって照らされるようにするための川下りにかかるコストの合計の最小値を <var>1</var> 行で出力せよ．</p>
+<hr />
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li> <var>2 \leqq N \leqq 700</var>．
+<li> <var>1 \leqq P_i \leqq i</var> (<var>1 \leqq i \leqq N-1</var>)．
+<li> <var>1 \leqq C_t \leqq 10^9</var> (<var>1 \leqq t \leqq N</var>)．
+<li> 入力される値はすべて整数である．
+</ul>
+
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li> (<var>13</var> 点) <var>N \leqq 8</var>．
+<li> (<var>25</var> 点) <var>N \leqq 100</var>．
+<li> (<var>7</var> 点) <var>P_i = 1</var> (<var>1 \leqq i \leqq N-1</var>)．
+<li> (<var>11</var> 点) <var>P_i = i</var> (<var>1 \leqq i \leqq N-1</var>)．    
+<li> (<var>16</var> 点) すべての <var>i</var> (<var>1 \leqq i \leqq N</var>) に対して，<var>P_j = i</var> となる <var>j</var> (<var>1 \leqq j \leqq N-1</var>) は <var>2</var> 個以下．
+<li> (<var>28</var> 点) 追加の制約はない．
+</ol>
+
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>5
+1 2 2 4
+10 4 8 9 5
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>9
+</pre>
+<p><var>1</var> 回目の川下りでは川 <var>1</var> を選択し，街 <var>2</var> で川下りを終了する．
+このとき街 <var>1, 2</var> にあるランプの強さが <var>1</var> 増え，コストは <var>4</var> である．
+<var>2</var> 回目の川下りでは川 <var>1, 3, 4</var> を選択し，街 <var>5</var> で川下りを終了する．
+このとき街 <var>1, 2, 4, 5</var> にあるランプの強さが <var>1</var> 増え，コストは <var>5</var> である．</p>
+<p>操作の後，街 <var>1, 2</var> にあるランプの強さは <var>2</var>，街 <var>3</var> にあるランプの強さは <var>0</var>，街 <var>4, 5</var> にあるランプの強さは <var>1</var> となる．
+街 <var>1, 2, 3, 4</var> は街 <var>2</var> にある強さ <var>2</var> のランプによって，街 <var>5</var> は街 <var>5</var> にある強さ <var>1</var> のランプによって照らされる．したがって，これらの操作によりすべての街はいずれかのランプによって照らされる．
+このときコストの合計は <var>4 + 5 = 9</var> である．
+<var>9</var> 未満のコストで条件を満たすことはできないため，<var>9</var> を出力する．</p>
+<p>この入力例は小課題 <var>1, 2, 5, 6</var> の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>9
+1 1 1 2 5 5 5 3
+100 70 80 90 60 30 40 50 30
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>90
+</pre>
+<p>川 <var>1, 4, 5</var> を通って街 <var>6</var> で終了する川下りを <var>2</var> 回，川 <var>2, 8</var> を通って街 <var>9</var> で終了する川下りを <var>1</var> 回行う．
+操作の後，街 <var>1</var> にあるランプの強さは <var>3</var>，街 <var>2, 5, 6</var> にあるランプの強さは <var>2</var>，街 <var>3, 9</var> にあるランプの強さは <var>1</var>，街 <var>4, 7, 8</var> にあるランプの強さは <var>0</var> となる．
+これらの操作によりすべての街はいずれかのランプによって照らされる．
+このときコストの合計は <var>30 \times 2 + 30 = 90</var> である．<var>90</var> 未満のコストで条件を満たすことはできないため，<var>90</var> を出力する．</p>
+<p>この入力例は小課題 <var>2, 6</var> の制約を満たす．</p></section>
+</div>
+</span>
+</span>

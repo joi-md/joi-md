@@ -1,0 +1,334 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>Bitaro bought a long skewer of dumplings as a snack. This skewer can be represented by <var>N</var> positive integers <var>A_1, A_2, \cdots, A_N</var> as follows. For each integer <var>i</var> with <var>0 \leq i \leq N</var>, let <var>s_i = A_1 + A_2 + \cdots + A_i</var>. In particular, we define <var>s_0 = 0</var>.</p>
+<ul>
+<li> The skewer consists of <var>s_N</var> dumplings arranged in a single column from top to bottom.
+<li> Each dumpling is either <strong>sweet</strong> or <strong>spicy</strong>. The taste of each dumpling can be described as follows.
+<ul>
+<li> If <var>i</var> is an odd integer satisfying <var>1 \leq i \leq N</var>, then the dumplings from the <var>(s_{i-1} + 1)</var>-th to the <var>s_i</var>-th from the top are sweet.
+<li> If <var>i</var> is an even integer satisfying <var>1 \leq i \leq N</var>, then the dumplings from the <var>(s_{i-1} + 1)</var>-th to the <var>s_i</var>-th from the top are spicy.
+</ul>
+</ul>
+
+<p>When eating this skewer of dumplings, Bitaro made <var>Q</var> possible plans. The <var>j</var>-th plan (<var>1 \leq j \leq Q</var>) is represented by integers <var>L_j</var> and <var>R_j</var> satisfying <var>1 \leq L_j \leq R_j \leq N</var>, and in this plan he eats the dumplings from the <var>(s_{L_j-1}+1)</var>-th from the top through the <var>s_{R_j}</var>-th from the top.</p>
+<p>Also, when eating this skewer, Bitaro decided to divide it into several bites in the following manner. Here, <var>K</var> is a positive integer representing Bitaro's preference for sweetness.</p>
+<ul>
+<li> He eats the dumplings from top to bottom, and each dumpling is eaten exactly once.
+<li> In one bite, he may eat any positive number of consecutive dumplings on the skewer. If, among the dumplings eaten in that bite, the number of sweet dumplings minus the number of spicy dumplings is at least <var>K</var>, then Bitaro is pleased.
+</ul>
+
+<p>Given the information about the skewer of dumplings and the plans, write a program that, for each plan, computes the maximum possible number of times Bitaro can be pleased.</p>
+<hr />
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input.</p>
+<pre><var>N</var> <var>Q</var> <var>K</var>
+<var>A_1</var> <var>A_2</var> <var>\cdots</var> <var>A_N</var>
+<var>L_1</var> <var>R_1</var>
+<var>L_2</var> <var>R_2</var>
+<var>\vdots</var>
+<var>L_Q</var> <var>R_Q</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>Write <var>Q</var> lines to the standard output. In the <var>j</var>-th line (<var>1 \leq j \leq Q</var>), output the maximum number of times Bitaro can be pleased in the <var>j</var>-th plan.</p>
+<hr />
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li> <var>1 \leq N \leq 500\,000</var>.
+<li> <var>1 \leq Q \leq 500\,000</var>.
+<li> <var>1 \leq K \leq 10^{14}</var>.
+<li> <var>1 \leq A_i \leq 10^9</var> (<var>1 \leq i \leq N</var>).
+<li> <var>1 \leq L_j \leq R_j \leq N</var> (<var>1 \leq j \leq Q</var>).
+<li> Given values are all integers.
+</ul>
+
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li> (<var>6</var> points) <var>Q \leq 10</var>.
+<li> (<var>5</var> points) <var>K \leq 2</var>.
+<li> (<var>18</var> points) <var>K \leq 10</var>.
+<li> (<var>27</var> points) <var>A_1 + A_2 + \cdots + A_N \leq 500\,000</var>．
+<li> (<var>17</var> points) <var>N \leq 200\,000</var>, <var>Q \leq 200\,000</var>．
+<li> (<var>27</var> points) No additional constraints.
+</ol>
+
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>5 2 1
+2 1 2 4 3
+1 5
+2 4
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>7
+2
+</pre>
+<p>For the first plan, Bitaro eats the dumplings from the first through the <var>12</var>th from the top. By repeatedly eating exactly one dumpling per bite from the top, Bitaro can be pleased <var>7</var> times. Since it is impossible to make him pleased <var>8</var> times or more, you should output <var>7</var>.</p>
+<p>For the second plan, Bitaro eats the dumplings from the third through the <var>9</var>th from the top. By repeatedly eating exactly one dumpling per bite from the top, Bitaro can be pleased <var>2</var> times. Since it is impossible to make him pleased <var>3</var> times or more, you should output <var>2</var>.</p>
+<p>This sample input satisfies the constraints of all subtasks.</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>5 2 3
+2 1 2 4 3
+1 5
+2 4
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>2
+0
+</pre>
+<p>This differs from Sample Input <var>1</var> only in the value of <var>K</var>.</p>
+<p>For the first plan, Bitaro can be pleased <var>2</var> times by eating the dumplings in the following four bites.</p>
+<ul>
+<li> In the first bite, he eats the first through the <var>5</var>th dumplings from the top. Since the number of sweet dumplings is <var>4</var> and the number of spicy dumplings is <var>1</var>, Bitaro is pleased.
+<li> In the second bite, he eats only the <var>6</var>th dumpling from the top. Since the number of sweet dumplings is <var>0</var> and the number of spicy dumplings is <var>1</var>, Bitaro is not pleased.
+<li> In the third bite, he eats the <var>7</var>th through the <var>9</var>th dumplings from the top. Since the number of sweet dumplings is <var>0</var> and the number of spicy dumplings is <var>3</var>, Bitaro is not pleased.
+<li> In the fourth bite, he eats the <var>10</var>th through the <var>12</var>th dumplings from the top. Since the number of sweet dumplings is <var>3</var> and the number of spicy dumplings is <var>0</var>, Bitaro is pleased.
+</ul>
+
+<p>Since it is impossible to make him pleased <var>3</var> times or more, you should output <var>2</var>.</p>
+<p>For the second plan, it is impossible for Bitaro to eat the dumplings in such a way that he is pleased at least once, so you should output <var>0</var>.</p>
+<p>This sample input satisfies the constraints of subtasks <var>1, 3,4,5,6</var>.</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 3</h3>
+<pre>9 4 50
+24 26 89 45 84 72 15 31 66
+1 9
+2 8
+4 6
+5 6
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 3</h3>
+<pre>3
+2
+1
+1
+</pre>
+<p>This sample input satisfies the constraints of subtasks <var>1,4,5,6</var>.</p></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点： <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>ビ太郎は <var>1</var> 本の長い串団子をおやつとして購入した．この串団子は <var>N</var> 個の正整数 <var>A_1, A_2, \cdots, A_N</var> を用いて次のように表現できる．以下，<var>0</var> 以上 <var>N</var> 以下の整数 <var>i</var> に対して，<var>s_i=A_1+A_2+ \cdots +A_{i}</var> と書く．ただし <var>s_0=0</var> であると定める．</p>
+<ul>
+<li> 串団子は <var>s_N</var> 個の団子が上から下に <var>1</var> 列となっている形である．
+<li> それぞれの団子の味は<strong>甘い</strong>もしくは<strong>辛い</strong>のいずれかである．それぞれの団子の味について，以下のように表すことができる．
+<ul>
+<li> <var>i</var> が <var>1 \leqq i \leqq N</var> を満たす奇数ならば，上から <var>s_{i - 1} + 1</var> 番目から <var>s_i</var> 番目までの団子は甘い味である．
+<li> <var>i</var> が <var>1 \leqq i \leqq N</var> を満たす偶数ならば，上から <var>s_{i - 1} + 1</var> 番目から <var>s_i</var> 番目までの団子は辛い味である．
+</ul>
+</ul>
+
+<p>ビ太郎はこの串団子を食べるにあたり，<var>Q</var> 通りの計画を立てた．<var>j</var> 番目 (<var>1 \leqq j \leqq Q</var>) の計画は，<var>1 \leqq L_j \leqq R_j \leqq N</var> を満たす整数 <var>L_j</var>，<var>R_j</var> によって表され，上から <var>s_{L_j - 1} + 1</var> 番目から <var>s_{R_j}</var> 番目までの団子を食べるというものである．</p>
+<p>また，ビ太郎はこの串団子を食べるにあたり，以下のように何口かに分けて食べることにした．ここで，<var>K</var> はビ太郎の甘さの好みを表す正整数である．</p>
+<ul>
+<li> 団子は上から順に食べ進め，どの団子もちょうど <var>1</var> 回食べる．
+<li> 一口では，串上で連続する団子を好きな個数食べることができる．このとき，この一口で食べた団子について，甘い味のものの個数から辛い味のものの個数を引いた値が <var>K</var> 以上ならば，ビ太郎は喜ぶ．
+</ul>
+
+<p>串団子と計画の情報が与えられたとき，それぞれの計画について，ビ太郎が喜ぶ回数として考えられる最大値を求めるプログラムを作成せよ．</p>
+<hr />
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力は以下の形式で標準入力から与えられる．</p>
+<pre><var>N</var> <var>Q</var> <var>K</var>
+<var>A_1</var> <var>A_2</var> <var>\cdots</var> <var>A_N</var>
+<var>L_1</var> <var>R_1</var>
+<var>L_2</var> <var>R_2</var>
+<var>\vdots</var>
+<var>L_Q</var> <var>R_Q</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p><var>Q</var> 行に出力せよ．<var>j</var> 行目 (<var>1 \leqq j \leqq Q</var>) には <var>j</var> 番目の計画におけるビ太郎が喜ぶ回数として考えられる最大値を出力せよ．</p>
+<hr />
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li> <var>1 \leqq N \leqq 500\,000</var>．
+<li> <var>1 \leqq Q \leqq 500\,000</var>．
+<li> <var>1 \leqq K \leqq 10^{14}</var>．
+<li> <var>1 \leqq A_i \leqq 10^9</var> (<var>1 \leqq i \leqq N</var>)．
+<li> <var>1 \leqq L_j \leqq R_j \leqq N</var> (<var>1 \leqq j \leqq Q</var>)．
+<li> 入力される値はすべて整数である．
+</ul>
+
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li> (<var>6</var> 点) <var>Q \leqq 10</var>．
+<li> (<var>5</var> 点) <var>K \leqq 2</var>．
+<li> (<var>18</var> 点) <var>K \leqq 10</var>．
+<li> (<var>27</var> 点) <var>A_1 + A_2 + \cdots + A_N \leqq 500\,000</var>．
+<li> (<var>17</var> 点) <var>N \leqq 200\,000</var>，<var>Q \leqq 200\,000</var>．
+<li> (<var>27</var> 点) 追加の制約はない．
+</ol>
+
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>5 2 1
+2 1 2 4 3
+1 5
+2 4
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>7
+2
+</pre>
+<p><var>1</var> 番目の計画について，ビ太郎は上から <var>1</var> 番目から <var>12</var> 番目までの団子を食べる．ビ太郎は上から一口で <var>1</var> つの団子を食べることを繰り返すことで，ビ太郎が喜ぶ回数を <var>7</var> 回にできる．<var>8</var> 回以上喜ぶようにすることはできないため，<var>7</var> を出力する．</p>
+<p><var>2</var> 番目の計画について，ビ太郎は上から <var>3</var> 番目から <var>9</var> 番目までの団子を食べる．ビ太郎は上から一口で <var>1</var> つの団子を食べることを繰り返すことで，ビ太郎が喜ぶ回数を <var>2</var> 回にできる．<var>3</var> 回以上喜ぶようにすることはできないため，<var>2</var> を出力する．</p>
+<p>この入力例はすべての小課題の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>5 2 3
+2 1 2 4 3
+1 5
+2 4
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>2
+0
+</pre>
+<p>入力例 <var>1</var> とは <var>K</var> の値のみが異なる．</p>
+<p><var>1</var> 番目の計画について，ビ太郎は以下のように団子を四口で食べることで，ビ太郎が喜ぶ回数を <var>2</var> 回にできる．</p>
+<ul>
+<li> 一口目には上から <var>1</var> 番目の団子から <var>5</var> 番目までの団子を食べる．甘い味のものの個数は <var>4</var> であり，辛い味のものの個数は <var>1</var> であるため，ビ太郎は喜ぶ．
+<li> 二口目には上から <var>6</var> 番目の団子のみを食べる．甘い味のものの個数は <var>0</var> であり，辛い味のものの個数は <var>1</var> であるため，ビ太郎は喜ばない．
+<li> 三口目には上から <var>7</var> 番目の団子から <var>9</var> 番目までの団子を食べる．甘い味のものの個数は <var>0</var> であり，辛い味のものの個数は <var>3</var> であるため，ビ太郎は喜ばない．
+<li> 四口目には上から <var>10</var> 番目の団子から <var>12</var> 番目までの団子を食べる．甘い味のものの個数は <var>3</var> であり，辛い味のものの個数は <var>0</var> であるため，ビ太郎は喜ぶ．
+</ul>
+
+<p><var>3</var> 回以上喜ぶようにすることはできないため，<var>2</var> を出力する．</p>
+<p><var>2</var> 番目の計画について，ビ太郎が <var>1</var> 回以上喜ぶように食べることはできないため，<var>0</var> を出力する．</p>
+<p>この入力例は小課題 <var>1, 3, 4, 5, 6</var> の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>9 4 50
+24 26 89 45 84 72 15 31 66
+1 9
+2 8
+4 6
+5 6
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>3
+2
+1
+1
+</pre>
+<p>この入力例は小課題 <var>1, 4, 5, 6</var> の制約を満たす．</p></section>
+</div>
+</span>
+</span>
