@@ -1,28 +1,33 @@
 Score: $100$ points
 
 <style>
-#task-statement table {
-    display: block;
-    width: fit-content;
+#task-statement .joisp2023-guard-table {
     max-width: 100%;
     overflow-x: auto;
-    border-collapse: collapse;
     margin: 1em 0;
 }
-#task-statement table th,
-#task-statement table td {
+#task-statement .joisp2023-guard-table table {
+    display: table;
+    width: auto;
+    max-width: none;
+    overflow: visible;
+    border-collapse: collapse;
+    margin: 0;
+}
+#task-statement .joisp2023-guard-table table th,
+#task-statement .joisp2023-guard-table table td {
     border: 1px solid #aaa;
     padding: 0.3em 0.6em;
     text-align: left;
     vertical-align: top;
 }
-#task-statement table th {
+#task-statement .joisp2023-guard-table table th {
     background-color: #f5f5f5;
 }
-#task-statement table td:nth-child(2) {
+#task-statement .joisp2023-guard-table table td:nth-child(2) {
     min-width: 16em;
 }
-#task-statement table td:nth-child(n+3) {
+#task-statement .joisp2023-guard-table table td:nth-child(n+3) {
     white-space: nowrap;
 }
 </style>
@@ -130,6 +135,8 @@ Let us explain how to transport a passenger in the following two cases.
 
 We can transport a passenger from the island $1$ to the island $4$ as follows. The islands where the ships $1, 2, 3$ are anchored, and the numbers of security guards on the ships $1, 2, 3$ are written in this order. The numbers of security guards on the islands $1, 2, 3, 4$ are written in this order.
 
+<div class="joisp2023-guard-table" markdown="1">
+
 | # | Operation | The islands where the ships are anchored | The numbers of security guards on the ships | The numbers of security guards on the islands |
 | --- | --- | --- | --- | --- |
 | - | - | 2, 2, 4 | 2, 2, 3 | 0, 0, 0, 0 |
@@ -145,7 +152,11 @@ We can transport a passenger from the island $1$ to the island $4$ as follows. T
 | 10 | Move the ship $3$ from the island $3$ to the island $4$ | 2, 3, 4 | 1, 3, 3 | 0, 0, 0, 0 |
 | 11 | Make the passenger get off the ship $3$ | 2, 3, 4 | 1, 3, 3 | 0, 0, 0, 0 |
 
+</div>
+
 We can transport a passenger from the island $3$ to the island $2$ as follows.
+
+<div class="joisp2023-guard-table" markdown="1">
 
 | # | Operation | The islands where the ships are anchored | The numbers of security guards on the ships | The numbers of security guards on the islands |
 | --- | --- | --- | --- | --- |
@@ -156,6 +167,8 @@ We can transport a passenger from the island $3$ to the island $2$ as follows.
 | 4 | Make a passenger get on the ship $2$ | 2, 3, 4 | 1, 3, 3 | 0, 0, 0, 0 |
 | 5 | Move the ship $2$ from the island $3$ to the island $2$ | 2, 2, 4 | 1, 3, 3 | 0, 0, 0, 0 |
 | 6 | Make the passenger get off the ship $2$ | 2, 2, 4 | 1, 3, 3 | 0, 0, 0, 0 |
+
+</div>
 
 Since it is impossible to satisfy the conditions if the number of security guards is less than or equal to $6$, output $7$.
 

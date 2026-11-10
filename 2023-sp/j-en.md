@@ -13,22 +13,28 @@ The two-file organization in Implementation Details and the instructions in Comp
 Score: $100$ points
 
 <style>
-#task-statement table {
-    display: block;
-    width: fit-content;
+#task-statement .joisp2023-battle-table {
     max-width: 100%;
     overflow-x: auto;
-    border-collapse: collapse;
     margin: 1em 0;
 }
-#task-statement table th,
-#task-statement table td {
+#task-statement .joisp2023-battle-table table {
+    display: table;
+    width: auto;
+    max-width: none;
+    overflow: visible;
+    border-collapse: collapse;
+    margin: 0;
+}
+#task-statement .joisp2023-battle-table th,
+#task-statement .joisp2023-battle-table td {
     border: 1px solid #aaa;
     padding: 0.3em 0.6em;
     text-align: left;
     vertical-align: top;
+    white-space: nowrap;
 }
-#task-statement table th {
+#task-statement .joisp2023-battle-table th {
     background-color: #f5f5f5;
 }
 </style>
@@ -51,7 +57,7 @@ In the messenger game, Anna and Bruno are isolated in different rooms. They will
 The challenges proceed as in the following figure.
 
 <div style="text-align: center;">
-<img src="https://raw.githubusercontent.com/joi-md/joi-md/main/2023-sp/battle-en.png" alt="The challenge: Anna, Bitaro and Bruno exchange cards and the grid of cells" width="700" style="max-width: 100%; height: auto;" />
+<img src="https://img.atcoder.jp/joisp2023/battle-en.png" alt="The challenge: Anna, Bitaro and Bruno exchange cards and the grid of cells" width="700" style="max-width: 100%; height: auto;" />
 </div>
 
 Write programs which implement the strategies of Anna and Bruno to win the “messenger game.” For the grading of this task, see Grading.
@@ -159,17 +165,29 @@ Otherwise, let $L^{\ast}$ be the minimum of the following values for all test ca
 
 - The maximum value of $L$ such that Anna and Bruno win all the challenges satisfying $N_i \leq L$. However, if they win all the challenges in the test cases, we set $L = 43$.
 
+<div class="joisp2023-battle-table" markdown="1">
+
 | $L^{\ast}$ | $0$ | $1$ | $2$ | $3$ | $4$ | $5$ | $6$ | $7$ | $8$ | $9$ | $10$ | $11$ | $12$ | $13$ | $14$ |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Score | $0$ | $5$ | $8$ | $10$ | $11$ | $13$ | $14$ | $16$ | $18$ | $19$ | $21$ | $22$ | $24$ | $26$ | $27$ |
+
+</div>
+
+<div class="joisp2023-battle-table" markdown="1">
 
 | $L^{\ast}$ | $15$ | $16$ | $17$ | $18$ | $19$ | $20$ | $21$ | $22$ | $23$ | $24$ | $25$ | $26$ | $27$ | $28$ | $29$ |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Score | $29$ | $30$ | $32$ | $34$ | $35$ | $37$ | $38$ | $40$ | $42$ | $43$ | $45$ | $46$ | $48$ | $50$ | $51$ |
 
+</div>
+
+<div class="joisp2023-battle-table" markdown="1">
+
 | $L^{\ast}$ | $30$ | $31$ | $32$ | $33$ | $34$ | $35$ | $36$ | $37$ | $38$ | $39$ | $40$ | $41$ | $42$ | $43$ |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Score | $53$ | $54$ | $56$ | $57$ | $59$ | $60$ | $62$ | $65$ | $68$ | $71$ | $74$ | $77$ | $84$ | $100$ |
+
+</div>
 
 ---
 
@@ -187,6 +205,8 @@ Here is a sample input for the sample grader and corresponding function calls. T
 
 #### Sample Function Calls
 
+<div class="joisp2023-battle-table" markdown="1">
+
 | Function call to Anna | Function call to Bruno | Return value of Bruno |
 | --- | --- | --- |
 | `Anna(0, 0, 1, "B")` | | |
@@ -194,13 +214,17 @@ Here is a sample input for the sample grader and corresponding function calls. T
 | `Paint(1, 2, 1)` | | |
 | $\ldots$ | | |
 | `Paint(7, 7, 1)` | | |
-| | `Bruno(1, ...)` | `"B"` |
+| | `Bruno(1, ...)` | |
+| | | `"B"` |
 | `Anna(5, 7, 8, "AAAABBBB")` | | |
 | `Paint(0, 0, 1)` | | |
 | `Paint(0, 1, 1)` | | |
 | $\ldots$ | | |
 | `Paint(7, 6, 0)` | | |
-| | `Bruno(8, ...)` | `"AAAABBBB"` |
+| | `Bruno(8, ...)` | |
+| | | `"AAAABBBB"` |
+
+</div>
 
 In this sample input, there are $Q$ ($= 2$) challenges.
 

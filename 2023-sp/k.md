@@ -1,28 +1,33 @@
 配点： $100$ 点
 
 <style>
-#task-statement table {
-    display: block;
-    width: fit-content;
+#task-statement .joisp2023-guard-table {
     max-width: 100%;
     overflow-x: auto;
-    border-collapse: collapse;
     margin: 1em 0;
 }
-#task-statement table th,
-#task-statement table td {
+#task-statement .joisp2023-guard-table table {
+    display: table;
+    width: auto;
+    max-width: none;
+    overflow: visible;
+    border-collapse: collapse;
+    margin: 0;
+}
+#task-statement .joisp2023-guard-table table th,
+#task-statement .joisp2023-guard-table table td {
     border: 1px solid #aaa;
     padding: 0.3em 0.6em;
     text-align: left;
     vertical-align: top;
 }
-#task-statement table th {
+#task-statement .joisp2023-guard-table table th {
     background-color: #f5f5f5;
 }
-#task-statement table td:nth-child(2) {
+#task-statement .joisp2023-guard-table table td:nth-child(2) {
     min-width: 16em;
 }
-#task-statement table td:nth-child(n+3) {
+#task-statement .joisp2023-guard-table table td:nth-child(n+3) {
     white-space: nowrap;
 }
 </style>
@@ -130,6 +135,8 @@ $A_M$ $B_M$
 
 島 $1$ から島 $4$ への客の移動は次の表のようにして実現できる．ここで，各船が停泊する島，各船の警備員数は船 $1, 2, 3$ の順に記されている．また，各島の警備員数は島 $1, 2, 3, 4$ の順に記されている．
 
+<div class="joisp2023-guard-table" markdown="1">
+
 | # | 行動 | 各船が停泊する島 | 各船の警備員数 | 各島の警備員数 |
 | --- | --- | --- | --- | --- |
 | - | - | 2, 2, 4 | 2, 2, 3 | 0, 0, 0, 0 |
@@ -145,7 +152,11 @@ $A_M$ $B_M$
 | 10 | 船 $3$ を島 $3$ から島 $4$ へ向かわせる | 2, 3, 4 | 1, 3, 3 | 0, 0, 0, 0 |
 | 11 | 客を船 $3$ から降ろす | 2, 3, 4 | 1, 3, 3 | 0, 0, 0, 0 |
 
+</div>
+
 また，島 $3$ から島 $2$ への客の移動は次の表のようにして実現できる．
+
+<div class="joisp2023-guard-table" markdown="1">
 
 | # | 行動 | 各船が停泊する島 | 各船の警備員数 | 各島の警備員数 |
 | --- | --- | --- | --- | --- |
@@ -156,6 +167,8 @@ $A_M$ $B_M$
 | 4 | 客を船 $2$ に乗せる | 2, 3, 4 | 1, 3, 3 | 0, 0, 0, 0 |
 | 5 | 船 $2$ を島 $3$ から島 $2$ へ向かわせる | 2, 2, 4 | 1, 3, 3 | 0, 0, 0, 0 |
 | 6 | 客を船 $2$ から降ろす | 2, 2, 4 | 1, 3, 3 | 0, 0, 0, 0 |
+
+</div>
 
 $6$ 人以下の警備員で条件を満たすことは不可能なので，$7$ を出力する．
 

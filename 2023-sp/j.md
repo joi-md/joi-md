@@ -13,22 +13,28 @@
 配点： $100$ 点
 
 <style>
-#task-statement table {
-    display: block;
-    width: fit-content;
+#task-statement .joisp2023-battle-table {
     max-width: 100%;
     overflow-x: auto;
-    border-collapse: collapse;
     margin: 1em 0;
 }
-#task-statement table th,
-#task-statement table td {
+#task-statement .joisp2023-battle-table table {
+    display: table;
+    width: auto;
+    max-width: none;
+    overflow: visible;
+    border-collapse: collapse;
+    margin: 0;
+}
+#task-statement .joisp2023-battle-table th,
+#task-statement .joisp2023-battle-table td {
     border: 1px solid #aaa;
     padding: 0.3em 0.6em;
     text-align: left;
     vertical-align: top;
+    white-space: nowrap;
 }
-#task-statement table th {
+#task-statement .joisp2023-battle-table th {
     background-color: #f5f5f5;
 }
 </style>
@@ -51,7 +57,7 @@ JOI 放送局が開催する人気バラエティ番組 JOICup は，いよい�
 チャレンジの進行については，以下の図も参照せよ．
 
 <div style="text-align: center;">
-<img src="https://raw.githubusercontent.com/joi-md/joi-md/main/2023-sp/battle-ja.png" alt="Anna，ビ太郎，Bruno の間でカードとマス目を渡すチャレンジの進行" width="700" style="max-width: 100%; height: auto;" />
+<img src="https://img.atcoder.jp/joisp2023/battle-ja.png" alt="Anna，ビ太郎，Bruno の間でカードとマス目を渡すチャレンジの進行" width="700" style="max-width: 100%; height: auto;" />
 </div>
 
 Anna と Bruno が「メッセンジャーゲーム」で勝利するための戦略を実装せよ．なお，この課題の採点方法については，採点基準の項を参照すること．
@@ -161,17 +167,29 @@ $X_Q$ $Y_Q$ $N_Q$ $S_Q$
 
 - $N_i \leqq L$ を満たすすべてのチャレンジについて勝利したような最大の整数 $L$．ただし，テストケース内のすべてのチャレンジに勝利した場合は $L = 43$ とする．
 
+<div class="joisp2023-battle-table" markdown="1">
+
 | $L^{\ast}$ | $0$ | $1$ | $2$ | $3$ | $4$ | $5$ | $6$ | $7$ | $8$ | $9$ | $10$ | $11$ | $12$ | $13$ | $14$ |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 得点 | $0$ | $5$ | $8$ | $10$ | $11$ | $13$ | $14$ | $16$ | $18$ | $19$ | $21$ | $22$ | $24$ | $26$ | $27$ |
+
+</div>
+
+<div class="joisp2023-battle-table" markdown="1">
 
 | $L^{\ast}$ | $15$ | $16$ | $17$ | $18$ | $19$ | $20$ | $21$ | $22$ | $23$ | $24$ | $25$ | $26$ | $27$ | $28$ | $29$ |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 得点 | $29$ | $30$ | $32$ | $34$ | $35$ | $37$ | $38$ | $40$ | $42$ | $43$ | $45$ | $46$ | $48$ | $50$ | $51$ |
 
+</div>
+
+<div class="joisp2023-battle-table" markdown="1">
+
 | $L^{\ast}$ | $30$ | $31$ | $32$ | $33$ | $34$ | $35$ | $36$ | $37$ | $38$ | $39$ | $40$ | $41$ | $42$ | $43$ |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 得点 | $53$ | $54$ | $56$ | $57$ | $59$ | $60$ | $62$ | $65$ | $68$ | $71$ | $74$ | $77$ | $84$ | $100$ |
+
+</div>
 
 ---
 
@@ -189,6 +207,8 @@ $X_Q$ $Y_Q$ $N_Q$ $S_Q$
 
 #### 関数の呼び出しの例
 
+<div class="joisp2023-battle-table" markdown="1">
+
 | Anna の呼び出し | Bruno の呼び出し | Bruno の戻り値 |
 | --- | --- | --- |
 | `Anna(0, 0, 1, "B")` | | |
@@ -196,13 +216,17 @@ $X_Q$ $Y_Q$ $N_Q$ $S_Q$
 | `Paint(1, 2, 1)` | | |
 | $\ldots$ | | |
 | `Paint(7, 7, 1)` | | |
-| | `Bruno(1, ...)` | `"B"` |
+| | `Bruno(1, ...)` | |
+| | | `"B"` |
 | `Anna(5, 7, 8, "AAAABBBB")` | | |
 | `Paint(0, 0, 1)` | | |
 | `Paint(0, 1, 1)` | | |
 | $\ldots$ | | |
 | `Paint(7, 6, 0)` | | |
-| | `Bruno(8, ...)` | `"AAAABBBB"` |
+| | `Bruno(8, ...)` | |
+| | | `"AAAABBBB"` |
+
+</div>
 
 この入力例は $Q$ ($= 2$) 回のチャレンジからなる．
 
