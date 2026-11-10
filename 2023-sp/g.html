@@ -1,0 +1,342 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>On the stage, <var>2N</var> beavers are standing in a row. They are members of the chorus. Each beaver sings either the alto part or the bass part of the chorus. This information is given by a string <var>S</var>. Precisely, the <var>i</var>-th beaver (<var>1 \leq i \leq 2N</var>) from the stage right (i.e., from left when seen from the audience seats) sings the alto part if the <var>i</var>-th character of <var>S</var> is <code>A</code>. The <var>i</var>-th beaver sings the bass part if the <var>i</var>-th character of <var>S</var> is <code>B</code>. There are <var>N</var> beavers singing the alto part, and <var>N</var> beavers singing the bass part.</p>
+<p>From now, the beavers will sing <var>K</var> songs. However, since all the songs are very difficult, each beaver sings exactly one song only, and does not sing other songs. Moreover, in order to make singing voice more beautiful, for every song, the following conditions should be satisfied.</p>
+<ul>
+<li>At least one beaver sings the song.</li>
+<li>The number of beavers singing the alto part of the song is equal to the number of beavers singing the bass part of the song.</li>
+<li>If we consider the beavers singing the song only, every alto beaver stands the stage right of every bass beaver.</li>
+</ul>
+<p>Bitaro, the conductor, tried to find a way to allot songs to beavers which satisfies the conditions. Since Bitaro is bright, he notices that it might be impossible to allot songs to beavers.</p>
+<p>In order to cope with this issue, Bitaro will perform the following operation several times so that there is a way to allot songs to beavers which satisfies the conditions.</p>
+<ul>
+<li>Swap the position of two adjacent beavers.</li>
+</ul>
+<p>Since Bitaro thinks efficiency is important, he wants to minimize the number of operations. However, it turns out to be a surprisingly difficult problem. Since you are a brilliant programmer, Bitaro asks you to solve this problem.</p>
+<p>Write a program which, given information of the chorus and the number of songs <var>K</var>, calculates the minimum number of operations Bitaro needs to perform. Note that, under the constraints of this task, it is possible to perform the operations several times so that there is a way to allot songs to beavers which satisfies the conditions.</p>
+<hr />
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input.</p>
+<pre><var>N</var> <var>K</var>
+<var>S</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>Write one line to the standard output. The output should contain the minimum number of operations Bitaro needs to perform.</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li><var>1 \leq N \leq 1\,000\,000</var>.</li>
+<li><var>1 \leq K \leq N</var>.</li>
+<li><var>S</var> is a string of length <var>2N</var>. In the string <var>S</var>, the character <code>A</code> appears <var>N</var> times, and the character <code>B</code> appears <var>N</var> times.</li>
+<li><var>N, K</var> are integers.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li>(<var>16</var> points) <var>N \leq 10</var>.</li>
+<li>(<var>24</var> points) <var>N \leq 500</var>.</li>
+<li>(<var>21</var> points) <var>N \leq 5\,000</var>.</li>
+<li>(<var>26</var> points) <var>N \leq 100\,000</var>.</li>
+<li>(<var>13</var> points) No additional constraints.</li>
+</ol>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>5 2
+AABABABBAB
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>2
+</pre>
+<p>In this sample input, for example, Bitaro can perform the following operations. Here, the underline denotes the positions of the two beavers swapped by Bitaro.</p>
+<ol>
+<li>
+<p>Swap the third beaver and the fourth beaver from the stage right.</p>
+<p>After this operation, the string which denotes the parts of the beavers from the stage right becomes “AA<u>AB</u>BABBAB”.</p>
+</li>
+<li>
+<p>Swap the eighth beaver and the ninth beaver from the stage right.</p>
+<p>After this operation, the string which denotes the parts of the beavers from the stage right becomes “AAABBAB<u>AB</u>B”.</p>
+</li>
+</ol>
+<p>After these operations, Bitaro can allot songs to beavers as follows.</p>
+<ul>
+<li>From the stage right, the <var>1, 2, 3, 4, 5, 7</var>-th beavers sing the first song.</li>
+<li>From the stage right, the <var>6, 8, 9, 10</var>-th beavers sing the second song.</li>
+</ul>
+<p>This way to allot songs to beavers satisfies the conditions.</p>
+<p>If the number of operations is less than <var>2</var>, there does not exist a way to allot songs to beavers which satisfies the conditions. Therefore, output <var>2</var>.</p>
+<p>This sample input satisfies the constraints of all the subtasks.</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>5 3
+AABABABBAB
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>0
+</pre>
+<p>Without performing operations, Bitaro can allot songs to beavers as follows.</p>
+<ul>
+<li>From the stage right, the <var>1, 2, 3, 5</var>-th beavers sing the first song.</li>
+<li>From the stage right, the <var>4, 6, 7, 8</var>-th beavers sing the second song.</li>
+<li>From the stage right, the <var>9, 10</var>-th beavers sing the third song.</li>
+</ul>
+<p>This way to allot songs to beavers satisfies the conditions. Therefore, output <var>0</var>.</p>
+<p>This sample input satisfies the constraints of all the subtasks.</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 3</h3>
+<pre>3 1
+BBBAAA
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 3</h3>
+<pre>9
+</pre>
+<p>This sample input satisfies the constraints of all the subtasks.</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 4</h3>
+<pre>10 3
+ABABBBBABBABABABAAAA
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 4</h3>
+<pre>37
+</pre>
+<p>This sample input satisfies the constraints of all the subtasks.</p></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点： <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p><var>2N</var> 匹のビーバーが舞台上に横一列に並んでいる．ビーバーたちは合唱隊であり，それぞれのビーバーはアルトまたはバスのいずれかのパートを担当している．この情報は文字列 <var>S</var> によって与えられる．具体的には，下手側（客席から見て左側）から <var>i</var> 番目 (<var>1 \leqq i \leqq 2N</var>) の位置にいるビーバーは，<var>S</var> の <var>i</var> 文字目が <code>A</code> ならばアルトを，<code>B</code> ならばバスを担当している．ここで，アルトとバスはそれぞれ <var>N</var> 匹ずついる．</p>
+<p>ビーバーたちはこれから <var>K</var> 個の曲を歌う．ただし，どの曲もとても難しいため，それぞれのビーバーはちょうど <var>1</var> 曲だけを歌い，それ以外の曲は歌わない．さらに，声が美しく響くためには，それぞれの曲について次の条件をすべて満たす必要がある．</p>
+<ul>
+<li>その曲を歌うビーバーが <var>1</var> 匹以上いる．</li>
+<li>その曲を歌うアルトとバスの数が等しい．</li>
+<li>その曲を歌うビーバーだけに注目したとき，すべてのアルトはすべてのバスより下手側に立っている．</li>
+</ul>
+<p>指揮者のビ太郎は，上記の条件を満たすようそれぞれのビーバーに歌う曲を割り振ろうとした．しかし，聡明なビ太郎はこれがそもそも不可能かもしれないことに気がついた．</p>
+<p>そこでまずビ太郎は，以下の操作を繰り返すことで，条件を満たす曲の割り振りが存在するようにしたいと考えた．</p>
+<ul>
+<li>隣接している <var>2</var> 匹のビーバーの位置を入れ替える．</li>
+</ul>
+<p>何事も効率を重視するビ太郎は操作の回数を最小化したかったが，これが思いの外難しかったため，優秀なプログラマーであるあなたに代わりに問題を解いてほしいと頼んできた．</p>
+<p>合唱隊の情報と歌う曲の数 <var>K</var> が与えられたとき，ビ太郎が行う必要のある最小の操作回数を求めるプログラムを作成せよ．なお，この問題の制約下では，条件を満たす曲の割り振りが存在するように操作を行うことが可能である．</p>
+<hr />
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力は以下の形式で標準入力から与えられる．</p>
+<pre><var>N</var> <var>K</var>
+<var>S</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に，ビ太郎が行う必要のある最小の操作回数を <var>1</var> 行で出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>1 \leqq N \leqq 1\,000\,000</var>．</li>
+<li><var>1 \leqq K \leqq N</var>．</li>
+<li><var>S</var> は <var>N</var> 個の <code>A</code> と <var>N</var> 個の <code>B</code> からなる長さ <var>2N</var> の文字列である．</li>
+<li><var>N, K</var> は整数である．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>16</var> 点) <var>N \leqq 10</var>．</li>
+<li>(<var>24</var> 点) <var>N \leqq 500</var>．</li>
+<li>(<var>21</var> 点) <var>N \leqq 5\,000</var>．</li>
+<li>(<var>26</var> 点) <var>N \leqq 100\,000</var>．</li>
+<li>(<var>13</var> 点) 追加の制約はない．</li>
+</ol>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>5 2
+AABABABBAB
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>2
+</pre>
+<p>この入力例では，ビ太郎は例えば以下のように操作を行えばよい．ただし，下線はビ太郎が入れ替えた <var>2</var> 匹のビーバーの位置を表す．</p>
+<ol>
+<li>
+<p>下手側から <var>3</var> 番目と <var>4</var> 番目のビーバーの位置を入れ替える．</p>
+<p>この操作の後，各ビーバーの担当するパートを表す文字列は下手側から “AA<u>AB</u>BABBAB” となる．</p>
+</li>
+<li>
+<p>下手側から <var>8</var> 番目と <var>9</var> 番目のビーバーの位置を入れ替える．</p>
+<p>この操作の後，各ビーバーの担当するパートを表す文字列は下手側から “AAABBAB<u>AB</u>B” となる．</p>
+</li>
+</ol>
+<p>これらの操作の後，ビ太郎は次のように曲を割り振ることができる．</p>
+<ul>
+<li>下手側から <var>1, 2, 3, 4, 5, 7</var> 番目のビーバーに <var>1</var> 曲目を歌わせる．</li>
+<li>下手側から <var>6, 8, 9, 10</var> 番目のビーバーに <var>2</var> 曲目を歌わせる．</li>
+</ul>
+<p>この割り振りは条件をすべて満たしている．</p>
+<p><var>2</var> 回より少ない操作で，条件を満たすような曲の割り振りを行うことはできない．よって <var>2</var> を出力する．</p>
+<p>この入力例はすべての小課題の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>5 3
+AABABABBAB
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>0
+</pre>
+<p>一度も操作を行わずとも，ビ太郎は次のように曲を割り振ることができる．</p>
+<ul>
+<li>下手側から <var>1, 2, 3, 5</var> 番目のビーバーに <var>1</var> 曲目を歌わせる．</li>
+<li>下手側から <var>4, 6, 7, 8</var> 番目のビーバーに <var>2</var> 曲目を歌わせる．</li>
+<li>下手側から <var>9, 10</var> 番目のビーバーに <var>3</var> 曲目を歌わせる．</li>
+</ul>
+<p>この割り振りは条件をすべて満たしている．よって <var>0</var> を出力する．</p>
+<p>この入力例はすべての小課題の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>3 1
+BBBAAA
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>9
+</pre>
+<p>この入力例はすべての小課題の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 4</h3>
+<pre>10 3
+ABABBBBABBABABABAAAA
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 4</h3>
+<pre>37
+</pre>
+<p>この入力例はすべての小課題の制約を満たす．</p></section>
+</div>
+</span>
+</span>

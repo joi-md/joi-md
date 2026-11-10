@@ -1,0 +1,272 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>In JOI Kingdom, a national festival is held once a year. During the period of the festival, there are <var>N</var> events in total. The schedule for each event is already fixed. The schedule of the <var>N</var> events are described by sequences <var>a, b</var> of length <var>N</var> satisfying the following conditions.</p>
+<ul>
+<li>Every integer between <var>1</var> and <var>2N</var>, inclusive, appears as an element of <var>a</var> or <var>b</var>.</li>
+<li><var>a_i &lt; b_i</var> (<var>1 \leq i \leq N</var>).</li>
+<li><var>a_i &lt; a_{i+1}</var> (<var>1 \leq i \leq N - 1</var>).</li>
+</ul>
+<p>The <var>i</var>-th event will start at <var>a_i</var> minutes after the beginning of the festival, and end at <var>b_i</var> minutes after the beginning of the festival.</p>
+<p>Participants of the festival may choose any events in which they will participate. However, it is not allowed to participate in two events whose schedules overlap. (Note that the starting times and the ending times of the events are different from each other.)</p>
+<p>JOI-kun wants to participate in as many events as possible. Until last year, he chose the events in which he participated by the following procedures on a computer.</p>
+<blockquote>
+<p>For <var>i = 1, 2, \ldots, N</var>, the following are done in this order.</p>
+<p>If the schedule of the <var>i</var>-th event does not overlap the schedules of the other events in which he already chose to participate, he will participate in the <var>i</var>-th event. Otherwise, he will not participate in the <var>i</var>-th event.</p>
+</blockquote>
+<p>However, after studying computer science, JOI-kun noticed that the above algorithm does not necessarily maximize the number of events in which JOI-kun will participate. From this year, JOI-kun will use an improved algorithm. Using the improved algorithm, JOI-kun will be able to maximize the number of events in which JOI-kun will participate.</p>
+<p>JOI-kun wants to know the number of cases where the improved algorithm produces a larger number of events.</p>
+<p>Write a program which, given the integer <var>N</var> and a large prime number <var>P</var>, calculates the number of pairs of sequences <var>a, b</var> describing the schedules of the <var>N</var> events for which the improved algorithm produces a larger number of events. Since the answer can be very large, your program should output the remainder of the answer when divided by <var>P</var>.</p>
+<hr />
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input.</p>
+<pre><var>N</var> <var>P</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>Write one line to the standard output. The output should contain the remainder of the answer, the number of pairs of sequences <var>a, b</var> describing the schedules of the <var>N</var> events for which the improved algorithm produces a larger number of events, when divided by <var>P</var>.</p>
+<hr />
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li><var>1 \leq N \leq 20\,000</var>.</li>
+<li><var>10^8 &lt; P &lt; 10^9</var>.</li>
+<li><var>P</var> is a prime number.</li>
+<li>Given values are all integers.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li>(<var>5</var> points) <var>N \leq 5</var>.</li>
+<li>(<var>5</var> points) <var>N \leq 8</var>.</li>
+<li>(<var>27</var> points) <var>N \leq 30</var>.</li>
+<li>(<var>14</var> points) <var>N \leq 300</var>.</li>
+<li>(<var>36</var> points) <var>N \leq 3\,000</var>.</li>
+<li>(<var>13</var> points) No additional constraints.</li>
+</ol>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>3 100000007
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>2
+</pre>
+<p>For example, consider the case where <var>a = (1, 2, 4)</var> and <var>b = (6, 3, 5)</var>. If JOI-kun uses the algorithm used until last year, he will participate in the first event only. On the other hand, if he uses a correct algorithm to maximize the number of events, he will participate in the second event and the third event. Thus, he will participate in two events. In this case, the improved algorithm produces a larger number of events.</p>
+<p>The following are the pair of sequences <var>a, b</var> for which the improved algorithm produces a larger number of events.</p>
+<ul>
+<li><var>a = (1, 2, 4)</var>, <var>b = (6, 3, 5)</var></li>
+<li><var>a = (1, 2, 4)</var>, <var>b = (5, 3, 6)</var></li>
+</ul>
+<p>Therefore, output <var>2</var>, which is the remainder of <var>2</var> when divided by <var>100\,000\,007</var>.</p>
+<p>This sample input satisfies the constraints of all the subtasks.</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>4 100000007
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>28
+</pre>
+<p>There are <var>28</var> pairs of sequences <var>a, b</var> satisfying the condition. Therefore, output <var>28</var>, which is the remainder of <var>28</var> when divided by <var>100\,000\,007</var>.</p>
+<p>This sample input satisfies the constraints of all the subtasks.</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 3</h3>
+<pre>15 999999937
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 3</h3>
+<pre>935834920
+</pre>
+<p>There are <var>5\,295\,044\,602\,247\,148</var> pairs of sequences <var>a, b</var> satisfying the condition. Therefore, output <var>935\,834\,920</var>, which is the remainder of <var>5\,295\,044\,602\,247\,148</var> when divided by <var>999\,999\,937</var>.</p>
+<p>This sample input satisfies the constraints of Subtasks <var>3, 4, 5, 6</var>.</p></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点： <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>JOI 国では，<var>1</var> 年に <var>1</var> 回，国を挙げたお祭りが行われる．お祭りの期間中には <var>N</var> 個のイベントがあり，それぞれ開催時間が決まっている．<var>N</var> 個のイベントの開催時間は，以下の条件を満たす <var>2</var> つの長さ <var>N</var> の数列 <var>a, b</var> によって定められる．</p>
+<ul>
+<li><var>a, b</var> の要素には，<var>1</var> から <var>2N</var> までのすべての整数がちょうど <var>1</var> 回ずつ現れる．</li>
+<li><var>a_i &lt; b_i</var> (<var>1 \leqq i \leqq N</var>) である．</li>
+<li><var>a_i &lt; a_{i+1}</var> (<var>1 \leqq i \leqq N - 1</var>) である．</li>
+</ul>
+<p>このとき，<var>i</var> 個目のイベントはお祭りの開始 <var>a_i</var> 分から，開始 <var>b_i</var> 分までの間開催される．</p>
+<p>お祭りの参加者は，開催時間に重複部分がある <var>2</var> つのイベントに両方参加することはできないという条件のもとで，どのイベントに参加するかを自由に選べる．（各イベントの開始時刻と終了時刻は相異なることに注意せよ．）</p>
+<p>JOI 君は，できる限り多くのイベントに参加したいと思い，去年まで以下のような処理をコンピュータで行うことで，参加するイベントを決めていた．</p>
+<blockquote>
+<p><var>i = 1, 2, \ldots, N</var> について，順に以下のことを行う．</p>
+<p><var>i</var> 個目のイベントの開催時間が，今までに参加すると決めたどのイベントの開催時間とも重複部分を持たないならば，<var>i</var> 個目のイベントに参加することを決める．そうでなければ <var>i</var> 個目のイベントには参加しないことにする．</p>
+</blockquote>
+<p>ところが，情報科学を勉強した JOI 君は，このアルゴリズムでは必ずしも参加するイベントの数を最大化できないことに気づき，今年からは参加するイベントの数を正しく最大化するアルゴリズムを使うことにした．</p>
+<p>JOI 君は，この改善によって参加するイベントが増える場合がどの程度あるのかを知りたい．</p>
+<p>整数 <var>N</var> と大きな素数 <var>P</var> が与えられるので，<var>N</var> 個のイベントの開催時間を定める数列 <var>a, b</var> の組としてあり得るもののうち，アルゴリズムの改善により参加するイベントの数が増えるようなものの個数を <var>P</var> で割った余りを求めるプログラムを作成せよ．</p>
+<hr />
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力は以下の形式で標準入力から与えられる．</p>
+<pre><var>N</var> <var>P</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に，<var>N</var> 個のイベントの開催時間を定める数列 <var>a, b</var> の組としてあり得るもののうち，アルゴリズムの改善により参加するイベントの数が増えるようなものの個数を <var>P</var> で割った余りを <var>1</var> 行で出力せよ．</p>
+<hr />
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>1 \leqq N \leqq 20\,000</var>．</li>
+<li><var>10^8 &lt; P &lt; 10^9</var>．</li>
+<li><var>P</var> は素数である．</li>
+<li>入力される値はすべて整数である．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>5</var> 点) <var>N \leqq 5</var>．</li>
+<li>(<var>5</var> 点) <var>N \leqq 8</var>．</li>
+<li>(<var>27</var> 点) <var>N \leqq 30</var>．</li>
+<li>(<var>14</var> 点) <var>N \leqq 300</var>．</li>
+<li>(<var>36</var> 点) <var>N \leqq 3\,000</var>．</li>
+<li>(<var>13</var> 点) 追加の制約はない．</li>
+</ol>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>3 100000007
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>2
+</pre>
+<p>例えば <var>a = (1, 2, 4)</var>，<var>b = (6, 3, 5)</var> の場合，JOI 君が去年まで使っていたアルゴリズムでは <var>1</var> 個目のイベントのみに参加することになる．一方で，参加するイベントの数を正しく最大化するアルゴリズムを使うと，<var>2</var> 個目のイベントと <var>3</var> 個目のイベントの <var>2</var> つに参加することができるので，アルゴリズムの改善により参加するイベントの数が増える．</p>
+<p>このようにアルゴリズムの改善により参加するイベントの数が増えるような数列 <var>a, b</var> の組は以下の <var>2</var> 個である．</p>
+<ul>
+<li><var>a = (1, 2, 4)</var>，<var>b = (6, 3, 5)</var></li>
+<li><var>a = (1, 2, 4)</var>，<var>b = (5, 3, 6)</var></li>
+</ul>
+<p>よって，<var>2</var> を <var>100\,000\,007</var> で割った余りである <var>2</var> を出力する．</p>
+<p>この入力例はすべての小課題の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>4 100000007
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>28
+</pre>
+<p>条件を満たす数列 <var>a, b</var> の組は <var>28</var> 個あるので，<var>28</var> を <var>100\,000\,007</var> で割った余りである <var>28</var> を出力する．</p>
+<p>この入力例はすべての小課題の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>15 999999937
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>935834920
+</pre>
+<p>条件を満たす数列 <var>a, b</var> の組は <var>5\,295\,044\,602\,247\,148</var> 個あるので，これを <var>999\,999\,937</var> で割った余りである <var>935\,834\,920</var> を出力する．</p>
+<p>この入力例は小課題 <var>3, 4, 5, 6</var> の制約を満たす．</p></section>
+</div>
+</span>
+</span>

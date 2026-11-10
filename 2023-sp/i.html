@@ -1,0 +1,460 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>JOI Kingdom is an insular country consisting of <var>N</var> islands, numbered from <var>1</var> to <var>N</var>. The islands are connected by <var>N - 1</var> bridges, numbered from <var>1</var> to <var>N - 1</var>. The bridge <var>i</var> (<var>1 \leq i \leq N - 1</var>) connects the island <var>A_i</var> and the island <var>B_i</var> bidirectionally. It is possible to travel from any island to any other island by passing through a number of bridges.</p>
+<p>In JOI Kingdom, there are <var>M</var> sightseeing spots, numbered from <var>1</var> to <var>M</var>. The sightseeing spot <var>j</var> (<var>1 \leq j \leq M</var>) is located in the island <var>C_j</var>.</p>
+<p>There are <var>Q</var> travelers. They plan to visit sightseeing spots in JOI Kingdom. The travelers are numbered from <var>1</var> to <var>Q</var>. Each traveler makes a trip in the following way.</p>
+<ol>
+<li>The traveler chooses an island <var>x</var> (<var>1 \leq x \leq N</var>). Taking an airplane, the traveler arrives at the island <var>x</var>.</li>
+<li>The traveler takes the following actions a number of times. The order and the kinds of actions are arbitrary.
+<ul>
+<li>The traveler chooses a sightseeing spot in the current island, and visits there.</li>
+<li>The traveler moves to another island by passing through a bridge.</li>
+</ul>
+</li>
+<li>Taking an airplane, the traveler leaves JOI Kingdom.</li>
+</ol>
+
+<p>The traveler <var>k</var> (<var>1 \leq k \leq Q</var>) wants to visit all of the sightseeing spots <var>L_k, L_k + 1, \ldots, R_k</var>. However, since the budget is limited, the traveler <var>k</var> wants to minimize the number of islands where the traveler <var>k</var> visits at least once.</p>
+<p>Write a program which, given information of JOI Kingdom and the travelers, calculates, for each <var>k</var> (<var>1 \leq k \leq Q</var>), the minimum possible number of islands where the traveler <var>k</var> visits at least once.</p>
+<hr />
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input.</p>
+<pre><var>N</var> <var>M</var> <var>Q</var>
+<var>A_1</var> <var>B_1</var>
+<var>A_2</var> <var>B_2</var>
+<var>\vdots</var>
+<var>A_{N-1}</var> <var>B_{N-1}</var>
+<var>C_1</var> <var>C_2</var> <var>\cdots</var> <var>C_M</var>
+<var>L_1</var> <var>R_1</var>
+<var>L_2</var> <var>R_2</var>
+<var>\vdots</var>
+<var>L_Q</var> <var>R_Q</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>Write <var>Q</var> lines to the standard output. The <var>k</var>-th line (<var>1 \leq k \leq Q</var>) of output should contain the minimum possible number of islands where the traveler <var>k</var> visits at least once.</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li><var>1 \leq N \leq 100\,000</var>.</li>
+<li><var>1 \leq M \leq 100\,000</var>.</li>
+<li><var>1 \leq Q \leq 100\,000</var>.</li>
+<li><var>1 \leq A_i \leq N</var> (<var>1 \leq i \leq N - 1</var>).</li>
+<li><var>1 \leq B_i \leq N</var> (<var>1 \leq i \leq N - 1</var>).</li>
+<li>It is possible to travel from any island to any other island by passing through a number of bridges.</li>
+<li><var>1 \leq C_j \leq N</var> (<var>1 \leq j \leq M</var>).</li>
+<li><var>1 \leq L_k \leq R_k \leq M</var> (<var>1 \leq k \leq Q</var>).</li>
+<li>Given values are all integers.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li>(<var>5</var> points) <var>N \leq 300</var>, <var>M \leq 300</var>, <var>Q \leq 300</var>.</li>
+<li>(<var>5</var> points) <var>N \leq 2\,000</var>, <var>M \leq 2\,000</var>, <var>Q \leq 2\,000</var>.</li>
+<li>(<var>7</var> points) <var>A_i = i</var>, <var>B_i = i + 1</var> (<var>1 \leq i \leq N - 1</var>).</li>
+<li>(<var>18</var> points) <var>L_1 = 1</var>, <var>R_k + 1 = L_{k+1}</var> (<var>1 \leq k \leq Q - 1</var>), <var>R_Q = M</var>.</li>
+<li>(<var>24</var> points) <var>A_i = \left\lfloor \dfrac{i+1}{2} \right\rfloor</var>, <var>B_i = i + 1</var> (<var>1 \leq i \leq N - 1</var>). Here, <var>\lfloor x \rfloor</var> is the largest integer not exceeding <var>x</var>.</li>
+<li>(<var>41</var> points) No additional constraints.</li>
+</ol>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>7 6 2
+1 2
+1 3
+2 4
+2 5
+3 6
+3 7
+2 3 6 4 5 7
+1 3
+4 6
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>4
+6
+</pre>
+<p>The traveler <var>1</var> makes a trip in the following way, and visits all of the sightseeing spots <var>1, 2, 3</var>.</p>
+<ol>
+<li>The traveler <var>1</var> arrives at the island <var>2</var>.</li>
+<li>The traveler <var>1</var> visits the sightseeing spot <var>1</var> in the island <var>2</var>.</li>
+<li>The traveler <var>1</var> moves from the island <var>2</var> to the island <var>1</var> by passing through the bridge <var>1</var>.</li>
+<li>The traveler <var>1</var> moves from the island <var>1</var> to the island <var>3</var> by passing through the bridge <var>2</var>.</li>
+<li>The traveler <var>1</var> visits the sightseeing spot <var>2</var> in the island <var>3</var>.</li>
+<li>The traveler <var>1</var> moves from the island <var>3</var> to the island <var>6</var> by passing through the bridge <var>5</var>.</li>
+<li>The traveler <var>1</var> visits the sightseeing spot <var>3</var> in the island <var>6</var>.</li>
+<li>The traveler <var>1</var> departs from the island <var>6</var> and leaves JOI Kingdom.</li>
+</ol>
+<p>The islands <var>1, 2, 3, 6</var> are the four islands where the traveler <var>1</var> visits at least once. If the number of islands traveler <var>1</var> visits at least once is less than or equal to <var>3</var>, it is impossible to visit all of the sightseeing spots <var>1, 2, 3</var>. Therefore, output <var>4</var> in the first line.</p>
+<p>The traveler <var>2</var> makes a trip in the following way, and visits all of the sightseeing spots <var>4, 5, 6</var>.</p>
+<ol>
+<li>The traveler <var>2</var> arrives at the island <var>3</var>.</li>
+<li>The traveler <var>2</var> moves from the island <var>3</var> to the island <var>7</var> by passing through the bridge <var>6</var>.</li>
+<li>The traveler <var>2</var> visits the sightseeing spot <var>6</var> in the island <var>7</var>.</li>
+<li>The traveler <var>2</var> moves from the island <var>7</var> to the island <var>3</var> by passing through the bridge <var>6</var>.</li>
+<li>The traveler <var>2</var> moves from the island <var>3</var> to the island <var>1</var> by passing through the bridge <var>2</var>.</li>
+<li>The traveler <var>2</var> moves from the island <var>1</var> to the island <var>2</var> by passing through the bridge <var>1</var>.</li>
+<li>The traveler <var>2</var> moves from the island <var>2</var> to the island <var>4</var> by passing through the bridge <var>3</var>.</li>
+<li>The traveler <var>2</var> visits the sightseeing spot <var>4</var> in the island <var>4</var>.</li>
+<li>The traveler <var>2</var> moves from the island <var>4</var> to the island <var>2</var> by passing through the bridge <var>3</var>.</li>
+<li>The traveler <var>2</var> moves from the island <var>2</var> to the island <var>5</var> by passing through the bridge <var>4</var>.</li>
+<li>The traveler <var>2</var> visits the sightseeing spot <var>5</var> in the island <var>5</var>.</li>
+<li>The traveler <var>2</var> departs from the island <var>5</var> and leaves JOI Kingdom.</li>
+</ol>
+<p>The islands <var>1, 2, 3, 4, 5, 7</var> are the six islands where the traveler <var>2</var> visits at least once. If the number of islands traveler <var>2</var> visits at least once is less than or equal to <var>5</var>, it is impossible to visit all of the sightseeing spots <var>4, 5, 6</var>. Therefore, output <var>6</var> in the second line.</p>
+<p>This sample input satisfies the constraints of Subtasks <var>1, 2, 4, 5, 6</var>.</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>8 8 9
+1 2
+2 3
+3 4
+4 5
+5 6
+6 7
+7 8
+8 6 4 3 5 2 4 7
+3 5
+4 6
+6 8
+1 4
+2 3
+6 8
+5 5
+2 8
+1 2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>3
+4
+6
+6
+3
+6
+1
+6
+3
+</pre>
+<p>This sample input satisfies the constraints of Subtasks <var>1, 2, 3, 6</var>.</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 3</h3>
+<pre>10 7 9
+6 5
+3 6
+9 3
+8 3
+7 8
+7 1
+2 5
+7 10
+8 4
+9 4 10 1 10 7 6
+4 4
+1 3
+1 3
+6 7
+3 6
+3 3
+1 5
+2 5
+1 2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 3</h3>
+<pre>1
+6
+6
+4
+3
+1
+7
+5
+4
+</pre>
+<p>This sample input satisfies the constraints of Subtasks <var>1, 2, 6</var>.</p></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点： <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>JOI 国は <var>N</var> 個の島からなる島国であり，島には <var>1</var> から <var>N</var> までの番号が付けられている．これらの島は <var>N - 1</var> 本の橋で結ばれており，橋には <var>1</var> から <var>N - 1</var> までの番号が付けられている．橋 <var>i</var> (<var>1 \leqq i \leqq N - 1</var>) は島 <var>A_i</var> と島 <var>B_i</var> を双方向に結んでいる．どの島からどの島へも何本かの橋を渡ることで移動できる．</p>
+<p>JOI 国には <var>M</var> 個の観光地があり，<var>1</var> から <var>M</var> までの番号が付けられている．観光地 <var>j</var> (<var>1 \leqq j \leqq M</var>) は島 <var>C_j</var> にある．</p>
+<p><var>Q</var> 人の旅行者が JOI 国の観光地を見物しようとしている．旅行者には <var>1</var> から <var>Q</var> までの番号が付けられている．それぞれの旅行者は以下のように旅行をする．</p>
+<ol>
+<li>ある島 <var>x</var> (<var>1 \leqq x \leqq N</var>) を選び，飛行機で島 <var>x</var> に到着する．</li>
+<li>以下の <var>2</var> 種類の行動を自由な順序で何回か繰り返す．
+<ul>
+<li>現在いる島にある観光地を <var>1</var> つ選び，その観光地を見物する．</li>
+<li>橋を渡り，別の島へ移動する．</li>
+</ul>
+</li>
+<li>現在いる島から飛行機で出国する．</li>
+</ol>
+
+<p>旅行者 <var>k</var> (<var>1 \leqq k \leqq Q</var>) は観光地 <var>L_k, L_k + 1, \ldots, R_k</var> をすべて見物したいが，予算の都合上，<var>1</var> 回以上訪れる島の個数がなるべく少なくなるようにしたい．</p>
+<p>JOI 国の情報と旅行者の情報が与えられたとき，それぞれの <var>k</var> (<var>1 \leqq k \leqq Q</var>) について，旅行者 <var>k</var> が <var>1</var> 回以上訪れる島の個数としてありうる最小値を求めるプログラムを作成せよ．</p>
+<hr />
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力は以下の形式で標準入力から与えられる．</p>
+<pre><var>N</var> <var>M</var> <var>Q</var>
+<var>A_1</var> <var>B_1</var>
+<var>A_2</var> <var>B_2</var>
+<var>\vdots</var>
+<var>A_{N-1}</var> <var>B_{N-1}</var>
+<var>C_1</var> <var>C_2</var> <var>\cdots</var> <var>C_M</var>
+<var>L_1</var> <var>R_1</var>
+<var>L_2</var> <var>R_2</var>
+<var>\vdots</var>
+<var>L_Q</var> <var>R_Q</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に <var>Q</var> 行出力せよ．<var>k</var> 行目 (<var>1 \leqq k \leqq Q</var>) には，旅行者 <var>k</var> が <var>1</var> 回以上訪れる島の個数としてありうる最小値を出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>1 \leqq N \leqq 100\,000</var>．</li>
+<li><var>1 \leqq M \leqq 100\,000</var>．</li>
+<li><var>1 \leqq Q \leqq 100\,000</var>．</li>
+<li><var>1 \leqq A_i \leqq N</var> (<var>1 \leqq i \leqq N - 1</var>)．</li>
+<li><var>1 \leqq B_i \leqq N</var> (<var>1 \leqq i \leqq N - 1</var>)．</li>
+<li>どの島からどの島へも何本かの橋を渡ることによって移動することができる．</li>
+<li><var>1 \leqq C_j \leqq N</var> (<var>1 \leqq j \leqq M</var>)．</li>
+<li><var>1 \leqq L_k \leqq R_k \leqq M</var> (<var>1 \leqq k \leqq Q</var>)．</li>
+<li>入力される値はすべて整数である．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>5</var> 点) <var>N \leqq 300</var>，<var>M \leqq 300</var>，<var>Q \leqq 300</var>．</li>
+<li>(<var>5</var> 点) <var>N \leqq 2\,000</var>，<var>M \leqq 2\,000</var>，<var>Q \leqq 2\,000</var>．</li>
+<li>(<var>7</var> 点) <var>A_i = i</var>，<var>B_i = i + 1</var> (<var>1 \leqq i \leqq N - 1</var>)．</li>
+<li>(<var>18</var> 点) <var>L_1 = 1</var>，<var>R_k + 1 = L_{k+1}</var> (<var>1 \leqq k \leqq Q - 1</var>)，<var>R_Q = M</var>．</li>
+<li>(<var>24</var> 点) <var>A_i = \left\lfloor \dfrac{i+1}{2} \right\rfloor</var>，<var>B_i = i + 1</var> (<var>1 \leqq i \leqq N - 1</var>)．ただし，<var>\lfloor x \rfloor</var> は <var>x</var> を超えない最大の整数を表す．</li>
+<li>(<var>41</var> 点) 追加の制約はない．</li>
+</ol>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>7 6 2
+1 2
+1 3
+2 4
+2 5
+3 6
+3 7
+2 3 6 4 5 7
+1 3
+4 6
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>4
+6
+</pre>
+<p>旅行者 <var>1</var> は以下のように旅行をして観光地 <var>1, 2, 3</var> をすべて見物することができる．</p>
+<ol>
+<li>島 <var>2</var> に到着する．</li>
+<li>島 <var>2</var> にある観光地 <var>1</var> を見物する．</li>
+<li>橋 <var>1</var> を渡り，島 <var>2</var> から島 <var>1</var> へ移動する．</li>
+<li>橋 <var>2</var> を渡り，島 <var>1</var> から島 <var>3</var> へ移動する．</li>
+<li>島 <var>3</var> にある観光地 <var>2</var> を見物する．</li>
+<li>橋 <var>5</var> を渡り，島 <var>3</var> から島 <var>6</var> へ移動する．</li>
+<li>島 <var>6</var> にある観光地 <var>3</var> を見物する．</li>
+<li>島 <var>6</var> から出国する．</li>
+</ol>
+<p>このとき，旅行者 <var>1</var> が <var>1</var> 回以上訪れた島は島 <var>1, 2, 3, 6</var> の <var>4</var> 個となる．<var>1</var> 回以上訪れる島の個数が <var>3</var> 個以下になるように観光地 <var>1, 2, 3</var> をすべて見物することはできないので，<var>1</var> 行目には <var>4</var> を出力する．</p>
+<p>旅行者 <var>2</var> は以下のように旅行をして観光地 <var>4, 5, 6</var> をすべて見物することができる．</p>
+<ol>
+<li>島 <var>3</var> に到着する．</li>
+<li>橋 <var>6</var> を渡り，島 <var>3</var> から島 <var>7</var> へ移動する．</li>
+<li>島 <var>7</var> にある観光地 <var>6</var> を見物する．</li>
+<li>橋 <var>6</var> を渡り，島 <var>7</var> から島 <var>3</var> へ移動する．</li>
+<li>橋 <var>2</var> を渡り，島 <var>3</var> から島 <var>1</var> へ移動する．</li>
+<li>橋 <var>1</var> を渡り，島 <var>1</var> から島 <var>2</var> へ移動する．</li>
+<li>橋 <var>3</var> を渡り，島 <var>2</var> から島 <var>4</var> へ移動する．</li>
+<li>島 <var>4</var> にある観光地 <var>4</var> を見物する．</li>
+<li>橋 <var>3</var> を渡り，島 <var>4</var> から島 <var>2</var> へ移動する．</li>
+<li>橋 <var>4</var> を渡り，島 <var>2</var> から島 <var>5</var> へ移動する．</li>
+<li>島 <var>5</var> にある観光地 <var>5</var> を見物する．</li>
+<li>島 <var>5</var> から出国する．</li>
+</ol>
+<p>このとき，旅行者 <var>2</var> が <var>1</var> 回以上訪れた島は島 <var>1, 2, 3, 4, 5, 7</var> の <var>6</var> 個となる．<var>1</var> 回以上訪れる島の個数が <var>5</var> 個以下になるように観光地 <var>4, 5, 6</var> をすべて見物することはできないので，<var>2</var> 行目には <var>6</var> を出力する．</p>
+<p>この入力例は小課題 <var>1, 2, 4, 5, 6</var> の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>8 8 9
+1 2
+2 3
+3 4
+4 5
+5 6
+6 7
+7 8
+8 6 4 3 5 2 4 7
+3 5
+4 6
+6 8
+1 4
+2 3
+6 8
+5 5
+2 8
+1 2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>3
+4
+6
+6
+3
+6
+1
+6
+3
+</pre>
+<p>この入力例は小課題 <var>1, 2, 3, 6</var> の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>10 7 9
+6 5
+3 6
+9 3
+8 3
+7 8
+7 1
+2 5
+7 10
+8 4
+9 4 10 1 10 7 6
+4 4
+1 3
+1 3
+6 7
+3 6
+3 3
+1 5
+2 5
+1 2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>1
+6
+6
+4
+3
+1
+7
+5
+4
+</pre>
+<p>この入力例は小課題 <var>1, 2, 6</var> の制約を満たす．</p></section>
+</div>
+</span>
+</span>

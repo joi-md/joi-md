@@ -1,0 +1,568 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>There are <var>N</var> cities in JOI Kingdom, numbered from <var>1</var> to <var>N</var>. There are <var>N - 1</var> roads in JOI Kingdom, numbered from <var>1</var> to <var>N - 1</var>. The road <var>i</var> (<var>1 \leq i \leq N - 1</var>) connects the city <var>A_i</var> and the city <var>B_i</var> bi-directionally. It is possible to travel from any city to any other city by passing through some of the roads.</p>
+<p>There are checkpoints on some of the roads in JOI Kingdom. There are <var>M</var> checkpoints, numbered from <var>1</var> to <var>M</var>. The checkpoint <var>j</var> (<var>1 \leq j \leq M</var>) is located on the road <var>P_j</var>. In order to pass through it, you need to pay either one gold coin or <var>C_j</var> silver coins.</p>
+<p>There are <var>Q</var> citizens in JOI Kingdom, numbered from <var>1</var> to <var>Q</var>. The citizen <var>k</var> (<var>1 \leq k \leq Q</var>) has <var>X_k</var> gold coins and <var>Y_k</var> silver coins, and wants to travel from the city <var>S_k</var> to the city <var>T_k</var>. Since gold coins are valuable, all the citizens want to keep as many gold coins as possible.</p>
+<p>Write a program which, given information of the cities, the roads, the checkpoints, and the citizens in JOI Kingdom, for each <var>k</var> (<var>1 \leq k \leq Q</var>), determines whether it is possible for the citizen <var>k</var> to travel from the city <var>S_k</var> to the city <var>T_k</var>, and, if it is possible, calculates the maximum possible number of gold coins the citizen <var>k</var> can keep.</p>
+<hr />
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input.</p>
+<pre><var>N</var> <var>M</var> <var>Q</var>
+<var>A_1</var> <var>B_1</var>
+<var>A_2</var> <var>B_2</var>
+<var>\vdots</var>
+<var>A_{N-1}</var> <var>B_{N-1}</var>
+<var>P_1</var> <var>C_1</var>
+<var>P_2</var> <var>C_2</var>
+<var>\vdots</var>
+<var>P_M</var> <var>C_M</var>
+<var>S_1</var> <var>T_1</var> <var>X_1</var> <var>Y_1</var>
+<var>S_2</var> <var>T_2</var> <var>X_2</var> <var>Y_2</var>
+<var>\vdots</var>
+<var>S_Q</var> <var>T_Q</var> <var>X_Q</var> <var>Y_Q</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>Write <var>Q</var> lines to the standard output. In the <var>k</var>-th line (<var>1 \leq k \leq Q</var>), if the citizen <var>k</var> can travel from the city <var>S_k</var> to the city <var>T_k</var>, output the maximum possible number of gold coins the citizen <var>k</var> can keep. Otherwise, output <code>-1</code> in the <var>k</var>-th line.</p>
+<hr />
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li><var>2 \leq N \leq 100\,000</var>.</li>
+<li><var>1 \leq M \leq 100\,000</var>.</li>
+<li><var>1 \leq Q \leq 100\,000</var>.</li>
+<li><var>1 \leq A_i \leq N</var> (<var>1 \leq i \leq N - 1</var>).</li>
+<li><var>1 \leq B_i \leq N</var> (<var>1 \leq i \leq N - 1</var>).</li>
+<li>It is possible to travel from any city to any other city by passing through some of the roads.</li>
+<li><var>1 \leq P_j \leq N - 1</var> (<var>1 \leq j \leq M</var>).</li>
+<li><var>1 \leq C_j \leq 10^9</var> (<var>1 \leq j \leq M</var>).</li>
+<li><var>1 \leq S_k \leq N</var> (<var>1 \leq k \leq Q</var>).</li>
+<li><var>1 \leq T_k \leq N</var> (<var>1 \leq k \leq Q</var>).</li>
+<li><var>S_k \neq T_k</var> (<var>1 \leq k \leq Q</var>).</li>
+<li><var>0 \leq X_k \leq 10^9</var> (<var>1 \leq k \leq Q</var>).</li>
+<li><var>0 \leq Y_k \leq 10^{18}</var> (<var>1 \leq k \leq Q</var>).</li>
+<li>Given values are all integers.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li>(<var>10</var> points) <var>N \leq 2\,000</var>, <var>M \leq 2\,000</var>, <var>Q \leq 2\,000</var>.</li>
+<li>(<var>28</var> points) <var>C_1 = C_2 = \cdots = C_M</var>.</li>
+<li>(<var>30</var> points) <var>A_i = i</var>, <var>B_i = i + 1</var> (<var>1 \leq i \leq N - 1</var>).</li>
+<li>(<var>32</var> points) No additional constraints.</li>
+</ol>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>5 4 3
+1 2
+1 3
+2 4
+2 5
+2 9
+2 4
+3 5
+4 7
+3 4 2 11
+5 3 4 5
+2 3 1 1
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>1
+2
+-1
+</pre>
+<p>The citizen <var>1</var> can travel from the city <var>3</var> to the city <var>4</var> as follows. After the travel, the citizen <var>1</var> keeps one gold coin.</p>
+<ol>
+<li>The citizen <var>1</var> travels from the city <var>3</var> to the city <var>1</var> by passing through the road <var>2</var>. There are the checkpoints <var>1, 2</var> on the road <var>2</var>. The citizen <var>1</var> pays one gold coin at the checkpoint <var>1</var> and passes through it, and <var>4</var> silver coins at the checkpoint <var>2</var> and passes through it, respectively. After that, the citizen <var>1</var> keeps one gold coin and <var>7</var> silver coins.</li>
+<li>The citizen <var>1</var> travels from the city <var>1</var> to the city <var>2</var> by passing through the road <var>1</var>. Since there is no checkpoint on the road <var>1</var>, the citizen <var>1</var> keeps one gold coin and <var>7</var> silver coins.</li>
+<li>The citizen <var>1</var> travels from the city <var>2</var> to the city <var>4</var> by passing through the road <var>3</var>. There is the checkpoint <var>3</var> on the road <var>3</var>. The citizen <var>1</var> pays <var>5</var> silver coins at the checkpoint <var>3</var> and passes through it. After that, the citizen <var>1</var> keeps one gold coin and <var>2</var> silver coins.</li>
+</ol>
+<p>Since it is impossible for the citizen <var>1</var> to travel by finally keeping more than or equal to <var>2</var> gold coins, output <var>1</var> in the first line.</p>
+<p>The citizen <var>2</var> can travel from the city <var>5</var> to the city <var>3</var> as follows. After the travel, the citizen <var>2</var> keeps two gold coins.</p>
+<ol>
+<li>The citizen <var>2</var> travels from the city <var>5</var> to the city <var>2</var> by passing through the road <var>4</var>. There is the checkpoint <var>4</var> on the road <var>4</var>. The citizen <var>2</var> pays one gold coin at the checkpoint <var>4</var> and passes through it. After that, the citizen <var>2</var> keeps <var>3</var> gold coins and <var>5</var> silver coins.</li>
+<li>The citizen <var>2</var> travels from the city <var>2</var> to the city <var>1</var> by passing through the road <var>1</var>. Since there is no checkpoint on the road <var>1</var>, the citizen <var>2</var> keeps <var>3</var> gold coins and <var>5</var> silver coins.</li>
+<li>The citizen <var>2</var> travels from the city <var>1</var> to the city <var>3</var> by passing through the road <var>2</var>. On the road <var>2</var>, there are the checkpoints <var>1, 2</var>. The citizen <var>2</var> pays one gold coin at the checkpoint <var>1</var> and passes through it, and <var>4</var> silver coins at the checkpoint <var>2</var> and passes through it, respectively. After that, the citizen <var>2</var> keeps <var>2</var> gold coins and one silver coin.</li>
+</ol>
+<p>Since it is impossible for the citizen <var>2</var> to travel by finally keeping more than or equal to <var>3</var> gold coins, output <var>2</var> in the second line.</p>
+<p>Since it is impossible for the citizen <var>3</var> to travel from the city <var>2</var> to the city <var>3</var>, output <code>-1</code> in the third line.</p>
+<p>This sample input satisfies the constraints of Subtasks <var>1, 4</var>.</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>10 7 9
+1 8
+6 3
+5 9
+7 9
+3 1
+3 4
+10 1
+2 6
+5 6
+9 4
+7 4
+7 4
+2 4
+7 4
+7 4
+1 4
+8 6 5 3
+3 9 8 0
+4 7 6 15
+7 4 9 3
+6 4 8 0
+9 10 5 16
+5 3 2 4
+2 8 4 3
+6 1 3 3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>3
+6
+6
+7
+7
+3
+1
+2
+2
+</pre>
+<p>This sample input satisfies the constraints of Subtasks <var>1, 2, 4</var>.</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 3</h3>
+<pre>8 7 11
+1 2
+2 3
+3 4
+4 5
+5 6
+6 7
+7 8
+4 4
+3 7
+2 10
+5 2
+4 1
+4 4
+5 6
+6 3 7 69
+7 1 5 55
+3 1 6 8
+8 2 5 45
+4 6 4 45
+6 1 3 33
+2 1 0 19
+3 7 2 31
+7 1 2 31
+7 2 4 58
+8 3 5 63
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 3</h3>
+<pre>7
+5
+5
+5
+4
+2
+0
+2
+1
+4
+5
+</pre>
+<p>This sample input satisfies the constraints of Subtasks <var>1, 3, 4</var>.</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 4</h3>
+<pre>8 7 11
+1 8
+1 4
+3 1
+3 6
+6 7
+2 1
+5 2
+5 5
+5 8
+4 7
+6 6
+4 1
+6 4
+1 7
+4 7 2 18
+2 4 5 1
+4 2 1 32
+1 5 7 21
+2 5 0 50
+8 4 4 33
+1 7 6 16
+4 8 7 18
+1 2 8 13
+5 4 10 42
+7 1 6 40
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 4</h3>
+<pre>1
+3
+1
+7
+0
+4
+5
+7
+8
+10
+6
+</pre>
+<p>This sample input satisfies the constraints of Subtasks <var>1, 4</var>.</p></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点： <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>JOI 国には <var>N</var> 個の都市があり，<var>1</var> から <var>N</var> までの番号が付けられている．また，JOI 国には <var>N - 1</var> 本の道路があり，<var>1</var> から <var>N - 1</var> までの番号が付けられている．道路 <var>i</var> (<var>1 \leqq i \leqq N - 1</var>) は都市 <var>A_i</var> と都市 <var>B_i</var> を双方向に結んでいる．どの都市からどの都市へも何本かの道路を通ることによって移動することができる．</p>
+<p>JOI 国の道路には関所が設置されている．関所は <var>M</var> 個あり，<var>1</var> から <var>M</var> までの番号が付けられている．関所 <var>j</var> (<var>1 \leqq j \leqq M</var>) は道路 <var>P_j</var> 上に設置されており，通過するには通行料金として金貨 <var>1</var> 枚か銀貨 <var>C_j</var> 枚のどちらかを支払う必要がある．</p>
+<p>JOI 国には <var>Q</var> 人の国民がおり，<var>1</var> から <var>Q</var> までの番号が付けられている．国民 <var>k</var> (<var>1 \leqq k \leqq Q</var>) は金貨 <var>X_k</var> 枚と銀貨 <var>Y_k</var> 枚を持っており，都市 <var>S_k</var> から都市 <var>T_k</var> へ移動したい．また，金貨は貴重なので，国民は皆できるだけ多くの金貨を手元に残したい．</p>
+<p>JOI 国の都市，道路，関所，国民の情報が与えられたとき，それぞれの <var>k</var> (<var>1 \leqq k \leqq Q</var>) について，国民 <var>k</var> が都市 <var>S_k</var> から都市 <var>T_k</var> へ移動できるか判定し，できる場合は最大で何枚の金貨を手元に残せるかを求めるプログラムを作成せよ．</p>
+<hr />
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力は以下の形式で標準入力から与えられる．</p>
+<pre><var>N</var> <var>M</var> <var>Q</var>
+<var>A_1</var> <var>B_1</var>
+<var>A_2</var> <var>B_2</var>
+<var>\vdots</var>
+<var>A_{N-1}</var> <var>B_{N-1}</var>
+<var>P_1</var> <var>C_1</var>
+<var>P_2</var> <var>C_2</var>
+<var>\vdots</var>
+<var>P_M</var> <var>C_M</var>
+<var>S_1</var> <var>T_1</var> <var>X_1</var> <var>Y_1</var>
+<var>S_2</var> <var>T_2</var> <var>X_2</var> <var>Y_2</var>
+<var>\vdots</var>
+<var>S_Q</var> <var>T_Q</var> <var>X_Q</var> <var>Y_Q</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に <var>Q</var> 行出力せよ．<var>k</var> 行目 (<var>1 \leqq k \leqq Q</var>) には，国民 <var>k</var> が都市 <var>S_k</var> から都市 <var>T_k</var> へ移動できる場合は手元に残せる金貨の枚数の最大値を，移動できない場合は <code>-1</code> を出力せよ．</p>
+<hr />
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>2 \leqq N \leqq 100\,000</var>．</li>
+<li><var>1 \leqq M \leqq 100\,000</var>．</li>
+<li><var>1 \leqq Q \leqq 100\,000</var>．</li>
+<li><var>1 \leqq A_i \leqq N</var> (<var>1 \leqq i \leqq N - 1</var>)．</li>
+<li><var>1 \leqq B_i \leqq N</var> (<var>1 \leqq i \leqq N - 1</var>)．</li>
+<li>どの都市からどの都市へも何本かの道路を通ることによって移動することができる．</li>
+<li><var>1 \leqq P_j \leqq N - 1</var> (<var>1 \leqq j \leqq M</var>)．</li>
+<li><var>1 \leqq C_j \leqq 10^9</var> (<var>1 \leqq j \leqq M</var>)．</li>
+<li><var>1 \leqq S_k \leqq N</var> (<var>1 \leqq k \leqq Q</var>)．</li>
+<li><var>1 \leqq T_k \leqq N</var> (<var>1 \leqq k \leqq Q</var>)．</li>
+<li><var>S_k \neq T_k</var> (<var>1 \leqq k \leqq Q</var>)．</li>
+<li><var>0 \leqq X_k \leqq 10^9</var> (<var>1 \leqq k \leqq Q</var>)．</li>
+<li><var>0 \leqq Y_k \leqq 10^{18}</var> (<var>1 \leqq k \leqq Q</var>)．</li>
+<li>入力される値はすべて整数である．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>10</var> 点) <var>N \leqq 2\,000</var>，<var>M \leqq 2\,000</var>，<var>Q \leqq 2\,000</var>．</li>
+<li>(<var>28</var> 点) <var>C_1 = C_2 = \cdots = C_M</var>．</li>
+<li>(<var>30</var> 点) <var>A_i = i</var>，<var>B_i = i + 1</var> (<var>1 \leqq i \leqq N - 1</var>)．</li>
+<li>(<var>32</var> 点) 追加の制約はない．</li>
+</ol>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>5 4 3
+1 2
+1 3
+2 4
+2 5
+2 9
+2 4
+3 5
+4 7
+3 4 2 11
+5 3 4 5
+2 3 1 1
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>1
+2
+-1
+</pre>
+<p>国民 <var>1</var> は以下のようにして，<var>1</var> 枚の金貨を残して都市 <var>3</var> から都市 <var>4</var> へ移動することができる．</p>
+<ol>
+<li>道路 <var>2</var> を通り都市 <var>3</var> から都市 <var>1</var> へ移動する．道路 <var>2</var> には関所 <var>1, 2</var> があり，関所 <var>1</var> で金貨 <var>1</var> 枚，関所 <var>2</var> で銀貨 <var>4</var> 枚をそれぞれ支払って通過する．国民 <var>1</var> が持っている金貨は <var>1</var> 枚，銀貨は <var>7</var> 枚になる．</li>
+<li>道路 <var>1</var> を通り都市 <var>1</var> から都市 <var>2</var> へ移動する．道路 <var>1</var> には関所はないので，国民 <var>1</var> が持っている金貨は <var>1</var> 枚，銀貨は <var>7</var> 枚のままである．</li>
+<li>道路 <var>3</var> を通り都市 <var>2</var> から都市 <var>4</var> へ移動する．道路 <var>3</var> には関所 <var>3</var> があり，関所 <var>3</var> で銀貨 <var>5</var> 枚を支払って通過する．国民 <var>1</var> が持っている金貨は <var>1</var> 枚，銀貨は <var>2</var> 枚になる．</li>
+</ol>
+<p>国民 <var>1</var> が最終的に <var>2</var> 枚以上の金貨を持っているようにする方法は存在しないので，<var>1</var> 行目には <var>1</var> を出力する．</p>
+<p>国民 <var>2</var> は以下のようにして，<var>2</var> 枚の金貨を残して都市 <var>5</var> から都市 <var>3</var> へ移動することができる．</p>
+<ol>
+<li>道路 <var>4</var> を通り都市 <var>5</var> から都市 <var>2</var> へ移動する．道路 <var>4</var> には関所 <var>4</var> があり，関所 <var>4</var> で金貨 <var>1</var> 枚を支払って通過する．国民 <var>2</var> が持っている金貨は <var>3</var> 枚，銀貨は <var>5</var> 枚になる．</li>
+<li>道路 <var>1</var> を通り都市 <var>2</var> から都市 <var>1</var> へ移動する．道路 <var>1</var> には関所はないので，国民 <var>2</var> が持っている金貨は <var>3</var> 枚，銀貨は <var>5</var> 枚のままである．</li>
+<li>道路 <var>2</var> を通り都市 <var>1</var> から都市 <var>3</var> へ移動する．道路 <var>2</var> には関所 <var>1, 2</var> があり，関所 <var>1</var> で金貨 <var>1</var> 枚，関所 <var>2</var> で銀貨 <var>4</var> 枚をそれぞれ支払って通過する．国民 <var>2</var> が持っている金貨は <var>2</var> 枚，銀貨は <var>1</var> 枚になる．</li>
+</ol>
+<p>国民 <var>2</var> が最終的に <var>3</var> 枚以上の金貨を持っているようにする方法は存在しないので，<var>2</var> 行目には <var>2</var> を出力する．</p>
+<p>国民 <var>3</var> は都市 <var>2</var> から都市 <var>3</var> へ移動できないので，<var>3</var> 行目には <code>-1</code> を出力する．</p>
+<p>この入力例は小課題 <var>1, 4</var> の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>10 7 9
+1 8
+6 3
+5 9
+7 9
+3 1
+3 4
+10 1
+2 6
+5 6
+9 4
+7 4
+7 4
+2 4
+7 4
+7 4
+1 4
+8 6 5 3
+3 9 8 0
+4 7 6 15
+7 4 9 3
+6 4 8 0
+9 10 5 16
+5 3 2 4
+2 8 4 3
+6 1 3 3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>3
+6
+6
+7
+7
+3
+1
+2
+2
+</pre>
+<p>この入力例は小課題 <var>1, 2, 4</var> の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>8 7 11
+1 2
+2 3
+3 4
+4 5
+5 6
+6 7
+7 8
+4 4
+3 7
+2 10
+5 2
+4 1
+4 4
+5 6
+6 3 7 69
+7 1 5 55
+3 1 6 8
+8 2 5 45
+4 6 4 45
+6 1 3 33
+2 1 0 19
+3 7 2 31
+7 1 2 31
+7 2 4 58
+8 3 5 63
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>7
+5
+5
+5
+4
+2
+0
+2
+1
+4
+5
+</pre>
+<p>この入力例は小課題 <var>1, 3, 4</var> の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 4</h3>
+<pre>8 7 11
+1 8
+1 4
+3 1
+3 6
+6 7
+2 1
+5 2
+5 5
+5 8
+4 7
+6 6
+4 1
+6 4
+1 7
+4 7 2 18
+2 4 5 1
+4 2 1 32
+1 5 7 21
+2 5 0 50
+8 4 4 33
+1 7 6 16
+4 8 7 18
+1 2 8 13
+5 4 10 42
+7 1 6 40
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 4</h3>
+<pre>1
+3
+1
+7
+0
+4
+5
+7
+8
+10
+6
+</pre>
+<p>この入力例は小課題 <var>1, 4</var> の制約を満たす．</p></section>
+</div>
+</span>
+</span>

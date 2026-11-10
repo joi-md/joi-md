@@ -1,0 +1,918 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+<style>
+#task-statement table {
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+    overflow-x: auto;
+    border-collapse: collapse;
+    margin: 1em 0;
+}
+#task-statement table th,
+#task-statement table td {
+    border: 1px solid #aaa;
+    padding: 0.3em 0.6em;
+    text-align: left;
+    vertical-align: top;
+}
+#task-statement table th {
+    background-color: #f5f5f5;
+}
+#task-statement table td:nth-child(2) {
+    min-width: 16em;
+}
+#task-statement table td:nth-child(n+3) {
+    white-space: nowrap;
+}
+</style>
+
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>In JOI Kingdom, there are <var>N</var> islands, numbered from <var>1</var> to <var>N</var>. Each island has the insecurity level. The insecurity level of the island <var>i</var> (<var>1 \leq i \leq N</var>) is <var>S_i</var>.</p>
+<p>In JOI Kingdom, ships between pairs of islands are mostly used as the methods of transportations. There are <var>M</var> ships, numbered from <var>1</var> to <var>M</var>. The ship <var>j</var> (<var>1 \leq j \leq M</var>) connects the island <var>A_j</var> and the island <var>B_j</var>. We can run ships when necessary. It is possible to travel from any island to any other island by taking a number of ships.</p>
+<p>In JOI Kingdom, there is a plan to introduce new ships. We can choose any pairs of islands where newly introduced ships connect.</p>
+<p>One day, an incident occurred. A ship at anchor was attacked. Prime minister K of JOI Kingdom decided to introduce new ships. He also demands that ships in JOI Kingdom should satisfy the following Security Condition.</p>
+<ul>
+<li>When a ship is anchored at the island <var>i</var> (<var>1 \leq i \leq N</var>), the number of security guards on the ship is greater than or equal to <var>S_i</var>.</li>
+</ul>
+<p>However, since it is expensive to hire security guards, we want to minimize the number of hired security guards. As long as the condition “it is possible to travel from any island to any other island by taking a number of ships” is satisfied, it is possible to abolish ships which are currently running.</p>
+<p>Therefore, we will run ships as follows. Here, <var>k</var> is the number of newly introduced ships.</p>
+<ol>
+<li>For each of the <var>k</var> newly introduced ships, we choose two islands where it connects.</li>
+<li>We choose a number of (more than or equal to <var>0</var>) ships, and we abolish them. It is allowed to abolish newly introduced ships.</li>
+<li>For each of the ships, we anchor it at one of the two islands where it connects. We make a number of security guards get on it. Moreover, the following conditions should be satisfied.</li>
+</ol>
+<p><strong>Condition</strong> For every pair <var>u, v</var> (<var>1 \leq u \leq N</var>, <var>1 \leq v \leq N</var>) of islands, it is possible to transport a passenger from the island <var>u</var> to the island <var>v</var> by repeating the following operations a number of times. In the process, Security Condition should be satisfied all the time.</p>
+<ul>
+<li>We make a passenger or security guards get on a ship which is anchored at the island where the passenger or security guards are staying.</li>
+<li>We make a passenger or security guards get off a ship at the island where the ship is currently anchored.</li>
+<li>We move a ship from the island where the ship is currently anchored to the other island where the ship connects.</li>
+</ul>
+<p>Since the budget is limited, we can introduce at most <var>Q</var> new ships. For each <var>k</var> (<var>0 \leq k \leq Q</var>), Prime minister K wants to know the minimum possible number of hired security guards if the number of newly introduced ships is <var>k</var>.</p>
+<p>Write a program which, given the information of islands and the routes of the ships and the number of new ships we can introduce, calculates the minimum possible number of hired security guards for each <var>k</var>.</p>
+<hr />
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input.</p>
+<pre><var>N</var> <var>M</var> <var>Q</var>
+<var>S_1</var> <var>S_2</var> <var>\cdots</var> <var>S_N</var>
+<var>A_1</var> <var>B_1</var>
+<var>A_2</var> <var>B_2</var>
+<var>\vdots</var>
+<var>A_M</var> <var>B_M</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>Write <var>Q + 1</var> lines to the standard output. The <var>(k + 1)</var>-th line (<var>0 \leq k \leq Q</var>) of output should contain the minimum possible number of hired security guards if the number of newly introduced ships is <var>k</var>.</p>
+<hr />
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li><var>2 \leq N \leq 200\,000</var>.</li>
+<li><var>N - 1 \leq M \leq 400\,000</var>.</li>
+<li><var>0 \leq Q \leq 200\,000</var>.</li>
+<li><var>1 \leq S_i \leq 10^9</var> (<var>1 \leq i \leq N</var>).</li>
+<li><var>1 \leq A_j &lt; B_j \leq N</var> (<var>1 \leq j \leq M</var>).</li>
+<li><var>(A_x, B_x) \neq (A_y, B_y)</var> (<var>1 \leq x &lt; y \leq M</var>).</li>
+<li>It is possible to travel from any island to any other island by taking a number of ships.</li>
+<li>Given values are all integers.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li>(<var>12</var> points) <var>M = N - 1</var>, <var>Q = 0</var>, <var>S_i \leq 2</var> (<var>1 \leq i \leq N</var>), <var>A_j = j</var>, <var>B_j = j + 1</var> (<var>1 \leq j \leq M</var>).</li>
+<li>(<var>13</var> points) <var>M = N - 1</var>, <var>Q = 0</var>, <var>A_j = j</var>, <var>B_j = j + 1</var> (<var>1 \leq j \leq M</var>).</li>
+<li>(<var>12</var> points) <var>M = N - 1</var>, <var>Q = 0</var>.</li>
+<li>(<var>13</var> points) <var>Q = 0</var>.</li>
+<li>(<var>8</var> points) <var>N \leq 16</var>.</li>
+<li>(<var>18</var> points) <var>N \leq 3\,000</var>.</li>
+<li>(<var>24</var> points) No additional constraints.</li>
+</ol>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>4 3 0
+2 1 3 2
+1 2
+2 3
+3 4
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>7
+</pre>
+<p>If the number of newly introduced ships is <var>0</var>, we need <var>7</var> security guards. For example, the conditions are satisfied if we allocate the ships and <var>7</var> security guards as follows.</p>
+<ul>
+<li>The ship <var>1</var> is initially anchored at the island <var>2</var>, and two security guards get on the ship <var>1</var>.</li>
+<li>The ship <var>2</var> is initially anchored at the island <var>2</var>, and two security guards get on the ship <var>2</var>.</li>
+<li>The ship <var>3</var> is initially anchored at the island <var>4</var>, and three security guards get on the ship <var>3</var>.</li>
+</ul>
+<p>Let us explain how to transport a passenger in the following two cases.</p>
+<ul>
+<li>We transport a passenger from the island <var>1</var> to the island <var>4</var>.</li>
+<li>We transport a passenger from the island <var>3</var> to the island <var>2</var>.</li>
+</ul>
+<p>We can transport a passenger from the island <var>1</var> to the island <var>4</var> as follows. The islands where the ships <var>1, 2, 3</var> are anchored, and the numbers of security guards on the ships <var>1, 2, 3</var> are written in this order. The numbers of security guards on the islands <var>1, 2, 3, 4</var> are written in this order.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Operation</th>
+<th>The islands where the ships are anchored</th>
+<th>The numbers of security guards on the ships</th>
+<th>The numbers of security guards on the islands</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-</td>
+<td>-</td>
+<td>2, 2, 4</td>
+<td>2, 2, 3</td>
+<td>0, 0, 0, 0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Move the ship <var>1</var> from the island <var>2</var> to the island <var>1</var></td>
+<td>1, 2, 4</td>
+<td>2, 2, 3</td>
+<td>0, 0, 0, 0</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Make a passenger get on the ship <var>1</var></td>
+<td>1, 2, 4</td>
+<td>2, 2, 3</td>
+<td>0, 0, 0, 0</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Move the ship <var>1</var> from the island <var>1</var> to the island <var>2</var></td>
+<td>2, 2, 4</td>
+<td>2, 2, 3</td>
+<td>0, 0, 0, 0</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Make one security guard and the passenger get off the ship <var>1</var></td>
+<td>2, 2, 4</td>
+<td>1, 2, 3</td>
+<td>0, 1, 0, 0</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Make one security guard and the passenger get on the ship <var>2</var></td>
+<td>2, 2, 4</td>
+<td>1, 3, 3</td>
+<td>0, 0, 0, 0</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Move the ship <var>2</var> from the island <var>2</var> to the island <var>3</var></td>
+<td>2, 3, 4</td>
+<td>1, 3, 3</td>
+<td>0, 0, 0, 0</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Make the passenger get off the ship <var>2</var></td>
+<td>2, 3, 4</td>
+<td>1, 3, 3</td>
+<td>0, 0, 0, 0</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Move the ship <var>3</var> from the island <var>4</var> to the island <var>3</var></td>
+<td>2, 3, 3</td>
+<td>1, 3, 3</td>
+<td>0, 0, 0, 0</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Make the passenger get on the ship <var>3</var></td>
+<td>2, 3, 3</td>
+<td>1, 3, 3</td>
+<td>0, 0, 0, 0</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Move the ship <var>3</var> from the island <var>3</var> to the island <var>4</var></td>
+<td>2, 3, 4</td>
+<td>1, 3, 3</td>
+<td>0, 0, 0, 0</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Make the passenger get off the ship <var>3</var></td>
+<td>2, 3, 4</td>
+<td>1, 3, 3</td>
+<td>0, 0, 0, 0</td>
+</tr>
+</tbody>
+</table>
+<p>We can transport a passenger from the island <var>3</var> to the island <var>2</var> as follows.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Operation</th>
+<th>The islands where the ships are anchored</th>
+<th>The numbers of security guards on the ships</th>
+<th>The numbers of security guards on the islands</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-</td>
+<td>-</td>
+<td>2, 2, 4</td>
+<td>2, 2, 3</td>
+<td>0, 0, 0, 0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Make one security guard get off the ship <var>1</var></td>
+<td>2, 2, 4</td>
+<td>1, 2, 3</td>
+<td>0, 1, 0, 0</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Make one security guard get on the ship <var>2</var></td>
+<td>2, 2, 4</td>
+<td>1, 3, 3</td>
+<td>0, 0, 0, 0</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Move the ship <var>2</var> from the island <var>2</var> to the island <var>3</var></td>
+<td>2, 3, 4</td>
+<td>1, 3, 3</td>
+<td>0, 0, 0, 0</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Make a passenger get on the ship <var>2</var></td>
+<td>2, 3, 4</td>
+<td>1, 3, 3</td>
+<td>0, 0, 0, 0</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Move the ship <var>2</var> from the island <var>3</var> to the island <var>2</var></td>
+<td>2, 2, 4</td>
+<td>1, 3, 3</td>
+<td>0, 0, 0, 0</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Make the passenger get off the ship <var>2</var></td>
+<td>2, 2, 4</td>
+<td>1, 3, 3</td>
+<td>0, 0, 0, 0</td>
+</tr>
+</tbody>
+</table>
+<p>Since it is impossible to satisfy the conditions if the number of security guards is less than or equal to <var>6</var>, output <var>7</var>.</p>
+<p>This sample input satisfies the constraints of Subtasks <var>2, 3, 4, 5, 6, 7</var>.</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>4 3 1
+2 1 3 2
+1 2
+2 3
+3 4
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>7
+5
+</pre>
+<p>If the number of newly introduced ships is <var>0</var>, similarly as Sample Input <var>1</var>, we need <var>7</var> security guards.</p>
+<p>If the number of newly introduced ships is <var>1</var>, we need <var>5</var> security guards. For example, the conditions are satisfied if we allocate the ships and <var>5</var> security guards as follows.</p>
+<ul>
+<li>We introduce a new ship connecting the island <var>2</var> and the island <var>4</var>. (In the following, we call it the ship <var>4</var>.)</li>
+<li>We abolish the ship <var>3</var>.</li>
+<li>We initially anchor the ship <var>1</var> at the island <var>2</var>, and make two security guards get on the ship <var>1</var>.</li>
+<li>We initially anchor the ship <var>2</var> at the island <var>2</var>, and make one security guard get on the ship <var>2</var>.</li>
+<li>We initially anchor the ship <var>4</var> at the island <var>2</var>, and make two security guards get on the ship <var>4</var>.</li>
+</ul>
+<p>This sample input satisfies the constraints of Subtasks <var>5, 6, 7</var>.</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 3</h3>
+<pre>3 3 0
+1 1 1
+1 2
+1 3
+2 3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 3</h3>
+<pre>2
+</pre>
+<p>If the number of newly introduced ships is <var>0</var>, we need <var>2</var> security guards. For example, the conditions are satisfied if we allocate the ships and <var>2</var> security guards as follows.</p>
+<ul>
+<li>We abolish the ship <var>3</var>.</li>
+<li>We initially anchor the ship <var>1</var> at the island <var>1</var>, and make one security guard get on the ship <var>1</var>.</li>
+<li>We initially anchor the ship <var>2</var> at the island <var>1</var>, and make one security guard get on the ship <var>2</var>.</li>
+</ul>
+<p>This sample input satisfies the constraints of Subtasks <var>4, 5, 6, 7</var>.</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 4</h3>
+<pre>8 7 0
+2 2 2 2 2 2 2 2
+1 2
+2 3
+3 4
+4 5
+5 6
+6 7
+7 8
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 4</h3>
+<pre>14
+</pre>
+<p>This sample input satisfies the constraints of all the subtasks.</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 5</h3>
+<pre>8 7 0
+16 39 36 23 15 48 23 56
+1 2
+1 3
+2 4
+2 5
+3 6
+3 7
+7 8
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 5</h3>
+<pre>245
+</pre>
+<p>This sample input satisfies the constraints of Subtasks <var>3, 4, 5, 6, 7</var>.</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 6</h3>
+<pre>10 13 4
+314 159 265 358 979 323 846 264 338 327
+1 2
+1 4
+2 3
+2 5
+3 6
+4 5
+4 7
+5 6
+5 8
+6 9
+7 8
+8 9
+9 10
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 6</h3>
+<pre>3139
+2901
+2722
+2567
+2461
+</pre>
+<p>This sample input satisfies the constraints of Subtasks <var>5, 6, 7</var>.</p></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点： <var>100</var> 点</p>
+<style>
+#task-statement table {
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+    overflow-x: auto;
+    border-collapse: collapse;
+    margin: 1em 0;
+}
+#task-statement table th,
+#task-statement table td {
+    border: 1px solid #aaa;
+    padding: 0.3em 0.6em;
+    text-align: left;
+    vertical-align: top;
+}
+#task-statement table th {
+    background-color: #f5f5f5;
+}
+#task-statement table td:nth-child(2) {
+    min-width: 16em;
+}
+#task-statement table td:nth-child(n+3) {
+    white-space: nowrap;
+}
+</style>
+
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>JOI 国には <var>N</var> 個の島があり，<var>1</var> から <var>N</var> までの番号が付けられている．それぞれの島には治安の悪さを表す数値が定められており，島 <var>i</var> (<var>1 \leqq i \leqq N</var>) の治安の悪さは <var>S_i</var> である．</p>
+<p>JOI 国での主な交通手段は，<var>2</var> つの島の間を直通で結ぶ船である．船は <var>M</var> 隻あり，<var>1</var> から <var>M</var> までの番号が付けられている．船 <var>j</var> (<var>1 \leqq j \leqq M</var>) は島 <var>A_j</var> と島 <var>B_j</var> の間を行き来している．船は需要に応じて好きなタイミングで行き来させることができる．どの島から他のどの島へもいくつかの船を用いて到達することができる．</p>
+<p>また，JOI 国では新たに運航する船を何隻か増やす予定である．それらの船についてはその船が行き来する <var>2</var> つの島を自由に選ぶことができる．</p>
+<p>ある日，停泊中の船が襲撃される事件が起こったため，JOI 国の K 首相は，新たに運航する船を増やすと同時に，船の運航に以下のセキュリティ条件を課すことにした．</p>
+<ul>
+<li>船が島 <var>i</var> (<var>1 \leqq i \leqq N</var>) に停泊している間，その船に警備員が <var>S_i</var> 人以上乗船していなければならない．</li>
+</ul>
+<p>しかし，警備員を雇うのにはコストがかかるため，雇う警備員の数はできるだけ少なくしたい．このとき，「どの島から他のどの島へもいくつかの船を用いて到達することができる」ままである限り，運航している船のうちいくつかを廃止してもよい．</p>
+<p>したがって，新たに運航する船の数を <var>k</var> 隻としたとき，以下のようにして船を運航することになる．</p>
+<ol>
+<li>新たに運航する <var>k</var> 隻の船それぞれについて，その船が行き来する <var>2</var> つの島を決定する．</li>
+<li>船のうちいくつかを選び（<var>0</var> 個でもよい），それらの船を廃止する．このとき，新たに運航する船を廃止しても構わない．</li>
+<li>運航するそれぞれの船に警備員を何人か乗せ，その船が行き来する <var>2</var> つの島のうちどちらかに停泊させる．このとき，以下の条件を満たさなければならない．</li>
+</ol>
+<p><strong>条件</strong>　どの <var>2</var> つの島 <var>u, v</var> (<var>1 \leqq u \leqq N</var>，<var>1 \leqq v \leqq N</var>) が指定されたとしても，以下の行動を繰り返すことで，セキュリティ条件を満たしたまま客を島 <var>u</var> から島 <var>v</var> に移動させることができる．</p>
+<ul>
+<li>客や警備員を，ある島からその島に停泊している船に乗せる．</li>
+<li>客や警備員を，ある島に停泊している船からその島に降ろす．</li>
+<li>ある島に停泊している船を，その船が行き来するもう一方の島に向かわせ停泊させる．</li>
+</ul>
+<p>予算の関係上，新たに増やすことのできる船の数は最大で <var>Q</var> 隻である．そこで K 首相は，各 <var>k</var> (<var>0 \leqq k \leqq Q</var>) に対して，新たに増やす船の数が <var>k</var> 隻であるときに必要となる警備員の人数の最小値を知りたい．</p>
+<p>島と船の航路，新たに増やすことのできる船の数の情報が与えられたとき，それぞれの <var>k</var> に対して，必要となる警備員の人数の最小値を求めるプログラムを作成せよ．</p>
+<hr />
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力は以下の形式で標準入力から与えられる．</p>
+<pre><var>N</var> <var>M</var> <var>Q</var>
+<var>S_1</var> <var>S_2</var> <var>\cdots</var> <var>S_N</var>
+<var>A_1</var> <var>B_1</var>
+<var>A_2</var> <var>B_2</var>
+<var>\vdots</var>
+<var>A_M</var> <var>B_M</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に <var>Q + 1</var> 行で出力せよ．<var>k + 1</var> 行目 (<var>0 \leqq k \leqq Q</var>) には，新たに増やす船の数が <var>k</var> 隻のときに必要となる警備員の人数の最小値を出力せよ．</p>
+<hr />
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>2 \leqq N \leqq 200\,000</var>．</li>
+<li><var>N - 1 \leqq M \leqq 400\,000</var>．</li>
+<li><var>0 \leqq Q \leqq 200\,000</var>．</li>
+<li><var>1 \leqq S_i \leqq 10^9</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>1 \leqq A_j &lt; B_j \leqq N</var> (<var>1 \leqq j \leqq M</var>)．</li>
+<li><var>(A_x, B_x) \neq (A_y, B_y)</var> (<var>1 \leqq x &lt; y \leqq M</var>)．</li>
+<li>どの島から他のどの島へもいくつかの船を用いて到達することができる．</li>
+<li>入力される値はすべて整数である．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>12</var> 点) <var>M = N - 1</var>，<var>Q = 0</var>，<var>S_i \leqq 2</var> (<var>1 \leqq i \leqq N</var>)，<var>A_j = j</var>，<var>B_j = j + 1</var> (<var>1 \leqq j \leqq M</var>)．</li>
+<li>(<var>13</var> 点) <var>M = N - 1</var>，<var>Q = 0</var>，<var>A_j = j</var>，<var>B_j = j + 1</var> (<var>1 \leqq j \leqq M</var>)．</li>
+<li>(<var>12</var> 点) <var>M = N - 1</var>，<var>Q = 0</var>．</li>
+<li>(<var>13</var> 点) <var>Q = 0</var>．</li>
+<li>(<var>8</var> 点) <var>N \leqq 16</var>．</li>
+<li>(<var>18</var> 点) <var>N \leqq 3\,000</var>．</li>
+<li>(<var>24</var> 点) 追加の制約はない．</li>
+</ol>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>4 3 0
+2 1 3 2
+1 2
+2 3
+3 4
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>7
+</pre>
+<p>新たに増やす船の数が <var>0</var> 隻のとき，必要な警備員の人数は <var>7</var> 人である．例えば，次のようにして警備員 <var>7</var> 人で条件を満たすことができる．</p>
+<ul>
+<li>船 <var>1</var> を最初，島 <var>2</var> に停泊させ，<var>2</var> 人の警備員を乗せる．</li>
+<li>船 <var>2</var> を最初，島 <var>2</var> に停泊させ，<var>2</var> 人の警備員を乗せる．</li>
+<li>船 <var>3</var> を最初，島 <var>4</var> に停泊させ，<var>3</var> 人の警備員を乗せる．</li>
+</ul>
+<p>具体例として，以下の <var>2</var> つの場合に客の移動を行うことができることを説明する．</p>
+<ul>
+<li>島 <var>1</var> から島 <var>4</var> に客を移動させる．</li>
+<li>島 <var>3</var> から島 <var>2</var> に客を移動させる．</li>
+</ul>
+<p>島 <var>1</var> から島 <var>4</var> への客の移動は次の表のようにして実現できる．ここで，各船が停泊する島，各船の警備員数は船 <var>1, 2, 3</var> の順に記されている．また，各島の警備員数は島 <var>1, 2, 3, 4</var> の順に記されている．</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>行動</th>
+<th>各船が停泊する島</th>
+<th>各船の警備員数</th>
+<th>各島の警備員数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-</td>
+<td>-</td>
+<td>2, 2, 4</td>
+<td>2, 2, 3</td>
+<td>0, 0, 0, 0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>船 <var>1</var> を島 <var>2</var> から島 <var>1</var> へ向かわせる</td>
+<td>1, 2, 4</td>
+<td>2, 2, 3</td>
+<td>0, 0, 0, 0</td>
+</tr>
+<tr>
+<td>2</td>
+<td>客を船 <var>1</var> に乗せる</td>
+<td>1, 2, 4</td>
+<td>2, 2, 3</td>
+<td>0, 0, 0, 0</td>
+</tr>
+<tr>
+<td>3</td>
+<td>船 <var>1</var> を島 <var>1</var> から島 <var>2</var> へ向かわせる</td>
+<td>2, 2, 4</td>
+<td>2, 2, 3</td>
+<td>0, 0, 0, 0</td>
+</tr>
+<tr>
+<td>4</td>
+<td>警備員 <var>1</var> 人と客を船 <var>1</var> から降ろす</td>
+<td>2, 2, 4</td>
+<td>1, 2, 3</td>
+<td>0, 1, 0, 0</td>
+</tr>
+<tr>
+<td>5</td>
+<td>警備員 <var>1</var> 人と客を船 <var>2</var> に乗せる</td>
+<td>2, 2, 4</td>
+<td>1, 3, 3</td>
+<td>0, 0, 0, 0</td>
+</tr>
+<tr>
+<td>6</td>
+<td>船 <var>2</var> を島 <var>2</var> から島 <var>3</var> へ向かわせる</td>
+<td>2, 3, 4</td>
+<td>1, 3, 3</td>
+<td>0, 0, 0, 0</td>
+</tr>
+<tr>
+<td>7</td>
+<td>客を船 <var>2</var> から降ろす</td>
+<td>2, 3, 4</td>
+<td>1, 3, 3</td>
+<td>0, 0, 0, 0</td>
+</tr>
+<tr>
+<td>8</td>
+<td>船 <var>3</var> を島 <var>4</var> から島 <var>3</var> へ向かわせる</td>
+<td>2, 3, 3</td>
+<td>1, 3, 3</td>
+<td>0, 0, 0, 0</td>
+</tr>
+<tr>
+<td>9</td>
+<td>客を船 <var>3</var> に乗せる</td>
+<td>2, 3, 3</td>
+<td>1, 3, 3</td>
+<td>0, 0, 0, 0</td>
+</tr>
+<tr>
+<td>10</td>
+<td>船 <var>3</var> を島 <var>3</var> から島 <var>4</var> へ向かわせる</td>
+<td>2, 3, 4</td>
+<td>1, 3, 3</td>
+<td>0, 0, 0, 0</td>
+</tr>
+<tr>
+<td>11</td>
+<td>客を船 <var>3</var> から降ろす</td>
+<td>2, 3, 4</td>
+<td>1, 3, 3</td>
+<td>0, 0, 0, 0</td>
+</tr>
+</tbody>
+</table>
+<p>また，島 <var>3</var> から島 <var>2</var> への客の移動は次の表のようにして実現できる．</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>行動</th>
+<th>各船が停泊する島</th>
+<th>各船の警備員数</th>
+<th>各島の警備員数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-</td>
+<td>-</td>
+<td>2, 2, 4</td>
+<td>2, 2, 3</td>
+<td>0, 0, 0, 0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>警備員 <var>1</var> 人を船 <var>1</var> から降ろす</td>
+<td>2, 2, 4</td>
+<td>1, 2, 3</td>
+<td>0, 1, 0, 0</td>
+</tr>
+<tr>
+<td>2</td>
+<td>警備員 <var>1</var> 人を船 <var>2</var> に乗せる</td>
+<td>2, 2, 4</td>
+<td>1, 3, 3</td>
+<td>0, 0, 0, 0</td>
+</tr>
+<tr>
+<td>3</td>
+<td>船 <var>2</var> を島 <var>2</var> から島 <var>3</var> へ向かわせる</td>
+<td>2, 3, 4</td>
+<td>1, 3, 3</td>
+<td>0, 0, 0, 0</td>
+</tr>
+<tr>
+<td>4</td>
+<td>客を船 <var>2</var> に乗せる</td>
+<td>2, 3, 4</td>
+<td>1, 3, 3</td>
+<td>0, 0, 0, 0</td>
+</tr>
+<tr>
+<td>5</td>
+<td>船 <var>2</var> を島 <var>3</var> から島 <var>2</var> へ向かわせる</td>
+<td>2, 2, 4</td>
+<td>1, 3, 3</td>
+<td>0, 0, 0, 0</td>
+</tr>
+<tr>
+<td>6</td>
+<td>客を船 <var>2</var> から降ろす</td>
+<td>2, 2, 4</td>
+<td>1, 3, 3</td>
+<td>0, 0, 0, 0</td>
+</tr>
+</tbody>
+</table>
+<p><var>6</var> 人以下の警備員で条件を満たすことは不可能なので，<var>7</var> を出力する．</p>
+<p>この入力例は小課題 <var>2, 3, 4, 5, 6, 7</var> の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>4 3 1
+2 1 3 2
+1 2
+2 3
+3 4
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>7
+5
+</pre>
+<p>新たに増やす船の数が <var>0</var> 隻のとき，入力例 <var>1</var> と同様に，必要な警備員の人数は <var>7</var> 人である．</p>
+<p>新たに増やす船の数が <var>1</var> 隻のとき，必要な警備員の人数は <var>5</var> 人である．例えば，次のようにして警備員 <var>5</var> 人で条件を満たすことができる．</p>
+<ul>
+<li>新たに島 <var>2</var> と島 <var>4</var> の間を行き来する船を運航させる．（以下，この船を船 <var>4</var> と書く）</li>
+<li>船 <var>3</var> を廃止する．</li>
+<li>船 <var>1</var> を最初，島 <var>2</var> に停泊させ，<var>2</var> 人の警備員を乗せる．</li>
+<li>船 <var>2</var> を最初，島 <var>2</var> に停泊させ，<var>1</var> 人の警備員を乗せる．</li>
+<li>船 <var>4</var> を最初，島 <var>2</var> に停泊させ，<var>2</var> 人の警備員を乗せる．</li>
+</ul>
+<p>この入力例は小課題 <var>5, 6, 7</var> の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>3 3 0
+1 1 1
+1 2
+1 3
+2 3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>2
+</pre>
+<p>新たに増やす船の数が <var>0</var> 隻のとき，必要な警備員の人数は <var>2</var> 人である．例えば，次のようにして警備員 <var>2</var> 人で条件を満たすことができる．</p>
+<ul>
+<li>船 <var>3</var> を廃止する．</li>
+<li>船 <var>1</var> を最初，島 <var>1</var> に停泊させ，<var>1</var> 人の警備員を乗せる．</li>
+<li>船 <var>2</var> を最初，島 <var>1</var> に停泊させ，<var>1</var> 人の警備員を乗せる．</li>
+</ul>
+<p>この入力例は小課題 <var>4, 5, 6, 7</var> の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 4</h3>
+<pre>8 7 0
+2 2 2 2 2 2 2 2
+1 2
+2 3
+3 4
+4 5
+5 6
+6 7
+7 8
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 4</h3>
+<pre>14
+</pre>
+<p>この入力例はすべての小課題の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 5</h3>
+<pre>8 7 0
+16 39 36 23 15 48 23 56
+1 2
+1 3
+2 4
+2 5
+3 6
+3 7
+7 8
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 5</h3>
+<pre>245
+</pre>
+<p>この入力例は小課題 <var>3, 4, 5, 6, 7</var> の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 6</h3>
+<pre>10 13 4
+314 159 265 358 979 323 846 264 338 327
+1 2
+1 4
+2 3
+2 5
+3 6
+4 5
+4 7
+5 6
+5 8
+6 9
+7 8
+8 9
+9 10
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 6</h3>
+<pre>3139
+2901
+2722
+2567
+2461
+</pre>
+<p>この入力例は小課題 <var>5, 6, 7</var> の制約を満たす．</p></section>
+</div>
+</span>
+</span>
