@@ -1,0 +1,747 @@
+<span class="lang">
+<span class="lang-en">
+<blockquote>
+<p><strong>Submission on AtCoder</strong></p>
+<p><a href="https://www2.ioi-jp.org/camp/2024/2024-sp-tasks/contest3/joitour-dist.zip">Distributed Files</a></p>
+<p>The Implementation Details, Important Notices, and Compilation and Test Run sections below describe the C++ function interface and local testing. If you use another language, implement the same operations using the input/output protocol in this section.</p>
+<h4>When using C++</h4>
+<p>Your program must include <code>joitour.h</code>. See the problem statement below for the implementation details.</p>
+<details>
+<summary><strong>When using other languages</strong></summary>
+<p>Use the following input and output format.</p>
+<h5>init</h5>
+<p>Read input in the following format.</p>
+<pre><var>N</var>
+<var>F_0</var> <var>\cdots</var> <var>F_{N-1}</var>
+<var>U_0</var> <var>V_0</var>
+<var>\vdots</var>
+<var>U_{N-2}</var> <var>V_{N-2}</var>
+<var>Q</var>
+</pre>
+<h5>change</h5>
+<p>Read input in the following format.</p>
+<pre><var>X</var> <var>Y</var>
+</pre>
+<h5>num_tours</h5>
+<p>Print the answer on one line.</p>
+<h5>Other notices</h5>
+<ul>
+<li><strong>Flush the standard output after every output.</strong></li>
+</ul>
+</details>
+</blockquote>
+<p>Score: <var>100</var> points</p>
+<style>
+#task-statement details {
+    margin: 1em 0;
+}
+#task-statement details > summary {
+    display: list-item;
+    cursor: pointer;
+}
+#task-statement table {
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+    overflow-x: auto;
+    border-collapse: collapse;
+    margin: 1em 0;
+}
+#task-statement table th,
+#task-statement table td {
+    border: 1px solid #aaa;
+    padding: 0.4em 0.7em;
+    text-align: left;
+    vertical-align: top;
+}
+#task-statement table th {
+    background-color: #f5f5f5;
+}
+</style>
+
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>In IOI country, there are <var>N</var> towns which are numbered from <var>0</var> to <var>N - 1</var>, and <var>N - 1</var> roads which are numbered from <var>0</var> to <var>N - 2</var>. Road <var>j</var> (<var>0 \leq j \leq N - 2</var>) connects town <var>U_j</var> and town <var>V_j</var> bidirectionally. You can move between any pair of towns by traversing some roads.</p>
+<p>There is a restaurant in each town of IOI country. The type of restaurant at town <var>i</var> (<var>0 \leq i \leq N - 1</var>) is represented by an integer <var>F_i</var>, which corresponds to:</p>
+<ul>
+<li><var>F_i = 0</var>: Juice restaurant</li>
+<li><var>F_i = 1</var>: Omelette restaurant</li>
+<li><var>F_i = 2</var>: Ice cream restaurant</li>
+</ul>
+<p>Rie is a tour guide in IOI country, who plans a sightseeing tour named JOI Tour. JOI Tour is a tour to visit <var>3</var> types of restaurants in a following way:</p>
+<ol>
+<li>Choose a town <var>i_0</var> with juice restaurant (<var>0 \leq i_0 \leq N - 1</var>), and start the tour at town <var>i_0</var>.</li>
+<li>Visit the juice restaurant at town <var>i_0</var>.</li>
+<li>Choose a town <var>i_1</var> with omelette restaurant (<var>0 \leq i_1 \leq N - 1</var>), and move from town <var>i_0</var> to town <var>i_1</var> along the roads by bus, using the shortest route.</li>
+<li>Visit the omelette restaurant at town <var>i_1</var>.</li>
+<li>Choose a town <var>i_2</var> with ice cream restaurant (<var>0 \leq i_2 \leq N - 1</var>), and move from town <var>i_1</var> to town <var>i_2</var> along the roads by bus, using the shortest route.</li>
+<li>Visit the ice cream restaurant at town <var>i_2</var>.</li>
+<li>Finish the tour at town <var>i_2</var>.</li>
+</ol>
+<p>To avoid customers getting bored, Rie decided to choose three towns <var>i_0, i_1, i_2</var> so that they don't pass the same road twice. We call such JOI tour <strong>good</strong>. In order to help her finding the ideal tour plan, you are asked to compute the number of good JOI tours. In other words, you should find the number of tuples <var>(i_0, i_1, i_2)</var> which meets all of the following conditions:</p>
+<ul>
+<li>The restaurant at town <var>i_0</var> is a juice restaurant.</li>
+<li>The restaurant at town <var>i_1</var> is an omelette restaurant.</li>
+<li>The restaurant at town <var>i_2</var> is an ice cream restaurant.</li>
+<li>When we move from town <var>i_0</var> to town <var>i_1</var> then from town <var>i_1</var> to town <var>i_2</var>, both using the shortest routes, we don't pass the same road twice.</li>
+</ul>
+<p>In IOI country, there will be <var>Q</var> events involving change of restaurant type. When the <var>(k + 1)</var>-th event (<var>0 \leq k \leq Q - 1</var>) happens, two integers <var>X_k</var> and <var>Y_k</var> will be given to you, which holds <var>0 \leq X_k \leq N - 1</var> and <var>0 \leq Y_k \leq 2</var>. Then, the type of the restaurant at town <var>X_k</var> is changed to the type represented by integer <var>Y_k</var>. That is, when <var>Y_k = 0, 1, 2</var>, it is changed to juice, omelette, ice cream restaurant, respectively. After each event, you should immediately compute the up-to-date number of good JOI tours and tell the result to Rie.</p>
+<p>Write a program which, given information of roads and restaurants, computes the number of good JOI tours after each event of change of restaurant type.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Implementation Details</h3>
+<p>You need to submit one file.</p>
+<p>The file is <code>joitour.cpp</code>. The program should include <code>joitour.h</code> using the preprocessing directive <code>#include</code>.</p>
+<p>In <code>joitour.cpp</code>, the following functions should be implemented.</p>
+<h4>init</h4>
+<pre>void init(int N, std::vector&lt;int&gt; F, std::vector&lt;int&gt; U, std::vector&lt;int&gt; V, int Q)
+</pre>
+<ul>
+<li>With this function call, the information of roads and restaurants is given.</li>
+<li>This function is called only once, at the beginning.</li>
+<li>The parameter <code>N</code> is the number of towns <var>N</var>.</li>
+<li>The parameter <code>F</code> is an array of length <var>N</var>. <code>F[i]</code> (<var>0 \leq i \leq N - 1</var>) represents the type of restaurant at town <var>i</var>, that is, <var>F_i</var>.</li>
+<li>The parameters <code>U</code> and <code>V</code> are arrays of length <var>N - 1</var>. <code>U[j]</code> and <code>V[j]</code> (<var>0 \leq j \leq N - 2</var>) are two towns connected by road <var>j</var>, that is, <var>U_j</var> and <var>V_j</var>.</li>
+<li>The parameter <code>Q</code> is the number of events of change of restaurant type, that is, <var>Q</var>.</li>
+</ul>
+<h4>change</h4>
+<pre>void change(int X, int Y)
+</pre>
+<ul>
+<li>With this function call, the information of change of restaurant type is given.</li>
+<li>This function is called <var>Q</var> times.</li>
+<li>In <var>(k + 1)</var>-th call of this function (<var>0 \leq k \leq Q - 1</var>), the parameter <code>X</code> is the index of town that change of restaurant type happens, that is, <var>X_k</var>.</li>
+<li>In <var>(k + 1)</var>-th call of this function (<var>0 \leq k \leq Q - 1</var>), the parameter <code>Y</code> represents the new type of restaurant, that is, <var>Y_k</var>. It is guaranteed that new type is different from the old type.</li>
+</ul>
+<h4>num_tours</h4>
+<pre>long long num_tours()
+</pre>
+<ul>
+<li>This function is called in the following occasions, totalling <var>Q + 1</var> times.<ul>
+<li>Right after the execution of function <code>init</code></li>
+<li>Right after the execution of function <code>change</code></li>
+</ul>
+</li>
+<li>This function should return the up-to-date number of good JOI tours.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Important Notices</h3>
+<ul>
+<li>Your program can implement other functions for internal use, or use global variables.</li>
+<li>Your program must not use the standard input and the standard output. Your program must not communicate with other files by any methods. However, your program may output debugging information to the standard error.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Compilation and Test Run</h3>
+<p>You can download an archive file from the contest webpage which contains the sample grader to test your program. The archive file also contains a sample source file of your program.</p>
+<p>The sample grader is the file <code>grader.cpp</code>. In order to test your program, put <code>grader.cpp</code>, <code>joitour.cpp</code>, <code>joitour.h</code> in the same directory, and run the following command to compile your programs. Instead, you may run <code>compile.sh</code> contained in the archive file.</p>
+<pre>g++ -std=gnu++20 -O2 -o grader grader.cpp joitour.cpp
+</pre>
+<p>When the compilation succeeds, the executable file <code>grader</code> is generated.</p>
+<p>Note that the actual grader is different from the sample grader. The sample grader will be executed as a single process, which will read input data from the standard input and write the results to the standard output.</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Input for the Sample Grader</h3>
+<p>The sample grader reads the following data from the standard input.</p>
+<pre><var>N</var>
+<var>F_0</var> <var>F_1</var> <var>\cdots</var> <var>F_{N-1}</var>
+<var>U_0</var> <var>V_0</var>
+<var>U_1</var> <var>V_1</var>
+<var>\vdots</var>
+<var>U_{N-2}</var> <var>V_{N-2}</var>
+<var>Q</var>
+<var>X_0</var> <var>Y_0</var>
+<var>X_1</var> <var>Y_1</var>
+<var>\vdots</var>
+<var>X_{Q-1}</var> <var>Y_{Q-1}</var>
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Output of the Sample Grader</h3>
+<p>The sample grader outputs the return value of function <code>num_tours</code> in one line to the standard output, after every call of this function.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li><var>3 \leq N \leq 200\,000</var>.</li>
+<li><var>0 \leq F_i \leq 2</var> (<var>0 \leq i \leq N - 1</var>).</li>
+<li><var>0 \leq U_j &lt; V_j \leq N - 1</var> (<var>0 \leq j \leq N - 2</var>).</li>
+<li>You can move between any pair of towns by traversing some roads.</li>
+<li><var>0 \leq Q \leq 50\,000</var>.</li>
+<li><var>0 \leq X_k \leq N - 1</var> (<var>0 \leq k \leq Q - 1</var>).</li>
+<li><var>0 \leq Y_k \leq 2</var> (<var>0 \leq k \leq Q - 1</var>).</li>
+<li>For each call to the function <code>change</code>, the new type is different from the old type.</li>
+<li>Given values are all integers.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li>(<var>6</var> points) <var>N \leq 400</var>, <var>Q \leq 100</var>.</li>
+<li>(<var>8</var> points) <var>N \leq 4\,000</var>, <var>Q \leq 1\,000</var>.</li>
+<li>(<var>6</var> points) <var>Q = 0</var>.</li>
+<li>(<var>16</var> points) <var>U_j = j</var>, <var>V_j = j + 1</var> (<var>0 \leq j \leq N - 2</var>).</li>
+<li>(<var>16</var> points) <var>U_j = \left\lfloor \frac{j}{2} \right\rfloor</var>, <var>V_j = j + 1</var> (<var>0 \leq j \leq N - 2</var>). (<var>\left\lfloor \frac{j}{2} \right\rfloor</var> denotes the largest integer not exceeding <var>\frac{j}{2}</var>.)</li>
+<li>(<var>34</var> points) <var>N \leq 100\,000</var>, <var>Q \leq 25\,000</var>.</li>
+<li>(<var>14</var> points) No additional constraints.</li>
+</ol>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Communication</h3>
+<p>Here is a sample input for the sample grader and corresponding function calls.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>3
+0 1 2
+0 1
+1 2
+0
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>1
+</pre>
+<table>
+<thead>
+<tr>
+<th>Function Calls</th>
+<th>Return Values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>init(3, [0, 1, 2], [0, 1], [1, 2], 0)</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>num_tours()</code></td>
+<td><var>1</var></td>
+</tr>
+</tbody>
+</table>
+<p>There are only one good JOI tour, which is represented by <var>(i_0, i_1, i_2) = (0, 1, 2)</var>. The following is the explanation that it meets the conditions of good JOI tours.</p>
+<ul>
+<li>Since <var>F_0 = 0</var>, the restaurant at town <var>0</var> is a juice restaurant.</li>
+<li>Since <var>F_1 = 1</var>, the restaurant at town <var>1</var> is an omelette restaurant.</li>
+<li>Since <var>F_2 = 2</var>, the restaurant at town <var>2</var> is an ice cream restaurant.</li>
+<li>When we move from town <var>0</var> to town <var>1</var> and then from town <var>1</var> to town <var>2</var>, both using the shortest routes, we don't pass the same road twice.</li>
+</ul>
+<p>Therefore, the return value in the first call of <code>num_tours</code> should be <var>1</var>.</p>
+<p>This sample input satisfies the constraints of Subtasks <var>1, 2, 3, 4, 6, 7</var>.</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>3
+0 1 2
+0 1
+1 2
+2
+2 0
+0 2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>1
+0
+1
+</pre>
+<table>
+<thead>
+<tr>
+<th>Function Calls</th>
+<th>Return Values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>init(3, [0, 1, 2], [0, 1], [1, 2], 2)</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>num_tours()</code></td>
+<td><var>1</var></td>
+</tr>
+<tr>
+<td><code>change(2, 0)</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>num_tours()</code></td>
+<td><var>0</var></td>
+</tr>
+<tr>
+<td><code>change(0, 2)</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>num_tours()</code></td>
+<td><var>1</var></td>
+</tr>
+</tbody>
+</table>
+<p>Initially, there is one good JOI tour, which is represented by <var>(i_0, i_1, i_2) = (0, 1, 2)</var>. Thus, the return value in the first call of <code>num_tours</code> should be <var>1</var>.</p>
+<p>In the first event, the restaurant at town <var>2</var> is changed from ice cream restaurant to juice restaurant. After the change, ice cream restaurants disappear from IOI country, and there are no good JOI tours. Thus, the return value in the second call of <code>num_tours</code> should be <var>0</var>.</p>
+<p>In the second event, the restaurant at town <var>0</var> is changed from juice restaurant to ice cream restaurant. After the change, there is one good JOI tour, which is represented by <var>(i_0, i_1, i_2) = (2, 1, 0)</var>. Thus, the return value in the third call of <code>num_tours</code> should be <var>1</var>.</p>
+<p>This sample input satisfies the constraints of Subtasks <var>1, 2, 4, 6, 7</var>.</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 3</h3>
+<pre>7
+1 0 2 2 0 1 0
+0 1
+0 2
+1 3
+1 4
+2 5
+2 6
+7
+0 0
+1 1
+2 0
+3 0
+4 2
+5 2
+6 2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 3</h3>
+<pre>3
+0
+4
+4
+0
+4
+5
+5
+</pre>
+<p>This sample input satisfies the constraints of Subtasks <var>1, 2, 5, 6, 7</var>.</p></section>
+</div>
+</span>
+<span class="lang-ja">
+<blockquote>
+<p><strong>AtCoder での提出方法</strong></p>
+<p><a href="https://www2.ioi-jp.org/camp/2024/2024-sp-tasks/contest3/joitour-dist.zip">配布ファイル</a></p>
+<p>以下の「実装の詳細」「重要な注意」「コンパイル・実行の方法」は C++ の関数形式およびローカルでのテスト方法についての説明である．その他の言語を使用する場合は，この節の入出力形式で同じ処理を実装すること．</p>
+<h4>C++ を使用する場合</h4>
+<p>C++ を使用する場合，<code>joitour.h</code> を include してください．実装の詳細は以下の問題文を参照してください．</p>
+<details>
+<summary><strong>その他の言語を使用する場合</strong></summary>
+<p>以下の形式で入出力を行ってください．</p>
+<h5>init</h5>
+<p>以下の形式で入力を受け取ってください．</p>
+<pre><var>N</var>
+<var>F_0</var> <var>\cdots</var> <var>F_{N-1}</var>
+<var>U_0</var> <var>V_0</var>
+<var>\vdots</var>
+<var>U_{N-2}</var> <var>V_{N-2}</var>
+<var>Q</var>
+</pre>
+<h5>change</h5>
+<p>以下の形式で入力を受け取ってください．</p>
+<pre><var>X</var> <var>Y</var>
+</pre>
+<h5>num_tours</h5>
+<p>答えを <var>1</var> 行に出力してください．</p>
+<h5>その他</h5>
+<ul>
+<li><strong>各出力の後には必ず flush をしてください．</strong></li>
+</ul>
+</details>
+</blockquote>
+<p>配点： <var>100</var> 点</p>
+<style>
+#task-statement details {
+    margin: 1em 0;
+}
+#task-statement details > summary {
+    display: list-item;
+    cursor: pointer;
+}
+#task-statement table {
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+    overflow-x: auto;
+    border-collapse: collapse;
+    margin: 1em 0;
+}
+#task-statement table th,
+#task-statement table td {
+    border: 1px solid #aaa;
+    padding: 0.4em 0.7em;
+    text-align: left;
+    vertical-align: top;
+}
+#task-statement table th {
+    background-color: #f5f5f5;
+}
+</style>
+
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>IOI 国には <var>N</var> 個の街があり，<var>0</var> から <var>N - 1</var> までの番号が付けられている．また，IOI 国には <var>N - 1</var> 本の道路があり，<var>0</var> から <var>N - 2</var> までの番号が付けられている．道路 <var>j</var> (<var>0 \leqq j \leqq N - 2</var>) は街 <var>U_j</var> と街 <var>V_j</var> を双方向に結んでいる．どの街からどの街へも何本かの道路を通ることによって移動することができる．</p>
+<p>IOI 国のそれぞれの街には飲食店が <var>1</var> 店舗あり，街 <var>i</var> (<var>0 \leqq i \leqq N - 1</var>) にある飲食店の種類は整数 <var>F_i</var> によって表される．具体的には，</p>
+<ul>
+<li><var>F_i = 0</var> のとき，街 <var>i</var> にある飲食店はジュース専門店である．</li>
+<li><var>F_i = 1</var> のとき，街 <var>i</var> にある飲食店はオムレツ専門店である．</li>
+<li><var>F_i = 2</var> のとき，街 <var>i</var> にある飲食店はアイスクリーム専門店である．</li>
+</ul>
+<p>IOI 国のツアーガイドである理恵さんは，JOI ツアーという観光ツアーを企画している．JOI ツアーとは，以下のような <var>3</var> 種類の飲食店を巡るツアーである．</p>
+<ol>
+<li>ジュース専門店のある街 <var>i_0</var> (<var>0 \leqq i_0 \leqq N - 1</var>) を選び，街 <var>i_0</var> から JOI ツアーを開始する．</li>
+<li>街 <var>i_0</var> にあるジュース専門店を訪れる．</li>
+<li>オムレツ専門店のある街 <var>i_1</var> (<var>0 \leqq i_1 \leqq N - 1</var>) を選び，バスで街 <var>i_0</var> から街 <var>i_1</var> へ最短経路で移動する．</li>
+<li>街 <var>i_1</var> にあるオムレツ専門店を訪れる．</li>
+<li>アイスクリーム専門店のある街 <var>i_2</var> (<var>0 \leqq i_2 \leqq N - 1</var>) を選び，バスで街 <var>i_1</var> から街 <var>i_2</var> へ最短経路で移動する．</li>
+<li>街 <var>i_2</var> にあるアイスクリーム専門店を訪れる．</li>
+<li>街 <var>i_2</var> で JOI ツアーを終了する．</li>
+</ol>
+<p>理恵さんは，参加者を飽きさせないために，ツアー中同じ道路を複数回通らないように <var>3</var> つの街 <var>(i_0, i_1, i_2)</var> を選ぶことにした．そのような JOI ツアーを<strong>良い JOI ツアー</strong>と呼ぶことにする．あなたの仕事は，理恵さんが最善のツアープランを見つけられるよう，良い JOI ツアーの個数を理恵さんに伝えることである．すなわち，以下の条件を満たす <var>3</var> つの街 <var>(i_0, i_1, i_2)</var> の選び方の個数を求めなければならない．</p>
+<ul>
+<li>街 <var>i_0</var> にある飲食店はジュース専門店である．</li>
+<li>街 <var>i_1</var> にある飲食店はオムレツ専門店である．</li>
+<li>街 <var>i_2</var> にある飲食店はアイスクリーム専門店である．</li>
+<li>街 <var>i_0</var> から街 <var>i_1</var> へ最短経路で移動し，街 <var>i_1</var> から街 <var>i_2</var> へ最短経路で移動したとき，同じ道路を複数回通らない．</li>
+</ul>
+<p>IOI 国では，飲食店の種類の変更が <var>Q</var> 回予定されている．<var>k + 1</var> 回目 (<var>0 \leqq k \leqq Q - 1</var>) の変更の際には，<var>0 \leqq X_k \leqq N - 1</var> を満たす整数 <var>X_k</var> と <var>0 \leqq Y_k \leqq 2</var> を満たす整数 <var>Y_k</var> が与えられる．これは，街 <var>X_k</var> にある飲食店が整数 <var>Y_k</var> に対応した専門店に変更されることを意味する．すなわち，<var>Y_k = 0</var> ならばジュース専門店に，<var>Y_k = 1</var> ならばオムレツ専門店に，<var>Y_k = 2</var> ならばアイスクリーム専門店に変更される．あなたは，飲食店の変更の情報が与えられたとき，すぐにその変更を反映し，良い JOI ツアーの個数を理恵さんに伝えなければならない．IOI 国の道路と飲食店の情報が与えられたとき，飲食店の変更がなされるたび，それを反映して良い JOI ツアーの個数を返すプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>実装の詳細</h3>
+<p>あなたは <var>1</var> つのファイルを提出しなければならない．</p>
+<p>あなたの提出するファイルは <code>joitour.cpp</code> という名前である．そのプログラムは <code>#include</code> プリプロセッサ指令によって <code>joitour.h</code> を読み込むこと．</p>
+<p><code>joitour.cpp</code> は以下の関数を実装していなければならない．</p>
+<h4>init</h4>
+<pre>void init(int N, std::vector&lt;int&gt; F, std::vector&lt;int&gt; U, std::vector&lt;int&gt; V, int Q)
+</pre>
+<ul>
+<li>この関数の呼び出しによって，IOI 国の道路と飲食店の情報が与えられる．</li>
+<li>この関数は最初に <var>1</var> 回だけ実行される．</li>
+<li>引数 <code>N</code> は街の数 <var>N</var> を表す．</li>
+<li>引数 <code>F</code> は長さ <var>N</var> の配列であり，<code>F[i]</code> (<var>0 \leqq i \leqq N - 1</var>) は街 <var>i</var> にある飲食店の種類 <var>F_i</var> を表す．</li>
+<li>引数 <code>U</code>, <code>V</code> は長さ <var>N - 1</var> の配列であり，<code>U[j]</code>, <code>V[j]</code> (<var>0 \leqq j \leqq N - 2</var>) は道路 <var>j</var> が結ぶ <var>2</var> つの街 <var>U_j, V_j</var> を表す．</li>
+<li>引数 <code>Q</code> は飲食店の種類が変更される回数 <var>Q</var> を表す．</li>
+</ul>
+<h4>change</h4>
+<pre>void change(int X, int Y)
+</pre>
+<ul>
+<li>この関数の呼び出しによって，飲食店の種類が変更されたという情報が与えられる．</li>
+<li>この関数は <var>Q</var> 回実行される．</li>
+<li>この関数の <var>k + 1</var> 回目 (<var>0 \leqq k \leqq Q - 1</var>) の呼び出しにおいて，引数 <code>X</code> は変更された飲食店のある街の番号 <var>X_k</var> を表す．</li>
+<li>この関数の <var>k + 1</var> 回目 (<var>0 \leqq k \leqq Q - 1</var>) の呼び出しにおいて，引数 <code>Y</code> は変更後の飲食店の種類に対応する整数 <var>Y_k</var> を表す．変更後の飲食店の種類は，変更前の飲食店の種類と異なることが保証される．</li>
+</ul>
+<h4>num_tours</h4>
+<pre>long long num_tours()
+</pre>
+<ul>
+<li>この関数は以下のタイミングに各 <var>1</var> 回，合計で <var>Q + 1</var> 回実行される．<ul>
+<li>関数 <code>init</code> の実行の直後</li>
+<li>関数 <code>change</code> の各実行の直後</li>
+</ul>
+</li>
+<li>この関数は，現時点での良い JOI ツアーの個数を返さなければならない．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>重要な注意</h3>
+<ul>
+<li>内部での使用のために他の関数を実装したり，グローバル変数を宣言するのは自由である．</li>
+<li>あなたの提出したプログラムは，標準入力・標準出力，あるいは他のファイルといかなる方法でもやりとりしてはならない．ただし，標準エラー出力にデバッグ情報等を出力することは許される．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>コンパイル・実行の方法</h3>
+<p>作成したプログラムをテストするための採点プログラムのサンプルが，コンテストサイトからダウンロードできるアーカイブの中に含まれている．このアーカイブには，提出しなければならないファイルのサンプルも含まれている．</p>
+<p>採点プログラムのサンプルは <var>1</var> つのファイルからなる．そのファイルは <code>grader.cpp</code> である．作成したプログラムをテストするには，これらのファイル <code>grader.cpp</code>, <code>joitour.cpp</code>, <code>joitour.h</code> を同じディレクトリに置き，次のようにコマンドを実行する．なお，アーカイブの中に含まれている <code>compile.sh</code> というファイルを代わりに実行してもよい．</p>
+<pre>g++ -std=gnu++20 -O2 -o grader grader.cpp joitour.cpp
+</pre>
+<p>コンパイルが成功すれば，<code>grader</code> という実行ファイルが生成される．</p>
+<p>実際の採点プログラムは，採点プログラムのサンプルとは異なることに注意せよ．採点プログラムのサンプルは単一のプロセスとして起動する．このプログラムは，標準入力から入力を読み込み，標準出力に結果を出力する．</p>
+<hr />
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>採点プログラムのサンプルの入力</h3>
+<p>採点プログラムのサンプルは標準入力から以下の形式で入力を読み込む．</p>
+<pre><var>N</var>
+<var>F_0</var> <var>F_1</var> <var>\cdots</var> <var>F_{N-1}</var>
+<var>U_0</var> <var>V_0</var>
+<var>U_1</var> <var>V_1</var>
+<var>\vdots</var>
+<var>U_{N-2}</var> <var>V_{N-2}</var>
+<var>Q</var>
+<var>X_0</var> <var>Y_0</var>
+<var>X_1</var> <var>Y_1</var>
+<var>\vdots</var>
+<var>X_{Q-1}</var> <var>Y_{Q-1}</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>採点プログラムのサンプルの出力</h3>
+<p>採点プログラムのサンプルは，関数 <code>num_tours</code> を実行するたび，その戻り値を標準出力に <var>1</var> 行で出力する．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>3 \leqq N \leqq 200\,000</var>．</li>
+<li><var>0 \leqq F_i \leqq 2</var> (<var>0 \leqq i \leqq N - 1</var>)．</li>
+<li><var>0 \leqq U_j &lt; V_j \leqq N - 1</var> (<var>0 \leqq j \leqq N - 2</var>)．</li>
+<li>どの <var>2</var> つの街の間も，いくつかの道路を経由して移動することができる．</li>
+<li><var>0 \leqq Q \leqq 50\,000</var>．</li>
+<li><var>0 \leqq X_k \leqq N - 1</var> (<var>0 \leqq k \leqq Q - 1</var>)．</li>
+<li><var>0 \leqq Y_k \leqq 2</var> (<var>0 \leqq k \leqq Q - 1</var>)．</li>
+<li>関数 <code>change</code> の各呼び出しにおいて，変更後の飲食店の種類は変更前の飲食店の種類と異なる．</li>
+<li>入力される値はすべて整数である．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>6</var> 点) <var>N \leqq 400</var>，<var>Q \leqq 100</var>．</li>
+<li>(<var>8</var> 点) <var>N \leqq 4\,000</var>，<var>Q \leqq 1\,000</var>．</li>
+<li>(<var>6</var> 点) <var>Q = 0</var>．</li>
+<li>(<var>16</var> 点) <var>U_j = j</var>，<var>V_j = j + 1</var> (<var>0 \leqq j \leqq N - 2</var>)．</li>
+<li>(<var>16</var> 点) <var>U_j = \left\lfloor \frac{j}{2} \right\rfloor</var>，<var>V_j = j + 1</var> (<var>0 \leqq j \leqq N - 2</var>)．（<var>\left\lfloor \frac{j}{2} \right\rfloor</var> は <var>\frac{j}{2}</var> を超えない最大の整数を表す．）</li>
+<li>(<var>34</var> 点) <var>N \leqq 100\,000</var>，<var>Q \leqq 25\,000</var>．</li>
+<li>(<var>14</var> 点) 追加の制約はない．</li>
+</ol>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>やりとりの例</h3>
+<p>採点プログラムのサンプルの入出力の例と，それに対応する関数の呼び出しの例を以下に示す．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>3
+0 1 2
+0 1
+1 2
+0
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>1
+</pre>
+<table>
+<thead>
+<tr>
+<th>呼び出し</th>
+<th>戻り値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>init(3, [0, 1, 2], [0, 1], [1, 2], 0)</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>num_tours()</code></td>
+<td><var>1</var></td>
+</tr>
+</tbody>
+</table>
+<p>良い JOI ツアーは <var>(i_0, i_1, i_2) = (0, 1, 2)</var> の <var>1</var> 通りである．これが良い JOI ツアーであることは以下のように確かめられる．</p>
+<ul>
+<li><var>F_0 = 0</var> であるから，街 <var>0</var> にある飲食店はジュース専門店である．</li>
+<li><var>F_1 = 1</var> であるから，街 <var>1</var> にある飲食店はオムレツ専門店である．</li>
+<li><var>F_2 = 2</var> であるから，街 <var>2</var> にある飲食店はアイスクリーム専門店である．</li>
+<li>街 <var>0</var> から街 <var>1</var> へ最短経路で移動し，街 <var>1</var> から街 <var>2</var> へ最短経路で移動したとき，同じ道路を複数回通らない．</li>
+</ul>
+<p>したがって，<var>1</var> 回目の <code>num_tours</code> の呼び出しは <var>1</var> を返さなければならない．</p>
+<p>この入力例は小課題 <var>1, 2, 3, 4, 6, 7</var> の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>3
+0 1 2
+0 1
+1 2
+2
+2 0
+0 2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>1
+0
+1
+</pre>
+<table>
+<thead>
+<tr>
+<th>呼び出し</th>
+<th>戻り値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>init(3, [0, 1, 2], [0, 1], [1, 2], 2)</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>num_tours()</code></td>
+<td><var>1</var></td>
+</tr>
+<tr>
+<td><code>change(2, 0)</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>num_tours()</code></td>
+<td><var>0</var></td>
+</tr>
+<tr>
+<td><code>change(0, 2)</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>num_tours()</code></td>
+<td><var>1</var></td>
+</tr>
+</tbody>
+</table>
+<p>はじめの時点では，良い JOI ツアーは <var>(i_0, i_1, i_2) = (0, 1, 2)</var> の <var>1</var> 通りである．したがって，<var>1</var> 回目の <code>num_tours</code> の呼び出しは <var>1</var> を返さなければならない．</p>
+<p><var>1</var> 回目の変更では，街 <var>2</var> にある飲食店がアイスクリーム専門店からジュース専門店に変更される．このとき，IOI 国からアイスクリーム専門店がなくなるため，良い JOI ツアーは存在しない．したがって，<var>2</var> 回目の <code>num_tours</code> の呼び出しは <var>0</var> を返さなければならない．</p>
+<p><var>2</var> 回目の変更では，街 <var>0</var> にある飲食店がジュース専門店からアイスクリーム専門店に変更される．このとき，良い JOI ツアーは <var>(i_0, i_1, i_2) = (2, 1, 0)</var> の <var>1</var> 通りである．したがって，<var>3</var> 回目の <code>num_tours</code> の呼び出しは <var>1</var> を返さなければならない．</p>
+<p>この入力例は小課題 <var>1, 2, 4, 6, 7</var> の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>7
+1 0 2 2 0 1 0
+0 1
+0 2
+1 3
+1 4
+2 5
+2 6
+7
+0 0
+1 1
+2 0
+3 0
+4 2
+5 2
+6 2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>3
+0
+4
+4
+0
+4
+5
+5
+</pre>
+<p>この入力例は小課題 <var>1, 2, 5, 6, 7</var> の制約を満たす．</p></section>
+</div>
+</span>
+</span>

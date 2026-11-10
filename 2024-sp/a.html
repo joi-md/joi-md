@@ -1,0 +1,363 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>JOI-kun is breeding <var>N</var> fish in a large tank, and each fish is numbered from <var>1</var> to <var>N</var>.</p>
+<p>JOI-kun has two types of fish food, A and B, both in sufficient quantities. When one piece of food is added to the aquarium, exactly one fish eats it (any fish could potentially eat it), and depending on the type of food and which fish ate it, the intelligence of the fish changes as follows:</p>
+<ul>
+<li>When fish <var>k</var> (<var>1 \leq k \leq N</var>) eats one piece of type A food, the intelligence of fish <var>k</var> increases exactly by <var>D</var>.</li>
+<li>When fish <var>k</var> (<var>1 \leq k \leq N</var>) eats one piece of type B food, the intelligence of all fish numbered <var>k</var> and above increases exactly by <var>1</var> each.</li>
+</ul>
+<p>Currently, the intelligence of all fish is <var>0</var>. JOI-kun wants to make the intelligence of fish <var>i</var> (<var>1 \leq i \leq N</var>) equal to its ideal intelligence <var>C_i</var>, but it may not always be possible.</p>
+<p>Therefore, he considered <var>Q</var> questions. The <var>j</var>-th question (<var>1 \leq j \leq Q</var>) is as follows:</p>
+<ul>
+<li>Starting from the state where all fish have an intelligence of <var>0</var>, by repeating the action of putting food into the aquarium zero or more times, is it possible to reach the state where all fish <var>L_j, L_j + 1, \ldots, R_j</var> have their exact ideal intelligence values? Furthermore, if it is possible, what is the minimum number of pieces of type A food that needs to be put into the tank?</li>
+</ul>
+<p>Write a program that, given information about JOI-kun's fish and information about the questions, answers his questions.</p>
+<hr />
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input.</p>
+<pre><var>N</var> <var>D</var>
+<var>C_1</var> <var>C_2</var> <var>\cdots</var> <var>C_N</var>
+<var>Q</var>
+<var>L_1</var> <var>R_1</var>
+<var>L_2</var> <var>R_2</var>
+<var>\vdots</var>
+<var>L_Q</var> <var>R_Q</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>Write <var>Q</var> lines to the standard output. In the <var>j</var>-th line (<var>1 \leq j \leq Q</var>), if it is possible to reach the state where all fish <var>L_j, L_j + 1, \ldots, R_j</var> have their exact ideal intelligence values, output the minimum number of pieces of type A food that needs to be put into the tank. Otherwise, output <code>-1</code>.</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li><var>1 \leq N \leq 300\,000</var>.</li>
+<li><var>1 \leq Q \leq 300\,000</var>.</li>
+<li><var>1 \leq D \leq 10^{12}</var>.</li>
+<li><var>0 \leq C_i \leq 10^{12}</var> (<var>1 \leq i \leq N</var>).</li>
+<li><var>1 \leq L_j \leq R_j \leq N</var> (<var>1 \leq j \leq Q</var>).</li>
+<li>Given values are all integers.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li>(<var>9</var> points) <var>N \leq 3\,000</var>, <var>Q \leq 3\,000</var>.</li>
+<li>(<var>7</var> points) <var>C_i \leq 1</var> (<var>1 \leq i \leq N</var>).</li>
+<li>(<var>28</var> points) <var>D = 1</var>.</li>
+<li>(<var>20</var> points) <var>C_i \geq C_{i+1}</var> (<var>1 \leq i \leq N - 1</var>).</li>
+<li>(<var>36</var> points) No additional constraints.</li>
+</ol>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>4 2
+3 1 2 1
+1
+1 3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>1
+</pre>
+<p>For example, in the following case, all fish <var>1, 2, 3</var> eventually have their exact ideal intelligence values, and the number of pieces of type A food put into the tank is <var>1</var>.</p>
+<ul>
+<li>At first, the intelligence of fish <var>1, 2, 3, 4</var> is <var>0, 0, 0, 0</var> respectively.</li>
+<li>Next, JOI-kun puts one piece of type B food into the tank, which fish <var>3</var> eats. As a result, the intelligence of fish <var>1, 2, 3, 4</var> becomes <var>0, 0, 1, 1</var> respectively.</li>
+<li>Next, JOI-kun puts one piece of type A food into the tank, which fish <var>1</var> eats. As a result, the intelligence of fish <var>1, 2, 3, 4</var> becomes <var>2, 0, 1, 1</var> respectively.</li>
+<li>Finally, JOI-kun puts one piece of type B food into the tank, which fish <var>1</var> eats. As a result, the intelligence of fish <var>1, 2, 3, 4</var> becomes <var>3, 1, 2, 2</var> respectively.</li>
+</ul>
+<p>Since it is impossible to reach the state where all fish <var>1, 2, 3</var> have the exact ideal intelligence values without putting any piece of type A food, output <var>1</var>.</p>
+<p>This sample input satisfies the constraints of Subtasks <var>1, 5</var>.</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>4 2
+0 1 0 1
+3
+1 2
+2 3
+1 1
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>0
+-1
+0
+</pre>
+<p>This sample input satisfies the constraints of Subtasks <var>1, 2, 5</var>.</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 3</h3>
+<pre>5 1
+3 1 4 1 5
+3
+1 5
+2 4
+3 5
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 3</h3>
+<pre>5
+3
+3
+</pre>
+<p>This sample input satisfies the constraints of Subtasks <var>1, 3, 5</var>.</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 4</h3>
+<pre>6 3
+16 14 13 8 6 5
+4
+1 4
+2 5
+3 3
+1 6
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 4</h3>
+<pre>9
+8
+0
+-1
+</pre>
+<p>This sample input satisfies the constraints of Subtasks <var>1, 4, 5</var>.</p></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点： <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>JOI 君は <var>1</var> つの大きな水槽に <var>N</var> 匹の魚を飼育しており，それぞれの魚には <var>1</var> から <var>N</var> までの番号が付いている．</p>
+<p>JOI 君は A, B の <var>2</var> 種類のエサを，いずれも十分な数持っている．</p>
+<p>水槽にエサを <var>1</var> つ入れると，ちょうど <var>1</var> 匹の魚がそれを食べ（入れたエサはどの魚が食べる可能性もある），エサの種類とどの魚が食べたかによって以下のように魚のかしこさに変化が生じる．</p>
+<ul>
+<li>魚 <var>k</var> (<var>1 \leqq k \leqq N</var>) が種類 A のエサを <var>1</var> つ食べたとき，魚 <var>k</var> のかしこさがちょうど <var>D</var> だけ増加する．</li>
+<li>魚 <var>k</var> (<var>1 \leqq k \leqq N</var>) が種類 B のエサを <var>1</var> つ食べたとき，番号が <var>k</var> 以上の魚すべてのかしこさがちょうど <var>1</var> ずつ増加する．</li>
+</ul>
+<p>現在はどの魚のかしこさも <var>0</var> である．JOI 君は魚 <var>i</var> (<var>1 \leqq i \leqq N</var>) のかしこさをその理想的なかしこさ <var>C_i</var> にしたいと考えているが，それが実現できるとは限らない．</p>
+<p>そこで，<var>Q</var> 個の質問を考えた．<var>j</var> 番目 (<var>1 \leqq j \leqq Q</var>) の質問は，次のような内容である．</p>
+<ul>
+<li>すべての魚のかしこさが <var>0</var> である状態から，水槽にエサを <var>1</var> つ入れることを <var>0</var> 回以上繰り返すことで，番号が <var>L_j</var> 以上 <var>R_j</var> 以下の魚すべてのかしこさが同時にそれぞれの理想的なかしこさに一致する可能性があるか？　さらに，可能性がある場合には水槽に入れる種類 A のエサの数としてありうる最小値はいくつか？</li>
+</ul>
+<p>JOI 君が飼育している魚の情報と質問の情報が与えられたとき，JOI 君の質問に回答するプログラムを作成せよ．</p>
+<hr />
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力は以下の形式で標準入力から与えられる．</p>
+<pre><var>N</var> <var>D</var>
+<var>C_1</var> <var>C_2</var> <var>\cdots</var> <var>C_N</var>
+<var>Q</var>
+<var>L_1</var> <var>R_1</var>
+<var>L_2</var> <var>R_2</var>
+<var>\vdots</var>
+<var>L_Q</var> <var>R_Q</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に <var>Q</var> 行出力せよ．<var>j</var> 行目 (<var>1 \leqq j \leqq Q</var>) には，番号が <var>L_j</var> 以上 <var>R_j</var> 以下の魚すべてのかしこさがその理想的なかしこさに一致する可能性がある場合は水槽に入れる種類 A のエサの数としてありうる最小値を，そうでない場合は <code>-1</code> を出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>1 \leqq N \leqq 300\,000</var>．</li>
+<li><var>1 \leqq Q \leqq 300\,000</var>．</li>
+<li><var>1 \leqq D \leqq 10^{12}</var>．</li>
+<li><var>0 \leqq C_i \leqq 10^{12}</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>1 \leqq L_j \leqq R_j \leqq N</var> (<var>1 \leqq j \leqq Q</var>)．</li>
+<li>入力される値はすべて整数である．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>9</var> 点) <var>N \leqq 3\,000</var>，<var>Q \leqq 3\,000</var>．</li>
+<li>(<var>7</var> 点) <var>C_i \leqq 1</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li>(<var>28</var> 点) <var>D = 1</var>．</li>
+<li>(<var>20</var> 点) <var>C_i \geqq C_{i+1}</var> (<var>1 \leqq i \leqq N - 1</var>)．</li>
+<li>(<var>36</var> 点) 追加の制約はない．</li>
+</ol>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>4 2
+3 1 2 1
+1
+1 3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>1
+</pre>
+<p>例えば次のような場合，番号が <var>1</var> 以上 <var>3</var> 以下の魚すべてのかしこさがその理想的なかしこさに一致し，水槽に入れる種類 A のエサの数は <var>1</var> である．</p>
+<ul>
+<li>最初，魚 <var>1, 2, 3, 4</var> のかしこさはそれぞれ <var>0, 0, 0, 0</var> である．</li>
+<li>次に，JOI 君が種類 B のエサを <var>1</var> つ水槽に入れ，これを魚 <var>3</var> が食べるとする．魚 <var>1, 2, 3, 4</var> のかしこさはそれぞれ <var>0, 0, 1, 1</var> となる．</li>
+<li>次に，JOI 君が種類 A のエサを <var>1</var> つ水槽に入れ，これを魚 <var>1</var> が食べるとする．魚 <var>1, 2, 3, 4</var> のかしこさはそれぞれ <var>2, 0, 1, 1</var> となる．</li>
+<li>最後に，JOI 君が種類 B のエサを <var>1</var> つ水槽に入れ，これを魚 <var>1</var> が食べるとする．魚 <var>1, 2, 3, 4</var> のかしこさはそれぞれ <var>3, 1, 2, 2</var> となる．</li>
+</ul>
+<p>水槽に入れる種類 A のエサの数が <var>0</var> のとき，番号が <var>1</var> 以上 <var>3</var> 以下の魚すべてのかしこさがその理想的なかしこさに一致することはないため，<var>1</var> を出力する．</p>
+<p>この入力例は小課題 <var>1, 5</var> の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>4 2
+0 1 0 1
+3
+1 2
+2 3
+1 1
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>0
+-1
+0
+</pre>
+<p>この入力例は小課題 <var>1, 2, 5</var> の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>5 1
+3 1 4 1 5
+3
+1 5
+2 4
+3 5
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>5
+3
+3
+</pre>
+<p>この入力例は小課題 <var>1, 3, 5</var> の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 4</h3>
+<pre>6 3
+16 14 13 8 6 5
+4
+1 4
+2 5
+3 3
+1 6
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 4</h3>
+<pre>9
+8
+0
+-1
+</pre>
+<p>この入力例は小課題 <var>1, 4, 5</var> の制約を満たす．</p></section>
+</div>
+</span>
+</span>

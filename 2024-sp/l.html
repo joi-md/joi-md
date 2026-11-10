@@ -1,0 +1,296 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>A table tennis competition was held in JOI Kingdom. <var>N</var> beavers numbered from <var>1</var> to <var>N</var> participated in this competition, and a round-robin tournament was conducted.</p>
+<p>You were told the following information about the result of this competition from Bitaro.</p>
+<ul>
+<li>There were no draw matches.</li>
+<li>There are exactly <var>M</var> ways to choose <var>3</var> beavers which are trilemma. Note that <var>3</var> beavers <var>i, j, k</var> (<var>1 \leq i < j < k \leq N</var>) are trilemma if and only if exactly one of the following <var>2</var> conditions is satisfied.
+<ul>
+<li>Beaver <var>i</var> beat beaver <var>j</var>, beaver <var>j</var> beat beaver <var>k</var>, and beaver <var>k</var> beat beaver <var>i</var>.</li>
+<li>Beaver <var>i</var> beat beaver <var>k</var>, beaver <var>k</var> beat beaver <var>j</var>, and beaver <var>j</var> beat beaver <var>i</var>.</li>
+</ul>
+</li>
+</ul>
+
+<p>You don't know whether the information from Bitaro is correct, so you decided to think whether there are any results of this competition which accord with the information from Bitaro.</p>
+<p>Write a program which, given the information from Bitaro, judges whether there are any results of this competition which accord with the information, and if so, finds one such result of this competition.</p>
+<hr />
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>A test case consists of <var>Q</var> scenarios, numbered from <var>1</var> to <var>Q</var>. The following values are specified for each scenario.</p>
+<ul>
+<li>The number of beavers <var>N</var> which participated in the competition.</li>
+<li>The number of ways <var>M</var> to choose <var>3</var> beavers which are trilemma.</li>
+</ul>
+<p>The format of the input data is as follows.</p>
+<pre><var>Q</var>
+(Input for Scenario <var>1</var>)
+(Input for Scenario <var>2</var>)
+<var>\vdots</var>
+(Input for Scenario <var>Q</var>)
+</pre>
+<p>The format of the input data for each scenario is as follows.</p>
+<pre><var>N</var> <var>M</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>Write to standard output the answer of Scenario <var>1, 2, \ldots, Q</var> in order as follows.</p>
+<p>In some scenario, if there are any results of this competition which accord with the information, output as follows.</p>
+<pre>Yes
+<var>S_2</var>
+<var>S_3</var>
+<var>\vdots</var>
+<var>S_N</var>
+</pre>
+<p>Here, <var>S_i</var> (<var>2 \leq i \leq N</var>) is a string of which characters are <code>0</code> or <code>1</code> and length is <var>i - 1</var>. The <var>j</var>-th character of <var>S_i</var> (<var>1 \leq j \leq i - 1</var>) being <code>0</code> means beaver <var>i</var> was defeated by beaver <var>j</var>, and the <var>j</var>-th character of <var>S_i</var> being <code>1</code> means beaver <var>i</var> won against beaver <var>j</var>. If multiple results exist, you can output any of them.</p>
+<p>In some scenario, if there are not any results of this competition which accord with the information, output <code>No</code>.</p>
+<hr />
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li><var>1 \leq Q</var>.</li>
+<li><var>3 \leq N \leq 5\,000</var>.</li>
+<li><var>0 \leq M \leq \dfrac{1}{6}N(N - 1)(N - 2)</var>.</li>
+<li>The sum of <var>N</var> for the <var>Q</var> scenarios is less than or equal to <var>5\,000</var>.</li>
+<li>Given values are all integers.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li>(<var>5</var> points) <var>M \leq N - 2</var>.</li>
+<li>(<var>4</var> points) The sum of <var>N</var> for the <var>Q</var> scenarios is less than or equal to <var>7</var>.</li>
+<li>(<var>23</var> points) The sum of <var>N</var> for the <var>Q</var> scenarios is less than or equal to <var>20</var>.</li>
+<li>(<var>30</var> points) The sum of <var>N</var> for the <var>Q</var> scenarios is less than or equal to <var>150</var>.</li>
+<li>(<var>15</var> points) The sum of <var>N</var> for the <var>Q</var> scenarios is less than or equal to <var>600</var>.</li>
+<li>(<var>23</var> points) No additional constraints.</li>
+</ol>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>2
+3 1
+4 4
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>Yes
+0
+10
+No
+</pre>
+<p>There are <var>Q = 2</var> scenarios.</p>
+<p>In the results of scenario <var>1</var> in this sample output, beaver <var>1</var> won against beaver <var>2</var>, beaver <var>2</var> won against beaver <var>3</var>, and beaver <var>3</var> won against beaver <var>1</var>. Therefore, <var>3</var> beavers <var>1, 2, 3</var> are trilemma. There are no other ways to choose <var>3</var> beavers, so there is exactly <var>1</var> way to choose <var>3</var> beavers which are trilemma.</p>
+<p>There is another output corresponding to scenario <var>1</var> as follows.</p>
+<pre>Yes
+1
+01
+</pre>
+<p>In scenario <var>2</var>, there are not any results of this competition which accord with the information. Therefore, output <code>No</code>.</p>
+<p>This sample input satisfies the constraints of Subtasks <var>2, 3, 4, 5, 6</var>.</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>1
+5 3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>Yes
+0
+11
+001
+0101
+</pre>
+<p>In the results of scenario <var>1</var> in this sample output, beaver <var>1</var> won against beaver <var>4</var>, beaver <var>4</var> won against beaver <var>3</var>, and beaver <var>3</var> won against beaver <var>1</var>. Therefore, <var>3</var> beavers <var>1, 3, 4</var> are trilemma. There are two other ways to choose <var>3</var> beavers which are trilemma: choose beavers <var>2, 3, 4</var> and choose beavers <var>3, 4, 5</var>. Therefore, there are exactly <var>3</var> ways to choose <var>3</var> beavers which are trilemma.</p>
+<p>This sample input satisfies the constraints of all the subtasks.</p></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点： <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>JOI 国で卓球の大会が行われた．大会には <var>1</var> から <var>N</var> までの番号が付けられている <var>N</var> 匹のビーバーが出場し，総当たりのリーグ戦が行われた．</p>
+<p>あなたはビ太郎から大会の試合結果について以下の情報を聞いた．</p>
+<ul>
+<li>どの試合も引き分けではなかった．</li>
+<li>三すくみとなるような <var>3</var> 匹のビーバーの選び方はちょうど <var>M</var> 通りであった．ただし，<var>3</var> 匹のビーバー <var>i, j, k</var> (<var>1 \leqq i < j < k \leqq N</var>) が三すくみであるとは，以下の <var>2</var> つの条件のうちちょうど <var>1</var> つが成り立つことをいう．
+<ul>
+<li>ビーバー <var>i</var> がビーバー <var>j</var> に勝利し，ビーバー <var>j</var> がビーバー <var>k</var> に勝利し，ビーバー <var>k</var> がビーバー <var>i</var> に勝利した．</li>
+<li>ビーバー <var>i</var> がビーバー <var>k</var> に勝利し，ビーバー <var>k</var> がビーバー <var>j</var> に勝利し，ビーバー <var>j</var> がビーバー <var>i</var> に勝利した．</li>
+</ul>
+</li>
+</ul>
+
+<p>あなたはビ太郎から聞いた情報が正確か分からないため，聞いた情報に合致するような大会の試合結果が存在するか考えることにした．</p>
+<p>ビ太郎から聞いた情報が与えられたとき，情報に合致する試合結果が存在するか判定し，もし存在するならばそのような試合結果を <var>1</var> つ求めるプログラムを作成せよ．</p>
+<hr />
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p><var>1</var> つのテストケースは <var>Q</var> 個のシナリオからなり，シナリオには <var>1</var> から <var>Q</var> までの番号が付けられている．各シナリオに対して，以下の値が定められている．</p>
+<ul>
+<li>大会に参加したビーバーの数 <var>N</var>．</li>
+<li>三すくみとなるような <var>3</var> 匹のビーバーの選び方 <var>M</var>．</li>
+</ul>
+<p>ここで，入力は以下の形式で標準入力から与えられる．</p>
+<pre><var>Q</var>
+(シナリオ <var>1</var> に対する入力)
+(シナリオ <var>2</var> に対する入力)
+<var>\vdots</var>
+(シナリオ <var>Q</var> に対する入力)
+</pre>
+<p>また，それぞれのシナリオに対する入力は，以下の形式で与えられる．</p>
+<pre><var>N</var> <var>M</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に，シナリオ <var>1, 2, \ldots, Q</var> の順に以下の形式で出力せよ．</p>
+<p>あるシナリオについて，情報に合致する試合結果が存在する場合，以下の形式で出力せよ．</p>
+<pre>Yes
+<var>S_2</var>
+<var>S_3</var>
+<var>\vdots</var>
+<var>S_N</var>
+</pre>
+<p>ここで，<var>S_i</var> (<var>2 \leqq i \leqq N</var>) は <code>0</code> または <code>1</code> からなる <var>i - 1</var> 文字の文字列である．<var>S_i</var> の <var>j</var> 文字目 (<var>1 \leqq j \leqq i - 1</var>) が <code>0</code> のときビーバー <var>i</var> がビーバー <var>j</var> に敗北したことを，<code>1</code> のときビーバー <var>i</var> がビーバー <var>j</var> に勝利したことを示す．情報に合致する試合結果が複数存在する場合は，そのうちどれを出力してもよい．</p>
+<p>あるシナリオについて，情報に合致する試合結果が存在しない場合，<code>No</code> と出力せよ．</p>
+<hr />
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>1 \leqq Q</var>．</li>
+<li><var>3 \leqq N \leqq 5\,000</var>．</li>
+<li><var>0 \leqq M \leqq \dfrac{1}{6}N(N - 1)(N - 2)</var>．</li>
+<li><var>Q</var> 個のシナリオにおける <var>N</var> の値の合計は <var>5\,000</var> 以下である．</li>
+<li>入力される値はすべて整数である．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>5</var> 点) <var>M \leqq N - 2</var>．</li>
+<li>(<var>4</var> 点) <var>Q</var> 個のシナリオにおける <var>N</var> の値の合計は <var>7</var> 以下である．</li>
+<li>(<var>23</var> 点) <var>Q</var> 個のシナリオにおける <var>N</var> の値の合計は <var>20</var> 以下である．</li>
+<li>(<var>30</var> 点) <var>Q</var> 個のシナリオにおける <var>N</var> の値の合計は <var>150</var> 以下である．</li>
+<li>(<var>15</var> 点) <var>Q</var> 個のシナリオにおける <var>N</var> の値の合計は <var>600</var> 以下である．</li>
+<li>(<var>23</var> 点) 追加の制約はない．</li>
+</ol>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>2
+3 1
+4 4
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>Yes
+0
+10
+No
+</pre>
+<p>この入力例は <var>Q = 2</var> 個のシナリオからなる．</p>
+<p>この出力例におけるシナリオ <var>1</var> の試合結果ではビーバー <var>1</var> がビーバー <var>2</var> に勝利し，ビーバー <var>2</var> がビーバー <var>3</var> に勝利し，ビーバー <var>3</var> がビーバー <var>1</var> に勝利した．したがって，<var>3</var> 匹のビーバー <var>1, 2, 3</var> は三すくみである．この他に <var>3</var> 匹のビーバーを選ぶ方法はないので，三すくみとなるような <var>3</var> 匹のビーバーの選び方はちょうど <var>1</var> 通りである．</p>
+<p>シナリオ <var>1</var> に対応する出力として，他に以下のようなものが考えられる．</p>
+<pre>Yes
+1
+01
+</pre>
+<p>シナリオ <var>2</var> では情報に合致する試合結果は存在しない．したがって，<code>No</code> と出力する．</p>
+<p>この入力例は小課題 <var>2, 3, 4, 5, 6</var> の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>1
+5 3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>Yes
+0
+11
+001
+0101
+</pre>
+<p>この出力例におけるシナリオ <var>1</var> の試合結果ではビーバー <var>1</var> がビーバー <var>4</var> に勝利し，ビーバー <var>4</var> がビーバー <var>3</var> に勝利し，ビーバー <var>3</var> がビーバー <var>1</var> に勝利した．したがって，<var>3</var> 匹のビーバー <var>1, 3, 4</var> は三すくみである．この他に三すくみとなるような <var>3</var> 匹のビーバーの選び方として，ビーバー <var>2, 3, 4</var> を選ぶ方法とビーバー <var>3, 4, 5</var> を選ぶ方法がある．したがって，三すくみとなるような <var>3</var> 匹のビーバーの選び方はちょうど <var>3</var> 通りである．</p>
+<p>この入力例はすべての小課題の制約を満たす．</p></section>
+</div>
+</span>
+</span>

@@ -1,0 +1,700 @@
+<span class="lang">
+<span class="lang-en">
+<blockquote>
+<p><strong>Submission on AtCoder</strong></p>
+<p>Distributed files are <a href="https://www2.ioi-jp.org/camp/2024/2024-sp-tasks/contest4/island-dist.zip">here</a>.</p>
+<p>The Implementation Details, Important Notices, and Compilation and Test Run sections below describe the C++ function interface and local testing. If you use another language, implement the same strategy using the input/output protocol in this section.</p>
+<h4>Using C++</h4>
+<p>Include <code>island.h</code> and submit the source code implementing <code>solve</code>.</p>
+<details>
+<summary><strong>Using Other Languages</strong></summary>
+<p>The equivalent of the call to <code>solve</code> is given as input in the following format.</p>
+<pre><var>N</var> <var>L</var>
+</pre>
+<p>When finished, output <code>0 0</code> on one line.</p>
+<p>To make the equivalent of a call to <code>query(v, k)</code>, output the following.</p>
+<pre><var>v</var> <var>k</var>
+</pre>
+<p>Then the return value of <code>query</code> is given on one line.</p>
+<p>To make the equivalent of a call to <code>answer(x, y)</code>, let <var>x &lt; y</var> and output the following.</p>
+<pre><var>-x</var> <var>y</var>
+</pre>
+<p>Then <code>0</code> is given on one line.</p>
+<ul>
+<li><strong>Flush standard output after every output.</strong></li>
+<li>If the output format is incorrect or a Wrong Answer condition is met, the next input will be <code>-1</code>. In this case, terminate your program immediately.</li>
+</ul>
+</details>
+</blockquote>
+<p>Score: <var>100</var> points</p>
+<style>
+#task-statement details {
+    margin: 1em 0;
+}
+#task-statement details > summary {
+    display: list-item;
+    cursor: pointer;
+}
+#task-statement table {
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+    overflow-x: auto;
+    border-collapse: collapse;
+    margin: 1em 0;
+}
+#task-statement table th,
+#task-statement table td {
+    border: 1px solid #aaa;
+    padding: 0.4em 0.7em;
+    text-align: left;
+    vertical-align: top;
+}
+#task-statement table th {
+    background-color: #f5f5f5;
+}
+</style>
+
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>There are <var>N</var> islands in JOI Kingdom, numbered from <var>1</var> to <var>N</var>. There are <var>N - 1</var> sea routes in JOI Kingdom, numbered from <var>1</var> to <var>N - 1</var>. The sea route <var>j</var> (<var>1 \leq j \leq N - 1</var>) connects island <var>A_j</var> and island <var>B_j</var> bi-directionally. It is possible to travel from any island to any other island by using some sea routes.</p>
+<p>Aoi is planning a trip in JOI Kingdom. However, she doesn't know about sea routes in JOI Kingdom. She is going to ask questions with Bitaro, a citizen in JOI Kingdom, in the following way:</p>
+<ol>
+<li>Aoi tells Bitaro an integer <var>v</var>, where <var>1 \leq v \leq N</var>, and an integer <var>k</var>, where <var>1 \leq k \leq N - 1</var>.</li>
+<li>Bitaro tells Aoi the number on the island which is the <var>k</var>-th closest from island <var>v</var> among the <var>N - 1</var> islands except for island <var>v</var>. To be specific, he tells her an integer <var>i</var> such that <var>\operatorname{dist}(v, i) \times N + i</var> (<var>1 \leq i \leq N</var>, <var>i \neq v</var>) is the <var>k</var>-th smallest, where <var>\operatorname{dist}(v, i)</var> is the minimum number of sea routes to move from island <var>v</var> to island <var>i</var>.</li>
+</ol>
+<p>Aoi wants to know all sea routes in JOI Kingdom by asking questions to Bitaro. Since Aoi does not want to spend too much time, she can ask at most <var>L</var> questions to Bitaro.</p>
+<p>Write a program which, given the number of islands in JOI Kingdom and the limit on number of questions to Bitaro, implements Aoi's strategy to find all sea routes.</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Implementation Details</h3>
+<p>You need to submit one file.</p>
+<p>The file is <code>island.cpp</code>. It should implement the following function. The program should include <code>island.h</code> using the preprocessing directive <code>#include</code>.</p>
+<h4><code>void solve(int N, int L)</code></h4>
+<p>This function is called only once for each test case.</p>
+<ul>
+<li>The parameter <code>N</code> is the number of islands <var>N</var>.</li>
+<li>The parameter <code>L</code> is the limit on number of questions <var>L</var>.</li>
+</ul>
+<p>In <code>island.cpp</code>, you can call the following functions.</p>
+<h4><code>int query(int v, int k)</code></h4>
+<p>Using this function, Aoi asks a question to Bitaro.</p>
+<ul>
+<li>The parameter <code>v</code> must be between <var>1</var> and <var>N</var>. If not, your program is judged as Wrong Answer [1].</li>
+<li>The parameter <code>k</code> must be between <var>1</var> and <var>N - 1</var>. If not, your program is judged as Wrong Answer [2].</li>
+<li>The return value is the number on the island which is the <var>k</var>-th closest from island <var>v</var> among the <var>N - 1</var> islands except for island <var>v</var>. See the problem statement for a more detailed definition.</li>
+<li>You must not call function <code>query</code> more than <var>L</var> times. If it is called more than <var>L</var> times, your program is judged as Wrong Answer [3].</li>
+</ul>
+<h4><code>void answer(int x, int y)</code></h4>
+<p>Your program answers a sea route in JOI Kingdom by calling this function.</p>
+<ul>
+<li>The parameters <code>x</code> and <code>y</code> are the numbers of two islands connected by a sea route.</li>
+<li>The parameters <code>x</code> and <code>y</code> must be between <var>1</var> and <var>N</var>. If not, your program is judged as Wrong Answer [4].</li>
+<li>There must exist a sea route which connects islands <var>x</var> and <var>y</var>. In other words, there must exist an integer <var>j</var> (<var>1 \leq j \leq N - 1</var>) such that <var>x = A_j</var> and <var>y = B_j</var>, or <var>x = B_j</var> and <var>y = A_j</var>. If not, your program is judged as Wrong Answer [5].</li>
+<li>The program must not answer the information of the same sea route twice or more. If this condition is not met, your program is judged as Wrong Answer [6].</li>
+<li>Function <code>answer</code> must be called exactly <var>N - 1</var> times. If the number of calls of function <code>answer</code> is not <var>N - 1</var> when the execution of function <code>solve</code> ends, your program is judged as Wrong Answer [7].</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Important Notices</h3>
+<ul>
+<li>Your program can implement other functions for internal use, or use global variables.</li>
+<li>Your program must not use the standard input and the standard output. Your program must not communicate with other files by any methods. However, your program may output debugging information to the standard error.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Compilation and Test Run</h3>
+<p>You can download an archive file from the contest webpage which contains the sample grader to test your program. The archive file also contains a sample source file of your program.</p>
+<p>The sample grader is the file <code>grader.cpp</code>. In order to test your program, put <code>grader.cpp</code>, <code>island.cpp</code>, <code>island.h</code> in the same directory, and run the following command to compile your programs. Instead, you may run <code>compile.sh</code> contained in the archive file.</p>
+<pre>g++ -std=gnu++20 -O2 -o grader grader.cpp island.cpp
+</pre>
+<p>When the compilation succeeds, the executable file <code>grader</code> is generated.</p>
+<p>Note that the actual grader is different from the sample grader. The sample grader will be executed as a single process, which will read input data from the standard input and write the results to the standard output.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Input for the Sample Grader</h3>
+<p>The sample grader reads the following data from the standard input.</p>
+<pre><var>N</var> <var>L</var>
+<var>A_1</var> <var>B_1</var>
+<var>A_2</var> <var>B_2</var>
+<var>\vdots</var>
+<var>A_{N-1}</var> <var>B_{N-1}</var>
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Output for the Sample Grader</h3>
+<p>The sample grader outputs the following information to the standard output (quotes for clarity).</p>
+<ul>
+<li>If your program is judged as correct, it reports the number of calls to <code>query</code> as <code>Accepted: 2024</code>.</li>
+<li>If your program is judged as any type of Wrong Answer, the sample grader writes its type as <code>Wrong Answer [4]</code>.</li>
+</ul>
+<p>If your program satisfies the conditions of several types of Wrong Answer, the sample grader reports only one of them.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Notices for Grading</h3>
+<p>The actual grader is not adaptive for all test cases. It means that the grader has a pre-determined answer for each test case.</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<p>All the input data satisfy the following conditions.</p>
+<ul>
+<li><var>3 \leq N \leq 300</var>.</li>
+<li><var>1 \leq A_j \leq N</var> (<var>1 \leq j \leq N - 1</var>).</li>
+<li><var>1 \leq B_j \leq N</var> (<var>1 \leq j \leq N - 1</var>).</li>
+<li><var>A_j \neq B_j</var> (<var>1 \leq j \leq N - 1</var>).</li>
+<li>It is possible to travel from any island to any other island by using some sea routes.</li>
+<li>Given values are all integers.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li>(<var>2</var> points) <var>N = 3</var>, <var>L = 9</var>.</li>
+<li>(<var>4</var> points) <var>L = N^2</var>. Each island has at most <var>2</var> connecting sea routes.</li>
+<li>(<var>7</var> points) <var>L = 2N</var>. Each island has at most <var>2</var> connecting sea routes.</li>
+<li>(<var>9</var> points) <var>L = N^2</var>. Island <var>1</var> has <var>3</var> connecting sea routes, and each of the other islands has at most <var>2</var> connecting sea routes.</li>
+<li>(<var>13</var> points) <var>L = 3N</var>. Island <var>1</var> has <var>3</var> connecting sea routes, and each of the other islands has at most <var>2</var> connecting sea routes.</li>
+<li>(<var>15</var> points) <var>L = N^2</var>.</li>
+<li>(<var>22</var> points) <var>L = 3N</var>.</li>
+<li>(<var>28</var> points) <var>L = 2N</var>.</li>
+</ol>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Communication</h3>
+<p>Here is a sample input for the sample grader and corresponding function calls.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>4 16
+1 2
+2 4
+4 3
+</pre>
+<h4>Sample Function Calls</h4>
+<table>
+<thead>
+<tr>
+<th>Calls (Grader)</th>
+<th>Calls (Submission)</th>
+<th>Return Values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>solve(4, 16)</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>query(2, 1)</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>query(3, 1)</code></td>
+<td><code>4</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>answer(2, 4)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>query(2, 2)</code></td>
+<td><code>4</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>answer(2, 1)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>query(3, 2)</code></td>
+<td><code>2</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>query(2, 1)</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>answer(3, 4)</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>The minimum number of sea routes to move from island <var>2</var> to islands <var>1, 3, 4</var>, are <var>1, 2, 1</var>, respectively. For example, to move from island <var>2</var> to island <var>3</var>, we can use sea route <var>2</var> and then sea route <var>3</var>.</p>
+<p>Sorting the islands <var>i</var> (<var>i \neq 2</var>) in increasing order of <var>\operatorname{dist}(2, i) \times N + i</var>, the result is island <var>1</var>, island <var>4</var>, island <var>3</var>, in this order. Therefore, the return value of <code>query(2, 1)</code> is <var>1</var>, and the return value of <code>query(2, 2)</code> is <var>4</var>.</p>
+<p>Sample Input <var>1</var> satisfies the constraints of Subtasks <var>2, 6</var>. Among the files which can be obtained from the contest webpage, <code>sample-01-in.txt</code> corresponds to Sample Input <var>1</var>.</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>5 25
+5 2
+3 1
+1 4
+1 5
+</pre>
+<h4>Sample Function Calls</h4>
+<table>
+<thead>
+<tr>
+<th>Calls (Grader)</th>
+<th>Calls (Submission)</th>
+<th>Return Values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>solve(5, 25)</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>query(1, 3)</code></td>
+<td><code>5</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>query(1, 4)</code></td>
+<td><code>2</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>answer(3, 1)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>query(2, 4)</code></td>
+<td><code>4</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>query(3, 1)</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>query(3, 2)</code></td>
+<td><code>4</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>answer(1, 5)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>answer(4, 1)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>answer(2, 5)</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>The minimum number of sea routes to move from island <var>1</var> to islands <var>2, 3, 4, 5</var>, are <var>2, 1, 1, 1</var>, respectively. For example, to move from island <var>1</var> to island <var>2</var>, we can use sea route <var>4</var> and then sea route <var>1</var>.</p>
+<p>Sorting the islands <var>i</var> (<var>i \neq 1</var>) in increasing order of <var>\operatorname{dist}(1, i) \times N + i</var>, the result is island <var>3</var>, island <var>4</var>, island <var>5</var>, island <var>2</var>, in this order. Therefore, the return value of <code>query(1, 3)</code> is <var>5</var>, and the return value of <code>query(1, 4)</code> is <var>2</var>.</p>
+<p>Sample Input <var>2</var> satisfies the constraints of Subtasks <var>4, 6</var>. Among the files which can be obtained from the contest webpage, <code>sample-02-in.txt</code> corresponds to Sample Input <var>2</var>.</p>
+<p>Both <code>sample-01-in.txt</code> and <code>sample-02-in.txt</code> can be used as inputs for the sample grader.</p></section>
+</div>
+</span>
+<span class="lang-ja">
+<blockquote>
+<p><strong>AtCoder での提出方法</strong></p>
+<p>配布ファイルは <a href="https://www2.ioi-jp.org/camp/2024/2024-sp-tasks/contest4/island-dist.zip">こちら</a>．</p>
+<p>以下の「実装の詳細」「重要な注意」「コンパイル・実行の方法」は C++ の関数形式およびローカルでのテスト方法についての説明である．その他の言語を使用する場合は，この節の入出力形式で同じ戦略を実装すること．</p>
+<h4>C++ を使用する場合</h4>
+<p><code>island.h</code> を include し，関数 <code>solve</code> を実装したソースコードを提出すること．</p>
+<details>
+<summary><strong>その他の言語を使用する場合</strong></summary>
+<p><code>solve</code> の呼び出しに相当する入力が，以下の形式で与えられる．</p>
+<pre><var>N</var> <var>L</var>
+</pre>
+<p>終了時に，<code>0 0</code> を <var>1</var> 行で出力すること．</p>
+<p><code>query(v, k)</code> の呼び出しに相当する出力は，以下の形式で行うこと．</p>
+<pre><var>v</var> <var>k</var>
+</pre>
+<p>その後，<code>query</code> の戻り値が <var>1</var> 行で与えられる．</p>
+<p><code>answer(x, y)</code> の呼び出しに相当する出力は，<var>x &lt; y</var> として，以下の形式で行うこと．</p>
+<pre><var>-x</var> <var>y</var>
+</pre>
+<p>その後，<code>0</code> が <var>1</var> 行で与えられる．</p>
+<ul>
+<li><strong>各出力の後には必ず flush をすること．</strong></li>
+<li>出力の形式が正しくない場合や不正解の条件に当てはまった場合，与えられる入力は <code>-1</code> になる．この場合，ただちにプログラムを終了すること．</li>
+</ul>
+</details>
+</blockquote>
+<p>配点： <var>100</var> 点</p>
+<style>
+#task-statement details {
+    margin: 1em 0;
+}
+#task-statement details > summary {
+    display: list-item;
+    cursor: pointer;
+}
+#task-statement table {
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+    overflow-x: auto;
+    border-collapse: collapse;
+    margin: 1em 0;
+}
+#task-statement table th,
+#task-statement table td {
+    border: 1px solid #aaa;
+    padding: 0.4em 0.7em;
+    text-align: left;
+    vertical-align: top;
+}
+#task-statement table th {
+    background-color: #f5f5f5;
+}
+</style>
+
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>JOI 国には <var>N</var> 個の島があり，<var>1</var> から <var>N</var> までの番号が付けられている．また，JOI 国には <var>N - 1</var> 本の航路があり，<var>1</var> から <var>N - 1</var> までの番号が付けられている．航路 <var>j</var> (<var>1 \leqq j \leqq N - 1</var>) は島 <var>A_j</var> と島 <var>B_j</var> を双方向に結んでいる．どの島からどの島へも，いくつかの航路を乗り継ぐことで移動できる．</p>
+<p>葵は JOI 国での旅行を計画している．しかし，葵は JOI 国の航路について知らない．そこで，JOI 国に住んでいるビ太郎と以下のようなやりとりを行うことにした．</p>
+<ol>
+<li>葵は <var>1</var> 以上 <var>N</var> 以下の整数 <var>v</var> と <var>1</var> 以上 <var>N - 1</var> 以下の整数 <var>k</var> をビ太郎に伝える．</li>
+<li>ビ太郎は島 <var>v</var> 以外の <var>N - 1</var> 個の島のうち，島 <var>v</var> から <var>k</var> 番目に近い島の番号を葵に伝える．具体的には，整数 <var>i</var> (<var>1 \leqq i \leqq N</var>，<var>i \neq v</var>) について <var>\operatorname{dist}(v, i)</var> を島 <var>v</var> から島 <var>i</var> に移動する際に必要な航路の数の最小値としたとき，ビ太郎は <var>\operatorname{dist}(v, i) \times N + i</var> が <var>k</var> 番目に小さくなるような整数 <var>i</var> を葵に伝える．</li>
+</ol>
+<p>葵はビ太郎とのやりとりを通じて，どの島とどの島を結ぶ航路があるのかを知りたい．しかし，葵は忙しいので，ビ太郎とのやりとりを <var>L</var> 回までしかできない．</p>
+<p>JOI 国の島の数とビ太郎とのやりとりをできる回数が与えられたとき，どの島とどの島を結ぶ航路があるのかを求める葵の戦略を実装したプログラムを作成せよ．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>実装の詳細</h3>
+<p>あなたは <var>1</var> つのファイルを提出しなければならない．</p>
+<p>あなたの提出するファイルは <code>island.cpp</code> という名前である．<code>island.cpp</code> は <code>#include</code> プリプロセッサ指令によって <code>island.h</code> を読み込み，以下の関数を実装していなければならない．</p>
+<h4><code>void solve(int N, int L)</code></h4>
+<p>この関数は各テストケースにおいて <var>1</var> 回だけ呼び出される．</p>
+<ul>
+<li>引数 <code>N</code> は JOI 国の島の数 <var>N</var> である．</li>
+<li>引数 <code>L</code> は葵がビ太郎とのやりとりをできる回数 <var>L</var> である．</li>
+</ul>
+<p><code>island.cpp</code> 内では以下の関数を呼び出すことができる．</p>
+<h4><code>int query(int v, int k)</code></h4>
+<p>この関数を用いて，ビ太郎に質問を行う．</p>
+<ul>
+<li>引数 <code>v</code> は，<var>1</var> 以上 <var>N</var> 以下でなければならない．これが満たされていない場合，不正解 [1] と判定される．</li>
+<li>引数 <code>k</code> は，<var>1</var> 以上 <var>N - 1</var> 以下でなければならない．これが満たされていない場合，不正解 [2] と判定される．</li>
+<li>戻り値は，島 <var>v</var> 以外の <var>N - 1</var> 個の島のうち，島 <var>v</var> から <var>k</var> 番目に近い島の番号である．より正確な定義については，問題文を参照せよ．</li>
+<li>関数 <code>query</code> を <var>L</var> 回を超えて呼び出してはならない．<var>L</var> 回を超えて呼び出した場合，不正解 [3] と判定される．</li>
+</ul>
+<h4><code>void answer(int x, int y)</code></h4>
+<p>この関数を用いて，JOI 国の航路の情報を解答する．</p>
+<ul>
+<li>引数 <code>x</code> と引数 <code>y</code> は，ある航路が結ぶ <var>2</var> つの島の番号である．</li>
+<li>引数 <code>x</code> と引数 <code>y</code> は，<var>1</var> 以上 <var>N</var> 以下でなければならない．これが満たされていない場合，不正解 [4] と判定される．</li>
+<li>島 <var>x</var> と島 <var>y</var> を結ぶ航路が存在しなければならない．すなわち，<var>x = A_j</var>，<var>y = B_j</var> もしくは <var>x = B_j</var>，<var>y = A_j</var> となる整数 <var>j</var> (<var>1 \leqq j \leqq N - 1</var>) が存在しなければならない．これが満たされていない場合，不正解 [5] と判定される．</li>
+<li>同じ航路の情報を累計で <var>2</var> 回以上解答してはならない．これが満たされていない場合，不正解 [6] と判定される．</li>
+<li>関数 <code>answer</code> はちょうど <var>N - 1</var> 回呼び出される必要がある．関数 <code>solve</code> の実行の終了時に関数 <code>answer</code> の呼び出し回数が <var>N - 1</var> 回でなかった場合，不正解 [7] と判定される．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>重要な注意</h3>
+<ul>
+<li>内部での使用のために他の関数を実装したり，グローバル変数を宣言することは自由に行える．</li>
+<li>あなたの提出したプログラムは，標準入力・標準出力，あるいは他のファイルといかなる方法でもやりとりしてはならない．ただし，標準エラー出力にデバッグ情報等を出力することは許される．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>コンパイル・実行の方法</h3>
+<p>作成したプログラムをテストするための，採点プログラムのサンプルが，コンテストサイトからダウンロードできるアーカイブの中に含まれている．このアーカイブには，提出しなければならないファイルのサンプルも含まれている．</p>
+<p>採点プログラムのサンプルは <var>1</var> つのファイルからなる．そのファイルは <code>grader.cpp</code> である．作成したプログラムをテストするには，これらのファイル <code>grader.cpp</code>, <code>island.cpp</code>, <code>island.h</code> を同じディレクトリに置き，次のようにコマンドを実行する．なお，アーカイブの中に含まれている <code>compile.sh</code> というファイルを代わりに実行してもよい．</p>
+<pre>g++ -std=gnu++20 -O2 -o grader grader.cpp island.cpp
+</pre>
+<p>コンパイルが成功すれば，<code>grader</code> という実行ファイルが生成される．</p>
+<p>実際の採点プログラムは，採点プログラムのサンプルとは異なることに注意せよ．採点プログラムのサンプルは単一のプロセスとして起動する．このプログラムは，標準入力から入力を読み込み，標準出力に結果を出力する．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>採点プログラムのサンプルの入力</h3>
+<p>採点プログラムのサンプルは標準入力から以下の形式で入力を読み込む．</p>
+<pre><var>N</var> <var>L</var>
+<var>A_1</var> <var>B_1</var>
+<var>A_2</var> <var>B_2</var>
+<var>\vdots</var>
+<var>A_{N-1}</var> <var>B_{N-1}</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>採点プログラムのサンプルの出力</h3>
+<p>採点プログラムのサンプルは標準出力へ以下の情報を出力する（引用符は実際には出力されない）．</p>
+<ul>
+<li>正解の場合，関数 <code>query</code> の呼び出し回数が <code>Accepted: 2024</code> のように出力される．</li>
+<li>不正解の場合，不正解の種類が <code>Wrong Answer [4]</code> のように出力される．</li>
+</ul>
+<p>実行するプログラムが複数の不正解の条件を満たした場合，表示される不正解の種類はそれらのうち <var>1</var> つのみである．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>採点に関する注意</h3>
+<p>すべてのテストケースについて，実際の採点プログラムは適応的 (adaptive) ではない．これは，採点プログラムは初めから固定された答えを持つということを意味する．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<p>すべての入力データは以下の条件を満たす．</p>
+<ul>
+<li><var>3 \leqq N \leqq 300</var>．</li>
+<li><var>1 \leqq A_j \leqq N</var> (<var>1 \leqq j \leqq N - 1</var>)．</li>
+<li><var>1 \leqq B_j \leqq N</var> (<var>1 \leqq j \leqq N - 1</var>)．</li>
+<li><var>A_j \neq B_j</var> (<var>1 \leqq j \leqq N - 1</var>)．</li>
+<li>どの島からどの島へも，いくつかの航路を乗り継ぐことで移動できる．</li>
+<li>入力される値はすべて整数である．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>2</var> 点) <var>N = 3</var>，<var>L = 9</var>．</li>
+<li>(<var>4</var> 点) <var>L = N^2</var>，どの島についてもその島から <var>1</var> 本の航路で移動できる島は <var>2</var> つ以下である．</li>
+<li>(<var>7</var> 点) <var>L = 2N</var>，どの島についてもその島から <var>1</var> 本の航路で移動できる島は <var>2</var> つ以下である．</li>
+<li>(<var>9</var> 点) <var>L = N^2</var>，島 <var>1</var> から <var>1</var> 本の航路で移動できる島は <var>3</var> つである．島 <var>1</var> 以外の他のどの島についてもその島から <var>1</var> 本の航路で移動できる島は <var>2</var> つ以下である．</li>
+<li>(<var>13</var> 点) <var>L = 3N</var>，島 <var>1</var> から <var>1</var> 本の航路で移動できる島は <var>3</var> つである．島 <var>1</var> 以外の他のどの島についてもその島から <var>1</var> 本の航路で移動できる島は <var>2</var> つ以下である．</li>
+<li>(<var>15</var> 点) <var>L = N^2</var>．</li>
+<li>(<var>22</var> 点) <var>L = 3N</var>．</li>
+<li>(<var>28</var> 点) <var>L = 2N</var>．</li>
+</ol>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>やりとりの例</h3>
+<p>採点プログラムのサンプルが読み込む入力の例と，それに対応する関数の呼び出しの例を以下に示す．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>4 16
+1 2
+2 4
+4 3
+</pre>
+<h4>関数の呼び出しの例</h4>
+<table>
+<thead>
+<tr>
+<th>呼び出し（採点プログラム）</th>
+<th>呼び出し（提出プログラム）</th>
+<th>戻り値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>solve(4, 16)</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>query(2, 1)</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>query(3, 1)</code></td>
+<td><code>4</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>answer(2, 4)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>query(2, 2)</code></td>
+<td><code>4</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>answer(2, 1)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>query(3, 2)</code></td>
+<td><code>2</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>query(2, 1)</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>answer(3, 4)</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>島 <var>2</var> から島 <var>1</var>，島 <var>3</var>，島 <var>4</var> へ移動するのに必要な航路の数の最小値はそれぞれ <var>1, 2, 1</var> である．例えば，島 <var>2</var> から島 <var>3</var> へは航路 <var>2</var>，航路 <var>3</var> をこの順に乗り継ぐことで移動できる．</p>
+<p>島 <var>2</var> 以外の島 <var>i</var> を <var>\operatorname{dist}(2, i) \times N + i</var> が小さい順に並び替えると島 <var>1</var>，島 <var>4</var>，島 <var>3</var> となる．したがって，関数 <code>query(2, 1)</code> の戻り値は <var>1</var> となる．また，関数 <code>query(2, 2)</code> の戻り値は <var>4</var> となる．</p>
+<p>入力例 <var>1</var> は小課題 <var>2, 6</var> の制約を満たす．コンテストサイトからダウンロードできるファイルのうち，<code>sample-01-in.txt</code> は入力例 <var>1</var> に対応する．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>5 25
+5 2
+3 1
+1 4
+1 5
+</pre>
+<h4>関数の呼び出しの例</h4>
+<table>
+<thead>
+<tr>
+<th>呼び出し（採点プログラム）</th>
+<th>呼び出し（提出プログラム）</th>
+<th>戻り値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>solve(5, 25)</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>query(1, 3)</code></td>
+<td><code>5</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>query(1, 4)</code></td>
+<td><code>2</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>answer(3, 1)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>query(2, 4)</code></td>
+<td><code>4</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>query(3, 1)</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>query(3, 2)</code></td>
+<td><code>4</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>answer(1, 5)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>answer(4, 1)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>answer(2, 5)</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>島 <var>1</var> から島 <var>2</var>，島 <var>3</var>，島 <var>4</var>，島 <var>5</var> へ移動するのに必要な航路の数の最小値はそれぞれ <var>2, 1, 1, 1</var> である．例えば，島 <var>1</var> から島 <var>2</var> へは航路 <var>4</var>，航路 <var>1</var> をこの順に乗り継ぐことで移動できる．</p>
+<p>島 <var>1</var> 以外の島 <var>i</var> を <var>\operatorname{dist}(1, i) \times N + i</var> が小さい順に並び替えると島 <var>3</var>，島 <var>4</var>，島 <var>5</var>，島 <var>2</var> となる．したがって，関数 <code>query(1, 3)</code> の戻り値は <var>5</var> となる．また，関数 <code>query(1, 4)</code> の戻り値は <var>2</var> となる．</p>
+<p>入力例 <var>2</var> は小課題 <var>4, 6</var> の制約を満たす．コンテストサイトからダウンロードできるファイルのうち，<code>sample-02-in.txt</code> は入力例 <var>2</var> に対応する．</p>
+<p>コンテストサイトからダウンロードできるファイルに含まれる <code>sample-01-in.txt</code>，<code>sample-02-in.txt</code> は，採点プログラムのサンプルの入力として用いることができる．</p></section>
+</div>
+</span>
+</span>

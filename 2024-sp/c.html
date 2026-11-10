@@ -1,0 +1,625 @@
+<span class="lang">
+<span class="lang-en">
+<blockquote>
+<p><strong>Submission on AtCoder</strong></p>
+<p><a href="https://www2.ioi-jp.org/camp/2024/2024-sp-tasks/contest1/spy3-dist.zip">Distributed Files</a></p>
+<h4>For C++</h4>
+<p>Your program must include <code>Aoi.h</code>, <code>Bitaro.h</code> and all functions should be implemented within a single file.</p>
+<p><strong>Do NOT access to any files, including stdin and stdout.</strong></p>
+<details>
+<summary><strong>For Other Languages</strong></summary>
+<p>The following three programs run simultaneously. The time and memory usage are measured as the sum for these programs.</p>
+<ul>
+<li>The judge.</li>
+<li>Your program launched with <code>argv[1]</code> set to <code>0</code> (Aoi's side).</li>
+<li>Your program launched with <code>argv[1]</code> set to <code>1</code> (Bitaro's side).</li>
+</ul>
+<h4>Aoi's Side</h4>
+<p>When <code>argv[1]</code> is <var>0</var>, behave as Aoi's side.</p>
+<h5>aoi</h5>
+<p>Read input in the following format.</p>
+<pre><var>N</var> <var>M</var>
+<var>A_0</var> <var>B_0</var> <var>C_0</var>
+<var>\vdots</var>
+<var>A_{M-1}</var> <var>B_{M-1}</var> <var>C_{M-1}</var>
+<var>Q</var>
+<var>T_0</var> <var>\cdots</var> <var>T_{Q-1}</var>
+<var>K</var>
+<var>X_0</var> <var>\cdots</var> <var>X_{K-1}</var>
+</pre>
+<p>Output one line in the following format.</p>
+<pre>A<var>s</var>F
+</pre>
+<h4>Bitaro's Side</h4>
+<p>When <code>argv[1]</code> is <var>1</var>, behave as Bitaro's side.</p>
+<h5>bitaro</h5>
+<p>Read input in the following format.</p>
+<pre><var>N</var> <var>M</var>
+<var>A_0</var> <var>B_0</var> <var>C_0</var>
+<var>\vdots</var>
+<var>A_{M-1}</var> <var>B_{M-1}</var> <var>C_{M-1}</var>
+<var>Q</var>
+<var>T_0</var> <var>\cdots</var> <var>T_{Q-1}</var>
+<var>K</var>
+<var>X_0</var> <var>\cdots</var> <var>X_{K-1}</var>
+A<var>s</var>F
+</pre>
+<h5>answer</h5>
+<p>Output in the following format.</p>
+<pre><var>n</var>
+<var>\texttt{e[0]}</var> <var>\cdots</var> <var>\texttt{e[n-1]}</var>
+</pre>
+<h4>Other Notes</h4>
+<ul>
+<li><strong>Flush after each output.</strong></li>
+<li>If the output format is incorrect or a Wrong Answer condition is met, it is not guaranteed that the result will be WA.</li>
+</ul>
+</details>
+</blockquote>
+<p>Score: <var>100</var> points</p>
+<style>
+#task-statement details {
+    margin: 1em 0;
+}
+#task-statement details > summary {
+    display: list-item;
+    cursor: pointer;
+}
+#task-statement table {
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+    overflow-x: auto;
+    border-collapse: collapse;
+    margin: 1em 0;
+}
+#task-statement table th,
+#task-statement table td {
+    border: 1px solid #aaa;
+    padding: 0.4em 0.7em;
+    text-align: left;
+    vertical-align: top;
+}
+#task-statement table th {
+    background-color: #f5f5f5;
+}
+#task-statement table code {
+    white-space: nowrap;
+}
+</style>
+
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>Aoi and Bitaro are spies belonging to the National Information Bureau of JOI country. Their mission this time is to conduct undercover investigation into the IOI country. Bitaro infiltrates into the IOI country, while Aoi gives instructions to Bitaro from the JOI country.</p>
+<p>Before the infiltration, Aoi and Bitaro obtained a map of the IOI country. The IOI country has <var>N</var> cities, numbered from <var>0</var> to <var>N - 1</var>. Moreover, there are <var>M</var> roads in the IOI country, numbered from <var>0</var> to <var>M - 1</var>. Road <var>i</var> (<var>0 \leq i \leq M - 1</var>) connects city <var>A_i</var> and city <var>B_i</var> bidirectionally, with a length of <var>C_i</var>. It is possible to travel between any pair of cities by passing some roads. Bitaro moves between cities in the IOI country by passing these roads.</p>
+<p>Additionally, there are <var>Q</var> investigation plans. The <var>j</var>-th plan (<var>0 \leq j \leq Q - 1</var>) involves investigating city <var>T_j</var> in the IOI country.</p>
+<p>All the information above were first given to both Aoi and Bitaro. Then, Bitaro proceeded with the infiltration into the IOI country.</p>
+<p>Bitaro successfully evaded numerous pursuers, defeated assassins, and finally managed to infiltrate into city <var>0</var> of the IOI country. However, due to the extremely difficult nature of the infiltration operation, Bitaro lost some of the information about the IOI country. Specifically, Bitaro lost information about the length of <var>K</var> roads, namely the roads <var>X_0, X_1, \ldots, X_{K-1}</var>. In other words, Bitaro no longer knows the values of <var>C_{X_0}, C_{X_1}, \ldots, C_{X_{K-1}}</var>. Note that while Bitaro lost this information, Aoi still retains it.</p>
+<p>Bitaro immediately reported to Aoi which road lengths' information he had lost.</p>
+<p>To accomplish the mission, Bitaro wants to know a shortest path from city <var>0</var> to each of the cities targeted by the <var>Q</var> investigation plans.</p>
+<p>Aoi will send Bitaro a string where each character is either <code>0</code> or <code>1</code> to assist him. Due to the risk of interception, Aoi wants to minimize the content sent to Bitaro.</p>
+<p>Write a program to implement Aoi's strategy for sending a string to Bitaro, given the information about the IOI country, the investigation plans, and the roads Bitaro lost information about. Also, write a program to implement Bitaro's strategy for finding the shortest paths given the information he possesses and the string sent by Aoi.</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Implementation Details</h3>
+<p>The following file organization is used by the distributed sample grader. On AtCoder, submit one file as described in "Submission on AtCoder" above. The function interface and the standard input/output restrictions under "Important Notices" below apply to C++; other languages use the communication protocol above.</p>
+<p>You should submit <var>2</var> files.</p>
+<p>The first file is <code>Aoi.cpp</code>. This file is intended to implement Aoi's strategy and should implement the following functions. The program should include <code>Aoi.h</code> using the preprocessor directive <code>#include</code>.</p>
+<pre>std::string aoi(int N, int M, int Q, int K, std::vector&lt;int&gt; A,
+                std::vector&lt;int&gt; B, std::vector&lt;long long&gt; C,
+                std::vector&lt;int&gt; T, std::vector&lt;int&gt; X)
+</pre>
+<p>This function is called only once for each test case.</p>
+<ul>
+<li>The parameter <code>N</code> is the number of cities in IOI Kingdom <var>N</var>.</li>
+<li>The parameter <code>M</code> is the number of roads in IOI Kingdom <var>M</var>.</li>
+<li>The parameter <code>Q</code> is the number of investigation plans <var>Q</var>.</li>
+<li>The parameter <code>K</code> is the number of roads that Bitaro lost the length information of, denoted by <var>K</var>.</li>
+<li>The parameters <code>A</code>, <code>B</code>, <code>C</code> are arrays of length <var>M</var>. They mean the road <var>i</var> (<var>0 \leq i \leq M - 1</var>) connects the city <code>A[i]</code> and the city <code>B[i]</code> bidirectionally, with a length of <code>C[i]</code>.</li>
+<li>The parameter <code>T</code> is an array of length <var>Q</var>. It means the <var>j</var>-th plan (<var>0 \leq j \leq Q - 1</var>) involves investigating city <code>T[j]</code>.</li>
+<li>The parameter <code>X</code> is an array of length <var>K</var>. It indicates that Bitaro lost the length information of roads <code>X[0], X[1], ..., X[K-1]</code>.</li>
+<li>The return value is the string <var>s</var> that Aoi sends to Bitaro.</li>
+<li>Each character of the string <var>s</var> must be either <code>0</code> or <code>1</code>. If this condition is not met, your program will be judged as <strong>Wrong Answer [1]</strong>.</li>
+<li>The length of string <var>s</var> must be at most <var>12\,000</var>. If this condition is not met, your program will be judged as <strong>Wrong Answer [2]</strong>.</li>
+</ul>
+<p>The second file is <code>Bitaro.cpp</code>. This file is intended to implement Bitaro's strategy and should implement the following functions. The program should include <code>Bitaro.h</code> using the preprocessor directive <code>#include</code>.</p>
+<pre>void bitaro(int N, int M, int Q, int K, std::vector&lt;int&gt; A, std::vector&lt;int&gt; B,
+            std::vector&lt;long long&gt; C, std::vector&lt;int&gt; T, std::vector&lt;int&gt; X,
+            std::string s)
+</pre>
+<p>This function is called only once after the function <code>aoi</code> is called.</p>
+<ul>
+<li>The parameter <code>N</code> is the number of cities in IOI Kingdom <var>N</var>.</li>
+<li>The parameter <code>M</code> is the number of roads in IOI Kingdom <var>M</var>.</li>
+<li>The parameter <code>Q</code> is the number of investigation plans <var>Q</var>.</li>
+<li>The parameter <code>K</code> is the number of roads that Bitaro lost the length information of, denoted by <var>K</var>.</li>
+<li>The parameters <code>A</code>, <code>B</code>, <code>C</code> are arrays of length <var>M</var>. They mean the road <var>i</var> (<var>0 \leq i \leq M - 1</var>) connects the city <code>A[i]</code> and the city <code>B[i]</code> bidirectionally, with a length of <code>C[i]</code>. However, the lost lengths <code>C[X[0]], C[X[1]], ..., C[X[K-1]]</code> are replaced by <var>-1</var>.</li>
+<li>The parameter <code>T</code> is an array of length <var>Q</var>. It means the <var>j</var>-th plan (<var>0 \leq j \leq Q - 1</var>) involves investigating city <code>T[j]</code>.</li>
+<li>The parameter <code>X</code> is an array of length <var>K</var>. It indicates that Bitaro lost the length information of roads <code>X[0], X[1], ..., X[K-1]</code>.</li>
+<li>The argument <code>s</code> is a string where each character is either <code>0</code> or <code>1</code>, representing the string sent by Aoi to Bitaro.</li>
+</ul>
+<p>Within <code>Bitaro.cpp</code>, your program can call the following function.</p>
+<pre>void answer(const std::vector&lt;int&gt; &amp;e)
+</pre>
+<p>In the <var>(j + 1)</var>-th call (<var>0 \leq j \leq Q - 1</var>) to this function, you have to answer the shortest path from city <var>0</var> to city <var>T_j</var>, which is the target of the <var>j</var>-th investigation plan.</p>
+<ul>
+<li>The parameter <code>e</code> is an array that represents the shortest path from city <var>0</var> to city <var>T_j</var>.</li>
+<li>Let <var>n</var> be the length of the array <code>e</code>. The elements <code>e[0], e[1], ..., e[n-1]</code> are the indices of roads in the shortest path from city <var>0</var> to city <var>T_j</var>, in the order of traversal.</li>
+<li>If there are multiple possible shortest paths, any of them can be chosen as the answer.</li>
+<li>Each element of the parameter <code>e</code> must be between <var>0</var> and <var>M - 1</var>. If this condition is not met, your program will be judged as <strong>Wrong Answer [3]</strong>.</li>
+<li>
+<p>The sequence of roads indicated by the argument <code>e</code> must form a path from city <var>0</var> to city <var>T_j</var>. More formally, it must satisfy the following conditions. There exists a sequence of numbers <var>u_0, u_1, \ldots, u_n</var> such that</p>
+<ul>
+<li><var>u_0 = 0</var>.</li>
+<li><var>u_n = T_j</var>.</li>
+<li>The road <code>e[k]</code> (where <var>0 \leq k \leq n - 1</var>) connects city <var>u_k</var> and city <var>u_{k+1}</var>.</li>
+</ul>
+<p>If these conditions are not met, your program will be judged as <strong>Wrong Answer [4]</strong>.</p>
+</li>
+<li>
+<p>If the sequence of roads indicated by the argument <code>e</code> is not the shortest path from city <var>0</var> to city <var>T_j</var> among all paths starting from city <var>0</var> and ending at city <var>T_j</var>, your program will be judged as <strong>Wrong Answer [5]</strong>. Here, the length of the path is defined as the sum of the lengths of the roads used.</p>
+</li>
+<li>The function <code>answer</code> must be called exactly <var>Q</var> times. If the number of calls to the function <code>answer</code> is not equal to <var>Q</var> at the end of the execution of the function <code>bitaro</code>, your program will be judged as <strong>Wrong Answer [6]</strong>.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Important Notices</h3>
+<ul>
+<li>Your program can implement other functions for internal use, or use global variables. Submitted files will be compiled with the grader, and become a single executable file. All global variables and internal functions should be declared in an unnamed namespace to avoid confliction with other files. When it is graded, it will be executed as two processes of Aoi and Bitaro. The process of Aoi and the process of Bitaro cannot share global variables.</li>
+<li>Your program must not use the standard input and the standard output. Your program must not communicate with other files by any methods. However, your program may output debugging information to the standard error.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Compilation and Test Run</h3>
+<p>You can download an archive file from the contest webpage which contains the sample grader to test your program. The archive file also contains a sample source file of your program.</p>
+<p>The sample grader is the file <code>grader.cpp</code>. In order to test your program, put <code>grader.cpp</code>, <code>Aoi.cpp</code>, <code>Bitaro.cpp</code>, <code>Aoi.h</code>, <code>Bitaro.h</code> in the same directory, and run the following command to compile your programs. Instead, you may run <code>compile.sh</code> contained in the archive file.</p>
+<pre>g++ -std=gnu++20 -O2 -o grader grader.cpp Aoi.cpp Bitaro.cpp
+</pre>
+<p>When the compilation succeeds, the executable file <code>grader</code> is generated.</p>
+<p>Note that the actual grader is different from the sample grader. The sample grader will be executed as a single process, which will read input data from the standard input and write the results to the standard output and the standard error output.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Input for the Sample Grader</h3>
+<p>The sample grader reads the following data from the standard input.</p>
+<pre><var>N</var> <var>M</var>
+<var>A_0</var> <var>B_0</var> <var>C_0</var>
+<var>A_1</var> <var>B_1</var> <var>C_1</var>
+<var>\vdots</var>
+<var>A_{M-1}</var> <var>B_{M-1}</var> <var>C_{M-1}</var>
+<var>Q</var>
+<var>T_0</var> <var>T_1</var> <var>\ldots</var> <var>T_{Q-1}</var>
+<var>K</var>
+<var>X_0</var> <var>X_1</var> <var>\ldots</var> <var>X_{K-1}</var>
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Output of the Sample Grader</h3>
+<p>The sample grader outputs the following information to the standard output and the standard error output (quotes for clarity).</p>
+<ul>
+<li>If your program is judged as <strong>Wrong Answer [1]</strong>, <strong>[2]</strong>, <strong>[3]</strong>, <strong>[4]</strong>, or <strong>[6]</strong>, the sample grader writes its type as <code>Wrong Answer [1]</code> in the standard error output. Nothing will be output to the standard output.</li>
+<li>If not, the length of the returned string <var>s</var> from the function <code>aoi</code> will be output to the standard error output in the format <code>Accepted: 2024</code>. Additionally, the length of the path in the <var>(j + 1)</var>-th call (<var>0 \leq j \leq Q - 1</var>) to the <code>answer</code> function will be output to <var>(j + 1)</var>-th line of the standard output. The sample grading program does not check whether the path is the shortest.</li>
+</ul>
+<p>If your program meets the conditions of several types of Wrong Answer, the sample grader reports only one of them.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<p>All input data satisfies the following conditions:</p>
+<ul>
+<li><var>2 \leq N \leq 10\,000</var>.</li>
+<li><var>1 \leq M \leq 20\,000</var>.</li>
+<li><var>1 \leq Q \leq 16</var>.</li>
+<li><var>1 \leq K \leq 300</var>.</li>
+<li><var>0 \leq A_i &lt; B_i \leq N - 1</var> (<var>0 \leq i \leq M - 1</var>).</li>
+<li><var>(A_i, B_i) \neq (A_j, B_j)</var> (<var>0 \leq i &lt; j \leq M - 1</var>).</li>
+<li><var>1 \leq C_i \leq 10^{12}</var> (<var>0 \leq i \leq M - 1</var>).</li>
+<li><var>1 \leq T_j \leq N - 1</var> (<var>0 \leq j \leq Q - 1</var>).</li>
+<li><var>T_j \neq T_k</var> (<var>0 \leq j &lt; k \leq Q - 1</var>).</li>
+<li><var>0 \leq X_k \leq M - 1</var> (<var>0 \leq k \leq K - 1</var>).</li>
+<li><var>X_k \neq X_l</var> (<var>0 \leq k &lt; l \leq K - 1</var>).</li>
+<li>You can travel from any city to any other city by traversing some roads.</li>
+<li>All input values are integers.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Grading</h3>
+<p>If your program is judged as any type of Wrong Answer [1] - [6] (see Implementation Details) or any type of runtime errors (TLE (Time Limit Exceeded), MLE (Memory Limit Exceeded), Abnormal End, etc.) in any of the test cases, your score is <var>0</var> points.</p>
+<p>Otherwise, the grading is based on the maximum length of the returned string <var>s</var> from the function <code>aoi</code>, denoted as <var>L</var>, across all test cases for this task.</p>
+<ul>
+<li>If <var>1561 \leq L \leq 12\,000</var>, the score is <var>\left\lfloor \dfrac{100\,000}{L - 560} \right\rfloor</var> points.</li>
+<li>If <var>0 \leq L \leq 1560</var>, the score is <var>100</var> points.</li>
+</ul>
+<p>Here, <var>\lfloor x \rfloor</var> represents the largest integer that is not greater than <var>x</var>.</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Communication</h3>
+<p>Here is a sample input for the sample grader and corresponding function calls.</p>
+<h4>Sample Input 1</h4>
+<pre>3 3
+1 2 1
+0 2 2
+0 1 3
+2
+2 1
+2
+0 1
+</pre>
+<h4>Sample Function Calls</h4>
+<table>
+<thead>
+<tr>
+<th>Call</th>
+<th>Call</th>
+<th>Return value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>aoi(3, 3, 2, 2, [1, 0, 0], [2, 2, 1], [1, 2, 3], [2, 1], [0, 1])</code></td>
+<td></td>
+<td><code>"101001"</code></td>
+</tr>
+<tr>
+<td><code>bitaro(3, 3, 2, 2, [1, 0, 0], [2, 2, 1], [-1, -1, 3], [2, 1], [0, 1], "101001")</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>answer([1])</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>answer([1, 0])</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>The shortest path from city <var>0</var> to city <var>1</var>, is achieved either by traversing roads <var>1</var> and <var>0</var> in this order, or simply passing through road <var>2</var>. Therefore, for the second call to the <code>answer</code> function in this sample, it is also acceptable to call <code>answer([2])</code>.</p>
+<p>The file that can be downloaded from the contest site, <code>sample-01-in.txt</code>, corresponds to input example <var>1</var>.</p>
+<p>The files <code>sample-01-in.txt</code> and <code>sample-02-in.txt</code> included in the downloadable files from the contest site can be used as input for the sample grader.</p></section>
+</div>
+</span>
+<span class="lang-ja">
+<blockquote>
+<p><strong>AtCoder での提出方法</strong></p>
+<p><a href="https://www2.ioi-jp.org/camp/2024/2024-sp-tasks/contest1/spy3-dist.zip">配布ファイル</a></p>
+<h4>C++ を使用する場合</h4>
+<p>C++ を使用する場合，<code>Aoi.h</code>，<code>Bitaro.h</code> を include し，すべての関数を <var>1</var> つのファイル内で実装してください．</p>
+<p><strong>標準入出力やファイルへの入出力を使用しないでください．</strong></p>
+<details>
+<summary><strong>その他の言語を使用する場合</strong></summary>
+<ul>
+<li>ジャッジ</li>
+<li><code>argv[1]</code> を <code>0</code> として起動されたあなたのプログラム（Aoi 側）</li>
+<li><code>argv[1]</code> を <code>1</code> として起動されたあなたのプログラム（Bitaro 側）</li>
+</ul>
+<p>の <var>3</var> つのプログラムが同時に実行されます．実行時間・使用メモリはこれらの合計で計測されます．</p>
+<h4>Aoi 側</h4>
+<p><code>argv[1]</code> が <var>0</var> のとき，Aoi 側として振る舞ってください．</p>
+<h5>aoi</h5>
+<p>以下の形式で入力を読み込んでください．</p>
+<pre><var>N</var> <var>M</var>
+<var>A_0</var> <var>B_0</var> <var>C_0</var>
+<var>\vdots</var>
+<var>A_{M-1}</var> <var>B_{M-1}</var> <var>C_{M-1}</var>
+<var>Q</var>
+<var>T_0</var> <var>\cdots</var> <var>T_{Q-1}</var>
+<var>K</var>
+<var>X_0</var> <var>\cdots</var> <var>X_{K-1}</var>
+</pre>
+<p>以下の形式で <var>1</var> 行出力してください．</p>
+<pre>A<var>s</var>F
+</pre>
+<h4>Bitaro 側</h4>
+<p><code>argv[1]</code> が <var>1</var> のとき，Bitaro 側として振る舞ってください．</p>
+<h5>bitaro</h5>
+<p>以下の形式で入力を読み込んでください．</p>
+<pre><var>N</var> <var>M</var>
+<var>A_0</var> <var>B_0</var> <var>C_0</var>
+<var>\vdots</var>
+<var>A_{M-1}</var> <var>B_{M-1}</var> <var>C_{M-1}</var>
+<var>Q</var>
+<var>T_0</var> <var>\cdots</var> <var>T_{Q-1}</var>
+<var>K</var>
+<var>X_0</var> <var>\cdots</var> <var>X_{K-1}</var>
+A<var>s</var>F
+</pre>
+<h5>answer</h5>
+<p>以下の形式で出力してください．</p>
+<pre><var>n</var>
+<var>\texttt{e[0]}</var> <var>\cdots</var> <var>\texttt{e[n-1]}</var>
+</pre>
+<h4>その他</h4>
+<ul>
+<li><strong>各出力の後には必ず flush をしてください．</strong></li>
+<li>出力の形式が正しくない場合や不正解の条件に当てはまったときに WA になるかは不明です．</li>
+</ul>
+</details>
+</blockquote>
+<p>配点： <var>100</var> 点</p>
+<style>
+#task-statement details {
+    margin: 1em 0;
+}
+#task-statement details > summary {
+    display: list-item;
+    cursor: pointer;
+}
+#task-statement table {
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+    overflow-x: auto;
+    border-collapse: collapse;
+    margin: 1em 0;
+}
+#task-statement table th,
+#task-statement table td {
+    border: 1px solid #aaa;
+    padding: 0.4em 0.7em;
+    text-align: left;
+    vertical-align: top;
+}
+#task-statement table th {
+    background-color: #f5f5f5;
+}
+#task-statement table code {
+    white-space: nowrap;
+}
+</style>
+
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>葵とビ太郎は JOI 国情報管理局に所属するスパイである．</p>
+<p>今回のミッションは IOI 国への潜入調査である．ビ太郎は IOI 国に潜入し，葵は JOI 国からビ太郎に指示を出す．</p>
+<p>潜入の前に葵とビ太郎は IOI 国の地図を入手した．IOI 国には <var>N</var> 個の都市があり，<var>0</var> から <var>N - 1</var> までの番号が付けられている．また，IOI 国には <var>M</var> 本の道路があり，<var>0</var> から <var>M - 1</var> までの番号が付けられている．道路 <var>i</var> (<var>0 \leqq i \leqq M - 1</var>) は都市 <var>A_i</var> と都市 <var>B_i</var> を双方向に結んでおり，その長さは <var>C_i</var> である．どの都市からどの都市へも何本かの道路を通ることで移動できる．ビ太郎はこの道路を通ることで IOI 国の都市間を移動する．</p>
+<p>また，<var>Q</var> 個の調査計画がある．<var>j</var> 番目 (<var>0 \leqq j \leqq Q - 1</var>) の計画は，IOI 国の都市 <var>T_j</var> を調査するというものである．</p>
+<p>葵，ビ太郎ともに以上の情報を持った上で，ビ太郎は IOI 国への潜入に臨んだ．</p>
+<p>ビ太郎は数々の追っ手を撒き，刺客を返り討ちにし，ついに IOI 国の都市 <var>0</var> に潜入することに成功した．しかしながら，潜入作戦はとても困難であったため，ビ太郎は IOI 国の情報の一部を失ってしまった．具体的には，<var>K</var> 本の道路，道路 <var>X_0, X_1, \ldots, X_{K-1}</var> の長さの情報を失ってしまった．すなわち，ビ太郎は <var>C_{X_0}, C_{X_1}, \ldots, C_{X_{K-1}}</var> の値がわからなくなってしまった．情報を失ったのはビ太郎であり，葵はこれらの情報を保持していることに注意せよ．</p>
+<p>ビ太郎はすぐさまどの道路の長さの情報を失ったか葵に報告した．</p>
+<p>ビ太郎はミッションを遂行するために，<var>Q</var> 個の調査計画の対象である都市すべてについて，都市 <var>0</var> からの最短経路のうち <var>1</var> つを知りたい．</p>
+<p>葵はビ太郎を助けるために各文字が <code>0</code> または <code>1</code> である文字列をビ太郎に送信する．通信を傍受される恐れがあるため，ビ太郎に送信する内容は少なくしたい．</p>
+<p>IOI 国の情報，調査計画の情報とビ太郎が紛失した道路の情報が与えられたとき，ビ太郎に文字列を送信する葵の戦略を実装したプログラムおよび，ビ太郎が保持している情報と葵から送信された文字列の情報が与えられたとき，最短経路を求めるビ太郎の戦略を実装したプログラムを作成せよ．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>実装の詳細</h3>
+<p>以下のファイル構成は配布されている採点プログラムのサンプルを使用する場合のものである．AtCoder では，冒頭の「AtCoder での提出方法」に従って <var>1</var> つのファイルを提出すること．以下の関数形式および標準入出力に関する「重要な注意」は C++ を使用する場合の説明であり，その他の言語では上記の通信形式を用いること．</p>
+<p>あなたは <var>2</var> つのファイルを提出しなければならない．</p>
+<p><var>1</var> つ目のファイルは <code>Aoi.cpp</code> という名前である．このファイルは葵の戦略を実装したファイルであり，以下の関数を実装していなければならない．また，<code>#include</code> プリプロセッサ指令によって <code>Aoi.h</code> を読み込むこと．</p>
+<pre>std::string aoi(int N, int M, int Q, int K, std::vector&lt;int&gt; A,
+                std::vector&lt;int&gt; B, std::vector&lt;long long&gt; C,
+                std::vector&lt;int&gt; T, std::vector&lt;int&gt; X)
+</pre>
+<p>この関数は各テストケースにおいて <var>1</var> 回だけ呼び出される．</p>
+<ul>
+<li>引数 <code>N</code> は，IOI 国の都市の数 <var>N</var> である．</li>
+<li>引数 <code>M</code> は，IOI 国の道路の本数 <var>M</var> である．</li>
+<li>引数 <code>Q</code> は，調査計画の数 <var>Q</var> である．</li>
+<li>引数 <code>K</code> は，ビ太郎が長さの情報を失ってしまった道路の本数 <var>K</var> である．</li>
+<li>引数 <code>A</code>，<code>B</code>，<code>C</code> は長さ <var>M</var> の配列であり，道路 <var>i</var> (<var>0 \leqq i \leqq M - 1</var>) が都市 <code>A[i]</code>，都市 <code>B[i]</code> を双方向に結んでおり，その長さが <code>C[i]</code> であることを表す．</li>
+<li>引数 <code>T</code> は長さ <var>Q</var> の配列であり，<var>j</var> 番目 (<var>0 \leqq j \leqq Q - 1</var>) の計画は都市 <code>T[j]</code> を調査するというものであることを表す．</li>
+<li>引数 <code>X</code> は長さ <var>K</var> の配列であり，ビ太郎が道路 <code>X[0], X[1], ..., X[K-1]</code> の長さの情報を失ったことを表す．</li>
+<li>戻り値は，葵がビ太郎に送信する文字列 <var>s</var> である．</li>
+<li>文字列 <var>s</var> の各文字は <code>0</code> または <code>1</code> でなければならない．これが満たされない場合，<strong>不正解 [1]</strong> と判定される．</li>
+<li>文字列 <var>s</var> の長さは <var>12\,000</var> 以下でなければならない．これが満たされない場合，<strong>不正解 [2]</strong> と判定される．</li>
+</ul>
+<p><var>2</var> つ目のファイルは <code>Bitaro.cpp</code> という名前である．このファイルはビ太郎の戦略を実装したファイルであり，以下の関数を実装していなければならない．また，<code>#include</code> プリプロセッサ指令によって <code>Bitaro.h</code> を読み込むこと．</p>
+<pre>void bitaro(int N, int M, int Q, int K, std::vector&lt;int&gt; A, std::vector&lt;int&gt; B,
+            std::vector&lt;long long&gt; C, std::vector&lt;int&gt; T, std::vector&lt;int&gt; X,
+            std::string s)
+</pre>
+<p>この関数は，関数 <code>aoi</code> が呼び出された後に <var>1</var> 回だけ呼び出される．</p>
+<ul>
+<li>引数 <code>N</code> は，IOI 国の都市の数 <var>N</var> である．</li>
+<li>引数 <code>M</code> は，IOI 国の道路の本数 <var>M</var> である．</li>
+<li>引数 <code>Q</code> は，調査計画の数 <var>Q</var> である．</li>
+<li>引数 <code>K</code> は，ビ太郎が長さの情報を失ってしまった道路の本数 <var>K</var> である．</li>
+<li>引数 <code>A</code>，<code>B</code>，<code>C</code> は長さ <var>M</var> の配列であり，道路 <var>i</var> (<var>0 \leqq i \leqq M - 1</var>) が都市 <code>A[i]</code>，都市 <code>B[i]</code> を双方向に結んでおり，その長さが <code>C[i]</code> であることを表す．ただし，ビ太郎が失ってしまった長さの情報，<code>C[X[0]], C[X[1]], ..., C[X[K-1]]</code> には長さの値の代わりに <var>-1</var> が代入されている．</li>
+<li>引数 <code>T</code> は長さ <var>Q</var> の配列であり，<var>j</var> 番目 (<var>0 \leqq j \leqq Q - 1</var>) の計画は都市 <code>T[j]</code> を調査するというものであることを表す．</li>
+<li>引数 <code>X</code> は長さ <var>K</var> の配列であり，ビ太郎が道路 <code>X[0], X[1], ..., X[K-1]</code> の長さの情報を失ったことを表す．</li>
+<li>引数 <code>s</code> は各文字が <code>0</code> または <code>1</code> である文字列であり，葵がビ太郎に送信した文字列を表す．</li>
+</ul>
+<p><code>Bitaro.cpp</code> 内では以下の関数を呼び出すことができる．</p>
+<pre>void answer(const std::vector&lt;int&gt; &amp;e)
+</pre>
+<p>この関数を呼び出すのが <var>j + 1</var> 回目 (<var>0 \leqq j \leqq Q - 1</var>) であるとする．この関数を用いて，都市 <var>0</var> から <var>j</var> 番目の調査計画の対象である都市 <var>T_j</var> への最短経路を解答する．</p>
+<ul>
+<li>引数 <code>e</code> は，都市 <var>0</var> から都市 <var>T_j</var> への最短経路を示す配列である．</li>
+<li>引数 <code>e</code> の長さを <var>n</var> とするとき，<code>e[0], e[1], ..., e[n-1]</code> は，都市 <var>0</var> から都市 <var>T_j</var> への最短経路において通る道路の番号を，通る順に並べた配列である．</li>
+<li>最短経路が複数考えられる場合は，そのうちのどの経路を解答しても良い．</li>
+<li>引数 <code>e</code> の各要素は，<var>0</var> 以上 <var>M - 1</var> 以下でなければならない．これが満たされていない場合，<strong>不正解 [3]</strong> と判定される．</li>
+<li>
+<p>引数 <code>e</code> で示された道路の列は，都市 <var>0</var> から出発し，都市 <var>T_j</var> へ至る経路でなければならない．より形式的には，以下を満たさなければならない．ある数列 <var>u_0, u_1, \ldots, u_n</var> が存在して，</p>
+<ul>
+<li><var>u_0 = 0</var>．</li>
+<li><var>u_n = T_j</var>．</li>
+<li>道路 <code>e[k]</code> (<var>0 \leqq k \leqq n - 1</var>) は都市 <var>u_k</var> と都市 <var>u_{k+1}</var> を結ぶ．</li>
+</ul>
+<p>これが満たされていない場合，<strong>不正解 [4]</strong> と判定される．</p>
+</li>
+<li>
+<p>引数 <code>e</code> で示された道路の列が，都市 <var>0</var> から出発し，都市 <var>T_j</var> へ至る経路のうち，最短でない場合，<strong>不正解 [5]</strong> と判定される．ただし，経路の長さは，用いた道路の長さの総和として定義される．</p>
+</li>
+<li>関数 <code>answer</code> はちょうど <var>Q</var> 回呼び出される必要がある．関数 <code>bitaro</code> の実行の終了時に関数 <code>answer</code> の呼び出し回数が <var>Q</var> 回でなかった場合，<strong>不正解 [6]</strong> と判定される．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>重要な注意</h3>
+<ul>
+<li>内部での使用のために他の関数を実装したり，グローバル変数を宣言するのは自由である．ただし，提出された <var>2</var> つのプログラムは，採点プログラムとまとめてリンクされて <var>1</var> つの実行ファイルになるので，各ファイル内のすべてのグローバル変数と内部関数を無名名前空間内で宣言して，他のファイルとの干渉を避ける必要がある．採点時には，このプログラムは葵側，ビ太郎側として <var>2</var> 個のプロセスとして実行されるので，葵側とビ太郎側でプログラム中のグローバル変数を共有することはできない．</li>
+<li>あなたの提出したプログラムは，標準入力・標準出力，あるいは他のファイルといかなる方法でもやりとりしてはならない．ただし，標準エラー出力にデバッグ情報等を出力することは許される．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>コンパイル・実行の方法</h3>
+<p>作成したプログラムをテストするための，採点プログラムのサンプルが，コンテストサイトからダウンロードできるアーカイブの中に含まれている．このアーカイブには，提出しなければならないファイルのサンプルも含まれている．</p>
+<p>採点プログラムのサンプルは <var>1</var> つのファイルからなる．そのファイルは <code>grader.cpp</code> である．作成したプログラムをテストするには，<code>grader.cpp</code>，<code>Aoi.cpp</code>，<code>Bitaro.cpp</code>，<code>Aoi.h</code>，<code>Bitaro.h</code> を同じディレクトリに置き，次のようにコマンドを実行する．なお，アーカイブの中に含まれている <code>compile.sh</code> というファイルを代わりに実行してもよい．</p>
+<pre>g++ -std=gnu++20 -O2 -o grader grader.cpp Aoi.cpp Bitaro.cpp
+</pre>
+<p>コンパイルが成功すれば，<code>grader</code> という実行ファイルが生成される．</p>
+<p>実際の採点プログラムは，採点プログラムのサンプルとは異なることに注意せよ．採点プログラムのサンプルは単一のプロセスとして起動する．このプログラムは，標準入力から入力を読み込み，標準出力と標準エラー出力に結果を出力する．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>採点プログラムのサンプルの入力</h3>
+<p>採点プログラムのサンプルは標準入力から以下の形式で入力を読み込む．</p>
+<pre><var>N</var> <var>M</var>
+<var>A_0</var> <var>B_0</var> <var>C_0</var>
+<var>A_1</var> <var>B_1</var> <var>C_1</var>
+<var>\vdots</var>
+<var>A_{M-1}</var> <var>B_{M-1}</var> <var>C_{M-1}</var>
+<var>Q</var>
+<var>T_0</var> <var>T_1</var> <var>\ldots</var> <var>T_{Q-1}</var>
+<var>K</var>
+<var>X_0</var> <var>X_1</var> <var>\ldots</var> <var>X_{K-1}</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>採点プログラムのサンプルの出力</h3>
+<p>採点プログラムのサンプルは標準出力と標準エラー出力へ以下の情報を出力する（引用符は実際には出力されない）．</p>
+<ul>
+<li><strong>不正解 [1]</strong>，<strong>不正解 [2]</strong>，<strong>不正解 [3]</strong>，<strong>不正解 [4]</strong>，<strong>不正解 [6]</strong> と判定された場合，標準エラー出力に，不正解の種類が <code>Wrong Answer [1]</code> のように出力される．標準出力には何も出力されない．</li>
+<li>そうでない場合，標準エラー出力に，関数 <code>aoi</code> の戻り値 <var>s</var> の長さが <code>Accepted: 2024</code> のように出力される．また，標準出力の <var>j + 1</var> 行目 (<var>0 \leqq j \leqq Q - 1</var>) に <var>j + 1</var> 回目の <code>answer</code> 関数の呼び出しにおける経路の長さが出力される．採点プログラムのサンプルは，経路が最短であるかは判定しない．</li>
+</ul>
+<p>実行するプログラムが複数の不正解の条件を満たした場合，表示される不正解の種類はそれらのうち <var>1</var> つのみである．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<p>すべての入力データは以下の条件を満たす．</p>
+<ul>
+<li><var>2 \leqq N \leqq 10\,000</var>．</li>
+<li><var>1 \leqq M \leqq 20\,000</var>．</li>
+<li><var>1 \leqq Q \leqq 16</var>．</li>
+<li><var>1 \leqq K \leqq 300</var>．</li>
+<li><var>0 \leqq A_i &lt; B_i \leqq N - 1</var> (<var>0 \leqq i \leqq M - 1</var>)．</li>
+<li><var>(A_i, B_i) \neq (A_j, B_j)</var> (<var>0 \leqq i &lt; j \leqq M - 1</var>)．</li>
+<li><var>1 \leqq C_i \leqq 10^{12}</var> (<var>0 \leqq i \leqq M - 1</var>)．</li>
+<li><var>1 \leqq T_j \leqq N - 1</var> (<var>0 \leqq j \leqq Q - 1</var>)．</li>
+<li><var>T_j \neq T_k</var> (<var>0 \leqq j &lt; k \leqq Q - 1</var>)．</li>
+<li><var>0 \leqq X_k \leqq M - 1</var> (<var>0 \leqq k \leqq K - 1</var>)．</li>
+<li><var>X_k \neq X_l</var> (<var>0 \leqq k &lt; l \leqq K - 1</var>)．</li>
+<li>どの都市からどの都市へも何本かの道路を通ることで移動できる．</li>
+<li>入力される値はすべて整数である．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>採点基準</h3>
+<p>この課題のテストケースの中で，<var>1</var> つでも不正解 [1] 〜 [6]（実装の詳細を参照）と判定されたものや，実行時間制限超過，メモリ制限超過，実行時エラーと判定されたものがあった場合，<var>0</var> 点となる．</p>
+<p>また，この課題におけるすべてのテストケースに正解した場合，この課題のすべてのテストケースで呼び出された関数 <code>aoi</code> の戻り値 <var>s</var> の長さの最大値を <var>L</var> として，以下のように採点される．</p>
+<ul>
+<li><var>1561 \leqq L \leqq 12\,000</var> のとき，<var>\left\lfloor \dfrac{100\,000}{L - 560} \right\rfloor</var> 点．</li>
+<li><var>0 \leqq L \leqq 1560</var> のとき，<var>100</var> 点．</li>
+</ul>
+<p>ここで，<var>\lfloor x \rfloor</var> は <var>x</var> を超えない最大の整数を表す．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>やり取りの例</h3>
+<p>採点プログラムのサンプルが読み込む入力の例と，それに対応する関数の呼び出しの例を以下に示す．</p>
+<h4>入力例 1</h4>
+<pre>3 3
+1 2 1
+0 2 2
+0 1 3
+2
+2 1
+2
+0 1
+</pre>
+<h4>関数の呼び出しの例</h4>
+<table>
+<thead>
+<tr>
+<th>呼び出し</th>
+<th>呼び出し</th>
+<th>戻り値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>aoi(3, 3, 2, 2, [1, 0, 0], [2, 2, 1], [1, 2, 3], [2, 1], [0, 1])</code></td>
+<td></td>
+<td><code>"101001"</code></td>
+</tr>
+<tr>
+<td><code>bitaro(3, 3, 2, 2, [1, 0, 0], [2, 2, 1], [-1, -1, 3], [2, 1], [0, 1], "101001")</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>answer([1])</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>answer([1, 0])</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>都市 <var>0</var> から都市 <var>1</var> への最短経路は，道路 <var>1</var>，道路 <var>0</var> をこの順に通る経路と，道路 <var>2</var> を通る経路の <var>2</var> 通りが考えられる．そのため，この入力例における <var>2</var> 回目の <code>answer</code> 関数の呼び出しは，<code>answer([2])</code> と呼び出してもよい．</p>
+<p>コンテストサイトからダウンロードできるファイルのうち，<code>sample-01-in.txt</code> は入力例 <var>1</var> に対応する．</p>
+<p>コンテストサイトからダウンロードできるファイルに含まれる <code>sample-01-in.txt</code>，<code>sample-02-in.txt</code> は，採点プログラムのサンプルの入力として用いることができる．</p></section>
+</div>
+</span>
+</span>

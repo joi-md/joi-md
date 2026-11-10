@@ -1,0 +1,324 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>Mr. JOI, who manages a famous ski resort on the IOI Plateau, has decided to commemorate the <var>15</var>th anniversary of the ski resort's opening by constructing a new ski resort on the adjacent KOI Plateau.</p>
+<p>The KOI Plateau has <var>N</var> points numbered from <var>1</var> to <var>N</var>. Currently, the altitude of point <var>i</var> (<var>1 \leq i \leq N</var>) is <var>H_i</var> m, and there exist no courses connecting each point on the plateau. Additionally, each point is equipped with one unused connection facility available.</p>
+<p>The goal of Mr. JOI is to construct KOI Hotel at one of the <var>N</var> points and then construct some courses connecting each point on the plateau so that one can ski down to the hotel from any point. Specifically, Mr. JOI will construct the ski resort according to the following steps:</p>
+<ol>
+<li>Perform the following embankment work any number of times (possibly zero):<ul>
+<li>Choose a point <var>i</var>, and increase the altitude of point <var>i</var> by <var>1</var> m. The cost of this work is <var>K</var> per operation.</li>
+</ul>
+</li>
+<li>Choose a point from the <var>N</var> points and construct KOI Hotel there.</li>
+<li>Perform the following extension work any number of times (possibly zero):<ul>
+<li>Choose a point <var>i</var>, and build one connection facility at point <var>i</var>. The cost of this work is <var>C_i</var> per operation.</li>
+</ul>
+</li>
+<li>For each of the remaining <var>N - 1</var> points excluding the point with KOI Hotel, perform the following construction:<ul>
+<li>Let <var>i</var> be the number of the point. Select another point <var>j</var> with a strictly lower altitude than point <var>i</var>, and use one unused connection facility at point <var>j</var> to construct a one-way course from point <var>i</var> to point <var>j</var>. Note that if there is no point with an unused connection facility and a strictly lower altitude than point <var>i</var>, the goal cannot be achieved.</li>
+</ul>
+</li>
+</ol>
+<p>The cost of constructing the ski resort is the sum of the costs of embankment works and extension works performed.</p>
+<p>Write a program which, given information about each point on the KOI Plateau and the cost <var>K</var> per operation of embankment work, finds the minimum cost of constructing the ski resort.</p>
+<hr />
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input.</p>
+<pre><var>N</var> <var>K</var>
+<var>H_1</var> <var>C_1</var>
+<var>H_2</var> <var>C_2</var>
+<var>\vdots</var>
+<var>H_N</var> <var>C_N</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>Write one line to the standard output. The output should contain the minimum cost of constructing the ski resort.</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li><var>1 \leq N \leq 300</var>.</li>
+<li><var>1 \leq K \leq 10^9</var>.</li>
+<li><var>0 \leq H_i \leq 10^9</var> (<var>1 \leq i \leq N</var>).</li>
+<li><var>1 \leq C_i \leq 10^9</var> (<var>1 \leq i \leq N</var>).</li>
+<li>Given values are all integers.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li>(<var>5</var> points) <var>K \geq 100\,000</var>, <var>H_i \leq 300</var>, <var>C_i \leq 100</var> (<var>1 \leq i \leq N</var>).</li>
+<li>(<var>12</var> points) <var>H_1 \leq H_i</var>, <var>C_1 \leq C_i</var>, <var>H_i \leq 300</var> (<var>1 \leq i \leq N</var>).</li>
+<li>(<var>9</var> points) <var>N \leq 10</var>, <var>H_i \leq 10</var> (<var>1 \leq i \leq N</var>).</li>
+<li>(<var>33</var> points) <var>N \leq 40</var>, <var>H_i \leq 40</var> (<var>1 \leq i \leq N</var>).</li>
+<li>(<var>27</var> points) <var>H_i \leq 300</var> (<var>1 \leq i \leq N</var>).</li>
+<li>(<var>14</var> points) No additional constraints.</li>
+</ol>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>5 2
+0 6
+1 1
+0 5
+2 1
+1 2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>8
+</pre>
+<p>For example, the ski resort can be constructed in the following way:</p>
+<ol>
+<li>Perform embankment work twice at point <var>1</var> and once at point <var>5</var>. The total cost of these embankment works is <var>2 \times (2 + 1) = 6</var>. As a result, the altitude of each point becomes <var>2, 1, 0, 2, 2</var> m starting from point <var>1</var>.</li>
+<li>Construct KOI Hotel at point <var>3</var>.</li>
+<li>Perform extension work twice at point <var>2</var>. The total cost of these extension works is <var>1 \times 2 = 2</var>. As a result, the number of connection facilities at each point becomes <var>1, 3, 1, 1, 1</var> starting from point <var>1</var>.</li>
+<li>Construct <var>4</var> courses: one from point <var>1</var> to point <var>2</var>, one from point <var>2</var> to point <var>3</var>, one from point <var>4</var> to point <var>2</var>, and one from point <var>5</var> to point <var>2</var>.</li>
+</ol>
+<p>Here, the cost of constructing the ski resort is <var>6 + 2 = 8</var>. Since it is impossible to construct the ski resort with a cost of <var>7</var> or less, output <var>8</var>.</p>
+<p>This sample input satisfies the constraints of Subtasks <var>3, 4, 5, 6</var>.</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>5 100000
+0 6
+1 1
+0 5
+2 1
+1 2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>100010
+</pre>
+<p>This sample input differs from Sample Input <var>1</var> only in the value of <var>K</var>.</p>
+<p>This sample input satisfies the constraints of Subtasks <var>1, 3, 4, 5, 6</var>.</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 3</h3>
+<pre>8 8
+0 36
+1 47
+2 95
+0 59
+1 54
+0 95
+1 87
+2 92
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 3</h3>
+<pre>108
+</pre>
+<p>This sample input satisfies the constraints of Subtasks <var>2, 3, 4, 5, 6</var>.</p></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点： <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>IOI 高原において有名なスキー場を経営している JOI 氏は，スキー場のオープン <var>15</var> 周年を記念して，隣接する KOI 高原に新たなスキー場を造成することにした．</p>
+<p>KOI 高原には <var>1</var> から <var>N</var> までの番号が付けられた <var>N</var> 個の地点がある．現在，地点 <var>i</var> (<var>1 \leqq i \leqq N</var>) の標高は <var>H_i</var> m であり，高原の各地点を結ぶコースは <var>1</var> 本も存在しない．また，各地点には未使用の接続設備が <var>1</var> つずつ用意されている．</p>
+<p>JOI 氏の目標は，<var>N</var> 個の地点のいずれかに KOI ホテルを建設し，さらに高原の各地点を結ぶコースを何本か建設することで，どの地点からもホテルに向かって滑り降りられるようにすることである．より具体的には，JOI 氏は以下の手順に従ってスキー場を造成する．</p>
+<ol>
+<li>以下の盛土工事を <var>0</var> 回以上好きな回数行う．<ul>
+<li>ある地点 <var>i</var> を選んで，地点 <var>i</var> の標高を <var>1</var> m 増加させる．この工事にかかるコストは <var>1</var> 回あたり <var>K</var> である．</li>
+</ul>
+</li>
+<li><var>N</var> 個の地点の中から <var>1</var> つの地点を選んで，そこに KOI ホテルを建設する．</li>
+<li>以下の拡張工事を <var>0</var> 回以上好きな回数行う．<ul>
+<li>ある地点 <var>i</var> を選んで，地点 <var>i</var> に接続設備を <var>1</var> つ建設する．この工事にかかるコストは <var>1</var> 回あたり <var>C_i</var> である．</li>
+</ul>
+</li>
+<li>KOI ホテルがある地点を除く <var>N - 1</var> 個の地点それぞれについて以下の工事を行う．<ul>
+<li>その地点の番号を <var>i</var> とする．地点 <var>i</var> よりも標高が真に低い別の地点 <var>j</var> を選んで，地点 <var>j</var> にある未使用の接続設備を <var>1</var> つ用い，地点 <var>i</var> から地点 <var>j</var> に向かって伸びる一方通行のコースを建設する．地点 <var>i</var> よりも標高が真に低く未使用の接続設備がある地点が存在しない場合は，目標が達成できないことに注意せよ．</li>
+</ul>
+</li>
+</ol>
+<p>スキー場の造成にかかるコストは，行う盛土工事と拡張工事のコストの合計である．JOI 氏はなるべく少ないコストでスキー場を造成したい．</p>
+<p>KOI 高原の各地点に関する情報および盛土工事の <var>1</var> 回あたりのコスト <var>K</var> が与えられたとき，スキー場の造成にかかるコストの最小値を求めるプログラムを作成せよ．</p>
+<hr />
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力は以下の形式で標準入力から与えられる．</p>
+<pre><var>N</var> <var>K</var>
+<var>H_1</var> <var>C_1</var>
+<var>H_2</var> <var>C_2</var>
+<var>\vdots</var>
+<var>H_N</var> <var>C_N</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に，スキー場の造成にかかるコストの最小値を <var>1</var> 行で出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>1 \leqq N \leqq 300</var>．</li>
+<li><var>1 \leqq K \leqq 10^9</var>．</li>
+<li><var>0 \leqq H_i \leqq 10^9</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>1 \leqq C_i \leqq 10^9</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li>入力される値はすべて整数である．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>5</var> 点) <var>K \geqq 100\,000</var>，<var>H_i \leqq 300</var>，<var>C_i \leqq 100</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li>(<var>12</var> 点) <var>H_1 \leqq H_i</var>，<var>C_1 \leqq C_i</var>，<var>H_i \leqq 300</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li>(<var>9</var> 点) <var>N \leqq 10</var>，<var>H_i \leqq 10</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li>(<var>33</var> 点) <var>N \leqq 40</var>，<var>H_i \leqq 40</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li>(<var>27</var> 点) <var>H_i \leqq 300</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li>(<var>14</var> 点) 追加の制約はない．</li>
+</ol>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>5 2
+0 6
+1 1
+0 5
+2 1
+1 2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>8
+</pre>
+<p>例えば，以下のようにしてスキー場を造成することができる．</p>
+<ol>
+<li>地点 <var>1</var> に対する盛土工事を <var>2</var> 回，地点 <var>5</var> に対する盛土工事を <var>1</var> 回行う．これらの盛土工事にかかるコストの合計は <var>2 \times (2 + 1) = 6</var> である．これによって，各地点の標高は地点 <var>1</var> から順に <var>2, 1, 0, 2, 2</var> m になる．</li>
+<li>地点 <var>3</var> に KOI ホテルを建設する．</li>
+<li>地点 <var>2</var> に対する拡張工事を <var>2</var> 回行う．これらの拡張工事にかかるコストの合計は <var>1 \times 2 = 2</var> である．これによって，各地点の接続設備の個数は地点 <var>1</var> から順に <var>1, 3, 1, 1, 1</var> になる．</li>
+<li>地点 <var>1</var> から地点 <var>2</var> に向かって伸びるコース，地点 <var>2</var> から地点 <var>3</var> に向かって伸びるコース，地点 <var>4</var> から地点 <var>2</var> に向かって伸びるコース，地点 <var>5</var> から地点 <var>2</var> に向かって伸びるコースの <var>4</var> 本のコースを建設する．</li>
+</ol>
+<p>このとき，スキー場の造成にかかるコストは <var>6 + 2 = 8</var> である．<var>7</var> 以下のコストでスキー場を造成することはできないので，<var>8</var> を出力する．</p>
+<p>この入力例は小課題 <var>3, 4, 5, 6</var> の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>5 100000
+0 6
+1 1
+0 5
+2 1
+1 2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>100010
+</pre>
+<p>入力例 <var>1</var> とは <var>K</var> の値だけが異なる．</p>
+<p>この入力例は小課題 <var>1, 3, 4, 5, 6</var> の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>8 8
+0 36
+1 47
+2 95
+0 59
+1 54
+0 95
+1 87
+2 92
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>108
+</pre>
+<p>この入力例は小課題 <var>2, 3, 4, 5, 6</var> の制約を満たす．</p></section>
+</div>
+</span>
+</span>

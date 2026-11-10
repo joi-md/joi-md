@@ -1,0 +1,338 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>The IOI Kingdom consists of <var>N</var> cities lined up from west to east, with cities numbered from <var>1</var> to <var>N</var> in order from west.</p>
+<p>In the IOI Kingdom, they use Byou as the unit of time. A day in the IOI Kingdom is divided into <var>T</var> units of time. The moment <var>x</var> Byous (<var>0 \leq x &lt; T</var>) after the beginning of a day is called time <var>x</var>. Therefore, when <var>1</var> Byou passes from time <var>T - 1</var> of a certain day, it becomes time <var>0</var> of the next day.</p>
+<p>JOI Group is one of the secret sects in the IOI Kingdom. Since it is a secret sect, members must navigate around the country's checkpoints. Consequently, JOI Group members are restricted to using only flights operated by JOY Airlines for intercity travel.</p>
+<p>JOY Airlines operate <var>M_i</var> flights departing from city <var>i</var> (<var>1 \leq i \leq N - 1</var>). The <var>j</var>-th flight (<var>1 \leq j \leq M_i</var>) departs from city <var>i</var> at time <var>A_{i,j}</var> every day and arrives at city <var>i + 1</var> at time <var>B_{i,j}</var> on the same day. Here, <var>A_{i,j} &lt; B_{i,j}</var> holds. These flights allow convenient transfers, and it is also possible to depart from a city immediately upon arrival or stay overnight at the company's airports.</p>
+<p>The JOI Group has <var>Q</var> members, numbered from <var>1</var> to <var>Q</var>. Member <var>k</var> (<var>1 \leq k \leq Q</var>) places their operational base in city <var>L_k</var> and their living base in city <var>R_k</var>. Therefore, they want to know the minimum time required to travel from city <var>L_k</var> to city <var>R_k</var> by selecting the departure time from city <var>L_k</var> and flights to use appropriately.</p>
+<p>Given information about the flights operated by JOY Airlines and the members of the JOI Group, create a program to find the minimum time required for each member <var>k</var> to travel from city <var>L_k</var> to city <var>R_k</var>.</p>
+<hr />
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input.</p>
+<pre><var>N</var> <var>T</var>
+<var>M_1</var>
+<var>A_{1,1}</var> <var>B_{1,1}</var>
+<var>A_{1,2}</var> <var>B_{1,2}</var>
+<var>\vdots</var>
+<var>A_{1,M_1}</var> <var>B_{1,M_1}</var>
+<var>M_2</var>
+<var>A_{2,1}</var> <var>B_{2,1}</var>
+<var>A_{2,2}</var> <var>B_{2,2}</var>
+<var>\vdots</var>
+<var>A_{2,M_2}</var> <var>B_{2,M_2}</var>
+<var>\vdots</var>
+<var>M_{N-1}</var>
+<var>A_{N-1,1}</var> <var>B_{N-1,1}</var>
+<var>A_{N-1,2}</var> <var>B_{N-1,2}</var>
+<var>\vdots</var>
+<var>A_{N-1,M_{N-1}}</var> <var>B_{N-1,M_{N-1}}</var>
+<var>Q</var>
+<var>L_1</var> <var>R_1</var>
+<var>L_2</var> <var>R_2</var>
+<var>\vdots</var>
+<var>L_Q</var> <var>R_Q</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>Output <var>Q</var> lines to the standard output. On the <var>k</var>-th line (<var>1 \leq k \leq Q</var>), output the minimum time required for the member <var>k</var> to travel from city <var>L_k</var> to city <var>R_k</var>.</p>
+<hr />
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li><var>2 \leq N \leq 100\,000</var>.</li>
+<li><var>2 \leq T \leq 10^9</var>.</li>
+<li><var>M_i \geq 1</var> (<var>1 \leq i \leq N - 1</var>).</li>
+<li><var>M_1 + M_2 + \cdots + M_{N-1} \leq 100\,000</var>.</li>
+<li><var>0 \leq A_{i,j} &lt; B_{i,j} &lt; T</var> (<var>1 \leq i \leq N - 1</var>, <var>1 \leq j \leq M_i</var>).</li>
+<li><var>1 \leq Q \leq 300\,000</var>.</li>
+<li><var>1 \leq L_k &lt; R_k \leq N</var> (<var>1 \leq k \leq Q</var>).</li>
+<li>Given values are all integers.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li>(<var>6</var> points) <var>N \leq 2\,000</var>, <var>M_i = 1</var> (<var>1 \leq i \leq N - 1</var>).</li>
+<li>(<var>8</var> points) <var>N \leq 2\,000</var>, <var>M_i \leq 5</var> (<var>1 \leq i \leq N - 1</var>).</li>
+<li>(<var>17</var> points) <var>M_i = 1</var> (<var>1 \leq i \leq N - 1</var>).</li>
+<li>(<var>23</var> points) <var>M_i \leq 5</var> (<var>1 \leq i \leq N - 1</var>).</li>
+<li>(<var>36</var> points) <var>N \leq 90\,000</var>, <var>Q \leq 90\,000</var>, <var>M_1 + M_2 + \cdots + M_{N-1} \leq 90\,000</var>.</li>
+<li>(<var>10</var> points) No additional constraints.</li>
+</ol>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>4 10000
+1
+100 300
+2
+200 400
+300 600
+1
+500 600
+3
+1 3
+2 4
+1 4
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>500
+400
+10500
+</pre>
+<p>As a demonstration, let us designate the day on which member <var>k</var> departs from city <var>L_k</var> as day <var>1</var>.</p>
+<p>Member <var>1</var> can travel from city <var>1</var> to city <var>3</var> in <var>500</var> Byou by following actions:</p>
+<ol>
+<li>Depart from city <var>1</var> at time <var>100</var> on day <var>1</var> and arrive at city <var>2</var> at time <var>300</var> on day <var>1</var>.</li>
+<li>Depart from city <var>2</var> at time <var>300</var> on day <var>1</var> and arrive at city <var>3</var> at time <var>600</var> on day <var>1</var>.</li>
+</ol>
+<p>Since there is no faster way to travel, output <var>500</var> on line <var>1</var>.</p>
+<p>Member <var>2</var> can travel from city <var>2</var> to city <var>4</var> in <var>400</var> Byou by following actions:</p>
+<ol>
+<li>Depart from city <var>2</var> at time <var>200</var> on day <var>1</var> and arrive at city <var>3</var> at time <var>400</var> on day <var>1</var>.</li>
+<li>Depart from city <var>3</var> at time <var>500</var> on day <var>1</var> and arrive at city <var>4</var> at time <var>600</var> on day <var>1</var>.</li>
+</ol>
+<p>Since there is no faster way to travel, output <var>400</var> on line <var>2</var>.</p>
+<p>Member <var>3</var> can travel from city <var>1</var> to city <var>4</var> in <var>10500</var> Byou by following actions:</p>
+<ol>
+<li>Depart from city <var>1</var> at time <var>100</var> on day <var>1</var> and arrive at city <var>2</var> at time <var>300</var> on day <var>1</var>.</li>
+<li>Depart from city <var>2</var> at time <var>300</var> on day <var>1</var> and arrive at city <var>3</var> at time <var>600</var> on day <var>1</var>.</li>
+<li>Depart from city <var>3</var> at time <var>500</var> on day <var>2</var> and arrive at city <var>4</var> at time <var>600</var> on day <var>2</var>.</li>
+</ol>
+<p>Since there is no faster way to travel, output <var>10500</var> on line <var>3</var>.</p>
+<p>This sample input satisfies the constraints of subtasks <var>2, 4, 5, 6</var>.</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>6 10000
+1
+100 300
+1
+400 700
+1
+500 600
+1
+300 900
+1
+200 800
+1
+1 6
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>30700
+</pre>
+<p>This sample input satisfies the constraints of all subtasks.</p></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点： <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>IOI 国は東西に並んだ <var>N</var> 個の都市からなり，都市には西から順に <var>1</var> から <var>N</var> までの番号が付けられている．</p>
+<p>IOI 国の <var>1</var> 日は <var>T</var> 個の単位時間に分割されており，単位としてビョウを用いている．<var>1</var> 日の始まりから <var>x</var> ビョウ (<var>0 \leqq x &lt; T</var>) 経過した時点を時刻 <var>x</var> と表す．したがって，ある日の時刻 <var>T - 1</var> から <var>1</var> ビョウ経つと，翌日の時刻 <var>0</var> になる．</p>
+<p>秘密結社 JOI 団は IOI 国で暗躍する組織の <var>1</var> つである．秘密結社という組織の性質上，構成員は国の検問をかいくぐって移動する必要がある．そのため JOI 団の構成員が都市間を移動するには，JOY 航空会社が運航する航空便のみを使うことになっている．</p>
+<p>JOY 航空会社は都市 <var>i</var> (<var>1 \leqq i \leqq N - 1</var>) から出る航空便を <var>M_i</var> 個運航している．<var>j</var> 番目 (<var>1 \leqq j \leqq M_i</var>) の便は毎日時刻 <var>A_{i,j}</var> に都市 <var>i</var> を出発し，同じ日の時刻 <var>B_{i,j}</var> に都市 <var>i + 1</var> に到着する．ここで，<var>A_{i,j} &lt; B_{i,j}</var> が成り立っている．これらの航空便は乗り継ぎが簡便であり，任意の都市に到着したと同時にその都市を出発することも可能である．また，同社の空港には宿泊施設があり，任意の都市で日をまたいで待機することも可能である．</p>
+<p>JOI 団の構成員は <var>Q</var> 人おり，<var>1</var> から <var>Q</var> までの番号が付けられている．構成員 <var>k</var> (<var>1 \leqq k \leqq Q</var>) は活動拠点を都市 <var>L_k</var> に，生活拠点を都市 <var>R_k</var> におく．そのため，都市 <var>L_k</var> を出発する時刻および利用する航空便を適切に選ぶとき，都市 <var>L_k</var> を出発してから都市 <var>R_k</var> に到着するまでにかかる時間の最小値を知りたい．</p>
+<p>JOY 航空会社が運航する航空便および JOI 団の構成員の情報が与えられたとき，それぞれの構成員 <var>k</var> について，都市 <var>L_k</var> を出発してから都市 <var>R_k</var> に到着するまでにかかる時間の最小値を求めるプログラムを作成せよ．</p>
+<hr />
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力は以下の形式で標準入力から与えられる．</p>
+<pre><var>N</var> <var>T</var>
+<var>M_1</var>
+<var>A_{1,1}</var> <var>B_{1,1}</var>
+<var>A_{1,2}</var> <var>B_{1,2}</var>
+<var>\vdots</var>
+<var>A_{1,M_1}</var> <var>B_{1,M_1}</var>
+<var>M_2</var>
+<var>A_{2,1}</var> <var>B_{2,1}</var>
+<var>A_{2,2}</var> <var>B_{2,2}</var>
+<var>\vdots</var>
+<var>A_{2,M_2}</var> <var>B_{2,M_2}</var>
+<var>\vdots</var>
+<var>M_{N-1}</var>
+<var>A_{N-1,1}</var> <var>B_{N-1,1}</var>
+<var>A_{N-1,2}</var> <var>B_{N-1,2}</var>
+<var>\vdots</var>
+<var>A_{N-1,M_{N-1}}</var> <var>B_{N-1,M_{N-1}}</var>
+<var>Q</var>
+<var>L_1</var> <var>R_1</var>
+<var>L_2</var> <var>R_2</var>
+<var>\vdots</var>
+<var>L_Q</var> <var>R_Q</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に <var>Q</var> 行出力せよ．<var>k</var> 行目 (<var>1 \leqq k \leqq Q</var>) には，構成員 <var>k</var> が都市 <var>L_k</var> を出発してから都市 <var>R_k</var> に到着するまでにかかる時間の最小値が何ビョウであるか，単位 (ビョウ) を省いて出力せよ．</p>
+<hr />
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>2 \leqq N \leqq 100\,000</var>．</li>
+<li><var>2 \leqq T \leqq 10^9</var>．</li>
+<li><var>M_i \geqq 1</var> (<var>1 \leqq i \leqq N - 1</var>)．</li>
+<li><var>M_1 + M_2 + \cdots + M_{N-1} \leqq 100\,000</var>．</li>
+<li><var>0 \leqq A_{i,j} &lt; B_{i,j} &lt; T</var> (<var>1 \leqq i \leqq N - 1</var>，<var>1 \leqq j \leqq M_i</var>)．</li>
+<li><var>1 \leqq Q \leqq 300\,000</var>．</li>
+<li><var>1 \leqq L_k &lt; R_k \leqq N</var> (<var>1 \leqq k \leqq Q</var>)．</li>
+<li>入力される値はすべて整数である．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>6</var> 点) <var>N \leqq 2\,000</var>，<var>M_i = 1</var> (<var>1 \leqq i \leqq N - 1</var>)．</li>
+<li>(<var>8</var> 点) <var>N \leqq 2\,000</var>，<var>M_i \leqq 5</var> (<var>1 \leqq i \leqq N - 1</var>)．</li>
+<li>(<var>17</var> 点) <var>M_i = 1</var> (<var>1 \leqq i \leqq N - 1</var>)．</li>
+<li>(<var>23</var> 点) <var>M_i \leqq 5</var> (<var>1 \leqq i \leqq N - 1</var>)．</li>
+<li>(<var>36</var> 点) <var>N \leqq 90\,000</var>，<var>Q \leqq 90\,000</var>，<var>M_1 + M_2 + \cdots + M_{N-1} \leqq 90\,000</var>．</li>
+<li>(<var>10</var> 点) 追加の制約はない．</li>
+</ol>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>4 10000
+1
+100 300
+2
+200 400
+300 600
+1
+500 600
+3
+1 3
+2 4
+1 4
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>500
+400
+10500
+</pre>
+<p>説明のため，構成員 <var>k</var> が都市 <var>L_k</var> を出発する日を <var>1</var> 日目とする．</p>
+<p>構成員 <var>1</var> は以下のように行動することで，<var>500</var> ビョウで都市 <var>1</var> から都市 <var>3</var> に移動できる．</p>
+<ol>
+<li>都市 <var>1</var> を <var>1</var> 日目の時刻 <var>100</var> に出発し，都市 <var>2</var> へ <var>1</var> 日目の時刻 <var>300</var> に到着する．</li>
+<li>都市 <var>2</var> を <var>1</var> 日目の時刻 <var>300</var> に出発し，都市 <var>3</var> へ <var>1</var> 日目の時刻 <var>600</var> に到着する．</li>
+</ol>
+<p>これより短い時間で移動する方法は存在しないため，<var>1</var> 行目には <var>500</var> を出力する．</p>
+<p>構成員 <var>2</var> は以下のように行動することで，<var>400</var> ビョウで都市 <var>2</var> から都市 <var>4</var> に移動できる．</p>
+<ol>
+<li>都市 <var>2</var> を <var>1</var> 日目の時刻 <var>200</var> に出発し，都市 <var>3</var> へ <var>1</var> 日目の時刻 <var>400</var> に到着する．</li>
+<li>都市 <var>3</var> を <var>1</var> 日目の時刻 <var>500</var> に出発し，都市 <var>4</var> へ <var>1</var> 日目の時刻 <var>600</var> に到着する．</li>
+</ol>
+<p>これより短い時間で移動する方法は存在しないため，<var>2</var> 行目には <var>400</var> を出力する．</p>
+<p>構成員 <var>3</var> は以下のように行動することで，<var>10500</var> ビョウで都市 <var>1</var> から都市 <var>4</var> に移動できる．</p>
+<ol>
+<li>都市 <var>1</var> を <var>1</var> 日目の時刻 <var>100</var> に出発し，都市 <var>2</var> へ <var>1</var> 日目の時刻 <var>300</var> に到着する．</li>
+<li>都市 <var>2</var> を <var>1</var> 日目の時刻 <var>300</var> に出発し，都市 <var>3</var> へ <var>1</var> 日目の時刻 <var>600</var> に到着する．</li>
+<li>都市 <var>3</var> を <var>2</var> 日目の時刻 <var>500</var> に出発し，都市 <var>4</var> へ <var>2</var> 日目の時刻 <var>600</var> に到着する．</li>
+</ol>
+<p>これより短い時間で移動する方法は存在しないため，<var>3</var> 行目には <var>10500</var> を出力する．</p>
+<p>この入力例は小課題 <var>2, 4, 5, 6</var> の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>6 10000
+1
+100 300
+1
+400 700
+1
+500 600
+1
+300 900
+1
+200 800
+1
+1 6
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>30700
+</pre>
+<p>この入力例はすべての小課題の制約を満たす．</p></section>
+</div>
+</span>
+</span>
