@@ -46,7 +46,7 @@
 #task-statement table th,
 #task-statement table td {
     border: 1px solid #aaa;
-    padding: 0.4em 0.7em;
+    padding: 0.3em 0.6em;
     text-align: left;
     vertical-align: top;
 }
@@ -76,14 +76,20 @@
 <h3>Implementation Details</h3>
 <p>You need to submit one file.</p>
 <p>The file is <code>island.cpp</code>. It should implement the following function. The program should include <code>island.h</code> using the preprocessing directive <code>#include</code>.</p>
-<h4><code>void solve(int N, int L)</code></h4>
+<ul>
+<li>
+<p><code>void solve(int N, int L)</code></p>
 <p>This function is called only once for each test case.</p>
 <ul>
 <li>The parameter <code>N</code> is the number of islands <var>N</var>.</li>
 <li>The parameter <code>L</code> is the limit on number of questions <var>L</var>.</li>
 </ul>
+</li>
+</ul>
 <p>In <code>island.cpp</code>, you can call the following functions.</p>
-<h4><code>int query(int v, int k)</code></h4>
+<ul>
+<li>
+<p><code>int query(int v, int k)</code></p>
 <p>Using this function, Aoi asks a question to Bitaro.</p>
 <ul>
 <li>The parameter <code>v</code> must be between <var>1</var> and <var>N</var>. If not, your program is judged as Wrong Answer [1].</li>
@@ -91,7 +97,9 @@
 <li>The return value is the number on the island which is the <var>k</var>-th closest from island <var>v</var> among the <var>N - 1</var> islands except for island <var>v</var>. See the problem statement for a more detailed definition.</li>
 <li>You must not call function <code>query</code> more than <var>L</var> times. If it is called more than <var>L</var> times, your program is judged as Wrong Answer [3].</li>
 </ul>
-<h4><code>void answer(int x, int y)</code></h4>
+</li>
+<li>
+<p><code>void answer(int x, int y)</code></p>
 <p>Your program answers a sea route in JOI Kingdom by calling this function.</p>
 <ul>
 <li>The parameters <code>x</code> and <code>y</code> are the numbers of two islands connected by a sea route.</li>
@@ -99,6 +107,8 @@
 <li>There must exist a sea route which connects islands <var>x</var> and <var>y</var>. In other words, there must exist an integer <var>j</var> (<var>1 \leq j \leq N - 1</var>) such that <var>x = A_j</var> and <var>y = B_j</var>, or <var>x = B_j</var> and <var>y = A_j</var>. If not, your program is judged as Wrong Answer [5].</li>
 <li>The program must not answer the information of the same sea route twice or more. If this condition is not met, your program is judged as Wrong Answer [6].</li>
 <li>Function <code>answer</code> must be called exactly <var>N - 1</var> times. If the number of calls of function <code>answer</code> is not <var>N - 1</var> when the execution of function <code>solve</code> ends, your program is judged as Wrong Answer [7].</li>
+</ul>
+</li>
 </ul>
 </section>
 </div>
@@ -393,7 +403,7 @@
 #task-statement table th,
 #task-statement table td {
     border: 1px solid #aaa;
-    padding: 0.4em 0.7em;
+    padding: 0.3em 0.6em;
     text-align: left;
     vertical-align: top;
 }
@@ -423,14 +433,20 @@
 <h3>実装の詳細</h3>
 <p>あなたは <var>1</var> つのファイルを提出しなければならない．</p>
 <p>あなたの提出するファイルは <code>island.cpp</code> という名前である．<code>island.cpp</code> は <code>#include</code> プリプロセッサ指令によって <code>island.h</code> を読み込み，以下の関数を実装していなければならない．</p>
-<h4><code>void solve(int N, int L)</code></h4>
+<ul>
+<li>
+<p><code>void solve(int N, int L)</code></p>
 <p>この関数は各テストケースにおいて <var>1</var> 回だけ呼び出される．</p>
 <ul>
 <li>引数 <code>N</code> は JOI 国の島の数 <var>N</var> である．</li>
 <li>引数 <code>L</code> は葵がビ太郎とのやりとりをできる回数 <var>L</var> である．</li>
 </ul>
+</li>
+</ul>
 <p><code>island.cpp</code> 内では以下の関数を呼び出すことができる．</p>
-<h4><code>int query(int v, int k)</code></h4>
+<ul>
+<li>
+<p><code>int query(int v, int k)</code></p>
 <p>この関数を用いて，ビ太郎に質問を行う．</p>
 <ul>
 <li>引数 <code>v</code> は，<var>1</var> 以上 <var>N</var> 以下でなければならない．これが満たされていない場合，不正解 [1] と判定される．</li>
@@ -438,7 +454,9 @@
 <li>戻り値は，島 <var>v</var> 以外の <var>N - 1</var> 個の島のうち，島 <var>v</var> から <var>k</var> 番目に近い島の番号である．より正確な定義については，問題文を参照せよ．</li>
 <li>関数 <code>query</code> を <var>L</var> 回を超えて呼び出してはならない．<var>L</var> 回を超えて呼び出した場合，不正解 [3] と判定される．</li>
 </ul>
-<h4><code>void answer(int x, int y)</code></h4>
+</li>
+<li>
+<p><code>void answer(int x, int y)</code></p>
 <p>この関数を用いて，JOI 国の航路の情報を解答する．</p>
 <ul>
 <li>引数 <code>x</code> と引数 <code>y</code> は，ある航路が結ぶ <var>2</var> つの島の番号である．</li>
@@ -446,6 +464,8 @@
 <li>島 <var>x</var> と島 <var>y</var> を結ぶ航路が存在しなければならない．すなわち，<var>x = A_j</var>，<var>y = B_j</var> もしくは <var>x = B_j</var>，<var>y = A_j</var> となる整数 <var>j</var> (<var>1 \leqq j \leqq N - 1</var>) が存在しなければならない．これが満たされていない場合，不正解 [5] と判定される．</li>
 <li>同じ航路の情報を累計で <var>2</var> 回以上解答してはならない．これが満たされていない場合，不正解 [6] と判定される．</li>
 <li>関数 <code>answer</code> はちょうど <var>N - 1</var> 回呼び出される必要がある．関数 <code>solve</code> の実行の終了時に関数 <code>answer</code> の呼び出し回数が <var>N - 1</var> 回でなかった場合，不正解 [7] と判定される．</li>
+</ul>
+</li>
 </ul>
 </section>
 </div>

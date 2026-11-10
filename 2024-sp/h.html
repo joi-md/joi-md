@@ -50,7 +50,7 @@
 #task-statement table th,
 #task-statement table td {
     border: 1px solid #aaa;
-    padding: 0.4em 0.7em;
+    padding: 0.3em 0.6em;
     text-align: left;
     vertical-align: top;
 }
@@ -98,9 +98,9 @@
 <p>You need to submit one file.</p>
 <p>The file is <code>joitour.cpp</code>. The program should include <code>joitour.h</code> using the preprocessing directive <code>#include</code>.</p>
 <p>In <code>joitour.cpp</code>, the following functions should be implemented.</p>
-<h4>init</h4>
-<pre>void init(int N, std::vector&lt;int&gt; F, std::vector&lt;int&gt; U, std::vector&lt;int&gt; V, int Q)
-</pre>
+<ul>
+<li>
+<p><code>void init(int N, std::vector&lt;int&gt; F, std::vector&lt;int&gt; U, std::vector&lt;int&gt; V, int Q)</code></p>
 <ul>
 <li>With this function call, the information of roads and restaurants is given.</li>
 <li>This function is called only once, at the beginning.</li>
@@ -109,18 +109,18 @@
 <li>The parameters <code>U</code> and <code>V</code> are arrays of length <var>N - 1</var>. <code>U[j]</code> and <code>V[j]</code> (<var>0 \leq j \leq N - 2</var>) are two towns connected by road <var>j</var>, that is, <var>U_j</var> and <var>V_j</var>.</li>
 <li>The parameter <code>Q</code> is the number of events of change of restaurant type, that is, <var>Q</var>.</li>
 </ul>
-<h4>change</h4>
-<pre>void change(int X, int Y)
-</pre>
+</li>
+<li>
+<p><code>void change(int X, int Y)</code></p>
 <ul>
 <li>With this function call, the information of change of restaurant type is given.</li>
 <li>This function is called <var>Q</var> times.</li>
 <li>In <var>(k + 1)</var>-th call of this function (<var>0 \leq k \leq Q - 1</var>), the parameter <code>X</code> is the index of town that change of restaurant type happens, that is, <var>X_k</var>.</li>
 <li>In <var>(k + 1)</var>-th call of this function (<var>0 \leq k \leq Q - 1</var>), the parameter <code>Y</code> represents the new type of restaurant, that is, <var>Y_k</var>. It is guaranteed that new type is different from the old type.</li>
 </ul>
-<h4>num_tours</h4>
-<pre>long long num_tours()
-</pre>
+</li>
+<li>
+<p><code>long long num_tours()</code></p>
 <ul>
 <li>This function is called in the following occasions, totalling <var>Q + 1</var> times.<ul>
 <li>Right after the execution of function <code>init</code></li>
@@ -128,6 +128,8 @@
 </ul>
 </li>
 <li>This function should return the up-to-date number of good JOI tours.</li>
+</ul>
+</li>
 </ul>
 </section>
 </div>
@@ -421,7 +423,7 @@
 #task-statement table th,
 #task-statement table td {
     border: 1px solid #aaa;
-    padding: 0.4em 0.7em;
+    padding: 0.3em 0.6em;
     text-align: left;
     vertical-align: top;
 }
@@ -468,9 +470,9 @@
 <p>あなたは <var>1</var> つのファイルを提出しなければならない．</p>
 <p>あなたの提出するファイルは <code>joitour.cpp</code> という名前である．そのプログラムは <code>#include</code> プリプロセッサ指令によって <code>joitour.h</code> を読み込むこと．</p>
 <p><code>joitour.cpp</code> は以下の関数を実装していなければならない．</p>
-<h4>init</h4>
-<pre>void init(int N, std::vector&lt;int&gt; F, std::vector&lt;int&gt; U, std::vector&lt;int&gt; V, int Q)
-</pre>
+<ul>
+<li>
+<p><code>void init(int N, std::vector&lt;int&gt; F, std::vector&lt;int&gt; U, std::vector&lt;int&gt; V, int Q)</code></p>
 <ul>
 <li>この関数の呼び出しによって，IOI 国の道路と飲食店の情報が与えられる．</li>
 <li>この関数は最初に <var>1</var> 回だけ実行される．</li>
@@ -479,18 +481,18 @@
 <li>引数 <code>U</code>, <code>V</code> は長さ <var>N - 1</var> の配列であり，<code>U[j]</code>, <code>V[j]</code> (<var>0 \leqq j \leqq N - 2</var>) は道路 <var>j</var> が結ぶ <var>2</var> つの街 <var>U_j, V_j</var> を表す．</li>
 <li>引数 <code>Q</code> は飲食店の種類が変更される回数 <var>Q</var> を表す．</li>
 </ul>
-<h4>change</h4>
-<pre>void change(int X, int Y)
-</pre>
+</li>
+<li>
+<p><code>void change(int X, int Y)</code></p>
 <ul>
 <li>この関数の呼び出しによって，飲食店の種類が変更されたという情報が与えられる．</li>
 <li>この関数は <var>Q</var> 回実行される．</li>
 <li>この関数の <var>k + 1</var> 回目 (<var>0 \leqq k \leqq Q - 1</var>) の呼び出しにおいて，引数 <code>X</code> は変更された飲食店のある街の番号 <var>X_k</var> を表す．</li>
 <li>この関数の <var>k + 1</var> 回目 (<var>0 \leqq k \leqq Q - 1</var>) の呼び出しにおいて，引数 <code>Y</code> は変更後の飲食店の種類に対応する整数 <var>Y_k</var> を表す．変更後の飲食店の種類は，変更前の飲食店の種類と異なることが保証される．</li>
 </ul>
-<h4>num_tours</h4>
-<pre>long long num_tours()
-</pre>
+</li>
+<li>
+<p><code>long long num_tours()</code></p>
 <ul>
 <li>この関数は以下のタイミングに各 <var>1</var> 回，合計で <var>Q + 1</var> 回実行される．<ul>
 <li>関数 <code>init</code> の実行の直後</li>
@@ -498,6 +500,8 @@
 </ul>
 </li>
 <li>この関数は，現時点での良い JOI ツアーの個数を返さなければならない．</li>
+</ul>
+</li>
 </ul>
 </section>
 </div>

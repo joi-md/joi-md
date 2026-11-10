@@ -76,7 +76,7 @@ A<var>s</var>F
 #task-statement table th,
 #task-statement table td {
     border: 1px solid #aaa;
-    padding: 0.4em 0.7em;
+    padding: 0.3em 0.6em;
     text-align: left;
     vertical-align: top;
 }
@@ -111,10 +111,9 @@ A<var>s</var>F
 <p>The following file organization is used by the distributed sample grader. On AtCoder, submit one file as described in "Submission on AtCoder" above. The function interface and the standard input/output restrictions under "Important Notices" below apply to C++; other languages use the communication protocol above.</p>
 <p>You should submit <var>2</var> files.</p>
 <p>The first file is <code>Aoi.cpp</code>. This file is intended to implement Aoi's strategy and should implement the following functions. The program should include <code>Aoi.h</code> using the preprocessor directive <code>#include</code>.</p>
-<pre>std::string aoi(int N, int M, int Q, int K, std::vector&lt;int&gt; A,
-                std::vector&lt;int&gt; B, std::vector&lt;long long&gt; C,
-                std::vector&lt;int&gt; T, std::vector&lt;int&gt; X)
-</pre>
+<ul>
+<li>
+<p><code>std::string aoi(int N, int M, int Q, int K, std::vector&lt;int&gt; A, std::vector&lt;int&gt; B, std::vector&lt;long long&gt; C, std::vector&lt;int&gt; T, std::vector&lt;int&gt; X)</code></p>
 <p>This function is called only once for each test case.</p>
 <ul>
 <li>The parameter <code>N</code> is the number of cities in IOI Kingdom <var>N</var>.</li>
@@ -128,11 +127,12 @@ A<var>s</var>F
 <li>Each character of the string <var>s</var> must be either <code>0</code> or <code>1</code>. If this condition is not met, your program will be judged as <strong>Wrong Answer [1]</strong>.</li>
 <li>The length of string <var>s</var> must be at most <var>12\,000</var>. If this condition is not met, your program will be judged as <strong>Wrong Answer [2]</strong>.</li>
 </ul>
+</li>
+</ul>
 <p>The second file is <code>Bitaro.cpp</code>. This file is intended to implement Bitaro's strategy and should implement the following functions. The program should include <code>Bitaro.h</code> using the preprocessor directive <code>#include</code>.</p>
-<pre>void bitaro(int N, int M, int Q, int K, std::vector&lt;int&gt; A, std::vector&lt;int&gt; B,
-            std::vector&lt;long long&gt; C, std::vector&lt;int&gt; T, std::vector&lt;int&gt; X,
-            std::string s)
-</pre>
+<ul>
+<li>
+<p><code>void bitaro(int N, int M, int Q, int K, std::vector&lt;int&gt; A, std::vector&lt;int&gt; B, std::vector&lt;long long&gt; C, std::vector&lt;int&gt; T, std::vector&lt;int&gt; X, std::string s)</code></p>
 <p>This function is called only once after the function <code>aoi</code> is called.</p>
 <ul>
 <li>The parameter <code>N</code> is the number of cities in IOI Kingdom <var>N</var>.</li>
@@ -144,9 +144,12 @@ A<var>s</var>F
 <li>The parameter <code>X</code> is an array of length <var>K</var>. It indicates that Bitaro lost the length information of roads <code>X[0], X[1], ..., X[K-1]</code>.</li>
 <li>The argument <code>s</code> is a string where each character is either <code>0</code> or <code>1</code>, representing the string sent by Aoi to Bitaro.</li>
 </ul>
+</li>
+</ul>
 <p>Within <code>Bitaro.cpp</code>, your program can call the following function.</p>
-<pre>void answer(const std::vector&lt;int&gt; &amp;e)
-</pre>
+<ul>
+<li>
+<p><code>void answer(const std::vector&lt;int&gt; &amp;e)</code></p>
 <p>In the <var>(j + 1)</var>-th call (<var>0 \leq j \leq Q - 1</var>) to this function, you have to answer the shortest path from city <var>0</var> to city <var>T_j</var>, which is the target of the <var>j</var>-th investigation plan.</p>
 <ul>
 <li>The parameter <code>e</code> is an array that represents the shortest path from city <var>0</var> to city <var>T_j</var>.</li>
@@ -166,6 +169,8 @@ A<var>s</var>F
 <p>If the sequence of roads indicated by the argument <code>e</code> is not the shortest path from city <var>0</var> to city <var>T_j</var> among all paths starting from city <var>0</var> and ending at city <var>T_j</var>, your program will be judged as <strong>Wrong Answer [5]</strong>. Here, the length of the path is defined as the sum of the lengths of the roads used.</p>
 </li>
 <li>The function <code>answer</code> must be called exactly <var>Q</var> times. If the number of calls to the function <code>answer</code> is not equal to <var>Q</var> at the end of the execution of the function <code>bitaro</code>, your program will be judged as <strong>Wrong Answer [6]</strong>.</li>
+</ul>
+</li>
 </ul>
 </section>
 </div>
@@ -385,7 +390,7 @@ A<var>s</var>F
 #task-statement table th,
 #task-statement table td {
     border: 1px solid #aaa;
-    padding: 0.4em 0.7em;
+    padding: 0.3em 0.6em;
     text-align: left;
     vertical-align: top;
 }
@@ -421,10 +426,9 @@ A<var>s</var>F
 <p>以下のファイル構成は配布されている採点プログラムのサンプルを使用する場合のものである．AtCoder では，冒頭の「AtCoder での提出方法」に従って <var>1</var> つのファイルを提出すること．以下の関数形式および標準入出力に関する「重要な注意」は C++ を使用する場合の説明であり，その他の言語では上記の通信形式を用いること．</p>
 <p>あなたは <var>2</var> つのファイルを提出しなければならない．</p>
 <p><var>1</var> つ目のファイルは <code>Aoi.cpp</code> という名前である．このファイルは葵の戦略を実装したファイルであり，以下の関数を実装していなければならない．また，<code>#include</code> プリプロセッサ指令によって <code>Aoi.h</code> を読み込むこと．</p>
-<pre>std::string aoi(int N, int M, int Q, int K, std::vector&lt;int&gt; A,
-                std::vector&lt;int&gt; B, std::vector&lt;long long&gt; C,
-                std::vector&lt;int&gt; T, std::vector&lt;int&gt; X)
-</pre>
+<ul>
+<li>
+<p><code>std::string aoi(int N, int M, int Q, int K, std::vector&lt;int&gt; A, std::vector&lt;int&gt; B, std::vector&lt;long long&gt; C, std::vector&lt;int&gt; T, std::vector&lt;int&gt; X)</code></p>
 <p>この関数は各テストケースにおいて <var>1</var> 回だけ呼び出される．</p>
 <ul>
 <li>引数 <code>N</code> は，IOI 国の都市の数 <var>N</var> である．</li>
@@ -438,11 +442,12 @@ A<var>s</var>F
 <li>文字列 <var>s</var> の各文字は <code>0</code> または <code>1</code> でなければならない．これが満たされない場合，<strong>不正解 [1]</strong> と判定される．</li>
 <li>文字列 <var>s</var> の長さは <var>12\,000</var> 以下でなければならない．これが満たされない場合，<strong>不正解 [2]</strong> と判定される．</li>
 </ul>
+</li>
+</ul>
 <p><var>2</var> つ目のファイルは <code>Bitaro.cpp</code> という名前である．このファイルはビ太郎の戦略を実装したファイルであり，以下の関数を実装していなければならない．また，<code>#include</code> プリプロセッサ指令によって <code>Bitaro.h</code> を読み込むこと．</p>
-<pre>void bitaro(int N, int M, int Q, int K, std::vector&lt;int&gt; A, std::vector&lt;int&gt; B,
-            std::vector&lt;long long&gt; C, std::vector&lt;int&gt; T, std::vector&lt;int&gt; X,
-            std::string s)
-</pre>
+<ul>
+<li>
+<p><code>void bitaro(int N, int M, int Q, int K, std::vector&lt;int&gt; A, std::vector&lt;int&gt; B, std::vector&lt;long long&gt; C, std::vector&lt;int&gt; T, std::vector&lt;int&gt; X, std::string s)</code></p>
 <p>この関数は，関数 <code>aoi</code> が呼び出された後に <var>1</var> 回だけ呼び出される．</p>
 <ul>
 <li>引数 <code>N</code> は，IOI 国の都市の数 <var>N</var> である．</li>
@@ -454,9 +459,12 @@ A<var>s</var>F
 <li>引数 <code>X</code> は長さ <var>K</var> の配列であり，ビ太郎が道路 <code>X[0], X[1], ..., X[K-1]</code> の長さの情報を失ったことを表す．</li>
 <li>引数 <code>s</code> は各文字が <code>0</code> または <code>1</code> である文字列であり，葵がビ太郎に送信した文字列を表す．</li>
 </ul>
+</li>
+</ul>
 <p><code>Bitaro.cpp</code> 内では以下の関数を呼び出すことができる．</p>
-<pre>void answer(const std::vector&lt;int&gt; &amp;e)
-</pre>
+<ul>
+<li>
+<p><code>void answer(const std::vector&lt;int&gt; &amp;e)</code></p>
 <p>この関数を呼び出すのが <var>j + 1</var> 回目 (<var>0 \leqq j \leqq Q - 1</var>) であるとする．この関数を用いて，都市 <var>0</var> から <var>j</var> 番目の調査計画の対象である都市 <var>T_j</var> への最短経路を解答する．</p>
 <ul>
 <li>引数 <code>e</code> は，都市 <var>0</var> から都市 <var>T_j</var> への最短経路を示す配列である．</li>
@@ -476,6 +484,8 @@ A<var>s</var>F
 <p>引数 <code>e</code> で示された道路の列が，都市 <var>0</var> から出発し，都市 <var>T_j</var> へ至る経路のうち，最短でない場合，<strong>不正解 [5]</strong> と判定される．ただし，経路の長さは，用いた道路の長さの総和として定義される．</p>
 </li>
 <li>関数 <code>answer</code> はちょうど <var>Q</var> 回呼び出される必要がある．関数 <code>bitaro</code> の実行の終了時に関数 <code>answer</code> の呼び出し回数が <var>Q</var> 回でなかった場合，<strong>不正解 [6]</strong> と判定される．</li>
+</ul>
+</li>
 </ul>
 </section>
 </div>
