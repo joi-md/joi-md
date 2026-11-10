@@ -2,28 +2,33 @@
 <span class="lang-en">
 <p>Score: <var>100</var> points</p>
 <style>
-#task-statement table {
-    display: block;
-    width: fit-content;
+#task-statement .joisp2023-guard-table {
     max-width: 100%;
     overflow-x: auto;
-    border-collapse: collapse;
     margin: 1em 0;
 }
-#task-statement table th,
-#task-statement table td {
+#task-statement .joisp2023-guard-table table {
+    display: table;
+    width: auto;
+    max-width: none;
+    overflow: visible;
+    border-collapse: collapse;
+    margin: 0;
+}
+#task-statement .joisp2023-guard-table table th,
+#task-statement .joisp2023-guard-table table td {
     border: 1px solid #aaa;
     padding: 0.3em 0.6em;
     text-align: left;
     vertical-align: top;
 }
-#task-statement table th {
+#task-statement .joisp2023-guard-table table th {
     background-color: #f5f5f5;
 }
-#task-statement table td:nth-child(2) {
+#task-statement .joisp2023-guard-table table td:nth-child(2) {
     min-width: 16em;
 }
-#task-statement table td:nth-child(n+3) {
+#task-statement .joisp2023-guard-table table td:nth-child(n+3) {
     white-space: nowrap;
 }
 </style>
@@ -145,6 +150,7 @@
 <li>We transport a passenger from the island <var>3</var> to the island <var>2</var>.</li>
 </ul>
 <p>We can transport a passenger from the island <var>1</var> to the island <var>4</var> as follows. The islands where the ships <var>1, 2, 3</var> are anchored, and the numbers of security guards on the ships <var>1, 2, 3</var> are written in this order. The numbers of security guards on the islands <var>1, 2, 3, 4</var> are written in this order.</p>
+<div class="joisp2023-guard-table">
 <table>
 <thead>
 <tr>
@@ -242,7 +248,9 @@
 </tr>
 </tbody>
 </table>
+</div>
 <p>We can transport a passenger from the island <var>3</var> to the island <var>2</var> as follows.</p>
+<div class="joisp2023-guard-table">
 <table>
 <thead>
 <tr>
@@ -305,6 +313,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <p>Since it is impossible to satisfy the conditions if the number of security guards is less than or equal to <var>6</var>, output <var>7</var>.</p>
 <p>This sample input satisfies the constraints of Subtasks <var>2, 3, 4, 5, 6, 7</var>.</p>
 <hr />
@@ -460,28 +469,33 @@
 <span class="lang-ja">
 <p>配点： <var>100</var> 点</p>
 <style>
-#task-statement table {
-    display: block;
-    width: fit-content;
+#task-statement .joisp2023-guard-table {
     max-width: 100%;
     overflow-x: auto;
-    border-collapse: collapse;
     margin: 1em 0;
 }
-#task-statement table th,
-#task-statement table td {
+#task-statement .joisp2023-guard-table table {
+    display: table;
+    width: auto;
+    max-width: none;
+    overflow: visible;
+    border-collapse: collapse;
+    margin: 0;
+}
+#task-statement .joisp2023-guard-table table th,
+#task-statement .joisp2023-guard-table table td {
     border: 1px solid #aaa;
     padding: 0.3em 0.6em;
     text-align: left;
     vertical-align: top;
 }
-#task-statement table th {
+#task-statement .joisp2023-guard-table table th {
     background-color: #f5f5f5;
 }
-#task-statement table td:nth-child(2) {
+#task-statement .joisp2023-guard-table table td:nth-child(2) {
     min-width: 16em;
 }
-#task-statement table td:nth-child(n+3) {
+#task-statement .joisp2023-guard-table table td:nth-child(n+3) {
     white-space: nowrap;
 }
 </style>
@@ -603,6 +617,7 @@
 <li>島 <var>3</var> から島 <var>2</var> に客を移動させる．</li>
 </ul>
 <p>島 <var>1</var> から島 <var>4</var> への客の移動は次の表のようにして実現できる．ここで，各船が停泊する島，各船の警備員数は船 <var>1, 2, 3</var> の順に記されている．また，各島の警備員数は島 <var>1, 2, 3, 4</var> の順に記されている．</p>
+<div class="joisp2023-guard-table">
 <table>
 <thead>
 <tr>
@@ -700,7 +715,9 @@
 </tr>
 </tbody>
 </table>
+</div>
 <p>また，島 <var>3</var> から島 <var>2</var> への客の移動は次の表のようにして実現できる．</p>
+<div class="joisp2023-guard-table">
 <table>
 <thead>
 <tr>
@@ -763,6 +780,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <p><var>6</var> 人以下の警備員で条件を満たすことは不可能なので，<var>7</var> を出力する．</p>
 <p>この入力例は小課題 <var>2, 3, 4, 5, 6, 7</var> の制約を満たす．</p>
 <hr />

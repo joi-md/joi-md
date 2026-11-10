@@ -9,22 +9,28 @@
 </blockquote>
 <p>Score: <var>100</var> points</p>
 <style>
-#task-statement table {
-    display: block;
-    width: fit-content;
+#task-statement .joisp2023-battle-table {
     max-width: 100%;
     overflow-x: auto;
-    border-collapse: collapse;
     margin: 1em 0;
 }
-#task-statement table th,
-#task-statement table td {
+#task-statement .joisp2023-battle-table table {
+    display: table;
+    width: auto;
+    max-width: none;
+    overflow: visible;
+    border-collapse: collapse;
+    margin: 0;
+}
+#task-statement .joisp2023-battle-table th,
+#task-statement .joisp2023-battle-table td {
     border: 1px solid #aaa;
     padding: 0.3em 0.6em;
     text-align: left;
     vertical-align: top;
+    white-space: nowrap;
 }
-#task-statement table th {
+#task-statement .joisp2023-battle-table th {
     background-color: #f5f5f5;
 }
 </style>
@@ -46,7 +52,7 @@
 </ol>
 <p>The challenges proceed as in the following figure.</p>
 <div style="text-align: center;">
-<img src="https://raw.githubusercontent.com/joi-md/joi-md/main/2023-sp/battle-en.png" alt="The challenge: Anna, Bitaro and Bruno exchange cards and the grid of cells" width="700" style="max-width: 100%; height: auto;" />
+<img src="https://img.atcoder.jp/joisp2023/battle-en.png" alt="The challenge: Anna, Bitaro and Bruno exchange cards and the grid of cells" width="700" style="max-width: 100%; height: auto;" />
 </div>
 
 <p>Write programs which implement the strategies of Anna and Bruno to win the “messenger game.” For the grading of this task, see Grading.</p>
@@ -173,6 +179,7 @@
 <ul>
 <li>The maximum value of <var>L</var> such that Anna and Bruno win all the challenges satisfying <var>N_i \leq L</var>. However, if they win all the challenges in the test cases, we set <var>L = 43</var>.</li>
 </ul>
+<div class="joisp2023-battle-table">
 <table>
 <thead>
 <tr>
@@ -215,6 +222,8 @@
 </tr>
 </tbody>
 </table>
+</div>
+<div class="joisp2023-battle-table">
 <table>
 <thead>
 <tr>
@@ -257,6 +266,8 @@
 </tr>
 </tbody>
 </table>
+</div>
+<div class="joisp2023-battle-table">
 <table>
 <thead>
 <tr>
@@ -297,6 +308,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <hr />
 </section>
 </div>
@@ -316,6 +328,7 @@
 5 7 8 AAAABBBB
 </pre>
 <h4>Sample Function Calls</h4>
+<div class="joisp2023-battle-table">
 <table>
 <thead>
 <tr>
@@ -353,6 +366,11 @@
 <tr>
 <td></td>
 <td><code>Bruno(1, ...)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
 <td><code>"B"</code></td>
 </tr>
 <tr>
@@ -383,10 +401,16 @@
 <tr>
 <td></td>
 <td><code>Bruno(8, ...)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
 <td><code>"AAAABBBB"</code></td>
 </tr>
 </tbody>
 </table>
+</div>
 <p>In this sample input, there are <var>Q</var> (<var>= 2</var>) challenges.</p>
 <ul>
 <li>In the first challenge, we have <var>X_1 = 0</var>, <var>Y_1 = 0</var>, <var>N_1 = 1</var>, <var>S_1 =</var> <code>"B"</code>. Anna paints the <var>49</var> cells whose row is different from <var>0</var> and column is different from <var>0</var>.</li>
@@ -444,22 +468,28 @@
 </blockquote>
 <p>配点： <var>100</var> 点</p>
 <style>
-#task-statement table {
-    display: block;
-    width: fit-content;
+#task-statement .joisp2023-battle-table {
     max-width: 100%;
     overflow-x: auto;
-    border-collapse: collapse;
     margin: 1em 0;
 }
-#task-statement table th,
-#task-statement table td {
+#task-statement .joisp2023-battle-table table {
+    display: table;
+    width: auto;
+    max-width: none;
+    overflow: visible;
+    border-collapse: collapse;
+    margin: 0;
+}
+#task-statement .joisp2023-battle-table th,
+#task-statement .joisp2023-battle-table td {
     border: 1px solid #aaa;
     padding: 0.3em 0.6em;
     text-align: left;
     vertical-align: top;
+    white-space: nowrap;
 }
-#task-statement table th {
+#task-statement .joisp2023-battle-table th {
     background-color: #f5f5f5;
 }
 </style>
@@ -481,7 +511,7 @@
 </ol>
 <p>チャレンジの進行については，以下の図も参照せよ．</p>
 <div style="text-align: center;">
-<img src="https://raw.githubusercontent.com/joi-md/joi-md/main/2023-sp/battle-ja.png" alt="Anna，ビ太郎，Bruno の間でカードとマス目を渡すチャレンジの進行" width="700" style="max-width: 100%; height: auto;" />
+<img src="https://img.atcoder.jp/joisp2023/battle-ja.png" alt="Anna，ビ太郎，Bruno の間でカードとマス目を渡すチャレンジの進行" width="700" style="max-width: 100%; height: auto;" />
 </div>
 
 <p>Anna と Bruno が「メッセンジャーゲーム」で勝利するための戦略を実装せよ．なお，この課題の採点方法については，採点基準の項を参照すること．</p>
@@ -613,6 +643,7 @@
 <ul>
 <li><var>N_i \leqq L</var> を満たすすべてのチャレンジについて勝利したような最大の整数 <var>L</var>．ただし，テストケース内のすべてのチャレンジに勝利した場合は <var>L = 43</var> とする．</li>
 </ul>
+<div class="joisp2023-battle-table">
 <table>
 <thead>
 <tr>
@@ -655,6 +686,8 @@
 </tr>
 </tbody>
 </table>
+</div>
+<div class="joisp2023-battle-table">
 <table>
 <thead>
 <tr>
@@ -697,6 +730,8 @@
 </tr>
 </tbody>
 </table>
+</div>
+<div class="joisp2023-battle-table">
 <table>
 <thead>
 <tr>
@@ -737,6 +772,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <hr />
 </section>
 </div>
@@ -756,6 +792,7 @@
 5 7 8 AAAABBBB
 </pre>
 <h4>関数の呼び出しの例</h4>
+<div class="joisp2023-battle-table">
 <table>
 <thead>
 <tr>
@@ -793,6 +830,11 @@
 <tr>
 <td></td>
 <td><code>Bruno(1, ...)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
 <td><code>"B"</code></td>
 </tr>
 <tr>
@@ -823,10 +865,16 @@
 <tr>
 <td></td>
 <td><code>Bruno(8, ...)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
 <td><code>"AAAABBBB"</code></td>
 </tr>
 </tbody>
 </table>
+</div>
 <p>この入力例は <var>Q</var> (<var>= 2</var>) 回のチャレンジからなる．</p>
 <ul>
 <li><var>1</var> 回目のチャレンジでは <var>X_1 = 0</var>，<var>Y_1 = 0</var>，<var>N_1 = 1</var>，<var>S_1 =</var> <code>"B"</code> であるため，Anna は行番号が <var>0</var> でなく列番号が <var>0</var> でない <var>49</var> 個のマスに色を塗らなければならない．</li>
