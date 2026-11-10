@@ -101,7 +101,7 @@ Score: $100$ points
 #task-statement table th,
 #task-statement table td {
     border: 1px solid #aaa;
-    padding: 0.4em 0.7em;
+    padding: 0.3em 0.6em;
     text-align: left;
     vertical-align: top;
 }
@@ -143,65 +143,55 @@ You should submit $2$ files.
 
 The first file is `Aoi.cpp`. This file is intended to implement Aoi's strategy and should implement the following functions. The program should include `Aoi.h` using the preprocessor directive `#include`.
 
-~~~
-std::string aoi(int N, int M, int Q, int K, std::vector<int> A,
-                std::vector<int> B, std::vector<long long> C,
-                std::vector<int> T, std::vector<int> X)
-~~~
+- `std::string aoi(int N, int M, int Q, int K, std::vector<int> A, std::vector<int> B, std::vector<long long> C, std::vector<int> T, std::vector<int> X)`
 
-This function is called only once for each test case.
+    This function is called only once for each test case.
 
-- The parameter `N` is the number of cities in IOI Kingdom $N$.
-- The parameter `M` is the number of roads in IOI Kingdom $M$.
-- The parameter `Q` is the number of investigation plans $Q$.
-- The parameter `K` is the number of roads that Bitaro lost the length information of, denoted by $K$.
-- The parameters `A`, `B`, `C` are arrays of length $M$. They mean the road $i$ ($0 \leq i \leq M - 1$) connects the city `A[i]` and the city `B[i]` bidirectionally, with a length of `C[i]`.
-- The parameter `T` is an array of length $Q$. It means the $j$-th plan ($0 \leq j \leq Q - 1$) involves investigating city `T[j]`.
-- The parameter `X` is an array of length $K$. It indicates that Bitaro lost the length information of roads `X[0], X[1], ..., X[K-1]`.
-- The return value is the string $s$ that Aoi sends to Bitaro.
-- Each character of the string $s$ must be either `0` or `1`. If this condition is not met, your program will be judged as **Wrong Answer [1]**.
-- The length of string $s$ must be at most $12\,000$. If this condition is not met, your program will be judged as **Wrong Answer [2]**.
+    - The parameter `N` is the number of cities in IOI Kingdom $N$.
+    - The parameter `M` is the number of roads in IOI Kingdom $M$.
+    - The parameter `Q` is the number of investigation plans $Q$.
+    - The parameter `K` is the number of roads that Bitaro lost the length information of, denoted by $K$.
+    - The parameters `A`, `B`, `C` are arrays of length $M$. They mean the road $i$ ($0 \leq i \leq M - 1$) connects the city `A[i]` and the city `B[i]` bidirectionally, with a length of `C[i]`.
+    - The parameter `T` is an array of length $Q$. It means the $j$-th plan ($0 \leq j \leq Q - 1$) involves investigating city `T[j]`.
+    - The parameter `X` is an array of length $K$. It indicates that Bitaro lost the length information of roads `X[0], X[1], ..., X[K-1]`.
+    - The return value is the string $s$ that Aoi sends to Bitaro.
+    - Each character of the string $s$ must be either `0` or `1`. If this condition is not met, your program will be judged as **Wrong Answer [1]**.
+    - The length of string $s$ must be at most $12\,000$. If this condition is not met, your program will be judged as **Wrong Answer [2]**.
 
 The second file is `Bitaro.cpp`. This file is intended to implement Bitaro's strategy and should implement the following functions. The program should include `Bitaro.h` using the preprocessor directive `#include`.
 
-~~~
-void bitaro(int N, int M, int Q, int K, std::vector<int> A, std::vector<int> B,
-            std::vector<long long> C, std::vector<int> T, std::vector<int> X,
-            std::string s)
-~~~
+- `void bitaro(int N, int M, int Q, int K, std::vector<int> A, std::vector<int> B, std::vector<long long> C, std::vector<int> T, std::vector<int> X, std::string s)`
 
-This function is called only once after the function `aoi` is called.
+    This function is called only once after the function `aoi` is called.
 
-- The parameter `N` is the number of cities in IOI Kingdom $N$.
-- The parameter `M` is the number of roads in IOI Kingdom $M$.
-- The parameter `Q` is the number of investigation plans $Q$.
-- The parameter `K` is the number of roads that Bitaro lost the length information of, denoted by $K$.
-- The parameters `A`, `B`, `C` are arrays of length $M$. They mean the road $i$ ($0 \leq i \leq M - 1$) connects the city `A[i]` and the city `B[i]` bidirectionally, with a length of `C[i]`. However, the lost lengths `C[X[0]], C[X[1]], ..., C[X[K-1]]` are replaced by $-1$.
-- The parameter `T` is an array of length $Q$. It means the $j$-th plan ($0 \leq j \leq Q - 1$) involves investigating city `T[j]`.
-- The parameter `X` is an array of length $K$. It indicates that Bitaro lost the length information of roads `X[0], X[1], ..., X[K-1]`.
-- The argument `s` is a string where each character is either `0` or `1`, representing the string sent by Aoi to Bitaro.
+    - The parameter `N` is the number of cities in IOI Kingdom $N$.
+    - The parameter `M` is the number of roads in IOI Kingdom $M$.
+    - The parameter `Q` is the number of investigation plans $Q$.
+    - The parameter `K` is the number of roads that Bitaro lost the length information of, denoted by $K$.
+    - The parameters `A`, `B`, `C` are arrays of length $M$. They mean the road $i$ ($0 \leq i \leq M - 1$) connects the city `A[i]` and the city `B[i]` bidirectionally, with a length of `C[i]`. However, the lost lengths `C[X[0]], C[X[1]], ..., C[X[K-1]]` are replaced by $-1$.
+    - The parameter `T` is an array of length $Q$. It means the $j$-th plan ($0 \leq j \leq Q - 1$) involves investigating city `T[j]`.
+    - The parameter `X` is an array of length $K$. It indicates that Bitaro lost the length information of roads `X[0], X[1], ..., X[K-1]`.
+    - The argument `s` is a string where each character is either `0` or `1`, representing the string sent by Aoi to Bitaro.
 
 Within `Bitaro.cpp`, your program can call the following function.
 
-~~~
-void answer(const std::vector<int> &e)
-~~~
+- `void answer(const std::vector<int> &e)`
 
-In the $(j + 1)$-th call ($0 \leq j \leq Q - 1$) to this function, you have to answer the shortest path from city $0$ to city $T_j$, which is the target of the $j$-th investigation plan.
+    In the $(j + 1)$-th call ($0 \leq j \leq Q - 1$) to this function, you have to answer the shortest path from city $0$ to city $T_j$, which is the target of the $j$-th investigation plan.
 
-- The parameter `e` is an array that represents the shortest path from city $0$ to city $T_j$.
-- Let $n$ be the length of the array `e`. The elements `e[0], e[1], ..., e[n-1]` are the indices of roads in the shortest path from city $0$ to city $T_j$, in the order of traversal.
-- If there are multiple possible shortest paths, any of them can be chosen as the answer.
-- Each element of the parameter `e` must be between $0$ and $M - 1$. If this condition is not met, your program will be judged as **Wrong Answer [3]**.
-- The sequence of roads indicated by the argument `e` must form a path from city $0$ to city $T_j$. More formally, it must satisfy the following conditions. There exists a sequence of numbers $u_0, u_1, \ldots, u_n$ such that
-    - $u_0 = 0$.
-    - $u_n = T_j$.
-    - The road `e[k]` (where $0 \leq k \leq n - 1$) connects city $u_k$ and city $u_{k+1}$.
+    - The parameter `e` is an array that represents the shortest path from city $0$ to city $T_j$.
+    - Let $n$ be the length of the array `e`. The elements `e[0], e[1], ..., e[n-1]` are the indices of roads in the shortest path from city $0$ to city $T_j$, in the order of traversal.
+    - If there are multiple possible shortest paths, any of them can be chosen as the answer.
+    - Each element of the parameter `e` must be between $0$ and $M - 1$. If this condition is not met, your program will be judged as **Wrong Answer [3]**.
+    - The sequence of roads indicated by the argument `e` must form a path from city $0$ to city $T_j$. More formally, it must satisfy the following conditions. There exists a sequence of numbers $u_0, u_1, \ldots, u_n$ such that
+        - $u_0 = 0$.
+        - $u_n = T_j$.
+        - The road `e[k]` (where $0 \leq k \leq n - 1$) connects city $u_k$ and city $u_{k+1}$.
 
-    If these conditions are not met, your program will be judged as **Wrong Answer [4]**.
+        If these conditions are not met, your program will be judged as **Wrong Answer [4]**.
 
-- If the sequence of roads indicated by the argument `e` is not the shortest path from city $0$ to city $T_j$ among all paths starting from city $0$ and ending at city $T_j$, your program will be judged as **Wrong Answer [5]**. Here, the length of the path is defined as the sum of the lengths of the roads used.
-- The function `answer` must be called exactly $Q$ times. If the number of calls to the function `answer` is not equal to $Q$ at the end of the execution of the function `bitaro`, your program will be judged as **Wrong Answer [6]**.
+    - If the sequence of roads indicated by the argument `e` is not the shortest path from city $0$ to city $T_j$ among all paths starting from city $0$ and ending at city $T_j$, your program will be judged as **Wrong Answer [5]**. Here, the length of the path is defined as the sum of the lengths of the roads used.
+    - The function `answer` must be called exactly $Q$ times. If the number of calls to the function `answer` is not equal to $Q$ at the end of the execution of the function `bitaro`, your program will be judged as **Wrong Answer [6]**.
 
 ### Important Notices
 

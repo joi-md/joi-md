@@ -67,7 +67,7 @@ Score: $100$ points
 #task-statement table th,
 #task-statement table td {
     border: 1px solid #aaa;
-    padding: 0.4em 0.7em;
+    padding: 0.3em 0.6em;
     text-align: left;
     vertical-align: top;
 }
@@ -115,40 +115,28 @@ The file is `joitour.cpp`. The program should include `joitour.h` using the prep
 
 In `joitour.cpp`, the following functions should be implemented.
 
-#### init
+- `void init(int N, std::vector<int> F, std::vector<int> U, std::vector<int> V, int Q)`
 
-~~~
-void init(int N, std::vector<int> F, std::vector<int> U, std::vector<int> V, int Q)
-~~~
+    - With this function call, the information of roads and restaurants is given.
+    - This function is called only once, at the beginning.
+    - The parameter `N` is the number of towns $N$.
+    - The parameter `F` is an array of length $N$. `F[i]` ($0 \leq i \leq N - 1$) represents the type of restaurant at town $i$, that is, $F_i$.
+    - The parameters `U` and `V` are arrays of length $N - 1$. `U[j]` and `V[j]` ($0 \leq j \leq N - 2$) are two towns connected by road $j$, that is, $U_j$ and $V_j$.
+    - The parameter `Q` is the number of events of change of restaurant type, that is, $Q$.
 
-- With this function call, the information of roads and restaurants is given.
-- This function is called only once, at the beginning.
-- The parameter `N` is the number of towns $N$.
-- The parameter `F` is an array of length $N$. `F[i]` ($0 \leq i \leq N - 1$) represents the type of restaurant at town $i$, that is, $F_i$.
-- The parameters `U` and `V` are arrays of length $N - 1$. `U[j]` and `V[j]` ($0 \leq j \leq N - 2$) are two towns connected by road $j$, that is, $U_j$ and $V_j$.
-- The parameter `Q` is the number of events of change of restaurant type, that is, $Q$.
+- `void change(int X, int Y)`
 
-#### change
+    - With this function call, the information of change of restaurant type is given.
+    - This function is called $Q$ times.
+    - In $(k + 1)$-th call of this function ($0 \leq k \leq Q - 1$), the parameter `X` is the index of town that change of restaurant type happens, that is, $X_k$.
+    - In $(k + 1)$-th call of this function ($0 \leq k \leq Q - 1$), the parameter `Y` represents the new type of restaurant, that is, $Y_k$. It is guaranteed that new type is different from the old type.
 
-~~~
-void change(int X, int Y)
-~~~
+- `long long num_tours()`
 
-- With this function call, the information of change of restaurant type is given.
-- This function is called $Q$ times.
-- In $(k + 1)$-th call of this function ($0 \leq k \leq Q - 1$), the parameter `X` is the index of town that change of restaurant type happens, that is, $X_k$.
-- In $(k + 1)$-th call of this function ($0 \leq k \leq Q - 1$), the parameter `Y` represents the new type of restaurant, that is, $Y_k$. It is guaranteed that new type is different from the old type.
-
-#### num_tours
-
-~~~
-long long num_tours()
-~~~
-
-- This function is called in the following occasions, totalling $Q + 1$ times.
-    - Right after the execution of function `init`
-    - Right after the execution of function `change`
-- This function should return the up-to-date number of good JOI tours.
+    - This function is called in the following occasions, totalling $Q + 1$ times.
+        - Right after the execution of function `init`
+        - Right after the execution of function `change`
+    - This function should return the up-to-date number of good JOI tours.
 
 ### Important Notices
 

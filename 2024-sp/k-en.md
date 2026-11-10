@@ -63,7 +63,7 @@ Score: $100$ points
 #task-statement table th,
 #task-statement table td {
     border: 1px solid #aaa;
-    padding: 0.4em 0.7em;
+    padding: 0.3em 0.6em;
     text-align: left;
     vertical-align: top;
 }
@@ -93,33 +93,33 @@ You need to submit one file.
 
 The file is `island.cpp`. It should implement the following function. The program should include `island.h` using the preprocessing directive `#include`.
 
-#### `void solve(int N, int L)`
+- `void solve(int N, int L)`
 
-This function is called only once for each test case.
+    This function is called only once for each test case.
 
-- The parameter `N` is the number of islands $N$.
-- The parameter `L` is the limit on number of questions $L$.
+    - The parameter `N` is the number of islands $N$.
+    - The parameter `L` is the limit on number of questions $L$.
 
 In `island.cpp`, you can call the following functions.
 
-#### `int query(int v, int k)`
+- `int query(int v, int k)`
 
-Using this function, Aoi asks a question to Bitaro.
+    Using this function, Aoi asks a question to Bitaro.
 
-- The parameter `v` must be between $1$ and $N$. If not, your program is judged as Wrong Answer [1].
-- The parameter `k` must be between $1$ and $N - 1$. If not, your program is judged as Wrong Answer [2].
-- The return value is the number on the island which is the $k$-th closest from island $v$ among the $N - 1$ islands except for island $v$. See the problem statement for a more detailed definition.
-- You must not call function `query` more than $L$ times. If it is called more than $L$ times, your program is judged as Wrong Answer [3].
+    - The parameter `v` must be between $1$ and $N$. If not, your program is judged as Wrong Answer [1].
+    - The parameter `k` must be between $1$ and $N - 1$. If not, your program is judged as Wrong Answer [2].
+    - The return value is the number on the island which is the $k$-th closest from island $v$ among the $N - 1$ islands except for island $v$. See the problem statement for a more detailed definition.
+    - You must not call function `query` more than $L$ times. If it is called more than $L$ times, your program is judged as Wrong Answer [3].
 
-#### `void answer(int x, int y)`
+- `void answer(int x, int y)`
 
-Your program answers a sea route in JOI Kingdom by calling this function.
+    Your program answers a sea route in JOI Kingdom by calling this function.
 
-- The parameters `x` and `y` are the numbers of two islands connected by a sea route.
-- The parameters `x` and `y` must be between $1$ and $N$. If not, your program is judged as Wrong Answer [4].
-- There must exist a sea route which connects islands $x$ and $y$. In other words, there must exist an integer $j$ ($1 \leq j \leq N - 1$) such that $x = A_j$ and $y = B_j$, or $x = B_j$ and $y = A_j$. If not, your program is judged as Wrong Answer [5].
-- The program must not answer the information of the same sea route twice or more. If this condition is not met, your program is judged as Wrong Answer [6].
-- Function `answer` must be called exactly $N - 1$ times. If the number of calls of function `answer` is not $N - 1$ when the execution of function `solve` ends, your program is judged as Wrong Answer [7].
+    - The parameters `x` and `y` are the numbers of two islands connected by a sea route.
+    - The parameters `x` and `y` must be between $1$ and $N$. If not, your program is judged as Wrong Answer [4].
+    - There must exist a sea route which connects islands $x$ and $y$. In other words, there must exist an integer $j$ ($1 \leq j \leq N - 1$) such that $x = A_j$ and $y = B_j$, or $x = B_j$ and $y = A_j$. If not, your program is judged as Wrong Answer [5].
+    - The program must not answer the information of the same sea route twice or more. If this condition is not met, your program is judged as Wrong Answer [6].
+    - Function `answer` must be called exactly $N - 1$ times. If the number of calls of function `answer` is not $N - 1$ when the execution of function `solve` ends, your program is judged as Wrong Answer [7].
 
 ### Important Notices
 

@@ -93,7 +93,7 @@ Score: $100$ points
 #task-statement table th,
 #task-statement table td {
     border: 1px solid #aaa;
-    padding: 0.4em 0.7em;
+    padding: 0.3em 0.6em;
     text-align: left;
     vertical-align: top;
 }
