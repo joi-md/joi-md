@@ -1,0 +1,97 @@
+<span class="lang">
+<span class="lang-ja">
+<blockquote>
+<p><strong>AtCoder での提出方法</strong></p>
+<p>標準入力から入力を読み込み，標準出力へ出力すること．</p>
+</blockquote>
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>IOI 国にある老舗判子メーカーの IOI 堂は今年で創業 <var>101</var> 年となる．これを記念し IOI 堂ではオーダーメードで長いメッセージを入れた判子を作るサービスを始めることにした．というのも昨年，IOI 堂は手動で判子の特定の部分に文字を挿入したり，抜き出したり，入れ替えたりすることができる判子を開発し，より長い文字列の判子を作ることを可能としたのである．</p>
+<p>今回作る判子は，アルファベットの <code>I</code> と <code>O</code> の <var>2</var> 文字のみから構成される IOI 語を対象にする．また，既存の機械で予め適当な <var>1</var> 文字以上の長さの判子を作り，その文字列を適宜編集して注文のメッセージを作ることにする．ただし，古くからの仕様により，この機械で作ることができるのは，<code>I</code> で始まり <code>I</code> で終わる，どの連続した <var>2</var> 文字も同一ではない文字列 (例えば <code>I</code> や <code>IOI</code> や <code>IOIO…OIOI</code>) の判子である．</p>
+<p>現在，IOI 堂では人手が足りていないので作業時間をできる限り短くしたい．機械作業は時間がかからないが，その後の <var>3</var> 種類の編集作業，すなわち <var>1</var> つの文字を挿入する作業，<var>1</var> つの文字を削除する作業，<var>1</var> つの文字を入れ替える作業は，各々 <var>1</var> 回あたり <var>1</var> 秒の時間が必要である．例えば <code>IOIOIOI</code> という文字列の判子を機械で作った後に，<var>3</var> 文字目を <code>O</code> に入れ替え，<var>5</var> 文字目と <var>6</var> 文字目の間に <code>O</code> を <var>1</var> 文字挿入し <code>IOOOIOOI</code> という文字列の判子を作ると <var>2</var> 秒の時間が必要となる．</p>
+<p>そこで，注文のメッセージが与えられた時，最短の作業時間と，最短時間で作業した時に予め機械で作らなければならない判子の長さの最小値を求めるプログラムを書いてほしい．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力ファイル <code>stamps.in</code> の <var>1</var> 行目には，<var>1</var> つの注文されたメッセージの長さを表す整数 <var>N</var> (<var>1 \leqq N \leqq 1000000</var>) が書かれている．<var>2</var> 行目には注文されたメッセージを表す <var>N</var> 文字の <code>I</code> または <code>O</code> からなる文字列 <var>S</var> が書かれている．</p>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>出力は標準出力に行うこと．出力の <var>1</var> 行目には最短の作業時間を書け．<var>2</var> 行目には最短時間で作業した時に予め機械で作らなければならない判子の長さの最小値を書け．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>採点基準</h3>
+<p>採点用データのうち，配点の <var>40\%</var> 分については <var>N \leqq 5000</var> を満たす．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>8
+IOOOIOOI
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>2
+7
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>5
+IOIOI
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>0
+5
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>5
+IIIII
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>2
+5
+</pre></section>
+</div>
+</span>
+</span>
