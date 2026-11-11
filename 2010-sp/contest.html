@@ -1,0 +1,135 @@
+<span class="lang">
+<span class="lang-ja">
+<blockquote>
+<p><strong>AtCoder での提出方法</strong></p>
+<p>入力は標準入力から読み込み，出力は標準出力に行うこと．</p>
+</blockquote>
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>世の中には様々なプログラミングコンテストがある．例えば，情報オリンピック，ACM-ICPC，ICFP の様に世界中の相手と競い合う物や，Supercomputing Contest，パソコン甲子園，EPOCH ＠まつやまの国内大会などなど，枚挙にいとまがない．</p>
+<p>そのようなコンテストに参加していると自分でコンテストを開催したいと考える人もあらわれる．あなたの友人もそんな一人である．友人はコンテストの問題準備に忙しく，コンテストのログから参加者の得点を計算するプログラムの作成をあなたに依頼してきた．是非とも友人のコンテストが成功するように，間違いのない得点計算プログラムを作ってあげて欲しい．</p>
+<p>コンテストの参加者は <var>N</var> 人で，問題が <var>M</var> 問で，競技時間が <var>T</var> 秒である．参加者には <var>1</var> から <var>N</var> までの番号が割り振られている．問題にも <var>1</var> から <var>M</var> までの番号が振られている．</p>
+<p>このコンテストでは，各参加者は問題毎に，問題文を閲覧し，問題を解き，解答のソースコードを提出する．競技は時刻 <var>0</var> からはじまり，時刻 <var>T</var> で終了する．参加者が問題を閲覧すると，時刻と参加者番号と問題番号がログに <var>1</var> 件の情報として記録される．参加者が解答ソースコードを提出すると，時刻と参加者番号と問題番号と解答ソースコードの正誤がログに <var>1</var> 件の情報として記録される．</p>
+<p>各参加者はコンテスト開始から <var>1</var> 秒毎に「ある問題を閲覧する」か「ある問題のソースコードを提出する」のいずれかを <var>1</var> 回行うことが出来る．閲覧前にその問題のソースコードを提出する事や，正解後に再度ソースコードを提出する事は出来ない．</p>
+<p>参加者 <var>j</var> が問題 <var>i</var> を，時刻 <var>S_{ij}</var> に閲覧し，<var>w_{ij}</var> 回の不正解のソースコードを提出後，時刻 <var>E_{ij}</var> に正解のソースコードを提出したときの得点は，</p>
+<p><var>\left(p_i - (E_{ij} - S_{ij}) - 120w_{ij}\right)</var> と <var>X</var> のうち大きい方</p>
+<p>である．ただし，<var>p_{i}</var> は問題 <var>i</var> の配点，<var>X</var> は問題番号に依存しない正解した時の最低得点である．</p>
+<p>競技終了までに，正解しなかった問題の得点は <var>0</var> 点である．</p>
+<p>各参加者の得点は，その参加者の問題毎の得点の合計である．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p><var>N,M,T,X</var>, ログに含まれる情報の件数，各問題の配点，および，ログの内容が与えられたときに各参加者の得点を計算するプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>1 \leqq N \leqq 1{,}000</var>：参加者数．</li>
+<li><var>1 \leqq M \leqq 10</var>：問題数．</li>
+<li><var>100 \leqq T \leqq 10{,}000</var>：コンテストの競技時間．</li>
+<li><var>1 \leqq X \leqq 100</var>：正解問題の最低得点．</li>
+<li><var>0 \leqq Y \leqq 10{,}000</var>：ログに含まれる情報の件数．</li>
+<li><var>X \leqq p_i \leqq T</var>：問題 <var>i</var> の配点．</li>
+<li><var>0 \leqq t_1 \leqq t_2 \leqq \cdots \leqq t_k \leqq \cdots \leqq t_Y \leqq T</var>：ログの <var>k</var> 番目の情報が記録された時刻を表す整数．</li>
+<li><var>1 \leqq n_k \leqq N</var>：ログの <var>k</var> 番目の情報に含まれる参加者番号．</li>
+<li><var>1 \leqq m_k \leqq M</var>：ログの <var>k</var> 番目の情報に含まれる問題番号．</li>
+</ul>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>標準入力から以下の入力を読み込め．</p>
+<ul>
+<li><var>1</var> 行目には，参加者数 <var>N</var>，問題数 <var>M</var>，競技時間 <var>T</var>，正解問題の最低得点 <var>X</var>，ログの件数 <var>Y</var> が空白を区切りとして書かれている．</li>
+<li>続く <var>M</var> 行のうち <var>i</var> 行目には，問題 <var>i</var> の得点を表す整数 <var>p_{i}</var> が書かれている．</li>
+<li>続く <var>Y</var> 行はログの内容を表す．それらのうちの <var>k</var> 行目にはログの <var>k</var> 番目の情報が書き込まれており，その情報が記録された時刻を表す整数 <var>t_{k}</var>，参加者番号を表す整数 <var>n_{k}</var>，問題番号を表す整数 <var>m_{k}</var>，および “open” , “correct” , “incorrect” のいずれかの文字列が空白区切りで書かれている．“open” は問題を閲覧したことを表す．“correct” は提出したソースコードが正解であったことを表す．“incorrect” は提出したソースコードが不正解であったことを表す．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に以下のデータを出力せよ．</p>
+<ul>
+<li>データは <var>N</var> 行からなり，<var>j</var> 行目は <var>j</var> 番の参加者の得点を含む．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>1 3 1200 30 8
+50
+1000
+800
+0 1 1 open
+100 1 2 open
+400 1 1 correct
+500 1 2 incorrect
+600 1 2 correct
+700 1 3 open
+800 1 3 incorrect
+900 1 3 incorrect
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>410
+</pre>
+<p><var>1</var> 番の参加者は，<var>1</var> 問目で <var>30</var> 点，<var>2</var> 問目で <var>380</var> 点，<var>3</var> 問目で <var>0</var> 点を獲得する．<var>2</var> 問目の得点は</p>
+<p><var>1000[\text{問題 2 の配点}] - (600[\text{正解時刻}] - 100[\text{閲覧時刻}]) - 120 \times 1[\text{不正解，1 回}]</var></p>
+<p>で計算される．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>3 2 1000 10 10
+878
+712
+0 2 1 open
+0 1 1 open
+0 3 1 open
+100 3 1 correct
+100 2 1 correct
+100 1 2 open
+200 2 2 open
+200 1 2 incorrect
+300 1 2 correct
+300 2 2 correct
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>392
+1390
+778
+</pre>
+<p>参加者が複数の場合，同じ時刻に複数の情報が記録されている場合がある．</p></section>
+</div>
+</span>
+</span>

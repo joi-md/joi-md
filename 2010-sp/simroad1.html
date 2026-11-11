@@ -1,0 +1,118 @@
+<span class="lang">
+<span class="lang-ja">
+<blockquote>
+<p><strong>AtCoder での提出方法</strong></p>
+<p>この提出先はテストケース 01 用です．このテストケースに対する出力ファイルを，言語 <code>Text (cat)</code> を選択して提出してください．</p>
+<p>各テストケースの提出先: <a href="https://atcoder.jp/contests/joisc2010/tasks/joisc2010_simroad1">01</a> | <a href="https://atcoder.jp/contests/joisc2010/tasks/joisc2010_simroad2">02</a> | <a href="https://atcoder.jp/contests/joisc2010/tasks/joisc2010_simroad3">03</a> | <a href="https://atcoder.jp/contests/joisc2010/tasks/joisc2010_simroad4">04</a> | <a href="https://atcoder.jp/contests/joisc2010/tasks/joisc2010_simroad5">05</a></p>
+<p><a href="https://img.atcoder.jp/joisc2010/simroad-inputs-0a436352ca.zip">入力データ</a></p>
+<p>AtCoder では，<var>5</var> つの入力に対する答えをそれぞれ対応する提出先へ個別に提出する．相対評価には，当時の生徒の最大スコア（データ番号順に <var>129, 38, 365, 944, 639</var>）を使用する．それより良いスコアでも各提出先の上限は <var>20</var> 点である．</p>
+</blockquote>
+<p>配点 : <var>20</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>JOI 社はシムロードというシミュレーションゲームを販売している．このゲームでは，プレイヤーは舞台となる国の統治者となり，その国を繁栄させるべく様々な操作を行う．</p>
+<p>舞台となる国は原始時代である．国には集落が点在しているのだが，この国は多くが背の高い草で覆われており，その状態では集落間を容易に移動することはできない．プレイヤーであるあなたの最初のミッションは住人が集落間を容易に移動できるように草刈をすることである．</p>
+<p>国の状態は東西 <var>W</var> マス，南北 <var>H</var> マスで区切られた 3 種類の状態で表されるマスからなる．‘<code>w</code>’ はそのマスが草で覆われていることを示し，‘<code>.</code>’ はそのマスが更地である (草で覆われていない) ことを示し，‘<code>@</code>’ はそのマスには集落があることを示す．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p>住人は東西南北の隣り合った 4 方向のマスのうち集落または更地であるマスへは自由に移動することができるが，草で覆われているマスは移動できない．そこで，住人が集落間を容易に移動できるように草で覆われているマスの草を刈り取り更地にすることにより，どの集落からも全ての集落に移動できるように草を刈らなければならない．</p>
+<p>草で覆われているマスの草を刈るとそのマスを更地にすることができるが，草刈をするには住人を働かせる必要があり，1 マスの草を刈るためには 1 ドルのお金がかかる．後々の繁栄のことを考えると使うお金は少ない方が良い．</p>
+<p>当然，草の刈り取り方は多数存在することがある．与えられた国の状態から，出来る限り草を刈り取るマスが少ない方法で草を刈り，その後の国の状態を生成しなさい．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>基本アルゴリズム</h3>
+<p><var>y'</var> を <var>H</var> が偶数であれば <var>H/2</var> とし，<var>H</var> が奇数であれば <var>(H+1)/2</var> とする．まず北から <var>y'</var> 行目のマスのうち草で覆われたマスを全て刈り取り，次に全ての集落について南北方向に北から <var>y'</var> マス目との間にある草で覆われたマスがあれば全て刈り取る．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>1 \leqq W \leqq 100</var>：国の東西方向のマスの数．</li>
+<li><var>1 \leqq H \leqq 100</var>：国の南北方向のマスの数．</li>
+</ul>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力データは全部で 5 つあり，ファイル名は <code>simroad-in</code><var>k</var><code>.txt</code> (<var>k = 1, 2, 3, 4, 5</var>) である．入力ファイルは以下のような形式で与えられる．</p>
+<ul>
+<li>1 行目には整数 <var>W</var> と <var>H</var> が空白を区切りとして書かれている．</li>
+<li>続く <var>H</var> 行には各行 <var>W</var> 文字の文字列が書かれており，国の状態を表す．これらの行の <var>y</var> 行目の <var>x</var> 文字目には，‘<code>w</code>’ または ‘<code>.</code>’ または ‘<code>@</code>’ の文字が書かれており，北から <var>y</var> マス目，西から <var>x</var> マス目のマスの状態を表す．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>出力データはファイルで提出せよ．出力ファイルのファイル名は <code>simroad-out</code><var>k</var><code>.txt</code> (<var>k = 1, 2, 3, 4, 5</var>) である．<code>simroad-out</code><var>k</var><code>.txt</code> には <code>simroad-in</code><var>k</var><code>.txt</code> に対応した以下の形式のファイルを提出せよ．</p>
+<ul>
+<li>草刈をした後の国の状態を書け．出力は <var>H</var> 行からなり，各行は <var>W</var> 文字の文字列である．これらの行の <var>y</var> 行目の <var>x</var> 文字目には，北から <var>y</var> マス目，西から <var>x</var> マス目のマスの状態を表す ‘<code>w</code>’ または ‘<code>.</code>’ または ‘<code>@</code>’ の文字を書け．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>採点基準</h3>
+<p>得点は，あなたが出力した国の状態に依存する．あなたの各々のデータに対する得点は次のように決められる．課題の仕様に合致しない出力である場合，得点は <var>0</var> 点となる．仕様に合致している場合は，次のように得点は計算される．<var>E_y</var> をあなたの出力した国の状態にするためにかかる金額とし，<var>E_b</var> を基本アルゴリズムが生成する国の状態にするためにかかる金額とし，<var>E_m</var> を競技参加者が提出した出力の国の状態にするためにかかる金額の最小値とする．この場合のあなたの得点は</p>
+<ul>
+<li><var>E_y \geqq E_b</var> ならば <var>0</var>．</li>
+<li><var>E_y &lt; E_b</var> ならば <var>20\dfrac{1/E_y - 1/E_b}{1/E_m - 1/E_b}</var>．</li>
+</ul>
+<p>の小数第 <var>2</var> 位を四捨五入した値である．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>7 5
+w@ww@w@
+w.wwwww
+wwww@ww
+@wwwwww
+ww@.@w.
+</pre>
+<p>上記の入力例に対する基本アルゴリズムの出力は次のようになり，<var>10</var> マスの草が覆われていたマスの草を刈り取り更地にしているため，<var>10</var> ドルのお金がかかる．</p>
+<h4>基本アルゴリズムによる出力</h4>
+<pre>w@ww@w@
+w.ww.w.
+....@..
+@w.w.ww
+ww@.@w.
+</pre>
+<p>以下は，上記の入力例に対する出力例である．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>w@..@.@
+w.ww.ww
+wwww@ww
+@www.ww
+..@.@w.
+</pre>
+<p>この出力例の場合は，7 マスの草が覆われていたマスの草を刈り取り更地にしているため，7 ドルのお金がかかっている．この出力例を提出した場合，もしあなたより小さな金額で作ることのできる国の状態の出力を提出した人がいなければ <var>20</var> 点を得るが，<var>E_m</var> が <var>6</var> ドルであれば <var>12.9</var> 点を得ることとなる．</p></section>
+</div>
+</span>
+</span>

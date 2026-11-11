@@ -1,0 +1,104 @@
+<span class="lang">
+<span class="lang-ja">
+<blockquote>
+<p><strong>AtCoder での提出方法</strong></p>
+<p>入力は標準入力から読み込み，出力は標準出力に行うこと．</p>
+</blockquote>
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>カナダには，都市 <var>1</var> から都市 <var>N</var> までの <var>N</var> 個の都市と，高速道路 <var>1</var> から高速道路 <var>N - 1</var> までの <var>N - 1</var> 本の高速道路がある．すべての高速道路は <var>2</var> つの都市を結んでおり，どちらの方向にも通ることができる．さらにこの高速道路網は，どの <var>2</var> つの都市もいくつかの高速道路を乗り継ぐことで行き来できるように設計されている．言い換えると，<var>N</var> 個の都市と <var>N - 1</var> 本の高速道路は木構造をなしている．</p>
+<p>渋滞情報センターの施設長に任命されたあなたは，この高速道路網の渋滞情報を管理しなければならない．</p>
+<p>この施設では，<var>N - 1</var> 本それぞれの高速道路について，その始点の都市から終点の都市までの所要時間のデータを管理している．たとえば下図のように都市 <var>1</var> と都市 <var>3</var>，都市 <var>3</var> と都市 <var>4</var>，都市 <var>2</var> と都市 <var>3</var> が高速道路で繋がっている状況の場合，<var>(i,j) = (1,3),(3,1),(3,4),(4,3),(2,3),(3,2)</var> のそれぞれについて「都市 <var>i</var> から都市 <var>j</var> への所要時間」をこの施設で管理している (高速道路は上りと下りで所要時間が同じとは限らないことに注意せよ)．</p>
+<div style="text-align: center;">
+<img alt="2010-highway-example.png" src="https://img.atcoder.jp/joisc2010/2010-highway-example.png" style="max-width: 100%; width: 157px;" />
+</div>
+
+<p>それに加えて，この施設では次の <var>2</var> つのことを行う．</p>
+<p>まず，この施設には時おり「渋滞情報」が入ってくる．<var>1</var> 回の渋滞情報は <var>3</var> つの正の整数 <var>r,s,t</var> によって与えられる．これは「高速道路 <var>r</var> の上りの所要時間が <var>s</var> ，下りの所要時間が <var>t</var> である」ことを表す．ただし高速道路の上りとは，その高速道路の始点と終点の都市のうち番号が小さいほうの都市から大きいほうへの都市へと向かう方向を指し，下りとはその逆方向を指すものとする．この渋滞情報に従って，施設のデータを更新する．</p>
+<p>また，この施設には「問い合わせ」の電話がかかってくることがある．<var>1</var> 回の問い合わせは <var>2</var> つの正の整数 <var>x,y</var> によって与えられる．このとき，施設で管理している現在のデータをもとに「都市 <var>x</var> から都市 <var>y</var> への所要時間」を計算して答えなければならない．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p>ある <var>1</var> 日の間の「渋滞情報」と「問い合わせ」(これらをまとめてクエリという) の列が時刻順に与えたとき，それぞれの問い合わせごとに，その問い合わせの答えを出力するプログラムを作成せよ．ただし，最初の渋滞情報が入ってくる前の段階では，<var>N - 1</var> 本すべての高速道路の所要時間は上下線ともに <var>1</var> である．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>2 \leqq N \leqq 100{,}000</var>：都市の数．</li>
+<li><var>1 \leqq M \leqq 100{,}000</var>：渋滞情報の数と問い合わせの数の和．</li>
+</ul>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>標準入力から以下の入力を読み込め．</p>
+<ul>
+<li><var>1</var> 行目には整数 <var>N</var> と <var>M</var> が空白を区切りとして書かれている．</li>
+<li>続く <var>N - 1</var> 行は，<var>1</var> 行につき <var>1</var> 本の高速道路について記述している．これらの行の <var>i</var> 行目には <var>2</var> つの整数 <var>p_{i},q_{i}</var> (<var>1 \leqq p_{i} &lt; q_{i} \leqq N</var>) が空白を区切りとして書かれており，これは高速道路 <var>i</var> が都市 <var>p_{i}</var> と都市 <var>q_{i}</var> を結んでいることを表す．</li>
+<li>続く <var>M</var> 行は，<var>1</var> 行につき <var>1</var> つのクエリ (渋滞情報または問い合わせ) について記述しており．次のどちらか一方が書いてある：<ul>
+<li>渋滞情報 <var>\cdots  1</var> 文字 ‘<code>I</code>’ と，整数 <var>r</var> (<var>1 \leqq r \leqq N - 1</var>),<var>s</var> (<var>1 \leqq s \leqq 1{,}000</var>),<var>t</var> (<var>1 \leqq t \leqq 1{,}000</var>)．それぞれは空白を区切りとして与えられる．</li>
+<li>問い合わせ <var>\cdots  1</var> 文字 ‘<code>Q</code>’ と，異なる <var>2</var> つの整数 <var>x</var> (<var>1 \leqq x \leqq N</var>),<var>y</var> (<var>1 \leqq y \leqq N</var>)．それぞれは空白を区切りとして与えられる．</li>
+</ul>
+</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に以下のデータを出力せよ．</p>
+<ul>
+<li>出力するデータの行数は入力中に現れる文字 ‘<code>Q</code>’ の個数である．<var>i</var> 行目は，第 <var>i</var> 番目の問い合わせの答えを表す <var>1</var> つの整数を含む．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>採点基準</h3>
+<p><var>20</var> 点分のテストグループにおいて，<var>N,M</var> は <var>1{,}000</var> を超えない．また，<var>50</var> 点分のテストグループにおいて，任意の都市から別の任意の都市へ必ず <var>1{,}000</var> 本以下の高速道路を乗り継いで移動することができる．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>4 5
+1 3
+3 4
+2 3
+I 1 7 9
+Q 2 4
+I 3 12 11
+Q 2 4
+Q 4 2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>2
+13
+12
+</pre></section>
+</div>
+</span>
+</span>

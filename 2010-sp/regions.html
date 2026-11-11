@@ -1,0 +1,108 @@
+<span class="lang">
+<span class="lang-ja">
+<blockquote>
+<p><strong>AtCoder での提出方法</strong></p>
+<p>入力は標準入力から読み込み，出力は標準出力に行うこと．</p>
+</blockquote>
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>JOI 国には <var>N</var> 個の都市があり，<var>1</var> から <var>N</var> の番号がついている．これらの都市は，双方向に通行可能な道でツリー状に接続されている．すなわち，任意の <var>2</var> つの都市は道をたどって行き来が可能であり，かつその経路は一意である．このとき，道は <var>N - 1</var> 本である．</p>
+<p>都市を，<var>M</var> 個の地域に分けることにした．全ての地域は <var>1</var> つ以上の都市を含み，全ての都市はちょうど <var>1</var> つの地域に含まれるようにしなければならない．また，同じ地域に含まれる任意の <var>2</var> つの都市は，その地域に含まれない都市を通らずに道をたどって行き来が可能でなければならない．</p>
+<p>各地域の直径の最大値 <var>d_{max}</var> ができるだけ小さくなるように地域分けをしたい．ある地域の直径とは，その地域に含まれる <var>2</var> つの都市間の距離の最大値である．<var>2</var> つの都市間の距離とは，<var>2</var> つの都市を結ぶ経路に含まれる道路の長さの和である．地域に <var>1</var> つしか都市が含まれない時，その地域の直径は <var>0</var> とする．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p>道の情報と地域の数が与えられると，<var>d_{max}</var> の最小値を計算するプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>2 \leqq N \leqq 30{,}000</var>：都市の数．</li>
+<li><var>2 \leqq M \leqq N</var>：地域の数．</li>
+<li><var>1 \leqq A_i &lt; B_i \leqq N</var>：道 <var>i</var> の結ぶ <var>2</var> つの都市．</li>
+<li><var>1 \leqq C_i \leqq 100</var>：道 <var>i</var> の長さ．</li>
+</ul>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>標準入力から以下の入力を読み込め．</p>
+<ul>
+<li><var>1</var> 行目には整数 <var>N,M</var> が空白を区切りとして書かれている．</li>
+<li>続く <var>N - 1</var> 行には，<var>1</var> 行につき <var>1</var> つの道について記述している．これらの行のうちの <var>i</var> 行目は道 <var>i</var> について記述しており，整数 <var>A_{i},B_{i},C_{i}</var> が空白を区切りとして書かれている．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に <var>d_{max}</var> の最小値を表す <var>1</var> つの整数を出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>採点基準</h3>
+<p><var>20</var> 点分のテストグループにおいて，<var>M = 2</var>，<var>N \leqq 1{,}000</var> である．</p>
+<p><var>40</var> 点分のテストグループにおいて，<var>M = 2</var> である．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>5 2
+1 4 2
+2 3 3
+2 4 1
+4 5 1
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>3
+</pre>
+<p><var>2</var> つの地域を都市 <var>1, 4, 5</var> と都市 <var>2, 3</var> というようにすれば，<var>d_{max}</var> を <var>3</var> にでき，これが最適である．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>5 3
+1 4 2
+2 3 3
+2 4 1
+4 5 1
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>2
+</pre>
+<p><var>3</var> つの地域を都市 <var>1</var> と都市 <var>2, 4, 5</var> と都市 <var>3</var> というようにすれば，<var>d_{max}</var> を <var>2</var> にでき，これが最適である．</p></section>
+</div>
+</span>
+</span>
