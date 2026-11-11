@@ -1,0 +1,308 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>There are <var>N</var> houses in the JOI kingdom, numbered from 1 to <var>N</var>. The houses lie on a line in numerical order. A citizen lives in each house. The citizen living in the house <var>x</var> (<var>1 \le x \le N</var>) is denoted by the citizen <var>x</var>.</p>
+<p>Recently, new virus appeared, and every citizen was infected with the virus. In order to deal with the problem, <var>M</var> treatment projects are proposed. The cost of the project <var>i</var> (<var>1 \le i \le M</var>) is <var>C_{i}</var>. If the project <var>i</var> is performed, the following happens:</p>
+<blockquote>
+<p>In the evening of the <var>T_{i}</var>-th day, if the citizen <var>x</var> with <var>L_{i} \le x \le R_{i}</var> is infected with the virus, then the citizen <var>x</var> is treated.</p>
+</blockquote>
+<p>The virus is transmitted through the neighboring citizens in the following way.</p>
+<blockquote>
+<p>If the citizen <var>x</var> (<var>1 \le x \le N</var>) is infected with the virus in the morning of some day, then the citizen <var>x - 1</var> (if <var>x \ge2</var>) and the citizen <var>x + 1</var> (if <var>x \le N - 1</var>) become infected with the virus at noon of the same day.</p>
+</blockquote>
+<p>A citizen who was already treated can be infected with the virus again.</p>
+<p>Since you are a minister of the JOI kingdom, you need to choose some of the projects so that the following condition is satisfied.</p>
+<blockquote>
+<p><strong>Condition.</strong> After all the chosen projects are performed, no citizen is infected with the virus.</p>
+</blockquote>
+<p>It is possible to perform more than one project on the same day.</p>
+<p>Write a program which, given the number of houses and the information of the treatment projects, determines whether it is possible to satisfy the above condition, and calculates the minimum total cost if it is possible.</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input. All the values in the input are integers.</p>
+<pre><var>N</var> <var>M</var>
+<var>T_{1}</var> <var>L_{1}</var> <var>R_{1}</var> <var>C_{1}</var>
+<var>\vdots</var>
+<var>T_{M}</var> <var>L_{M}</var> <var>R_{M}</var> <var>C_{M}</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>Write one line to the standard output. If the condition cannot be satisfied, output <var>-1</var>. Otherwise, output the minimum total cost.</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li><var>1 \le N \le 1\,000\,000\,000</var>.</li>
+<li><var>1 \le M \le 100\,000</var>.</li>
+<li><var>1 \le T_{i} \le 1\,000\,000\,000</var> (<var>1 \le i \le M</var>).</li>
+<li><var>1 \le L_{i} \le R_{i} \le N</var> (<var>1 \le i \le M</var>).</li>
+<li><var>1 \le C_{i} \le 1\,000\,000\,000</var> (<var>1 \le i \le M</var>).</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li>(<var>4</var> points) <var>T_{i} = 1</var> (<var>1 \le i \le M</var>).</li>
+<li>(<var>5</var> points) <var>M \le 16</var>.</li>
+<li>(<var>30</var> points) <var>M \le 5\,000</var>.</li>
+<li>(<var>61</var> points) No additional constraints.</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input and Output</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>10 5
+2 5 10 3
+1 1 6 5
+5 2 8 3
+7 6 10 4
+4 1 3 1
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>7
+</pre>
+<p>In Sample Input 1, you can perform the projects as follows.</p>
+<ul>
+<li>In the evening of the second day, the project 1 is performed, and the citizens <var>5</var>, <var>6</var>, <var>7</var>, <var>8</var>, <var>9</var>, <var>10</var> are treated. Now the citizens <var>1</var>, <var>2</var>, <var>3</var>, <var>4</var> are infected with the virus.</li>
+<li>At noon of the third day, the citizen 5 becomes infected with the virus. Now the citizens <var>1</var>, <var>2</var>, <var>3</var>, <var>4</var>, <var>5</var> are infected with the virus.</li>
+<li>At noon of the fourth day, the citizen 6 becomes infected with the virus. Now the citizens <var>1</var>, <var>2</var>, <var>3</var>, <var>4</var>, <var>5</var>, <var>6</var> are infected with the virus.</li>
+<li>In the evening of the fourth day, the project 5 is performed, and the citizens <var>1</var>, <var>2</var>, <var>3</var> are treated. Now the citizens <var>4</var>, <var>5</var>, <var>6</var> are infected with the virus.</li>
+<li>At noon of the fifth day, the citizens 3 and 7 become infected with the virus. Now the citizens <var>3</var>, <var>4</var>, <var>5</var>, <var>6</var>, <var>7</var> are infected with the virus.</li>
+<li>In the evening of the fifth day, the project 3 is performed, and the citizens <var>3</var>, <var>4</var>, <var>5</var>, <var>6</var>, <var>7</var> are treated. After that, no citizen is infected with the virus.</li>
+</ul>
+<p>The total cost to perform the projects <var>1, 3</var> and <var>5</var> is <var>7</var>. Since it is impossible to perform projects so that the condition is satisfied and the total cost is smaller than 7, output 7.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>10 5
+2 6 10 3
+1 1 5 5
+5 2 7 3
+8 6 10 4
+4 1 3 1
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>-1
+</pre>
+<p>In Sample Input 2, output <var>-1</var> since the condition cannot be satisfied.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 3</h3>
+<pre>10 5
+1 5 10 4
+1 1 6 5
+1 4 8 3
+1 6 10 3
+1 1 3 1
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 3</h3>
+<pre>7
+</pre>
+<p>This sample input satisfies the constraints for Subtask 1.</p></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>JOI 国には <var>N</var> 軒の家があり，<var>1</var> から <var>N</var> までの番号が付けられている．これらの家は番号順に一列に並んでおり，各家には <var>1</var> 人の国民が住んでいる．家 <var>x</var> に住んでいる国民を国民 <var>x</var> と表す (<var>1 \leqq x \leqq N</var>)．</p>
+<p>今，新型のウイルスが発生してすべての国民がウイルスに感染してしまった．この事態に対し <var>M</var> 個の治療計画が提案された．計画 <var>i</var> (<var>1 \leqq i \leqq M</var>) の実施にはコストが <var>C_{i}</var> だけかかる. 計画 <var>i</var> を実施すると次のことが起こる．</p>
+<blockquote>
+<p>今から <var>T_{i}</var> 日後の夕方に <var>L_{i} \leqq x \leqq R_{i}</var> を満たす国民 <var>x</var> がもしウイルスに感染していれば治療される．</p>
+</blockquote>
+<p>また，ウイルスは隣り合う国民の間で次のように伝染する．</p>
+<blockquote>
+<p>ある日の朝に国民 <var>x</var> (<var>1 \leqq x \leqq N</var>) がウイルスに感染しているなら，その日の昼に国民 <var>x - 1</var> (<var>x \geqq 2</var> の場合) と国民 <var>x + 1</var> (<var>x \leqq N - 1</var> の場合) もウイルスに感染する．</p>
+</blockquote>
+<p>一度治療された国民も再度感染する可能性がある．</p>
+<p>JOI 国の大臣であるあなたは，いくつかの計画を実施して次の条件を満たすようにしたい．</p>
+<blockquote>
+<p><strong>条件</strong> 計画がすべて実施された後，どの国民もウイルスに感染していない．</p>
+</blockquote>
+<p>ただし，同じ日に <var>2</var> つ以上の計画を実施することもできる．</p>
+<p>家の軒数と治療計画の情報が与えられたとき，上の条件を満たすことができるかを判定し，もし満たすことができる場合は必要なコストの合計の最小値を求めるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力は以下の形式で標準入力から与えられる．入力される値はすべて整数である．</p>
+<pre><var>N</var> <var>M</var>
+<var>T_{1}</var> <var>L_{1}</var> <var>R_{1}</var> <var>C_{1}</var>
+<var>\vdots</var>
+<var>T_{M}</var> <var>L_{M}</var> <var>R_{M}</var> <var>C_{M}</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に <var>1</var> 行で出力せよ．条件を満たすことができないなら <var>-1</var> を出力せよ．条件を満たすことができる場合は，必要なコストの合計の最小値を出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>1 \leqq N \leqq 1\,000\,000\,000</var>．</li>
+<li><var>1 \leqq M \leqq 100\,000</var>．</li>
+<li><var>1 \leqq T_{i} \leqq 1\,000\,000\,000</var> (<var>1 \leqq i \leqq M</var>)．</li>
+<li><var>1 \leqq L_{i} \leqq R_{i} \leqq N</var> (<var>1 \leqq i \leqq M</var>)．</li>
+<li><var>1 \leqq C_{i} \leqq 1\,000\,000\,000</var> (<var>1 \leqq i \leqq M</var>)．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>4</var> 点) <var>T_{i} = 1</var> (<var>1 \leqq i \leqq M</var>)．</li>
+<li>(<var>5</var> 点) <var>M \leqq 16</var>．</li>
+<li>(<var>30</var> 点) <var>M \leqq 5\,000</var>．</li>
+<li>(<var>61</var> 点) 追加の制約はない．</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入出力例</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>10 5
+2 5 10 3
+1 1 6 5
+5 2 8 3
+7 6 10 4
+4 1 3 1
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>7
+</pre>
+<p>入力例 <var>1</var> では次のように計画を実施すればよい.</p>
+<ul>
+<li><var>2</var> 日後の夕方に計画 <var>1</var> を実施して国民 <var>5, 6, 7, 8, 9, 10</var> を治療する. 感染した国民は <var>1, 2, 3, 4</var> となる.</li>
+<li><var>3</var> 日後の昼に国民 <var>5</var> が感染する. 感染した国民は <var>1, 2, 3, 4, 5</var> となる.</li>
+<li><var>4</var> 日後の昼に国民 <var>6</var> が感染する. 感染した国民は <var>1, 2, 3, 4, 5, 6</var> となる.</li>
+<li><var>4</var> 日後の夕方に計画 <var>5</var> を実施して国民 <var>1, 2, 3</var> を治療する. 感染した国民は <var>4, 5, 6</var> となる.</li>
+<li><var>5</var> 日後の昼に国民 <var>3, 7</var> が感染する. 感染した国民は <var>3, 4, 5, 6, 7</var> となる.</li>
+<li><var>5</var> 日後の夕方に計画 <var>3</var> を実施して国民 <var>3, 4, 5, 6, 7</var> を治療する. これによりすべての国民がウイルスに感染していない状態になる.</li>
+</ul>
+<p>計画 <var>1, 3, 5</var> を実施するのに必要なコストの合計は <var>7</var> である. 条件を満たすように, どのように計画を実施してもコストの合計を <var>7</var> より小さくすることはできないので <var>7</var> を出力する.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>10 5
+2 6 10 3
+1 1 5 5
+5 2 7 3
+8 6 10 4
+4 1 3 1
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>-1
+</pre>
+<p>入力例 <var>2</var> ではどのように計画を実施しても条件を満たすことができないので <var>-1</var> を出力する.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>10 5
+1 5 10 4
+1 1 6 5
+1 4 8 3
+1 6 10 3
+1 1 3 1
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>7
+</pre>
+<p>この入力例は小課題 <var>1</var> の制約を満たす.</p></section>
+</div>
+</span>
+</span>
