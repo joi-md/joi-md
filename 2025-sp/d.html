@@ -1,10 +1,245 @@
 <span class="lang">
-<span class="lang-ja">
-<p>配点： <var>100</var> 点</p>
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
 
 <div class="part">
 <section>
-<h3></h3>
+<h3>Problem Statement</h3>
+<p>The IOI Kingdom is represented as a square grid of <var>L</var> rows and <var>L</var> columns. The rows are numbered <var>1, 2, \ldots, L</var> from top to bottom and the columns are numbered <var>1, 2, \ldots, L</var> from left to right. A cell at row <var>i</var> (<var>1 \le i \le L</var>) and column <var>j</var> (<var>1 \le j \le L</var>) is denoted as cell <var>(i, j)</var>.</p>
+<p>Recently, due to a widespread infection in the IOI Kingdom, the demand for improved medical facilities has increased. In response, the king, Bitaro, has decided to build hospitals in the four corners of the grid, which are cell <var>(1, 1)</var>, cell <var>(1, L)</var>, cell <var>(L, 1)</var>, and cell <var>(L, L)</var>. Each hospital is equipped with one ambulance.</p>
+<p>The cautious Bitaro decided to run a simulation to prepare for actual emergency calls from patients. In the scenario he envisioned, emergency calls from <var>N</var> patients arrive at time <var>0</var>, and he wants to determine whether all patients can be transported to one of the hospitals by time <var>T</var>. The <var>k</var>-th patient (<var>1 \le k \le N</var>) is located at cell <var>(X_{k}, Y_{k})</var>.</p>
+<p>The ambulances transport patients according to the following rules:</p>
+<ul>
+<li>Each ambulance can start moving at time 0 or later. It repeats the following (possibly 0 times): depart from its hospital, move to the patient’s location, pick up the patient, and then return to the hospital to drop off the patient.</li>
+<li>Each ambulance can carry at most 1 patient at a time.</li>
+<li>Each ambulance can only transport patients to the hospital where it was initially stationed. Patients cannot be dropped off at any location other than a hospital.</li>
+<li>Each ambulance moves to an adjacent cell (up, down, left, or right) in 1 unit of time. The time taken to pick up and drop off a patient can be ignored.</li>
+<li>Ambulances from different hospitals may occupy the same cell at the same time.</li>
+</ul>
+<p>Unfortunately, Bitaro was unable to determine the outcome of his envisioned scenario, so he has asked you to investigate it on his behalf.</p>
+<p>Given the size of the IOI Kingdom and the scenario envisioned by Bitaro, write a program to determine whether all patients can be transported to a hospital by time <var>T</var>.</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>The input is given from Standard Input in the following format:</p>
+<pre><var>L</var> <var>N</var> <var>T</var>
+<var>X_1</var> <var>Y_1</var>
+<var>X_2</var> <var>Y_2</var>
+<var>\vdots</var>
+<var>X_N</var> <var>Y_N</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>Print <code>Yes</code> if all patients can be transported to a hospital by time <var>T</var> in the scenario envisioned by Bitaro. Otherwise, print <code>No</code>. The output should consist of a single line.</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li><var>3 \le L \le 10\,000</var>.</li>
+<li><var>1 \le N \le 160</var>.</li>
+<li><var>1 \le T \le 20\,000</var>.</li>
+<li><var>1 \le X_{k} \le L</var> (<var>1 \le k \le N</var>)</li>
+<li><var>1 \le Y_{k} \le L</var> (<var>1 \le k \le N</var>)</li>
+<li><var>(X_{k}, Y_{k})</var> is not equal to any of <var>(1, 1), (1, L), (L, 1)</var>, or <var>(L, L)</var>. (<var>1 \le k \le N</var>)</li>
+<li>All input values are integers.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li>(<var>4</var> points) <var>T \le 50</var>.</li>
+<li>(<var>8</var> points) <var>T \le 160</var>.</li>
+<li>(<var>5</var> points) <var>N \le 10</var>.</li>
+<li>(<var>18</var> points) <var>N \le 20</var>.</li>
+<li>(<var>15</var> points) <var>N \le 45</var>. <var>L</var> is an odd number, and <var>Y_k = \frac{L+1}{2}</var> (<var>1 \le k \le N</var>).</li>
+<li>(<var>31</var> points) <var>N \le 45</var>.</li>
+<li>(<var>19</var> points) No additional constraints.</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>6 4 8
+1 3
+2 2
+3 4
+5 5
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>Yes
+</pre>
+<p>By transporting the 1st and 2nd patients to the hospital at <var>(1, 1)</var>, the 3rd patient to the hospital at <var>(1, 6)</var>, and the 4th patient to the hospital at <var>(6, 6)</var>, all patients can be transported to a hospital by time <var>8</var>, so the output is <code>Yes</code>.</p>
+<p>For example, if the ambulance stationed at the hospital in <var>(1, 1)</var> moves in the following order, it can transport both the 1st and 2nd patients to the hospital by time 8.</p>
+<div class="joisp2025-ambulance-en-table">
+<table>
+<thead>
+<tr>
+<th>Time</th>
+<th>Ambulance Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><var>0</var></td>
+<td>Departs from cell <var>(1, 1)</var></td>
+</tr>
+<tr>
+<td><var>1</var></td>
+<td>Arrives at cell <var>(2, 1)</var></td>
+</tr>
+<tr>
+<td><var>2</var></td>
+<td>Arrives at cell <var>(2, 2)</var>, picks up the 2nd patient, and departs</td>
+</tr>
+<tr>
+<td><var>3</var></td>
+<td>Arrives at cell <var>(1, 2)</var></td>
+</tr>
+<tr>
+<td><var>4</var></td>
+<td>Arrives at cell <var>(1, 1)</var>, drops off the 2nd patient, and departs</td>
+</tr>
+<tr>
+<td><var>5</var></td>
+<td>Arrives at cell <var>(1, 2)</var></td>
+</tr>
+<tr>
+<td><var>6</var></td>
+<td>Arrives at cell <var>(1, 3)</var>, picks up the 1st patient, and departs</td>
+</tr>
+<tr>
+<td><var>7</var></td>
+<td>Arrives at cell <var>(1, 2)</var></td>
+</tr>
+<tr>
+<td><var>8</var></td>
+<td>Arrives at cell <var>(1, 1)</var>, drops off the 1st patient</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>This sample input satisfies the constraints of subtasks <var>1, 2, 3, 4, 6</var> and 7.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>9 5 19
+5 5
+5 5
+7 5
+2 5
+9 5
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>No
+</pre>
+<p>Since it is not possible to transport all patients to a hospital by time 19, the output is <code>No</code>.</p>
+<p>This sample input satisfies the constraints of all subtasks.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 3</h3>
+<pre>7 7 16
+6 1
+2 4
+4 5
+5 5
+3 4
+6 4
+5 1
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 3</h3>
+<pre>Yes
+</pre>
+<p>This sample input satisfies the constraints of subtasks <var>1, 2, 3, 4, 6</var> and 7.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 4</h3>
+<pre>200 15 800
+126 45
+196 40
+43 58
+96 13
+28 33
+44 55
+60 22
+58 156
+135 183
+44 29
+92 182
+157 138
+30 132
+175 87
+166 57
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 4</h3>
+<pre>No
+</pre>
+<p>This sample input satisfies the constraints of subtasks <var>4, 6</var> and 7.</p>
+<style>
+.joisp2025-ambulance-en-table { position:relative; max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisp2025-ambulance-en-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisp2025-ambulance-en-table th,.joisp2025-ambulance-en-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisp2025-ambulance-en-table th { background:#f5f5f5; }
+</style>
+
+<style>
+.joisp2025-ambulance-en-table .katex {position:relative;}
+</style></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
 <p>IOI 王国は縦 <var>L</var> 行，横 <var>L</var> 列のマス目で表される領土を持っている．以降，上から <var>i</var> 行目 (<var>1 \leqq i \leqq L</var>)，左から <var>j</var> 列目 (<var>1 \leqq j \leqq L</var>) のマスをマス <var>(i, j)</var> と表すことにする．</p>
 <p>最近の IOI 王国では感染症で倒れる患者が相次いでおり，国民から医療の充実を求める声が上がっている．そこで，IOI 王国の国王であるビ太郎は，マス <var>(1, 1)</var>，マス <var>(1, L)</var>，マス <var>(L, 1)</var>，マス <var>(L, L)</var> の <var>4</var> 箇所に病院を建設し，それぞれの病院に <var>1</var> 台ずつ救急車を設置することにした．</p>
 <p>用心深いビ太郎は，実際に患者から救助要請があったときのことを想定してシミュレーションを行うことにした．ビ太郎が想定するシナリオでは，時刻 <var>0</var> において <var>N</var> 人の患者から救助要請が届くので，時刻 <var>T</var> までにすべての患者をいずれかの病院に搬送することができるかどうかを調べたい．<var>k</var> 番目 (<var>1 \leqq k \leqq N</var>) の患者はマス <var>(X_k, Y_k)</var> にいる．</p>
@@ -96,24 +331,7 @@
 </pre>
 <p><var>1</var> 番目と <var>2</var> 番目の患者をマス <var>(1, 1)</var> にある病院へ，<var>3</var> 番目の患者をマス <var>(1, 6)</var> にある病院へ，<var>4</var> 番目の患者をマス <var>(6, 6)</var> にある病院へそれぞれ搬送することで，時刻 <var>8</var> までにすべての患者をいずれかの病院に搬送することができるので，<code>Yes</code> を出力する．</p>
 <p>例えば，マス <var>(1, 1)</var> にある病院に設置された救急車が次の順に動くと，この救急車は時刻 <var>8</var> までに <var>1</var> 番目と <var>2</var> 番目の患者を病院へ搬送することができる．</p>
-<style>
-style + table {
-    border-collapse: collapse;
-    border: 1px solid black;
-    margin: 1em;
-    th {
-        border: 1px solid black;
-    }
-    td {
-        border-left: 1px solid black;
-        border-right: 1px solid black;
-    }
-    th, td {
-        padding: 0.2rem 1rem;
-    }
-}
-</style>
-
+<div class="joisp2025-d-statement-table">
 <table>
 <thead>
 <tr>
@@ -160,6 +378,7 @@ style + table {
 </tr>
 </tbody>
 </table>
+</div>
 <p>この入力例は小課題 <var>1,2,3,4,6,7</var> の制約を満たす．</p>
 <hr />
 </section>
@@ -242,7 +461,17 @@ style + table {
 <h3>出力例 4</h3>
 <pre>No
 </pre>
-<p>この入力例は小課題 <var>4,6,7</var> の制約を満たす． </p></section>
+<p>この入力例は小課題 <var>4,6,7</var> の制約を満たす．</p>
+<style>
+.joisp2025-d-statement-table { position:relative; max-width:100%; overflow-x:auto; margin:1em 0; }
+.joisp2025-d-statement-table table { display:table; width:auto; max-width:none; overflow:visible; border-collapse:collapse; margin:0; }
+.joisp2025-d-statement-table th, .joisp2025-d-statement-table td { border:1px solid #aaa; padding:0.3em 0.6em; text-align:left; vertical-align:top; }
+.joisp2025-d-statement-table th { background:#f5f5f5; }
+</style>
+
+<style>
+.joisp2025-d-statement-table .katex {position:relative;}
+</style></section>
 </div>
 </span>
 </span>

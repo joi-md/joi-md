@@ -1,15 +1,16 @@
 <span class="lang">
 <span class="lang-ja">
-<p>配点： <var>100</var> 点</p>
 <blockquote>
-<h4>AtCoder での提出方法について</h4>
+<p><strong>AtCoder での提出方法</strong></p>
+<p><a href="https://img.atcoder.jp/joisp2025/multi-inputs-5fcb5a0416.zip">入力データ</a></p>
 <p><var>N=4,32,48</var> の <var>3</var> つの入力があるので，入力で場合分けしてあなたの結果を出力してください．</p>
 </blockquote>
+<p>配点 : <var>100</var> 点</p>
 <hr />
 
 <div class="part">
 <section>
-<h3></h3>
+<h3>問題文</h3>
 <p>K 理事長は春季トレーニングの参加者にゲームを用意した．</p>
 <p>春季トレーニングには <var>N</var> 人の参加者がおり，それぞれ <var>1</var> から <var>N</var> までの番号が付けられている．
 それぞれの参加者は <var>1</var> つボードを持っている．
@@ -84,6 +85,13 @@
 
 <div class="part">
 <section>
+<h3>提出方法</h3>
+<p>入力データ <code>input_01.txt</code>, <code>input_02.txt</code>, <code>input_03.txt</code> に対する出力データ <code>output_01.txt</code>, <code>output_02.txt</code>, <code>output_03.txt</code> のみを提出せよ．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
 <h3>制約</h3>
 <ul>
 <li><var>N</var> は <var>4,32,48</var> のいずれかである．</li>
@@ -99,19 +107,7 @@
 <p>あなたの出力が誤っている場合，すなわちフォーマットが間違っている場合や，「目標を達成できるようなある戦略が存在して，出力がその戦略に従った結果である」という条件が満たされないとき，あなたの得点は <var>0</var> 点となる．</p>
 <p>あなたの出力が正しい場合，以下で定める点数となる．</p>
 <p>各入力データにおける，<var>N</var> の値と配点は，以下の通りである．</p>
-<style>
-style + table {
-    border-collapse: collapse;
-    border: 1px solid black;
-    margin: 1em;
-}
-style + table th, 
-style + table td {
-    border: 1px solid black;
-    padding: 0.25rem 1rem;
-}
-</style>
-
+<div class="joigsp2025-g-statement-table">
 <table>
 <thead>
 <tr>
@@ -146,7 +142,50 @@ style + table td {
 </tr>
 </tbody>
 </table>
+</div>
 <p>ただし，<var>0</var> 点の場合，採点システム上では <strong>出力は正しくない</strong> と表示されることに注意せよ．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力データの生成方法の例</h3>
+<p>問題文中に示された入出力形式で出力データを生成するプログラムを書いた場合は，以下のように出力データを生成することができる．</p>
+<p>初めに，<code>input_01.txt</code>，<code>input_02.txt</code>，<code>input_03.txt</code> をプログラムと同じディレクトリに配置せよ．</p>
+<p>Python プログラムを書いた場合は，以下を実行せよ：</p>
+<ul>
+<li>小課題 <var>1</var> の場合，</li>
+</ul>
+<pre>pypy3 multi.py &lt; input_01.txt &gt; output_01.txt
+</pre>
+<ul>
+<li>小課題 <var>2</var> の場合，</li>
+</ul>
+<pre>pypy3 multi.py &lt; input_02.txt &gt; output_02.txt
+</pre>
+<ul>
+<li>小課題 <var>3</var> の場合，</li>
+</ul>
+<pre>pypy3 multi.py &lt; input_03.txt &gt; output_03.txt
+</pre>
+<p>C++ プログラムを書いた場合は，まずそれをコンパイルせよ．（例えば，<code>g++ -std=gnu++20 multi.cpp -o multi</code> と打つなどせよ．）</p>
+<p>その後以下を実行せよ：</p>
+<ul>
+<li>小課題 <var>1</var> の場合，</li>
+</ul>
+<pre>./multi &lt; input_01.txt &gt; output_01.txt
+</pre>
+<ul>
+<li>小課題 <var>2</var> の場合，</li>
+</ul>
+<pre>./multi &lt; input_02.txt &gt; output_02.txt
+</pre>
+<ul>
+<li>小課題 <var>3</var> の場合，</li>
+</ul>
+<pre>./multi &lt; input_03.txt &gt; output_03.txt
+</pre>
 <hr />
 </section>
 </div>
@@ -185,7 +224,17 @@ T 1 T 2 T 3
 </ul>
 <p>この戦略に従った結果，親としてどの参加者が選ばれたとしても，最終的に全員が親である参加者の番号を正しく答えることができており，目標が達成されている．
 そのため，この出力例は正しいと判定される．</p>
-<p>この入力例は制約を満たさず，また実際の入力データに含まれないことに注意せよ．</p></section>
+<p>この入力例は制約を満たさず，また実際の入力データに含まれないことに注意せよ．</p>
+<style>
+.joigsp2025-g-statement-table { position:relative; max-width:100%; overflow-x:auto; margin:1em 0; }
+.joigsp2025-g-statement-table table { display:table; width:auto; max-width:none; overflow:visible; border-collapse:collapse; margin:0; }
+.joigsp2025-g-statement-table th, .joigsp2025-g-statement-table td { border:1px solid #aaa; padding:0.3em 0.6em; text-align:left; vertical-align:top; }
+.joigsp2025-g-statement-table th { background:#f5f5f5; white-space:nowrap; }
+</style>
+
+<style>
+.joigsp2025-g-statement-table .katex {position:relative;}
+</style></section>
 </div>
 </span>
 </span>

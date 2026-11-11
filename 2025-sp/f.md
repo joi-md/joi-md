@@ -1,27 +1,35 @@
-配点： $100$ 点
+<blockquote class="joisp2025-f-statement" markdown="1">
 
-> [配布ファイル](https://img.atcoder.jp/joisp2025/thief.zip)
-> 
-> #### AtCoder での提出方法について
-> 
-> **C++ を使用する場合**
-> 
-> - `thief.h` を include し，問題文で指定された関数を実装してください．
-> - **標準入出力やファイルへの入出力を使用しないでください．**
-> 
-> **その他の言語を使用する場合**
-> 
-> - JOIG 版の問題文で指定された通りにやりとりを行ってください．
-> 
-> **注意**
-> 
-> - **$300$ 回のクエリを行うと，ジャッジ側・入出力の合計で最大 1200 ms を消費します．**
-> - テストケース数が多いため，正解できない入力では早期終了することを推奨します．
+**AtCoder での提出方法**
+
+[配布ファイル](https://img.atcoder.jp/joisp2025/thief.zip)
+
+**C++ を使用する場合**
+
+- `thief.h` を include し，問題文で指定された関数を実装してください．
+- **標準入出力やファイルへの入出力を使用しないでください．**
+
+<details markdown="1">
+<summary><strong>その他の言語を使用する場合</strong></summary>
+
+- [JOIG 版の問題文](https://atcoder.jp/contests/joigsp2025/tasks/joigsp2025_d)の「入出力」に従ってやりとりを行ってください．
+
+</details>
+
+**注意**
+
+- **$300$ 回のクエリを行うと，ジャッジ側・入出力の合計で最大 1200 ms を消費します．**
+- テストケース数が多いため，正解できない入力では早期終了することを推奨します．
+
+
+</blockquote>
+
+配点 : $100$ 点
+
 
 ---
 
-###
-
+### 問題文
 あなたは JOI 銀河で怪盗として活躍している．
 
 JOI 銀河には $0$ から $N - 1$ までの番号が付けられている $N$ 個の星がある．また，$0$ から $M - 1$ までの番号が付けられている $M$ 個のワープ装置がある．ワープ装置 $i$ ($0 \leqq i \leqq M - 1$) は星 $U_i$ と星 $V_i$ の間を双方向に結んでいる．どの $2$ つの星の間も，いくつかのワープ装置を用いることで移動できる．
@@ -47,7 +55,7 @@ JOI 銀河のある星には鍵が隠されており，別の星には宝箱が�
     - この関数は各テストケースにおいて $1$ 回だけ呼び出される．
     - 引数 `N` は星の個数 $N$ である．
     - 引数 `M` はワープ装置の個数 $M$ である．
-    - 引数 `U`, `V` は長さ $N$ の配列であり，$0 \leqq i \leqq M - 1$ について，`U[i]`, `V[i]` はワープ装置 $i$ が双方向に結ぶ星の番号 $U_i, V_i$ である．
+    - 引数 `U`, `V` は長さ $M$ の配列であり，$0 \leqq i \leqq M - 1$ について，`U[i]`, `V[i]` はワープ装置 $i$ が双方向に結ぶ星の番号 $U_i, V_i$ である．
 
 `thief.cpp` 内では以下の関数を呼び出すことができる．
 
@@ -104,15 +112,15 @@ $N$ $M$ $A$ $B$
 $U_0$ $V_0$
 $U_1$ $V_1$
 $\vdots$
-$U_{M-1}$ $V_{M-1}$
+$U_{M - 1}$ $V_{M - 1}$
 ~~~
 
 ### 採点プログラムのサンプルの出力
 
 採点プログラムのサンプルは標準出力へ以下の情報を出力する (引用符は実際には出力されない)．
 
-- 正解の場合，関数 `query` の呼び出し回数が `Accepted: 25` のように出力される．
-- 不正解の場合，不正解の種類が `Wrong Answer [4]` のように出力される．
+- 正解の場合，関数 `query` の呼び出し回数が “`Accepted: 25`” のように出力される．
+- 不正解の場合，不正解の種類が “`Wrong Answer [4]`” のように出力される．
 
 実行するプログラムが複数の不正解の条件を満たした場合，
 表示される不正解の種類はそれらのうち $1$ つのみである．採点プログラムのサンプルは，不正解の条件を満たした場合，途中で実行を打ち切ることがある．
@@ -163,6 +171,8 @@ $U_{M-1}$ $V_{M-1}$
 
 ### やりとりの例
 
+採点プログラムのサンプルが読み込む入力の例と，それに対応する関数の呼び出しの例を以下に示す．
+
 ### 入力例 1
 
 ```
@@ -173,24 +183,20 @@ $U_{M-1}$ $V_{M-1}$
 1 4
 ```
 
-<style>
-style + table {
-    border-collapse: collapse;
-    border: 1px solid black;
-    margin: 1em;
-}
-style + table th, 
-style + table td {
-    border: 1px solid black;
-    padding: 0.25rem 1rem;
-}
-style + table th:nth-child(1),
-style + table td:nth-child(1) {
-    border-right: 3px double black;
-}
-</style>
+#### 関数の呼び出しの例
 
-<img src="https://img.atcoder.jp/joisp2025/joisp2025-F01.png" class="img-responsive center-block" style="width: 700px; max-width: 100%">
+<div class="joisp2025-f-call-table" markdown="1">
+
+| 呼び出し | 呼び出し | 戻り値 |
+| --- | --- | --- |
+| `solve(5, 4, [0, 0, 1, 1], [1, 3, 2, 4])` |  |  |
+|  | `query([0, 1, 0, 0])` | `1` |
+|  | `query([1, 1, 1, 0])` | `0` |
+|  | `query([0, 0, 1, 0])` | `1` |
+|  | `query([0, 0, 1, 1])` | `0` |
+|  | `answer(0, 4)` |  |
+
+</div>
 
 $1$ 回目の `query` 関数の呼び出しに対応する選択は以下のようになる．
 
@@ -226,3 +232,15 @@ $4$ 回目の `query` 関数の呼び出しに対応する選択のもとで，�
 この入力例は小課題 $3,4,5,6,7,8$ の制約を満たす．コンテストサイトからダウンロードできるアーカイブの中に含まれているファイルのうち，`sample-01-in.txt` は入力例 $1$ に対応する．
 
 なお，コンテストサイトからダウンロードできるアーカイブの中に含まれている，提出しなければならないファイルのサンプルにおける関数の呼び出しは，これらの関数の呼び出しと同じである．
+
+<style>
+.joisp2025-f-statement summary { display:list-item; cursor:pointer; }
+</style>
+
+<style>
+.joisp2025-f-call-table { position:relative;max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisp2025-f-call-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisp2025-f-call-table th,.joisp2025-f-call-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisp2025-f-call-table th { background:#f5f5f5;white-space:nowrap; }
+.joisp2025-f-call-table code { white-space:nowrap; }
+</style>

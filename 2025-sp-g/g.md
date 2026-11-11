@@ -1,13 +1,19 @@
-配点： $100$ 点
+<blockquote markdown="1">
 
-> #### AtCoder での提出方法について
-> 
-> $N=4,32,48$ の $3$ つの入力があるので，入力で場合分けしてあなたの結果を出力してください．
+**AtCoder での提出方法**
+
+[入力データ](https://img.atcoder.jp/joisp2025/multi-inputs-5fcb5a0416.zip)
+
+$N=4,32,48$ の $3$ つの入力があるので，入力で場合分けしてあなたの結果を出力してください．
+
+</blockquote>
+
+配点 : $100$ 点
+
 
 ---
 
-###
-
+### 問題文
 K 理事長は春季トレーニングの参加者にゲームを用意した．
 
 春季トレーニングには $N$ 人の参加者がおり，それぞれ $1$ から $N$ までの番号が付けられている．
@@ -21,7 +27,7 @@ K 理事長は春季トレーニングの参加者にゲームを用意した．
       1. 各参加者は自分のボードに書かれた文字を消し，新たに `T` か `F` を書き込む．その後，各参加者はボードを K 理事長に渡す．
       2. $i = 1, 2, \dots, N$ について，以下を行う．
         - 参加者 $i$ は，ある参加者 $p$ ($1 \leqq \mathit{p} \leqq N$) を指定し，その番号 $\mathit{p}$ を K 理事長に伝える．K 理事長は，参加者 $\mathit{p}$ のボードを参加者 $i$ に見せ，そのボードに書かれた文字を参加者 $i$ は読む．このとき，参加者 $i$ は自分自身を指定してもよい．
-1. 各参加者は，誰が親であるかを答える．
+4. 各参加者は，誰が親であるかを答える．
 
 戦略を事前にうまく定めておくことによって，親としてどの参加者が選ばれたとしても，最終的に全員が親である参加者の番号を答えられるようにすることがこのゲームの目標である．
 また，できるだけ小さいターン数 $L$ で目標を達成したい．
@@ -77,6 +83,10 @@ $c_{N,1}$ $p_{N,1}$ $c_{N,2}$ $p_{N,2}$ $\cdots$ $c_{N,L}$ $p_{N,L}$
 - 任意の参加者 $i$ ($1 \leqq i \leqq N$)，ターン $t$ ($1 \leqq t \leqq L$)，参加者 $x,y$ ($1 \leqq x,y \leqq N$，$x \neq y$) に対して，参加者 $x$ が親であるときに参加者 $i$ が $t$ ターン目が始まるまでに読んだ文字の情報と，参加者 $y$ が親であるときに参加者 $i$ が $t$ ターン目が始まるまでに読んだ文字の情報が等しいならば，参加者 $i$ がターン $t$ にボードに書き込む文字および指定する参加者が等しい．
 - 任意の参加者 $i$ ($1 \leqq i \leqq N$)，参加者 $x, y$ ($1 \leqq x,y \leqq N$，$x \neq y$) に対して，参加者 $x$ が親であるときに参加者 $i$ が $L$ ターン目の終了までに読んだ文字の情報と，参加者 $y$ が親であるときに参加者 $i$ が $L$ ターン目の終了までに読んだ文字の情報が異なる．
 
+### 提出方法
+
+入力データ `input_01.txt`, `input_02.txt`, `input_03.txt` に対する出力データ `output_01.txt`, `output_02.txt`, `output_03.txt` のみを提出せよ．
+
 ### 制約
 
 - $N$ は $4,32,48$ のいずれかである．
@@ -93,18 +103,7 @@ $3$ 個の入力データの得点の合計が課題の得点である．
 
 各入力データにおける，$N$ の値と配点は，以下の通りである．
 
-<style>
-style + table {
-    border-collapse: collapse;
-    border: 1px solid black;
-    margin: 1em;
-}
-style + table th, 
-style + table td {
-    border: 1px solid black;
-    padding: 0.25rem 1rem;
-}
-</style>
+<div class="joigsp2025-g-statement-table" markdown="1">
 
 | 小課題 | 入力データ | $N$ | 得点 | 配点 |
 |:------:|:----------:|:---:|:-------------------------------------------------------------|:----:|
@@ -112,7 +111,60 @@ style + table td {
 | $2$      | `input_02.txt` | $32$ | $27 < L$ の場合 $0$ 点 <br> $8 < L \leqq 27$ の場合 $60 - 3 \times (L - 8)$ 点 <br> $L \leqq 8$ の場合 $60$ 点 | $60$ |
 | $3$      | `input_03.txt` | $48$ | $9 < L$ の場合 $0$ 点 <br> $L \leqq 9$ の場合 $24$ 点 | $24$ |
 
+</div>
+
+
 ただし，$0$ 点の場合，採点システム上では **出力は正しくない** と表示されることに注意せよ．
+
+---
+
+### 出力データの生成方法の例
+
+問題文中に示された入出力形式で出力データを生成するプログラムを書いた場合は，以下のように出力データを生成することができる．
+
+初めに，`input_01.txt`，`input_02.txt`，`input_03.txt` をプログラムと同じディレクトリに配置せよ．
+
+Python プログラムを書いた場合は，以下を実行せよ：
+
+- 小課題 $1$ の場合，
+
+~~~
+pypy3 multi.py < input_01.txt > output_01.txt
+~~~
+
+- 小課題 $2$ の場合，
+
+~~~
+pypy3 multi.py < input_02.txt > output_02.txt
+~~~
+
+- 小課題 $3$ の場合，
+
+~~~
+pypy3 multi.py < input_03.txt > output_03.txt
+~~~
+
+C++ プログラムを書いた場合は，まずそれをコンパイルせよ．（例えば，`g++ -std=gnu++20 multi.cpp -o multi` と打つなどせよ．）
+
+その後以下を実行せよ：
+
+- 小課題 $1$ の場合，
+
+~~~
+./multi < input_01.txt > output_01.txt
+~~~
+
+- 小課題 $2$ の場合，
+
+~~~
+./multi < input_02.txt > output_02.txt
+~~~
+
+- 小課題 $3$ の場合，
+
+~~~
+./multi < input_03.txt > output_03.txt
+~~~
 
 ---
 
@@ -151,3 +203,14 @@ T 1 T 2 T 3
 そのため，この出力例は正しいと判定される．
 
 この入力例は制約を満たさず，また実際の入力データに含まれないことに注意せよ．
+
+<style>
+.joigsp2025-g-statement-table { position:relative; max-width:100%; overflow-x:auto; margin:1em 0; }
+.joigsp2025-g-statement-table table { display:table; width:auto; max-width:none; overflow:visible; border-collapse:collapse; margin:0; }
+.joigsp2025-g-statement-table th, .joigsp2025-g-statement-table td { border:1px solid #aaa; padding:0.3em 0.6em; text-align:left; vertical-align:top; }
+.joigsp2025-g-statement-table th { background:#f5f5f5; white-space:nowrap; }
+</style>
+
+<style>
+.joigsp2025-g-statement-table .katex {position:relative;}
+</style>

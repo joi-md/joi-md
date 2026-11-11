@@ -1,20 +1,366 @@
 <span class="lang">
+<span class="lang-en">
+<blockquote class="joisp2025-j-submission">
+<p><strong>Submission on AtCoder</strong></p>
+<p><a href="https://img.atcoder.jp/joisp2025/circuit.zip">Distribution files</a></p>
+<p><strong>When using C++</strong></p>
+<ul>
+<li>Include <code>circuit.h</code> and implement the required functions.</li>
+<li><strong>Do not use standard input/output or file input/output.</strong></li>
+</ul>
+<details>
+<summary><strong>When using other languages</strong></summary>
+<p>Use standard input/output, following the <a href="https://atcoder.jp/contests/joigsp2025/tasks/joigsp2025_l">JOIG version</a>. Initially read <var>N</var>, <var>R</var>, and the <var>N</var> pairs <var>U_i,V_i</var>.</p>
+<p>To ask a question, print <code>? s</code> on one line, where <var>s</var> is a string of <var>2N+1</var> characters, each <code>0</code> or <code>1</code>. It has the same meaning as the argument of <code>query</code>. Read the circuit's output, <var>0</var> or <var>1</var>. If you receive <var>- 1</var>, terminate immediately.</p>
+<p>To answer, print <code>! t</code> on one line, where <var>t</var> is a string of <var>N</var> characters, each <code>&amp;</code> or <code>|</code>. It has the same meaning as the return value of <code>solve</code>. Answer exactly once, and ask at most <var>1000</var> questions.</p>
+<p><strong>Flush standard output after every output.</strong></p>
+</details>
+</blockquote>
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>JOI-kun is playing with an electronic circuit set.</p>
+<p>The electronic circuit set consists of <var>N</var> AND components, <var>N</var> OR components, and one circuit board. The circuit board is composed of <var>2N + 1</var> switches and <var>N</var> component slots, where each component slot can be used by placing either an AND component or an OR component. The circuit board outputs a value of 0 or 1, depending on the placed components and the states of the switches.</p>
+<h4>Specifications of the Circuit Board</h4>
+<ul>
+<li>Each switch is assigned a number from 0 to <var>2N</var>, and each switch has an ON or OFF state. Each switch outputs a value of 0 or 1 as described below.</li>
+<li>Each component slot is assigned a number from 0 to <var>N - 1</var>. Each component slot also outputs a value of 0 or 1 as described below.</li>
+<li>
+<p>The output of each switch and each component slot is determined in order from the highest-numbered one to the lowest, according to the following rules. If a switch and a component slot share the same number, the component slot’s output is determined first.</p>
+<ul>
+<li>
+<p>For <var>j = 2N, 2N - 1, \ldots, N</var>, the output of switch <var>j</var> is determined as follows:</p>
+<ul>
+<li>If switch <var>j</var> is OFF, it outputs 0.</li>
+<li>If switch <var>j</var> is ON, it outputs 1.</li>
+</ul>
+</li>
+<li>
+<p>For <var>j = N - 1, N - 2, \ldots, 0</var>, let the output of component slot <var>j</var> be <var>x</var>. The output of switch <var>j</var> is determined as follows:</p>
+<ul>
+<li>If switch <var>j</var> is OFF, it outputs <var>x</var>.</li>
+<li>If switch <var>j</var> is ON, it outputs <var>1 - x</var>.</li>
+</ul>
+</li>
+<li>
+<p>For <var>i = N - 1, N - 2, \ldots, 0</var>, component slot <var>i</var> is connected to two switches, <var>U_{i}</var> and <var>V_{i}</var>, where <var>i &lt; U_{i} &lt; V_{i} \le 2N</var>. Let the output of switch <var>U_{i}</var> be <var>x</var> and the output of switch <var>V_{i}</var> be <var>y</var>. The output of component slot <var>i</var> is determined as follows:</p>
+<ul>
+<li>If component slot <var>i</var> has an AND component, it outputs <var>\min(x, y)</var>.</li>
+<li>If component slot <var>i</var> has an OR component, it outputs <var>\max(x, y)</var>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>For each <var>j = 1, 2, \ldots, 2N</var>, there exists exactly one <var>i</var> (<var>0 \le i \le N - 1</var>) such that <var>U_{i} = j</var> or <var>V_{i} = j</var>.</p>
+</li>
+<li>The output of the circuit board is equal to the output of switch 0.</li>
+</ul>
+<p>For example, when <var>N = 3</var>, <var>U_{0} = 1</var>, <var>V_{0} = 2</var>, <var>U_{1} = 3</var>, <var>V_{1} = 4</var>, <var>U_{2} = 5</var>, <var>V_{2} = 6</var>, and AND components are placed in component slots 0 and 1 while an OR component is placed in component slot 2, the circuit board is represented as shown in the figure below.</p>
+<p><img src="https://img.atcoder.jp/joisp2025/circuit2-en-p2-1.png" alt="Figure" style="max-width:100%;height:auto;"></p>
+
+<p>Now, JOI-kun attempted to place AND components in all component slots. However, it turned out that up to <var>R</var> OR components were accidentally mixed in. Since AND and OR components look identical, they must be distinguished using the circuit board. Your task is to identify which component slots contain OR components by asking at most 1 000 queries in the following format:</p>
+<ul>
+<li>You can instruct JOI-kun on how to set the <var>2N + 1</var> switches. JOI-kun will then configure the switches accordingly and report the circuit board’s output to you.</li>
+</ul>
+<p>Given the connection structure of the circuit board and the upper bound on the number of OR components, write a program that determines the locations of all OR components using at most 1 000 queries.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Implementation Details</h3>
+<p>You need to submit one file.</p>
+<p>The file is <code>circuit.cpp</code>. This program should include <code>circuit.h</code> using the <code>#include</code> preprocessor directive.</p>
+<p><code>circuit.cpp</code> must implement the following function:</p>
+<ul>
+<li>
+<p><code>std::string solve(int N, int R, std::vector&lt;int&gt; U, std::vector&lt;int&gt; V)</code></p>
+<ul>
+<li>This function is called exactly once per test case.</li>
+<li>The argument <code>N</code> represents the number of component slots, <var>N</var>.</li>
+<li>The argument <code>R</code> is the upper bound on the number of OR components, <var>R</var>.</li>
+<li>The arguments <code>U</code> and <code>V</code> are arrays of length <var>N</var>, where <code>U[i]</code> and <code>V[i]</code> (<var>0 \le i \le N - 1</var>) are the switch numbers <var>U_{i}, V_{i}</var> connected to component slot <var>i</var>.</li>
+<li>
+<p>This function must return a string <var>t</var> of length <var>N</var> consisting of ‘<code>&amp;</code>’ and ‘<code>|</code>’ that satisfies the following condition:</p>
+<ul>
+<li>For each <var>i = 0, 1, \ldots, N - 1</var>, if component slot <var>i</var> contains an AND component, then <code>t[i]</code> must be ‘<code>&amp;</code>’. If component slot <var>i</var> contains an OR component, then <code>t[i]</code> must be ‘<code>|</code>’.</li>
+</ul>
+</li>
+<li>
+<p>If the returned string <var>t</var> is not of length <var>N</var>, your program is judged as Wrong Answer [1].</p>
+</li>
+<li>If <var>t</var> contains characters other than ‘<code>&amp;</code>’ or ‘<code>|</code>’, your program is judged as Wrong Answer [2].</li>
+<li>If the actual type of component placed in each slot does not match the one represented by the returned string <var>t</var>, your program is judged as Wrong Answer [3].</li>
+</ul>
+</li>
+</ul>
+<p>Your program may call the following function:</p>
+<ul>
+<li>
+<p><code>int query(std::string s)</code></p>
+<ul>
+<li>You can use this function to ask JOI-kun a query.</li>
+<li>The argument <code>s</code> must be a string of length <var>2N + 1</var> consisting only of ‘<code>0</code>’ and ‘<code>1</code>’. For each <var>j = 0, 1, \ldots, 2N</var>, if <code>s[j]</code> is ‘<code>0</code>’, switch <var>j</var> is set to OFF. If <code>s[j]</code> is ‘<code>1</code>’, switch <var>j</var> is set to ON.</li>
+<li>If the length of <code>s</code> is not <var>2N + 1</var>, your program is judged as Wrong Answer [4].</li>
+<li>If <code>s</code> contains characters other than ‘<code>0</code>’ or ‘<code>1</code>’, your program is judged as Wrong Answer [5].</li>
+<li>You must not call this function more than <var>1\,000</var> times. If this function is called more than <var>1\,000</var> times, your program is judged as Wrong Answer [6].</li>
+<li>The return value of this function is the output of the circuit board after setting the switches as specified in <code>s</code>.</li>
+</ul>
+</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Important Notices</h3>
+<ul>
+<li>You may implement additional helper functions or declare global variables for internal use.</li>
+<li>Your program must not use standard input/output or any other file interaction. However, you may use standard error output for debugging.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Compilation and Execution</h3>
+<p>You can download an archive file from the contest webpage which contains the sample grader to test your program. The archive file also contains a sample source file of your program.</p>
+<p>The sample grader is the file <code>grader.cpp</code>. To test your program, place the files <code>grader.cpp</code>, <code>circuit.cpp</code>, and <code>circuit.h</code> in the same directory, and compile them using the following command:</p>
+<pre>g++ -std=gnu++20 -O2 -o grader grader.cpp circuit.cpp
+</pre>
+<p>Alternatively, you can execute the <code>compile.sh</code> file included in the archive by running:</p>
+<pre>./compile.sh
+</pre>
+<p>If the compilation is successful, an executable file named <code>grader</code> will be generated.</p>
+<p>Note that the actual grader is different from the sample grader. The sample grader will be executed as a single process, which will read input data from the standard input and write the results to the standard output.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Input for the Sample Grader</h3>
+<p>Let <var>T</var> be the string of length <var>N</var> that the function <code>solve</code> should return. The sample grader reads input from standard input in the following format:</p>
+<pre><var>N</var> <var>R</var>
+<var>U_0</var> <var>V_0</var>
+<var>U_1</var> <var>V_1</var>
+<var>\vdots</var>
+<var>U_{N - 1}</var> <var>V_{N - 1}</var>
+<var>T</var>
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Output of the Sample Grader</h3>
+<p>The sample grader outputs the following information to standard output (quotation marks are not included in the actual output):</p>
+<ul>
+<li>If your program is judged as correct, it reports the number of calls to <code>query</code> as “<code>Accepted: 22</code>”.</li>
+<li>If your program is judged as any type of Wrong Answer, the sample grader writes its type as “<code>Wrong Answer [4]</code>”.</li>
+</ul>
+<p>The sample grader terminates execution as soon as any incorrect condition is met. If multiple incorrect conditions are met, only one of them is displayed.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Notices on Grading</h3>
+<p>The actual grader is not adaptive; it has a fixed answer from the beginning of the interaction.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li><var>1 \le N \le 8\,000</var>.</li>
+<li><var>1 \le R \le\min(N, 120)</var>.</li>
+<li><var>i &lt; U_{i} &lt; V_{i} \le 2N</var> (<var>0 \le i \le N - 1</var>).</li>
+<li>For each <var>j = 1, 2, \ldots, 2N</var>, there exists exactly one <var>i</var> (<var>0 \le i \le N - 1</var>) such that <var>U_{i} = j</var> or <var>V_{i} = j</var>.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li>(<var>1</var> point) <var>N = 1</var>.</li>
+<li>(<var>4</var> points) <var>N \le 1\,000</var>, <var>R = 1</var>.</li>
+<li>(<var>5</var> points) <var>N \le 1\,000</var>.</li>
+<li>(<var>17</var> points) <var>U_{i} = i + 1</var>, <var>V_{i} = N + 1 + i</var> (<var>0 \le i \le N - 1</var>), <var>R \le 70</var>.</li>
+<li>(<var>8</var> points) <var>U_{i} = i + 1</var>, <var>V_{i} = N + 1 + i</var> (<var>0 \le i \le N - 1</var>).</li>
+<li>(<var>23</var> points) <var>U_{i} = 2i + 1</var>, <var>V_{i} = 2i + 2</var> (<var>0 \le i \le N - 1</var>), <var>R \le 70</var>.</li>
+<li>(<var>8</var> points) <var>U_{i} = 2i + 1</var>, <var>V_{i} = 2i + 2</var> (<var>0 \le i \le N - 1</var>).</li>
+<li>(<var>27</var> points) <var>R \le 70</var>.</li>
+<li>(<var>7</var> points) No additional constraints.</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Example Interaction</h3>
+<p>Below is an example of input that the sample grader reads and the corresponding function calls.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>1 1
+1 2
+|
+</pre>
+<div class="joisp2025-circuit2-en-table">
+<table>
+<thead>
+<tr>
+<th><code>solve</code> call</th>
+<th>Return value</th>
+<th><code>query</code> call</th>
+<th>Return value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>solve(1, 1, [1], [2])</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>query("010")</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>query("011")</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>query("111")</code></td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>"|"</code></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>In the first call to <code>query</code>, the output of the circuit board can be calculated as follows:</p>
+<ul>
+<li>Switches 1 and 2 are ON and OFF, respectively, so switch 1 outputs 1 and switch 2 outputs 0.</li>
+<li>Component slot <var>0</var> contains an OR component, and the connected switches <var>1</var> and <var>2</var> output <var>1</var> and <var>0</var>, respectively. Thus, component slot 0 outputs <var>\max(1, 0) = 1</var>.</li>
+<li>Switch 0 is OFF, and component slot 0 outputs 1, so switch 0 outputs 1.</li>
+<li>Therefore, the circuit board outputs 1.</li>
+</ul>
+<p>This example satisfies the constraints of all subtasks.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>3 3
+1 2
+3 4
+5 6
+&amp;&amp;|
+</pre>
+<div class="joisp2025-circuit2-en-table">
+<table>
+<thead>
+<tr>
+<th><code>solve</code> Call</th>
+<th>Return Value</th>
+<th><code>query</code> Call</th>
+<th>Return Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>solve(3, 3, [1, 3, 5], [2, 4, 6])</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>query("0001001")</code></td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>query("0001110")</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>query("0000011")</code></td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>"&amp;&amp;|"</code></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The diagram in the problem statement represents the circuit board for this example.</p>
+<p>This example satisfies the constraints of subtasks <var>3, 6, 7, 8, 9</var>.</p>
+<p>Among the files available for download from the contest site: <code>sample-01-in.txt</code> corresponds to Sample Input 1, and <code>sample-02-in.txt</code> corresponds to Sample Input 2. Additionally, <code>sample-03-in.txt</code> satisfies the constraints of subtasks <var>3, 4, 5, 8, 9</var>, and <code>sample-04-in.txt</code> satisfies the constraints of subtasks <var>3, 6, 7, 8, 9</var>.</p>
+<style>
+.joisp2025-circuit2-en-table { position:relative; max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisp2025-circuit2-en-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisp2025-circuit2-en-table th,.joisp2025-circuit2-en-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisp2025-circuit2-en-table th { background:#f5f5f5; }
+.joisp2025-circuit2-en-table code { white-space:nowrap; }
+</style>
+
+<style>
+.joisp2025-j-submission summary { display:list-item;cursor:pointer; }
+</style></section>
+</div>
+</span>
 <span class="lang-ja">
-<p>配点： <var>100</var> 点</p>
-<blockquote>
+<blockquote class="joisp2025-j-statement">
+<p><strong>AtCoder での提出方法</strong></p>
 <p><a href="https://img.atcoder.jp/joisp2025/circuit.zip">配布ファイル</a></p>
-<h4>AtCoder での提出方法について</h4>
 <p><strong>C++ を使用する場合</strong></p>
 <ul>
 <li><code>circuit.h</code> を include し，問題文で指定された関数を実装してください．</li>
 <li><strong>標準入出力やファイルへの入出力を使用しないでください．</strong></li>
 </ul>
-<p><strong>その他の言語を使用する場合</strong></p>
+<details>
+<summary><strong>その他の言語を使用する場合</strong></summary>
 <ul>
-<li>JOIG 版の問題文で指定された通りにやりとりを行ってください．</li>
+<li><a href="https://atcoder.jp/contests/joigsp2025/tasks/joigsp2025_l">JOIG 版の問題文</a>の「入出力」に従ってやりとりを行ってください．</li>
 </ul>
+</details>
 </blockquote>
+<p>配点 : <var>100</var> 点</p>
 <hr />
+
+<div class="part">
+<section>
+<h3>問題文</h3>
 <p>JOI 君は電子回路セットで遊んでいる．
 電子回路セットは <var>N</var> 個の <strong>AND 部品</strong>，<var>N</var> 個の <strong>OR 部品</strong> と，<var>1</var> 個の <strong>回路ボード</strong> からなる．
 回路ボードは <var>2N+1</var> 個の <strong>スイッチ</strong> と <var>N</var> 個の <strong>部品スロット</strong> で構成され，
@@ -23,19 +369,19 @@
 <h4>回路ボードの仕様</h4>
 <ul>
 <li>スイッチには <var>0</var> から <var>2N</var> までの番号が付けられており，各スイッチは ON または OFF の状態を持つ．各スイッチは下に書かれたように <var>0</var> または <var>1</var> の値を出力する．</li>
-<li>部品スロットには <var>0</var> から <var>N-1</var> までの番号が付けられている．各部品スロットは下に書かれたように <var>0</var> または <var>1</var> の値を出力する．</li>
+<li>部品スロットには <var>0</var> から <var>N - 1</var> までの番号が付けられている．各部品スロットは下に書かれたように <var>0</var> または <var>1</var> の値を出力する．</li>
 <li>各スイッチおよび各部品スロットの出力は，以下の規則によって番号の大きなものから順（同じ番号のスイッチと部品スロットについては部品スロットが先）に定まる．<ul>
-<li><var>j = 2N, 2N-1, \dots, N</var> について，スイッチ <var>j</var> は以下を出力する．<ul>
+<li><var>j = 2N, 2N - 1, \dots, N</var> について，スイッチ <var>j</var> は以下を出力する．<ul>
 <li>スイッチ <var>j</var> が OFF であるとき，<var>0</var> を出力する．</li>
 <li>スイッチ <var>j</var> が ON であるとき，<var>1</var> を出力する．</li>
 </ul>
 </li>
-<li><var>j = N-1, N-2, \dots, 0</var> について，部品スロット <var>j</var> の出力を <var>x</var> としたとき，スイッチ <var>j</var> は以下を出力する．<ul>
+<li><var>j = N - 1, N - 2, \dots, 0</var> について，部品スロット <var>j</var> の出力を <var>x</var> としたとき，スイッチ <var>j</var> は以下を出力する．<ul>
 <li>スイッチ <var>j</var> が OFF であるとき，<var>x</var> を出力する．</li>
-<li>スイッチ <var>j</var> が ON であるとき，<var>1-x</var> を出力する</li>
+<li>スイッチ <var>j</var> が ON であるとき，<var>1 - x</var> を出力する</li>
 </ul>
 </li>
-<li><var>i = N-1, N-2, \dots, 0</var> について，部品スロット <var>i</var> は <var>2</var> 個のスイッチ <var>U_i, V_i</var> と接続している．ここで，<var>U_i, V_i</var> は <var>i &lt; U_i &lt; V_i \leqq 2N</var> を満たす．スイッチ <var>U_i</var> の出力を <var>x</var>，スイッチ <var>V_i</var> の出力を <var>y</var> としたとき，部品スロット <var>i</var> は以下を出力する．<ul>
+<li><var>i = N - 1, N - 2, \dots, 0</var> について，部品スロット <var>i</var> は <var>2</var> 個のスイッチ <var>U_i, V_i</var> と接続している．ここで，<var>U_i, V_i</var> は <var>i &lt; U_i &lt; V_i \leqq 2N</var> を満たす．スイッチ <var>U_i</var> の出力を <var>x</var>，スイッチ <var>V_i</var> の出力を <var>y</var> としたとき，部品スロット <var>i</var> は以下を出力する．<ul>
 <li>部品スロット <var>i</var> に AND 部品が設置されているとき，<var>\min(x, y)</var> を出力する．</li>
 <li>部品スロット <var>i</var> に OR 部品が設置されているとき，<var>\max(x, y)</var> を出力する．</li>
 </ul>
@@ -45,7 +391,7 @@
 <li><var>j = 1, 2, \dots, 2N</var> について，<var>U_i = j</var> または <var>V_i = j</var> であるような <var>i</var> (<var>0 \leqq i \leqq N - 1</var>) がただ <var>1</var> つ存在する．</li>
 <li>回路ボードの出力は，スイッチ <var>0</var> の出力と等しい．</li>
 </ul>
-<p>例えば，<var>N = 3, U_0 = 1, V_0 = 2, U_1 = 3, V_1 = 4, U_2 = 5, V_2 = 6</var> で，部品スロット <var>0, 1, 2</var> にそれぞれ AND 部品，AND 部品，OR 部品が設置されている場合，回路ボードは以下の図のように表される．</p>
+<p>例えば，<var>N = 3</var>，<var>U_0 = 1</var>，<var>V_0 = 2</var>，<var>U_1 = 3</var>，<var>V_1 = 4</var>，<var>U_2 = 5</var>，<var>V_2 = 6</var> で，部品スロット <var>0, 1, 2</var> にそれぞれ AND 部品，AND 部品，OR 部品が設置されている場合，回路ボードは以下の図のように表される．</p>
 <p><img src="https://img.atcoder.jp/joisp2025/joisp2025-J01.png" class="img-responsive center-block" style="width: 500px; max-width: 100%;"></p>
 <p>さて，JOI 君がすべての部品スロットに AND 部品を設置しようとしたところ，設置した部品の中に <strong>最大 <var>R</var> 個</strong> の OR 部品がまぎれ込んでいることが明らかになった．
 AND 部品と OR 部品は見た目で区別することができないため，回路ボードを使用して AND 部品と OR 部品を区別しなければならない．
@@ -54,6 +400,8 @@ AND 部品と OR 部品は見た目で区別することができないため，
 <li>あなたは JOI 君に <var>2N+1</var> 個のスイッチをどのような状態にするか指示する．JOI 君は指示された通りにスイッチの状態を変更し，回路ボードの出力をあなたに教える．</li>
 </ul>
 <p>回路ボードの回路の接続の情報と設置されている OR 部品の個数の上限が与えられたとき，<var>1\,000</var> 回以下の質問で，どの部品スロットに OR 部品が設置されているかを特定するプログラムを作成せよ</p>
+</section>
+</div>
 
 <div class="part">
 <section>
@@ -69,7 +417,7 @@ AND 部品と OR 部品は見た目で区別することができないため，
 <li>引数 <code>R</code> は設置されている OR 部品の個数の上限 <var>R</var> である．</li>
 <li>引数 <code>U</code>，<code>V</code> は長さ <var>N</var> の配列であり，<code>U[i]</code>，<code>V[i]</code> (<var>0 \leqq i \leqq N - 1</var>) は部品スロット <var>i</var> に接続されているスイッチの番号 <var>U_{i}, V_{i}</var> である．</li>
 <li>この関数は，以下の条件を満たす <code>&amp;</code> と <code>|</code> からなる長さ <var>N</var> の文字列 <var>t</var> を返さなければならない．<ul>
-<li>各 <var>i = 0, 1, \dots, N-1</var> について，部品スロット <var>i</var> に設置されている部品が AND 部品ならば <code>t[i]</code> は <code>&amp;</code> であり，OR 部品ならば <code>t[i]</code> は <code>|</code> である．</li>
+<li>各 <var>i = 0, 1, \dots, N - 1</var> について，部品スロット <var>i</var> に設置されている部品が AND 部品ならば <code>t[i]</code> は <code>&amp;</code> であり，OR 部品ならば <code>t[i]</code> は <code>|</code> である．</li>
 </ul>
 </li>
 <li>戻り値 <var>t</var> の長さが <var>N</var> でない場合，<strong>不正解[1]</strong> と判定される．</li>
@@ -132,7 +480,7 @@ AND 部品と OR 部品は見た目で区別することができないため，
 <var>U_0</var> <var>V_0</var>
 <var>U_1</var> <var>V_1</var>
 <var>\vdots</var>
-<var>U_{N-1}</var> <var>V_{N-1}</var>
+<var>U_{N - 1}</var> <var>V_{N - 1}</var>
 <var>T</var>
 </pre>
 </section>
@@ -143,10 +491,10 @@ AND 部品と OR 部品は見た目で区別することができないため，
 <div class="part">
 <section>
 <h3>採点プログラムのサンプルの出力</h3>
-<p>採点プログラムのサンプルは標準出力へ以下の情報を出力する．</p>
+<p>採点プログラムのサンプルは標準出力へ以下の情報を出力する（引用符は実際には出力されない）．</p>
 <ul>
-<li>正解の場合，関数 <code>query</code> の呼び出し回数が <code>Accepted: 22</code> のように出力される．</li>
-<li>不正解の場合，不正解の種類が <code>Wrong Answer [4]</code> のように出力される．</li>
+<li>正解の場合，関数 <code>query</code> の呼び出し回数が “<code>Accepted: 22</code>” のように出力される．</li>
+<li>不正解の場合，不正解の種類が “<code>Wrong Answer [4]</code>” のように出力される．</li>
 </ul>
 <p>採点プログラムのサンプルは，いずれかの不正解の条件が満たされた時点で実行を終了する．
 実行するプログラムが複数の不正解の条件を満たした場合，表示される不正解の種類はそれらのうち <var>1</var> つのみである．</p>
@@ -205,7 +553,50 @@ AND 部品と OR 部品は見た目で区別することができないため，
 1 2
 |
 </pre>
-<p><img src="https://img.atcoder.jp/joisp2025/joisp2025-J02.png" class="img-responsive center-block" style="width: 500px; max-width: 100%"></p>
+<div class="joisp2025-j-call-table">
+<table>
+<thead>
+<tr>
+<th><code>solve</code> の呼び出し</th>
+<th>戻り値</th>
+<th><code>query</code> の呼び出し</th>
+<th>戻り値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>solve(1, 1, [1], [2])</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>query("010")</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>query("011")</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>query("111")</code></td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>"|"</code></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
 <p><var>1</var> 回目の <code>query</code> の呼び出しでは，回路ボードの出力は以下のように計算できる．</p>
 <ul>
 <li>スイッチ <var>1, 2</var> の状態はそれぞれ ON, OFF であるから，スイッチ <var>1, 2</var> はそれぞれ <var>1, 0</var> を出力する．</li>
@@ -227,11 +618,65 @@ AND 部品と OR 部品は見た目で区別することができないため，
 5 6
 &amp;&amp;|
 </pre>
-<p><img src="https://img.atcoder.jp/joisp2025/joisp2025-J03.png" class="img-responsive center-block" style="width: 630px; max-width: 100%"></p>
+<div class="joisp2025-j-call-table">
+<table>
+<thead>
+<tr>
+<th><code>solve</code> の呼び出し</th>
+<th>戻り値</th>
+<th><code>query</code> の呼び出し</th>
+<th>戻り値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>solve(3, 3, [1, 3, 5], [2, 4, 6])</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>query("0001001")</code></td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>query("0001110")</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>query("0000011")</code></td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>"&amp;&amp;|"</code></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
 <p>問題文中の図がこの入力例の回路ボードを表している．</p>
 <p>この入力例は小課題 <var>3, 6, 7, 8, 9</var> の制約を満たす．</p>
 <p>コンテストサイトからダウンロードできるファイルのうち，<code>sample-01-in.txt</code> は入力例 <var>1</var> に対応し，<code>sample-02-in.txt</code> は入力例 <var>2</var> に対応する．
-また，<code>sample-03-in.txt</code> は小課題 <var>3, 4, 5, 8, 9</var> の制約を満たし，<code>sample-04-in.txt</code> は小課題 <var>3, 6, 7, 8, 9</var> の制約を満たす．</p></section>
+また，<code>sample-03-in.txt</code> は小課題 <var>3, 4, 5, 8, 9</var> の制約を満たし，<code>sample-04-in.txt</code> は小課題 <var>3, 6, 7, 8, 9</var> の制約を満たす．</p>
+<style>
+.joisp2025-j-statement summary { display:list-item; cursor:pointer; }
+</style>
+
+<style>
+.joisp2025-j-call-table { position:relative;max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisp2025-j-call-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisp2025-j-call-table th,.joisp2025-j-call-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisp2025-j-call-table th { background:#f5f5f5;white-space:nowrap; }
+.joisp2025-j-call-table code { white-space:nowrap; }
+</style></section>
 </div>
 </span>
 </span>

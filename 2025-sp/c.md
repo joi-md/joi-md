@@ -1,7 +1,6 @@
-配点： $100$ 点
+配点 : $100$ 点
 
-###
-
+### 問題文
 JOI 山脈にはたくさんの山が整列している．
 JOI 山脈は縦 $H$ 行，横 $W$ 列に区切られたマス目として表され，
 縦方向は南北方向に平行であり，横方向は東西方向に平行である．
@@ -58,7 +57,7 @@ $k$ 回目の旅を成功させるのに必要なハイジャンプの回数の�
 - $1\leqq W$．
 - $2\leqq H\times W \leqq 300\,000$．
 - $1\leqq L\leqq 10^{9}$．
-- $1\leqq T_{i, j}\leqq 10^{9}$ ($1\leqq i\leqq H,1\leqq j\leqq W$)．
+- $1\leqq T_{i, j}\leqq 10^{9}$ ($1\leqq i\leqq H$，$1\leqq j\leqq W$)．
 - $1\leqq Q \leqq 300\,000$．
 - $1\leqq A_{k} \leqq H$ ($1\leqq k \leqq Q$)．
 - $1\leqq B_{k} \leqq W$ ($1\leqq k \leqq Q$)．

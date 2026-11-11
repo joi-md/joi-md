@@ -1,7 +1,6 @@
-配点： $100$ 点
+配点 : $100$ 点
 
-###
-
+### 問題文
 勇者ビ太郎は，モンスターから村を守る防衛戦のクエストに挑もうとしている．
 防衛戦の難易度は $1$ 以上 $L$ 以下の整数で表され，この値は挑戦時に選択することができる．
 難易度 $\ell$ ($1 \leqq \ell \leqq L$) の防衛戦では，出現するモンスターの HP が (難易度 $1$ の場合を基準として) $\ell$ 倍になる．
@@ -102,17 +101,7 @@ $j$ 行目 ($1 \leqq j \leqq Q$) には，$m = M_j$ としたときの，クエ�
 
 難易度 $1$ の防衛戦では，以下のように行動することで評価値 $4$ を達成することができる．評価値 $3$ 以下を達成することはできない．
 
-<style>  
-style + table {  
-    border-collapse: collapse;  
-    border: 1px solid black;  
-    margin: 1em auto;  
-    th, td {  
-        padding: 0.25rem 1rem;  
-        border: 1px solid black;
-    }
-}  
-</style>
+<div class="joigsp2025-h-statement-table" markdown="1">
 
 | 時刻 | 出来事 |
 |:---:|:---:|
@@ -124,10 +113,12 @@ style + table {
 | $10$ | モンスター $1$ が倒れる． |
 | $10$ | 防衛戦が終了する．評価値は $0 \times P_1 + 4 \times P_2 = 4$ となる． |
 
+</div>
+
+
 また，難易度 $2$ の防衛戦では，以下のように行動することで評価値 $26$ を達成することができる．評価値 $25$ 以下を達成することはできない．
 
-<style>
-</style>
+<div class="joigsp2025-h-statement-table" markdown="1">
 
 | 時刻 | 出来事 |
 |:---:|:---:|
@@ -136,6 +127,9 @@ style + table {
 | $8$ | モンスター $2$ (HP $10$) が出現する． |
 | $8$ – $10$ | モンスター $1$ に $2$ 回攻撃する．モンスター $1$ の HP が $10$ から $8$ まで減少する． |
 | $10$ | 防衛戦が終了する．評価値は $8 \times P_1 + 10 \times P_2 = 26$ となる． |
+
+</div>
+
 
 
 さらに，この入力例においては $L = 2$ であるため，難易度 $3$ 以上の防衛戦を選択することができない．したがって，出力は以下のようになる．
@@ -281,3 +275,14 @@ style + table {
 ~~~
 
 この入力例は小課題 $5, 6, 7, 8$ の制約を満たす．
+
+<style>
+.joigsp2025-h-statement-table { position:relative; max-width:100%; overflow-x:auto; margin:1em 0; }
+.joigsp2025-h-statement-table table { display:table; width:auto; max-width:none; overflow:visible; border-collapse:collapse; margin:0; }
+.joigsp2025-h-statement-table th, .joigsp2025-h-statement-table td { border:1px solid #aaa; padding:0.3em 0.6em; text-align:left; vertical-align:top; }
+.joigsp2025-h-statement-table th { background:#f5f5f5; }
+</style>
+
+<style>
+.joigsp2025-h-statement-table .katex {position:relative;}
+</style>

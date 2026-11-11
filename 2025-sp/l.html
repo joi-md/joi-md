@@ -1,10 +1,197 @@
 <span class="lang">
-<span class="lang-ja">
-<p>配点： <var>100</var> 点</p>
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
 
 <div class="part">
 <section>
-<h3></h3>
+<h3>Problem Statement</h3>
+<p>Aoi has <var>N</var> cards numbered from 1 to <var>N</var>. Each card has a positive integer written on it. The integer written on the card <var>i</var> (<var>1 \le i \le N</var>) is <var>A_{i}</var>.</p>
+<p>Aoi is going to play a game <var>Q</var> times using the cards and a blackboard. The <var>j</var>-th game (<var>1 \le j \le Q</var>) she plays consists of the following steps.</p>
+<ol>
+<li>Write 0 on the blackboard.</li>
+<li>Arrange the cards <var>L_{j}, L_{j} + 1, \ldots, R_{j}</var> on the desk from left to right in this order.</li>
+<li>
+<p>Perform the following operation for <var>R_{j} - L_{j} + 1</var> times. The <var>k</var>-th operation (<var>1 \le k \le R_{j} - L_{j} + 1</var>) is as follows.</p>
+<ul>
+<li>
+<p>Let <var>x</var> be the current integer written on the blackboard, and let <var>y</var> be the integer written on the <var>k</var>-th card from the left on the desk. Erase <var>x</var> from the blackboard, and write either <var>x + y</var> or <var>x - y</var> instead. If <var>x - y</var> is chosen, Aoi eats one piece of uiro, a traditional Japanese sweet.</p>
+</li>
+<li>
+<p>However, writing an integer strictly less than 0 is not allowed.</p>
+</li>
+</ul>
+</li>
+</ol>
+<p>For each game, you want to know the maximum number of uiro pieces Aoi can eat.</p>
+<p>Given the information about cards and games, write a program that, for each game, calculates the maximum number of uiro pieces Aoi can eat.</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input.</p>
+<pre><var>N</var>
+<var>A_1</var> <var>A_2</var> <var>\cdots</var> <var>A_N</var>
+<var>Q</var>
+<var>L_1</var> <var>R_1</var>
+<var>L_2</var> <var>R_2</var>
+<var>\vdots</var>
+<var>L_Q</var> <var>R_Q</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>Write <var>Q</var> lines to the standard output. In the <var>j</var>-th line (<var>1 \le j \le Q</var>), output the maximum number of uiro pieces Aoi can eat in the <var>j</var>-th game.</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li><var>1 \le N \le 200\,000</var>.</li>
+<li><var>1 \le A_{i} \le 100</var> (<var>1 \le i \le N</var>).</li>
+<li><var>1 \le Q \le 200\,000</var>.</li>
+<li><var>1 \le L_{j} \le R_{j} \le N</var> (<var>1 \le j \le Q</var>).</li>
+<li>Given values are all integers.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li>(<var>3</var> points) <var>N \le 20</var>, <var>Q \le 20</var>.</li>
+<li>(<var>5</var> points) <var>N \le 300</var>, <var>Q \le 20</var>.</li>
+<li>(<var>7</var> points) <var>N \le 5\,000</var>, <var>Q \le 20</var>.</li>
+<li>(<var>15</var> points) <var>Q \le 20</var>.</li>
+<li>(<var>21</var> points) <var>A_{i} \le 2</var> (<var>1 \le i \le N</var>).</li>
+<li>(<var>29</var> points) <var>A_{i} \le 20</var> (<var>1 \le i \le N</var>).</li>
+<li>(<var>20</var> points) No additional constraints.</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>5
+3 4 7 2 8
+2
+1 3
+4 4
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>1
+0
+</pre>
+<p>One possible sequence of actions in the first game is as follows:</p>
+<ol>
+<li>Write 0 on the blackboard.</li>
+<li>Arrange the cards <var>1, 2, 3</var> on the desk from left to right in this order.</li>
+<li>The current integer written on the blackboard is 0, and the integer written on the first card from the left on the desk is 3. Erase 0 from the blackboard and write 3 instead.</li>
+<li>The current integer written on the blackboard is 3, and the integer written on the second card from the left on the desk is 4. Erase 3 from the blackboard and write 7 instead.</li>
+<li>The current integer written on the blackboard is 7, and the integer written on the third card from the left on the desk is 7. Erase 7 from the blackboard and write 0 instead. Aoi eats one piece of uiro.</li>
+</ol>
+<p>In this case, the number of uiro pieces Aoi eats in the first game is 1. It can be proven that the number of uiro pieces Aoi eats in the first game does not exceed 1. Therefore, you should output 1.</p>
+<p>One possible sequence of actions in the second game is as follows:</p>
+<ol>
+<li>Write 0 on the blackboard.</li>
+<li>Arrange the card 4 on the desk.</li>
+<li>The current integer written on the blackboard is 0, and the integer written on the first card from the left on the desk is 2. Erase 0 from the blackboard and write 2 instead.</li>
+</ol>
+<p>In this case, the number of uiro pieces Aoi eats in the second game is 0. It can be proven that the number of uiro pieces Aoi eats in the second game does not exceed 0. Therefore, you should output 0.</p>
+<p>This sample input satisfies the constraints of subtasks 1, 2, 3, 4, 6, and 7.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>14
+1 2 2 1 2 1 1 2 1 2 2 1 1 1
+5
+1 2
+1 14
+5 11
+3 12
+4 7
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>0
+8
+4
+6
+2
+</pre>
+<p>One possible sequence of actions in the first game is as follows:</p>
+<ol>
+<li>Write 0 on the blackboard.</li>
+<li>Arrange the cards <var>1, 2</var> on the desk from left to right in this order.</li>
+<li>The current integer written on the blackboard is 0, and the integer written on the first card from the left on the desk is 1. Erase 0 from the blackboard and write 1 instead.</li>
+<li>The current integer written on the blackboard is 1, and the integer written on the second card from the left on the desk is 2. Erase 1 from the blackboard and write 3 instead.</li>
+</ol>
+<p>In this case, the number of uiro pieces Aoi eats in the first game is 0. It can be proven that the number of uiro pieces Aoi eats in the first game does not exceed 0. Therefore, you should output 0.</p>
+<p>This sample input satisfies the constraints of all subtasks.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 3</h3>
+<pre>8
+16 23 45 76 43 97 12 43
+7
+1 8
+3 7
+2 7
+4 5
+5 8
+2 6
+3 5
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 3</h3>
+<pre>3
+2
+2
+1
+2
+2
+1
+</pre>
+<p>This sample input satisfies the constraints of subtasks 1, 2, 3, 4, and 7.</p></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
 <p>葵は <var>N</var> 枚のカードを持っていて，カードには <var>1</var> から <var>N</var> までの番号が付けられている．各カードには <var>1</var> つの正の整数が書かれており，カード <var>i</var> (<var>1 \leqq i \leqq N</var>) に書かれた整数は <var>A_i</var> である．</p>
 <p>葵はカードと黒板を用いて <var>Q</var> 回の遊びを行う．<var>j</var> 回目 (<var>1 \leqq j \leqq Q</var>) に行う遊びは以下のようなものである．</p>
 <ul>

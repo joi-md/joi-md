@@ -1,14 +1,198 @@
 <span class="lang">
-<span class="lang-ja">
-<p>配点： <var>100</var> 点</p>
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
 
 <div class="part">
 <section>
-<h3></h3>
+<h3>Problem Statement</h3>
+<p>JOI-kun lives in the country of IOI, which is famous for its large lake. Today, a stamp rally competition will be held around the lake.</p>
+<p>Around the lake, there are <var>2N</var> evenly spaced locations, numbered from <var>1</var> to <var>2N</var> in a clockwise manner. Additionally, there are <var>2N</var> one-way roads connecting adjacent locations. Road <var>i</var> (<var>1 \le i \le 2N - 1</var>) goes from location <var>i</var> to location <var>i+ 1</var>, and road <var>2N</var> goes from location <var>2N</var> to location 1. At the midpoint of each road, there is a stamp station.</p>
+<p>There are <var>N</var> colors of stamps numbered from 1 to <var>N</var>. The color of the stamp that can be obtained at the stamp station on road <var>i</var> (<var>1 \le i \le 2N</var>) is given by <var>A_{i}</var>. For each color <var>j</var> (<var>1 \le j \le N</var>), there are exactly 2 stamp stations where the stamp of that color can be obtained.</p>
+<p>JOI-kun, equipped with many stamp cards, participates in the stamp rally competition. Each stamp card has two spaces, left and right, where stamps can be pressed. At most one stamp can be placed in each space. Initially, all stamp cards are blank.</p>
+<p>The process of the stamp rally competition for JOI-kun is as follows:</p>
+<ol>
+<li>First, he selects one of the <var>2N</var> locations as the starting point and moves there. If he selects location <var>i</var> (<var>1 \le i \le 2N</var>), he must pay a participation cost of <var>C_{i}</var>.</li>
+<li>
+<p>Next, he can instruct the event organizers to swap adjacent stamp stations. Specifically, he can swap the stamp stations on roads <var>2N</var> and 1, or swap the stations on roads <var>i - 1</var> and <var>i</var> for any <var>i</var> (<var>2 \le i \le 2N</var>).</p>
+<p>Each swap costs <var>X</var>, and JOI-kun can issue as many swap commands as he wants, possibly none. Swaps are executed immediately upon command. However, to prevent cheating, it is not allowed to exchange stamp stations that cross the starting location that JOI-kun has chosen. That is, if he starts at location 1, swapping the stations on roads <var>2N</var> and 1 is forbidden. If he starts at location <var>i</var> (<var>2 \le i \le 2N</var>), swapping the stations on roads <var>i - 1</var> and <var>i</var> is forbidden.</p>
+</li>
+<li>
+<p>After that, JOI-kun starts from his chosen location and moves clockwise, visiting each of the <var>2N</var> stamp stations in sequence. When visiting a stamp station, he can press the stamp onto his stamp cards as many times as he likes. He can also stamp both the left and right spaces of a single card at the same station. However, for each stamp card, he must always stamp the left space before the right space; that is, he cannot stamp the right space if the left space of that stamp card is still empty.</p>
+</li>
+</ol>
+<p>JOI-kun wants to collect many distinct types of stamp cards that are stamped on both spaces. Let stamped card <var>(a, b)</var> be a stamp card with color <var>a</var> stamped on the left and color <var>b</var> stamped on the right. Two stamped cards <var>(a_{1}, b_{1})</var> and <var>(a_{2}, b_{2})</var> are considered the same type if and only if <var>a_{1} = a_{2}</var> and <var>b_{1} = b_{2}</var>. Since there are <var>N</var> colors of stamps, there are a total of <var>N^{2}</var> possible types of stamped cards.</p>
+<p>You need to answer <var>Q</var> queries to help JOI-kun. The <var>q</var>-th query (<var>1 \le q \le Q</var>) asks the following:</p>
+<ul>
+<li>What is the minimum total cost required for JOI-kun to collect at least <var>K_{q}</var> types of stamped cards by the end of the rally? It is provable that under the given constraints, JOI-kun can always collect at least <var>K_{q}</var> types of stamped cards by spending a sufficiently large cost.</li>
+</ul>
+<p>Given the information about stamp colors, participation costs, swap costs, and queries, write a program to answer JOI-kun’s <var>Q</var> queries.</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input.</p>
+<pre><var>N</var> <var>X</var>
+<var>A_1</var> <var>A_2</var> <var>\cdots</var> <var>A_{2N}</var>
+<var>C_1</var> <var>C_2</var> <var>\cdots</var> <var>C_{2N}</var>
+<var>Q</var>
+<var>K_1</var>
+<var>K_2</var>
+<var>\vdots</var>
+<var>K_Q</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>Write <var>Q</var> lines to the standard output, where the <var>q</var>-th line (<var>1 \le q \le Q</var>) contains the minimum total cost required to collect at least <var>K_{q}</var> types of stamped cards.</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li><var>2 \le N \le 500\,000</var>.</li>
+<li><var>1 \le X \le 500\,000</var>.</li>
+<li><var>(A_{1}, A_{2}, \ldots, A_{2N})</var> is a permutation of <var>(1, 1, 2, 2, \ldots, N, N)</var>.</li>
+<li><var>1 \le C_{i} \le 10^{18}</var> (<var>1 \le i \le 2N</var>).</li>
+<li><var>1 \le Q \le 500\,000</var>.</li>
+<li><var>1 \le K_{q} \le N^{2}</var> (<var>1 \le q \le Q</var>).</li>
+<li>Given values are all integers.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li>(<var>5</var> points) <var>N \le 4</var>.</li>
+<li>(<var>20</var> points) <var>N \le 5000</var>, <var>Q = 1</var>, <var>K_{1} = N^{2}</var>.</li>
+<li>(<var>20</var> points) <var>N \le 5000</var>, <var>Q = 1</var>.</li>
+<li>(<var>19</var> points) <var>N \le 5000</var>.</li>
+<li>(<var>21</var> points) <var>Q = 1</var>.</li>
+<li>(<var>15</var> points) No additional constraints.</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>3 2
+1 2 2 3 1 3
+6 1 4 5 4 7
+2
+8
+9
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>3
+4
+</pre>
+<p>Consider the case where JOI-kun selects location <var>2</var> as the starting point and instructs the exchange of the stamp stations installed on road 3 and road 4.</p>
+<p>In this case,</p>
+<ul>
+<li>The total cost paid by JOI-kun is <var>C_{2} + X \times 1 = 3</var>.</li>
+<li>JOI-kun visits the stamp stations in the order of roads <var>2, 3, 4, 5, 6, 1</var>, and the stamp colors available at each station in sequence are <var>2, 3, 2, 1, 3, 1</var>.</li>
+<li>
+<p>The number of types of stamp cards stamped on both spaces that JOI-kun can collect is 8.</p>
+<ul>
+<li>For example, to obtain a stamped card with a stamp of color 3 on the left and a stamp of color 1 on the right, JOI-kun can stamp the left side at road 3 and the right side at road 1.</li>
+<li>However, note that it is impossible to obtain a stamped card with a stamp of color 1 on the left and color 2 on the right.</li>
+</ul>
+</li>
+</ul>
+<p>Since it is impossible to obtain 8 or more types of stamped cards with a cost of 2 or less, the first line of the output should be 3.</p>
+<p>Additionally, if JOI-kun selects location <var>3</var> as the starting point and does not instruct any stamp station exchange, he can obtain 9 types of stamped cards.</p>
+<p>In this case, the total cost paid by JOI-kun is <var>C_{3} + X \times 0 = 4</var>. Since it is impossible to obtain 9 or more types of stamped cards with a cost of 3 or less, the second line of the output should be 4.</p>
+<p>This input example satisfies the constraints of subtasks <var>1, 4, 6</var>.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>8 1
+1 2 6 1 6 3 8 4 5 5 3 4 7 2 7 8
+4 5 3 6 2 9 1 4 6 3 8 5 2 9 4 7
+1
+64
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>7
+</pre>
+<p>Consider the case where JOI-kun chooses location <var>10</var> as the starting point and instructs the stamp station exchanges in the following order:</p>
+<ul>
+<li>Exchange the stamp station installed on road 15 with the one on road 16.</li>
+<li>Exchange the stamp station installed on road 2 with the one on road 3.</li>
+<li>Exchange the stamp station installed on road 16 with the one on road 1.</li>
+<li>Exchange the stamp station installed on road 1 with the one on road 2.</li>
+</ul>
+<p>In this case, JOI-kun can obtain 64 types of stamped cards, and the total cost paid is <var>C_{10} + X \times 4 = 7</var>.</p>
+<p>This input example satisfies the constraints of subtasks <var>2, 3, 4, 5, 6</var>.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 3</h3>
+<pre>9 4
+4 3 5 3 8 1 5 8 1 7 6 2 4 9 6 9 2 7
+12 9 4 8 7 1 20 5 8 7 4 13 5 9 10 3 7 8
+6
+39
+81
+73
+79
+64
+52
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 3</h3>
+<pre>1
+18
+3
+10
+1
+1
+</pre>
+<p>This input example satisfies the constraints of subtasks <var>4, 6</var>.</p></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
 <p>JOI 君が住む IOI 国は，大きな湖があることで有名である．今日，湖の周りでスタンプラリー大会が行われることになった．</p>
 <p>湖の周りには等間隔に <var>2N</var> 個の地点が並んでおり，時計回りに <var>1</var> から <var>2N</var> までの番号が付けられている．
 また，隣り合う地点どうしを結ぶ <var>2N</var> 本の <strong>一方通行</strong> の道がある．
-道 <var>i</var> (<var>1\leqq i \leqq 2N-1</var>) は地点 <var>i</var> から地点 <var>i+1</var> へ向かう道であり，道 <var>2N</var> は地点 <var>2N</var> から地点 <var>1</var> へ向かう道である．
+道 <var>i</var> (<var>1\leqq i \leqq 2N - 1</var>) は地点 <var>i</var> から地点 <var>i+1</var> へ向かう道であり，道 <var>2N</var> は地点 <var>2N</var> から地点 <var>1</var> へ向かう道である．
 それぞれの道の真ん中には <var>1</var> つのスタンプ台が設置されている．</p>
 <p>スタンプには <var>1</var> から <var>N</var> までの <var>N</var> 色があり，道 <var>i</var> (<var>1\leqq i \leqq 2N</var>) の真ん中に設置されているスタンプ台で押すことのできるスタンプの色は <var>A_i</var> である．
 各 <var>j</var> (<var>1\leqq j \leqq N</var>) について，色 <var>j</var> のスタンプを押すことのできるスタンプ台はちょうど <var>2</var> つある．</p>
@@ -19,9 +203,9 @@
 スタンプラリー大会での JOI 君の行動は以下の通りである．</p>
 <ol>
 <li>まず，スタート地点として <var>2N</var> 個の地点のいずれかを選び，その地点に移動する．地点 <var>i</var> (<var>1\leqq i \leqq 2N</var>) をスタート地点に選んだとき，JOI 君はスタンプラリー大会の参加費としてコスト <var>C_i</var> を支払う．</li>
-<li>次に，JOI 君は隣り合う道どうしに設置されているスタンプ台を交換するよう，運営会社に指示を出すことができる．すなわち，道 <var>2N,1</var> に設置されているスタンプ台の交換，もしくは，<var>i</var> (<var>2\leqq i \leqq 2N</var>) を指定して道 <var>i-1,i</var> に設置されているスタンプ台の交換を指示することができる．
+<li>次に，JOI 君は隣り合う道どうしに設置されているスタンプ台を交換するよう，運営会社に指示を出すことができる．すなわち，道 <var>2N,1</var> に設置されているスタンプ台の交換，もしくは，<var>i</var> (<var>2\leqq i \leqq 2N</var>) を指定して道 <var>i - 1,i</var> に設置されているスタンプ台の交換を指示することができる．
    JOI 君が指示を出す際に支払うコストは <var>1</var> 回あたり <var>X</var> で， <strong>何度でも</strong> 指示を出すことができる．一度も指示を出さないことも可能である．スタンプ台の交換は指示を出すたびにただちに実行される．
-   ただし，不正防止のため，JOI 君が選んだスタート地点をまたぐようなスタンプ台の交換はできない．すなわち，JOI 君がスタート地点として地点 <var>1</var> を選んだ場合は道 <var>2N,1</var> に設置されているスタンプ台どうしの交換が，地点 <var>i</var> (<var>2\leqq i \leqq 2N</var>) を選んだ場合は道 <var>i-1,i</var> に設置されているスタンプ台どうしの交換が，禁止される．</li>
+   ただし，不正防止のため，JOI 君が選んだスタート地点をまたぐようなスタンプ台の交換はできない．すなわち，JOI 君がスタート地点として地点 <var>1</var> を選んだ場合は道 <var>2N,1</var> に設置されているスタンプ台どうしの交換が，地点 <var>i</var> (<var>2\leqq i \leqq 2N</var>) を選んだ場合は道 <var>i - 1,i</var> に設置されているスタンプ台どうしの交換が，禁止される．</li>
 <li>その後，JOI 君はスタート地点を出発して時計回りに移動し，<var>2N</var> 個のスタンプ台を順に訪れ，スタート地点に戻ってきた段階でスタンプラリーを終了する．スタンプ台を訪れた際，JOI 君はスタンプカードにスタンプを何回でも押すことができる．同じスタンプ台で <var>1</var> 枚のスタンプカードの左右にスタンプを押すことも可能である．ただし，それぞれのスタンプカードには必ず左，右の順番で押す必要がある．つまり，左側が空欄であるスタンプカードの右側にスタンプを押すことはできない．</li>
 </ol>
 <p>JOI 君はできる限り多くの種類の，左右両方の枠にスタンプが押されたスタンプカードを集めたい．

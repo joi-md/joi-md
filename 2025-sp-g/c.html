@@ -1,10 +1,10 @@
 <span class="lang">
 <span class="lang-ja">
-<p>配点： <var>100</var> 点</p>
+<p>配点 : <var>100</var> 点</p>
 
 <div class="part">
 <section>
-<h3></h3>
+<h3>問題文</h3>
 <p>IOI 王国は縦 <var>L</var> 行，横 <var>L</var> 列のマス目で表される領土を持っている．以降，上から <var>i</var> 行目 (<var>1 \leqq i \leqq L</var>)，左から <var>j</var> 列目 (<var>1 \leqq j \leqq L</var>) のマスをマス <var>(i, j)</var> と表すことにする．</p>
 <p>最近の IOI 王国では感染症で倒れる患者が相次いでおり，国民から医療の充実を求める声が上がっている．そこで，IOI 王国の国王であるビ太郎は，マス <var>(1, 1)</var>，マス <var>(1, L)</var>，マス <var>(L, 1)</var>，マス <var>(L, L)</var> の <var>4</var> 箇所に病院を建設し，それぞれの病院に <var>1</var> 台ずつ救急車を設置することにした．</p>
 <p>用心深いビ太郎は，実際に患者から救助要請があったときのことを想定してシミュレーションを行うことにした．ビ太郎が想定するシナリオでは，時刻 <var>0</var> において <var>N</var> 人の患者から救助要請が届くので，時刻 <var>T</var> までにすべての患者をいずれかの病院に搬送することができるかどうかを調べたい．<var>k</var> 番目 (<var>1 \leqq k \leqq N</var>) の患者はマス <var>(X_k, Y_k)</var> にいる．</p>
@@ -96,24 +96,7 @@
 </pre>
 <p><var>1</var> 番目と <var>2</var> 番目の患者をマス <var>(1, 1)</var> にある病院へ，<var>3</var> 番目の患者をマス <var>(1, 6)</var> にある病院へ，<var>4</var> 番目の患者をマス <var>(6, 6)</var> にある病院へそれぞれ搬送することで，時刻 <var>8</var> までにすべての患者をいずれかの病院に搬送することができるので，<code>Yes</code> を出力する．</p>
 <p>例えば，マス <var>(1, 1)</var> にある病院に設置された救急車が次の順に動くと，この救急車は時刻 <var>8</var> までに <var>1</var> 番目と <var>2</var> 番目の患者を病院へ搬送することができる．</p>
-<style>
-style + table {
-    border-collapse: collapse;
-    border: 1px solid black;
-    margin: 1em;
-    th {
-        border: 1px solid black;
-    }
-    td {
-        border-left: 1px solid black;
-        border-right: 1px solid black;
-    }
-    th, td {
-        padding: 0.2rem 1rem;
-    }
-}
-</style>
-
+<div class="joigsp2025-c-statement-table">
 <table>
 <thead>
 <tr>
@@ -160,6 +143,7 @@ style + table {
 </tr>
 </tbody>
 </table>
+</div>
 <p>この入力例は小課題 <var>1,2,3,4,6,7</var> の制約を満たす．</p>
 <hr />
 </section>
@@ -242,7 +226,17 @@ style + table {
 <h3>出力例 4</h3>
 <pre>No
 </pre>
-<p>この入力例は小課題 <var>4,6,7</var> の制約を満たす． </p></section>
+<p>この入力例は小課題 <var>4,6,7</var> の制約を満たす．</p>
+<style>
+.joigsp2025-c-statement-table { position:relative; max-width:100%; overflow-x:auto; margin:1em 0; }
+.joigsp2025-c-statement-table table { display:table; width:auto; max-width:none; overflow:visible; border-collapse:collapse; margin:0; }
+.joigsp2025-c-statement-table th, .joigsp2025-c-statement-table td { border:1px solid #aaa; padding:0.3em 0.6em; text-align:left; vertical-align:top; }
+.joigsp2025-c-statement-table th { background:#f5f5f5; }
+</style>
+
+<style>
+.joigsp2025-c-statement-table .katex {position:relative;}
+</style></section>
 </div>
 </span>
 </span>

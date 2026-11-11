@@ -1,15 +1,220 @@
 <span class="lang">
+<span class="lang-en">
+<blockquote class="joisp2025-i-submission">
+<p><strong>Submission on AtCoder</strong></p>
+<p><a href="https://img.atcoder.jp/joisp2025/multi-inputs-5fcb5a0416.zip">Input files</a></p>
+<p>There are three inputs, with <var>N=4,32,48</var>. Submit a program that reads the input from standard input and prints your result for the corresponding input to standard output.</p>
+</blockquote>
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>Chairman K has prepared a game for the participants of the spring training camp.</p>
+<p>There are <var>N</var> participants in the training camp, each assigned a unique number from 1 to <var>N</var>. Each participant has a board. The game follows these steps:</p>
+<ol>
+<li>Chairman K selects one participant to be the parent, while all other participants become children. However, the identity of the parent is not revealed to the participants.</li>
+<li>Chairman K writes the letter ‘<code>T</code>’ on the parent’s board and the letter ‘<code>F</code>’ on all the children’s boards.</li>
+<li>Each participant reads the letter on their own board. Then, following a predefined strategy, they perform the following turn-based process for <var>L</var> turns:<ul>
+<li>(1) Each participant erases the letter on their board and writes either ‘<code>T</code>’ or ‘<code>F</code>’. Then, they submit their board to Chairman K.</li>
+<li>(2) For each participant <var>i</var> (<var>i = 1, 2, \ldots, N</var>):<ul>
+<li>Participant <var>i</var> selects a participant <var>p</var> (<var>1 \le p \le N</var>) and informs Chairman K of the number <var>p</var>. Chairman K shows the board of participant <var>p</var> to participant <var>i</var>, who then reads the letter on it. A participant is allowed to choose themselves as <var>p</var>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>After <var>L</var> turns, each participant must guess who the parent is.</li>
+</ol>
+<p>The goal of the game is to establish a strategy beforehand so that, regardless of who is chosen as the parent, all participants can correctly identify the parent by the end of the process.</p>
+<p>A smaller value of <var>L</var> results in a higher score. Your goal is to devise a strategy that minimizes <var>L</var> while ensuring that all participants correctly identify the parent by the end of the process.</p>
+<p>A strategy consists of a non-negative integer <var>L</var>, representing the number of turns, and a set of rules that determine the actions of each participant. The rules are as follows:</p>
+<ul>
+<li>
+<p>For participant <var>i</var> (<var>1 \le i \le N</var>), at the beginning of turn <var>t</var> (<var>1 \le t \le L</var>), if the sequence of letters they have read up to that point is <var>a_{0}, a_{1}, \ldots, a_{t - 1}</var>, then based only on this information <var>(i, t, a_{0}, a_{1}, \ldots, a_{t - 1})</var>, they must determine:</p>
+<ul>
+<li>The letter they will write on their board for turn <var>t</var>.</li>
+<li>The participant number they will choose to observe for turn <var>t</var>.</li>
+</ul>
+</li>
+<li>
+<p>For participant <var>i</var> (<var>1 \le i \le N</var>), after the <var>L</var>-th turn, if the sequence of letters they have read up to that point is <var>a_{0}, a_{1}, \ldots, a_{L}</var>, then based only on this information <var>(i, L, a_{0}, a_{1}, \ldots, a_{L})</var>, they must determine the participant number of the parent.</p>
+</li>
+</ul>
+<p>Devise a strategy that allows all participants to correctly identify the parent, regardless of who is chosen as the parent. Then, for each possible parent selection <var>(1, 2, \ldots, N)</var>, output the values that each participant writes on their board and the participant they choose to observe in each turn, following the established strategy.</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input.</p>
+<pre><var>N</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>Print the output in the following format:</p>
+<pre><var>L</var>
+<var>\mathrm{acts}_1</var>
+<var>\mathrm{acts}_2</var>
+<var>\vdots</var>
+<var>\mathrm{acts}_N</var>
+</pre>
+<p>Here, <var>\mathrm{acts}_s</var> represents the sequence of actions taken by each participant when participant <var>s</var> is the parent. The format of <var>\mathrm{acts}_s</var> is as follows:</p>
+<p>First, print the integer <var>s</var>. For each participant <var>i</var> (<var>1 \le i \le N</var>), print a single line containing the sequence of actions they take during the <var>L</var> turns. Each line should have the following values:</p>
+<ul>
+<li>The character <var>c_{i,t}</var> (‘<code>T</code>’ or ‘<code>F</code>’), which the participant writes on their board in turn <var>t</var>.</li>
+<li>The participant number <var>p_{i,t}</var>, which they choose to observe in turn <var>t</var>.</li>
+</ul>
+<p>These values should be printed for each turn <var>t</var> (<var>1 \le t \le L</var>) in sequence. Thus, the output format for <var>\mathrm{acts}_s</var> is:</p>
+<pre><var>s</var>
+<var>c_{1,1}</var> <var>p_{1,1}</var> <var>c_{1,2}</var> <var>p_{1,2}</var> <var>\cdots</var> <var>c_{1,L}</var> <var>p_{1,L}</var>
+<var>c_{2,1}</var> <var>p_{2,1}</var> <var>c_{2,2}</var> <var>p_{2,2}</var> <var>\cdots</var> <var>c_{2,L}</var> <var>p_{2,L}</var>
+<var>\vdots</var>
+<var>c_{N,1}</var> <var>p_{N,1}</var> <var>c_{N,2}</var> <var>p_{N,2}</var> <var>\cdots</var> <var>c_{N,L}</var> <var>p_{N,L}</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Grading</h3>
+<p>The output is considered correct if and only if it can be obtained as the result of participants following a valid strategy that ensures all of them can correctly identify the parent. Specifically, the following two conditions must be met:</p>
+<ul>
+<li>For any participant <var>i</var> (<var>1 \le i \le N</var>), turn <var>t</var> (<var>1 \le t \le L</var>), and any two distinct parent candidates <var>x, y</var> (<var>1 \le x, y \le N, x \ne y</var>): If the sequence of letters read by participant <var>i</var> before turn <var>t</var> is identical when <var>x</var> is the parent and when <var>y</var> is the parent, then participant <var>i</var> must take the same action in turn <var>t</var> (i.e., write the same letter and choose the same participant).</li>
+<li>For any participant <var>i</var> (<var>1 \le i \le N</var>) and any two distinct parent candidates <var>x, y</var> (<var>1 \le x, y \le N, x \ne y</var>): The sequence of letters read by participant <var>i</var> by the end of turn <var>L</var> must be different when <var>x</var> is the parent compared to when <var>y</var> is the parent.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Submission</h3>
+<p>Submit only the output files <code>output_01.txt</code>, <code>output_02.txt</code>, <code>output_03.txt</code>, corresponding to the given input files <code>input_01.txt</code>, <code>input_02.txt</code>, <code>input_03.txt</code>.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li><var>N</var> is one of 4, 32, or 48.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Scoring</h3>
+<p>The total score is the sum of the scores for the three input cases.</p>
+<p>If the output is incorrect (e.g., incorrect format or failing to follow a valid strategy), the score for that test case is <var>0</var>.</p>
+<p>If the output is correct, the score is calculated as following criteria:</p>
+<div class="joisp2025-multi-en-table">
+<table>
+<thead>
+<tr>
+<th>Subtask</th>
+<th>Input File</th>
+<th><var>N</var></th>
+<th>Score</th>
+<th>Maximum Score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><var>1</var></td>
+<td><code>input_01.txt</code></td>
+<td><var>4</var></td>
+<td><var>0</var> if <var>4 &lt; L</var><br><var>16 - 7(L - 2)</var> if <var>2 &lt; L \le 4</var><br><var>16</var> if <var>L \le 2</var></td>
+<td><var>16</var></td>
+</tr>
+<tr>
+<td><var>2</var></td>
+<td><code>input_02.txt</code></td>
+<td><var>32</var></td>
+<td><var>0</var> if <var>27 &lt; L</var><br><var>60 - 3(L - 8)</var> if <var>8 &lt; L \le 27</var><br><var>60</var> if <var>L \le 8</var></td>
+<td><var>60</var></td>
+</tr>
+<tr>
+<td><var>3</var></td>
+<td><code>input_03.txt</code></td>
+<td><var>48</var></td>
+<td><var>0</var> if <var>9 &lt; L</var><br><var>24</var> if <var>L \le 9</var></td>
+<td><var>24</var></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Note that if your score is <var>0</var>, the grading system displays “Output isn’t correct”.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>3
+1
+T 1 T 2 T 3
+F 1 F 2 F 3
+F 1 F 2 F 3
+2
+F 1 F 2 F 3
+T 1 T 2 T 3
+F 1 F 2 F 3
+3
+F 1 F 2 F 3
+F 1 F 2 F 3
+T 1 T 2 T 3
+</pre>
+<p>This output example can be obtained as the result of participants following the strategy below:</p>
+<ul>
+<li>Set <var>L = 3</var>.</li>
+<li>In each turn <var>t</var> (<var>1 \le t \le L</var>), participant <var>i</var> writes ‘<code>T</code>’ if they are the parent, ‘<code>F</code>’ if they are a child. Note that they know whether they are a parent or a child according to the character they see in the initial step.</li>
+<li>In each turn <var>t</var> (<var>1 \le t \le L</var>), participant <var>i</var> observes participant <var>t</var>, regardless of the letters they have read so far.</li>
+<li>By the end of turn 3, each participant will have read the board of every participant including themselves at least once. Each participant then identifies the participant whose board contained ‘<code>T</code>’ and submits their number as the parent.</li>
+</ul>
+<p>This ensures that everyone correctly identifies the parent, achieving the game’s objective. Since the strategy successfully meets the game’s objective for any chosen parent, the output is considered correct.</p>
+<p>Note that the given example does not correspond to an actual test case, as it does not satisfy the given constraints.</p>
+<style>
+.joisp2025-multi-en-table { position:relative; max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisp2025-multi-en-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisp2025-multi-en-table th,.joisp2025-multi-en-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisp2025-multi-en-table th { background:#f5f5f5; }
+.joisp2025-multi-en-table code { white-space:nowrap; }
+</style>
+
+<style>
+.joisp2025-multi-en-table .katex {position:relative;}
+</style></section>
+</div>
+</span>
 <span class="lang-ja">
-<p>配点： <var>100</var> 点</p>
 <blockquote>
-<h4>AtCoder での提出方法について</h4>
+<p><strong>AtCoder での提出方法</strong></p>
+<p><a href="https://img.atcoder.jp/joisp2025/multi-inputs-5fcb5a0416.zip">入力データ</a></p>
 <p><var>N=4,32,48</var> の <var>3</var> つの入力があるので，入力で場合分けしてあなたの結果を出力してください．</p>
 </blockquote>
+<p>配点 : <var>100</var> 点</p>
 <hr />
 
 <div class="part">
 <section>
-<h3></h3>
+<h3>問題文</h3>
 <p>K 理事長は春季トレーニングの参加者にゲームを用意した．</p>
 <p>春季トレーニングには <var>N</var> 人の参加者がおり，それぞれ <var>1</var> から <var>N</var> までの番号が付けられている．
 それぞれの参加者は <var>1</var> つボードを持っている．
@@ -84,6 +289,13 @@
 
 <div class="part">
 <section>
+<h3>提出方法</h3>
+<p>入力データ <code>input_01.txt</code>, <code>input_02.txt</code>, <code>input_03.txt</code> に対する出力データ <code>output_01.txt</code>, <code>output_02.txt</code>, <code>output_03.txt</code> のみを提出せよ．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
 <h3>制約</h3>
 <ul>
 <li><var>N</var> は <var>4,32,48</var> のいずれかである．</li>
@@ -99,19 +311,7 @@
 <p>あなたの出力が誤っている場合，すなわちフォーマットが間違っている場合や，「目標を達成できるようなある戦略が存在して，出力がその戦略に従った結果である」という条件が満たされないとき，あなたの得点は <var>0</var> 点となる．</p>
 <p>あなたの出力が正しい場合，以下で定める点数となる．</p>
 <p>各入力データにおける，<var>N</var> の値と配点は，以下の通りである．</p>
-<style>
-style + table {
-    border-collapse: collapse;
-    border: 1px solid black;
-    margin: 1em;
-}
-style + table th, 
-style + table td {
-    border: 1px solid black;
-    padding: 0.25rem 1rem;
-}
-</style>
-
+<div class="joisp2025-i-statement-table">
 <table>
 <thead>
 <tr>
@@ -146,6 +346,7 @@ style + table td {
 </tr>
 </tbody>
 </table>
+</div>
 <p>ただし，<var>0</var> 点の場合，採点システム上では <strong>出力は正しくない</strong> と表示されることに注意せよ．</p>
 <hr />
 </section>
@@ -185,7 +386,17 @@ T 1 T 2 T 3
 </ul>
 <p>この戦略に従った結果，親としてどの参加者が選ばれたとしても，最終的に全員が親である参加者の番号を正しく答えることができており，目標が達成されている．
 そのため，この出力例は正しいと判定される．</p>
-<p>この入力例は制約を満たさず，また実際の入力データに含まれないことに注意せよ．</p></section>
+<p>この入力例は制約を満たさず，また実際の入力データに含まれないことに注意せよ．</p>
+<style>
+.joisp2025-i-statement-table { position:relative; max-width:100%; overflow-x:auto; margin:1em 0; }
+.joisp2025-i-statement-table table { display:table; width:auto; max-width:none; overflow:visible; border-collapse:collapse; margin:0; }
+.joisp2025-i-statement-table th, .joisp2025-i-statement-table td { border:1px solid #aaa; padding:0.3em 0.6em; text-align:left; vertical-align:top; }
+.joisp2025-i-statement-table th { background:#f5f5f5; white-space:nowrap; }
+</style>
+
+<style>
+.joisp2025-i-statement-table .katex {position:relative;}
+</style></section>
 </div>
 </span>
 </span>

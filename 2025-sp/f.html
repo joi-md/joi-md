@@ -1,29 +1,340 @@
 <span class="lang">
+<span class="lang-en">
+<blockquote class="joisp2025-f-submission">
+<p><strong>Submission on AtCoder</strong></p>
+<p><a href="https://img.atcoder.jp/joisp2025/thief.zip">Distribution files</a></p>
+<p><strong>When using C++</strong></p>
+<ul>
+<li>Include <code>thief.h</code> and implement the required functions.</li>
+<li><strong>Do not use standard input/output or file input/output.</strong></li>
+</ul>
+<details>
+<summary><strong>When using other languages</strong></summary>
+<p>Use standard input/output, following the <a href="https://atcoder.jp/contests/joigsp2025/tasks/joigsp2025_d">JOIG version</a>. Initially read <var>N</var>, <var>M</var>, and the <var>M</var> pairs <var>U_i,V_i</var>.</p>
+<p>To ask a question, print <code>?</code> followed by a string of exactly <var>M</var> characters, each <code>0</code> or <code>1</code>, and a newline. Do not put spaces between the bits. The bits have the same meaning as the elements of the argument of <code>query</code>. Read the answer, <var>0</var> or <var>1</var>. If you receive <var>- 1</var>, terminate immediately.</p>
+<p>To answer, print <code>! A B</code> on one line, using the numbers of the stars containing the key and the treasure box. Answer exactly once, and ask at most <var>300</var> questions.</p>
+<p><strong>Flush standard output after every output.</strong></p>
+</details>
+<p><strong>Notes</strong></p>
+<ul>
+<li><strong>With <var>300</var> queries, the grader and input/output may consume up to <var>1200</var> ms in total.</strong></li>
+<li>There are many test cases. Terminate early on inputs you cannot solve.</li>
+</ul>
+</blockquote>
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>You are active as a thief in JOI galaxy.</p>
+<p>There are <var>N</var> stars numbered from 0 to <var>N - 1</var> in JOI galaxy. There are <var>M</var> warp devices numbered from 0 to <var>M - 1</var> in JOI galaxy. The warp device <var>i</var> (<var>0 \le i \le M - 1</var>) connects star <var>U_{i}</var> and star <var>V_{i}</var> bidirectionally. It is possible to travel from any star to any star by using warp devices.</p>
+<p>A key is hidden in a certain star, and a treasure box is hidden in another certain star. Your mission is to specify numbers, the number of the star in which the key is hidden and in which the treasure box is hidden. To achieve your mission, you can ask questions up to 300 times as below.</p>
+<ul>
+<li>
+<p>Orient each warp device. Specifically, for each warp device <var>i</var> (<var>0 \le i \le M - 1</var>), choose one of the following:</p>
+<ul>
+<li>Allow travel only from star <var>U_{i}</var> to star <var>V_{i}</var>.</li>
+<li>Allow travel only from star <var>V_{i}</var> to star <var>U_{i}</var>.</li>
+</ul>
+</li>
+<li>
+<p>Under these conditions, ask whether it is possible to travel from the star in which the key is hidden to the star in which the treasure box is hidden by using warp devices.</p>
+</li>
+</ul>
+<p>You want to specify numbers, the number of the star <var>A</var> in which the key is hidden and the star <var>B</var> in which the treasure box is hidden. To achieve a higher evaluation, you want to reduce the number of questions asked.</p>
+<p>Given information about the galaxy, write a program that determines the star <var>A</var> in which the key is hidden and the star <var>B</var> in which the treasure box is hidden, by asking questions.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Implementation Details</h3>
+<p>You need to submit one file.</p>
+<p>The file is <code>thief.cpp</code>. It should implement the following function. The program should include <code>thief.h</code> using the preprocessing directive <code>#include</code>.</p>
+<ul>
+<li>
+<p><code>void solve(int N, int M, std::vector&lt;int&gt; U, std::vector&lt;int&gt; V)</code></p>
+<p>This function is called only once for each test case.</p>
+<ul>
+<li>The parameter <code>N</code> is the number of stars <var>N</var>.</li>
+<li>The parameter <code>M</code> is the number of warp devices <var>M</var>.</li>
+<li>The parameters <code>U</code> and <code>V</code> are arrays of length <var>M</var>. For each <var>i</var> (<var>0 \le i \le M - 1</var>), <code>U[i]</code> and <code>V[i]</code> represent the stars <var>U_i</var> and <var>V_i</var> connected bi-directionally by warp device <var>i</var>.</li>
+</ul>
+</li>
+</ul>
+<p>Within <code>thief.cpp</code>, your program can call the following function:</p>
+<ul>
+<li>
+<p><code>int query(std::vector&lt;int&gt; x)</code></p>
+<p>Using this function, you can ask a question.</p>
+<ul>
+<li>The parameter <code>x</code> is an array of length <var>M</var>. For <var>0 \le i \le M - 1</var>:<ul>
+<li>If <var>\texttt{x}[i] = 0</var>, it means to allow travel only from star <var>U_i</var> to star <var>V_i</var>.</li>
+<li>If <var>\texttt{x}[i] = 1</var>, it means to allow travel only from star <var>V_i</var> to star <var>U_i</var>.</li>
+</ul>
+</li>
+<li>The return value is <var>0</var> or <var>1</var>:<ul>
+<li><var>0</var> means that it is not possible to travel from the star <var>A</var> to the star <var>B</var> by using warp devices.</li>
+<li><var>1</var> means that it is possible to travel from the star <var>A</var> to the star <var>B</var> by using warp devices.</li>
+</ul>
+</li>
+<li>The length of the parameter <code>x</code> should be <var>M</var>. If not, your program is judged as <strong>Wrong Answer [1]</strong>.</li>
+<li>Each element of the parameter <code>x</code> should be <var>0</var> or <var>1</var>. If not, your program is judged as <strong>Wrong Answer [2]</strong>.</li>
+<li>You must not call function <code>query</code> more than <var>300</var> times. If it is called more than <var>300</var> times, your program is judged as <strong>Wrong Answer [3]</strong>.</li>
+</ul>
+</li>
+<li>
+<p><code>void answer(int A, int B)</code></p>
+<p>You call this function to answer the number of the star <var>A</var> in which the key is hidden and the star <var>B</var> in which the treasure box is hidden.</p>
+<ul>
+<li>The parameter <code>A</code> represents that the key is hidden in the star <var>A</var>.</li>
+<li>The parameter <code>A</code> must be between <var>0</var> and <var>N - 1</var>, inclusive. If not, your program is judged as <strong>Wrong Answer [4]</strong>.</li>
+<li>The parameter <code>B</code> represents that the treasure box is hidden in the star <var>B</var>.</li>
+<li>The parameter <code>B</code> must be between <var>0</var> and <var>N - 1</var>, inclusive. If not, your program is judged as <strong>Wrong Answer [5]</strong>.</li>
+<li>If you answer a wrong number, your program is judged as <strong>Wrong Answer [6]</strong>.</li>
+<li>The function <code>answer</code> should be called exactly once. If the function <code>answer</code> is called more than once, your program is judged as <strong>Wrong Answer [7]</strong>. When the function <code>solve</code> terminates, if the function <code>answer</code> is not called, your program is judged as <strong>Wrong Answer [8]</strong>.</li>
+</ul>
+</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Important Notices</h3>
+<ul>
+<li>Your program can implement other functions for internal use, or use global variables.</li>
+<li>Your program must not use the standard input and the standard output. Your program must not communicate with other files by any methods. However, your program may output debugging information to the standard error.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Compilation and Test Run</h3>
+<p>You can download an archive file from the contest webpage which contains the sample grader to test your program. The archive file also contains a sample source file of your program.</p>
+<p>The sample grader is the file <code>grader.cpp</code>. In order to test your program, put <code>grader.cpp</code>, <code>thief.cpp</code>, <code>thief.h</code> in the same directory, and run the following command to compile your programs.</p>
+<pre>g++ -std=gnu++20 -O2 -o grader grader.cpp thief.cpp
+</pre>
+<p>Instead, you may run compile.sh contained in the archive file. In this case, run the following command to compile your programs.</p>
+<pre>./compile.sh
+</pre>
+<p>When the compilation succeeds, the executable file <code>grader</code> is generated. Note that the actual grader is different from the sample grader. The sample grader will be executed as a single process, which will read input data from the standard input and write the results to the standard output.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Input for the Sample Grader</h3>
+<p>The sample grader reads the following data from the standard input.</p>
+<pre><var>N</var> <var>M</var> <var>A</var> <var>B</var>
+<var>U_0</var> <var>V_0</var>
+<var>U_1</var> <var>V_1</var>
+<var>\vdots</var>
+<var>U_{M - 1}</var> <var>V_{M - 1}</var>
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Output of the Sample Grader</h3>
+<p>The sample grader outputs the following information to the standard output (quotes for clarity).</p>
+<ul>
+<li>If your program is judged as correct, it reports the number of function calls to <code>query</code> as “<code>Accepted: 25</code>”.</li>
+<li>If your program is judged as any type of Wrong Answer, the sample grader writes its type as “<code>Wrong Answer [4]</code>”.</li>
+</ul>
+<p>If your program satisfies the conditions of several types of Wrong Answer, the sample grader reports only one of them. The sample grader may terminate the execution when one of the conditions for wrong answer is met.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Notices for Grading</h3>
+<p>For some of the test cases, the actual grader is adaptive. This means the grader does not have a fixed answer in the beginning, and responds according to previous function calls to <code>query</code>. It is guaranteed that there is at least one answer which does not contradict all the responses of the the grader.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<p>All the input data satisfy the following conditions.</p>
+<ul>
+<li><var>2 \le N \le 10\,000</var>.</li>
+<li><var>1 \le M \le 15\,000</var>.</li>
+<li><var>0 \le A \le N - 1</var>.</li>
+<li><var>0 \le B \le N - 1</var>.</li>
+<li><var>A \ne B</var>.</li>
+<li><var>0 \le U_{i} &lt; V_{i} \le N - 1</var> (<var>0 \le i \le M - 1</var>).</li>
+<li><var>(U_{i}, V_{i}) \ne (U_{j}, V_{j})</var> (<var>0 \le i &lt; j \le M - 1</var>).</li>
+<li>It is possible to travel from any star to any star by using warp devices.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li>(<var>7</var> points) <var>M = N - 1</var>, <var>U_{i} = i</var>, <var>V_{i} = i + 1</var> (<var>0 \le i \le M - 1</var>).</li>
+<li>(<var>13</var> points) <var>M = N - 1</var>, <var>U_{i} = 0</var>, <var>V_{i} = i + 1</var> (<var>0 \le i \le M - 1</var>).</li>
+<li>(<var>2</var> points) <var>M = N - 1</var>, <var>N \le 8</var>.</li>
+<li>(<var>8</var> points) <var>M = N - 1</var>, <var>N \le 50</var>.</li>
+<li>(<var>5</var> points) <var>M = N - 1</var>, <var>N \le 150</var>.</li>
+<li>(<var>5</var> points) <var>M = N - 1</var>, <var>N \le 250</var>.</li>
+<li>(<var>40</var> points) <var>M = N - 1</var>.In this subtask, points are awarded as follows:<ul>
+<li>If any test case in Subtask 7 is judged as wrong answer or exceeds the time limit, memory limit, or encounters a runtime error, the subtask score is <var>0</var> points.</li>
+<li>If not, let <var>T</var> denote maximum value of the number of function calls to <code>query</code> in all test cases of this subtask. The subtask score is determined as follows:<ul>
+<li><var>20</var> points if <var>120 &lt; T</var>.</li>
+<li><var>30</var> points if <var>70 &lt; T \le 120</var>.</li>
+<li><var>40</var> points if <var>T \le 70</var>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>(<var>20</var> points) No additional constraints. In this subtask, points are awarded as follows:<ul>
+<li>If any test case in Subtask 8 is judged as wrong answer or exceeds the time limit, memory limit, or encounters a runtime error, the subtask score is <var>0</var> points.</li>
+<li>If not, let <var>T</var> denote maximum value of the number of function calls to <code>query</code> in all test cases of this subtask. The subtask score is determined as follows:<ul>
+<li><var>10</var> points if <var>120 &lt; T</var>.</li>
+<li><var>15</var> points if <var>70 &lt; T \le 120</var>.</li>
+<li><var>20</var> points if <var>T \le 70</var>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p>The scores for Subtasks <var>1, 2, 3, 4, 5, 6</var> do not depend on the number of function calls to <code>query</code>, as long as it does not exceed 300. However, when it is more than 70, the contest system might display “Output is partially correct”.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Communication</h3>
+<p>Here is a sample input for the sample grader and corresponding function calls.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>5 4 0 4
+0 1
+0 3
+1 2
+1 4
+</pre>
+<h4>Sample Function Calls</h4>
+<div class="joisp2025-thief-en-table">
+<table>
+<thead>
+<tr>
+<th>Function Calls</th>
+<th>Function Calls</th>
+<th>Return Values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>solve(5, 4, [0, 0, 1, 1], [1, 3, 2, 4])</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>query([0, 1, 0, 0])</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>query([1, 1, 1, 0])</code></td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>query([0, 0, 1, 0])</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>query([0, 0, 1, 1])</code></td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>answer(0, 4)</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Choices corresponding to the 1-st function call to <code>query</code> are as below:</p>
+<ul>
+<li>Warp device 0 allows travel only from star 0 to star 1.</li>
+<li>Warp device 1 allows travel only from star 3 to star 0.</li>
+<li>Warp device 2 allows travel only from star 1 to star 2.</li>
+<li>Warp device 3 allows travel only from star 1 to star 4.</li>
+</ul>
+<p>Under these conditions, it is possible to travel from star 0 to star 4 by using warp devices 0 and 3 in this order, so the return value is 1.</p>
+<p>Choices corresponding to the 2-nd function call to <code>query</code> are as below:</p>
+<ul>
+<li>Warp device 0 allows travel only from star 1 to star 0.</li>
+<li>Warp device 1 allows travel only from star 3 to star 0.</li>
+<li>Warp device 2 allows travel only from star 2 to star 1.</li>
+<li>Warp device 3 allows travel only from star 1 to star 4.</li>
+</ul>
+<p>Under these conditions, it is not possible to travel from star 0 to star 4 by using warp devices, so the return value is 0.</p>
+<p>Choices corresponding to the 3-rd function call to <code>query</code> are as below:</p>
+<ul>
+<li>Warp device 0 allows travel only from star 0 to star 1.</li>
+<li>Warp device 1 allows travel only from star 0 to star 3.</li>
+<li>Warp device 2 allows travel only from star 2 to star 1.</li>
+<li>Warp device 3 allows travel only from star 1 to star 4.</li>
+</ul>
+<p>Under these conditions, it is possible to travel from star 0 to star 4 by using warp devices, so the return value is 1.</p>
+<p>Under the conditions of the choices corresponding to the 4-th function call to <code>query</code>, it is not possible to travel from 0 to star 4 by using warp devices, so the return value is 0.</p>
+<p>The function call to <code>answer</code> represents that you answer that star <var>A</var> is star 0, and star <var>B</var> is star 4.</p>
+<p>This Sample Input satisfies the constraints of Subtasks <var>3, 4, 5, 6, 7, 8</var>. Among the files which can be obtained from the contest webpage, <code>sample-01-in.txt</code> corresponds to Sample Input 1.</p>
+<p>Also, the function calls in a sample source file of your program contained in the archive file from the contest webpage is the same as these function calls.</p>
+<style>
+.joisp2025-thief-en-table { position:relative; max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisp2025-thief-en-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisp2025-thief-en-table th,.joisp2025-thief-en-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisp2025-thief-en-table th { background:#f5f5f5; }
+.joisp2025-thief-en-table code { white-space:nowrap; }
+</style>
+
+<style>
+.joisp2025-f-submission summary { display:list-item;cursor:pointer; }
+</style></section>
+</div>
+</span>
 <span class="lang-ja">
-<p>配点： <var>100</var> 点</p>
-<blockquote>
+<blockquote class="joisp2025-f-statement">
+<p><strong>AtCoder での提出方法</strong></p>
 <p><a href="https://img.atcoder.jp/joisp2025/thief.zip">配布ファイル</a></p>
-<h4>AtCoder での提出方法について</h4>
 <p><strong>C++ を使用する場合</strong></p>
 <ul>
 <li><code>thief.h</code> を include し，問題文で指定された関数を実装してください．</li>
 <li><strong>標準入出力やファイルへの入出力を使用しないでください．</strong></li>
 </ul>
-<p><strong>その他の言語を使用する場合</strong></p>
+<details>
+<summary><strong>その他の言語を使用する場合</strong></summary>
 <ul>
-<li>JOIG 版の問題文で指定された通りにやりとりを行ってください．</li>
+<li><a href="https://atcoder.jp/contests/joigsp2025/tasks/joigsp2025_d">JOIG 版の問題文</a>の「入出力」に従ってやりとりを行ってください．</li>
 </ul>
+</details>
 <p><strong>注意</strong></p>
 <ul>
 <li><strong><var>300</var> 回のクエリを行うと，ジャッジ側・入出力の合計で最大 1200 ms を消費します．</strong></li>
 <li>テストケース数が多いため，正解できない入力では早期終了することを推奨します．</li>
 </ul>
 </blockquote>
+<p>配点 : <var>100</var> 点</p>
 <hr />
 
 <div class="part">
 <section>
-<h3></h3>
+<h3>問題文</h3>
 <p>あなたは JOI 銀河で怪盗として活躍している．</p>
 <p>JOI 銀河には <var>0</var> から <var>N - 1</var> までの番号が付けられている <var>N</var> 個の星がある．また，<var>0</var> から <var>M - 1</var> までの番号が付けられている <var>M</var> 個のワープ装置がある．ワープ装置 <var>i</var> (<var>0 \leqq i \leqq M - 1</var>) は星 <var>U_i</var> と星 <var>V_i</var> の間を双方向に結んでいる．どの <var>2</var> つの星の間も，いくつかのワープ装置を用いることで移動できる．</p>
 <p>JOI 銀河のある星には鍵が隠されており，別の星には宝箱が隠されている．あなたのミッションは，鍵と宝箱が隠されている星の番号を特定することである．そのために，以下の質問を <var>300</var> 回まで行うことができる．</p>
@@ -47,7 +358,7 @@
 <li>この関数は各テストケースにおいて <var>1</var> 回だけ呼び出される．</li>
 <li>引数 <code>N</code> は星の個数 <var>N</var> である．</li>
 <li>引数 <code>M</code> はワープ装置の個数 <var>M</var> である．</li>
-<li>引数 <code>U</code>, <code>V</code> は長さ <var>N</var> の配列であり，<var>0 \leqq i \leqq M - 1</var> について，<code>U[i]</code>, <code>V[i]</code> はワープ装置 <var>i</var> が双方向に結ぶ星の番号 <var>U_i, V_i</var> である．</li>
+<li>引数 <code>U</code>, <code>V</code> は長さ <var>M</var> の配列であり，<var>0 \leqq i \leqq M - 1</var> について，<code>U[i]</code>, <code>V[i]</code> はワープ装置 <var>i</var> が双方向に結ぶ星の番号 <var>U_i, V_i</var> である．</li>
 </ul>
 </li>
 </ul>
@@ -115,7 +426,7 @@
 <var>U_0</var> <var>V_0</var>
 <var>U_1</var> <var>V_1</var>
 <var>\vdots</var>
-<var>U_{M-1}</var> <var>V_{M-1}</var>
+<var>U_{M - 1}</var> <var>V_{M - 1}</var>
 </pre>
 </section>
 </div>
@@ -127,8 +438,8 @@
 <h3>採点プログラムのサンプルの出力</h3>
 <p>採点プログラムのサンプルは標準出力へ以下の情報を出力する (引用符は実際には出力されない)．</p>
 <ul>
-<li>正解の場合，関数 <code>query</code> の呼び出し回数が <code>Accepted: 25</code> のように出力される．</li>
-<li>不正解の場合，不正解の種類が <code>Wrong Answer [4]</code> のように出力される．</li>
+<li>正解の場合，関数 <code>query</code> の呼び出し回数が “<code>Accepted: 25</code>” のように出力される．</li>
+<li>不正解の場合，不正解の種類が “<code>Wrong Answer [4]</code>” のように出力される．</li>
 </ul>
 <p>実行するプログラムが複数の不正解の条件を満たした場合，
 表示される不正解の種類はそれらのうち <var>1</var> つのみである．採点プログラムのサンプルは，不正解の条件を満たした場合，途中で実行を打ち切ることがある．</p>
@@ -201,6 +512,7 @@
 <div class="part">
 <section>
 <h3>やりとりの例</h3>
+<p>採点プログラムのサンプルが読み込む入力の例と，それに対応する関数の呼び出しの例を以下に示す．</p>
 </section>
 </div>
 
@@ -213,24 +525,50 @@
 1 2
 1 4
 </pre>
-<style>
-style + table {
-    border-collapse: collapse;
-    border: 1px solid black;
-    margin: 1em;
-}
-style + table th, 
-style + table td {
-    border: 1px solid black;
-    padding: 0.25rem 1rem;
-}
-style + table th:nth-child(1),
-style + table td:nth-child(1) {
-    border-right: 3px double black;
-}
-</style>
-
-<p><img src="https://img.atcoder.jp/joisp2025/joisp2025-F01.png" class="img-responsive center-block" style="width: 700px; max-width: 100%"></p>
+<h4>関数の呼び出しの例</h4>
+<div class="joisp2025-f-call-table">
+<table>
+<thead>
+<tr>
+<th>呼び出し</th>
+<th>呼び出し</th>
+<th>戻り値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>solve(5, 4, [0, 0, 1, 1], [1, 3, 2, 4])</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>query([0, 1, 0, 0])</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>query([1, 1, 1, 0])</code></td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>query([0, 0, 1, 0])</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>query([0, 0, 1, 1])</code></td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>answer(0, 4)</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
 <p><var>1</var> 回目の <code>query</code> 関数の呼び出しに対応する選択は以下のようになる．</p>
 <ul>
 <li>ワープ装置 <var>0</var> について，星 <var>0</var> から星 <var>1</var> へ一方向に結ぶようにする．</li>
@@ -258,7 +596,18 @@ style + table td:nth-child(1) {
 <p><var>4</var> 回目の <code>query</code> 関数の呼び出しに対応する選択のもとで，星 <var>0</var> から星 <var>4</var> へはいくつかのワープ装置を用いて移動できないため，戻り値は <var>0</var> となる．</p>
 <p><code>answer</code> 関数の呼び出しでは星 <var>A</var> が星 <var>0</var> であり，星 <var>B</var> が星 <var>4</var> であると解答したことを表している．</p>
 <p>この入力例は小課題 <var>3,4,5,6,7,8</var> の制約を満たす．コンテストサイトからダウンロードできるアーカイブの中に含まれているファイルのうち，<code>sample-01-in.txt</code> は入力例 <var>1</var> に対応する．</p>
-<p>なお，コンテストサイトからダウンロードできるアーカイブの中に含まれている，提出しなければならないファイルのサンプルにおける関数の呼び出しは，これらの関数の呼び出しと同じである．</p></section>
+<p>なお，コンテストサイトからダウンロードできるアーカイブの中に含まれている，提出しなければならないファイルのサンプルにおける関数の呼び出しは，これらの関数の呼び出しと同じである．</p>
+<style>
+.joisp2025-f-statement summary { display:list-item; cursor:pointer; }
+</style>
+
+<style>
+.joisp2025-f-call-table { position:relative;max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisp2025-f-call-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisp2025-f-call-table th,.joisp2025-f-call-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisp2025-f-call-table th { background:#f5f5f5;white-space:nowrap; }
+.joisp2025-f-call-table code { white-space:nowrap; }
+</style></section>
 </div>
 </span>
 </span>

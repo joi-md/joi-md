@@ -1,19 +1,16 @@
 <span class="lang">
 <span class="lang-ja">
-<p>配点： <var>100</var> 点</p>
 <blockquote>
+<p><strong>AtCoder での提出方法</strong></p>
 <p><a href="https://img.atcoder.jp/joigsp2025/thief.zip">配布ファイル</a></p>
-<p><strong>注意</strong></p>
-<ul>
-<li><strong><var>300</var> 回のクエリを行うと，ジャッジ側・入出力の合計で最大 1200 ms を消費します．</strong></li>
-<li>テストケース数が多いため，正解できない入力では早期終了することを推奨します．</li>
-</ul>
+<p>この問題は標準入出力を用いるインタラクティブ問題です。「入出力」の手順に従って解答し、各出力の後に必ず flush してください。</p>
 </blockquote>
+<p>配点 : <var>100</var> 点</p>
 <hr />
 
 <div class="part">
 <section>
-<h3></h3>
+<h3>問題文</h3>
 <p>あなたは JOI 銀河で怪盗として活躍している．</p>
 <p>JOI 銀河には <var>0</var> から <var>N - 1</var> までの番号が付けられている <var>N</var> 個の星がある．また，<var>0</var> から <var>M - 1</var> までの番号が付けられている <var>M</var> 個のワープ装置がある．ワープ装置 <var>i</var> (<var>0 \leqq i \leqq M - 1</var>) は星 <var>U_i</var> と星 <var>V_i</var> の間を双方向に結んでいる．どの <var>2</var> つの星の間も，いくつかのワープ装置を用いることで移動できる．</p>
 <p>JOI 銀河のある星には鍵が隠されており，別の星には宝箱が隠されている．あなたのミッションは，鍵と宝箱が隠されている星の番号を特定することである．そのために，以下の質問を <var>300</var> 回まで行うことができる．</p>
@@ -36,7 +33,7 @@
 <var>U_0</var> <var>V_0</var>
 <var>U_1</var> <var>V_1</var>
 <var>\vdots</var>
-<var>U_{M-1}</var> <var>V_{M-1}</var>
+<var>U_{M - 1}</var> <var>V_{M - 1}</var>
 </pre>
 <p>あなたのプログラムはこれを受け取った後，採点プログラムとやり取りを行わなければならない．</p>
 <p>質問を行うには，以下の形式で採点プログラムとやり取りせよ．</p>
@@ -107,7 +104,7 @@
 <var>U_0</var> <var>V_0</var>
 <var>U_1</var> <var>V_1</var>
 <var>\vdots</var>
-<var>U_{M-1}</var> <var>V_{M-1}</var>
+<var>U_{M - 1}</var> <var>V_{M - 1}</var>
 </pre>
 </section>
 </div>
@@ -117,8 +114,8 @@
 <h3>テストツールの出力</h3>
 <p>プログラムの実行が正常に終了した場合，テストツールは標準出力へ以下の情報を出力する（引用符は実際には出力されない）．</p>
 <ul>
-<li>正解の場合，質問の回数が <code>Accepted: 25</code> のように出力される．</li>
-<li>不正解の場合，不正解の種類が <code>Wrong Answer [4]</code> のように出力される．</li>
+<li>正解の場合，質問の回数が “<code>Accepted: 25</code>” のように出力される．</li>
+<li>不正解の場合，不正解の種類が “<code>Wrong Answer [4]</code>” のように出力される．</li>
 </ul>
 <p>実行するプログラムが複数の不正解の条件を満たした場合，表示される不正解の種類はそれらのうち <var>1</var> つのみである．</p>
 <hr />
@@ -155,7 +152,7 @@
 <li>(<var>8</var> 点) <var>M = N - 1</var>，<var>N \leqq 250</var>．</li>
 <li>(<var>32</var> 点) <var>M = N - 1</var>．この小課題では，以下に従い得点が決定される．<ul>
 <li>小課題 <var>7</var> に対応するテストケースについて，<var>1</var> つでも不正解があった場合，この小課題の得点は <var>0</var> 点となる．</li>
-<li>そうでない場合，この小課題のすべてのテストケースにおける，関数 <code>query</code> の呼び出し回数の最大値を <var>T</var> とする．このとき，小課題の得点は以下のように決定される．<ul>
+<li>そうでない場合，この小課題のすべてのテストケースにおける，質問の回数の最大値を <var>T</var> とする．このとき，小課題の得点は以下のように決定される．<ul>
 <li><var>120 &lt; T</var> のとき，<var>16</var> 点．</li>
 <li><var>70 &lt; T \leqq 120</var> のとき，<var>24</var> 点．</li>
 <li><var>T \leqq 70</var> のとき，<var>32</var> 点．</li>
@@ -165,7 +162,7 @@
 </li>
 <li>(<var>4</var> 点) 追加の制約はない．この小課題では，以下に従い得点が決定される．<ul>
 <li>小課題 <var>8</var> に対応するテストケースについて，<var>1</var> つでも不正解があった場合，この小課題の得点は <var>0</var> 点となる．</li>
-<li>そうでない場合，この小課題のすべてのテストケースにおける，関数 <code>query</code> の呼び出し回数の最大値を <var>T</var> とする．このとき，小課題の得点は以下のように決定される．<ul>
+<li>そうでない場合，この小課題のすべてのテストケースにおける，質問の回数の最大値を <var>T</var> とする．このとき，小課題の得点は以下のように決定される．<ul>
 <li><var>120 &lt; T</var> のとき，<var>2</var> 点．</li>
 <li><var>70 &lt; T \leqq 120</var> のとき，<var>3</var> 点．</li>
 <li><var>T \leqq 70</var> のとき，<var>4</var> 点．</li>
@@ -195,10 +192,58 @@
 1 2
 1 4
 </pre>
-<div style="text-align: center;">
-<img alt="7be724b9ba153c7baf9de60727f76fc6.png" src="https://img.atcoder.jp/joigsp2025/7be724b9ba153c7baf9de60727f76fc6.png" style="max-width: 100%; width: 350px;" />
+<div class="joigsp2025-gd-call-table">
+<table>
+<thead>
+<tr>
+<th>採点プログラムの出力</th>
+<th>あなたのプログラムの出力</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>5 4</code><br><code>0 1</code><br><code>0 3</code><br><code>1 2</code><br><code>1 4</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>? 0100</code></td>
+</tr>
+<tr>
+<td><code>1</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>? 1110</code></td>
+</tr>
+<tr>
+<td><code>0</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>? 0010</code></td>
+</tr>
+<tr>
+<td><code>1</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>? 0011</code></td>
+</tr>
+<tr>
+<td><code>0</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>! 0 4</code></td>
+</tr>
+</tbody>
+</table>
 </div>
-
 <p><var>1</var> 回目の質問に対応する選択は以下のようになる．</p>
 <ul>
 <li>ワープ装置 <var>0</var> について，星 <var>0</var> から星 <var>1</var> へ一方向に結ぶようにする．</li>
@@ -206,7 +251,7 @@
 <li>ワープ装置 <var>2</var> について，星 <var>1</var> から星 <var>2</var> へ一方向に結ぶようにする．</li>
 <li>ワープ装置 <var>3</var> について，星 <var>1</var> から星 <var>4</var> へ一方向に結ぶようにする．</li>
 </ul>
-<p>この選択のもとで，星 <var>0</var> から星 <var>4</var> へはワープ装置 <var>0, 3</var> をこの順に用いることで移動できるため，戻り値は <var>1</var> となる．</p>
+<p>この選択のもとで，星 <var>0</var> から星 <var>4</var> へはワープ装置 <var>0, 3</var> をこの順に用いることで移動できるため，<var>1</var> が標準入力から与えられる．</p>
 <p><var>2</var> 回目の質問に対応する選択は以下のようになる．</p>
 <ul>
 <li>ワープ装置 <var>0</var> について，星 <var>1</var> から星 <var>0</var> へ一方向に結ぶようにする．</li>
@@ -214,7 +259,7 @@
 <li>ワープ装置 <var>2</var> について，星 <var>2</var> から星 <var>1</var> へ一方向に結ぶようにする．</li>
 <li>ワープ装置 <var>3</var> について，星 <var>1</var> から星 <var>4</var> へ一方向に結ぶようにする．</li>
 </ul>
-<p>この選択のもとで，星 <var>0</var> から星 <var>4</var> へはいくつかのワープ装置を用いて移動できないため，戻り値は <var>0</var> となる．</p>
+<p>この選択のもとで，星 <var>0</var> から星 <var>4</var> へはいくつかのワープ装置を用いて移動できないため，<var>0</var> が標準入力から与えられる．</p>
 <p><var>3</var> 回目の質問に対応する選択は以下のようになる．</p>
 <ul>
 <li>ワープ装置 <var>0</var> について，星 <var>0</var> から星 <var>1</var> へ一方向に結ぶようにする．</li>
@@ -222,10 +267,17 @@
 <li>ワープ装置 <var>2</var> について，星 <var>2</var> から星 <var>1</var> へ一方向に結ぶようにする．</li>
 <li>ワープ装置 <var>3</var> について，星 <var>1</var> から星 <var>4</var> へ一方向に結ぶようにする．</li>
 </ul>
-<p>この選択のもとで，星 <var>0</var> から星 <var>4</var> へはいくつかのワープ装置を用いて移動できるため，戻り値は <var>1</var> となる．</p>
-<p><var>4</var> 回目の質問に対応する選択のもとで，星 <var>0</var> から星 <var>4</var> へはいくつかのワープ装置を用いて移動できないため，戻り値は <var>0</var> となる．</p>
+<p>この選択のもとで，星 <var>0</var> から星 <var>4</var> へはいくつかのワープ装置を用いて移動できるため，<var>1</var> が標準入力から与えられる．</p>
+<p><var>4</var> 回目の質問に対応する選択のもとで，星 <var>0</var> から星 <var>4</var> へはいくつかのワープ装置を用いて移動できないため，<var>0</var> が標準入力から与えられる．</p>
 <p>最後に，星 <var>A</var> が星 <var>0</var> であり，星 <var>B</var> が星 <var>4</var> であると解答している．</p>
-<p>この入力例は小課題 <var>3,4,5,6,7,8</var> の制約を満たす．コンテストサイトからダウンロードできるアーカイブの中に含まれているファイルのうち，<code>sample-01-in.txt</code> は入力例 <var>1</var> に対応する．</p></section>
+<p>この入力例は小課題 <var>3,4,5,6,7,8</var> の制約を満たす．コンテストサイトからダウンロードできるアーカイブの中に含まれているファイルのうち，<code>sample-01-in.txt</code> は入力例 <var>1</var> に対応する．</p>
+<style>
+.joigsp2025-gd-call-table { position:relative;max-width:100%;overflow-x:auto;margin:1em 0; }
+.joigsp2025-gd-call-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joigsp2025-gd-call-table th,.joigsp2025-gd-call-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joigsp2025-gd-call-table th { background:#f5f5f5;white-space:nowrap; }
+.joigsp2025-gd-call-table code { white-space:nowrap; }
+</style></section>
 </div>
 </span>
 </span>

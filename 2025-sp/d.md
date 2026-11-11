@@ -1,7 +1,6 @@
-配点： $100$ 点
+配点 : $100$ 点
 
-###
-
+### 問題文
 IOI 王国は縦 $L$ 行，横 $L$ 列のマス目で表される領土を持っている．以降，上から $i$ 行目 ($1 \leqq i \leqq L$)，左から $j$ 列目 ($1 \leqq j \leqq L$) のマスをマス $(i, j)$ と表すことにする．
 
 最近の IOI 王国では感染症で倒れる患者が相次いでおり，国民から医療の充実を求める声が上がっている．そこで，IOI 王国の国王であるビ太郎は，マス $(1, 1)$，マス $(1, L)$，マス $(L, 1)$，マス $(L, L)$ の $4$ 箇所に病院を建設し，それぞれの病院に $1$ 台ずつ救急車を設置することにした．
@@ -80,23 +79,7 @@ $1$ 番目と $2$ 番目の患者をマス $(1, 1)$ にある病院へ，$3$ 番
 
 例えば，マス $(1, 1)$ にある病院に設置された救急車が次の順に動くと，この救急車は時刻 $8$ までに $1$ 番目と $2$ 番目の患者を病院へ搬送することができる．
 
-<style>
-style + table {
-    border-collapse: collapse;
-    border: 1px solid black;
-    margin: 1em;
-    th {
-        border: 1px solid black;
-    }
-    td {
-        border-left: 1px solid black;
-        border-right: 1px solid black;
-    }
-    th, td {
-        padding: 0.2rem 1rem;
-    }
-}
-</style>
+<div class="joisp2025-d-statement-table" markdown="1">
 
 | 時刻 | 救急車の状態 |
 |---|---|
@@ -109,6 +92,9 @@ style + table {
 | $6$ | マス $(1, 3)$ に到着し，$1$ 番目の患者を乗せ，出発する |
 | $7$ | マス $(1, 2)$ に到着する |
 | $8$ | マス $(1, 1)$ に到着し，$1$ 番目の患者を降ろす |
+
+</div>
+
 
 この入力例は小課題 $1,2,3,4,6,7$ の制約を満たす．
 
@@ -187,4 +173,15 @@ Yes
 No
 ~~~
 
-この入力例は小課題 $4,6,7$ の制約を満たす． 
+この入力例は小課題 $4,6,7$ の制約を満たす．
+
+<style>
+.joisp2025-d-statement-table { position:relative; max-width:100%; overflow-x:auto; margin:1em 0; }
+.joisp2025-d-statement-table table { display:table; width:auto; max-width:none; overflow:visible; border-collapse:collapse; margin:0; }
+.joisp2025-d-statement-table th, .joisp2025-d-statement-table td { border:1px solid #aaa; padding:0.3em 0.6em; text-align:left; vertical-align:top; }
+.joisp2025-d-statement-table th { background:#f5f5f5; }
+</style>
+
+<style>
+.joisp2025-d-statement-table .katex {position:relative;}
+</style>

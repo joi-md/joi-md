@@ -1,10 +1,177 @@
 <span class="lang">
-<span class="lang-ja">
-<p>配点： <var>100</var> 点</p>
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
 
 <div class="part">
 <section>
-<h3></h3>
+<h3>Problem Statement</h3>
+<p>The JOI Art Museum is planning to hold an exhibition of paintings soon. The museum owns <var>N</var> paintings numbered from <var>1</var> to <var>N</var>, and the beauty of painting <var>i</var> (<var>1 \le i \le N</var>) is given as <var>A_{i}</var>. For the exhibition, these paintings will be arranged in a single row from left to right, but the order in which they are placed has not yet been determined.</p>
+<p>There will be <var>M</var> magazines covering the exhibition. These magazines are numbered from <var>1</var> to <var>M</var> in descending order of their influence. Each magazine will publish photographs of a certain contiguous segment of paintings in the arranged row. Specifically, magazine <var>j</var> (<var>1 \le j \le M</var>) will publish photographs of the <var>L_{j}, L_{j} + 1, \ldots, R_{j}</var>-th paintings from the left in the row. The appeal of the article by magazine <var>j</var> (<var>1 \le j \le M</var>) is defined as the maximum beauty among the paintings it covers.</p>
+<p>JOI-kun, the director of the JOI Art Museum, aims to arrange the paintings in a way that allows these magazines to write articles with greater appeal, thereby attracting more people to the exhibition. Since magazines with greater influence reach a larger audience, he wants to prioritize increasing the appeal of articles in more influential magazines. More precisely, let <var>b_{j}</var> be the appeal of the article published by magazine <var>j</var> (<var>1 \le j \le M</var>), then JOI-kun wants to arrange the paintings so that the sequence <var>b = (b_{1}, b_{2}, \ldots, b_{M})</var> is lexicographically maximized. Here, for two distinct sequences <var>b = (b_{1}, b_{2}, \ldots, b_{M})</var> and <var>b^{\prime} = (b_{1}^{\prime}, b_{2}^{\prime}, \ldots, b_{M}^{\prime})</var>, <var>b</var> is said to be lexicographically larger than <var>b^{\prime}</var> when, for the smallest index <var>k</var> (<var>1 \le k \le M</var>) such that <var>b_{k} \ne b_{k}^{\prime}</var>, <var>b_{k} &gt; b_{k}^{\prime}</var> holds.</p>
+<p>Write a program which, given the information of the paintings to be exhibited and the magazines covering the event, calculates the appeal of each magazine’s article when the paintings are arranged to maximize the lexicographical order of sequence <var>b = (b_{1}, b_{2}, \ldots, b_{M})</var>.</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input.</p>
+<pre><var>N</var> <var>M</var>
+<var>A_1</var> <var>A_2</var> <var>\ldots</var> <var>A_N</var>
+<var>L_1</var> <var>R_1</var>
+<var>L_2</var> <var>R_2</var>
+<var>\vdots</var>
+<var>L_M</var> <var>R_M</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>Write <var>M</var> lines to the standard output. The <var>j</var>-th line (<var>1 \le j \le M</var>) of the output should contain <var>b_{j}</var>, the appeal of the article published by magazine <var>j</var>. Here, the sequence <var>b = (b_{1}, b_{2}, \ldots, b_{M})</var> must be lexicographically maximized.</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li><var>1 \le N \le 100\,000</var>.</li>
+<li><var>1 \le M \le 100\,000</var>.</li>
+<li><var>1 \le A_{i} \le N</var> (<var>1 \le i \le N</var>).</li>
+<li><var>1 \le L_{j} \le R_{j} \le N</var> (<var>1 \le j \le M</var>).</li>
+<li>Given values are all integers.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li>(<var>19</var> points) <var>N \le 400</var>, <var>M \le 400</var>.</li>
+<li>(<var>9</var> points) <var>N \le 400</var>.</li>
+<li>(<var>19</var> points) <var>A_{i} \le 5</var> (<var>1 \le i \le N</var>).</li>
+<li>(<var>12</var> points) <var>A_{i} = i</var> (<var>1 \le i \le N</var>).</li>
+<li>(<var>17</var> points) For each <var>k</var> (<var>1 \le k \le N</var>), the number of <var>i</var> (<var>1 \le i \le N</var>) satisfying <var>A_{i} = k</var> is at most 5.</li>
+<li>(<var>24</var> points) No additional constraints.</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>4 4
+1 2 1 2
+1 1
+2 3
+4 4
+3 4
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>2
+2
+1
+2
+</pre>
+<p>When the paintings are arranged in the order <var>2, 3, 4, 1</var> from left to right, the appeal of each magazine’s article are determined as follows:</p>
+<ul>
+<li>Magazine 1: Covers painting 2. Since the beauty of this painting is 2, the appeal of the article is 2.</li>
+<li>Magazine 2: Covers paintings 3 and 4. Since the beauty of these paintings are 1 and 2, respectively, the appeal of the article is 2.</li>
+<li>Magazine 3: Covers painting 1. Since the beauty of this painting is 1, the appeal of the article is 1.</li>
+<li>Magazine 4: Covers paintings 4 and 1. Since the beauty of these paintings are 2 and 1, respectively, the appeal of the article is 2.</li>
+</ul>
+<p>Thus, the sequence <var>b</var> is <var>(2, 2, 1, 2)</var>. Since there is no arrangement of paintings that results in a lexicographically larger sequence than this, the output should be <var>2, 2, 1</var>, and 2 in this order, separated by new lines.</p>
+<p>This sample input satisfies the constraints of Subtasks <var>1, 2, 3, 5</var>, and 6.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>4 8
+1 2 3 4
+1 2
+2 3
+4 4
+1 1
+2 4
+3 3
+3 3
+4 4
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>4
+4
+3
+2
+4
+1
+1
+3
+</pre>
+<p>This sample input satisfies the constraints of all the subtasks.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 3</h3>
+<pre>12 10
+6 2 2 5 2 5 2 3 3 3 2 2
+3 5
+10 12
+12 12
+2 4
+8 9
+10 11
+1 3
+7 9
+9 10
+10 11
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 3</h3>
+<pre>6
+5
+5
+6
+5
+3
+6
+5
+5
+3
+</pre>
+<p>This sample input satisfies the constraints of Subtasks <var>1, 2</var>, and 6.</p></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
 <p>JOI 美術館では，近々絵の展覧会が開催される予定である．
 美術館には <var>1</var> から <var>N</var> までの番号が付けられた <var>N</var> 枚の絵が所蔵されており，絵 <var>i</var> (<var>1 \leqq i \leqq N</var>) の <strong>美しさ</strong> は <var>A_i</var> である．
 展覧会ではこれらの絵を左から右に一列に並べて展示するが，並べる順番はまだ決まっていない．</p>
@@ -65,7 +232,7 @@
 <section>
 <h3>小課題</h3>
 <ol>
-<li>(<var>19</var> 点) <var>N ≦ 400，M ≦ 400</var>．</li>
+<li>(<var>19</var> 点) <var>N \leqq 400</var>，<var>M \leqq 400</var>．</li>
 <li>(<var>9</var> 点) <var>N ≦ 400</var>．</li>
 <li>(<var>19</var> 点) <var>A_i\leqq 5</var> (<var>1\leqq i\leqq N</var>)．</li>
 <li>(<var>12</var> 点) <var>A_i=i</var> (<var>1\leqq i\leqq N</var>)．</li>
