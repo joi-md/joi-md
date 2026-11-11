@@ -1,0 +1,354 @@
+<span class="lang">
+<span class="lang-ja">
+<blockquote>
+<p><strong>AtCoder での提出方法</strong></p>
+<p><a href="https://img.atcoder.jp/joisc2015/memory-dist-5b3629a279.zip">配布ファイル</a></p>
+<ul>
+<li>C または C++ を使用し，<code>Memory_lib.h</code> を include して，<code>Memory</code> を実装したソースコードを提出してください．</li>
+<li><strong>標準入出力やファイルへの入出力を使用しないでください．</strong></li>
+</ul>
+</blockquote>
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>国際情報オリンピックの日本代表に選ばれた JOI ちゃんは，情報処理技術を高めるため，情報オリンピック日本委員会の K 理事長から以下のような課題を提示された．</p>
+<p>K 理事長は，JOI ちゃんには分からないように，ある文字列 <var>S</var> を手帳に書いた．<var>S</var> は ‘<code>&lt;</code>’, ‘<code>&gt;</code>’, ‘<code>[</code>’, ‘<code>]</code>’ の <var>4</var> 種類の文字からなる．K 理事長は JOI ちゃんに課題の内容と <var>S</var> の長さが書かれたプリントを渡した．</p>
+<p>JOI ちゃんの課題は，<var>S</var> が良い文字列であるか否かを判定することである．ここで，良い文字列とは次のように定義される：</p>
+<ul>
+<li>空文字列 (つまり，長さ <var>0</var> の文字列) は良い文字列である．</li>
+<li><var>x</var> が良い文字列ならば，<code>&lt;</code><var>x</var><code>&gt;</code> (つまり，<var>x</var> を山括弧 <code>&lt;&gt;</code> で囲った文字列) は良い文字列である．</li>
+<li><var>x</var> が良い文字列ならば，<code>[</code><var>x</var><code>]</code> (つまり，<var>x</var> を角括弧 <code>[]</code> で囲った文字列) は良い文字列である．</li>
+<li><var>x, y</var> が良い文字列ならば，<var>xy</var> (つまり，<var>x, y</var> をこの順に連結した文字列) は良い文字列である．</li>
+<li>以上で良い文字列と定義されるもののみが良い文字列である．</li>
+</ul>
+<p>例えば，“<code>&lt;&gt;[]</code>” や “<code>[&lt;&gt;]&lt;&gt;</code>” は良い文字列であり，“<code>&gt;&lt;</code>” や “<code>[&lt;]&gt;</code>” は良い文字列ではない．</p>
+<p>JOI ちゃんは，毎日正午に高々 <var>1</var> 回，K 理事長に電話をすることができる．電話では，整数 <var>I</var> を指定することで，K 理事長から <var>S</var> の <var>I</var> 文字目を教えてもらうことができる．</p>
+<p>さて，JOI ちゃんには, 「この課題ではメモをとってはならない」という重大な制約が課されている．JOI ちゃんは毎晩 <var>22</var> 時に就寝し朝 <var>6</var> 時に起床するが，睡眠中に覚えていられるのは <var>22</var> ビットの情報のみである．より正確には，就寝前に <var>0</var> 以上 <var>2^{22} - 1</var> 以下の整数を <var>1</var> 個記憶し，翌日は記憶した整数のみに基づいて課題に取り組まなければならない．ただし，<var>S</var> の長さはプリントに書いてあるので，いつでも参照することができる．</p>
+<p>JOI ちゃんは，就寝前に整数を <var>1</var> 個記憶する代わりに，<var>S</var> が良い文字列であるか否かを K 理事長に電子メールで回答してもよい．この場合課題は終了となり，正解か不正解かが判定される．ただし，課題の開始から <var>15\,000</var> 日以内に電子メールを送らなかった場合，不正解と判定される．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p>JOI ちゃんの戦略を実装し，上記の課題で正解できるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>実装の詳細</h3>
+<p>あなたは，JOI ちゃんの戦略を実装した <var>1</var> 個のプログラムを書かなければならない．プログラムは <code>Memory_lib.h</code> をインクルードすること．</p>
+<p>プログラムは，以下の関数を実装しなければならない．</p>
+<ul>
+<li>
+<p><code>int Memory(int N, int M)</code></p>
+<p>この関数は，<var>S</var> の長さおよび記憶した整数が与えられたときの，その日の JOI ちゃんの行動に対応する．</p>
+<ul>
+<li>引数 <code>N</code> は，文字列 <var>S</var> の長さ <var>N</var> である．</li>
+<li>引数 <code>M</code> は，前日の就寝前に記憶した内容を表す整数 <var>M</var> である．ただし，課題の開始時には <var>M = 0</var> を記憶しているものとして扱う．</li>
+<li>この関数の中では，以下で説明されるように関数 <code>Get</code> を高々 <var>1</var> 回呼び出すことができる．</li>
+<li>
+<p>この関数は，<var>0</var> 以上 <var>2^{22} - 1</var> 以下の整数，または <var>-1</var> または <var>-2</var> を返さなければならない．この範囲の外の値を返した場合，不正解 <var>[1]</var> となる．</p>
+<ul>
+<li>戻り値が <var>0</var> 以上 <var>2^{22} - 1</var> 以下の整数の場合，就寝前にその値を記憶することを表す．</li>
+<li>戻り値が <var>-1</var> の場合，「<var>S</var> は良い文字列である」と電子メールで回答することを表す．</li>
+<li>戻り値が <var>-2</var> の場合，「<var>S</var> は良い文字列ではない」と電子メールで回答することを表す．</li>
+</ul>
+</li>
+<li>
+<p>この関数は，引数 <code>N</code>, <code>M</code> の値および呼び出した <code>Get</code> の戻り値のみに依存した挙動を行うことが期待される．また，実際の採点プログラムではこの関数は <var>2^{22} \times 4</var> 回呼び出される．詳細は，「採点の手順」と「重要な注意」を参照せよ．</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>プログラム中では以下の関数を呼び出すことができる．</p>
+<ul>
+<li>
+<p><code>char Get(int I)</code></p>
+<p>この関数は，<code>Memory</code> の <var>1</var> 回の呼び出しにつき高々 <var>1</var> 回しか呼び出すことができない．<var>2</var> 回以上呼び出した場合，不正解 <var>[2]</var> となる．</p>
+<p>引数 <code>I</code> は，<var>1 \leqq I \leqq N</var> を満たす整数 <var>I</var> でなければならない．これを満たさない場合，不正解 <var>[3]</var> となる．</p>
+<p>この関数の戻り値は，文字列 <var>S</var> の <var>I</var> 文字目の文字を表す．</p>
+</li>
+</ul>
+<h4>採点の手順</h4>
+<p>採点用の各入力データは複数のテストケースからなり，それらにおいて文字列 <var>S</var> の長さは同じ値 <var>N</var> である．</p>
+<p>採点は以下の手順で行われる．不正解と判定された場合はその時点でプログラムは終了される．</p>
+<ol>
+<li>
+<p>引数 <code>N</code>, <code>M</code> の値および呼び出した <code>Get</code> の戻り値のすべての場合に対する <code>Memory</code> の挙動をまとめて調べる．すなわち，<var>0 \leqq M \leqq 2^{22} - 1</var> を満たす整数 <var>M</var> それぞれについて，以下を行う：</p>
+<ul>
+<li>
+<p><strong>(i)</strong> 文字 <var>c</var> を ‘<code>&lt;</code>’, ‘<code>&gt;</code>’, ‘<code>[</code>’, ‘<code>]</code>’ のそれぞれとして，以下を行う：</p>
+<p>引数 <code>N</code> を <var>N</var>，引数 <code>M</code> を <var>M</var> として <code>Memory</code> を呼び出す．このとき，<code>Get</code> が呼び出されたならば，文字 <var>c</var> が返される．<code>Memory</code> が返した値を <var>m(M, c)</var> とおく．
+    - <strong>(ii)</strong> (i) での <var>4</var> 回の <code>Memory</code> の呼び出しにおいて，<code>Get</code> を呼び出すか否かは同じでなければならない．さらに，<code>Get</code> を呼び出した場合は，<var>4</var> 回とも同じ整数 <var>I</var> を引数 <code>I</code> として呼び出さなければならず，<code>Get</code> を呼び出さなかった場合は，<var>4</var> 回とも同じ値を返さなければならない．これらを満たさない場合，不正解 <var>[4]</var> となる．<code>Get</code> を呼び出したときの引数 <code>I</code> を <var>i(M)</var> とおく (ただし，<code>Get</code> を呼び出さなかった場合は <var>i(M) = 1</var> とおく)．</p>
+</li>
+</ul>
+</li>
+<li>
+<p>各テストケースにおける文字列 <var>S</var> に対して，問題文で説明された課題のシミュレーションを行う．すなわち，以下を行う：</p>
+<ul>
+<li><strong>(i)</strong> <var>M = 0</var> とする．</li>
+<li><strong>(ii)</strong> 以下を繰り返す：<ul>
+<li><strong>(a)</strong> <var>c</var> を <var>S</var> の <var>i(M)</var> 文字目の文字とする．</li>
+<li><strong>(b)</strong> <var>M</var> を <var>m(M, c)</var> で置き換える．</li>
+<li><strong>(c)</strong> <var>M = -1</var> または <var>M = -2</var> ならば，(iii) へ進む．</li>
+<li><strong>(d)</strong> この項目に <var>15\,000</var> 回到達したら，不正解 <var>[5]</var> となる．</li>
+</ul>
+</li>
+<li><strong>(iii)</strong> 以下のいずれかの場合，不正解 <var>[6]</var> となる：<ul>
+<li><var>S</var> が良い文字列だが，<var>M = -2</var> である．</li>
+<li><var>S</var> が良い文字列ではないが，<var>M = -1</var> である．</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>正解となる．</p>
+</li>
+</ol>
+<h4>重要な注意</h4>
+<ul>
+<li>実行時間計測・使用メモリ計測の対象となるのは，「採点の手順」における手順 (1) である．手順 (1) において <code>Memory</code> は <var>2^{22} \times 4</var> 回呼び出されることに注意せよ．</li>
+<li>手順 (1) における <var>2^{22} \times 4</var> 回のすべての <code>Memory</code> の呼び出しにおいて，不正解 <var>[1], [2], [3]</var> となったり，実行時エラーを起こしたりしてはならないことに注意せよ．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>コンパイル・実行の方法</h3>
+<p>作成したプログラムをテストするための，採点プログラムのサンプルが，コンテストサイトからダウンロードできるアーカイブの中に含まれている．このアーカイブには，提出しなければならないファイルのサンプルも含まれている．</p>
+<p>採点プログラムのサンプルとして，grader-simple と grader-strict の <var>2</var> つが提供される．grader-simple のファイルは <code>grader-simple.c</code> または <code>grader-simple.cpp</code> であり，grader-strict のファイルは <code>grader-strict.c</code> または <code>grader-strict.cpp</code> である．例えば，作成したプログラムを <code>Memory.c</code> または <code>Memory.cpp</code> とするとき，作成したプログラムを grader-simple や grader-strict でテストするには，次のようにコマンドを実行する．</p>
+<ul>
+<li>C の場合</li>
+</ul>
+<pre>gcc -O2 -o grader-simple grader-simple.c Memory.c -lm
+gcc -O2 -o grader-strict grader-strict.c Memory.c -lm
+</pre>
+<ul>
+<li>C++ の場合</li>
+</ul>
+<pre>g++ -std=c++11 -O2 -o grader-simple grader-simple.cpp Memory.cpp
+g++ -std=c++11 -O2 -o grader-strict grader-strict.cpp Memory.cpp
+</pre>
+<p>コンパイルが成功すれば，<code>grader-simple</code> あるいは <code>grader-strict</code> という実行ファイルが生成される．</p>
+<p>実際の採点プログラムは，grader-simple あるいは grader-strict とは異なることに注意すること．grader-simple や grader-strict は単一のプロセスとして起動する．これらのプログラムは，標準入力から入力を読み込み，標準出力に結果を出力する．</p>
+<h4>採点プログラムのサンプルの概要</h4>
+<p>grader-simple は，「採点の手順」(1) のように始めにまとめて <code>Memory</code> を呼び出すのではなく，あなたのプログラムと交互にやりとりを行うことによって問題文で説明された課題のシミュレーションを行う．「やりとりの例」を参照せよ．</p>
+<p>grader-strict は，「採点の手順」と同様に <code>Memory</code> を呼び出す．</p>
+<p>以下の点は実際の採点プログラムの挙動とは異なるので注意せよ：</p>
+<ul>
+<li>grader-simple は，「採点の手順」と <code>Memory</code> の呼び出し方が異なるので，不正解 <var>[4]</var> を判定しない．</li>
+<li>grader-simple や grader-strict は，不正解 <var>[6]</var> の判定を行わず，代わりに <var>M</var> の値を出力する．</li>
+</ul>
+<h4>採点プログラムのサンプルの入力</h4>
+<p>grader-simple や grader-strict は標準入力から以下の入力を読み込む．</p>
+<ul>
+<li><var>1</var> 行目には整数 <var>N, Q</var> が空白を区切りとして書かれている．<var>N</var> は文字列 <var>S</var> の長さを表し，<var>Q</var> (<var>0 \leqq Q \leqq 2^{31} - 1</var>) はテストケースの個数を表す．</li>
+<li>続く <var>Q</var> 行の各行には，各テストケースにおける文字列 <var>S</var> (長さ <var>N</var>) が書かれている．</li>
+</ul>
+<h4>採点プログラムのサンプルの出力</h4>
+<p>grader-simple や grader-strict は標準出力へ以下の情報を出力する (引用符は実際には出力されない)．</p>
+<ul>
+<li>「採点の手順」(2)(iii) における <var>M</var> の値を (各テストケースごとに) <var>1</var> 行に出力する．</li>
+<li>不正解 <var>[1], [2], [3], [4], [5]</var> のいずれかと判定された場合，不正解の種類が “<code>Wrong Answer [1]</code>” のように出力される．その時点でプログラムは終了し，それ以降の出力は行われない．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<p>すべての入力データは以下の条件を満たす．</p>
+<ul>
+<li><var>1 \leqq</var> (<var>S</var> の長さ) <var>\leqq 100</var>．</li>
+<li><var>S</var> の各文字は ‘<code>&lt;</code>’, ‘<code>&gt;</code>’, ‘<code>[</code>’, ‘<code>]</code>’ のいずれかである．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<h4>小課題 1 [<var>10</var> 点]</h4>
+<ul>
+<li>(<var>S</var> の長さ) <var>\leqq 8</var> を満たす．</li>
+</ul>
+<h4>小課題 2 [<var>10</var> 点]</h4>
+<ul>
+<li>(<var>S</var> の長さ) <var>\leqq 14</var> を満たす．</li>
+</ul>
+<h4>小課題 3 [<var>5</var> 点]</h4>
+<ul>
+<li>(<var>S</var> の長さ) <var>\leqq 24</var> を満たす．</li>
+</ul>
+<h4>小課題 4 [<var>5</var> 点]</h4>
+<ul>
+<li>(<var>S</var> の長さ) <var>\leqq 30</var> を満たす．</li>
+</ul>
+<h4>小課題 5 [<var>10</var> 点]</h4>
+<ul>
+<li><var>S</var> の各文字は ‘<code>&lt;</code>’, ‘<code>&gt;</code>’ のいずれかである．</li>
+</ul>
+<h4>小課題 6 [<var>60</var> 点]</h4>
+<p>追加の制限はない．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>やりとりの例</h3>
+<p>grader-simple が読み込む入力の例と，それに対応する関数の呼び出しの例を以下に示す．</p>
+<h4>入力例</h4>
+<pre>4 1
+&lt;&gt;[]
+</pre>
+<h4>呼び出しの例</h4>
+<div class="joisc2015-memory-ja-table">
+<table>
+<thead>
+<tr>
+<th>呼び出し</th>
+<th>戻り値</th>
+<th>呼び出し</th>
+<th>戻り値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Memory(4, 0)</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>Get(1)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td><code>&lt;</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>2015</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Memory(4, 2015)</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>Get(3)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td><code>[</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>3</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Memory(4, 3)</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>Get(2)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td><code>&gt;</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>23</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Memory(4, 23)</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>Get(4)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td><code>]</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>4194303</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Memory(4, 4194303)</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>Get(3)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td><code>[</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>-1</code></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>上のやりとりが行われたとき，grader-simple は <var>-1</var> を出力する．</p>
+<style>
+.joisc2015-memory-ja-table { position:relative;max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisc2015-memory-ja-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisc2015-memory-ja-table th,.joisc2015-memory-ja-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisc2015-memory-ja-table th { background:#f5f5f5; white-space:nowrap; }
+.joisc2015-memory-ja-table code { white-space:nowrap; }
+</style></section>
+</div>
+</span>
+</span>

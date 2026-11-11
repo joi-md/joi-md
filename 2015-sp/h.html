@@ -1,0 +1,125 @@
+<span class="lang">
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p><var>2015</var> 年の国際情報オリンピックはカザフスタンで行われる．カザフスタンの「カザフ」は，アルファベットで “QAZAQ” と綴られることがある．この QAZAQ は回文である．このことを知った JOI 君は，回文が好きになって，目についた文字列から回文を作ることにした．</p>
+<p>JOI 君が見つけたのは長さが <var>N</var> の文字列である．各文字には <var>1</var> から <var>C</var> までの整数が定まっており，文字列の文字を整数に置き換えた数列を <var>S = (S_{1}, S_{2}, \ldots, S_{N})</var> とする．この数列の <var>i</var> 番目から <var>j</var> 番目まで (<var>1 \leqq i \leqq j \leqq N</var>) を取り出した数列 <var>(S_{i}, S_{i+1}, \ldots, S_{j})</var> を断片 <var>(i, j)</var> と呼ぶ．断片 <var>(i, j)</var> がそれを逆転させた数列と等しいとき，すなわち，<var>(S_{i}, S_{i+1}, \ldots, S_{j}) = (S_{j}, S_{j - 1}, \ldots, S_{i})</var> が成り立つとき，断片 <var>(i, j)</var> は回文である．</p>
+<p>JOI 君は以下の操作により回文を作る．</p>
+<ol>
+<li>まず，<var>S</var> の断片を <var>1</var> つ選ぶ．選んだ断片を <var>T</var> とおく．</li>
+<li>断片 <var>T</var> を昇順にソートしたものを <var>T^{\prime}</var> とおく．</li>
+<li>数列 <var>S</var> に対し，断片 <var>T</var> を <var>T^{\prime}</var> に置き換える．置き換えたものを <var>S^{\prime}</var> とする．すなわち，JOI 君が断片 <var>(i, j)</var> を選んだとき，<var>S_{i}, S_{i+1}, \ldots, S_{j}</var> を昇順にソートしたものを <var>T_{i}^{\prime} \leqq T_{i+1}^{\prime} \leqq \cdots \leqq T_{j}^{\prime}</var> として，<var>S^{\prime} = (S_{1}</var>, <var>S_{2}</var>, <var>\ldots</var>, <var>S_{i - 1}</var>, <var>T_{i}^{\prime}</var>, <var>T_{i+1}^{\prime}</var>, <var>\ldots</var>, <var>T_{j}^{\prime}</var>, <var>S_{j+1}</var>, <var>\ldots</var>, <var>S_{N})</var> とする．</li>
+<li>その後，<var>S^{\prime}</var> の断片で回文になっているものを探す．</li>
+</ol>
+<p>JOI 君はこの操作により，できるだけ長い回文を作りたい．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p>JOI 君の見つけた文字列を表す数列 <var>S</var> が与えられる．JOI 君が作ることができる回文の長さの最大値を求めよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>標準入力から以下の入力を読み込め．</p>
+<ul>
+<li><var>1</var> 行目には，整数 <var>N,C</var> が空白を区切りとして書かれている．<var>N</var> は JOI 君の見つけた文字列の長さを表す．<var>C</var> は文字に定められた整数の上限を表す．</li>
+<li>続く <var>N</var> 行には，JOI 君の見つけた文字列を表す数列 <var>S</var> の情報が書かれている．これらの行のうちの <var>i</var> 行目 (<var>1 \leqq i \leqq N</var>) には整数 <var>S_{i}</var> が書かれている．<var>S_{i}</var> は数列 <var>S</var> の <var>i</var> 番目の整数を表す．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に，JOI 君が作ることができる回文の長さの最大値を表す整数を <var>1</var> 行で出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<p>すべての入力データは以下の条件を満たす．</p>
+<ul>
+<li><var>1 \leqq N \leqq 3\,000</var>．</li>
+<li><var>1 \leqq C \leqq 3\,000</var>．</li>
+<li><var>1 \leqq S_{i} \leqq C</var> (<var>1 \leqq i \leqq N</var>)．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<h4>小課題 1 [<var>10</var> 点]</h4>
+<p>以下の条件を満たす．</p>
+<ul>
+<li><var>N \leqq 50</var>．</li>
+<li><var>C \leqq 50</var>．</li>
+</ul>
+<h4>小課題 2 [<var>90</var> 点]</h4>
+<p>追加の制限はない．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>12 26
+26
+17
+17
+17
+1
+26
+1
+17
+19
+20
+1
+14
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>8
+</pre>
+<p>この入力例では，<var>N = 12</var>，<var>C = 26</var> で，<var>S = (26, 17, 17, 17, 1, 26, 1, 17, 19, 20, 1, 14)</var> である．ここで，断片 <var>(4, 8)</var> を昇順にソートすることで <var>S^{\prime} = (26, 17, 17, 1, 1, 17, 17, 26, 19, 20, 1, 14)</var> となり，断片 <var>(1, 8)</var> が回文になる．この回文の長さは <var>8</var> であり，これが最長である．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>4 3
+1
+2
+3
+2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>3
+</pre>
+<p>この入力例では，<var>S = (1, 2, 3, 2)</var> である．ここで，断片 <var>(1, 1)</var> を昇順にソートすることで，<var>S^{\prime} = (1, 2, 3, 2)</var> となる．<var>S</var> と <var>S^{\prime}</var> は同じ数列である．<var>S^{\prime}</var> の断片 <var>(2, 4)</var> が回文になる．この回文の長さは <var>3</var> であり，これが最長である．</p></section>
+</div>
+</span>
+</span>

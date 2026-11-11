@@ -1,0 +1,318 @@
+<span class="lang">
+<span class="lang-ja">
+<blockquote>
+<p><strong>AtCoder での提出方法</strong></p>
+<p><a href="https://img.atcoder.jp/joisc2015/navigation-dist-ffc1d7faf9.zip">配布ファイル</a></p>
+<ul>
+<li>C または C++ を使用し，<code>navigation_lib.h</code> を include して，<code>Anna</code> と <code>Bruno</code> を <strong>1 つのソースコード</strong>の中で実装して提出してください．このジャッジは C / C++ 以外の言語には対応していません．</li>
+</ul>
+</blockquote>
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>Anna は IOI 諸島の住民で，友達の Bruno を IOI 諸島に招待することになった．IOI 諸島は島 <var>1</var> から島 <var>N</var> までの <var>N</var> 個の島からなる．また，IOI 諸島には <var>N - 1</var> 本の橋があり，橋には <var>0</var> から <var>N - 2</var> までの番号が付けられている．橋 <var>i</var> は島 <var>A_{i}</var> と島 <var>B_{i}</var> を双方向に結ぶ．また，すべての島から橋を通ってすべての島へ行くことができる．Anna の家は島 <var>T</var> にあるが，Bruno は Anna の家のある島の番号を知らない．</p>
+<p>Bruno を助けるために，Anna は <var>N</var> 個の島それぞれに <var>1</var> 個の整数の書かれた旗を <var>1</var> 本ずつ立てることにした．Anna は Bruno の到着する島の番号を知らない．</p>
+<p>Bruno は島 <var>S</var> に船で到着する．島 <var>S</var> に到着した Bruno には，以下の情報が与えられる．</p>
+<ul>
+<li>到着した島の番号 <var>S</var> と，島 <var>S</var> に立っている旗に書かれた整数</li>
+<li>島 <var>S</var> と橋で直接結ばれているすべての島の番号と，それらの島に立っている旗に書かれた整数</li>
+</ul>
+<p>Bruno は島 <var>S</var> から島 <var>T</var> に向かう際に，通る橋の本数が最も少ない経路を通らなければならない．</p>
+<p>はたして Bruno は，自分自身に与えられた情報のみを元に，自分が到着した島 <var>S</var> が Anna の家がある島 <var>T</var> かどうかを判定して，<var>S</var> と <var>T</var> が異なる場合は次に向かうべき島を正しく選ぶことができるだろうか．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p>IOI 諸島の情報が与えられたとき，整数の書かれた旗を立てる Anna の戦略を実装したプログラムを作成せよ．また，島に到着したときに与えられる情報を元に，次の行動を正しく選択する Bruno の戦略を実装したプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>実装の詳細</h3>
+<p>あなたは同じプログラミング言語で <var>2</var> つのファイルを提出しなければならない．</p>
+<p><var>1</var> つ目のファイルは <code>Anna.c</code> または <code>Anna.cpp</code> という名前である．このファイルは Anna の戦略を実装したファイルであり，以下のルーチンを実装していなければならない．</p>
+<ul>
+<li>
+<p><code>void Anna(int K, int N, int T, int A[], int B[])</code></p>
+<p>このルーチンは，最初に <var>1</var> 回だけ呼び出される．</p>
+<ul>
+<li>引数 <code>K</code> は小課題の番号 <var>K</var> である．</li>
+<li>引数 <code>N</code> は，IOI 諸島の島の数 <var>N</var> である．</li>
+<li>引数 <code>T</code> は，Anna の家のある島の番号 <var>T</var> である．</li>
+<li>引数 <code>A</code>，引数 <code>B</code> は，長さ <var>N - 1</var> の配列である．要素 <code>A[i]</code>，<code>B[i]</code> は，橋 <var>i</var> が島 <code>A[i]</code> と <code>B[i]</code> を結ぶことを表す (<var>0 \leqq i \leqq N - 2</var>)．</li>
+</ul>
+</li>
+</ul>
+<p>また，次のルーチンを呼び出し，島に旗を立てなければならない．</p>
+<ul>
+<li>
+<p><code>void Flag(int I, int V)</code></p>
+<ul>
+<li>引数 <code>I</code> は，Anna が旗を立てる島の番号を表す．</li>
+<li>引数 <code>V</code> は，Anna が旗に書く整数を表す．</li>
+</ul>
+<p>ただし，<code>Flag</code> の呼び出しは以下を満たすこと．</p>
+<ul>
+<li><code>I</code> は <var>1</var> 以上 <var>N</var> 以下の整数でなければならない．これを満たさない場合，不正解 <var>[1]</var> となる．</li>
+<li><code>Flag</code> を同じ引数 <code>I</code> で <var>2</var> 回以上呼び出してはならない．これを満たさない場合，不正解 <var>[2]</var> となる．</li>
+<li><code>V</code> は <var>0</var> 以上 <var>N</var> 以下の整数でなければならない．これを満たさない場合，不正解 <var>[3]</var> となる．</li>
+<li><code>Flag</code> はちょうど <var>N</var> 回呼び出さなければならない．これを満たさない場合，不正解 <var>[4]</var> となる．</li>
+</ul>
+<p><code>Flag</code> の呼び出しが不正解と判定された場合，その時点でプログラムの実行は終了される．</p>
+</li>
+</ul>
+<p><var>2</var> つ目のファイルは <code>Bruno.c</code> または <code>Bruno.cpp</code> という名前である．このファイルは Bruno の戦略を実装したファイルであり，次のルーチンを実装していなければならない．</p>
+<ul>
+<li>
+<p><code>void Bruno(int K, int S, int F, int L, int P[], int Q[])</code></p>
+<p>このルーチンは，<code>Anna</code> が呼ばれた後に，<var>1</var> 回だけ呼び出される．</p>
+<ul>
+<li>引数 <code>K</code> は小課題の番号 <var>K</var> である．</li>
+<li>引数 <code>S</code> は，Bruno の到着した島の番号 <var>S</var> を表す．</li>
+<li>引数 <code>F</code> は，島 <var>S</var> に立てられた旗に書かれた整数を表す．</li>
+<li>引数 <code>L</code> は，島 <var>S</var> に橋で直接結ばれている島の個数 <var>L</var> である．</li>
+<li>引数 <code>P</code> は，長さ <var>L</var> の配列であり，島 <var>S</var> に橋で直接結ばれている島の番号を持つ．</li>
+<li>引数 <code>Q</code> は，長さ <var>L</var> の配列であり，要素 <code>Q[j]</code> は，島 <code>P[j]</code> に立てられた旗に書かれた数を表す (<var>0 \leqq j \leqq L - 1</var>)．</li>
+</ul>
+</li>
+</ul>
+<p>また，次のルーチンを呼び出して，Bruno が到着した島 <var>S</var> に Anna の家があるかどうかを判定して，もしそうでない場合は次に向かうべき島を正しく選ばなければならない．</p>
+<ul>
+<li>
+<p><code>void Answer(int X)</code></p>
+<ul>
+<li>引数 <code>X</code> は，Bruno が到着した島に Anna の家がある場合は Anna の家がある島の番号 <var>T</var> である．そうでない場合は，Bruno が次に向かうべき島の番号である．</li>
+</ul>
+<p>ただし，<code>Answer</code> の呼び出しは以下を満たすこと．</p>
+<ul>
+<li>引数 <code>X</code> は，配列 <code>P</code> のいずれかの要素，または <var>S</var> でなければならない．これを満たさない場合，不正解 <var>[5]</var> となる．</li>
+<li><code>Answer</code> を <var>2</var> 回以上呼び出した場合，不正解 <var>[6]</var> となる．</li>
+<li><code>Answer</code> を呼び出さなかった場合，不正解 <var>[7]</var> となる．</li>
+<li>島 <var>S</var> に Anna の家があり，引数 <code>X</code> が <var>T</var> でないとき，不正解 <var>[8]</var> となる．</li>
+<li>島 <var>S</var> に Anna の家がなく，引数 <code>X</code> が次に向かうべき島でないとき，不正解 <var>[9]</var> となる．</li>
+</ul>
+</li>
+</ul>
+<p>ルーチン <code>Bruno</code> が呼び出された後，答えの判定が行われる．</p>
+<p>内部での使用のために他のルーチンを実装したり，グローバル変数を宣言するのは自由である．ただし，提出された <var>2</var> つのプログラムは，採点プログラムとまとめてリンクされて <var>1</var> つの実行ファイルになるので，各ファイル内のすべてのグローバル変数と内部ルーチンを <code>static</code> で宣言して，他のファイルとの干渉を避ける必要がある．採点時には，このプログラムは Anna 側，Bruno 側として <var>2</var> 個のプロセスとして実行されるので，Anna 側と Bruno 側でプログラム中のグローバル変数を共有することはできない．</p>
+<p>あなたの提出は標準入力・標準出力，あるいは他のファイルといかなる方法でもやりとりしてはならない．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>コンパイル・実行の方法</h3>
+<p>作成したプログラムをテストするための，採点プログラムのサンプルが，コンテストサイトからダウンロードできるアーカイブの中に含まれている．このアーカイブには，提出しなければならないファイルのサンプルも含まれている．</p>
+<p>採点プログラムのサンプルは <var>1</var> つのファイルからなる．そのファイルは <code>grader.c</code> または <code>grader.cpp</code> である．作成したプログラムをテストするには，次のようにコマンドを実行する．</p>
+<ul>
+<li>C の場合</li>
+</ul>
+<pre>gcc -O2 -o grader grader.c Anna.c Bruno.c -lm
+</pre>
+<ul>
+<li>C++ の場合</li>
+</ul>
+<pre>g++ -std=c++11 -O2 -o grader grader.cpp Anna.cpp Bruno.cpp
+</pre>
+<p>コンパイルが成功すれば，<code>grader</code> という実行ファイルが生成される．</p>
+<p>実際の採点プログラムは，採点プログラムのサンプルとは異なることに注意すること．採点プログラムのサンプルは単一のプロセスとして起動する．このプログラムは，標準入力から入力を読み込み，標準出力に結果を出力する．</p>
+<h4>採点プログラムのサンプルの入力</h4>
+<p>採点プログラムのサンプルは標準入力から以下の入力を読み込む．</p>
+<ul>
+<li><var>1</var> 行目には，整数 <var>N, S , T, K</var> が空白を区切りとして書かれており，IOI 諸島の島の個数が <var>N</var>，Bruno の到着する島の番号が <var>S</var> ，Anna の家のある島の番号が <var>T</var>，小課題の番号が <var>K</var> であることを表す．</li>
+<li>続く <var>N - 1</var> 行のうちの <var>i + 1</var> 行目 (<var>0 \leqq i \leqq N - 2</var>) には，整数 <var>A_{i}, B_{i}</var> が空白を区切りとして書かれている．これは，橋 <var>i</var> が島 <var>A_{i}</var> と島 <var>B_{i}</var> を双方向に結ぶことを表す．</li>
+<li>次の行には，<var>1</var> つの整数 <var>Y</var> が書かれている．この整数はこの入力に対する答えである．つまり，<code>Answer</code> の引数として <var>Y</var> を与えた場合に採点プログラムのサンプルが正解と判定し，それ以外の場合に不正解と判定することを表す．</li>
+</ul>
+<h4>採点プログラムのサンプルの出力</h4>
+<p>プログラムの実行が正常に終了した場合，採点プログラムのサンプルは標準出力へ以下の情報を <var>1</var> 行で出力する (引用符は実際には出力されない)．</p>
+<ul>
+<li>正解の場合，呼び出した関数 <code>Flag</code> の引数 <code>V</code> の最大値が “<code>Accepted : V_max = 2</code>” のように出力される．</li>
+<li>不正解の場合，不正解の種類が “<code>Wrong Answer [1]</code>” のように出力される．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<p>すべての入力データは以下の条件を満たす．</p>
+<ul>
+<li><var>2 \leqq N \leqq 100\,000</var>．</li>
+<li><var>1 \leqq S \leqq N</var>．</li>
+<li><var>1 \leqq T \leqq N</var>．</li>
+<li><var>1 \leqq A_{i} \leqq N</var> (<var>0 \leqq i \leqq N - 2</var>)．</li>
+<li><var>1 \leqq B_{i} \leqq N</var> (<var>0 \leqq i \leqq N - 2</var>)．</li>
+<li><var>1 \leqq K \leqq 4</var>．</li>
+<li>IOI 諸島のすべての島から橋を通ってすべての島に行くことができる．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<h4>小課題 1 [<var>10</var> 点]</h4>
+<ul>
+<li><var>K = 1</var> を満たす．</li>
+</ul>
+<h4>小課題 2 [<var>15</var> 点]</h4>
+<ul>
+<li><var>K = 2</var> を満たす．</li>
+<li><code>Flag</code> に渡す引数 <code>V</code> の値は <var>0</var> 以上 <var>2</var> 以下でなければならない．</li>
+</ul>
+<h4>小課題 3 [<var>20</var> 点]</h4>
+<ul>
+<li><var>K = 3</var> を満たす．</li>
+<li><code>Flag</code> に渡す引数 <code>V</code> の値は <var>0</var> または <var>1</var> でなければならない．</li>
+<li>ちょうど <var>2</var> つの島と橋で直接結ばれている島はない．</li>
+<li><var>S \ne T</var> を満たす．</li>
+</ul>
+<h4>小課題 4 [<var>55</var> 点]</h4>
+<ul>
+<li><var>K = 4</var> を満たす．</li>
+<li><code>Flag</code> に渡す引数 <code>V</code> の値は <var>0</var> または <var>1</var> でなければならない．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>やりとりの例</h3>
+<p>採点プログラムのサンプルが読み込む入力の例と，それに対応するルーチンの呼び出しの例を以下に示す．</p>
+<h4>入力例</h4>
+<pre>5 3 2 1
+1 3
+3 2
+3 4
+4 5
+2
+</pre>
+<h4>ルーチンの呼び出しの例</h4>
+<div class="joisc2015-navigation-ja-table">
+<table>
+<thead>
+<tr>
+<th>Anna 側</th>
+<th>Bruno 側</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Anna(...)</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Flag(1,1)</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Flag(2,1)</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Flag(3,0)</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Flag(4,0)</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Flag(5,1)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Bruno(...)</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Answer(2)</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>この例での <code>Flag</code> の呼び出しは，必ずしも意味のある呼び出しとは限らないことに注意せよ．このとき， <code>Anna(...)</code> と <code>Bruno(...)</code> に渡される引数は次の通りである．</p>
+<div class="joisc2015-navigation-ja-arguments">
+<div class="joisc2015-navigation-ja-table">
+<table>
+<thead>
+<tr>
+<th>引数</th>
+<th><code>Anna(...)</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>K</code></td>
+<td><var>1</var></td>
+</tr>
+<tr>
+<td><code>N</code></td>
+<td><var>5</var></td>
+</tr>
+<tr>
+<td><code>T</code></td>
+<td><var>2</var></td>
+</tr>
+<tr>
+<td><code>A</code></td>
+<td><var>\lbrace  1, 3, 3, 4\rbrace</var></td>
+</tr>
+<tr>
+<td><code>B</code></td>
+<td><var>\lbrace  3, 2, 4, 5\rbrace</var></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="joisc2015-navigation-ja-table">
+<table>
+<thead>
+<tr>
+<th>引数</th>
+<th><code>Bruno(...)</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>K</code></td>
+<td><var>1</var></td>
+</tr>
+<tr>
+<td><code>S</code></td>
+<td><var>3</var></td>
+</tr>
+<tr>
+<td><code>F</code></td>
+<td><var>0</var></td>
+</tr>
+<tr>
+<td><code>P</code></td>
+<td><var>\lbrace  2, 1, 4\rbrace</var></td>
+</tr>
+<tr>
+<td><code>Q</code></td>
+<td><var>\lbrace  1, 1, 0\rbrace</var></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<style>
+.joisc2015-navigation-ja-table { max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisc2015-navigation-ja-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisc2015-navigation-ja-table th,.joisc2015-navigation-ja-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisc2015-navigation-ja-table th { background:#f5f5f5; }
+.joisc2015-navigation-ja-table code { white-space:nowrap; }
+.joisc2015-navigation-ja-arguments { display:flex;align-items:flex-start;gap:1.5em;max-width:100%;overflow-x:auto;margin:1em 0;position:relative; }
+.joisc2015-navigation-ja-arguments > .joisc2015-navigation-ja-table { flex:0 0 auto;overflow:visible;margin:0; }
+</style></section>
+</div>
+</span>
+</span>

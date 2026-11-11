@@ -1,0 +1,129 @@
+<span class="lang">
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>K 理事長は占いが好きで，いつも様々な占いをしている．今日は，表の面に ‘<code>I</code>’ が，裏の面に ‘<code>O</code>’ が書かれたカードを使って今年の IOI での日本選手団の出来を占うことにした．</p>
+<p>占いの方法は次のようなものである．</p>
+<ol>
+<li>まず，正の整数 <var>A, B,C, D, E</var> を決める．</li>
+<li><var>A + B + C + D + E</var> 枚のカードを横 <var>1</var> 列に並べる．このとき，左から <var>A</var> 枚は表，続く <var>B</var> 枚は裏，続く <var>C</var> 枚は表，続く <var>D</var> 枚は裏，続く <var>E</var> 枚は表にして並べる．このように並べると，左から順に ‘<code>I</code>’ が <var>A</var> 個，‘<code>O</code>’ が <var>B</var> 個，‘<code>I</code>’ が <var>C</var> 個，‘<code>O</code>’ が <var>D</var> 個，‘<code>I</code>’ が <var>E</var> 個並ぶことになる．</li>
+<li>あらかじめ決められた <var>N</var> 種類の操作の中から <var>1</var> つ以上の操作を選び，好きな順番で行う．このとき，同じ種類の操作を <var>2</var> 回以上行っても良い．<var>i</var> (<var>1 \leqq i \leqq N</var>) 種類目の操作は「左から <var>L_{i}</var> 枚目から <var>R_{i}</var> 枚目までのカードの表裏をすべてひっくり返す」というものである．<var>1</var> 枚のカードをひっくり返すのに <var>1</var> 秒かかる．したがって，<var>i</var> 種類目の操作を行うには，<var>R_{i} - L_{i} + 1</var> 秒かかる．</li>
+<li>操作が終わった後，すべてのカードが表になっていれば占いは成功となる．</li>
+</ol>
+<p>K 理事長は必要以上にカードをひっくり返すことを避けるために，カードを実際に使って占う前にまず，占いを成功させることが可能なのかどうかを求めることにした．さらに，もし占いを成功させることが可能な場合は，占いを成功させるためにかかる時間の最小値を求めることにした．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p>カードの並べ方の情報と，あらかじめ決められた操作の情報が与えられる．占いを成功させることが可能かどうかを求め，可能である場合は占いを成功させるためにかかる時間の最小値を求めるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>標準入力から以下のデータを読み込め．</p>
+<ul>
+<li><var>1</var> 行目には，整数 <var>A, B,C, D, E</var> が空白を区切りとして書かれている．これは，占いの最初に，左から <var>A</var> 枚は表，続く <var>B</var> 枚は裏，続く <var>C</var> 枚は表，続く <var>D</var> 枚は裏，続く <var>E</var> 枚は表にしてカードを並べることを表す．</li>
+<li><var>2</var> 行目には，整数 <var>N</var> が書かれている．これは，あらかじめ決められた操作が <var>N</var> 種類あることを表す．</li>
+<li>続く <var>N</var> 行のうちの <var>i</var> 行目 (<var>1 \leqq i \leqq N</var>) には，整数 <var>L_{i}, R_{i}</var> が空白を区切りとして書かれている．これは， <var>i</var> 種類目の操作が「左から <var>L_{i}</var> 枚目から <var>R_{i}</var> 枚目までのカードの表裏をすべてひっくり返す」という操作であることを表す．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>占いを成功させることが可能な場合は，占いを成功させるためにかかる時間の最小値を表す整数を標準出力に <var>1</var> 行で出力せよ．そうでない場合は，<var>-1</var> を出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<p>すべての入力データは以下の条件を満たす．</p>
+<ul>
+<li><var>1 \leqq A \leqq 100\,000</var>．</li>
+<li><var>1 \leqq B \leqq 100\,000</var>．</li>
+<li><var>1 \leqq C \leqq 100\,000</var>．</li>
+<li><var>1 \leqq D \leqq 100\,000</var>．</li>
+<li><var>1 \leqq E \leqq 100\,000</var>．</li>
+<li><var>1 \leqq N \leqq 100\,000</var>．</li>
+<li><var>1 \leqq L_{i} \leqq R_{i} \leqq A + B + C + D + E</var> (<var>1 \leqq i \leqq N</var>)．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<h4>小課題 1 [<var>15</var> 点]</h4>
+<ul>
+<li><var>N \leqq 10</var> を満たす．</li>
+</ul>
+<h4>小課題 2 [<var>50</var> 点]</h4>
+<p>以下の条件を満たす．</p>
+<ul>
+<li><var>1 \leqq A \leqq 50</var>．</li>
+<li><var>1 \leqq B \leqq 50</var>．</li>
+<li><var>1 \leqq C \leqq 50</var>．</li>
+<li><var>1 \leqq D \leqq 50</var>．</li>
+<li><var>1 \leqq E \leqq 50</var>．</li>
+</ul>
+<h4>小課題 3 [<var>35</var> 点]</h4>
+<p>追加の制限はない．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>1 2 3 4 5
+3
+2 3
+2 6
+4 10
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>12
+</pre>
+<p>最初カードを，<code>IOOIIIOOOOIIIII</code> と並べる．</p>
+<p><var>2</var> 種類目の操作を行うと，<code>IIIOOOOOOOIIIII</code> となる．この操作には <var>5</var> 秒かかる．</p>
+<p>続いて <var>3</var> 種類目の操作を行うと，<code>IIIIIIIIIIIIIII</code> となり，占いを成功させることができる．この操作には <var>7</var> 秒かかる．</p>
+<p><var>12</var> 秒で占いを成功させることができる．これが最小値であるので，<var>12</var> を出力する．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>1 1 1 1 1
+1
+1 1
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>-1
+</pre>
+<p>この入力例では占いを成功させることができないため，<var>-1</var> を出力する．</p></section>
+</div>
+</span>
+</span>

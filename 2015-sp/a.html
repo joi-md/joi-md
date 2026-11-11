@@ -1,0 +1,125 @@
+<span class="lang">
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>テキストエディタの最も重要な機能の <var>1</var> つとして，コピー＆ペースト (複写・貼付) がある．JOI 社は，コピー＆ペーストを非常に高速に処理するテキストエディタの開発を進めている．JOI 社に所属する優秀なプログラマであるあなたは，核となるコピー＆ペースト処理のテストの担当となった．JOI 社の命運が懸かっているので，何としても正確かつ高速なプログラムを作成したい．</p>
+<p>具体的な仕様は次のとおりである．初め，ファイルの内容は文字列 <var>S</var> である．引き続いて，コピー＆ペーストの操作が <var>N</var> 回行われる．<var>i</var> 回目の操作は，位置 <var>A_{i}</var> から位置 <var>B_{i}</var> までの文字列を複写し，複写された文字列を元の文字列の位置 <var>C_{i}</var> に挿入貼付する，というものである．ここで，位置 <var>x</var> とは，文字列の先頭から <var>x</var> 個の文字をたどった直後の箇所を表す (位置 <var>0</var> は文字列の先頭である)．例えば，文字列 <code>copypaste</code> の位置 <var>6</var> とは，文字 ‘<code>a</code>’ と文字 ‘<code>s</code>’ の間を表す．位置 <var>9</var> は文字 ‘<code>e</code>’ の後ろ，すなわち，この文字列の末尾を表す．ただし，操作後に文字列の長さが <var>M</var> を超えた場合，長さが <var>M</var> になるまで文字列の右端から順に文字が削除される．</p>
+<p>あなたの任務は，エディタのテストのため，<var>N</var> 回の操作後に得られる文字列の最初の <var>K</var> 文字を予め求めておくことである．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p>整数 <var>K</var>，文字列の長さの上限 <var>M</var>，初めの文字列 <var>S</var> ，操作の回数 <var>N</var> および <var>N</var> 回のコピー＆ペーストの操作の指示が与えられたとき，操作後の文字列の最初の <var>K</var> 文字を求めるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>標準入力から以下の入力を読み込め．</p>
+<ul>
+<li><var>1</var> 行目には，整数 <var>K, M</var> が空白を区切りとして書かれている．<var>K</var> は出力する文字数を表し，<var>M</var> は文字列の長さの上限を表す．</li>
+<li><var>2</var> 行目には，文字列 <var>S</var> が書かれており，初めの文字列を表す．</li>
+<li><var>3</var> 行目には，整数 <var>N</var> が書かれており，操作の回数を表す．</li>
+<li>続く <var>N</var> 行のうちの <var>i</var> 行目 (<var>1 \leqq i \leqq N</var>) には，整数 <var>A_{i}, B_{i}, C_{i}</var> が空白を区切りとして書かれている．これは，<var>i</var> 回目の操作は位置 <var>A_{i}</var> から位置 <var>B_{i}</var> までの文字列を複写し位置 <var>C_{i}</var> に挿入貼付する，というものであることを表す．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に，<var>N</var> 回の操作後の文字列の最初の <var>K</var> 文字を <var>1</var> 行で出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<p>すべての入力データは以下の条件を満たす．</p>
+<ul>
+<li><var>1 \leqq K \leqq 200</var>．</li>
+<li><var>1 \leqq M \leqq 1\,000\,000\,000</var>．</li>
+<li><var>S</var> の各文字は英アルファベットの小文字 (‘<code>a</code>’ – ‘<code>z</code>’) である．</li>
+<li><var>K \leqq {}</var>(<var>S</var> の長さ)<var>{} \leqq \min \lbrace M, 200\,000\rbrace</var>．</li>
+<li><var>1 \leqq N \leqq 200\,000</var>．</li>
+<li><var>i</var> 回目の操作の直前の文字列の長さを <var>L_{i}</var> とすると，<var>0 \leqq A_{i} &lt; B_{i} \leqq L_{i}</var> および <var>0 \leqq C_{i} \leqq L_{i}</var> (<var>1 \leqq i \leqq N</var>)．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<h4>小課題 1 [<var>10</var> 点]</h4>
+<p>以下の条件を満たす．</p>
+<ul>
+<li><var>M \leqq 2\,000</var>．</li>
+<li><var>N \leqq 2\,000</var>．</li>
+</ul>
+<h4>小課題 2 [<var>90</var> 点]</h4>
+<p>追加の制限はない．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>2 18
+copypaste
+4
+3 6 8
+1 5 2
+4 12 1
+17 18 0
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>ac
+</pre>
+<p>この例では，<var>N = 4</var> 回のコピー＆ペーストの操作は以下のように行われる．</p>
+<ul>
+<li>初めの文字列は <code>copypaste</code> である．</li>
+<li><var>1</var> 回目の操作では，位置 <var>3</var> から位置 <var>6</var> までの文字列 <code>ypa</code> が複写され，位置 <var>8</var> に挿入貼付されることで，文字列 <code>copypastypae</code> を得る．</li>
+<li><var>2</var> 回目の操作では，位置 <var>1</var> から位置 <var>5</var> までの文字列 <code>opyp</code> が複写され，位置 <var>2</var> に挿入貼付されることで，文字列 <code>coopyppypastypae</code> を得る．</li>
+<li><var>3</var> 回目の操作では，位置 <var>4</var> から位置 <var>12</var> までの文字列 <code>yppypast</code> が複写され，位置 <var>1</var> に挿入貼付されることで，文字列 <code>cyppypastoopyppypastypae</code> を得るが，長さが <var>M = 18</var> を超えているため，右端から文字が削除され，文字列 <code>cyppypastoopyppypa</code> を得る．</li>
+<li><var>4</var> 回目の操作では，位置 <var>17</var> から位置 <var>18</var> までの文字列 <code>a</code> が複写され，位置 <var>0</var> に挿入貼付されることで，文字列 <code>acyppypastoopyppypa</code> を得るが，長さが <var>M = 18</var> を超えているため，右端から文字が削除され，文字列 <code>acyppypastoopyppyp</code> を得る．</li>
+</ul>
+<p>よって，操作後の文字列 <code>acyppypastoopyppyp</code> の先頭 <var>K = 2</var> 文字である <code>ac</code> を出力する．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>6 100
+jjooii
+3
+5 6 2
+4 6 1
+1 2 3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>joioji
+</pre></section>
+</div>
+</span>
+</span>
