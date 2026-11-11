@@ -1,0 +1,384 @@
+<span class="lang">
+<span class="lang-en">
+<blockquote>
+<p><strong>Submission on AtCoder</strong></p>
+<p>The standard input contains only a test case number (<var>1, 2, \ldots, 6</var>). Compute the answers in advance, embed them in your program, and print the answer for the specified case to the standard output.</p>
+<p><a href="https://img.atcoder.jp/joisc2018/road.zip">Input data</a></p>
+</blockquote>
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>There are <var>N</var> cities in IOI kingdom, numbered from 1 to <var>N</var>. There are also <var>N - 1</var> bidirectional roads, numbered from 1 to <var>N - 1</var>. The <var>i</var>-th road connects the <var>A_{i}</var>-th city and the <var>B_{i}</var>-th city. There exists a path between any pair of vertices.</p>
+<p>The distance between two cities are defined as the smallest number of roads which connect the two cities. The total distance of IOI kingdom is defined as the sum of the distances between all pair of different cities.</p>
+<p>The king of IOI kingdom plans to construct <var>K</var> additional roads in order to reduce the total distance and improve convenience.</p>
+<p>You, as an assistant of the king, help the king by finding a good plan.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Task</h3>
+<p>Given the information of existing roads in IOI kingdom and the number of roads to construct, output a plan for constructing <var>K</var> roads. The less the total distance is, the more points you gain.</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>There are 6 inputs for this task. Read the following data from each input.</p>
+<ul>
+<li>The first line of input contains three space separated integers <var>N, K</var> and <var>W_{0}</var>. These mean that IOI kingdom has <var>N</var> cities and that the king plans to construct <var>K</var> roads. <var>W_{0}</var> is a parameter for scoring.</li>
+<li>The <var>i</var>-th (<var>1 \le i \le N - 1</var>) line of the following <var>N - 1</var> lines contains integers <var>A_{i}</var> and <var>B_{i}</var>, the cities which the <var>i</var>-th road connects.</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>Write <var>K</var> lines on your submission file.</p>
+<p>The <var>j</var>-th line of the output contains two integers <var>X_{j}, Y_{j}</var> (<var>1 \le X_{j} \le N</var>, <var>1 \le Y_{j} \le N</var>), representing the cities connected by a road to construct.</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Submission</h3>
+<p>Submit the output for each of the inputs. The output is valid only if it follows the format on the Output section above.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<p>All input data satisfy the following conditions.</p>
+<ul>
+<li><var>1 \le N \le 1\,000</var>．</li>
+<li><var>1 \le A_{i} &lt; B_{i} \le N</var> (<var>1 \le i \le N - 1</var>)．</li>
+<li><var>(A_{i}, B_{i}) \ne (A_{k}, B_{k})</var> (<var>1 \le i &lt; k \le N - 1</var>)．</li>
+<li>There are a path between any pair of cities.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Scoring</h3>
+<p>For each inputs, your score is calculated as follows:</p>
+<p>If your output does not follow the format, your score is zero point. Otherwise, let the total distance after constructing the roads according to your plan be <var>W</var>, and let the point for the input be <var>P</var>. Let us define</p>
+<p><var>S=1.0 - \dfrac{W}{W_0}</var></p>
+<p>Here, the score you gain for the input is</p>
+<p><var>\min(P, P \times 20^S)</var></p>
+<p>The score for this task is the sum of the scores for each input, rounded to the nearest integer.</p>
+<p>The values of <var>N, K, W_{0}, P</var> on each input are as follows:</p>
+<div class="joisc2018-road-en-table">
+<table>
+<thead>
+<tr>
+<th>Input Data</th>
+<th><var>N</var></th>
+<th><var>K</var></th>
+<th><var>W_{0}</var></th>
+<th><var>P</var></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><var>1</var></td>
+<td><var>20</var></td>
+<td><var>4</var></td>
+<td><var>512</var></td>
+<td><var>10</var></td>
+</tr>
+<tr>
+<td><var>2</var></td>
+<td><var>1000</var></td>
+<td><var>100</var></td>
+<td><var>2650000</var></td>
+<td><var>18</var></td>
+</tr>
+<tr>
+<td><var>3</var></td>
+<td><var>1000</var></td>
+<td><var>300</var></td>
+<td><var>1755000</var></td>
+<td><var>18</var></td>
+</tr>
+<tr>
+<td><var>4</var></td>
+<td><var>1000</var></td>
+<td><var>100</var></td>
+<td><var>2900000</var></td>
+<td><var>18</var></td>
+</tr>
+<tr>
+<td><var>5</var></td>
+<td><var>1000</var></td>
+<td><var>100</var></td>
+<td><var>2690000</var></td>
+<td><var>18</var></td>
+</tr>
+<tr>
+<td><var>6</var></td>
+<td><var>1000</var></td>
+<td><var>300</var></td>
+<td><var>1745000</var></td>
+<td><var>18</var></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input and Output</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>4 1 8
+1 2
+2 3
+3 4
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>1 4
+</pre>
+<p>In addition to the existing roads, by constructing a road connecting the 1-st city and the 4-th city, the total distance becomes 8.</p>
+<p>Let <var>P = 10</var> for this input. Here, <var>S = 0</var>, thus the score is <var>10</var> points.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>4 1 8
+1 2
+2 3
+3 4
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>1 2
+</pre>
+<p>In this case, the total distance is 10 after constrcting the road. Let <var>P = 10</var> for this input. Here, <var>S = -0.25</var>, thus the score is <var>4.728 \cdots</var> points.</p>
+<style>
+.joisc2018-road-en-table { position:relative;max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisc2018-road-en-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisc2018-road-en-table th,.joisc2018-road-en-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisc2018-road-en-table th { background:#f5f5f5; }
+.joisc2018-road-en-table .katex { position:relative; }
+</style></section>
+</div>
+</span>
+<span class="lang-ja">
+<blockquote>
+<p><strong>AtCoder での提出方法</strong></p>
+<p>標準入力にはテストケース番号 (<var>1, 2, \ldots, 6</var>) のみが与えられます．各テストケースの解答をあらかじめ作成してプログラムに埋め込み，番号に応じた解答を標準出力へ出力してください．</p>
+<p><a href="https://img.atcoder.jp/joisc2018/road.zip">入力データ</a></p>
+</blockquote>
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>IOI 王国には <var>N</var> 個の都市がある．都市には <var>1, 2, \ldots, N</var> の番号が付けられている．また，IOI 王国には <var>N - 1</var> 本の双方向に行き来可能な道路があり，どの <var>2</var> つの異なる都市の間もいくつかの道路を通って行き来可能である．道路にも <var>1, 2, \ldots, N - 1</var> の番号が付けられており，道路 <var>i</var> は都市 <var>A_{i}</var> と都市 <var>B_{i}</var> を結んでいる．</p>
+<p><var>2</var> つの都市の間の距離を，それらの都市を結ぶ最短の経路の道路の本数として定める．IOI 王国の総距離を，すべての異なる <var>2</var> 都市の間の距離の総和として定める．</p>
+<p>IOI 王国の国王は，王国の利便性を上げるため，新たに <var>K</var> 本の双方向に行き来可能な道路を建設することで，王国の総距離を小さくしようと考えている．</p>
+<p>国王の補佐官であるあなたは，よりよい計画を考え国王を助けることになった．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p>IOI 王国にすでにある道路の情報と，追加で建設する道路の本数 <var>K</var> が与えられる ．<var>K</var> 本の道路の建設方法を <var>1</var> つ出力せよ．王国の総距離が小さいほど，あなたは高得点を得る．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>この課題の入力データは全部で <var>6</var> 個ある．</p>
+<p>各入力データは，以下の形式のファイルで与えられる．</p>
+<ul>
+<li><var>1</var> 行目には <var>3</var> 個の整数 <var>N, K, W_{0}</var> が空白を区切りとして書かれている．これらは IOI 王国が <var>N</var> 個の都市からなり，<var>K</var> 本の道路を新たに建設する計画であることを表す ．<var>W_{0}</var> は採点のために使われる整数である．</li>
+<li>続く <var>N - 1</var> 行のうちの <var>i</var> 行目 (<var>1 \leqq i \leqq N - 1</var>) には <var>2</var> 個の整数 <var>A_{i}, B_{i}</var> が空白を区切りとして書かれている．これは <var>i</var> 番目の道路は都市 <var>A_{i}</var> と都市 <var>B_{i}</var> を結んでいることを表す．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に，<var>K</var> 行で出力せよ ．<var>j</var> 行目 (<var>1 \leqq j \leqq K</var>) には，<var>2</var> 個の整数 <var>X_{j}, Y_{j}</var> (<var>1 \leqq X_{j} \leqq N</var>，<var>1 \leqq Y_{j} \leqq N</var>) を空白を区切りとして出力せよ．これは，都市 <var>X_{j}</var> と都市 <var>Y_{j}</var> を結ぶ道路を建設することを表す．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>提出方法</h3>
+<p>各入力データに対する出力を提出せよ．その際，出力のセクションで指定された形式に一致するかがチェックされる．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>制限</h3>
+<p>すべての入力データは以下の条件を満たす．</p>
+<ul>
+<li><var>1 \leqq N \leqq 1\,000</var>．</li>
+<li><var>1 \leqq A_{i} &lt; B_{i} \leqq N</var> (<var>1 \leqq i \leqq N - 1</var>)．</li>
+<li><var>(A_{i}, B_{i}) \ne (A_{k}, B_{k})</var> (<var>1 \leqq i &lt; k \leqq N - 1</var>)．</li>
+<li>どの <var>2</var> つの都市の間もいくつかの道路を通って行き来可能である．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>採点基準</h3>
+<p>各入力データに対し，あなたの得点は以下のように計算される．</p>
+<p>もし，あなたの出力が問題の条件を満たさない場合，あなたの得点は <var>0</var> 点となる．条件を満たす場合，あなたが出力した道路の建設方法に従った場合の王国の総距離を <var>W</var> とし，その入力データに対する配点を <var>P</var> とする．</p>
+<p><var>S=1.0 - \dfrac{W}{W_0}</var></p>
+<p>とおく．このとき，その入力データに対するあなたの得点は</p>
+<p><var>\min(P, P \times 20^S)</var></p>
+<p>である．</p>
+<p><var>6</var> 個の入力データの得点の合計を，小数点以下を四捨五入することで整数に丸めたものが，この課題の得点である．</p>
+<p>各入力データにおける <var>N, K, W_{0}, P</var> の値は以下の通りである．</p>
+<div class="joisc2018-road-ja-table">
+<table>
+<thead>
+<tr>
+<th>入力データ</th>
+<th><var>N</var></th>
+<th><var>K</var></th>
+<th><var>W_{0}</var></th>
+<th><var>P</var></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><var>1</var></td>
+<td><var>20</var></td>
+<td><var>4</var></td>
+<td><var>512</var></td>
+<td><var>10</var></td>
+</tr>
+<tr>
+<td><var>2</var></td>
+<td><var>1000</var></td>
+<td><var>100</var></td>
+<td><var>2650000</var></td>
+<td><var>18</var></td>
+</tr>
+<tr>
+<td><var>3</var></td>
+<td><var>1000</var></td>
+<td><var>300</var></td>
+<td><var>1755000</var></td>
+<td><var>18</var></td>
+</tr>
+<tr>
+<td><var>4</var></td>
+<td><var>1000</var></td>
+<td><var>100</var></td>
+<td><var>2900000</var></td>
+<td><var>18</var></td>
+</tr>
+<tr>
+<td><var>5</var></td>
+<td><var>1000</var></td>
+<td><var>100</var></td>
+<td><var>2690000</var></td>
+<td><var>18</var></td>
+</tr>
+<tr>
+<td><var>6</var></td>
+<td><var>1000</var></td>
+<td><var>300</var></td>
+<td><var>1745000</var></td>
+<td><var>18</var></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入出力例</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>4 1 8
+1 2
+2 3
+3 4
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>1 4
+</pre>
+<p>元々ある道路に加え，都市 <var>1</var> と都市 <var>4</var> を結ぶ道路を建設することで，総距離を <var>8</var> とすることができる．この入出力例において <var>P = 10</var> とする．このとき，<var>S = 0</var> なので，あなたの得点は <var>10</var> 点である．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>4 1 8
+1 2
+2 3
+3 4
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>1 2
+</pre>
+<p>この場合，総距離は <var>10</var> である．この入出力例において <var>P = 10</var> とする．このとき，<var>S = -0.25</var> なので，あなたの得点は <var>4.728 \cdots</var> 点である．</p>
+<style>
+.joisc2018-road-ja-table { position:relative;max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisc2018-road-ja-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisc2018-road-ja-table th,.joisc2018-road-ja-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisc2018-road-ja-table th { background:#f5f5f5; }
+.joisc2018-road-ja-table .katex { position:relative; }
+</style></section>
+</div>
+</span>
+</span>

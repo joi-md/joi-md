@@ -1,0 +1,372 @@
+<span class="lang">
+<span class="lang-en">
+<blockquote>
+<p><strong>Submission on AtCoder</strong></p>
+<p>When using C++, follow the implementation instructions in the statement.</p>
+<details>
+<summary style="display:list-item;cursor:pointer;"><strong>Using other languages</strong></summary>
+<p>First, read the integer <var>N</var> from the standard input.</p>
+<ul>
+<li>To call <code>Query</code>, print <code>Query</code> followed by a newline, then print <var>N</var> space-separated integers followed by a newline. Flush the output and read the return value from the standard input.</li>
+<li>To call <code>Answer</code>, print <code>Answer</code> followed by a newline, then print <var>N</var> space-separated integers followed by a newline. Flush the output.</li>
+</ul>
+<p>Wrong Answers 1 and 4 are judged as TLE; Wrong Answers 2, 3, 5, 6, and 8 are judged as WA.</p>
+</details>
+<p><a href="https://img.atcoder.jp/joisc2018/library-dist-0d2f0636a6.zip">Distributed files</a></p>
+</blockquote>
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>After several hundred years had passed, JOI city became a ruined city. IOI-chan, an explorer, is now exploring the area where the library was built. According to the results of exploration, the following are known:</p>
+<ul>
+<li>There were <var>N</var> books in the bookshelf of the library in JOI city. The <var>N</var> books were placed in the bookshelf in a line from left to right.</li>
+<li>The <var>N</var> books were numbered from 1 to <var>N</var>. But, the order of books in the bookshelf might be different from the order of the numbers of the books.</li>
+<li>By a single operation, it was possible to take contiguously placed books from the bookshelf at once.</li>
+</ul>
+<p>Unfortunately, IOI-chan could not find old books in the library. But she found a machine which managed operations of the bookshelf of the library. If we specify one or more than one books by their numbers and send a query to the machine, it answers the minimum number of operations required to take only these books from the bookshelf.</p>
+<p>IOI-chan wants to know the order of the books in the bookshelf by sending queries to the machine. However, because the answers from the machine would be the same if the order of the <var>N</var> books are reversed, she does not need to specify whether the books were placed from left to right or from right to left.</p>
+<p>Because the machine is old, she can send at most 20 000 queries to the machine.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Task</h3>
+<p>Write a program which specifies the order of the books in the bookshelf by sending at most 20 000 queries to the machine. It is not necessary to specify whether the books were placed from left to right or from right to left.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Implementation Details</h3>
+<p>You need to submit one file. The name of the file is <code>library.cpp</code>. It should implement the following function. The program should include <code>library.h</code>.</p>
+<ul>
+<li>
+<p><code>void Solve(int N)</code>
+    For each test case, this function is called once.</p>
+<ul>
+<li>The parameter <code>N</code> is the number of books <var>N</var> in the bookshelf.</li>
+</ul>
+<p>Your program can call the following function.</p>
+<ul>
+<li><code>int Query(const std::vector&lt;int&gt;&amp; M)</code>
+    If one or more than one books are specified by their numbers, this function returns the minimum number of operations required to take only these books from the bookshelf.<ul>
+<li>Books taken from the bookshelf are specified by the parameter <code>M</code>, which is a vector of size <var>N</var>. For each <var>i</var> (<var>1 \le i \le N</var>), if <var>\texttt{M}[i - 1] = 0</var>, then the book <var>i</var> is not taken from the bookshelf. If <var>\texttt{M}[i - 1] = 1</var>, then the book <var>i</var> is taken from the bookshelf. If the size of <code>M</code> is different from <var>N</var>, your program is considered as Wrong Answer [1]. For each <var>i</var>, <code>M[i-1]</code> should be equal to either 0 or 1. There should exist at least one <var>i</var> (<var>1 \le i \le N</var>) with <var>\texttt{M}[i - 1] = 1</var>. If at least one of these two conditions is not satisfied, your program is considered as Wrong Answer [2]. If the function <code>Query</code> is called more than 20 000 times, your program is considered as Wrong Answer [3].</li>
+</ul>
+</li>
+<li><code>void Answer(const std::vector&lt;int&gt;&amp; res)</code>
+    Using this function, your program answers the order of the books in the bookshelf. It is not necessary to specify whether the books were placed from left to right or from right to left.<ul>
+<li>The parameter <code>res</code> is a vector of size <var>N</var>. It describes the order of the books in the bookshelf. For each <var>i</var> (<var>1 \le i \le N</var>), the <var>i</var>-th book from left in the bookshelf has number <code>res[i-1]</code>. If the size of <code>res</code> is different from <var>N</var>, your program is considered as Wrong Answer <var>[4]</var>. <code>res[i-1]</code> should be an integer between 1 and <var>N</var>, inclusive. If this condition is not satisfied, your program is considered as Wrong Answer [5]. Also, the integers <code>res[0]</code>, <code>res[1]</code>, <var>\ldots</var>, <code>res[N-1]</code> should be different from each other. If this condition is not satisfied, your program is considered as Wrong Answer [6].</li>
+</ul>
+</li>
+</ul>
+<p>When the function <code>Solve</code> terminates, if the number of calls to the function <code>Answer</code> is different from 1, your program is considered as Wrong Answer [7].</p>
+<p>If the order of the books specified by the function <code>Solve</code> is different from the order of the books in the bookshelf, your program is considered as Wrong Answer <var>[8]</var>. It is not necessary to specify whether the books were placed from left to right or from right to left.</p>
+</li>
+</ul>
+<h4>Important Notices</h4>
+<ul>
+<li>Your program can implement other functions for internal use, or use global variables.</li>
+<li>Your program should not use the standard input and the standard output. Your program should not communicate with other files by any methods. But, your program may output debugging information to the standard error.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Compilation and Test Run</h3>
+<p>You can download an archive file from the contest webpage which contains the sample grader to test your program. The archive file also contains a sample source file of your program.</p>
+<p>The sample grader consists of one source file, which is <code>grader.cpp</code>. If your program is <code>library.cpp</code>, to test them, your put these files (<code>grader.cpp</code>, <code>library.cpp</code>) and <code>library.h</code> in the same directory, and run the following commands to compile your programs.</p>
+<pre>g++ -std=c++14 -O2 -o grader grader.cpp library.cpp
+</pre>
+<p>When the compilation succeeds, the executable file <code>grader</code> is generated. Note that the actual grader is different from the sample grader. The sample grader will be executed as a single process, which will read input data from the standard input and write the results to the standard output.</p>
+<h4>Input for the Sample Grader</h4>
+<p>The sample grader reads the following data from the standard input.</p>
+<ul>
+<li>The first line contains the integer <var>N</var>, the number of books in the bookshelf.</li>
+<li>The <var>i</var>-th line (<var>1 \le i \le N</var>) of the following <var>N</var> lines contains the integer <var>A_{i}</var>. This means the number of the <var>i</var>-th book from left in the bookshelf is <var>A_{i}</var>.</li>
+</ul>
+<h4>Output of the Sample Grader</h4>
+<p>When the program terminates successfully, the sample grader writes the following information to the standard output. (The quotation mark is not written actually.)</p>
+<ul>
+<li>If your program is considered as correct, the sample grader writes the number of calls to the function <code>Query</code> in the following form “<code>Accepted : 100</code>.”</li>
+<li>If your program is considered as Wrong Answer, the sample grader writes its type in the following form “<code>Wrong Answer [1]</code>.”</li>
+</ul>
+<p>If your program is considered as several types of Wrong Answer, the sample grader reports only one of them.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<p>All input data satisfy the following conditions. For the meaning of <var>N</var> and <var>A_{i}</var>, see Input for the Sample Grader.</p>
+<ul>
+<li><var>1 \le N \le 1\,000</var>.</li>
+<li><var>1 \le A_{i} \le N</var> (<var>1 \le i \le N</var>).</li>
+<li><var>A_{i} \ne A_{j}</var> (<var>1 \le i &lt; j \le N</var>).</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtask</h3>
+<p>There are 2 subtasks. The score and additional constraints of each subtask are as follows:</p>
+<h4>Subtask 1 [<var>19</var> points]</h4>
+<ul>
+<li><var>N \le 200</var>.</li>
+</ul>
+<h4>Subtask 2 [<var>81</var> points]</h4>
+<p>There are no additional constraints.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Communication</h3>
+<p>Here is a sample input for sample grader and corresponding function calls.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>5
+4
+2
+5
+3
+1
+</pre>
+<h4>Sample Calls</h4>
+<div class="joisc2018-library-en-table">
+<table>
+<thead>
+<tr>
+<th>Call</th>
+<th>Return</th>
+<th>Call</th>
+<th>Return</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Solve(5)</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>Query({1,1,1,0,0})</code></td>
+<td><code>2</code></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>Answer({4,2,5,3,1})</code></td>
+<td>(none)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>In this task, it is not necessary to specify whether the books were placed from left to right or from right to left. Hence your program is considered as correct if it calls <code>Answer({1,3,5,2,4})</code> whose parameters are reversed.</p>
+<style>
+.joisc2018-library-en-table { position:relative;max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisc2018-library-en-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisc2018-library-en-table th,.joisc2018-library-en-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisc2018-library-en-table th { background:#f5f5f5; }
+.joisc2018-library-en-table code { white-space:nowrap; }
+</style></section>
+</div>
+</span>
+<span class="lang-ja">
+<blockquote>
+<p><strong>AtCoder での提出方法</strong></p>
+<p>C++ を使用する場合は問題文の指示に従ってください．</p>
+<details>
+<summary style="display:list-item;cursor:pointer;"><strong>その他の言語を使用する場合</strong></summary>
+<p>はじめに整数 <var>N</var> が標準入力から与えられます．</p>
+<ul>
+<li><code>Query</code> を呼び出すには，<code>Query</code> を出力して改行し，続いて <var>N</var> 個の整数を空白区切りで出力して改行してください．出力を flush し，標準入力から戻り値を受け取ってください．</li>
+<li><code>Answer</code> を呼び出すには，<code>Answer</code> を出力して改行し，続いて <var>N</var> 個の整数を空白区切りで出力して改行してください．出力を flush してください．</li>
+</ul>
+<p>不正解 1，4 は TLE，不正解 2，3，5，6，8 は WA と判定されます．</p>
+</details>
+<p><a href="https://img.atcoder.jp/joisc2018/library-dist-0d2f0636a6.zip">配布ファイル</a></p>
+</blockquote>
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>数百年の時を経て，JOI 市は廃墟となってしまった．探検家の IOI ちゃんは，図書館があった地域を調査している．調査により，以下のことが分かっている．</p>
+<ul>
+<li>JOI 市の図書館の書庫には，<var>N</var> 冊の本が横一列に並べられていた．</li>
+<li><var>N</var> 冊の本には，<var>1</var> から <var>N</var> までの番号が付けられていた．ただし，書庫には，本が番号順に並べられていたとは限らない．</li>
+<li><var>1</var> 回の作業で，書庫から，連続して並べられている何冊かの本を同時に取り出すことができた．</li>
+</ul>
+<p>IOI ちゃんは，残念ながら，かつての蔵書を見つけることはできなかったが，図書館の書庫管理を行っていた機械を発見することはできた．<var>1</var> 冊以上の何冊かの本を番号で指定してこの機械に <var>1</var> 回質問すると，それらの本のみを書庫から取り出すのに必要な作業の回数の最小値を求めることができる．</p>
+<p>IOI ちゃんは，この機械に何回か質問することで，書庫に本が並んでいた順番を特定したい．ただし，<var>N</var> 冊の本が逆順に並んでいたとしても機械の回答は変わらないため，左右方向の順番を特定する必要はない．</p>
+<p>古い機械なので，質問の回数は <var>20\,000</var> 回以内に抑えたい．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p>機械に <var>20\,000</var> 回以内の質問を送ることで，書庫に本が並んでいた順番を特定するプログラムを作成せよ．ただし，左右方向の順番を特定する必要はない．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>実装の詳細</h3>
+<p>あなたは <var>1</var> つのファイルを提出しなければならない．</p>
+<p>あなたの提出するファイルは <code>library.cpp</code> という名前である．このファイルは以下のルーチンを実装していなければならない．そのプログラムは <code>library.h</code> をインクルードすること．</p>
+<ul>
+<li>
+<p><code>void Solve(int N)</code>
+    この関数は各テストケースにおいて <var>1</var> 回だけ呼び出される．</p>
+<ul>
+<li>引数 <code>N</code> は蔵書の冊数 <var>N</var> を表す．</li>
+</ul>
+<p>あなたのプログラムは以下の関数を呼び出すことができる．</p>
+<ul>
+<li><code>int Query(const std::vector&lt;int&gt;&amp; M)</code>
+    この関数は，何冊かの本を番号で指定すると，それらの本のみを書庫から取り出すのに必要な作業の回数の最小値を返す．<ul>
+<li>取り出す本を引数 <code>M</code> で指定する．<code>M</code> はサイズ <var>N</var> の vector である．それぞれの <var>i</var> (<var>1 \leqq i \leqq N</var>) について，<var>\texttt{M}[i - 1] = 0</var> のときは番号 <var>i</var> の本を取り出さないことを，<var>\texttt{M}[i - 1] = 1</var> のときは番号 <var>i</var> の本を取り出すことを表す．<code>M</code> のサイズが <var>N</var> でなかった場合，不正解 <var>[1]</var> と判定される．それぞれの <var>i</var> について，<code>M[i-1]</code> の値は <var>0</var> か <var>1</var> でなければならない．また，<var>\texttt{M}[i - 1] = 1</var> となる <var>i</var> (<var>1 \leqq i \leqq N</var>) が少なくとも一つ存在しなければならない．この <var>2</var> つの条件のうち，少なくとも一方が満たされていない場合，不正解 <var>[2]</var> と判定される．<code>Query</code> を <var>20\,000</var> 回を超えて呼び出した場合，不正解 <var>[3]</var> と判定される．</li>
+</ul>
+</li>
+<li><code>void Answer(const std::vector&lt;int&gt;&amp; res)</code>
+    この関数を用いて，書庫に本が並んでいた順番を回答する．ただし，左右方向の順番を特定する必要はない．<ul>
+<li>引数 <code>res</code> は，書庫に本が並んでいた順番を表すサイズ <var>N</var> の vector である．それぞれの <var>i</var> (<var>1 \leqq i \leqq N</var>) について，<code>res[i-1]</code> は，左から <var>i</var> 番目の本の番号である．<code>res</code> のサイズが <var>N</var> でなかった場合，不正解 <var>[4]</var> と判定される. <code>res[i-1]</code> は <var>1</var> 以上 <var>N</var> 以下の整数でなければならない．そうでない場合，不正解 <var>[5]</var> と判定される．また，<code>res[0]</code>, <code>res[1]</code>, <var>\ldots</var>, <code>res[N-1]</code> は互いに重複してはならない．そうでない場合，不正解 <var>[6]</var> と判定される．</li>
+</ul>
+</li>
+</ul>
+<p>関数 <code>Solve</code> の実行の終了時に関数 <code>Answer</code> の呼び出し回数が <var>1</var> 回でなかった場合，不正解 <var>[7]</var> と判定される．</p>
+<p>関数 <code>Solve</code> で回答された順番が，書庫に本が並んでいた順番と異なる場合，不正解 <var>[8]</var> と判定される．ただし，左右方向の順番を特定する必要はない．</p>
+</li>
+</ul>
+<h4>重要な注意</h4>
+<ul>
+<li>内部での使用のために他のルーチンを実装したり，グローバル変数を宣言するのは自由である．</li>
+<li>あなたの提出したプログラムは，標準入力・標準出力，あるいは他のファイルといかなる方法でもやりとりしてはならない．ただし，標準エラー出力にデバッグ情報等を出力することは許される．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>コンパイル・実行の方法</h3>
+<p>作成したプログラムをテストするための，採点プログラムのサンプルが，コンテストサイトからダウンロードできるアーカイブの中に含まれている．このアーカイブには，提出しなければならないファイルのサンプルも含まれている．</p>
+<p>採点プログラムのサンプルは <var>1</var> つのファイルからなる. そのファイルは <code>grader.cpp</code> である．作成したプログラムを <code>library.cpp</code> とする．作成したプログラムをテストするには，これらのファイル (<code>grader.cpp</code>, <code>library.cpp</code>) と，<code>library.h</code> を同じディレクトリに置き，次のようにコマンドを実行する．</p>
+<pre>g++ -std=c++14 -O2 -o grader grader.cpp library.cpp
+</pre>
+<p>コンパイルが成功すれば，<code>grader</code> という実行ファイルが生成される．</p>
+<p>実際の採点プログラムは，採点プログラムのサンプルとは異なることに注意すること．採点プログラムのサンプルは単一のプロセスとして起動する．このプログラムは，標準入力から入力を読み込み，標準出力に結果を出力する．</p>
+<h4>採点プログラムのサンプルの入力</h4>
+<p>採点プログラムのサンプルは標準入力から以下の入力を読み込む．</p>
+<ul>
+<li><var>1</var> 行目には，整数 <var>N</var> が書かれている．これは蔵書の冊数が <var>N</var> であることを表す．</li>
+<li>続く <var>N</var> 行のうちの <var>i</var> 行目 (<var>1 \leqq i \leqq N</var>) には，整数 <var>A_{i}</var> が書かれている．これは，書庫に並んでいた本のうち，左から <var>i</var> 番目の本の番号が <var>A_{i}</var> であったことを表す．</li>
+</ul>
+<h4>採点プログラムのサンプルの出力</h4>
+<p>採点プログラムのサンプルは標準出力へ以下の情報を出力する（引用符は実際には出力されない）．</p>
+<ul>
+<li>正解の場合，関数 <code>Query</code> の呼び出し回数が “<code>Accepted : 100</code>” のように出力される．</li>
+<li>不正解の場合，不正解の種類が “<code>Wrong Answer [1]</code>” のように出力される．</li>
+</ul>
+<p>実行するプログラムが複数の不正解の条件を満たした場合，表示される不正解の種類はそれらのうち <var>1</var> つのみである．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>制限</h3>
+<p>すべての入力データは以下の条件を満たす．<var>N, A_{i}</var> の意味については「採点プログラムのサンプルの入力」の項目を参照せよ．</p>
+<ul>
+<li><var>1 \leqq N \leqq 1\,000</var>．</li>
+<li><var>1 \leqq A_{i} \leqq N</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>A_{i} \ne A_{j}</var> (<var>1 \leqq i &lt; j \leqq N</var>)．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<p>この課題では小課題は全部で <var>2</var> 個ある．各小課題の配点および追加の制限は以下の通りである．</p>
+<h4>小課題 1 [<var>19</var> 点]</h4>
+<ul>
+<li><var>N \leqq 200</var>．</li>
+</ul>
+<h4>小課題 2 [<var>81</var> 点]</h4>
+<p>追加の制限はない.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>やり取りの例</h3>
+<p>採点プログラムのサンプルが読み込む入力の例と，それに対応する関数の呼び出しの例を以下に示す．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>5
+4
+2
+5
+3
+1
+</pre>
+<h4>ルーチンの呼び出しの例</h4>
+<div class="joisc2018-library-ja-table">
+<table>
+<thead>
+<tr>
+<th>呼び出し</th>
+<th>戻り値</th>
+<th>呼び出し</th>
+<th>戻り値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Solve(5)</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>Query({1,1,1,0,0})</code></td>
+<td><code>2</code></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>Answer({4,2,5,3,1})</code></td>
+<td>(なし)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>この課題では，書庫に本が並んでいた左右方向の順番を特定する必要はないことに注意せよ．左右方向の順番を逆にした <code>Answer({1,3,5,2,4})</code> を呼び出しても正解となる．</p>
+<style>
+.joisc2018-library-ja-table { position:relative;max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisc2018-library-ja-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisc2018-library-ja-table th,.joisc2018-library-ja-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top;white-space:nowrap; }
+.joisc2018-library-ja-table th { background:#f5f5f5; }
+.joisc2018-library-ja-table code { white-space:nowrap; }
+</style></section>
+</div>
+</span>
+</span>

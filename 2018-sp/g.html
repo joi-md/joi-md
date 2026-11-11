@@ -1,0 +1,835 @@
+<span class="lang">
+<span class="lang-en">
+<blockquote>
+<p><strong>Submission on AtCoder</strong></p>
+<p>Include <code>airline.h</code> and implement <code>Alice</code> and <code>Bob</code> in a single source file. Do not share global variables between the two sides. This judge supports C++ only.</p>
+<p><a href="https://img.atcoder.jp/joisc2018/airline-dist-1ba6089829.zip">Distributed files</a></p>
+</blockquote>
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>Alice is living in JOI Kingdom. She will invite Bob, who is living in Republic of IOI. Before she invites him, she is planning to send the airline route map of JOI Kingdom to him. JOI Kingdom is an island country consisting of <var>N</var> islands, numbered from 0 to <var>N - 1</var>. There are <var>M</var> airline routes in JOI Kingdom. For each <var>i</var> (<var>0 \le i \le M - 1</var>), the <var>(i + 1)</var>-th airline route connects the island <var>A_{i}</var> and the island <var>B_{i}</var>, in both directions. No two airline routes connect the same two islands. She must use a special telegraph machine operated by JOI Kingdom. She can send an undirected graph using the telegraph machine. However, when she uses it, the numbers of the vertices and the number of the edges will be shuffled randomly.</p>
+<p>Precisely, the information will be sent as follows. Let <var>G</var> be the graph sent by Alice. (Let <var>V</var> be the number of vertices of <var>G</var>, and <var>U</var> the number of edges of <var>G</var>.)</p>
+<ul>
+<li>Alice specifies the number of edges <var>V</var> of <var>G</var>, and the number of edges <var>U</var> of <var>G</var>. Then, she puts each of numbers <var>0</var>, <var>1</var>, <var>\ldots</var>, <var>V - 1</var> to each vertex, and each of numbers <var>0</var>, <var>1</var>, <var>\ldots</var>, <var>U - 1</var> to each edge.</li>
+<li>Alice specifies the parameters <var>C_{0},C_{1}, \ldots,C_{U - 1}</var> and <var>D_{0}, D_{1}, \ldots, D_{U - 1}</var>. These parameters describe the edges of <var>G</var>, i.e., for each <var>j</var> (<var>0 \le j \le U - 1</var>), the <var>j</var>-th edge of <var>G</var> connects the vertex <var>C_{j}</var> and the vertex <var>D_{j}</var>.</li>
+<li>The numbers of the vertices of <var>G</var> are shuffled by JOI Kingdom. First, JOI Kingdom generates a sequence <var>p[0], p[1], \ldots, p[V - 1]</var>, which is a permutation of <var>0</var>, <var>1</var>, <var>\ldots</var>, <var>V - 1</var>. Then, <var>C_{0},C_{1}, \ldots,C_{U - 1}</var> are replaced by <var>p[C_{0}], p[C_{1}], \ldots, p[C_{U - 1}]</var>, and <var>D_{0}, D_{1}, \ldots, D_{U - 1}</var> are replaced by <var>p[D_{0}], p[D_{1}], \ldots, p[D_{U - 1}]</var>.</li>
+<li>Then, the numbers of the edges of <var>G</var> are shuffled by JOI Kingdom. First, JOI Kingdom generates a sequence <var>q[0], q[1], \ldots, q[U - 1]</var> which is a permutation of <var>0</var>, <var>1</var>, <var>\ldots</var>, <var>U - 1</var>. Then, <var>C_{0},C_{1}, \ldots,C_{U - 1}</var> are replaced by <var>C_{q[0]},C_{q[1]}, \ldots,C_{q[U - 1]}</var>, and <var>D_{0}, D_{1}, \ldots, D_{U - 1}</var> are replaced by <var>D_{q[0]}, D_{q[1]}, \ldots, D_{q[U - 1]}</var>.</li>
+<li>The following data are sent to Bob: the values of <var>V</var> and <var>U</var>, and the latest values of the parameters <var>C_{0},C_{1}, \ldots,C_{U - 1}</var> and <var>D_{0}, D_{1}, \ldots, D_{U - 1}</var>.</li>
+</ul>
+<p>Note that only a simple graph can be sent using this telegraph machine. Here, a simple graph means a graph without multiple edges and self-loops.</p>
+<p>In other words, she can send a graph satisfying the following conditions: <var>(C_{i}, D_{i}) \ne (C_{j}, D_{j})</var> and <var>(C_{i}, D_{i}) \ne</var> <var>(D_{j},C_{j})</var> are satisfied for every <var>i, j</var> (<var>0 \le i &lt; j \le U - 1</var>), and <var>C_{i} \ne D_{i}</var> is satisfied for every <var>i</var> (<var>0 \le i \le U - 1</var>).</p>
+<p>Alice wants to send the airline route map of JOI Kingdom to Bob using a graph with minimum number of vertices.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Task</h3>
+<p>In order to help communication between Alice and Bob, write the following two programs:</p>
+<ul>
+<li>Given the number of islands <var>N</var> in JOI Kingdom, the number of airline routes <var>M</var> in JOI Kingdom, and the sequences <var>A, B</var> representing the airline route map of JOI Kingdom, the first program outputs information of the graph <var>G</var> sent by Alice.</li>
+<li>Given information of the graph <var>G</var> received by Bob, the second program recovers the airline route map of JOI Kingdom.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Implementation Details</h3>
+<p>You need to submit two files. The first file is <code>Alice.cpp</code>. This file outputs information of the graph sent by Alice. It should implement the following function. The program should include <code>Alicelib.h</code>.</p>
+<ul>
+<li>
+<p><code>void Alice( int N, int M, int A[], int B[] )</code>
+    For each test case, this function is called once.</p>
+<ul>
+<li>The parameter <code>N</code> is the number of islands of JOI Kingdom.</li>
+<li>The parameter <code>M</code> is the number of airline routes in JOI Kingdom.</li>
+<li>The parameters <code>A[]</code>, <code>B[]</code> are sequences of length <var>M</var> describing the airline route map of JOI Kingdom.</li>
+</ul>
+<p>Using the following functions, the function <code>Alice</code> outputs information of the graph <var>G</var> sent by Alice.</p>
+<ul>
+<li><code>void InitG( int V, int U )</code>
+    This function specifies the number of vertices of <var>G</var> and the number of edges of <var>G</var>.<ul>
+<li>The parameter <code>V</code> is the number of vertices of <var>G</var>. The parameter <code>V</code> should be an integer between 1 and 1500, inclusive. If the call to this function has parameters outside this range, your program is considered as Wrong Answer [1].</li>
+<li>The parameter <code>U</code> is the number of edges of <var>G</var>. The parameter <code>U</code> should be an integer between <var>0</var> and <var>V(V - 1)/2</var>, inclusive. If the call to this function has parameters outside this range, your program is considered as Wrong Answer [2].</li>
+</ul>
+</li>
+<li>
+<p><code>void MakeG( int pos, int C, int D )</code>
+    This function specifies the edges of <var>G</var>.</p>
+<ul>
+<li>The parameter <code>pos</code> is the number of the edge specified by the call. The parameter <code>pos</code> should be an integer between 0 and <var>U - 1</var>, inclusive. If the call to this function has parameters outside this range, your program is considered as Wrong Answer [3]. This function should not be called more than once with the same parameter <code>pos</code>. If this function is called more than once with the same parameter, your program is considered as Wrong Answer [4].</li>
+<li>The parameters <code>C</code> and <code>D</code> are the vertices of the edge <code>pos</code> of the graph <var>G</var>. <code>C</code> and <code>D</code> should be integers between 0 and <var>V - 1</var>, inclusive. Also, <var>\texttt{C} \ne \texttt{D}</var> should be satisfied. If <code>C</code> or <code>D</code> does not satisfy these conditions, your program is considered as Wrong Answer [5].</li>
+</ul>
+<p>Here, <var>U</var> and <var>V</var> are the integers specified by <code>InitG</code>.</p>
+</li>
+</ul>
+<p>In the function <code>Alice</code>, after calling the function <code>InitG</code> once, the function <code>MakeG</code> should be called exactly <var>U</var> times. If the function <code>InitG</code> is called twice, your program is considered as Wrong Answer [6]. If the function <code>MakeG</code> is called before the function <code>InitG</code> is called, your program is considered as Wrong Answer <var>[7]</var>. If <code>InitG</code> is not called when the function <code>Alice</code> terminates, or, the function <code>MakeG</code> is not called <var>U</var> times, your program is considered as Wrong Answer <var>[8]</var>. When the function <code>Alice</code> terminates, if the graph <var>G</var> described by <code>Alice</code> is not a simple graph, your program is considered as Wrong Answer [9].</p>
+<p>If the call to the function <code>Alice</code> is considered Wrong Answer, your program is terminated immediately.</p>
+</li>
+</ul>
+<p>The second file is <code>Bob.cpp</code>. This file outputs, given information of the graph <var>G</var> received by Bob, the airline route map of JOI Kingdom. It should implement the following function. The program should include <code>Boblib.h</code>.</p>
+<ul>
+<li>
+<p><code>void Bob( int V, int U, int C[], int D[] )</code>
+    For each test case, this function is called once.</p>
+<ul>
+<li>The parameter <code>V</code> is the number of vertices of the graph <var>G</var>.</li>
+<li>The parameter <code>U</code> is the number of edges of the graph <var>G</var>.</li>
+<li>The parameters <code>C[]</code>, <code>D[]</code> are sequences of length <var>U</var> describing the edges of the graph <var>G</var>.</li>
+</ul>
+<p>Using the following functions, the function <code>Bob</code> recovers the airline route map of JOI Kingdom, and outputs information of the airline route map.</p>
+<ul>
+<li><code>void InitMap( int N, int M )</code>
+    This function specifies the number of islands of JOI Kingdom, and the number of airline routes in JOI Kingdom.<ul>
+<li>The parameter <code>N</code> is the recovered number of islands in JOI Kingdom. <code>N</code> is an integer which should be equal to the actual number of islands in JOI Kingdom. If they are not equal, your program is considered as Wrong Answer [10].</li>
+<li>The parameter <code>M</code> is the recovered number of airline routes in JOI Kingdom. <code>M</code> is an integer which should be equal to the actual number of airline routes in JOI Kingdom. If they are not equal, your program is considered as Wrong Answer [11].</li>
+</ul>
+</li>
+<li><code>void MakeMap( int A, int B )</code>
+    This function specifies the number of airline routes in JOI Kingdom.<ul>
+<li>The parameters <code>A</code> and <code>B</code> mean there is an airline route connecting the island <code>A</code> and the island <code>B</code>. <code>A</code> and <code>B</code> are integers between 0 and <var>N - 1</var>, inclusive. Also, <var>\texttt{A} \ne \texttt{B}</var> should be satisfied. If <code>A</code> or <code>B</code> does not satisfy these conditions, your program is considered as Wrong Answer <var>[12]</var>. If there does not exist an airline route connecting the island <code>A</code> and the island <code>B</code> in JOI Kingdom, your program is considered as Wrong Answer [13]. The airline route described by a call to this function should be different from the airline routes of previous calls. When <code>MakeMap( A, B )</code> is called, if either <code>MakeMap( A, B )</code> or <code>MakeMap( B, A )</code> was already called before, your program is considered as Wrong Answer [14].
+Here, <var>N</var> is the integer value specified by <code>InitMap</code>.</li>
+</ul>
+</li>
+</ul>
+<p>In the function <code>Bob</code>, after calling the function <code>InitMap</code> once, the function <code>MakeMap</code> should be called exactly <var>M</var> times. If the function <code>InitMap</code> is called twice, your program is considered as Wrong Answer [15]. If the function <code>MakeMap</code> is called before the function <code>InitMap</code> is called, your program is considered as Wrong Answer [16]. If <code>InitMap</code> is not called when the function <code>Bob</code> terminates, or, the function <code>MakeMap</code> is not called <var>M</var> times, your program is considered as Wrong Answer [17]. Here, <var>M</var> is the integer value specified by <code>InitMap</code>.</p>
+<p>If the call to the function <code>Bob</code> is considered Wrong Answer, your program is terminated immediately.</p>
+</li>
+</ul>
+<h4>Grading Procedure</h4>
+<p>The grading is done in the following way. If your program is considered as Wrong Answer, it is terminated immediately.</p>
+<p>(1) The function <code>Alice</code> is called once whose parameters describe information of the airline route map of JOI Kingdom.</p>
+<p>(2) Let <var>G</var> be the graph specified by the function <code>Alice</code>. The function <code>Bob</code> is called once whose parameters are the shuffled numbers of the vertices of <var>G</var> and the shuffled numbers of the edges of <var>G</var>.</p>
+<p>(3) Your program is graded.</p>
+<h4>Important Notices</h4>
+<ul>
+<li>Your program can implement other functions for internal use, or use global variables. Submitted files will be compiled with the grader, and become a single executable file. All global variables and internal functions should be declared <code>static</code> to avoid confliction with other files. When it is graded, it will be executed as two processes of Alice and Bob. The process of Alice and the process of Bob can not share global variables.</li>
+<li>Your program should not use the standard input and the standard output. Your program should not communicate with other files by any methods. But, your program may output debugging information to the standard error.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Compilation and Test Run</h3>
+<p>You can download an archive file from the contest webpage which contains the sample grader to test your program. The archive file also contains a sample source file of your program.</p>
+<p>The sample grader consists of one source file, which is <code>grader.cpp</code>. If your programs are <code>Alice.cpp</code> and <code>Bob.cpp</code>, to test them, your put these files (<code>grader.cpp</code>, <code>Alice.cpp</code>, <code>Bob.cpp</code>), <code>Alicelib.h</code>, and <code>Boblib.h</code> in the same directory, and run the following commands to compile your programs.</p>
+<pre>g++ -std=c++14 -O2 -o grader grader.cpp Alice.cpp Bob.cpp
+</pre>
+<p>When the compilation succeeds, the executable file <code>grader</code> is generated. Note that the actual grader is different from the sample grader. The sample grader will be executed as a single process, which will read input data from the standard input and write the results to the standard output.</p>
+<h4>Input for the Sample Grader</h4>
+<p>The sample grader reads the following data from the standard input.</p>
+<ul>
+<li>The first line contains two space separated integers This means JOI Kingdom consists of <var>N</var> islands, and there are <var>M</var> airline routes in JOI Kingdom.</li>
+<li>The following <var>M</var> lines contain information of the airline route map. The (<var>i + 1</var>)-th line (<var>0 \le i \le M - 1</var>) of the <var>M</var> lines contains two space separated integers <var>A_{i}, B_{i}</var>. They describe information of the airline route map of JOI Kingdom.</li>
+</ul>
+<h4>Output of the Sample Grader</h4>
+<p>When the program terminates successfully, the sample grader writes the following information to the standard output. (The quotation mark is not written actually.)</p>
+<ul>
+<li>If your program is considered as Wrong Answer, the sample grader writes its type in the following form “<code>Wrong Answer [1]</code>” and terminates.</li>
+<li>If either of the calls to <code>Alice</code> and <code>Bob</code> are not considered as Wrong Answer, the sample grader writes “<code>Accepted</code>.” It also outputs the value of <var>V</var>.</li>
+</ul>
+<p>If your program is considered as several types of Wrong Answer, the sample grader reports only one of them.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<p>All input data satisfy the following conditions.</p>
+<ul>
+<li><var>1 \le N \le 1\,000</var>.</li>
+<li><var>0 \le M \le N(N - 1)/2</var>.</li>
+<li><var>0 \le A_{i} \le N - 1</var> (<var>0 \le i \le M - 1</var>).</li>
+<li><var>0 \le B_{i} \le N - 1</var> (<var>0 \le i \le M - 1</var>).</li>
+<li><var>A_{i} \ne B_{i}</var> (<var>0 \le i \le M - 1</var>).</li>
+<li><var>(A_{i}, B_{i}) \ne (A_{j}, B_{j})</var> and <var>(A_{i}, B_{i}) \ne (B_{j}, A_{j})</var> (<var>0 \le i &lt; j \le M - 1</var>).</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtask</h3>
+<p>There are 3 subtasks. The score and additional constraints of each subtask are as follows:</p>
+<h4>Subtask 1 [<var>22</var> points]</h4>
+<ul>
+<li><var>N \le 10</var>.</li>
+</ul>
+<h4>Subtask 2 [<var>15</var> points]</h4>
+<ul>
+<li><var>N \le 40</var>.</li>
+</ul>
+<h4>Subtask 3 [<var>63</var> points]</h4>
+<p>There are no additional constraints.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Grading</h3>
+<ul>
+<li>In Subtask 1 or Subtask 2, if your program solves all of the test cases, you get full score.</li>
+<li>In Subtask 3, if your program solves all of the test cases, your score is calculated as follows. Let <var>\mathrm{MaxDiff}</var> be the maximum of the difference <var>V - N</var>.<ul>
+<li>When <var>101\le\mathrm{MaxDiff}</var>, your score is <var>0</var>.</li>
+<li>When <var>21\le\mathrm{MaxDiff}\le100</var>, your score is <var>13+\left[\dfrac{100 - \mathrm{MaxDiff}}{4}\right]</var>. Here, <var>[x]</var> is the largest integer not exceeding <var>x</var>.</li>
+<li>When <var>13\le\mathrm{MaxDiff}\le20</var>, your score is <var>33+(20 - \mathrm{MaxDiff})\times3</var>.</li>
+<li>When <var>\mathrm{MaxDiff}\le12</var>, your score is <var>63</var>.</li>
+</ul>
+</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Communication</h3>
+<p>Here is a sample input for sample grader and corresponding function calls.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>4 3
+0 1
+0 2
+0 3
+</pre>
+<h4>Sample Calls</h4>
+<div class="joisc2018-airline-en-table">
+<table>
+<thead>
+<tr>
+<th>Call</th>
+<th>Return</th>
+<th>Call</th>
+<th>Return</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Alice(...)</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>InitG(4,3)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>(none)</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>MakeG(0,0,1)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>(none)</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>MakeG(1,0,2)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>(none)</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>MakeG(2,0,3)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>(none)</td>
+</tr>
+<tr>
+<td></td>
+<td>(none)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Bob(...)</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>InitMap(4,3)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>(none)</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>MakeMap(0,1)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>(none)</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>MakeMap(0,2)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>(none)</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>MakeMap(0,3)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>(none)</td>
+</tr>
+<tr>
+<td></td>
+<td>(none)</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>In this case, the parameters given to the functions <code>Alice(...)</code>, <code>Bob(...)</code> are as follows.</p>
+<div class="joisc2018-airline-en-table">
+<table>
+<thead>
+<tr>
+<th>Parameters</th>
+<th><code>Alice(...)</code></th>
+<th><code>Bob(...)</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>N</code></td>
+<td><var>4</var></td>
+<td></td>
+</tr>
+<tr>
+<td><code>M</code></td>
+<td><var>3</var></td>
+<td></td>
+</tr>
+<tr>
+<td><code>V</code></td>
+<td></td>
+<td><var>4</var></td>
+</tr>
+<tr>
+<td><code>U</code></td>
+<td></td>
+<td><var>3</var></td>
+</tr>
+<tr>
+<td><code>A</code></td>
+<td><var>\lbrace  0, 0, 0\rbrace</var></td>
+<td></td>
+</tr>
+<tr>
+<td><code>B</code></td>
+<td><var>\lbrace  1, 2, 3\rbrace</var></td>
+<td></td>
+</tr>
+<tr>
+<td><code>C</code></td>
+<td></td>
+<td><var>\lbrace  2, 2, 2\rbrace</var></td>
+</tr>
+<tr>
+<td><code>D</code></td>
+<td></td>
+<td><var>\lbrace  3, 0, 1\rbrace</var></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>5 7
+0 1
+0 2
+1 3
+1 4
+3 4
+2 3
+2 4
+</pre>
+<style>
+.joisc2018-airline-en-table { position:relative;max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisc2018-airline-en-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisc2018-airline-en-table th,.joisc2018-airline-en-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisc2018-airline-en-table th { background:#f5f5f5; }
+.joisc2018-airline-en-table code { white-space:nowrap; }
+.joisc2018-airline-en-table .katex { position:relative; }
+</style></section>
+</div>
+</span>
+<span class="lang-ja">
+<blockquote>
+<p><strong>AtCoder での提出方法</strong></p>
+<p><code>airline.h</code> をインクルードし，<code>Alice</code> と <code>Bob</code> を 1 つのファイル内で実装して提出してください．グローバル変数を両者の間で共有しないでください．このジャッジは C++ のみに対応しています．</p>
+<p><a href="https://img.atcoder.jp/joisc2018/airline-dist-1ba6089829.zip">配布ファイル</a></p>
+</blockquote>
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>JOI 国に住む Alice は，IOI 国に住む Bob を招待することにし，それに先立って JOI 国内の航空路線図を送ることにした．JOI 国は，島 <var>0</var> から島 <var>N - 1</var> までの <var>N</var> 個の島からなる島国である．JOI 国には <var>M</var> 本の航空路線があり，<var>i + 1</var> 番目の航空路線は (<var>0 \leqq i \leqq M - 1</var>)，島 <var>A_{i}</var> と島 <var>B_{i}</var> を双方向に結んでいる．同じ <var>2</var> つの島を結ぶ，異なる <var>2</var> つの航空路線は存在しない．JOI 国から IOI 国に情報を送るには，JOI 国の運営する特殊な電報を使う．この電報では無向グラフを送ることができる．ただし，頂点番号と辺番号はランダムにシャッフルされてしまう．</p>
+<p>具体的には，次のようにして情報が送られる．Alice が送るグラフを <var>G</var> とする ．(<var>G</var> の頂点数を <var>V</var>，辺数を <var>U</var> とする．)</p>
+<ul>
+<li>Alice が <var>G</var> の頂点数 <var>V</var> と辺数 <var>U</var> を指定する．また，<var>G</var> の各頂点に <var>0, 1, \ldots, V - 1</var> の番号を，<var>G</var> の各辺に <var>0, 1, \ldots, U - 1</var> の番号をそれぞれ付ける．</li>
+<li>Alice はパラメータ <var>C_{0},C_{1}, \ldots,C_{U - 1}</var> および <var>D_{0}, D_{1}, \ldots, D_{U - 1}</var> を指定する．このパラメータは <var>G</var> の辺を表す．つまり，各 <var>j</var> (<var>0 \leqq j \leqq U - 1</var>) について，<var>G</var> の辺 <var>j</var> は頂点 <var>C_{j}</var> と頂点 <var>D_{j}</var> を結ぶ．</li>
+<li>JOI 国によって，<var>G</var> の頂点番号がシャッフルされる．まず，JOI 国は <var>0, 1, \ldots, V - 1</var> の並べ替えである数列 <var>p[0], p[1], \ldots, p[V - 1]</var> を生成する．次に，<var>C_{0},C_{1}, \ldots,C_{U - 1}</var> を <var>p[C_{0}], p[C_{1}], \ldots, p[C_{U - 1}]</var> に書き換え，<var>D_{0}, D_{1}, \ldots, D_{U - 1}</var> を <var>p[D_{0}], p[D_{1}], \ldots, p[D_{U - 1}]</var> に書き換える．</li>
+<li>続いて，JOI 国によって，<var>G</var> の辺番号がシャッフルされる．まず，JOI 国は <var>0, 1, \ldots, U - 1</var> の並べ替えである数列 <var>q[0], q[1], \ldots, q[U - 1]</var> を生成する．次に，<var>C_{0},C_{1}, \ldots,C_{U - 1}</var> を <var>C_{q[0]},C_{q[1]}, \ldots,C_{q[U - 1]}</var> に書き換え，<var>D_{0}, D_{1}, \ldots, D_{U - 1}</var> を <var>D_{q[0]}, D_{q[1]}, \ldots, D_{q[U - 1]}</var> に書き換える．</li>
+<li><var>V</var> と <var>U</var> の値と，書き換えられた後のパラメータ <var>C_{0},C_{1}, \ldots,C_{U - 1}</var> および <var>D_{0}, D_{1}, \ldots, D_{U - 1}</var> が Bob に伝えられる．</li>
+</ul>
+<p>ただし，この電報で送ることのできるグラフは，単純グラフのみである．単純グラフとは，多重辺や自己ループを含まないグラフのことである．つまり，各 <var>i, j</var> (<var>0 \leqq i &lt; j \leqq U - 1</var>) について <var>(C_{i}, D_{i}) \ne (C_{j}, D_{j})</var> かつ <var>(C_{i}, D_{i}) \ne (D_{j},C_{j})</var> を満たし，さらに全ての <var>i</var> (<var>0 \leqq i \leqq U - 1</var>) について <var>C_{i} \ne D_{i}</var> を満たすグラフのみ送ることができる．</p>
+<p>Alice は，できるだけ少ない頂点数のグラフで Bob に JOI 国内の航空路線図を送りたい．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p>Alice と Bob の通信を実現するために，次の <var>2</var> つのプログラムを作成せよ．</p>
+<ul>
+<li><var>1</var> つ目のプログラムは，JOI 国の島の数 <var>N</var>，JOI 国の航空路線の本数 <var>M</var>，JOI 国の航空路線を表す数列 <var>A, B</var> が与えられたとき，Alice が送信するグラフ <var>G</var> の情報を設定する．</li>
+<li><var>2</var> つ目のプログラムは，Bob が受信するグラフ <var>G</var> の情報が与えられたとき，JOI 国の航空路線図を復元する．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>実装の詳細</h3>
+<p>あなたは <var>2</var> つのファイルを提出しなければならない．</p>
+<p><var>1</var> つ目のファイルは <code>Alice.cpp</code> という名前である．このファイルは Alice が送信するグラフを設定するファイルであり，以下のルーチンを実装していなければならない．プログラムは <code>Alicelib.h</code> をインクルードすること．</p>
+<ul>
+<li>
+<p><code>void Alice( int N, int M, int A[], int B[] )</code>
+    この関数は各テストケースにおいて <var>1</var> 回だけ呼び出される．</p>
+<ul>
+<li>引数 <code>N</code> は JOI 国の島の数を表す．</li>
+<li>引数 <code>M</code> は JOI 国の航空路線の本数を表す．</li>
+<li>引数 <code>A[]</code>, <code>B[]</code> は長さ <var>M</var> の数列であり，JOI 国の航空路線を表す．</li>
+</ul>
+<p>関数 <code>Alice</code> 中では以下の関数を呼び出すことで，送信するグラフ <var>G</var> の情報を設定する．</p>
+<ul>
+<li><code>void InitG( int V, int U )</code>
+    この関数は，<var>G</var> の頂点数と辺数を設定する.<ul>
+<li>引数 <code>V</code> は <var>G</var> の頂点数を表す．<code>V</code> は <var>1</var> 以上 <var>1500</var> 以下の整数値でなければならない．この範囲外の値を指定して呼び出した場合，不正解 <var>[1]</var> と判定される．</li>
+<li>引数 <code>U</code> は <var>G</var> の辺数を表す．<code>U</code> は <var>0</var> 以上 <var>V(V - 1)/2</var> 以下の整数値でなければならない．この範囲外の値を指定して呼び出した場合，不正解 <var>[2]</var> と判定される．</li>
+</ul>
+</li>
+<li>
+<p><code>void MakeG( int pos, int C, int D )</code>
+    この関数は，<var>G</var> の辺を設定する．</p>
+<ul>
+<li>引数 <code>pos</code> は設定する辺の番号を表す．<code>pos</code> は <var>0</var> 以上 <var>U - 1</var> 以下の整数値でなければならない．この範囲外の値を指定して呼び出した場合，不正解 <var>[3]</var> と判定される．また, 同じ引数 <code>pos</code> で <var>2</var> 回以上呼び出すことはできない．同じ引数で <var>2</var> 回呼び出した場合，不正解 <var>[4]</var> と判定される．</li>
+<li>引数 <code>C</code> および <code>D</code> は <var>G</var> の辺 <code>pos</code> の両端の頂点を表す．<code>C</code> および <code>D</code> は <var>0</var> 以上 <var>V - 1</var> 以下の整数値でなければならない．また，<var>\texttt{C} \ne \texttt{D}</var> を満たさなければならない．<code>C</code> または <code>D</code> がこれらの条件を満たさないとき，不正解 <var>[5]</var> と判定される．</li>
+</ul>
+<p>ただし，<var>U</var> および <var>V</var> は <code>InitG</code> で設定した値である．</p>
+</li>
+</ul>
+<p>関数 <code>Alice</code> 中では，関数 <code>InitG</code> を <var>1</var> 回呼び出した後，関数 <code>MakeG</code> をちょうど <var>U</var> 回呼び出さなければならない．関数 <code>InitG</code> が <var>2</var> 回以上呼び出された場合, 不正解 <var>[6]</var> と判定される．関数 <code>InitG</code> が呼び出される前に, 関数 <code>MakeG</code> が呼び出された場合, 不正解 <var>[7]</var> と判定される．関数 <code>Alice</code> の実行の終了時に関数 <code>InitG</code> が呼び出されていない場合や，関数 <code>MakeG</code> の呼び出し回数が <var>U</var> でなかった場合, 不正解 <var>[8]</var> と判定される．関数 <code>Alice</code> の実行の終了時に指定されたグラフ <var>G</var> が単純グラフでなかった場合，不正解 <var>[9]</var> と判定される．</p>
+<p><code>Alice</code> の呼び出しが不正解と判定された場合，その時点でプログラムは終了する．</p>
+</li>
+</ul>
+<p><var>2</var> つ目のファイルは <code>Bob.cpp</code> という名前である. このファイルは，Bob が受け取ったグラフ <var>G</var> から JOI 国の航空路線図を表すグラフを復元する方法を実装したファイルであり，以下のルーチンを実装していなければならない. プログラムは <code>Boblib.h</code> をインクルードすること.</p>
+<ul>
+<li>
+<p><code>void Bob( int V, int U, int C[], int D[] )</code>
+    この関数は各テストケースにおいて <var>1</var> 回だけ呼び出される．</p>
+<ul>
+<li>引数 <code>V</code> はグラフ <var>G</var> の頂点数を表す．</li>
+<li>引数 <code>U</code> はグラフ <var>G</var> の辺数を表す．</li>
+<li>引数 <code>C[]</code>, <code>D[]</code> は長さ <var>U</var> の数列であり，グラフ <var>G</var> の辺を表す．</li>
+</ul>
+<p>関数 <code>Bob</code> 中では以下の関数を呼び出すことで，復元した JOI 国の航空路線図の情報を記述する．</p>
+<ul>
+<li><code>void InitMap( int N, int M )</code>
+    この関数を呼び出すことで，JOI 国の島の数と JOI 国の航空路線の本数を記述する．<ul>
+<li>引数 <code>N</code> は復元した JOI 国の島の数を表す．<code>N</code> は整数値であり，実際の JOI 国の島の数と一致していなければならない．一致していない場合，不正解 <var>[10]</var> と判定される．</li>
+<li>引数 <code>M</code> は復元した JOI 国の航空路線の本数を表す．<code>M</code> は整数値であり，実際の JOI 国の航空路線の本数と一致していなければならない．一致していない場合，不正解 <var>[11]</var> と判定される．</li>
+</ul>
+</li>
+<li>
+<p><code>void MakeMap( int A, int B )</code>
+    この関数を呼び出すことで，JOI 国の航空路線を記述する．</p>
+<ul>
+<li>引数 <code>A</code> および <code>B</code> は JOI 国に島 <code>A</code> と島 <code>B</code> を結ぶ航空路線があることを表す．<code>A</code> および <code>B</code> は <var>0</var> 以上 <var>N - 1</var> 以下の整数値でなければならない．また，<var>\texttt{A} \ne \texttt{B}</var> を満たさなければならない． <code>A</code> または <code>B</code> がこれらの条件を満たさないとき，不正解 <var>[12]</var> と判定される．JOI 国に島 <code>A</code> と島 <code>B</code> を結ぶ航空路線がないとき，不正解 <var>[13]</var> と判定される．また，過去の呼び出しと同じ航空路線を表す呼び出しをしてはならない．<code>MakeMap( A, B )</code> の呼び出し時に，既に <code>MakeMap( A, B )</code> または <code>MakeMap( B, A )</code> を実行していたとき，不正解 <var>[14]</var> と判定される．</li>
+</ul>
+<p>ただし，<var>N</var> は <code>InitMap</code> で設定した値である．</p>
+</li>
+</ul>
+<p>関数 <code>Bob</code> 中では，関数 <code>InitMap</code> を <var>1</var> 回呼び出した後，関数 <code>MakeMap</code> をちょうど <var>M</var> 回呼び出さなければならない．関数 <code>InitMap</code> が <var>2</var> 回以上呼び出された場合，不正解 <var>[15]</var> と判定される．関数 <code>InitMap</code> が呼び出される前に，関数 <code>MakeMap</code> が呼び出された場合，不正解 <var>[16]</var> と判定される．関数 <code>Bob</code> の実行の終了時に関数 <code>InitMap</code> が呼び出されていない場合や，関数 <code>MakeMap</code> の呼び出し回数が <var>M</var> でなかった場合，不正解 <var>[17]</var> と判定される．ただし，<var>M</var> は <code>InitMap</code> で設定した値である．</p>
+<p><code>Bob</code> の呼び出しが不正解と判定された場合，その時点でプログラムは終了する．</p>
+</li>
+</ul>
+<h4>採点の手順</h4>
+<p>採点は以下の手順で行われる．不正解と判定された場合はその時点でプログラムは終了される．</p>
+<p>(1) JOI 国の航空路線図を表す情報を引数として，関数 <code>Alice</code> を <var>1</var> 回呼び出す．</p>
+<p>(2) 関数 <code>Alice</code> 中で設定されたグラフを <var>G</var> とする ．<var>G</var> の頂点番号と辺番号をシャッフルしたグラフを表す情報を引数として，関数 <code>Bob</code> を <var>1</var> 回呼び出す．</p>
+<p>(3) 採点される．</p>
+<h4>重要な注意</h4>
+<ul>
+<li>内部での使用のために他のルーチンを実装したり，グローバル変数を宣言するのは自由である．ただし，提出された <var>2</var> つのプログラムは, 採点プログラムとまとめてリンクされて <var>1</var> つの実行ファイルになるので，各ファイル内のすべてのグローバル変数と内部ルーチンを <code>static</code> で宣言して，他のファイルとの干渉を避ける必要がある．採点時には，このプログラムは Alice 側, Bob 側として <var>2</var> 個のプロセスとして実行されるので，Alice 側と Bob 側でプログラム中のグローバル変数を共有することはできない.</li>
+<li>あなたの提出したプログラムは，標準入力・標準出力，あるいは他のファイルといかなる方法でもやりとりしてはならない．ただし，標準エラー出力にデバッグ情報等を出力することは許される．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>コンパイル・実行の方法</h3>
+<p>作成したプログラムをテストするための，採点プログラムのサンプルが，コンテストサイトからダウンロードできるアーカイブの中に含まれている．このアーカイブには，提出しなければならないファイルのサンプルも含まれている．</p>
+<p>採点プログラムのサンプルは <var>1</var> つのファイルからなる. そのファイルは <code>grader.cpp</code> である．作成したプログラムを <code>Alice.cpp</code> および <code>Bob.cpp</code> とする．作成したプログラムをテストするには，これらのファイル (<code>grader.cpp</code>, <code>Alice.cpp</code>, <code>Bob.cpp</code>) と，<code>Alicelib.h</code> および <code>Boblib.h</code> を同じディレクトリに置き，次のようにコマンドを実行する．</p>
+<pre>g++ -std=c++14 -O2 -o grader grader.cpp Alice.cpp Bob.cpp
+</pre>
+<p>コンパイルが成功すれば，<code>grader</code> という実行ファイルが生成される．</p>
+<p>実際の採点プログラムは，採点プログラムのサンプルとは異なることに注意すること．採点プログラムのサンプルは単一のプロセスとして起動する．このプログラムは，標準入力から入力を読み込み，標準出力に結果を出力する．</p>
+<h4>採点プログラムのサンプルの入力</h4>
+<p>採点プログラムのサンプルは標準入力から以下の入力を読み込む．</p>
+<ul>
+<li><var>1</var> 行目には <var>2</var> つの整数 <var>N, M</var> が書かれている ．<var>N</var> は JOI 国の島の数を，<var>M</var> は JOI 国の航空路線の本数を表す．</li>
+<li>続く <var>M</var> 行には，<var>M</var> 本の航空路線の情報が書かれている ．<var>M</var> 行のうちの <var>i + 1</var> 行目 (<var>0 \leqq i \leqq M - 1</var>) には，<var>2</var> つの整数 <var>A_{i}, B_{i}</var> が書かれている．これは，JOI 国の航空路線の情報を表す．</li>
+</ul>
+<h4>採点プログラムのサンプルの出力</h4>
+<p>採点プログラムのサンプルは標準出力へ以下の情報を出力する（引用符は実際には出力されない）．</p>
+<ul>
+<li>プログラムの実行中にいずれかの不正解と判定された場合，不正解の種類が “<code>Wrong Answer [1]</code>” のように出力され，実行が終了される．</li>
+<li><code>Alice</code> と <code>Bob</code> のいずれの呼び出しも不正解と判定されなかった場合，“<code>Accepted</code>” と出力される．また，<var>V</var> の値が出力される．</li>
+</ul>
+<p>実行するプログラムが複数の不正解の条件を満たした場合，表示される不正解の種類はそれらのうち <var>1</var> つのみである．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>制限</h3>
+<p>すべての入力データは以下の条件を満たす．</p>
+<ul>
+<li><var>1 \leqq N \leqq 1\,000</var>．</li>
+<li><var>0 \leqq M \leqq N(N - 1)/2</var>．</li>
+<li><var>0 \leqq A_{i} \leqq N - 1</var> (<var>0 \leqq i \leqq M - 1</var>)．</li>
+<li><var>0 \leqq B_{i} \leqq N - 1</var> (<var>0 \leqq i \leqq M - 1</var>)．</li>
+<li><var>A_{i} \ne B_{i}</var> (<var>0 \leqq i \leqq M - 1</var>)．</li>
+<li><var>(A_{i}, B_{i}) \ne (A_{j}, B_{j})</var> かつ <var>(A_{i}, B_{i}) \ne (B_{j}, A_{j})</var> (<var>0 \leqq i &lt; j \leqq M - 1</var>)．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<p>この課題では小課題は全部で <var>3</var> 個ある．各小課題の配点および追加の制限は以下の通りである．</p>
+<h4>小課題 1 [<var>22</var> 点]</h4>
+<ul>
+<li><var>N \leqq 10</var>．</li>
+</ul>
+<h4>小課題 2 [<var>15</var> 点]</h4>
+<ul>
+<li><var>N \leqq 40</var>．</li>
+</ul>
+<h4>小課題 3 [<var>63</var> 点]</h4>
+<p>追加の制限はない．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>採点基準</h3>
+<ul>
+<li>小課題 1 および小課題 2 では，各小課題のすべてのテストケースに正解すると，満点が与えられる．</li>
+<li>小課題 3 では，すべてのテストケースに正解したとき，<var>V - N</var> の値の最大値を <var>\mathrm{MaxDiff}</var> として，以下のように採点される．<ul>
+<li><var>101\leqq\mathrm{MaxDiff}</var> のとき，<var>0</var> 点．</li>
+<li><var>21\leqq\mathrm{MaxDiff}\leqq100</var> のとき，<var>13+\left[\dfrac{100 - \mathrm{MaxDiff}}{4}\right]</var> 点．ここで，<var>x</var> を超えない最大の整数を <var>[x]</var> で表す．</li>
+<li><var>13\leqq\mathrm{MaxDiff}\leqq20</var> のとき，<var>33+(20 - \mathrm{MaxDiff})\times3</var> 点．</li>
+<li><var>\mathrm{MaxDiff}\leqq12</var> のとき，<var>63</var> 点．</li>
+</ul>
+</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>やり取りの例</h3>
+<p>grader が読み込む入力の例と，それに対応する関数の呼び出しの例を以下に示す．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>4 3
+0 1
+0 2
+0 3
+</pre>
+<h4>ルーチンの呼び出しの例</h4>
+<div class="joisc2018-airline-ja-table">
+<table>
+<thead>
+<tr>
+<th>呼び出し</th>
+<th>戻り値</th>
+<th>呼び出し</th>
+<th>戻り値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Alice(...)</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>InitG(4,3)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>(なし)</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>MakeG(0,0,1)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>(なし)</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>MakeG(1,0,2)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>(なし)</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>MakeG(2,0,3)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>(なし)</td>
+</tr>
+<tr>
+<td></td>
+<td>(なし)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Bob(...)</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>InitMap(4,3)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>(なし)</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>MakeMap(0,1)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>(なし)</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>MakeMap(0,2)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>(なし)</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>MakeMap(0,3)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>(なし)</td>
+</tr>
+<tr>
+<td></td>
+<td>(なし)</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>このとき，<code>Alice(...)</code>，<code>Bob(...)</code> に渡される引数はそれぞれ，例えば次のようになる．</p>
+<div class="joisc2018-airline-ja-table">
+<table>
+<thead>
+<tr>
+<th>引数</th>
+<th><code>Alice(...)</code></th>
+<th><code>Bob(...)</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>N</code></td>
+<td><var>4</var></td>
+<td></td>
+</tr>
+<tr>
+<td><code>M</code></td>
+<td><var>3</var></td>
+<td></td>
+</tr>
+<tr>
+<td><code>V</code></td>
+<td></td>
+<td><var>4</var></td>
+</tr>
+<tr>
+<td><code>U</code></td>
+<td></td>
+<td><var>3</var></td>
+</tr>
+<tr>
+<td><code>A</code></td>
+<td><var>\lbrace  0, 0, 0\rbrace</var></td>
+<td></td>
+</tr>
+<tr>
+<td><code>B</code></td>
+<td><var>\lbrace  1, 2, 3\rbrace</var></td>
+<td></td>
+</tr>
+<tr>
+<td><code>C</code></td>
+<td></td>
+<td><var>\lbrace  2, 2, 2\rbrace</var></td>
+</tr>
+<tr>
+<td><code>D</code></td>
+<td></td>
+<td><var>\lbrace  3, 0, 1\rbrace</var></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>5 7
+0 1
+0 2
+1 3
+1 4
+3 4
+2 3
+2 4
+</pre>
+<style>
+.joisc2018-airline-ja-table { position:relative;max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisc2018-airline-ja-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisc2018-airline-ja-table th,.joisc2018-airline-ja-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisc2018-airline-ja-table th { background:#f5f5f5; white-space:nowrap; }
+.joisc2018-airline-ja-table code { white-space:nowrap; }
+.joisc2018-airline-ja-table .katex { position:relative; }
+</style></section>
+</div>
+</span>
+</span>

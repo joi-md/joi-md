@@ -1,0 +1,293 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>There are <var>N</var> candies in a row on the table. Each candy has a value called deliciousness. The deliciousness of the candy which is located <var>i</var>-th from the left is <var>A_{i}</var> (<var>1 \le i \le N</var>).</p>
+<p>JOI-chan decided to eat some of these <var>N</var> candies. JOI-chan wants to maximize the sum of deliciousness of candies which she is going to eat.</p>
+<p>However, JOI-chan thinks that just choosing candies greedily is not interesting, so she makes a rule that she cannot choose two consecutive candies simultaneously.</p>
+<p>JOI-chan has not decided how many candies she eats, so JOI-chan wants to know, for each <var>j</var> (<var>1 \le j \le \left\lceil\frac{N}{2}\right\rceil</var>), the maximum sum of deliciousness of candies when she eats <var>j</var> candies. Here <var>\lceil x\rceil</var> is the smallest integer larger than or equal to <var>x</var>.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Task</h3>
+<p>Given the number of candies and the deliciousness of candies, write a program which calculates, for each <var>j</var> (<var>1 \le j \le \left\lceil\frac{N}{2}\right\rceil</var>), the maximum sum of deliciousness of candies when she eats <var>j</var> candies.</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input.</p>
+<ul>
+<li>The first line of input contains an integer <var>N</var>. This means there are <var>N</var> candies on the table.</li>
+<li>The <var>i</var>-th line (<var>1 \le i \le N</var>) of the following <var>N</var> lines contains an integer <var>A_{i}</var>. This means the deliciousness of the candy which is located <var>i</var>-th from the left is <var>A_{i}</var>.</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>Write <var>\left\lceil\frac{N}{2}\right\rceil</var> lines to the standard output. The <var>j</var>-th line (<var>1 \le j \le \left\lceil\frac{N}{2}\right\rceil</var>) of output contains the maximum sum of deliciousness of candies when she eats <var>j</var> candies.</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<p>All input data satisfy the following conditions.</p>
+<ul>
+<li><var>1 \le N \le 200\,000</var>.</li>
+<li><var>1 \le A_{i} \le 1\,000\,000\,000</var> (<var>1 \le i \le N</var>).</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtask</h3>
+<p>There are 2 subtasks. The score and additional constraints of each subtask are as follows:</p>
+<h4>Subtask 1 [<var>8</var> points]</h4>
+<ul>
+<li><var>N \le 2\,000</var>.</li>
+</ul>
+<h4>Subtask 2 [<var>92</var> points]</h4>
+<p>There are no additional constraints.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input and Output</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>5
+3
+5
+1
+7
+6
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>7
+12
+10
+</pre>
+<p>In Sample Input 1, there are 5 candies and their deliciousness are 3, 5, 1, 7, 6 from the left.</p>
+<p>JOI-chan should eat candies as follows:</p>
+<ul>
+<li>When she eats 1 candies, she eats fourth candy from the left (deliciousness 7).</li>
+<li>When she eats 2 candies, she eats second and fourth candies from the left (deliciousness 5, 7).</li>
+<li>When she eats 3 candies, she eats first and third and fifth candies from the left (deliciousness 3, 1, 6).</li>
+</ul>
+<p>Again, she cannot choose two consecutive candies simultaneously. For example, keep in mind that when she eats 2 candies, she cannot eat both fourth and fifth candies from the left (deliciousness 7, 6).</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>20
+623239331
+125587558
+908010226
+866053126
+389255266
+859393857
+596640443
+60521559
+11284043
+930138174
+936349374
+810093502
+521142682
+918991183
+743833745
+739411636
+276010057
+577098544
+551216812
+816623724
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>936349374
+1855340557
+2763350783
+3622744640
+4439368364
+5243250666
+5982662302
+6605901633
+7183000177
+7309502029
+</pre></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>机の上に <var>N</var> 個の飴が横一列に並んでいる．左から <var>i</var> 番目 (<var>1 \leqq i \leqq N</var>) の飴の美味しさは <var>A_{i}</var> である． JOI ちゃんは，<var>N</var> 個の飴のうちいくつかを選んで食べることにした．JOI ちゃんは，選んだ飴の美味しさの合計を大きくしたい．ただし，普通に選ぶのでは面白くないと思った JOI ちゃんは，隣り合う <var>2</var> つの飴の両方を選ぶことはしないことにした．</p>
+<p>JOI ちゃんは，何個の飴を食べるのか，まだ決めていない．JOI ちゃんは，各 <var>j</var> (<var>1 \leqq j \leqq \left\lceil\frac{N}{2}\right\rceil</var>) について， <var>j</var> 個の飴を選ぶ場合の美味しさの合計の最大値を知りたい．ここで，<var>\lceil x\rceil</var> は，<var>x</var> 以上の整数のうち最小のものを表す．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p>机の上にある <var>N</var> 個の飴の美味しさが与えられたとき，各 <var>j</var> (<var>1 \leqq j \leqq \left\lceil\frac{N}{2}\right\rceil</var>) について，<var>j</var> 個の飴を選んだ場合の美味しさの合計の最大値を求めるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>標準入力から以下の入力を読み込め．</p>
+<ul>
+<li><var>1</var> 行目には，整数 <var>N</var> が書かれている．これは机の上にある飴の個数を表す．</li>
+<li>続く <var>N</var> 行のうちの <var>i</var> 行目 (<var>1 \leqq i \leqq N</var>) には，整数 <var>A_{i}</var> が書かれている．これは左から <var>i</var> 番目の飴の美味しさを表す．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に <var>\left\lceil\frac{N}{2}\right\rceil</var> 行で出力せよ ．<var>j</var> 行目 (<var>1 \leqq j \leqq \left\lceil\frac{N}{2}\right\rceil</var>) には，<var>j</var> 個の飴を選んだ場合の美味しさの合計の最大値を出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制限</h3>
+<p>すべての入力データは以下の条件を満たす．</p>
+<ul>
+<li><var>1 \leqq N \leqq 200\,000</var>．</li>
+<li><var>1 \leqq A_{i} \leqq 1\,000\,000\,000</var> (<var>1 \leqq i \leqq N</var>)．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<p>この課題では小課題は全部で <var>2</var> 個ある．各小課題の配点および追加の制限は以下の通りである．</p>
+<h4>小課題 1 [<var>8</var> 点]</h4>
+<ul>
+<li><var>N \leqq 2\,000</var>．</li>
+</ul>
+<h4>小課題 2 [<var>92</var> 点]</h4>
+<p>追加の制限はない．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入出力例</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>5
+3
+5
+1
+7
+6
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>7
+12
+10
+</pre>
+<p>入力例 <var>1</var> では，左から順に美味しさが <var>3</var>，<var>5</var>，<var>1</var>，<var>7</var>，<var>6</var> の飴が並んでいる．以下のように食べるのが最適である．</p>
+<ul>
+<li><var>1</var> 個の飴を食べる場合は，左から <var>4</var> 番目の飴 (美味しさ <var>7</var>) を食べる．</li>
+<li><var>2</var> 個の飴を食べる場合は，左から <var>2</var> 番目と <var>4</var> 番目の飴 (美味しさ <var>5, 7</var>) を食べる．</li>
+<li><var>3</var> 個の飴を食べる場合は，左から <var>1</var> 番目と <var>3</var> 番目と <var>5</var> 番目の飴 (美味しさ <var>3, 1, 6</var>) を食べる．</li>
+</ul>
+<p>隣り合う <var>2</var> つの飴の両方を選ぶことはできない．例えば，<var>2</var> 個の飴を食べる場合に，左から <var>4</var> 番目と <var>5</var> 番目の飴 (美味しさ <var>7, 6</var>) の両方を食べることはできないことに注意せよ．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>20
+623239331
+125587558
+908010226
+866053126
+389255266
+859393857
+596640443
+60521559
+11284043
+930138174
+936349374
+810093502
+521142682
+918991183
+743833745
+739411636
+276010057
+577098544
+551216812
+816623724
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>936349374
+1855340557
+2763350783
+3622744640
+4439368364
+5243250666
+5982662302
+6605901633
+7183000177
+7309502029
+</pre></section>
+</div>
+</span>
+</span>

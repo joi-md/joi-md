@@ -1,0 +1,314 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>There are <var>N</var> cities in JOI Kingdom, which are indexed by the numbers from 1 to <var>N</var>. City 1 is the capital city. Each city has a value called liveliness and the initial value of liveliness of city <var>i</var> (<var>1 \le i \le N</var>) is <var>C_{i}</var>.</p>
+<p>Road in JOI Kingdom connects two different cities bidirectionally. Initially, there is no road in JOI Kingdom. You have planned <var>N - 1</var> constructions of roads. The <var>j</var>-th construction (<var>1 \le j \le N - 1</var>) is planned to be done in the follwing way.</p>
+<ul>
+<li>Two cities, <var>A_{j}</var> and <var>B_{j}</var>, are appointed, when one can go from city 1 to city <var>A_{j}</var> and cannot go from city 1 to city <var>B_{j}</var> by using only roads constructed at that time.</li>
+<li>
+<p>You construct a road connecting city <var>A_{j}</var> and city <var>B_{j}</var>. The cost of this construction is the number of pairs of cities (<var>s, t</var>) satisfying the following conditions:</p>
+<blockquote>
+<p>City <var>s</var> and City <var>t</var> lie on the shortest path between city 1 and city <var>A_{j}</var>, and when one goes from city <var>1</var> to city <var>A_{j}</var> he arrives city <var>s</var> before city <var>t</var>, and the value of liveliness of city <var>s</var> is strictly larger than that of city <var>t</var>.</p>
+</blockquote>
+<p>Here, cities lying on the path between city 1 and city <var>A_{j}</var> include city 1 and city <var>A_{j}</var>. Notice that the shortest path between city 1 and city <var>A_{j}</var> is unique.</p>
+</li>
+<li>
+<p>The values of liveliness of all cities lying on the path between city <var>1</var> and city <var>A_{j}</var> change to the value of liveliness of city <var>B_{j}</var>.</p>
+</li>
+</ul>
+<p>You want to know the cost of each construction.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Task</h3>
+<p>Given the data of cities and constructions of roads, write a program which calculates the cost of each construction.</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input.</p>
+<ul>
+<li>The first line of input contains a integer <var>N</var>. This means there are <var>N</var> cities in JOI Kingdom.</li>
+<li>The second line of input contains <var>N</var> space separated integers <var>C_{1},C_{2}, \cdots C_{N}</var>. This means the initial value of liveliness of city <var>i</var> (<var>1 \le i \le N</var>) is <var>C_{i}</var>.</li>
+<li>The <var>j</var>-th line (<var>1 \le j \le N - 1</var>) of following <var>N - 1</var> lines contains two space separated integers <var>A_{j}, B_{j}</var>. This means city <var>A_{j}</var> and city <var>B_{j}</var> are appointed for the <var>j</var>-th construction of road.</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>Write <var>N - 1</var> lines to the standard output. The <var>j</var>-th line (<var>1 \le j \le N - 1</var>) of output contains the cost of the <var>j</var>-th construction of road.</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<p>All input data satisfy the following conditions.</p>
+<ul>
+<li><var>1 \le N \le 100\,000</var>．</li>
+<li><var>1 \le C_{i} \le 1\,000\,000\,000</var> (<var>1 \le i \le N</var>).</li>
+<li><var>1 \le A_{j} \le N</var> (<var>1 \le j \le N - 1</var>).</li>
+<li><var>1 \le B_{j} \le N</var> (<var>1 \le j \le N - 1</var>).</li>
+<li>By using roads constructed before the <var>j</var>-th construction, one can go from city <var>1</var> to city <var>A_{j}</var> and cannot go from city 1 to city <var>B_{j}</var> (<var>1 \le j \le N - 1</var>).</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtask</h3>
+<p>There are 3 subtasks. The score and additional constraints of each subtask are as follows:</p>
+<h4>Subtask 1 [<var>7</var> points]</h4>
+<ul>
+<li><var>N \le 500</var>．</li>
+</ul>
+<h4>Subtask 2 [<var>9</var> points]</h4>
+<ul>
+<li><var>N \le 4000</var>．</li>
+</ul>
+<h4>Subtask 3 [<var>84</var> points]</h4>
+<p>There are no additional constraints.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input and Output</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>5
+1 2 3 4 5
+1 2
+2 3
+2 4
+3 5
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>0
+0
+0
+2
+</pre>
+<p>In Sample Input 1, constructions are done as follows:</p>
+<ul>
+<li>In the first construction, there are no pairs (<var>s, t</var>) satisfying the conditions, so the cost is 0. A road connecting city 1 and city 2 is constructed and the value of liveliness of city 1 changes to 2.</li>
+<li>In the second construction, there are no pairs <var>(s, t)</var> satisfying the conditions too, so the cost is <var>0</var>. A road connecting city 2 and city 3 is constructed and the values of liveliness of city 1 and city 2 change to 3.</li>
+<li>In the third construction, there are no pairs <var>(s, t)</var> satisfying the conditions too, so the cost is <var>0</var>. A road connecting city 2 and city 4 is constructed and the values of liveliness of city 1 and city 2 change to 4.</li>
+<li>In the fourth construction, two pairs <var>(s, t) = (1, 3), (2, 3)</var> satisfy the conditions, so the cost is <var>2</var>. A road connecting city 3 and city 5 is constructed and the values of liveliness of city 1, city 2 and city 3 change to <var>5</var>.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>10
+1 7 3 4 8 6 2 9 10 5
+1 2
+1 3
+2 4
+3 5
+2 6
+3 7
+4 8
+5 9
+6 10
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>0
+0
+0
+1
+1
+0
+1
+2
+3
+</pre></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>JOI 王国には <var>N</var> 個の都市があり，<var>1</var> から <var>N</var> までの番号が付けられている．都市 <var>1</var> は首都である．各都市には活気と呼ばれる値が存在し，都市 <var>i</var> (<var>1 \leqq i \leqq N</var>) の活気の初期値は <var>C_{i}</var> である．</p>
+<p>JOI 王国の道路は，<var>2</var> つの異なる都市を双方向に結ぶ．JOI 王国にははじめ，道路は存在しない．JOI 王国はこれから <var>N - 1</var> 本の道路からなる道路網の建設を行う ．<var>j</var> 回目 (<var>1 \leqq j \leqq N - 1</var>) の道路の建設は以下のようにして行われる．</p>
+<ul>
+<li>都市 <var>A_{j}</var> と都市 <var>B_{j}</var> が指定される．このとき，都市 <var>1</var> から幾つかのその時点で建設されている道路を経由することで，都市 <var>A_{j}</var> へは到達可能であり，都市 <var>B_{j}</var> へは到達可能でない．</li>
+<li>
+<p>都市 <var>A_{j}</var> と都市 <var>B_{j}</var> を結ぶ道路を建設する．このとき，以下の条件を満たす都市の組 <var>(s, t)</var> の数だけコストがかかる．</p>
+<blockquote>
+<p>都市 <var>s</var> と都市 <var>t</var> は都市 <var>1</var> と都市 <var>A_{j}</var> を結ぶ最短のパス上に存在し，都市 <var>1</var> から都市 <var>A_{j}</var> に行く際に都市 <var>s</var> に都市 <var>t</var> より先に到達し，都市 <var>s</var> の活気の値が都市 <var>t</var> の活気の値より真に大きい．</p>
+</blockquote>
+<p>ここで，都市 <var>1</var> と都市 <var>A_{j}</var> を結ぶパス上の都市には，都市 <var>1</var> と都市 <var>A_{j}</var> 自身も含むとする．なお，都市 <var>1</var> と都市 <var>A_{j}</var> を結ぶ最短のパスは，ただ <var>1</var> つ存在することに注意せよ．</p>
+</li>
+<li>
+<p>都市 <var>1</var> と都市 <var>A_{j}</var> を結ぶ最短のパス上に存在するすべての都市について，その活気の値が都市 <var>B_{j}</var> の活気の値に変化する．</p>
+</li>
+</ul>
+<p>それぞれの道路の建設にかかるコストを知りたい．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p>都市と道路の建設計画の情報が与えられたとき，それぞれの道路の建設にかかるコストを求めるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>標準入力から以下の入力を読み込め．</p>
+<ul>
+<li><var>1</var> 行目には整数 <var>N</var> が書かれている．これは JOI 国に <var>N</var> 個の都市が存在することを表す．</li>
+<li><var>2</var> 行目には <var>N</var> 個の整数 <var>C_{1},C_{2}, \cdots,C_{N}</var> が空白を区切りとして書かれている．これらは都市 <var>i</var> (<var>1 \leqq i \leqq N</var>) の活気の初期値が <var>C_{i}</var> であることを表す．</li>
+<li>続く <var>N - 1</var> 行のうちの <var>j</var> 行目（<var>1 \leqq j \leqq N - 1</var>）には <var>2</var> 個の整数 <var>A_{j}, B_{j}</var> が空白を区切りとして書かれている．これらは <var>j</var> 回目の道路の建設において都市 <var>A_{j}</var> と都市 <var>B_{j}</var> が指定されることを表す．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に <var>N - 1</var> 行で出力せよ ．<var>N - 1</var> 行のうちの <var>j</var> 行目 (<var>1 \leqq j \leqq N - 1</var>) には，<var>j</var> 回目の道路の建設にかかるコストを出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制限</h3>
+<p>すべての入力データは以下の条件を満たす．</p>
+<ul>
+<li><var>1 \leqq N \leqq 100\,000</var>．</li>
+<li><var>1 \leqq C_{i} \leqq 1\,000\,000\,000</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>1 \leqq A_{j} \leqq N</var> (<var>1 \leqq j \leqq N - 1</var>)．</li>
+<li><var>1 \leqq B_{j} \leqq N</var> (<var>1 \leqq j \leqq N - 1</var>)．</li>
+<li><var>j</var> 回目より前に建設された道路を用いて，都市 <var>1</var> から都市 <var>A_{j}</var> へは到達可能であり，都市 <var>B_{j}</var> へは到達可能でない (<var>1 \leqq j \leqq N - 1</var>)．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<p>この課題では小課題は全部で <var>3</var> 個ある．各小課題の配点および追加の制限は以下の通りである．</p>
+<h4>小課題 1 [<var>7</var> 点]</h4>
+<ul>
+<li><var>N \leqq 500</var>．</li>
+</ul>
+<h4>小課題 2 [<var>9</var> 点]</h4>
+<ul>
+<li><var>N \leqq 4000</var>．</li>
+</ul>
+<h4>小課題 3 [<var>84</var> 点]</h4>
+<p>追加の制限はない．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入出力例</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>5
+1 2 3 4 5
+1 2
+2 3
+2 4
+3 5
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>0
+0
+0
+2
+</pre>
+<p>入力例 <var>1</var> では，以下のように建設が行われる．</p>
+<ul>
+<li><var>1</var> 回目の建設では条件を満たす都市 <var>s</var>, 都市 <var>t</var> の組は存在しないので建設にかかるコストは <var>0</var> である．都市 <var>1</var> と都市 <var>2</var> の間に道路ができ，都市 <var>1</var> の活気の値が <var>2</var> に変わる．</li>
+<li><var>2</var> 回目の建設でも建設にかかるコストは <var>0</var> である．都市 <var>2</var> と都市 <var>3</var> の間に道路ができ，都市 <var>1</var> と都市 <var>2</var> の活気の値が <var>3</var> に変わる．</li>
+<li><var>3</var> 回目の建設でも建設にかかるコストは <var>0</var> である．都市 <var>2</var> と都市 <var>4</var> の間に道路ができ，都市 <var>1</var> と都市 <var>2</var> の活気の値が <var>4</var> に変わる．</li>
+<li><var>4</var> 回目の建設では <var>(s, t) = (1, 3), (2, 3)</var> が条件をみたすので建設にかかるコストは <var>2</var> である．都市 <var>3</var> と都市 <var>5</var> の間に道路ができ，都市 <var>1</var> と都市 <var>2</var> と都市 <var>3</var> の活気の値が <var>5</var> に変わる．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>10
+1 7 3 4 8 6 2 9 10 5
+1 2
+1 3
+2 4
+3 5
+2 6
+3 7
+4 8
+5 9
+6 10
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>0
+0
+0
+1
+1
+0
+1
+2
+3
+</pre></section>
+</div>
+</span>
+</span>

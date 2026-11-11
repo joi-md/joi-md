@@ -1,0 +1,244 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>One day, JOI-kun got a time machine. He decided to go to Japan in the 9th century. He met Kukai, one of the most famous priests in Japan at the moment. The priest wanted to develop the new way of training.</p>
+<p>His training is done in the following way:</p>
+<ul>
+<li>Kukai reads the sutra with <var>N</var> sentences. These sentences are ordered, and he has to read in order.</li>
+<li>Each sentence has one integer between <var>1</var> and <var>N</var>, inclusive. No two different sentences have the same number.</li>
+<li>He has to read the sentence with the integer <var>i</var> (<var>1 \le i \le N</var>) in the <var>i</var>-th period among the <var>N</var> equally divided time periods in a day. Each sentence is so short that it is always possible for him to read a sentence in a period.</li>
+</ul>
+<p>Kukai wants to read the whole sutra as fast as possible. However, how many days it takes for him to finish depends on the integers on the sentences in the sutra. JOI-kun was asked by Kukai to count the number of possible ways of integers on the sentences that takes Kukai exactly <var>K</var> days to finish reading, if he reads optimally.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Task</h3>
+<p>Given the number of sentences <var>N</var> and an integer <var>K</var>, calculate the number of possible ways of integers on the sentences that takes Kukai exactly <var>K</var> days to finish reading, if he reads optimally, modulo 1 000 000 007.</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input.</p>
+<ul>
+<li>The first line of input contains <var>N</var> and <var>K</var>, separated by a single space.</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>Print the number of possible ways of integers on the sentences that takes Kukai exactly <var>K</var> days to finish reading, if he reads optimally, modulo 1 000 000 007.</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<p>All input data satisfy the following conditions.</p>
+<ul>
+<li><var>1 \le N \le 100\,000</var>．</li>
+<li><var>1 \le K \le N</var>．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtask</h3>
+<p>There are 4 subtasks. The score and additional constraints of each subtask are as follows:</p>
+<h4>Subtask 1 [<var>4</var> points]</h4>
+<ul>
+<li><var>N \le 10</var>．</li>
+</ul>
+<h4>Subtask 2 [<var>20</var> points]</h4>
+<ul>
+<li><var>N \le 300</var>．</li>
+</ul>
+<h4>Subtask 3 [<var>25</var> points]</h4>
+<ul>
+<li><var>N \le 3\,000</var>．</li>
+</ul>
+<h4>Subtask 4 [<var>51</var> points]</h4>
+<p>There are no additional constraints.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input and Output</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>3 2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>4
+</pre>
+<p>There are 4 possible ways of integers on the sentences that takes him 2 days to finish reading.</p>
+<ul>
+<li>The first sentence has 1, the next sentence has 3 and the last sentence has 2. He reads the first two sentences (numbered 1 and 3 each) on the first day, and the last sentence (numbered 2) on the second day.</li>
+<li>The first sentence has 2, the next sentence has 1 and the last sentence has 3.</li>
+<li>The first sentence has 2, the next sentence has 3 and the last sentence has 1.</li>
+<li>The first sentence has 3, the next sentence has 1 and the last sentence has 2.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>10 5
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>1310354
+</pre></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>タイムマシンを手に入れた JOI 君は，約 <var>1200</var> 年前の日本に遊びに行くことにした．そこで，JOI 君は，弘法大師の名で知られる空海が，新たな修行の方法を考えている場に出会った．</p>
+<p>空海は，次のような方法で修行をしようとしている．</p>
+<ul>
+<li>空海は <var>N</var> 個の文からなるお経を読もうとしている ．<var>N</var> 個の文には順序が定まっており，空海はその順に文を読む必要がある．</li>
+<li>それぞれの文には <var>1</var> 以上 <var>N</var> 以下の整数が <var>1</var> つだけ付けられている．ただし，異なる文に同じ整数が付けられていることはない．</li>
+<li>整数 <var>i</var> (<var>1 \leqq i \leqq N</var>) が付けられた文は，<var>1</var> 日を <var>N</var> 等分した中で <var>i</var> 番目の時間に読む必要がある．それぞれの文はとても短いので，この時間内に文を読み切ることができる．</li>
+</ul>
+<p>空海は，ある日の始まりからこの修行を開始し，極力短い日数でこれらの修行を終えたい．しかし文に付けられている整数によって，何日間必要かは変わってくる．そこで，空海に頼まれた JOI 君は，最短日数ですべての文を読もうとしたときに <var>K</var> 日間かかるような，文への整数の付け方が何通りあるかを求めることにした．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p>お経の文の個数 <var>N</var> と，<var>K</var> が与えられたとき，すべて読むのに最短でちょうど <var>K</var> 日間かかるお経に書かれた整数の組み合わせの個数を，<var>1\,000\,000\,007</var> で割った余りを求めるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>標準入力から以下の入力を読み込め．</p>
+<ul>
+<li><var>1</var> 行目には，<var>2</var> 個の整数 <var>N, K</var> が空白を区切りとして書かれている．これは，お経が <var>N</var> 個の文からなり，すべて読むのに最短でちょうど <var>K</var> 日間かかるお経に書かれた整数の組み合わせの個数を求めたいことを表す．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>すべて読むのに最短でちょうど <var>K</var> 日間かかるお経に書かれた整数の組み合わせの個数を，<var>1\,000\,000\,007</var> で割った余りを出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制限</h3>
+<p>すべての入力データは以下の条件を満たす．</p>
+<ul>
+<li><var>1 \leqq N \leqq 100\,000</var>．</li>
+<li><var>1 \leqq K \leqq N</var>．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<p>この課題では小課題は全部で <var>4</var> 個ある．各小課題の配点および追加の制限は以下の通りである．</p>
+<h4>小課題 1 [<var>4</var> 点]</h4>
+<ul>
+<li><var>N \leqq 10</var>．</li>
+</ul>
+<h4>小課題 2 [<var>20</var> 点]</h4>
+<ul>
+<li><var>N \leqq 300</var>．</li>
+</ul>
+<h4>小課題 3 [<var>25</var> 点]</h4>
+<ul>
+<li><var>N \leqq 3\,000</var>．</li>
+</ul>
+<h4>小課題 4 [<var>51</var> 点]</h4>
+<p>追加の制限はない．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入出力例</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>3 2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>4
+</pre>
+<p>すべて読むのに最短でちょうど <var>2</var> 日間かかるお経は，以下の <var>4</var> 通りある．</p>
+<ul>
+<li>最初の文に <var>1</var>，次の文に <var>3</var>，次の文に <var>2</var> が付けられている．このとき，<var>1</var> 日目に最初の <var>2</var> つの文 (<var>1</var> と <var>3</var> がそれぞれ付けられている) を読み，<var>2</var> 日目に最後の文 (<var>2</var> が付けられている) を読む．</li>
+<li>最初の文に <var>2</var>，次の文に <var>1</var>，次の文に <var>3</var> が付けられている．</li>
+<li>最初の文に <var>2</var>，次の文に <var>3</var>，次の文に <var>1</var> が付けられている．</li>
+<li>最初の文に <var>3</var>，次の文に <var>1</var>，次の文に <var>2</var> が付けられている．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>10 5
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>1310354
+</pre></section>
+</div>
+</span>
+</span>
