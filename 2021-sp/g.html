@@ -1,0 +1,441 @@
+<span class="lang">
+<span class="lang-en">
+<blockquote>
+<p><strong>Submission on AtCoder</strong></p>
+<p>Include <code>ancient_machine.h</code> and implement all functions in a single source file. Do not share global variables between the two sides. This judge supports C++ only.</p>
+<p><a href="https://www2.ioi-jp.org/camp/2021/2021-sp-tasks/day3/ancient_machine-dist.zip">Distributed files</a></p>
+</blockquote>
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>Anna and Bruno are archaeologists. They excavate ruins of IOI Kingdom. In the ruin A, Anna discovered the layout of an old machine. In the ruin B, Bruno discovered the actual machine.</p>
+<p>This machine consists of <var>N</var> devices. The devices are attached to an electric wire in a row. There are three types of devices called <code>X</code>, <code>Y</code>, <code>Z</code>. From the left, the devices are numbered from 0 through <var>N - 1</var>. The type of the device <var>i</var> (<var>0 \le i \le N - 1</var>) is <var>S_{i}</var>. In other words, <var>S_{i}</var> is either <code>X</code>, <code>Y</code>, or <code>Z</code>.</p>
+<p>Since the machine is too big, Bruno decided to remove the devices, one by one, from the machine. However, since the devices interact with each other by an electric wire, he must be very careful about the order of removal.</p>
+<p>Concerning a way to remove a device from the machine, we define the following.</p>
+<ul>
+<li>Assume that the devices <var>x, y, z</var> (<var>0 \le x &lt; y &lt; z \le N - 1</var>) are not yet removed, and <var>S_{x} = {}</var><code>X</code>, <var>S_{y} = {}</var><code>Y</code>, <var>S_{z} = {}</var><code>Z</code>. Moreover, assume that, for every <var>x &lt; j &lt; y</var>, the device <var>j</var> was already removed, and, for every <var>y &lt; k &lt; z</var>, the device <var>k</var> was already removed. If all of these conditions are satisfied and we remove the device <var>y</var> from the machine, it is called a good removal.</li>
+<li>Any other way to remove a device from the machine is not a good removal.</li>
+</ul>
+<p>Bruno has to remove all of the <var>N</var> devices from the machine so that the number of good removals is the maximum possible. However, since the three types of devices look similar, he cannot distinguish the types of the devices.</p>
+<p>Since Anna has the layout of the machine, she knows the type of each device attached to the machine. Thus, she will use a transmitter to help Bruno. Using the transmitter, she can send a sequence of characters. Each character she can send is either 0 or 1.</p>
+<p>Write a program which implements Anna’s strategy and Bruno’s strategy so that the number of good removals is the maximum possible. In this task, if the number of characters sent by Anna to Bruno is smaller, your will get higher score.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Implementation Details</h3>
+<p>You need to submit two files.</p>
+<p>The first file is <code>Anna.cpp</code>. It should implement Anna’s strategy. It should implement the following function. The program should include <code>Anna.h</code> using the preprocessing directive <code>#include</code>.</p>
+<ul>
+<li><code>void Anna(int N, std::vector&lt;char&gt; S)</code>
+    For each test case, this function is called exactly once in the beginning.<ul>
+<li>The parameter <code>N</code> is the number of devices <var>N</var>.</li>
+<li>The parameter <code>S</code> is an array of length <var>N</var>. This means <code>S[i]</code> is the type <var>S_{i}</var> of the device <var>i</var> (<var>0 \le i \le N - 1</var>). Here the character <code>S[i]</code> is either ‘<code>X</code>’, ‘<code>Y</code>’, or ‘<code>Z</code>’.</li>
+</ul>
+</li>
+</ul>
+<p>Your program can call the following function.</p>
+<ul>
+<li><code>void Send(int a)</code>
+    Using this function, Anna sends a character, 0 or 1, to Bruno.<ul>
+<li>The parameter <code>a</code> is an information sent to Bruno. It should be 0 or 1. If this condition is not satisfied, your program is judged as Wrong Answer [1].</li>
+<li>The function <code>Send</code> should not be called more than 200 000 times. If it is called more than 200 000 times, your program is judged as Wrong Answer [2].</li>
+</ul>
+</li>
+</ul>
+<p>The second file is <code>Bruno.cpp</code>. It should implement Bruno’s strategy. It should implement the following function. The program should include <code>Bruno.h</code> using the preprocessing directive <code>#include</code>.</p>
+<ul>
+<li><code>void Bruno(int N, int L, std::vector&lt;int&gt; A)</code>
+    After the function <code>Anna</code> is called, this function is called exactly once.<ul>
+<li>The parameter <code>N</code> is the number of devices <var>N</var>.</li>
+<li>The parameter <code>L</code> is the number <var>L</var> of characters, 0 or 1, sent by Anna.</li>
+<li>The parameter <code>A</code> is an array of length <var>L</var>. It means Anna sent the sequence <code>A[0],A[1],...,A[L-1]</code> of characters to Bruno, in this order. Each character of the sequence is either 0 or 1.</li>
+</ul>
+</li>
+</ul>
+<p>Your program can call the following function.</p>
+<ul>
+<li><code>void Remove(int d)</code>
+    Using this function, your program answers how to remove the devices.<ul>
+<li>The parameter <code>d</code> is the index of a device. It means Bruno removes the device <var>d</var>.</li>
+<li>The inequalities <var>0 \le d \le N - 1</var> should be satisfied. If this condition is not satisfied, your program is judged as Wrong Answer [3].</li>
+<li>It is not allowed to call this function with same parameter <var>d</var> more than once. If this condition is not satisfied, your program is judged as Wrong Answer [4].</li>
+<li>The function <code>Remove</code> should be called exactly <var>N</var> times. When the function <code>Bruno</code> terminates, if the number of calls to the function <code>Remove</code> is different from <var>N</var>, your program is judged as Wrong Answer [5].</li>
+<li>After all the <var>N</var> devices are removed, the number of good removals should be the maximum possible. If this condition is not satisfied, your program is judged as Wrong Answer [6].</li>
+</ul>
+</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Important Notices</h3>
+<ul>
+<li>Your program can implement other functions for internal use, or use global variables. Submitted files will be compiled with the grader, and become a single executable file. All global variables and internal functions should be declared in an unnamed namespace to avoid confliction with other files. When it is graded, it will be executed as two processes of Anna and Bruno. The process of Anna and the process of Bruno cannot share global variables.</li>
+<li>Your program must not use the standard input and the standard output. Your program must not communicate with other files by any methods. However, your program may output debugging information to the standard error.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Compilation and Test Run</h3>
+<p>You can download an archive file from the contest webpage which contains the sample grader to test your program. The archive file also contains a sample source file of your program.</p>
+<p>The sample grader is the file <code>grader.cpp</code>. In order to test your program, put <code>grader.cpp</code>, <code>Anna.cpp</code>, <code>Bruno.cpp</code>, <code>Anna.h</code>, <code>Bruno.h</code> in the same directory, and run the following command to compile your programs.</p>
+<pre>g++ -std=gnu++17 -O2 -fsigned-char -o grader grader.cpp Anna.cpp Bruno.cpp
+</pre>
+<p>When the compilation succeeds, the executable file <code>grader</code> is generated.</p>
+<p>Note that the actual grader is different from the sample grader. The sample grader will be executed as a single process, which will read input data from the standard input and write the results to the standard output.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Input for the Sample Grader</h3>
+<p>The sample grader reads the following data from the standard input.</p>
+<pre><var>N</var>
+<var>S_{0}</var> <var>S_{1}</var> <var>\cdots</var> <var>S_{N - 1}</var>
+</pre>
+<p>Here <var>S_{i}</var> and <var>S_{i+1}</var> (<var>0 \le i \le N - 2</var>) are separated by a space.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Output of the Sample Grader</h3>
+<p>When the program terminates successfully, the sample grader writes the following information to the standard output (quotes for clarity).</p>
+<ul>
+<li>If your program is judged as any one of Wrong Answer <var>[1], [2], [3], [4]</var>, or <var>[5]</var>, it writes its type as “<code>Wrong Answer [1]</code>”.</li>
+<li>Otherwise, it writes the number <var>L</var> of function calls to <code>Send</code> and the number <var>D</var> of good removals as “<code>Accepted: L D</code>”. Note that the behavior of the sample grader is different from the actual grader. The sample grader does not check whether your program is judged as Wrong Answer [6] or not.</li>
+</ul>
+<p>If your program is judged as several types of Wrong Answer [1], [2], [3], [4], or [5], the sample grader reports only one of them.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li><var>3 \le N \le 100\,000</var>.</li>
+<li><var>S_{i}</var> is one of <code>X</code>, <code>Y</code>, or <code>Z</code> (<var>0 \le i \le N - 1</var>).</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li>(<var>5</var> points) <var>N\le18</var>.</li>
+<li>
+<p>(<var>95</var> points) No additional constraints. In this Subtask, your score is calculated by the following way.</p>
+<ul>
+<li>Let <var>L</var> be the maximum of the number of function calls to <code>Send</code> for every test case of this Subtask.</li>
+<li>Then your score is calculated as follows.<ul>
+<li>If <var>160\,000&lt;L\le200\,000</var>, your score is <var>25+\left\lfloor10\times\dfrac{200000 - L}{40000}\right\rfloor</var> points.</li>
+<li>If <var>100\,000&lt;L\le160\,000</var>, your score is <var>35+\left\lfloor30\times\dfrac{160000 - L}{60000}\right\rfloor</var> points.</li>
+<li>If <var>70\,000&lt;L\le100\,000</var>, your score is <var>65+\left\lfloor30\times\left(\dfrac{100000 - L}{30000}\right)^2\right\rfloor</var> points.</li>
+<li>If <var>L\le70\,000</var>, your score is <var>95</var> points.</li>
+</ul>
+</li>
+</ul>
+<p>Here <var>\lfloor x\rfloor</var> is the largest integer not exceeding <var>x</var>.</p>
+</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Communication</h3>
+<p>Here is a sample input for the sample grader and corresponding function calls.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>4
+X Y X Z
+</pre>
+<h4>Sample Function Calls</h4>
+<div class="joisc2021-ancient-machine-en-table" markdown="1">
+<table>
+<thead>
+<tr>
+<th>Call</th>
+<th>Call</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Anna(4, {X, Y, X, Z})</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Send(0)</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Send(1)</code></td>
+</tr>
+<tr>
+<td><code>Bruno(4, 2, {0, 1})</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Remove(2)</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Remove(1)</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Remove(0)</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Remove(3)</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>In these sample function calls, the 4 devices will be removed by the following way.</p>
+<ol>
+<li>In the beginning, the 4 devices are <code>X Y X Z</code>.</li>
+<li>Bruno removes the device 2. The devices become <code>X Y - Z</code>. Here <code>-</code> means the device in this position was already removed.</li>
+<li>Bruno removes the device <var>1</var>. The devices become <code>X - - Z</code>. Since <var>(x, y, z) = (0, 1, 3)</var> satisfies the condition, it is a good removal.</li>
+<li>Bruno removes the device 0. The devices become <code>- - - Z</code>.</li>
+<li>Finally, Bruno removes the device 3. The devices become <code>- - - -</code>.</li>
+</ol>
+<p>The number of good removals is 1.</p>
+<p>In this sample input, the number of good removals cannot be greater than 1.</p>
+<style>
+.joisc2021-ancient-machine-en-table { position:relative;max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisc2021-ancient-machine-en-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisc2021-ancient-machine-en-table th,.joisc2021-ancient-machine-en-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisc2021-ancient-machine-en-table th { background:#f5f5f5; }
+.joisc2021-ancient-machine-en-table code { white-space:nowrap; }
+</style></section>
+</div>
+</span>
+<span class="lang-ja">
+<blockquote>
+<p><strong>AtCoder での提出方法</strong></p>
+<p><code>ancient_machine.h</code> をインクルードし，すべての関数を 1 つのファイル内で実装して提出してください．グローバル変数を両者の間で共有しないでください．このジャッジは C++ のみに対応しています．</p>
+<p><a href="https://www2.ioi-jp.org/camp/2021/2021-sp-tasks/day3/ancient_machine-dist.zip">配布ファイル</a></p>
+</blockquote>
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>考古学者の Anna と Bruno は IOI 国の遺跡で発掘調査をすることになった．Anna は遺跡 A で古代の機械の設計書を，Bruno は遺跡 B で古代の機械を発見した．</p>
+<p>この機械は <var>1</var> 本の電気線上に，<var>N</var> 個の装置が横一列に取り付けられた構造をしている．装置には <var>3</var> つの種類があり，それぞれ <code>X</code>, <code>Y</code>, <code>Z</code> と名前が付いている．装置には左から順に <var>0</var> から <var>N - 1</var> までの番号が付いており，装置 <var>i</var> (<var>0 \leqq i \leqq N - 1</var>) の種類は <var>S_{i}</var> である (つまり，<var>S_{i}</var> は <code>X</code>, <code>Y</code>, <code>Z</code> のいずれかである)．</p>
+<p>この機械はとても大きいため，Bruno は機械に付いている <var>N</var> 個の装置すべてを <var>1</var> つずつ電気線上から取り外して持ち帰ることにした．ただし，装置は電気線上で相互に作用しているため，装置を取り外す順番には気を付ける必要がある．</p>
+<p>電気線上の装置の取り外し方について，次のように定める．</p>
+<ul>
+<li>装置 <var>x, y, z</var> (<var>0 \leqq x &lt; y &lt; z \leqq N - 1</var>) はまだ取り外されておらず，<var>S_{x} = {}</var><code>X</code>, <var>S_{y} = {}</var><code>Y</code>, <var>S_{z} = {}</var><code>Z</code> を満たすとする．さらに，<var>x &lt; j &lt; y</var> を満たすすべての装置 <var>j</var> と，<var>y &lt; k &lt; z</var> を満たすすべての装置 <var>k</var> は取り外されているとする．このとき，装置 <var>y</var> を電気線から取り外す取り外し方を良い取り外し方という．</li>
+<li>これ以外の取り外し方は，良い取り外し方ではない．</li>
+</ul>
+<p>Bruno は，良い取り外し方をした回数が最大になるように，<var>N</var> 個の装置すべてを取り外す必要がある．しかし，<var>3</var> つの種類の装置は見た目がとても似ているため，Bruno にはどの装置がどの種類かを判別することができない．</p>
+<p>Anna は設計書を持っているので，どの装置がどの種類であるかが分かっている．そこで，送信機を用いて Bruno に協力することにした．Anna は Bruno に <var>0</var> または <var>1</var> を何回か送ることができる．</p>
+<p>良い取り外し方をした回数が最大になるように Bruno が装置を取り外すための，Anna と Bruno の戦略を実装したプログラムを作成せよ．この課題では，Anna が Bruno に <var>0</var> または <var>1</var> を送る回数が少ないほど，あなたは高得点を得る．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>実装の詳細</h3>
+<p>あなたは <var>2</var> つのファイルを提出しなければならない．</p>
+<p><var>1</var> つ目のファイルは <code>Anna.cpp</code> という名前である．このファイルは Anna の戦略を実装したファイルであり，以下の関数を実装していなければならない．また，<code>#include</code> プリプロセッサ指令によって <code>Anna.h</code> を読み込むこと．</p>
+<ul>
+<li><code>void Anna(int N, std::vector&lt;char&gt; S)</code>
+    この関数は，最初に <var>1</var> 回だけ呼び出される．<ul>
+<li>引数 <code>N</code> は，装置の個数 <var>N</var> である．</li>
+<li>引数 <code>S</code> は長さ <var>N</var> の配列であり，<code>S[i]</code> は装置 <var>i</var> の種類 <var>S_{i}</var> を表す (<var>0 \leqq i \leqq N - 1</var>)．<code>S[i]</code> は文字 ‘<code>X</code>’, ‘<code>Y</code>’, ‘<code>Z</code>’ のいずれかである．</li>
+</ul>
+</li>
+</ul>
+<p>このファイルでは以下の関数を呼び出すことができる．</p>
+<ul>
+<li><code>void Send(int a)</code>
+    この関数を用いて，Bruno に <var>0</var> または <var>1</var> を送る．<ul>
+<li>引数 <code>a</code> は，Bruno に送る情報を表す．<code>a</code> は <var>0</var> または <var>1</var> でなければならない．これが満たされない場合，不正解 <var>[1]</var> と判定される．</li>
+<li>関数 <code>Send</code> を <var>200\,000</var> 回を超えて呼び出してはならない ．<var>200\,000</var> 回を超えて呼び出した場合，不正解 <var>[2]</var> と判定される．</li>
+</ul>
+</li>
+</ul>
+<p><var>2</var> つ目のファイルは <code>Bruno.cpp</code> という名前である．このファイルは Bruno の戦略を実装したファイルであり，以下の関数を実装していなければならない．また，<code>#include</code> プリプロセッサ指令によって <code>Bruno.h</code> を読み込むこと．</p>
+<ul>
+<li><code>void Bruno(int N, int L, std::vector&lt;int&gt; A)</code>
+    この関数は，<code>Anna</code> が呼び出された後に <var>1</var> 回だけ呼び出される．<ul>
+<li>引数 <code>N</code> は，装置の個数 <var>N</var> である．</li>
+<li>引数 <code>L</code> は，Anna から送られてきた <var>0</var> または <var>1</var> の個数 <var>L</var> である．</li>
+<li>引数 <code>A</code> は長さ <var>L</var> の配列であり，Anna から <var>0</var> または <var>1</var> が <code>A[0],A[1],...,A[L-1]</code> の順に送られてきたことを表す．</li>
+</ul>
+</li>
+</ul>
+<p>このファイルでは以下の関数を呼び出すことができる．</p>
+<ul>
+<li><code>void Remove(int d)</code>
+    この関数を用いて，装置の取り外す順番を回答する．<ul>
+<li>引数 <code>d</code> は，次に装置 <var>d</var> を取り外すことを表す．</li>
+<li><var>0 \leqq d \leqq N - 1</var> でなければならない．これが満たされない場合，不正解 <var>[3]</var> と判定される．</li>
+<li><var>d</var> に同じ値を <var>2</var> 回以上指定してはならない．これが満たされない場合，不正解 <var>[4]</var> と判定される．</li>
+<li>関数 <code>Remove</code> はちょうど <var>N</var> 回呼び出される必要がある．関数 <code>Bruno</code> の実行の終了時に関数 <code>Remove</code> の呼び出し回数が <var>N</var> 回でなかった場合，不正解 <var>[5]</var> と判定される．</li>
+<li><var>N</var> 個の装置を取り外し終えたとき，良い取り外し方をした回数が最大になっていなければならない．これが満たされない場合，不正解 <var>[6]</var> と判定される．</li>
+</ul>
+</li>
+</ul>
+<h4>重要な注意</h4>
+<ul>
+<li>内部での使用のために他の関数を実装したり，グローバル変数を宣言するのは自由である．ただし，提出された <var>2</var> つのプログラムは，採点プログラムとまとめてリンクされて <var>1</var> つの実行ファイルになるので，各ファイル内のすべてのグローバル変数と内部関数を無名名前空間内で宣言して，他のファイルとの干渉を避ける必要がある．採点時には，このプログラムは Anna 側，Bruno 側として <var>2</var> 個のプロセスとして実行されるので，Anna 側と Bruno 側でプログラム中のグローバル変数を共有することはできない．</li>
+<li>あなたの提出したプログラムは，標準入力・標準出力，あるいは他のファイルといかなる方法でもやりとりしてはならない．ただし，標準エラー出力にデバッグ情報等を出力することは許される．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>コンパイル・実行の方法</h3>
+<p>作成したプログラムをテストするための，採点プログラムのサンプルが，コンテストサイトからダウンロードできるアーカイブの中に含まれている．このアーカイブには，提出しなければならないファイルのサンプルも含まれている．</p>
+<p>採点プログラムのサンプルは <var>1</var> つのファイルからなる．そのファイルは <code>grader.cpp</code> である．作成したプログラムをテストするには，<code>grader.cpp</code>，<code>Anna.cpp</code>，<code>Bruno.cpp</code>，<code>Anna.h</code>，<code>Bruno.h</code> を同じディレクトリに置き，次のようにコマンドを実行する．</p>
+<pre>g++ -std=gnu++17 -O2 -fsigned-char -o grader grader.cpp Anna.cpp Bruno.cpp
+</pre>
+<p>コンパイルが成功すれば，<code>grader</code> という実行ファイルが生成される．</p>
+<p>実際の採点プログラムは，採点プログラムのサンプルとは異なることに注意すること．採点プログラムのサンプルは単一のプロセスとして起動する．このプログラムは，標準入力から入力を読み込み，標準出力に結果を出力する．</p>
+<h4>採点プログラムのサンプルの入力</h4>
+<p>採点プログラムのサンプルは標準入力から以下の形式で入力を読み込む．</p>
+<pre><var>N</var>
+<var>S_{0}</var> <var>S_{1}</var> <var>\cdots</var> <var>S_{N - 1}</var>
+</pre>
+<p><var>S_{i}</var> と <var>S_{i+1}</var> (<var>0 \leqq i \leqq N - 2</var>) は，半角空白で区切られている．</p>
+<h4>採点プログラムのサンプルの出力</h4>
+<p>採点プログラムのサンプルは標準出力へ以下の情報を出力する (引用符は実際には出力されない)．</p>
+<ul>
+<li>不正解 <var>[1], [2], [3], [4], [5]</var> のいずれかの場合，不正解の種類が “<code>Wrong Answer [1]</code>” のように出力される．</li>
+<li>そうでない場合，<code>Send</code> が呼び出された回数 <var>L</var> と，良い取り外し方をした回数 <var>D</var> が “<code>Accepted: L D</code>” のように出力される．採点プログラムのサンプルは，実際の採点プログラムと違って不正解 <var>[6]</var> であるかを判定しないことに注意せよ．</li>
+</ul>
+<p>実行するプログラムが不正解 <var>[1], [2], [3], [4], [5]</var> のうち，複数の条件を満たした場合，表示される不正解の種類はそれらのうち <var>1</var> つのみである．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>3 \leqq N \leqq 100\,000</var>．</li>
+<li><var>S_{i}</var> は <code>X</code>, <code>Y</code>, <code>Z</code> のいずれかである (<var>0 \leqq i \leqq N - 1</var>)．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>5</var> 点) <var>N\leqq18</var>．</li>
+<li>
+<p>(<var>95</var> 点) 追加の制約はない．この小課題では，以下に従い得点が決定される．</p>
+<ul>
+<li>この小課題のすべてのテストケースにおける，<code>Send</code> が呼び出された回数の最大値を <var>L</var> とする．</li>
+<li>このとき，小課題の得点は以下のように決定される．<ul>
+<li><var>160\,000&lt;L\leqq200\,000</var> のとき，<var>25+\left\lfloor10\times\dfrac{200000 - L}{40000}\right\rfloor</var> 点．</li>
+<li><var>100\,000&lt;L\leqq160\,000</var> のとき，<var>35+\left\lfloor30\times\dfrac{160000 - L}{60000}\right\rfloor</var> 点．</li>
+<li><var>70\,000&lt;L\leqq100\,000</var> のとき，<var>65+\left\lfloor30\times\left(\dfrac{100000 - L}{30000}\right)^2\right\rfloor</var> 点．</li>
+<li><var>L\leqq70\,000</var> のとき，<var>95</var> 点．</li>
+</ul>
+</li>
+</ul>
+<p>ここで，<var>\lfloor x\rfloor</var> は <var>x</var> を超えない最大の整数を表す．</p>
+</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>やり取りの例</h3>
+<p>採点プログラムのサンプルが読み込む入力の例と，それに対応する関数の呼び出しの例を以下に示す．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>4
+X Y X Z
+</pre>
+<h4>関数の呼び出しの例</h4>
+<div class="joisc2021-ancient-machine-ja-table" markdown="1">
+<table>
+<thead>
+<tr>
+<th>呼び出し</th>
+<th>呼び出し</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Anna(4, {X, Y, X, Z})</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Send(0)</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Send(1)</code></td>
+</tr>
+<tr>
+<td><code>Bruno(4, 2, {0, 1})</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Remove(2)</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Remove(1)</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Remove(0)</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Remove(3)</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>この呼び出し例においては，<var>4</var> 個の装置は次のように取り外される．</p>
+<ol>
+<li>まず最初は <var>4</var> 個の装置は <code>X Y X Z</code> となっている．</li>
+<li>装置 <var>2</var> を取り外すと，装置は <code>X Y - Z</code> となる (取り外した装置を <code>-</code> で表す)．</li>
+<li>次に装置 <var>1</var> を取り外すと，装置は <code>X - - Z</code> となる ．<var>(x, y, z) = (0, 1, 3)</var> とすると条件を満たすため，これは良い取り外し方である．</li>
+<li>次に装置 <var>0</var> を取り外すと，装置は <code>- - - Z</code> となる．</li>
+<li>最後に装置 <var>3</var> を取り外すと，装置は <code>- - - -</code> となる．</li>
+</ol>
+<p>良い取り外し方をした回数は <var>1</var> 回である．</p>
+<p>この入力例では，<var>2</var> 回以上の良い取り外し方をすることはできない．</p>
+<style>
+.joisc2021-ancient-machine-ja-table { position:relative;max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisc2021-ancient-machine-ja-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisc2021-ancient-machine-ja-table th,.joisc2021-ancient-machine-ja-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisc2021-ancient-machine-ja-table th { background:#f5f5f5; }
+.joisc2021-ancient-machine-ja-table code { white-space:nowrap; }
+</style></section>
+</div>
+</span>
+</span>

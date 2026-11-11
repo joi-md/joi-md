@@ -1,0 +1,397 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>Bitaro is a professional reporter and writes reports on competitive programming contests. Several days later, an international competitive programming contest will be held. Bitaro is planning to write reports on it.</p>
+<p>There will be <var>N</var> contestants, numbered from 1 to <var>N</var>. Each contestant has an integer called the rating, which measures their strength in competitive programming. A rating is an integer between <var>1</var> and <var>1\,000\,000\,000</var>, inclusive.</p>
+<p>Bitaro conducted interviews with the contestants. He obtained the following information.</p>
+<blockquote>
+<p>The rating of the contestant <var>i</var> (<var>1 \le i \le N</var>) is greater than or equal to the rating of the contestant <var>A_{i}</var> (<var>1 \le A_{i} \le N</var>). Here it might happen that <var>A_{i} = i</var>.</p>
+</blockquote>
+<p>After the interviews, Bitaro received a list of the ratings of the contestants from a company managing the rating system. In the list, the following information was written.</p>
+<blockquote>
+<p>The rating of the contestant <var>i</var> (<var>1 \le i \le N</var>) is equal to <var>H_{i}</var>.</p>
+</blockquote>
+<p>Bitaro was trying to write a report based on the above information. However, it turned out that the list of the ratings of the contestants might contain errors.</p>
+<p>Because the deadline is coming up soon, Bitaro has no time to obtain a correct list of the ratings. Therefore, Bitaro decided to change the ratings of some contestants in the list so that it will not contradict the information obtained by the interviews. The cost to change the rating of the contestant <var>i</var> (<var>1 \le i \le N</var>) in the list is <var>C_{i}</var>. That is, Bitaro can change the rating of the contestant <var>i</var> in the list into any integer between <var>1</var> and <var>1\,000\,000\,000</var>, inclusive, by paying a cost of <var>C_{i}</var>. In order to meet the deadline, Bitaro wants to minimize the total cost to change the ratings in the list.</p>
+<p>Write a program which, given the number of contestants, information obtained by interviews, the list containing the ratings, and the cost to change the rating of each contestant in the list, calculates the minimum total cost to change the ratings in the list so that it will not contradict the information obtained by the interviews.</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input. Given values are all integers.</p>
+<pre><var>N</var>
+<var>A_{1}</var> <var>H_{1}</var> <var>C_{1}</var>
+<var>\vdots</var>
+<var>A_{N}</var> <var>H_{N}</var> <var>C_{N}</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>Write one line to the standard output. Output the minimum total cost.</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li><var>2 \le N \le 200\,000</var>.</li>
+<li><var>1 \le A_{i} \le N</var> (<var>1 \le i \le N</var>).</li>
+<li><var>1 \le H_{i} \le 1\,000\,000\,000</var> (<var>1 \le i \le N</var>).</li>
+<li><var>1 \le C_{i} \le 1\,000\,000\,000</var> (<var>1 \le i \le N</var>).</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li>(<var>14</var> points) <var>N \le 5\,000</var>, <var>A_{1} = 1</var>, <var>A_{i} \le i - 1</var> (<var>2 \le i \le N</var>).</li>
+<li>(<var>65</var> points) <var>A_{1} = 1</var>, <var>A_{i} \le i - 1</var> (<var>2 \le i \le N</var>).</li>
+<li>(<var>21</var> points) No additional constraints.</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input and Output</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>6
+1 6 5
+1 3 6
+1 8 4
+3 4 9
+2 2 5
+2 5 6
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>14
+</pre>
+<p>If Bitaro changes the ratings of the contestants in the list in the following way, it will not contradict the information obtained by the interviews.</p>
+<ul>
+<li>Change the rating of the contestant 1 from 6 to 1. The cost is 5.</li>
+<li>Change the rating of the contestant 3 from 8 to 4. The cost is 4.</li>
+<li>Change the rating of the contestant 5 from 2 to 1 000 000 000. The cost is 5.</li>
+</ul>
+<p>Then the total cost is <var>5 + 4 + 5 = 14</var>. Since it is the minimum possible value, output 14.</p>
+<p>This sample input satisfies the constraints of Subtasks 1, 2, 3.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>5
+1 1 1
+2 2 1
+4 3 1
+3 3 1
+4 3 1
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>0
+</pre>
+<p>In this sample input, the ratings of the contestants in the list do not contradict the information obtained by the interviews. Thus, the minimum total cost is 0. Hence, output 0.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 3</h3>
+<pre>20
+1 7 381792936
+1 89 964898447
+1 27 797240712
+3 4 299745243
+2 18 113181438
+2 20 952129455
+4 34 124298446
+4 89 33466733
+7 40 109601410
+5 81 902931267
+2 4 669879699
+8 23 785166502
+8 1 601717183
+8 26 747624379
+1 17 504589209
+9 24 909134233
+16 56 236448090
+8 94 605526613
+5 90 481898834
+9 34 183442771
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 3</h3>
+<pre>2711043927
+</pre>
+<p>This sample input satisfies the constraints of Subtasks 1, 2, 3.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 4</h3>
+<pre>20
+15 62 418848971
+13 5 277275513
+14 60 80376452
+12 14 256845164
+12 42 481331310
+6 86 290168639
+3 98 947342135
+3 19 896070909
+16 39 48034188
+8 29 925729089
+18 97 420006994
+13 51 454182928
+19 61 822405612
+13 37 148425187
+15 77 474094143
+14 27 272926693
+18 43 566552069
+9 93 790433300
+10 73 61654171
+14 28 334498030
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 4</h3>
+<pre>4012295156
+</pre></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>ビ太郎の職業は記者であり，主に競技プログラミングに関する記事を執筆している．数日後に国際的な競技プログラミングの大会が開催されるため，ビ太郎はこの大会についての記事を執筆することにした．</p>
+<p>この大会には <var>N</var> 人の選手が参加予定であり，選手には <var>1</var> から <var>N</var> までの番号が付けられている．また，各選手には競技プログラミングの強さの指標となるレーティングが定まっている．なお，レーティングは <var>1</var> 以上 <var>1\,000\,000\,000</var> 以下の整数で表される．</p>
+<p>ビ太郎は各選手にインタビューを行い以下の情報を得た．</p>
+<blockquote>
+<p>選手 <var>i</var> (<var>1 \leqq i \leqq N</var>) のレーティングは選手 <var>A_{i}</var> (<var>1 \leqq A_{i} \leqq N</var>) のレーティング以上である．（ここで， <var>A_{i} = i</var> となるかもしれないことに注意せよ．）</p>
+</blockquote>
+<p>すべてのインタビューを終えた後，ビ太郎はレーティングのシステムを管理する会社から各選手のレーティングが書かれた表を受け取った．この表には以下の情報が書かれていた．</p>
+<blockquote>
+<p>選手 <var>i</var> (<var>1 \leqq i \leqq N</var>) のレーティングは <var>H_{i}</var> である．</p>
+</blockquote>
+<p>ビ太郎がこれらの情報をもとに記事を執筆しようとしたところ，各選手のレーティングが書かれた表には誤りが含まれている可能性があるということが判明した．</p>
+<p>記事の締め切りが近いため，正しいレーティングが書かれた表を入手する時間はない．そこで，ビ太郎は，この表に書かれた選手のレーティングを書き換えることで，インタビューによって得た情報と矛盾しないようにすることにした．表に記された選手 <var>i</var> (<var>1 \leqq i \leqq N</var>) のレーティングを書き換えるのにかかるコストは <var>C_{i}</var> である．コスト <var>C_{i}</var> をかけることで，表に記された選手 <var>i</var> のレーティングを <var>1</var> 以上 <var>1\,000\,000\,000</var> 以下の任意の整数に書き換えることができる．記事の締め切りに間に合わせるために，コストの総和をできるだけ小さくしたい．</p>
+<p>選手の人数と，インタビューによって得た情報，レーティングが書かれた表，および，表に記された各選手のレーティングを書き換えるのにかかるコストが与えられたとき，インタビューによって得た情報と矛盾しないように表を書き換えるために必要なコストの総和の最小値を求めるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力は以下の形式で標準入力から与えられる．入力される値はすべて整数である．</p>
+<pre><var>N</var>
+<var>A_{1}</var> <var>H_{1}</var> <var>C_{1}</var>
+<var>\vdots</var>
+<var>A_{N}</var> <var>H_{N}</var> <var>C_{N}</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に，必要なコストの総和の最小値を <var>1</var> 行で出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>2 \leqq N \leqq 200\,000</var>．</li>
+<li><var>1 \leqq A_{i} \leqq N</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>1 \leqq H_{i} \leqq 1\,000\,000\,000</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>1 \leqq C_{i} \leqq 1\,000\,000\,000</var> (<var>1 \leqq i \leqq N</var>)．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>14</var> 点) <var>N \leqq 5\,000</var>，<var>A_{1} = 1</var>，<var>A_{i} \leqq i - 1</var> (<var>2 \leqq i \leqq N</var>)．</li>
+<li>(<var>65</var> 点) <var>A_{1} = 1</var>，<var>A_{i} \leqq i - 1</var> (<var>2 \leqq i \leqq N</var>)．</li>
+<li>(<var>21</var> 点) 追加の制約はない．</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入出力例</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>6
+1 6 5
+1 3 6
+1 8 4
+3 4 9
+2 2 5
+2 5 6
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>14
+</pre>
+<p>表に記された各選手のレーティングを以下のように書き換えることで，インタビューによって得た情報と矛盾しないようにすることができる．</p>
+<ul>
+<li>選手 <var>1</var> のレーティングを <var>6</var> から <var>1</var> に書き換える．このとき，コスト <var>5</var> がかかる．</li>
+<li>選手 <var>3</var> のレーティングを <var>8</var> から <var>4</var> に書き換える．このとき，コスト <var>4</var> がかかる．</li>
+<li>選手 <var>5</var> のレーティングを <var>2</var> から <var>1\,000\,000\,000</var> に書き換える．このとき，コスト <var>5</var> がかかる．</li>
+</ul>
+<p>このように書き換えると，コストの総和は <var>5 + 4 + 5 = 14</var> となる．これが最小値なので <var>14</var> を出力する．この入力例は小課題 <var>1, 2, 3</var> の制約を満たす．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>5
+1 1 1
+2 2 1
+4 3 1
+3 3 1
+4 3 1
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>0
+</pre>
+<p>この入力例では，インタビューによって得た情報と表に記された各選手のレーティングが矛盾しない．したがって，必要なコストの総和の最小値は <var>0</var> である．よって <var>0</var> を出力する．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>20
+1 7 381792936
+1 89 964898447
+1 27 797240712
+3 4 299745243
+2 18 113181438
+2 20 952129455
+4 34 124298446
+4 89 33466733
+7 40 109601410
+5 81 902931267
+2 4 669879699
+8 23 785166502
+8 1 601717183
+8 26 747624379
+1 17 504589209
+9 24 909134233
+16 56 236448090
+8 94 605526613
+5 90 481898834
+9 34 183442771
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>2711043927
+</pre>
+<p>この入力例は小課題 <var>1, 2, 3</var> の制約を満たす．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 4</h3>
+<pre>20
+15 62 418848971
+13 5 277275513
+14 60 80376452
+12 14 256845164
+12 42 481331310
+6 86 290168639
+3 98 947342135
+3 19 896070909
+16 39 48034188
+8 29 925729089
+18 97 420006994
+13 51 454182928
+19 61 822405612
+13 37 148425187
+15 77 474094143
+14 27 272926693
+18 43 566552069
+9 93 790433300
+10 73 61654171
+14 28 334498030
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 4</h3>
+<pre>4012295156
+</pre></section>
+</div>
+</span>
+</span>

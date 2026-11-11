@@ -1,0 +1,262 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>There are <var>N</var> islands where beavers live. The islands are numbered from <var>1</var> through <var>N</var>. These islands are connected by <var>N - 1</var> bidirectional bridges. The bridges are numbered from <var>1</var> through <var>N - 1</var>. The bridge <var>i</var> connects the island <var>A_{i}</var> and the island <var>B_{i}</var>. It is possible to travel between any islands using some bridges. Each island is inhabited by a beaver.</p>
+<p>Sometimes, beavers living in some islands gather in an island, and have a meeting. When the attendees of a meeting are fixed, one of the islands satisfying the following condition is chosen as the location of the meeting:</p>
+<blockquote>
+<p>The sum of the numbers of bridges the attendees have to pass through to gather in the chosen island is minimized.</p>
+</blockquote>
+<p>Here, when the attendees of a meeting are fixed, each attendee of the meeting moves from his/her island of residence to the location of the meeting by passing through the minimum number of bridges.</p>
+<p>The attendees of a meeting are looking forward to it very much if there are many candidates for the location of the meeting. When the attendees of a meeting are fixed, the expectation score of the meeting is calculated as the number of candidate islands for the location of the meeting satisfying the above condition. For each integer <var>j</var> between 1 and <var>N</var>, inclusive, you want to know the maximum expectation score of a meeting where <var>j</var> beavers will attend.</p>
+<p>Write a program which, given the information of the islands, calculates, for each number of attendees, the maximum expectation score of a meeting.</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input. Given values are all integers.</p>
+<pre><var>N</var>
+<var>A_{1}</var> <var>B_{1}</var>
+<var>\vdots</var>
+<var>A_{N - 1}</var> <var>B_{N - 1}</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>Write <var>N</var> lines to the standard output. In the <var>j</var>-th line (<var>1 \le j \le N</var>), output the maximum expectation score of a meeting with <var>j</var> attendees.</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li><var>1 \le N \le 200\,000</var>.</li>
+<li><var>1 \le A_{i} \le N</var> (<var>1 \le i \le N - 1</var>).</li>
+<li><var>1 \le B_{i} \le N</var> (<var>1 \le i \le N - 1</var>).</li>
+<li><var>A_{i} \ne B_{i}</var> (<var>1 \le i \le N - 1</var>).</li>
+<li>It is possible to travel between any islands using some bridges.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li>(<var>4</var> points) <var>N \le 16</var>.</li>
+<li>(<var>16</var> points) <var>N \le 4\,000</var>.</li>
+<li>(<var>80</var> points) No additional constraints.</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input and Output</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>5
+1 2
+2 3
+4 2
+3 5
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>1
+4
+1
+2
+1
+</pre>
+<p>For example, we consider a meeting where the beaver in the island 1 and the beaver in the island 3 will attend. For each island, the sum of the numbers of bridges they have to pass through is calculated as follows.</p>
+<ul>
+<li>If they gather in the island 1, the the beaver in the island 1 does not pass through bridges, and the beaver in the island 3 has to pass through 2 bridges. The sum is 2.</li>
+<li>If they gather in the island 2, the sum of the numbers of bridges they have to pass through is 2.</li>
+<li>If they gather in the island 3, the sum of the numbers of bridges they have to pass through is 2.</li>
+<li>If they gather in the island 4, the sum of the numbers of bridges they have to pass through is 4.</li>
+<li>If they gather in the island 5, the sum of the numbers of bridges they have to pass through is 4.</li>
+</ul>
+<p>The candidates for the location of the meeting are the islands <var>1, 2, 3</var>. Therefore, the expectation score of this meeting is 3.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>7
+1 2
+2 3
+3 4
+4 5
+2 6
+3 7
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>1
+5
+1
+3
+1
+2
+1
+</pre></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>ビーバーの住んでいる島が <var>N</var> 個あり，<var>1</var> から <var>N</var> までの番号が付けられている．これらの島は <var>N - 1</var> 本の双方向に通行可能な橋で結ばれており，橋には <var>1</var> から <var>N - 1</var> までの番号が付けられている．橋 <var>i</var> (<var>1 \leqq i \leqq N - 1</var>) は島 <var>A_{i}</var> と島 <var>B_{i}</var> を結んでいる．どの島の間もいくつかの橋を通って移動が可能である．また，それぞれの島には <var>1</var> 匹のビーバーが住んでいる．</p>
+<p>時々，いくつかの島に住むビーバーが，<var>1</var> つの島に集まって会合を行う．会合に参加するビーバーが決まったとき，次の条件を満たす島のうちのいずれかで会合が行われる：</p>
+<blockquote>
+<p>集まる際に，会合に参加するビーバーが通る橋の本数の合計が最小となる島．</p>
+</blockquote>
+<p>ただし，ある島に集まる際，各ビーバーは自分の住む島からその島まで，できるだけ少ない本数の橋を通って移動するものとする．</p>
+<p>会合に参加するビーバーが決まったとき，会合が行われる可能性のある島が多いほど，ビーバーたちは会合を楽しみに思う．各会合について，その会合の期待度を，参加するビーバーが決まった時点で会合が行われる可能性のあった島の個数として定める．あなたは，<var>1</var> 以上 <var>N</var> 以下の各整数 <var>j</var> について，<var>j</var> 匹のビーバーで行われる会合の期待度の最大値を知りたい．</p>
+<p>島の情報が与えられたとき，ありうるすべての参加匹数について，その匹数のビーバーで行われる会合の期待度の最大値を求めるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力は以下の形式で標準入力から与えられる．入力される値はすべて整数である．</p>
+<pre><var>N</var>
+<var>A_{1}</var> <var>B_{1}</var>
+<var>\vdots</var>
+<var>A_{N - 1}</var> <var>B_{N - 1}</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に <var>N</var> 行で出力せよ ．<var>j</var> 行目 (<var>1 \leqq j \leqq N</var>) には，<var>j</var> 匹のビーバーで行われる会合の期待度の最大値を出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>1 \leqq N \leqq 200\,000</var>．</li>
+<li><var>1 \leqq A_{i} \leqq N</var> (<var>1 \leqq i \leqq N - 1</var>)．</li>
+<li><var>1 \leqq B_{i} \leqq N</var> (<var>1 \leqq i \leqq N - 1</var>)．</li>
+<li><var>A_{i} \ne B_{i}</var> (<var>1 \leqq i \leqq N - 1</var>)．</li>
+<li>どの島の間もいくつかの橋を通って移動が可能である．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>4</var> 点) <var>N \leqq 16</var>．</li>
+<li>(<var>16</var> 点) <var>N \leqq 4\,000</var>．</li>
+<li>(<var>80</var> 点) 追加の制約はない．</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入出力例</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>5
+1 2
+2 3
+4 2
+3 5
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>1
+4
+1
+2
+1
+</pre>
+<p>例えば，島 <var>1</var> に住むビーバーと島 <var>3</var> に住むビーバーで行われる会合について考える．この <var>2</var> 匹のビーバーが集まる際に通る橋の本数の合計は，以下のようになる．</p>
+<ul>
+<li>島 <var>1</var> に集まる場合，島 <var>1</var> に住むビーバーの通る橋の本数は <var>0</var> 本であり，島 <var>3</var> に住むビーバーの通る橋の本数は <var>2</var> 本である．よって，各ビーバーが通る橋の本数の合計は <var>2</var> である．</li>
+<li>島 <var>2</var> に集まる場合，各ビーバーが通る橋の本数の合計は <var>2</var> である．</li>
+<li>島 <var>3</var> に集まる場合，各ビーバーが通る橋の本数の合計は <var>2</var> である．</li>
+<li>島 <var>4</var> に集まる場合，各ビーバーが通る橋の本数の合計は <var>4</var> である．</li>
+<li>島 <var>5</var> に集まる場合，各ビーバーが通る橋の本数の合計は <var>4</var> である．</li>
+</ul>
+<p>よって，この <var>2</var> 匹のビーバーで行われる会合は，島 <var>1, 2, 3</var> で開かれる可能性があり，期待度は <var>3</var> である．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>7
+1 2
+2 3
+3 4
+4 5
+2 6
+3 7
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>1
+5
+1
+3
+1
+2
+1
+</pre></section>
+</div>
+</span>
+</span>

@@ -1,0 +1,400 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>In IOI Park, <var>N</var> events will be held soon. The events are numbered from 1 to <var>N</var>. The <var>i</var>-th event (<var>1 \le i \le N</var>) will start at time <var>L_{i} + 0.1</var> and finish at time <var>R_{i} - 0.1</var>. Here <var>L_{i}</var> and <var>R_{i}</var> are integers.</p>
+<p>JOI-kun will attend exactly <var>K</var> events among them. It is forbidden to enter an event after it starts, or to leave an event before it finishes. We ignore the time to move between the locations of events.</p>
+<p>JOI-kun wants to attend events with small indices. More precisely, let <var>a_{1}, \ldots, a_{K}</var> (<var>1 \le a_{1} &lt; \cdots &lt; a_{K} \le N</var>) be the indices of the events JOI-kun will attend. Then (<var>a_{1}, \ldots, a_{K}</var>) should be the smallest possible sequence in lexicographic order. Here, a sequence (<var>a_{1}, \ldots, a_{K}</var>) is smaller than another sequence (<var>b_{1}, \ldots, b_{K}</var>) in lexicographic order iff there exists <var>j</var> (<var>1 \le j \le K</var>) satisfying both “<var>a_{ℓ}= b_{ℓ}</var> for every <var>1 \le ℓ\le j - 1</var>” and “<var>a_{j} &lt; b_{j}</var>.”</p>
+<p>Write a program which, given the information of the events and the number <var>K</var> of events JOI-kun will attend, determines whether JOI-kun will be able to attend <var>K</var> events or not. If it is possible for JOI-kun to attend <var>K</var> events, the program should calculate the <var>K</var> events JOI-kun will attend.</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input. Given values are all integers.</p>
+<pre><var>N</var> <var>K</var>
+<var>L_{1}</var> <var>R_{1}</var>
+<var>\vdots</var>
+<var>L_{N}</var> <var>R_{N}</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>If JOI-kun will not be able to attend <var>K</var> events, output one line containing <code>-1</code> to the standard output.</p>
+<p>If JOI-kun will be able to attend <var>K</var> events, output <var>K</var> lines to the standard output. Let <var>a_{1}, \ldots, a_{K}</var> (<var>1 \le a_{1} &lt; \cdots &lt; a_{K} \le N</var>) be the indices of the events JOI-kun will attend. The <var>j</var>-th line (<var>1 \le j \le K</var>) of output should contain <var>a_{j}</var>. Here (<var>a_{1}, \ldots, a_{K}</var>) should be the smallest possible sequence in lexicographic order.</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li><var>1 \le N \le 100\,000</var>.</li>
+<li><var>1 \le K \le N</var>.</li>
+<li><var>1 \le L_{i} &lt; R_{i} \le 1\,000\,000\,000</var> (<var>1 \le i \le N</var>).</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li>(<var>7</var> points) <var>L_{i} \le L_{i+1}</var> (<var>1 \le i \le N - 1</var>).</li>
+<li>(<var>1</var> point) <var>N \le 20</var>.</li>
+<li>(<var>31</var> points) <var>N \le 3\,000</var>.</li>
+<li>(<var>61</var> points) No additional constraints.</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input and Output</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>5 4
+1 3
+2 5
+8 9
+6 8
+10 15
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>1
+3
+4
+5
+</pre>
+<p>There are 2 ways for JOI-kun to attend exactly 4 events.</p>
+<ul>
+<li>JOI-kun will attend the events <var>1</var>, <var>3</var>, <var>4</var>, <var>5</var>.</li>
+<li>JOI-kun will attend the events <var>2</var>, <var>3</var>, <var>4</var>, <var>5</var>.</li>
+</ul>
+<p>Since the sequence (<var>1</var>, <var>3</var>, <var>4</var>, <var>5</var>) is smaller than the sequence (<var>2</var>, <var>3</var>, <var>4</var>, <var>5</var>) in lexicographic order, output <var>1</var>, <var>3</var>, <var>4</var>, <var>5</var>.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>4 3
+1 4
+3 5
+4 9
+7 10
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>-1
+</pre>
+<p>Since it is impossible for JOI-kun to attend exactly 3 events, output <code>-1</code>.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 3</h3>
+<pre>10 6
+77412002 93858605
+244306432 318243514
+280338037 358494212
+439397354 492065507
+485779890 529132783
+571714810 632053254
+659767854 709114867
+718405631 733610573
+786950301 815106357
+878719468 899999649
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 3</h3>
+<pre>1
+2
+4
+6
+7
+8
+</pre>
+<p>This sample input satisfies the constraints of all Subtasks.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 4</h3>
+<pre>20 16
+250732298 258217736
+26470443 34965880
+252620676 260043105
+692063405 697656580
+497457675 504191511
+391372149 397942668
+858168758 867389085
+235756850 241022021
+585764751 593366541
+207824318 217052204
+661682908 671226688
+886273261 892279963
+770109416 778960597
+264372562 270395107
+176883483 186662376
+509929119 519063796
+109491630 118520141
+162731982 168101507
+662727316 668317158
+757072772 765493222
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 4</h3>
+<pre>1
+2
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>IOI 公園ではこれから <var>N</var> 個のイベントが行われる．これらのイベントには <var>1</var> から <var>N</var> までの番号が付けられている．イベント <var>i</var> (<var>1 \leqq i \leqq N</var>) は時刻 <var>L_{i} + 0.1</var> から時刻 <var>R_{i} - 0.1</var> まで開催される．ここで <var>L_{i}</var> と <var>R_{i}</var> は整数である．</p>
+<p>JOI 君はこの中からちょうど <var>K</var> 個のイベントに参加することにした．ただし，各イベントに途中から参加したり，途中で抜けたりすることはできない．移動にかかる時間は考慮しなくてよい．</p>
+<p>JOI 君はなるべく番号が小さいイベントに参加したい．厳密には，JOI 君が参加する <var>K</var> 個のイベントの番号を <var>a_{1}, \ldots, a_{K}</var> (<var>1 \leqq a_{1} &lt; \cdots &lt; a_{K} \leqq N</var>) としたとき，数列 <var>(a_{1}, \ldots, a_{K})</var> が辞書順で最小となるようにしたい．ただし，<var>(a_{1}, \ldots, a_{K})</var> が <var>(b_{1}, \ldots, b_{K})</var> より辞書順で小さいとは，ある <var>j</var> (<var>1 \leqq j \leqq K</var>) が存在して「<var>1 \leqq ℓ\leqq j - 1</var> に対し <var>a_{ℓ}= b_{ℓ}</var>」かつ「<var>a_{j} &lt; b_{j}</var>」を満たすことである．</p>
+<p>イベントの情報と JOI 君が参加するイベントの個数が与えられたとき，JOI 君が <var>K</var> 個のイベントに参加できるかを判定し，参加できる場合は JOI 君が参加する <var>K</var> 個のイベントを求めるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力は以下の形式で標準入力から与えられる．入力される値はすべて整数である．</p>
+<pre><var>N</var> <var>K</var>
+<var>L_{1}</var> <var>R_{1}</var>
+<var>\vdots</var>
+<var>L_{N}</var> <var>R_{N}</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p><var>K</var> 個のイベントに参加することが不可能ならば，標準出力に <code>-1</code> を <var>1</var> 行で出力せよ．</p>
+<p><var>K</var> 個のイベントに参加することが可能ならば，標準出力に <var>K</var> 行で出力せよ．JOI 君が参加する <var>K</var> 個のイベントの番号を <var>a_{1}, \ldots, a_{K}</var> (<var>1 \leqq a_{1} &lt; \cdots &lt; a_{K} \leqq N</var>) として，<var>j</var> 行目 (<var>1 \leqq j \leqq K</var>) には <var>a_{j}</var> を出力せよ．ただし，数列 <var>(a_{1}, \ldots, a_{K})</var> は辞書順で最小でなければならない．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>1 \leqq N \leqq 100\,000</var>．</li>
+<li><var>1 \leqq K \leqq N</var>．</li>
+<li><var>1 \leqq L_{i} &lt; R_{i} \leqq 1\,000\,000\,000</var> (<var>1 \leqq i \leqq N</var>)．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>7</var> 点) <var>L_{i} \leqq L_{i+1}</var> (<var>1 \leqq i \leqq N - 1</var>)．</li>
+<li>(<var>1</var> 点) <var>N \leqq 20</var>．</li>
+<li>(<var>31</var> 点) <var>N \leqq 3\,000</var>．</li>
+<li>(<var>61</var> 点) 追加の制約はない．</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入出力例</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>5 4
+1 3
+2 5
+8 9
+6 8
+10 15
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>1
+3
+4
+5
+</pre>
+<p>ちょうど <var>4</var> 個のイベントに参加する方法は，次の <var>2</var> 通りである．</p>
+<ul>
+<li>イベント <var>1, 3, 4, 5</var> に参加する．</li>
+<li>イベント <var>2, 3, 4, 5</var> に参加する．</li>
+</ul>
+<p>数列 <var>(1, 3, 4, 5)</var> は数列 <var>(2, 3, 4, 5)</var> より辞書順で小さいので，<var>1, 3, 4, 5</var> を出力する．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>4 3
+1 4
+3 5
+4 9
+7 10
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>-1
+</pre>
+<p>どのように選んでもちょうど <var>3</var> 個のイベントに参加することはできないので，<code>-1</code> を出力する．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>10 6
+77412002 93858605
+244306432 318243514
+280338037 358494212
+439397354 492065507
+485779890 529132783
+571714810 632053254
+659767854 709114867
+718405631 733610573
+786950301 815106357
+878719468 899999649
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>1
+2
+4
+6
+7
+8
+</pre>
+<p>この入力例はすべての小課題の制約を満たす．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 4</h3>
+<pre>20 16
+250732298 258217736
+26470443 34965880
+252620676 260043105
+692063405 697656580
+497457675 504191511
+391372149 397942668
+858168758 867389085
+235756850 241022021
+585764751 593366541
+207824318 217052204
+661682908 671226688
+886273261 892279963
+770109416 778960597
+264372562 270395107
+176883483 186662376
+509929119 519063796
+109491630 118520141
+162731982 168101507
+662727316 668317158
+757072772 765493222
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 4</h3>
+<pre>1
+2
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre></section>
+</div>
+</span>
+</span>
