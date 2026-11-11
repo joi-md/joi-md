@@ -1,0 +1,342 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p style="text-align:center;"><img src="https://img.atcoder.jp/joisc2018/bitaro-en-p1-1.png" alt="Figure" style="width:249.6px;max-width:80%;height:auto;"></p>
+
+<p>There are <var>N</var> towns of beavers numbered from 1 to <var>N</var> in the descending order of their heights. No two towns have the same height. There are <var>M</var> canals connecting two different towns unidirectionally. The <var>i</var>-th canal (<var>1 \le i \le M</var>) flows from town <var>S_{i}</var> to town <var>E_{i}</var>. These canals flow from high towns to low towns. You cannot move against flow of the canals.</p>
+<p>Bitaro, a beaver, has N friends, one of whom lives in each of <var>N</var> towns.</p>
+<p>Bitaro is going to have parties <var>Q</var> times, inviting his friends. It is known for the <var>j</var>-th (<var>1 \le j \le Q</var>) party that <var>Y_{j}</var> friends are too busy to attend it. The <var>j</var>-th party is held in town <var>T_{j}</var>, so his friends who cannot go from their towns to town <var>T_{j}</var> only via canals cannot attend it either. Other friends come to the party.</p>
+<p>Each friend come to the town where the party is held via canals. There may be several paths they can take. But Bitaro’s friends love canals, so they must choice one of the paths which have the largest number of canals.</p>
+<p>Bitaro wonders how many canals the attendant who uses the largest number of canals uses.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Task</h3>
+<p>Given the indexes of the towns where the parties are held and lists of busy friends for the <var>Q</var> parties, write a program which calculates how many canals the attendant who uses the largest number of canals uses.</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input.</p>
+<ul>
+<li>The first line of input contains three space separeted integers <var>N, M, Q</var>. These mean there are <var>N</var> towns of beavers and <var>M</var> canals and <var>Q</var> parties Bitaro has.</li>
+<li>The <var>i</var>-th line (<var>1 \le i \le M</var>) of following <var>M</var> lines contains two space separated integers <var>S_{i}</var> and <var>E_{i}</var>. These mean the canal flows from <var>S_{i}</var> to <var>E_{i}</var> unidirectionally.</li>
+<li>The <var>j</var>-th line (<var>1 \le j \le Q</var>) of following <var>Q</var> lines contains two space separated integers <var>T_{j}, Y_{j}</var> and <var>Y_{j}</var> space separeted integers <var>C_{j,1},C_{j,2}, ...,C_{j,Y_{j}}</var>. These mean the <var>j</var>-th party is held in town <var>T_{j}</var> and friends living in town <var>C_{j,1},C_{j,2}, ...,C_{j,Y_{j}}</var> are busy.</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>Output contains <var>Q</var> lines. The <var>j</var>-th line (<var>1 \le j \le Q</var>) contains the number of canals the attendant who uses the largest number of canals uses for the <var>j</var>-th party. If no one can attend the <var>j</var>-th party, the <var>j</var>-th line contains <code>-1</code>.</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<p>All input data satisfy the following conditions.</p>
+<ul>
+<li><var>1 \le N \le 100\,000</var>．</li>
+<li><var>0 \le M \le 200\,000</var>．</li>
+<li><var>1 \le Q \le 100\,000</var>．</li>
+<li><var>1 \le S_{i} &lt; E_{i} \le N</var> (<var>1 \le i \le M</var>)．</li>
+<li><var>(S_{i}, E_{i}) \ne (S_{j}, E_{j})</var> (<var>1 \le i &lt; j \le M</var>)．</li>
+<li><var>1 \le T_{j} \le N</var> (<var>1 \le j \le Q</var>)．</li>
+<li><var>0 \le Y_{j} \le N</var> (<var>1 \le j \le Q</var>)．</li>
+<li><var>1 \le C_{j,1} &lt; C_{j,2} &lt; \cdots &lt; C_{j,Y_{j}} \le N</var> (<var>1 \le j \le Q</var>)．</li>
+<li><var>Y_{1} + Y_{2} + \cdots + Y_{Q} \le 100\,000</var>．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<p>There are 3 subtasks. The score and additional constraints of each subtask are as follows:</p>
+<h4>Subtask 1 [<var>7</var> points]</h4>
+<ul>
+<li><var>N \le 1\,000</var>．</li>
+<li><var>M \le 2\,000</var>．</li>
+<li><var>Q = 1</var>．</li>
+</ul>
+<h4>Subtask 2 [<var>7</var> points]</h4>
+<ul>
+<li><var>Q = 1</var>．</li>
+</ul>
+<h4>Subtask 3 [<var>86</var> points]</h4>
+<p>There are no additional constraints.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input and Output</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>5 6 3
+1 2
+2 4
+3 4
+1 3
+3 5
+4 5
+4 1 1
+5 2 2 3
+2 3 1 4 5
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>1
+3
+0
+</pre>
+<p>Among the friends attending the first party (the friends living in town 2, 3 or 4), the friends living in town 2 or 3 go to town 4, where the party is held, via the largest number of canals. This number is 1, so output 1.</p>
+<p>Among the friends attending the second party (the friends living in town 1, 4, or 5), the friend living in town 1 goes to town 5, where the party is held, via the largest number of canals. This number is 3, so output 3.</p>
+<p>The friend living in town 2 is the only one who attends the third party. He uses no canals, so output 0.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>12 17 10
+1 2
+2 3
+3 4
+1 5
+2 6
+3 7
+4 8
+5 6
+6 7
+7 8
+5 9
+6 10
+7 11
+8 12
+9 10
+10 11
+11 12
+6 3 1 7 12
+3 7 1 2 3 4 5 6 7
+11 3 1 3 5
+9 2 1 9
+8 4 1 2 3 4
+1 1 1
+12 0
+10 3 1 6 10
+11 8 2 3 5 6 7 9 10 11
+8 7 2 3 4 5 6 7 8
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>1
+-1
+3
+1
+3
+-1
+5
+2
+4
+4
+</pre></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p style="text-align:center;"><img src="https://img.atcoder.jp/joisc2018/bitaro-ja-p1-1.png" alt="図" style="width:398.4px;max-width:80%;height:auto;"></p>
+
+<p>ビーバーが住んでいる町が <var>N</var> 個あり，標高が高い順に町 <var>1</var> から町 <var>N</var> までの番号が付けられている．同じ標高の町は無い．異なる町を結ぶ一方向に流れる水路が <var>M</var> 本存在している ．<var>i</var> 番目の水路 (<var>1 \leqq i \leqq M</var>) は，町 <var>S_{i}</var> から町 <var>E_{i}</var> に流れている．これらの水路は，標高が高い町から低い町へ一方向に流れている．流れに逆らって水路を移動することはできない．</p>
+<p>ビーバーのビ太郎には，<var>N</var> 人の友人がおり，<var>N</var> 個の町それぞれに <var>1</var> 人ずつ住んでいる．</p>
+<p>ビ太郎は，友人を招待してパーティーを <var>Q</var> 回開こうと考えている ．<var>j</var> 番目 (<var>1 \leqq j \leqq Q</var>) のパーティーには，<var>Y_{j}</var> 人の友人は都合が悪く，参加できないことが分かっている．また，<var>j</var> 番目のパーティーは町 <var>T_{j}</var> で開催されるので，水路だけで町 <var>T_{j}</var> まで到達することができない友人も，<var>j</var> 番目のパーティーに参加できない．それ以外の友人は，パーティーに参加する．</p>
+<p>それぞれの友人は，水路を経由してパーティーの開催される町まで移動する．移動する経路が複数存在するかもしれない．ただし，ビ太郎の友人は水路が好きなので，複数の経路がある場合は，経由する水路の本数が最も多くなるような経路のいずれかで移動することが分かっている．</p>
+<p>ビ太郎は，それぞれのパーティーについて，最も多くの水路を経由する参加者が，何本の水路を経由するかが気になった．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p><var>Q</var> 回のパーティーそれぞれについて，開催される町の番号と都合の悪い友人の一覧が与えられたとき，最も多くの水路を経由する参加者が，何本の水路を経由するかを出力するプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>標準入力から以下の入力を読み込め．</p>
+<ul>
+<li><var>1</var> 行目には，<var>3</var> 個の整数 <var>N, M, Q</var> が空白を区切りとして書かれている．これは，町が <var>N</var> 個あり，水路が <var>M</var> 本存在し，ビ太郎が <var>Q</var> 回のパーティーを開くことを表す．</li>
+<li>続く <var>M</var> 行には，水路の情報が書かれている ．<var>M</var> 行のうちの <var>i</var> 行目 (<var>1 \leqq i \leqq M</var>) には，整数 <var>S_{i}, E_{i}</var> が空白を区切りとして書かれており，町 <var>S_{i}</var> から町 <var>E_{i}</var> に一方向の水路が流れていることを表す．</li>
+<li>続く <var>Q</var> 行には，ビ太郎が開くパーティーの情報が書かれている ．<var>Q</var> 行のうちの <var>j</var> 行目 (<var>1 \leqq j \leqq Q</var>) には，整数 <var>T_{j}, Y_{j}</var> および <var>Y_{j}</var> 個の整数 <var>C_{j,1},C_{j,2}, \ldots,C_{j,Y_{j}}</var> が空白を区切りとして書かれている．これは，<var>j</var> 番目のパーティーは町 <var>T_{j}</var> で開催され，町 <var>C_{j,1},C_{j,2}, \ldots,C_{j,Y_{j}}</var> に住んでいる友人の都合が悪いことを表す．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>出力は <var>Q</var> 行からなる ．<var>j</var> 行目 (<var>1 \leqq j \leqq Q</var>) には，<var>j</var> 番目のパーティーにおいて，最も多くの水路を経由する参加者が，何本の水路を経由するかを出力せよ．ただし，パーティーに友人が一人も参加することができない場合は，代わりに <code>-1</code> を出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制限</h3>
+<p>すべての入力データは以下の条件を満たす．</p>
+<ul>
+<li><var>1 \leqq N \leqq 100\,000</var>．</li>
+<li><var>0 \leqq M \leqq 200\,000</var>．</li>
+<li><var>1 \leqq Q \leqq 100\,000</var>．</li>
+<li><var>1 \leqq S_{i} &lt; E_{i} \leqq N</var> (<var>1 \leqq i \leqq M</var>)．</li>
+<li><var>(S_{i}, E_{i}) \ne (S_{j}, E_{j})</var> (<var>1 \leqq i &lt; j \leqq M</var>)．</li>
+<li><var>1 \leqq T_{j} \leqq N</var> (<var>1 \leqq j \leqq Q</var>)．</li>
+<li><var>0 \leqq Y_{j} \leqq N</var> (<var>1 \leqq j \leqq Q</var>)．</li>
+<li><var>1 \leqq C_{j,1} &lt; C_{j,2} &lt; \cdots &lt; C_{j,Y_{j}} \leqq N</var> (<var>1 \leqq j \leqq Q</var>)．</li>
+<li><var>Y_{1} + Y_{2} + \cdots + Y_{Q} \leqq 100\,000</var>．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<p>この課題では小課題は全部で <var>3</var> 個ある．各小課題の配点および追加の制限は以下の通りである．</p>
+<h4>小課題 1 [<var>7</var> 点]</h4>
+<ul>
+<li><var>N \leqq 1\,000</var>．</li>
+<li><var>M \leqq 2\,000</var>．</li>
+<li><var>Q = 1</var>．</li>
+</ul>
+<h4>小課題 2 [<var>7</var> 点]</h4>
+<ul>
+<li><var>Q = 1</var>．</li>
+</ul>
+<h4>小課題 3 [<var>86</var> 点]</h4>
+<p>追加の制限はない．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入出力例</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>5 6 3
+1 2
+2 4
+3 4
+1 3
+3 5
+4 5
+4 1 1
+5 2 2 3
+2 3 1 4 5
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>1
+3
+0
+</pre>
+<p><var>1</var> 番目のパーティーに参加する友人 (町 <var>2</var>，<var>3</var>，<var>4</var> に住む友人) の中では，町 <var>2</var> に住む友人と町 <var>3</var> に住む友人が，パーティーが開催される町 <var>4</var> に移動するのに経由する水路の本数が最も多い．この本数は，<var>1</var> 本であるので，<var>1</var> を出力する．</p>
+<p><var>2</var> 番目のパーティーに参加する友人 (町 <var>1</var>，<var>4</var>，<var>5</var> に住む友人) の中では，町 <var>1</var> に住む友人が，パーティーが開催される町 <var>5</var> に移動するのに経由する水路の本数が最も多い．この本数は，<var>3</var> 本であるので，<var>3</var> を出力する．</p>
+<p><var>3</var> 番目のパーティーに参加する友人は，パーティーの開催される町 <var>2</var> に住む友人のみである．この友人は水路を経由しないので，<var>0</var> を出力する．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>12 17 10
+1 2
+2 3
+3 4
+1 5
+2 6
+3 7
+4 8
+5 6
+6 7
+7 8
+5 9
+6 10
+7 11
+8 12
+9 10
+10 11
+11 12
+6 3 1 7 12
+3 7 1 2 3 4 5 6 7
+11 3 1 3 5
+9 2 1 9
+8 4 1 2 3 4
+1 1 1
+12 0
+10 3 1 6 10
+11 8 2 3 5 6 7 9 10 11
+8 7 2 3 4 5 6 7 8
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>1
+-1
+3
+1
+3
+-1
+5
+2
+4
+4
+</pre></section>
+</div>
+</span>
+</span>

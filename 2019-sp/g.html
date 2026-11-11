@@ -1,0 +1,380 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>There are <var>N</var> cities in JOI Country. The cities are numbered from 1 to <var>N</var>. There are <var>N - 1</var> roads, numbered from 1 to <var>N - 1</var>. The road <var>i</var> (<var>1 \le i \le N - 1</var>) contains two lanes: a lane from the city <var>A_{i}</var> toward the city <var>B_{i}</var> and a lane from the city <var>B_{i}</var> toward the city <var>A_{i}</var>. Thus, the all roads are bidirectional. It is possible to travel between any pair of cities by using roads.</p>
+<p>Currently, all lanes of all roads are not paved. For each lane of each road, we know the cost to pave the lane. Of the road <var>i</var> (<var>1 \le i \le N - 1</var>), the cost to pave the lane from the city <var>A_{i}</var> toward the city <var>B_{i}</var> is <var>C_{i}</var> and the cost to pave the lane from the city <var>B_{i}</var> toward the city <var>A_{i}</var> is <var>D_{i}</var>.</p>
+<p>Mr. K, the Prime Minister of JOI Country, can choose some cities and designate them as resort cities. When he designates the city <var>x</var> (<var>1 \le x \le N</var>) as a resort city, the following event will occur to each road <var>i</var> (<var>1 \le i \le N - 1</var>):</p>
+<blockquote>
+<p>Of the cities <var>A_{i}</var> and <var>B_{i}</var>, let <var>a</var> be the nearer to the city <var>x</var> and let <var>b</var> be the farther. Here, the nearer city to the city <var>x</var> means the city from which the fewer number of roads are needed to pass through to reach the city <var>x</var>. Then, the lane from the city <var>b</var> toward the city <var>a</var> will be paved (if it has not been paved yet).</p>
+</blockquote>
+<p>The cost of paving constructions of the lanes caused by designating resort cities will be financed from taxes. However, the cost of the paving constructions of the lanes left unpaved after the designation need be financed from Mr. K’s pocket money.</p>
+<p>There are <var>Q</var> plans proposed to Mr. K. In the <var>j</var>-th (<var>1 \le j \le Q</var>) plan, he will start from the situation where there is no resort city and all lanes in all roads are not paved, and he will designate exactly <var>E_{j}</var> cities as resort cities. However, which cities to be designated is not determined yet. He wants to know for each plan the minimum total paving cost which need be paid from his pocket money.</p>
+<p>Write a program which, given the number of cities in JOI Country, the information of the roads, and the information of the plans, calculates for each plan the minimum total paving cost which need be paid from Mr. K’s pocket money.</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Inputs</h3>
+<p>Read the following data from the standard input. All the values in the input are integers.</p>
+<pre><var>N</var>
+<var>A_{1}</var> <var>B_{1}</var> <var>C_{1}</var> <var>D_{1}</var>
+<var>\vdots</var>
+<var>A_{N - 1}</var> <var>B_{N - 1}</var> <var>C_{N - 1}</var> <var>D_{N - 1}</var>
+<var>Q</var>
+<var>E_{1}</var>
+<var>\vdots</var>
+<var>E_{Q}</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Outputs</h3>
+<p>Write <var>Q</var> lines to the standard output. The <var>j</var>-th (<var>1 \le j \le Q</var>) line should contain the minimum total paving cost which need be paid from Mr. K’s pocket money for the <var>j</var>-th plan.</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li><var>2 \le N \le 200\,000</var>.</li>
+<li><var>1 \le A_{i} \le N</var> (<var>1 \le i \le N - 1</var>).</li>
+<li><var>1 \le B_{i} \le N</var> (<var>1 \le i \le N - 1</var>).</li>
+<li><var>A_{i} \ne B_{i}</var> (<var>1 \le i \le N - 1</var>).</li>
+<li>It is possible to travel between any pair of cities by using roads.</li>
+<li><var>1 \le C_{i} \le 1\,000\,000\,000</var> (<var>1 \le i \le N - 1</var>).</li>
+<li><var>1 \le D_{i} \le 1\,000\,000\,000</var> (<var>1 \le i \le N - 1</var>).</li>
+<li><var>1 \le Q \le N</var>.</li>
+<li><var>1 \le E_{j} \le N</var> (<var>1 \le j \le Q</var>).</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li>(<var>6</var> points) <var>N \le 16</var>.</li>
+<li>(<var>7</var> points) <var>Q = 1</var>, <var>E_{1} = 1</var>.</li>
+<li>(<var>9</var> points) <var>Q = 1</var>, <var>E_{1} = 2</var>.</li>
+<li>(<var>17</var> points) <var>N \le 2\,000</var>.</li>
+<li>(<var>17</var> points) <var>Q = 1</var>.</li>
+<li>(<var>44</var> points) No additional constraints.</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input and Output</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>4
+1 2 1 2
+1 3 3 4
+1 4 5 6
+2
+1
+2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>9
+1
+</pre>
+<p>Consider the plan 1: Mr. K will designate exactly 1 city as a resort city. If he designates the city 1 as a resort city, the lane from the city 2 toward the city 1 of the road 1, the lane from the city 3 toward the city 1 of the road 2, and the lane from the city 4 toward the city 1 of the road 3 will be paved. Hence, the following lanes will be left unpaved: the lane from the city 1 toward the city 2 of the road 1, the lane from the city 1 toward the city 3 of the road 2, and the lane from the city 1 toward the city 4 of the road 3. The total cost of paving these lanes is <var>1 + 3 + 5 = 9</var>. There is no way to designate a city so that the total cost is less than 9. Thus, the answer is 9.</p>
+<p>Consider the plan 2: Mr. K will designate exactly 2 cities as resort cities. If he designates the city 3 and the city <var>4</var> as resort cities, the lane from the city <var>1</var> toward the city <var>2</var> of the road <var>1</var> will be the only lane to be left unpaved. The cost to pave this lane is 1. There is no way to designate 2 cities so that the total cost is less than <var>1</var>. Thus, the answer is 1.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>5
+1 3 13 6
+5 1 17 8
+5 2 6 10
+1 4 16 11
+1
+1
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>36
+</pre>
+<p>This sample input satisfies the constraints for Subtask 2.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 3</h3>
+<pre>6
+1 6 6 12
+6 2 5 16
+1 4 13 4
+5 1 19 3
+3 1 9 13
+1
+2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 3</h3>
+<pre>14
+</pre>
+<p>This sample input satisfies the constraints for Subtask 3.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 4</h3>
+<pre>15
+14 5 12 7
+14 12 6 5
+14 10 14 16
+9 14 16 12
+13 7 4 15
+1 3 8 1
+6 7 15 13
+15 4 4 6
+9 1 12 6
+13 1 7 6
+13 4 5 15
+2 6 11 19
+8 4 12 7
+13 11 14 5
+3
+3
+6
+7
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 4</h3>
+<pre>44
+12
+6
+</pre></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>JOI 国には <var>N</var> 個の都市があり，<var>1</var> から <var>N</var> までの番号が付いている．これらの都市は，<var>1</var> から <var>N - 1</var> までの番号が付いた <var>N - 1</var> 本の道路で結ばれている．道路 <var>i</var> (<var>1 \leqq i \leqq N - 1</var>) は都市 <var>A_{i}</var> と都市 <var>B_{i}</var> を結んでいる対向 <var>2</var> 車線の道路である．道路 <var>i</var> は，都市 <var>A_{i}</var> から都市 <var>B_{i}</var> へ向かう車線と，都市 <var>B_{i}</var> から都市 <var>A_{i}</var> へ向かう車線からなる．どの都市からどの都市へも何本かの道路を通行することで移動できる．</p>
+<p>現在，どの道路のどの車線も，整備されていない状態である．それぞれの道路のそれぞれの車線について，その車線を整備するのに必要なコストが分かっている．道路 <var>i</var> (<var>1 \leqq i \leqq N - 1</var>) の，都市 <var>A_{i}</var> から都市 <var>B_{i}</var> へ向かう車線を整備するのに必要なコストは <var>C_{i}</var> であり，都市 <var>B_{i}</var> から都市 <var>A_{i}</var> へ向かう車線を整備するのに必要なコストは <var>D_{i}</var> である．</p>
+<p>JOI 国の大臣である K 理事長は，いくつかの都市を特別観光都市として指定することができる．都市 <var>x</var> (<var>1 \leqq x \leqq N</var>) を特別観光都市に指定すると，すべての道路 <var>i</var> (<var>1 \leqq i \leqq N - 1</var>) に対して，次のことが起こる：</p>
+<blockquote>
+<p>道路 <var>i</var> が直接結ぶ <var>2</var> つの都市のうち，都市 <var>x</var> に近い方を <var>a</var>，遠い方を <var>b</var> とおく．なお，都市 <var>x</var> に近い方の都市とは，<var>x</var> に到達するために通る必要のある道路の本数が少ない方の都市を指す．このとき，都市 <var>b</var> から都市 <var>a</var> へ向かう車線が (まだ整備されていないなら) 整備される．</p>
+</blockquote>
+<p>特別観光都市を指定することによって整備される車線は，税金で整備される．しかし，特別観光都市の指定をすべて終えたあと，まだ整備されていないままになっているすべての車線を，K 理事長のポケットマネーで整備する必要がある．</p>
+<p>K 理事長に対し <var>Q</var> 個の計画が提案された ．<var>j</var> 番目 (<var>1 \leqq j \leqq Q</var>) の計画においては，特別観光都市が <var>1</var> つも指定されておらず，かつ，どの道路のどの車線も整備されていない状態から始めて，ちょうど <var>E_{j}</var> 個の都市を選び特別観光都市に指定する．K 理事長は，各計画について，ポケットマネーで整備する必要のある車線の整備コストの合計の最小値を知りたい．</p>
+<p>JOI 国の都市の個数，道路の情報，計画の情報が与えられたとき，各計画について，ポケットマネーで整備する必要のある車線の整備コストの合計の最小値を求めるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力は以下の形式で標準入力から与えられる．入力の値はすべて整数である．</p>
+<pre><var>N</var>
+<var>A_{1}</var> <var>B_{1}</var> <var>C_{1}</var> <var>D_{1}</var>
+<var>\vdots</var>
+<var>A_{N - 1}</var> <var>B_{N - 1}</var> <var>C_{N - 1}</var> <var>D_{N - 1}</var>
+<var>Q</var>
+<var>E_{1}</var>
+<var>\vdots</var>
+<var>E_{Q}</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に <var>Q</var> 行で出力せよ ．<var>j</var> 行目 (<var>1 \leqq j \leqq Q</var>) には，<var>j</var> 番目の計画について，ポケットマネーで整備する必要のある車線の整備コストの合計の最小値を出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>2 \leqq N \leqq 200\,000</var>．</li>
+<li><var>1 \leqq A_{i} \leqq N</var> (<var>1 \leqq i \leqq N - 1</var>)．</li>
+<li><var>1 \leqq B_{i} \leqq N</var> (<var>1 \leqq i \leqq N - 1</var>)．</li>
+<li><var>A_{i} \ne B_{i}</var> (<var>1 \leqq i \leqq N - 1</var>)．</li>
+<li>どの都市からどの都市へも何本かの道路を通行することで移動できる．</li>
+<li><var>1 \leqq C_{i} \leqq 1\,000\,000\,000</var> (<var>1 \leqq i \leqq N - 1</var>)．</li>
+<li><var>1 \leqq D_{i} \leqq 1\,000\,000\,000</var> (<var>1 \leqq i \leqq N - 1</var>)．</li>
+<li><var>1 \leqq Q \leqq N</var>．</li>
+<li><var>1 \leqq E_{j} \leqq N</var> (<var>1 \leqq j \leqq Q</var>)．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>6</var> 点) <var>N \leqq 16</var>．</li>
+<li>(<var>7</var> 点) <var>Q = 1</var>，<var>E_{1} = 1</var>．</li>
+<li>(<var>9</var> 点) <var>Q = 1</var>，<var>E_{1} = 2</var>．</li>
+<li>(<var>17</var> 点) <var>N \leqq 2\,000</var>．</li>
+<li>(<var>17</var> 点) <var>Q = 1</var>．</li>
+<li>(<var>44</var> 点) 追加の制約はない．</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入出力例</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>4
+1 2 1 2
+1 3 3 4
+1 4 5 6
+2
+1
+2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>9
+1
+</pre>
+<p>ちょうど <var>1</var> 個の都市を特別観光都市に指定することを考える．都市 <var>1</var> を特別観光都市に指定すると，道路 <var>1</var> の都市 <var>2</var> から都市 <var>1</var> へ向かう車線，道路 <var>2</var> の都市 <var>3</var> から都市 <var>1</var> へ向かう車線，そして道路 <var>3</var> の都市 <var>4</var> から都市 <var>1</var> へ向かう車線が整備される．このとき整備されずに残るのは，道路 <var>1</var> の都市 <var>1</var> から都市 <var>2</var> へ向かう車線，道路 <var>2</var> の都市 <var>1</var> から都市 <var>3</var> へ向かう車線，そして道路 <var>3</var> の都市 <var>1</var> から都市 <var>4</var> へ向かう車線である．これらの車線の整備コストの合計は，<var>1 + 3 + 5 = 9</var> である．ちょうど <var>1</var> 個の都市を特別観光都市に指定する場合，整備されずに残る車線の整備コストの合計をこれより小さくすることはできない．よって答えは <var>9</var> になる．</p>
+<p>ちょうど <var>2</var> 個の都市を特別観光都市に指定することを考える．都市 <var>3, 4</var> を特別観光都市に指定すると，整備されずに残るのは，道路 <var>1</var> の都市 <var>1</var> から都市 <var>2</var> へ向かう車線である．この車線の整備コストは <var>1</var> である．ちょうど <var>2</var> 個の都市を特別観光都市に指定する場合，整備されずに残る車線の整備コストの合計をこれより小さくすることはできない．よって答えは <var>1</var> になる．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>5
+1 3 13 6
+5 1 17 8
+5 2 6 10
+1 4 16 11
+1
+1
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>36
+</pre>
+<p>この入力例は小課題 <var>2</var> の制約を満たす．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>6
+1 6 6 12
+6 2 5 16
+1 4 13 4
+5 1 19 3
+3 1 9 13
+1
+2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>14
+</pre>
+<p>この入力例は小課題 <var>3</var> の制約を満たす．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 4</h3>
+<pre>15
+14 5 12 7
+14 12 6 5
+14 10 14 16
+9 14 16 12
+13 7 4 15
+1 3 8 1
+6 7 15 13
+15 4 4 6
+9 1 12 6
+13 1 7 6
+13 4 5 15
+2 6 11 19
+8 4 12 7
+13 11 14 5
+3
+3
+6
+7
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 4</h3>
+<pre>44
+12
+6
+</pre></section>
+</div>
+</span>
+</span>

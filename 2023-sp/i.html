@@ -5,11 +5,11 @@
 <div class="part">
 <section>
 <h3>Problem Statement</h3>
-<p>JOI Kingdom is an insular country consisting of <var>N</var> islands, numbered from <var>1</var> to <var>N</var>. The islands are connected by <var>N - 1</var> bridges, numbered from <var>1</var> to <var>N - 1</var>. The bridge <var>i</var> (<var>1 \leq i \leq N - 1</var>) connects the island <var>A_i</var> and the island <var>B_i</var> bidirectionally. It is possible to travel from any island to any other island by passing through a number of bridges.</p>
-<p>In JOI Kingdom, there are <var>M</var> sightseeing spots, numbered from <var>1</var> to <var>M</var>. The sightseeing spot <var>j</var> (<var>1 \leq j \leq M</var>) is located in the island <var>C_j</var>.</p>
+<p>JOI Kingdom is an insular country consisting of <var>N</var> islands, numbered from <var>1</var> to <var>N</var>. The islands are connected by <var>N - 1</var> bridges, numbered from <var>1</var> to <var>N - 1</var>. The bridge <var>i</var> (<var>1 \le i \le N - 1</var>) connects the island <var>A_i</var> and the island <var>B_i</var> bidirectionally. It is possible to travel from any island to any other island by passing through a number of bridges.</p>
+<p>In JOI Kingdom, there are <var>M</var> sightseeing spots, numbered from <var>1</var> to <var>M</var>. The sightseeing spot <var>j</var> (<var>1 \le j \le M</var>) is located in the island <var>C_j</var>.</p>
 <p>There are <var>Q</var> travelers. They plan to visit sightseeing spots in JOI Kingdom. The travelers are numbered from <var>1</var> to <var>Q</var>. Each traveler makes a trip in the following way.</p>
 <ol>
-<li>The traveler chooses an island <var>x</var> (<var>1 \leq x \leq N</var>). Taking an airplane, the traveler arrives at the island <var>x</var>.</li>
+<li>The traveler chooses an island <var>x</var> (<var>1 \le x \le N</var>). Taking an airplane, the traveler arrives at the island <var>x</var>.</li>
 <li>The traveler takes the following actions a number of times. The order and the kinds of actions are arbitrary.
 <ul>
 <li>The traveler chooses a sightseeing spot in the current island, and visits there.</li>
@@ -19,8 +19,8 @@
 <li>Taking an airplane, the traveler leaves JOI Kingdom.</li>
 </ol>
 
-<p>The traveler <var>k</var> (<var>1 \leq k \leq Q</var>) wants to visit all of the sightseeing spots <var>L_k, L_k + 1, \ldots, R_k</var>. However, since the budget is limited, the traveler <var>k</var> wants to minimize the number of islands where the traveler <var>k</var> visits at least once.</p>
-<p>Write a program which, given information of JOI Kingdom and the travelers, calculates, for each <var>k</var> (<var>1 \leq k \leq Q</var>), the minimum possible number of islands where the traveler <var>k</var> visits at least once.</p>
+<p>The traveler <var>k</var> (<var>1 \le k \le Q</var>) wants to visit all of the sightseeing spots <var>L_k, L_k + 1, \ldots, R_k</var>. However, since the budget is limited, the traveler <var>k</var> wants to minimize the number of islands where the traveler <var>k</var> visits at least once.</p>
+<p>Write a program which, given information of JOI Kingdom and the travelers, calculates, for each <var>k</var> (<var>1 \le k \le Q</var>), the minimum possible number of islands where the traveler <var>k</var> visits at least once.</p>
 <hr />
 </section>
 </div>
@@ -34,7 +34,7 @@
 <var>A_1</var> <var>B_1</var>
 <var>A_2</var> <var>B_2</var>
 <var>\vdots</var>
-<var>A_{N-1}</var> <var>B_{N-1}</var>
+<var>A_{N - 1}</var> <var>B_{N - 1}</var>
 <var>C_1</var> <var>C_2</var> <var>\cdots</var> <var>C_M</var>
 <var>L_1</var> <var>R_1</var>
 <var>L_2</var> <var>R_2</var>
@@ -49,7 +49,7 @@
 <div class="part">
 <section>
 <h3>Output</h3>
-<p>Write <var>Q</var> lines to the standard output. The <var>k</var>-th line (<var>1 \leq k \leq Q</var>) of output should contain the minimum possible number of islands where the traveler <var>k</var> visits at least once.</p>
+<p>Write <var>Q</var> lines to the standard output. The <var>k</var>-th line (<var>1 \le k \le Q</var>) of output should contain the minimum possible number of islands where the traveler <var>k</var> visits at least once.</p>
 </section>
 </div>
 </div>
@@ -58,14 +58,14 @@
 <section>
 <h3>Constraints</h3>
 <ul>
-<li><var>1 \leq N \leq 100\,000</var>.</li>
-<li><var>1 \leq M \leq 100\,000</var>.</li>
-<li><var>1 \leq Q \leq 100\,000</var>.</li>
-<li><var>1 \leq A_i \leq N</var> (<var>1 \leq i \leq N - 1</var>).</li>
-<li><var>1 \leq B_i \leq N</var> (<var>1 \leq i \leq N - 1</var>).</li>
+<li><var>1 \le N \le 100\,000</var>.</li>
+<li><var>1 \le M \le 100\,000</var>.</li>
+<li><var>1 \le Q \le 100\,000</var>.</li>
+<li><var>1 \le A_i \le N</var> (<var>1 \le i \le N - 1</var>).</li>
+<li><var>1 \le B_i \le N</var> (<var>1 \le i \le N - 1</var>).</li>
 <li>It is possible to travel from any island to any other island by passing through a number of bridges.</li>
-<li><var>1 \leq C_j \leq N</var> (<var>1 \leq j \leq M</var>).</li>
-<li><var>1 \leq L_k \leq R_k \leq M</var> (<var>1 \leq k \leq Q</var>).</li>
+<li><var>1 \le C_j \le N</var> (<var>1 \le j \le M</var>).</li>
+<li><var>1 \le L_k \le R_k \le M</var> (<var>1 \le k \le Q</var>).</li>
 <li>Given values are all integers.</li>
 </ul>
 </section>
@@ -75,11 +75,11 @@
 <section>
 <h3>Subtasks</h3>
 <ol>
-<li>(<var>5</var> points) <var>N \leq 300</var>, <var>M \leq 300</var>, <var>Q \leq 300</var>.</li>
-<li>(<var>5</var> points) <var>N \leq 2\,000</var>, <var>M \leq 2\,000</var>, <var>Q \leq 2\,000</var>.</li>
-<li>(<var>7</var> points) <var>A_i = i</var>, <var>B_i = i + 1</var> (<var>1 \leq i \leq N - 1</var>).</li>
-<li>(<var>18</var> points) <var>L_1 = 1</var>, <var>R_k + 1 = L_{k+1}</var> (<var>1 \leq k \leq Q - 1</var>), <var>R_Q = M</var>.</li>
-<li>(<var>24</var> points) <var>A_i = \left\lfloor \dfrac{i+1}{2} \right\rfloor</var>, <var>B_i = i + 1</var> (<var>1 \leq i \leq N - 1</var>). Here, <var>\lfloor x \rfloor</var> is the largest integer not exceeding <var>x</var>.</li>
+<li>(<var>5</var> points) <var>N \le 300</var>, <var>M \le 300</var>, <var>Q \le 300</var>.</li>
+<li>(<var>5</var> points) <var>N \le 2\,000</var>, <var>M \le 2\,000</var>, <var>Q \le 2\,000</var>.</li>
+<li>(<var>7</var> points) <var>A_i = i</var>, <var>B_i = i + 1</var> (<var>1 \le i \le N - 1</var>).</li>
+<li>(<var>18</var> points) <var>L_1 = 1</var>, <var>R_k + 1 = L_{k+1}</var> (<var>1 \le k \le Q - 1</var>), <var>R_Q = M</var>.</li>
+<li>(<var>24</var> points) <var>A_i = \left\lfloor \frac{i+1}{2} \right\rfloor</var>, <var>B_i = i + 1</var> (<var>1 \le i \le N - 1</var>). Here, <var>\lfloor x \rfloor</var> is the largest integer not exceeding <var>x</var>.</li>
 <li>(<var>41</var> points) No additional constraints.</li>
 </ol>
 <hr />
@@ -229,7 +229,7 @@
 </div>
 </span>
 <span class="lang-ja">
-<p>配点： <var>100</var> 点</p>
+<p>配点 : <var>100</var> 点</p>
 
 <div class="part">
 <section>
@@ -263,7 +263,7 @@
 <var>A_1</var> <var>B_1</var>
 <var>A_2</var> <var>B_2</var>
 <var>\vdots</var>
-<var>A_{N-1}</var> <var>B_{N-1}</var>
+<var>A_{N - 1}</var> <var>B_{N - 1}</var>
 <var>C_1</var> <var>C_2</var> <var>\cdots</var> <var>C_M</var>
 <var>L_1</var> <var>R_1</var>
 <var>L_2</var> <var>R_2</var>
@@ -308,7 +308,7 @@
 <li>(<var>5</var> 点) <var>N \leqq 2\,000</var>，<var>M \leqq 2\,000</var>，<var>Q \leqq 2\,000</var>．</li>
 <li>(<var>7</var> 点) <var>A_i = i</var>，<var>B_i = i + 1</var> (<var>1 \leqq i \leqq N - 1</var>)．</li>
 <li>(<var>18</var> 点) <var>L_1 = 1</var>，<var>R_k + 1 = L_{k+1}</var> (<var>1 \leqq k \leqq Q - 1</var>)，<var>R_Q = M</var>．</li>
-<li>(<var>24</var> 点) <var>A_i = \left\lfloor \dfrac{i+1}{2} \right\rfloor</var>，<var>B_i = i + 1</var> (<var>1 \leqq i \leqq N - 1</var>)．ただし，<var>\lfloor x \rfloor</var> は <var>x</var> を超えない最大の整数を表す．</li>
+<li>(<var>24</var> 点) <var>A_i = \left\lfloor \frac{i+1}{2} \right\rfloor</var>，<var>B_i = i + 1</var> (<var>1 \leqq i \leqq N - 1</var>)．ただし，<var>\lfloor x \rfloor</var> は <var>x</var> を超えない最大の整数を表す．</li>
 <li>(<var>41</var> 点) 追加の制約はない．</li>
 </ol>
 <hr />

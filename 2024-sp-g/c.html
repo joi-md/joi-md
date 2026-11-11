@@ -1,0 +1,268 @@
+<span class="lang">
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p><var>K</var> 人用のボードゲームがある．このボードゲームのボードには <var>1</var> から <var>N</var> までの番号のついた <var>N</var> 個のマスと，<var>1</var> から <var>M</var> までの番号のついた <var>M</var> 本の道があり，道 <var>j</var> (<var>1 \leqq j \leqq M</var>) はマス <var>U_j</var> と <var>V_j</var> の間を双方向に接続している．</p>
+<p><var>N</var> 個のマスには <strong>再行動マス</strong> と <strong>停止マス</strong> との <var>2</var> 種類がある．その情報は <code>0</code>, <code>1</code> からなる長さ <var>N</var> の文字列 <var>S</var> によって与えられ，<var>S</var> の <var>i</var> 文字目 (<var>1 \leqq i \leqq N</var>) が <code>0</code> ならばマス <var>i</var> は再行動マス，<var>S</var> の <var>i</var> 文字目が <code>1</code> ならばマス <var>i</var> は停止マスである．</p>
+<p>このボードゲームは <var>1</var> から <var>K</var> までの番号がついた <var>K</var> 人のプレイヤーで遊ぶ．各プレイヤーは自分の駒を <var>1</var> つ持っており，各プレイヤーの駒を指定されたマスの上に置いてゲームを開始する．はじめプレイヤー <var>p</var> (<var>1 \leqq p \leqq K</var>) の駒はマス <var>X_p</var> に置く．なお，<var>1</var> つのマスに複数のプレイヤーの駒を置くことも可能である．</p>
+<p>ゲームはプレイヤー <var>1</var> から始めて番号順に自分のターンをプレイするという形で進行する．プレイヤー <var>p</var> が自分のターンをプレイし終わると，次はプレイヤー <var>p+1</var>（ただし <var>p=K</var> ならばプレイヤー <var>1</var>）のターンとなる．各プレイヤーは，自分のターンのときに次のような行動を行う：</p>
+<ol>
+<li>自分の駒が置かれているマスと道で接続されているマスをひとつ選び，選んだマスに自分の駒を移動させる．</li>
+<li>移動先のマスが再行動マスならば 1. に戻り，自分のターンを継続する．移動先のマスが停止マスならば自分のターンを終了する．</li>
+</ol>
+<p>このボードゲームの日本代表である JOI 君たち <var>K</var> 人は，ゲームを協力して高速に攻略する方法を研究している．現在研究しているのは次の問題である：</p>
+<blockquote>
+<p>プレイヤー <var>1</var> の駒がマス <var>T</var> に置かれている状態にするために必要な，<var>K</var> 人合計での駒の移動回数の最小値はいくつか．なお，ターンの途中であっても，プレイヤー <var>1</var> の駒がマス <var>T</var> に置かれれば条件が満たされたものとみなす．</p>
+</blockquote>
+<p>ボードゲームのボードの情報と各プレイヤーの駒の初期配置が与えられた場合に，各 <var>T=1,2,\ldots,N</var> に対して，この問題の答えを計算するプログラムを作成せよ．</p>
+<hr />
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力は以下の形式で標準入力から与えられる．</p>
+<pre><var>N</var> <var>M</var> <var>K</var>
+<var>U_1</var> <var>V_1</var>
+<var>U_2</var> <var>V_2</var>
+<var>\vdots</var>
+<var>U_M</var> <var>V_M</var>
+<var>S</var>
+<var>X_1</var> <var>X_2</var> <var>\cdots</var> <var>X_K</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に <var>N</var> 行出力せよ．<var>T</var> 行目 (<var>1 \leqq T \leqq N</var>) には，プレイヤー <var>1</var> の駒がマス <var>T</var> に置かれている状態にするために必要な，<var>K</var> 人合計での駒の移動回数の最小値を出力せよ．</p>
+<hr />
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>2 \leqq N \leqq 50\,000</var>．</li>
+<li><var>1 \leqq M \leqq 50\,000</var>．</li>
+<li><var>2 \leqq K \leqq 50\,000</var>．</li>
+<li><var>1 \leqq U_j &lt; V_j \leqq N</var> (<var>1 \leqq j \leqq M</var>)．</li>
+<li><var>(U_j,V_j) \neq (U_k,V_k)</var> (<var>1 \leqq j &lt; k \leqq M</var>)．</li>
+<li>どのマスからどのマスへも，結ばれている道を何本か辿って到達できる．</li>
+<li><var>S</var> は <code>0</code>, <code>1</code> からなる長さ <var>N</var> の文字列である．</li>
+<li><var>1 \leqq X_p \leqq N</var> (<var>1 \leqq p \leqq K</var>)．</li>
+<li><var>N,M,K</var> は整数である．</li>
+<li><var>U_j,V_j</var> は整数である (<var>1 \leqq j \leqq M</var>)．</li>
+<li><var>X_p</var> は整数である (<var>1 \leqq p \leqq K</var>)．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>7</var> 点) 停止マスは存在しない．</li>
+<li>(<var>12</var> 点) 停止マスの個数は <var>1</var> 個である．</li>
+<li>(<var>12</var> 点) 停止マスの個数は <var>2</var> 個である．</li>
+<li>(<var>23</var> 点) <var>N \leqq 3\,000</var>，<var>M \leqq 3\,000</var>，<var>K \leqq 3\,000</var>．</li>
+<li>(<var>23</var> 点) <var>K=2</var>．</li>
+<li>(<var>7</var> 点) <var>K \leqq 100</var>．</li>
+<li>(<var>12</var> 点) <var>N \leqq 30\,000</var>，<var>M \leqq 30\,000</var>，<var>K \leqq 30\,000</var>．</li>
+<li>(<var>4</var> 点) 追加の制約はない．</li>
+</ol>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>5 5 2
+1 2
+2 3
+2 4
+3 5
+4 5
+00000
+1 5
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>0
+1
+2
+2
+3
+</pre>
+<p>はじめプレイヤー <var>1</var> の駒はマス <var>1</var> に置かれているので，<var>T=1</var> に対する答えは <var>0</var> である．</p>
+<p><var>T=2</var> のとき，<var>1</var> 回目の移動で，プレイヤー <var>1</var> の駒をマス <var>1</var> からマス <var>2</var> に移動させることができる．したがって <var>T=2</var> に対する答えは <var>1</var> である．</p>
+<p><var>T=3</var> のとき，次のような <var>2</var> 回の移動でプレイヤー <var>1</var> の駒をマス <var>3</var> に置くことができる．</p>
+<ul>
+<li><var>1</var> 回目の移動では，プレイヤー <var>1</var> の駒をマス <var>1</var> からマス <var>2</var> に移動させる．マス <var>2</var> は再行動マスであるから，プレイヤー <var>1</var> のターンが継続される．</li>
+<li><var>2</var> 回目の移動では，プレイヤー <var>1</var> の駒をマス <var>2</var> からマス <var>3</var> に移動させる．</li>
+</ul>
+<p><var>1</var> 回以下の移動でプレイヤー <var>1</var> の駒をマス <var>3</var> に置くことはできないため，<var>T=3</var> に対する答えは <var>2</var> である．</p>
+<p>同様に <var>T=4</var> に対する答えは <var>2</var>，<var>T=5</var> に対する答えは <var>3</var> であることが確かめられる．</p>
+<p>この入力例は小課題 <var>1,4,5,6,7,8</var> の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>5 5 2
+1 2
+2 3
+2 4
+3 5
+4 5
+01000
+1 5
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>0
+1
+4
+4
+5
+</pre>
+<p>例えば <var>T=3</var> のとき，次のような <var>4</var> 回の移動でプレイヤー <var>1</var> の駒をマス <var>3</var> に置くことができる．</p>
+<ul>
+<li><var>1</var> 回目の移動では，プレイヤー <var>1</var> の駒をマス <var>1</var> からマス <var>2</var> に移動させる．マス <var>2</var> は停止マスであるから，次はプレイヤー <var>2</var> のターンとなる．</li>
+<li><var>2</var> 回目の移動では，プレイヤー <var>2</var> の駒をマス <var>5</var> からマス <var>3</var> に移動させる．マス <var>3</var> は再行動マスであるから，プレイヤー <var>2</var> のターンが継続される．</li>
+<li><var>3</var> 回目の移動では，プレイヤー <var>2</var> の駒をマス <var>3</var> からマス <var>2</var> に移動させる．マス <var>2</var> は停止マスであるから，次はプレイヤー <var>1</var> のターンとなる．</li>
+<li><var>4</var> 回目の移動では，プレイヤー <var>1</var> の駒をマス <var>2</var> からマス <var>3</var> に移動させる．</li>
+</ul>
+<p><var>3</var> 回以下の移動でプレイヤー <var>1</var> の駒をマス <var>3</var> に置くことはできないため，<var>T=3</var> に対する答えは <var>4</var> である．</p>
+<p>この入力例は小課題 <var>2,4,5,6,7,8</var> の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>5 5 2
+1 2
+2 3
+2 4
+3 5
+4 5
+01100
+1 5
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>0
+1
+3
+3
+4
+</pre>
+<p>この入力例は小課題 <var>3,4,5,6,7,8</var> の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 4</h3>
+<pre>8 7 5
+1 3
+5 7
+4 6
+2 6
+2 3
+7 8
+1 5
+10011010
+4 6 4 7 1
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 4</h3>
+<pre>4
+2
+3
+0
+10
+1
+17
+24
+</pre>
+<p>この入力例は小課題 <var>4,6,7,8</var> の制約を満たす．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 5</h3>
+<pre>12 13 3
+1 2
+2 3
+3 4
+4 5
+5 6
+6 7
+7 8
+8 9
+9 10
+1 10
+2 9
+7 12
+11 12
+110000011101
+1 9 11
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 5</h3>
+<pre>0
+1
+4
+5
+6
+7
+8
+8
+4
+1
+13
+9
+</pre>
+<p>この入力例は小課題 <var>4,6,7,8</var> の制約を満たす．</p></section>
+</div>
+</span>
+</span>

@@ -8,7 +8,7 @@ You were told the following information about the result of this competition fro
 
 <ul>
 <li>There were no draw matches.</li>
-<li>There are exactly $M$ ways to choose $3$ beavers which are trilemma. Note that $3$ beavers $i, j, k$ ($1 \leq i < j < k \leq N$) are trilemma if and only if exactly one of the following $2$ conditions is satisfied.
+<li>There are exactly $M$ ways to choose $3$ beavers which are trilemma. Note that $3$ beavers $i, j, k$ ($1 \le i < j < k \le N$) are trilemma if and only if exactly one of the following $2$ conditions is satisfied.
 <ul>
 <li>Beaver $i$ beat beaver $j$, beaver $j$ beat beaver $k$, and beaver $k$ beat beaver $i$.</li>
 <li>Beaver $i$ beat beaver $k$, beaver $k$ beat beaver $j$, and beaver $j$ beat beaver $i$.</li>
@@ -59,7 +59,7 @@ $\vdots$
 $S_N$
 ~~~
 
-Here, $S_i$ ($2 \leq i \leq N$) is a string of which characters are `0` or `1` and length is $i - 1$. The $j$-th character of $S_i$ ($1 \leq j \leq i - 1$) being `0` means beaver $i$ was defeated by beaver $j$, and the $j$-th character of $S_i$ being `1` means beaver $i$ won against beaver $j$. If multiple results exist, you can output any of them.
+Here, $S_i$ ($2 \le i \le N$) is a string of which characters are `0` or `1` and length is $i - 1$. The $j$-th character of $S_i$ ($1 \le j \le i - 1$) being `0` means beaver $i$ was defeated by beaver $j$, and the $j$-th character of $S_i$ being `1` means beaver $i$ won against beaver $j$. If multiple results exist, you can output any of them.
 
 In some scenario, if there are not any results of this competition which accord with the information, output `No`.
 
@@ -67,15 +67,15 @@ In some scenario, if there are not any results of this competition which accord 
 
 ### Constraints
 
-- $1 \leq Q$.
-- $3 \leq N \leq 5\,000$.
-- $0 \leq M \leq \dfrac{1}{6}N(N - 1)(N - 2)$.
+- $1 \le Q$.
+- $3 \le N \le 5\,000$.
+- $0 \le M \le \dfrac{1}{6}N(N - 1)(N - 2)$.
 - The sum of $N$ for the $Q$ scenarios is less than or equal to $5\,000$.
 - Given values are all integers.
 
 ### Subtasks
 
-1. ($5$ points) $M \leq N - 2$.
+1. ($5$ points) $M \le N - 2$.
 2. ($4$ points) The sum of $N$ for the $Q$ scenarios is less than or equal to $7$.
 3. ($23$ points) The sum of $N$ for the $Q$ scenarios is less than or equal to $20$.
 4. ($30$ points) The sum of $N$ for the $Q$ scenarios is less than or equal to $150$.

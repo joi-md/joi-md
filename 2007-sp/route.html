@@ -1,0 +1,78 @@
+<span class="lang">
+<span class="lang-ja">
+<blockquote>
+<p><strong>AtCoder での提出方法</strong></p>
+<p>標準入力から入力を読み込み，標準出力へ出力すること．</p>
+</blockquote>
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>あなたの友人の象使いは王宮まで象をつれて行くことを命ぜられた．道路図が与えられるが，王宮までの道路はそれぞれ有料で，さらにその費用は自前で用意しなければならない．</p>
+<p>彼のために最も安い道程を探し出して欲しい．</p>
+<p>ただし，以下のことに注意すること．</p>
+<ul>
+<li>道路は <var>2</var> つの料金所の間を結ぶ線分である．<var>2</var> つの料金所 <var>p, q</var> の組に対して，<var>p</var> と <var>q</var> を結ぶ道路は高々 <var>1</var> 本しか存在しない．</li>
+<li>道路は必ず端点から端点までたどらなければならず，途中でほかの道路に乗り換えることはできない．</li>
+<li>象は鋭角には曲れないため，料金所では，それまでたどった道路とのなす角が鋭角になる道路には乗り換えられない．例えば，下の図では，<var>p \to q \to r</var> はたどれず，<var>u \to v \to w</var> や <var>x \to y \to z</var> はたどれる．</li>
+</ul>
+<div style="text-align: center;">
+<img alt="2007-route-turns.png" src="https://img.atcoder.jp/joisc2007/2007-route-turns.png" style="max-width: 100%; width: 580px;" />
+</div>
+
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力の <var>1</var> 行目には，料金所の数 <var>n</var> (<var>2 \leqq n \leqq 100</var>) と道路の数 <var>m</var> が空白で区切られて書かれている．<var>i + 1</var> 行目 (<var>1 \leqq i \leqq n</var>) には，<var>2</var> つの整数 <var>x_i, y_i</var> (<var>-10000 \leqq x_i \leqq 10000</var>，<var>-10000 \leqq y_i \leqq 10000</var>) が空白で区切られて書かれている．これは，<var>i</var> 番目の料金所の座標が <var>(x_i, y_i)</var> であることを表わしている．<var>j + n + 1</var> 行目 (<var>1 \leqq j \leqq m</var>) には，<var>3</var> つの整数 <var>a_j, b_j, c_j</var> (<var>1 \leqq a_j &lt; b_j \leqq n</var>，<var>0 \leqq c_j \leqq 10000</var>) が空白で区切られて書かれている．これは，<var>a_j</var> 番目の料金所と <var>b_j</var> 番目の料金所で結ばれる道路の通行料金が <var>c_j</var> であることを表わしている．</p>
+<p>現在の象の居場所は <var>1</var> 番目の料金所である．王宮は <var>2</var> 番目の料金所のすぐ近くにある．</p>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p><var>1</var> 番目の料金所から <var>2</var> 番目の料金所へ到達できる，最も安い料金を出力せよ．もし到達不可能な場合は，<var>-1</var> を出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>5 6
+0 0
+10 10
+0 10
+10 0
+2 -6
+1 2 30
+1 3 4
+1 4 5
+1 5 1
+2 4 3
+2 5 1
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>8
+</pre>
+<div style="text-align: center;">
+<img src="https://img.atcoder.jp/joisc2007/2007-route-example.png" style="max-width: 100%; width: 240px;" />
+<p>入力例の図示</p>
+</div>
+
+<p><var>1</var> 番目の料金所から <var>2</var> 番目の料金所への道程は，<var>1 \to 2</var> と <var>1 \to 4 \to 2</var> の <var>2</var> つがあり，そのうち料金が安い <var>1 \to 4 \to 2</var> の料金 <var>8</var> を出力する．<var>1 \to 5 \to 2</var> は，料金 <var>2</var> だが，道路 <var>1 \leftrightarrow 5</var> と道路 <var>5 \leftrightarrow 2</var> が <var>5</var> 番目の料金所で鋭角をなすので，象は <var>1 \to 5 \to 2</var> とたどることはできない．</p></section>
+</div>
+</span>
+</span>

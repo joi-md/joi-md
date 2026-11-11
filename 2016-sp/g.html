@@ -1,0 +1,293 @@
+<span class="lang">
+<span class="lang-ja">
+<blockquote>
+<p><strong>AtCoder での提出方法</strong></p>
+<p><a href="https://img.atcoder.jp/joisc2016/dungeon2-dist-fc38f03869.zip">配布ファイル</a></p>
+<ul>
+<li>C++ を使用し，<code>dungeon2.h</code> を include して，<code>Inspect</code> を実装したソースコードを提出してください．このジャッジは C++ 以外の言語には対応していません．</li>
+<li><strong>標準入出力やファイルへの入出力を使用しないでください．</strong></li>
+</ul>
+</blockquote>
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>あなたは Just Ordinary Inventions 社を知っているだろうか? この会社の業務は「ただ平凡な発明 (just ordinary inventions)」をすることである．</p>
+<p>JOI 君は，Just Ordinary Inventions 社で開発された最新のゲームで遊んでいる．</p>
+<p>このゲームは，いくつかの部屋といくつかの道からなるダンジョンを探索するゲームである．道はダンジョン内の異なる <var>2</var> つの部屋を結んでおり，双方向に移動可能である．どの異なる <var>2</var> つの部屋についても，それらを結ぶ道は高々 <var>1</var> 本しかなく，両端が同じ部屋であるような道は存在しない．また，ダンジョンのどの <var>2</var> つの部屋の間も，何本かの道を使うことで互いに移動できることがわかっている．各部屋同士は非常によく似ており，同じ本数の道が出ている部屋同士は，部屋の様子を見るだけではまったく区別ができない．</p>
+<p>このゲームでは，攻略を助けるために各部屋に目印と台座が用意されている．部屋から出ている道は，目印を基準として <var>1</var> 本目，<var>2</var> 本目，<var>\ldots</var> と数えることができる．ゲーム中にダンジョンの構造が変化することはない．したがって，同じ部屋から同じ番号の道を使って移動すると，いつも同じ部屋にたどり着く．台座にはプレイヤーが色を変更することができる宝石が <var>1</var> 個飾られている．宝石の色は色 <var>1</var>，色 <var>2</var>，<var>\ldots</var> ，色 <var>X</var> のいずれかであり，ゲーム開始時の各部屋の宝石の色は色 <var>1</var> である．宝石の色はプレイヤーが操作しない限り変更されることはない．</p>
+<p>JOI 君は，もしこのダンジョンの構造，すなわちダンジョンの部屋同士がどのように道で結ばれているかがわかれば，このゲームは簡単に攻略できてしまうことに気づいた．しかし，JOI 君がいろいろ試してもダンジョンの構造を決定することはできなかった．そこで，あなたは JOI 君に代わってダンジョンの構造を決定するプログラムを書くことにした．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p>ダンジョンを探索して，ダンジョンの構造を決定するプログラムを作成せよ．しかし，JOI 君はダンジョンの構造を完全に明かされることを望まなかったため，プログラムはダンジョンの構造を直接答えるのではなく，<var>1</var> 以上 <var>R</var> 以下の各整数 <var>i</var> に対して「最小でちょうど <var>i</var> 本の道を使うことで移動できる <var>2</var> つの部屋の組は何個あるか」の値 (部屋の順序を入れ替えたものは同じ組とみなす) を解答しなければならない．</p>
+<p>ダンジョンを探索するために，あなたには次の行動を行うためのライブラリが提供される．</p>
+<ul>
+<li>現在いる部屋から，何本の道が出ているかを知る．</li>
+<li>現在いる部屋の台座に飾られている宝石の色を知る．</li>
+<li>現在いる部屋の台座に飾られている宝石の色を，指定した色にする (現在の色と同じ色を指定することもできる)．その後，部屋から出ている道を <var>1</var> 本選び，その道を使って他の部屋へ移動する．</li>
+<li>最後に使った道が，現在いる部屋から出ている道のうち何本目かを知る．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>実装の詳細</h3>
+<p>あなたは，JOI 君に解答する方法を実装した <var>1</var> 個のプログラムを書かねばならない．プログラムは <code>dungeon2.h</code> をインクルードすること．</p>
+<p>プログラムは，以下のルーチンを実装しなければならない．</p>
+<ul>
+<li>
+<p><code>void Inspect(int R)</code></p>
+<p>このルーチンは，最初に <var>1</var> 回だけ呼び出される．</p>
+<ul>
+<li>引数 <code>R</code> は，<var>1</var> 以上 <var>R</var> 以下の各整数 <var>i</var> に対して「最小でちょうど <var>i</var> 本の道を使うことで移動できる <var>2</var> つの部屋の組は何個あるか」の値 (部屋の順序を入れ替えたものは同じ組とみなす) を解答しなければならないことを表す．</li>
+</ul>
+</li>
+</ul>
+<p>また，次のルーチンを呼び出し，質問に答えなければならない．</p>
+<ul>
+<li>
+<p><code>void Answer(int D, int A)</code></p>
+<ul>
+<li>引数 <code>D</code>，<code>A</code> は，この呼び出しにおいて，「最小でちょうど <var>D</var> 本の道を使うことで移動できる <var>2</var> つの部屋の組は <var>A</var> 個ある」ことを解答することを表す．</li>
+</ul>
+<p>ただし，<code>Answer</code> の呼び出しは以下の条件を満たすこと．</p>
+<ul>
+<li><code>D</code> は <var>1</var> 以上 <var>R</var> 以下の整数でなければならない．これを満たさない場合，不正解 <var>[1]</var> となる．</li>
+<li><code>Answer</code> を同じ引数 <code>D</code> で <var>2</var> 回以上呼び出してはならない．これを満たさない場合，不正解 <var>[2]</var> となる．</li>
+<li><code>Answer</code> はちょうど <var>R</var> 回呼び出さなければならない．これを満たさない場合，不正解 <var>[3]</var> となる．</li>
+<li><code>A</code> は最小でちょうど <code>D</code> 本の道を使うことで移動できる <var>2</var> つの部屋の組の個数でなければならない．これを満たさない場合，不正解 <var>[4]</var> となる．</li>
+</ul>
+<p><code>Answer</code> の呼び出しが不正解と判定された場合，それ以降のプログラムは実行されるとは限らない．</p>
+</li>
+</ul>
+<p>これに加え，プログラム中では，以下のルーチンを呼び出すことができる．</p>
+<ul>
+<li>
+<p><code>void Move(int I, int C)</code></p>
+<ul>
+<li>引数 <code>I</code> は，プレイヤーが移動するために選ぶ道の番号である．この呼び出しの直後，プレイヤーは現在いる部屋から出ている <code>I</code> 本目の道を使って他の部屋まで移動する．</li>
+<li>引数 <code>C</code> は，部屋の移動を行う前に，現在いる部屋の台座に飾られている宝石の色を色 <var>C</var> にすることを表す．</li>
+</ul>
+<p>ただし，<code>Move</code> の呼び出しは以下の条件を満たすこと．</p>
+<ul>
+<li>引数 <code>I</code> は，プレイヤーが現在いる部屋から出ている道の本数を <var>K</var> として，<var>1</var> 以上 <var>K</var> 以下の整数でなければならない．これを満たさない場合，不正解 <var>[5]</var> となる．</li>
+<li>引数 <code>C</code> は，宝石の色の種類が <var>X</var> 種類として，<var>1</var> 以上 <var>X</var> 以下の整数でなければならない．<var>X</var> の値は小課題ごとに定まっている．これを満たさない場合，不正解 <var>[6]</var> となる．</li>
+<li><code>Move</code> を <var>1\,500\,000</var> 回より多く呼び出してはならない．呼び出した場合，不正解 <var>[7]</var> となる．</li>
+</ul>
+</li>
+<li>
+<p><code>int NumberOfRoads()</code></p>
+<ul>
+<li>この関数は，プレイヤーが現在いる部屋から出ている道の本数を返す．</li>
+</ul>
+</li>
+<li>
+<p><code>int LastRoad()</code></p>
+<ul>
+<li>この関数は，プレイヤーが最後に使った道が，現在いる部屋から出ている道のうち何本目の道であるかを返す．ただし，<code>Move</code> を一度も呼び出す前にこの関数が呼び出された場合は，<var>-1</var> を返す．</li>
+</ul>
+</li>
+<li>
+<p><code>int Color()</code></p>
+<ul>
+<li>この関数は，プレイヤーが現在いる部屋の台座に飾られている宝石の色を返す．</li>
+</ul>
+</li>
+</ul>
+<p>ルーチン <code>Inspect</code> が呼び出された後，答えの判定が行われる．</p>
+<p>内部での使用のために他のルーチンを実装したり，グローバル変数を宣言するのは自由である．ただし，あなたの提出は標準入力・標準出力，あるいは他のファイルといかなる方法でもやりとりしてはならない．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>コンパイル・実行の方法</h3>
+<p>作成したプログラムをテストするための，採点プログラムのサンプルが，コンテストサイトからダウンロードできるアーカイブの中に含まれている．このアーカイブには，提出しなければならないファイルのサンプルも含まれている．</p>
+<p>採点プログラムのサンプルは <var>1</var> つのファイルからなる．そのファイルは <code>grader.c</code> または <code>grader.cpp</code> である．作成したプログラムをテストするには，次のようにコマンドを実行する．</p>
+<ul>
+<li>C の場合</li>
+</ul>
+<pre>gcc -std=c11 -O2 -o grader grader.c dungeon2.c -lm
+</pre>
+<ul>
+<li>C++ の場合</li>
+</ul>
+<pre>g++ -std=c++11 -O2 -o grader grader.cpp dungeon2.cpp
+</pre>
+<p>コンパイルが成功すれば，<code>grader</code> という実行ファイルが生成される．</p>
+<p>実際の採点プログラムは，採点プログラムのサンプルとは異なることに注意すること．採点プログラムのサンプルは単一のプロセスとして起動する．このプログラムは，標準入力から入力を読み込み，標準出力に結果を出力する．</p>
+<h4>採点プログラムのサンプルの入力</h4>
+<p>採点プログラムのサンプルは標準入力から以下のデータを読み込む．</p>
+<ul>
+<li><var>1</var> 行目には，整数 <var>N, X, R</var> が空白を区切りとして書かれている．これは，ダンジョンに部屋 <var>1</var>，部屋 <var>2</var>，<var>\ldots</var>，部屋 <var>N</var> の <var>N</var> 個の部屋があり，宝石の色が <var>X</var> 種類あり，プログラムが解答すべき値が <var>R</var> 個であることを表す．</li>
+<li>続く <var>2N</var> 行のうちの <var>2i - 1</var> 行目 (<var>1 \leqq i \leqq N</var>) には，整数 <var>D_{i}</var> が書かれており，部屋 <var>i</var> から <var>D_{i}</var> 本の道が出ていることを表す．<var>2i</var> 行目 (<var>1 \leqq i \leqq N</var>) には，<var>D_{i}</var> 個の整数 <var>T_{i1}, T_{i2}, \ldots, T_{iD_{i}}</var> が空白を区切りとして書かれている．これは，部屋 <var>i</var> から出ている <var>j</var> (<var>1 \leqq j \leqq D_{i}</var>) 本目の道を使って移動すると部屋 <var>T_{ij}</var> にたどり着くことを表す．</li>
+<li>続く <var>R</var> 行のうちの <var>j</var> 行目 (<var>1 \leqq j \leqq R</var>) には，整数 <var>A_{j}</var> が書かれている．これは，最小でちょうど <var>j</var> 本の道を使うことで移動できる <var>2</var> つの部屋の組が <var>A_{j}</var> 個あることを表す．つまり，各 <var>j</var> (<var>1 \leqq j \leqq R</var>) に対して，<code>Answer</code> の引数 <code>D</code> として <var>j</var>，引数 <code>A</code> として <var>A_{j}</var> を与えて呼び出した場合に採点プログラムのサンプルが正解と判定し，それ以外の場合に不正解と判定することを表す．</li>
+</ul>
+<p>採点プログラムのサンプルは，プレイヤーの初期位置を部屋 <var>1</var> として，あなたの作成したルーチンを呼び出す．</p>
+<h4>採点プログラムのサンプルの出力</h4>
+<p>プログラムの実行が正常に終了した場合，採点プログラムのサンプルは標準出力へ以下の情報を <var>1</var> 行で出力する (引用符は実際には出力されない)．</p>
+<ul>
+<li>正解の場合，関数 <code>Move</code> を呼び出した回数が “<code>Accepted : #move = 8</code>” のように出力される．</li>
+<li>不正解の場合，不正解の種類が “<code>Wrong Answer [1]</code>” のように出力される．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<p>すべての入力データは以下の条件を満たす．<var>N, D_{i}, T_{ij}</var> の意味については「採点プログラムのサンプルの入力」の項目を参照せよ．</p>
+<ul>
+<li><var>2 \leqq N \leqq 200</var>．</li>
+<li><var>3 \leqq X \leqq 100</var>．</li>
+<li><var>1 \leqq R \leqq 200</var>．</li>
+<li><var>1 \leqq D_{i} \leqq N - 1</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>1 \leqq T_{i j} \leqq N</var> かつ <var>T_{ij} \ne i</var> (<var>1 \leqq i \leqq N</var>，<var>1 \leqq j \leqq D_{i}</var>)．</li>
+<li><var>T_{i1}, T_{i2}, \ldots, T_{iD_{i}}</var> (<var>1 \leqq i \leqq N</var>) は互いに異なる．</li>
+<li>各 <var>i, j</var> (<var>1 \leqq i \leqq N</var>，<var>1 \leqq j \leqq D_{i}</var>) に対し，<var>T_{T_{ij}k} = i</var> を満たす <var>k</var> (<var>1 \leqq k \leqq D_{T_{ij}}</var>) が存在する．</li>
+<li>どの <var>2</var> つの部屋の間も，何本かの道を使うことで互いに移動できる．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<p>以下では，入力データにおけるダンジョンの部屋の数を <var>N</var>，道の本数を <var>M</var> とする．</p>
+<h4>小課題 1 [<var>17</var> 点]</h4>
+<p>以下の条件を満たす．</p>
+<ul>
+<li><var>N \leqq 50</var>．</li>
+<li><var>M \leqq 100</var>．</li>
+<li><var>X = 100</var>．</li>
+</ul>
+<h4>小課題 2 [<var>27</var> 点]</h4>
+<p>以下の条件を満たす．</p>
+<ul>
+<li><var>N \leqq 50</var>．</li>
+<li><var>M \leqq 100</var>．</li>
+<li><var>X = 3</var>．</li>
+</ul>
+<h4>小課題 3 [<var>56</var> 点]</h4>
+<ul>
+<li><var>X = 3</var> を満たす．</li>
+</ul>
+<p>この小課題では，以下に従い得点が決定される．</p>
+<ul>
+<li>
+<p>この小課題の全てのテストケースにおける，次の値の最大値を <var>L</var> とおく．</p>
+<ul>
+<li><code>Move</code> の呼び出し回数を <var>C</var> としたときの，<var>\frac{C}{M}</var>．</li>
+</ul>
+</li>
+<li>
+<p>このとき，この小課題の得点は，</p>
+<ul>
+<li><var>L \leqq 14</var> のとき，<var>56</var> 点．</li>
+<li><var>14 &lt; L \leqq 32</var> のとき，<var>\lfloor 70 - L\rfloor</var> 点．</li>
+<li><var>32 &lt; L \leqq 64</var> のとき，<var>\left\lfloor54 - \frac{L}{2}\right\rfloor</var> 点．</li>
+<li><var>64 &lt; L</var> のとき，<var>0</var> 点．</li>
+</ul>
+</li>
+</ul>
+<p>ここで，<var>\lfloor x\rfloor</var> は <var>x</var> を超えない最大の整数を表す．</p>
+<p>採点システム上では，プログラムが正しく終了し，正解と判定された場合には詳細の欄に <code>Accepted</code> と表示される．ただし，小課題 <var>3</var> の採点で，上の <var>C,M</var> が <var>64&lt;\frac{C}{M}</var> となるテストケースについては，結果の欄には不正解と表示されるので注意せよ．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>やりとりの例</h3>
+<p>採点プログラムのサンプルが読み込む入力の例と，それに対応するルーチンの呼び出しの例を以下に示す．</p>
+<h4>入力例</h4>
+<pre>4 3 3
+1
+2
+3
+1 3 4
+2
+2 4
+2
+2 3
+4
+2
+0
+</pre>
+<h4>ルーチンの呼び出しの例</h4>
+<div class="joisc2016-dungeon2-ja-table">
+<table>
+<thead>
+<tr>
+<th>呼び出し</th>
+<th>戻り値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Inspect(3)</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>NumberOfRoads()</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td><code>LastRoad()</code></td>
+<td><code>-1</code></td>
+</tr>
+<tr>
+<td><code>Move(1,2)</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Color()</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td><code>LastRoad()</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td><code>NumberOfRoads()</code></td>
+<td><code>3</code></td>
+</tr>
+<tr>
+<td><code>Move(1,3)</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Color()</code></td>
+<td><code>2</code></td>
+</tr>
+<tr>
+<td><code>Answer(1,4)</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Answer(2,2)</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Answer(3,0)</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>この例での関数の呼び出しは，必ずしも意味のある呼び出しとは限らないことに注意せよ．</p>
+<style>
+.joisc2016-dungeon2-ja-table { max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisc2016-dungeon2-ja-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisc2016-dungeon2-ja-table th,.joisc2016-dungeon2-ja-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisc2016-dungeon2-ja-table th { background:#f5f5f5; }
+.joisc2016-dungeon2-ja-table code { white-space:nowrap; }
+</style></section>
+</div>
+</span>
+</span>

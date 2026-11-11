@@ -2,13 +2,13 @@ Score: $100$ points
 
 ### Problem Statement
 
-There are $N$ cities in JOI Kingdom, numbered from $1$ to $N$. There are $N - 1$ roads in JOI Kingdom, numbered from $1$ to $N - 1$. The road $i$ ($1 \leq i \leq N - 1$) connects the city $A_i$ and the city $B_i$ bi-directionally. It is possible to travel from any city to any other city by passing through some of the roads.
+There are $N$ cities in JOI Kingdom, numbered from $1$ to $N$. There are $N - 1$ roads in JOI Kingdom, numbered from $1$ to $N - 1$. The road $i$ ($1 \le i \le N - 1$) connects the city $A_i$ and the city $B_i$ bi-directionally. It is possible to travel from any city to any other city by passing through some of the roads.
 
-There are checkpoints on some of the roads in JOI Kingdom. There are $M$ checkpoints, numbered from $1$ to $M$. The checkpoint $j$ ($1 \leq j \leq M$) is located on the road $P_j$. In order to pass through it, you need to pay either one gold coin or $C_j$ silver coins.
+There are checkpoints on some of the roads in JOI Kingdom. There are $M$ checkpoints, numbered from $1$ to $M$. The checkpoint $j$ ($1 \le j \le M$) is located on the road $P_j$. In order to pass through it, you need to pay either one gold coin or $C_j$ silver coins.
 
-There are $Q$ citizens in JOI Kingdom, numbered from $1$ to $Q$. The citizen $k$ ($1 \leq k \leq Q$) has $X_k$ gold coins and $Y_k$ silver coins, and wants to travel from the city $S_k$ to the city $T_k$. Since gold coins are valuable, all the citizens want to keep as many gold coins as possible.
+There are $Q$ citizens in JOI Kingdom, numbered from $1$ to $Q$. The citizen $k$ ($1 \le k \le Q$) has $X_k$ gold coins and $Y_k$ silver coins, and wants to travel from the city $S_k$ to the city $T_k$. Since gold coins are valuable, all the citizens want to keep as many gold coins as possible.
 
-Write a program which, given information of the cities, the roads, the checkpoints, and the citizens in JOI Kingdom, for each $k$ ($1 \leq k \leq Q$), determines whether it is possible for the citizen $k$ to travel from the city $S_k$ to the city $T_k$, and, if it is possible, calculates the maximum possible number of gold coins the citizen $k$ can keep.
+Write a program which, given information of the cities, the roads, the checkpoints, and the citizens in JOI Kingdom, for each $k$ ($1 \le k \le Q$), determines whether it is possible for the citizen $k$ to travel from the city $S_k$ to the city $T_k$, and, if it is possible, calculates the maximum possible number of gold coins the citizen $k$ can keep.
 
 ---
 
@@ -21,7 +21,7 @@ $N$ $M$ $Q$
 $A_1$ $B_1$
 $A_2$ $B_2$
 $\vdots$
-$A_{N-1}$ $B_{N-1}$
+$A_{N - 1}$ $B_{N - 1}$
 $P_1$ $C_1$
 $P_2$ $C_2$
 $\vdots$
@@ -34,32 +34,32 @@ $S_Q$ $T_Q$ $X_Q$ $Y_Q$
 
 ### Output
 
-Write $Q$ lines to the standard output. In the $k$-th line ($1 \leq k \leq Q$), if the citizen $k$ can travel from the city $S_k$ to the city $T_k$, output the maximum possible number of gold coins the citizen $k$ can keep. Otherwise, output `-1` in the $k$-th line.
+Write $Q$ lines to the standard output. In the $k$-th line ($1 \le k \le Q$), if the citizen $k$ can travel from the city $S_k$ to the city $T_k$, output the maximum possible number of gold coins the citizen $k$ can keep. Otherwise, output `-1` in the $k$-th line.
 
 ---
 
 ### Constraints
 
-- $2 \leq N \leq 100\,000$.
-- $1 \leq M \leq 100\,000$.
-- $1 \leq Q \leq 100\,000$.
-- $1 \leq A_i \leq N$ ($1 \leq i \leq N - 1$).
-- $1 \leq B_i \leq N$ ($1 \leq i \leq N - 1$).
+- $2 \le N \le 100\,000$.
+- $1 \le M \le 100\,000$.
+- $1 \le Q \le 100\,000$.
+- $1 \le A_i \le N$ ($1 \le i \le N - 1$).
+- $1 \le B_i \le N$ ($1 \le i \le N - 1$).
 - It is possible to travel from any city to any other city by passing through some of the roads.
-- $1 \leq P_j \leq N - 1$ ($1 \leq j \leq M$).
-- $1 \leq C_j \leq 10^9$ ($1 \leq j \leq M$).
-- $1 \leq S_k \leq N$ ($1 \leq k \leq Q$).
-- $1 \leq T_k \leq N$ ($1 \leq k \leq Q$).
-- $S_k \neq T_k$ ($1 \leq k \leq Q$).
-- $0 \leq X_k \leq 10^9$ ($1 \leq k \leq Q$).
-- $0 \leq Y_k \leq 10^{18}$ ($1 \leq k \leq Q$).
+- $1 \le P_j \le N - 1$ ($1 \le j \le M$).
+- $1 \le C_j \le 10^9$ ($1 \le j \le M$).
+- $1 \le S_k \le N$ ($1 \le k \le Q$).
+- $1 \le T_k \le N$ ($1 \le k \le Q$).
+- $S_k \neq T_k$ ($1 \le k \le Q$).
+- $0 \le X_k \le 10^9$ ($1 \le k \le Q$).
+- $0 \le Y_k \le 10^{18}$ ($1 \le k \le Q$).
 - Given values are all integers.
 
 ### Subtasks
 
-1. ($10$ points) $N \leq 2\,000$, $M \leq 2\,000$, $Q \leq 2\,000$.
+1. ($10$ points) $N \le 2\,000$, $M \le 2\,000$, $Q \le 2\,000$.
 2. ($28$ points) $C_1 = C_2 = \cdots = C_M$.
-3. ($30$ points) $A_i = i$, $B_i = i + 1$ ($1 \leq i \leq N - 1$).
+3. ($30$ points) $A_i = i$, $B_i = i + 1$ ($1 \le i \le N - 1$).
 4. ($32$ points) No additional constraints.
 
 ---

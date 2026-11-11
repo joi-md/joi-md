@@ -10,9 +10,9 @@
 <li>Ascend <var>1</var> step. This action takes <var>A</var> seconds.</li>
 <li>Jump from the current step to a step <var>D</var> steps above, skipping the steps in between. This action takes <var>B</var> seconds.</li>
 </ul>
-<p>Currently, construction is ongoing at several locations on the staircase, and steps undergoing construction cannot be stepped on. Specifically, there are <var>N</var> ongoing constructions, and the <var>i</var>-th construction (<var>1 \leq i \leq N</var>) is being carried out at steps <var>L_i, L_i + 1, \ldots, R_i</var>.</p>
-<p>The IOI Tower has <var>Q</var> rooms numbered from <var>1</var> to <var>Q</var>. One can enter room <var>j</var> (<var>1 \leq j \leq Q</var>) from step <var>X_j</var> of the staircase. Therefore, JOI-kun has decided to determine whether he can reach each room and, if possible, how many seconds it will take to reach there in the minimum time.</p>
-<p>Given the information about JOI-kun, constructions, and rooms, create a program that determines whether JOI-kun can reach step <var>X_j</var> for each <var>j</var> (<var>1 \leq j \leq Q</var>) and, if possible, calculates the minimum time it takes.</p>
+<p>Currently, construction is ongoing at several locations on the staircase, and steps undergoing construction cannot be stepped on. Specifically, there are <var>N</var> ongoing constructions, and the <var>i</var>-th construction (<var>1 \le i \le N</var>) is being carried out at steps <var>L_i, L_i + 1, \ldots, R_i</var>.</p>
+<p>The IOI Tower has <var>Q</var> rooms numbered from <var>1</var> to <var>Q</var>. One can enter room <var>j</var> (<var>1 \le j \le Q</var>) from step <var>X_j</var> of the staircase. Therefore, JOI-kun has decided to determine whether he can reach each room and, if possible, how many seconds it will take to reach there in the minimum time.</p>
+<p>Given the information about JOI-kun, constructions, and rooms, create a program that determines whether JOI-kun can reach step <var>X_j</var> for each <var>j</var> (<var>1 \le j \le Q</var>) and, if possible, calculates the minimum time it takes.</p>
 <hr />
 </section>
 </div>
@@ -41,7 +41,7 @@
 <div class="part">
 <section>
 <h3>Output</h3>
-<p>Output <var>Q</var> lines to the standard output. On the <var>j</var>-th line (<var>1 \leq j \leq Q</var>), output the minimum number of seconds it takes if JOI-kun can reach step <var>X_j</var>; otherwise, output <code>-1</code>.</p>
+<p>Output <var>Q</var> lines to the standard output. On the <var>j</var>-th line (<var>1 \le j \le Q</var>), output the minimum number of seconds it takes if JOI-kun can reach step <var>X_j</var>; otherwise, output <code>-1</code>.</p>
 </section>
 </div>
 </div>
@@ -50,14 +50,14 @@
 <section>
 <h3>Constraints</h3>
 <ul>
-<li><var>1 \leq N \leq 200\,000</var>.</li>
-<li><var>1 \leq Q \leq 200\,000</var>.</li>
-<li><var>1 \leq D \leq 10^{12}</var>.</li>
-<li><var>1 \leq A \leq 1\,000\,000</var>.</li>
-<li><var>1 \leq B \leq 1\,000\,000</var>.</li>
-<li><var>1 \leq L_i \leq R_i \leq 10^{12}</var> (<var>1 \leq i \leq N</var>).</li>
-<li><var>R_i + 1 &lt; L_{i+1}</var> (<var>1 \leq i \leq N - 1</var>).</li>
-<li><var>1 \leq X_j \leq 10^{12}</var> (<var>1 \leq j \leq Q</var>).</li>
+<li><var>1 \le N \le 200\,000</var>.</li>
+<li><var>1 \le Q \le 200\,000</var>.</li>
+<li><var>1 \le D \le 10^{12}</var>.</li>
+<li><var>1 \le A \le 1\,000\,000</var>.</li>
+<li><var>1 \le B \le 1\,000\,000</var>.</li>
+<li><var>1 \le L_i \le R_i \le 10^{12}</var> (<var>1 \le i \le N</var>).</li>
+<li><var>R_i + 1 &lt; L_{i+1}</var> (<var>1 \le i \le N - 1</var>).</li>
+<li><var>1 \le X_j \le 10^{12}</var> (<var>1 \le j \le Q</var>).</li>
 <li>Given values are all integers.</li>
 </ul>
 </section>
@@ -67,8 +67,8 @@
 <section>
 <h3>Subtasks</h3>
 <ol>
-<li>(<var>5</var> points) <var>R_i \leq 1\,000\,000</var> (<var>1 \leq i \leq N</var>), <var>X_j \leq 1\,000\,000</var> (<var>1 \leq j \leq Q</var>).</li>
-<li>(<var>38</var> points) <var>N \leq 2\,000</var>, <var>Q \leq 2\,000</var>.</li>
+<li>(<var>5</var> points) <var>R_i \le 1\,000\,000</var> (<var>1 \le i \le N</var>), <var>X_j \le 1\,000\,000</var> (<var>1 \le j \le Q</var>).</li>
+<li>(<var>38</var> points) <var>N \le 2\,000</var>, <var>Q \le 2\,000</var>.</li>
 <li>(<var>25</var> points) <var>A = 1</var>, <var>B = D</var>.</li>
 <li>(<var>32</var> points) No additional constraints.</li>
 </ol>
@@ -152,7 +152,7 @@
 </div>
 </span>
 <span class="lang-ja">
-<p>配点： <var>100</var> 点</p>
+<p>配点 : <var>100</var> 点</p>
 
 <div class="part">
 <section>

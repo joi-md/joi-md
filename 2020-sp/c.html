@@ -1,0 +1,596 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>Bitaro’s room is an isosceles right-angled triangle whose leg has length <var>N</var>. A point in Bitaro’s room is represented as the coordinate <var>(x, y)</var> with <var>0 \le x \le N</var>, <var>0 \le y \le N</var>, <var>x + y \le N</var>. The vertex of the right angle is the origin. The two legs of the triangle are the <var>x</var>-axis and the <var>y</var>-axis.</p>
+<p><img src="https://img.atcoder.jp/joisc2020/sweeping-en-p1-1.png" alt="Figure" style="max-width:100%;height:auto;"></p>
+
+<p>One day, Bitaro noticed that his room is full of dust. In the beginning, there are <var>M</var> dusts in the room. The <var>i</var>-th dust (<var>1 \le i \le M</var>) lies in the point <var>(X_{i}, Y_{i})</var>. More than one dust may lie at the same point.</p>
+<p>Now, Bitaro is planning to sweep the room using brooms. We consider a broom as a segment in the room and we call the length of the segment its width. Since Bitaro is well-organized, he can use a broom only in the following two ways.</p>
+<ul>
+<li>Bitaro puts the broom in the room so that one of its corners lies at the origin, and the broom is parallel to the <var>y</var>-axis. Then, he moves the broom horizontally to the positive direction of the <var>x</var>-axis as much as possible, keeping it parallel to the <var>y</var>-axis and one of its corners lying on the <var>x</var>-axis. If the broom has width <var>l</var>, a dust lying in <var>(x, y)</var> with <var>x &lt; N - l</var> and <var>y \le l</var> will be moved to <var>(N - l, y)</var> (There may exist other dusts at <var>(N - l, y)</var>). This is called the procedure H.</li>
+<li>Bitaro puts the broom in the room so that one of its corners lies at the origin, and the broom is parallel to the <var>x</var>-axis. Then, he moves the broom vertically to the positive direction of the <var>y</var>-axis as much as possible, keeping it parallel to the <var>x</var>-axis and one of its corners lying on the <var>y</var>-axis. If the broom has width <var>l</var>, a dust lying in <var>(x, y)</var> with <var>x \le l</var> and <var>y &lt; N - l</var> will be moved to <var>(x, N - l)</var> (There may exist other dusts at <var>(x, N - l)</var>). This is called the procedure V.</li>
+</ul>
+<p>In Bitaro’s room, <var>Q</var> events will happen sequentially. The event <var>j</var> (<var>1 \le j \le Q</var>) is one of the following.</p>
+<ul>
+<li>Bitaro calculates the coordinates of the dust <var>P_{j}</var>.</li>
+<li>Bitaro uses a broom with width <var>L_{j}</var> and performs the procedure <var>H</var>.</li>
+<li>Bitaro uses a broom with width <var>L_{j}</var> and performs the procedure <var>V</var>.</li>
+<li>A new dust is added at the point <var>(A_{j}, B_{j})</var>. If there are <var>c</var> dusts before this event, the new dust is the <var>(c + 1)</var>-th dust in the room.</li>
+</ul>
+<p>Write a program which, given the length of the legs of the room, the coordinates of the dusts in the room, and the details of the events, calculates the coordinates of the dusts.</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input. All the values in the input are integers.</p>
+<pre><var>N</var> <var>M</var> <var>Q</var>
+<var>X_{1}</var> <var>Y_{1}</var>
+<var>\vdots</var>
+<var>X_{M}</var> <var>Y_{M}</var>
+(Query 1)
+<var>\vdots</var>
+(Query <var>Q</var>)
+</pre>
+<p>Two or three space separated integers are written in each (Query <var>j</var>) (<var>1 \le j \le Q</var>). Let <var>T_{j}</var> be the first integer. Then the meaning of this line is as follows.</p>
+<ul>
+<li>If <var>T_{j} = 1</var>, two integers <var>T_{j}, P_{j}</var> are written in this line. This means, in the event <var>j</var>, Bitaro calculates the coordinates of the dust <var>P_{j}</var>.</li>
+<li>If <var>T_{j} = 2</var>, two integers <var>T_{j}, L_{j}</var> are written in this line. This means, in the event <var>j</var>, Bitaro uses a broom with width <var>L_{j}</var> and performs the procedure H.</li>
+<li>If <var>T_{j} = 3</var>, two integers <var>T_{j}, L_{j}</var> are written in this line. This means, in the event <var>j</var>, Bitaro uses a broom with width <var>L_{j}</var> and performs the procedure V.</li>
+<li>If <var>T_{j} = 4</var>, three integers <var>T_{j}, A_{j}, B_{j}</var> are written in this line. This means, in the event <var>j</var>, a new dust is added at the point <var>(A_{j}, B_{j})</var>.</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>For each event with <var>T_{j} = 1</var>, write one line to the standard output. Output the <var>x</var>-coordinate and the <var>y</var>-coordinate of the dust <var>P_{j}</var> when the event <var>j</var> happens.</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li><var>1 \le N \le 1\,000\,000\,000</var>.</li>
+<li><var>1 \le M \le 500\,000</var>.</li>
+<li><var>1 \le Q \le 1\,000\,000</var>.</li>
+<li><var>0 \le X_{i} \le N</var> (<var>1 \le i \le M</var>).</li>
+<li><var>0 \le Y_{i} \le N</var> (<var>1 \le i \le M</var>).</li>
+<li><var>X_{i} + Y_{i} \le N</var> (<var>1 \le i \le M</var>).</li>
+<li><var>1 \le P_{j} \le</var>(the number of dusts when the event <var>j</var> happens) (<var>1 \le j \le Q</var>).</li>
+<li><var>0 \le L_{j} \le N - 1</var> (<var>1 \le j \le Q</var>).</li>
+<li><var>0 \le A_{j} \le N</var> (<var>1 \le j \le Q</var>).</li>
+<li><var>0 \le B_{j} \le N</var> (<var>1 \le j \le Q</var>).</li>
+<li><var>A_{j} + B_{j} \le N</var> (<var>1 \le j \le Q</var>).</li>
+<li>There exists at least one event with <var>T_{j} = 1</var> (<var>1 \le j \le Q</var>).</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li>(<var>1</var> point) <var>M \le 2\,000</var>, <var>Q \le 5\,000</var>.</li>
+<li>(<var>10</var> points) <var>T_{j} = 1, 2, 4</var>.</li>
+<li>(<var>11</var> points) <var>T_{j} = 1, 2, 3, X_{j} \le X_{j+1}, Y_{j} \ge Y_{j+1}</var> (<var>1 \le j \le M - 1</var>).</li>
+<li>(<var>53</var> points) <var>T_{j} = 1, 2, 3</var>.</li>
+<li>(<var>25</var> points) No additional constraints.</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input and Output</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>6 2 10
+1 1
+4 0
+4 2 3
+3 3
+1 1
+4 1 2
+2 3
+2 0
+1 4
+3 2
+1 3
+1 2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>1 3
+3 2
+3 3
+6 0
+</pre>
+<ul>
+<li>In the beginning, the 1st dust lies at <var>(1, 1)</var>, and the 2nd dust lies at <var>(4, 0)</var>. Figure 1 describes the room.</li>
+<li>In the event 1, the 3rd dust is added at the point <var>(2, 3)</var>. Figure 2 describes the room.</li>
+<li>In the event <var>2</var>, Bitaro uses a broom with width <var>3</var> and performs the procedure V. Then, the 1st dust is moved to <var>(1, 3)</var>. Figure 3 describes the room.</li>
+<li>In the event 3, Bitaro calculates the coordinates <var>(1, 3)</var> of the 1st dust.</li>
+<li>In the event 4, the 4th dust is added at the point <var>(1, 2)</var>. Figure 4 describes the room.</li>
+<li>In the event <var>5</var>, Bitaro uses a broom with width <var>3</var> and performs the procedure H. Then, the 1st dust is moved to <var>(3, 3)</var>, the 3rd dust is moved to <var>(3, 3)</var>, and the 4th dust is moved to <var>(3, 2)</var>. Figure 5 describes the room.</li>
+<li>In the event <var>6</var>, Bitaro uses a broom with width <var>0</var> and performs the procedure H. Then, the 2nd dust is moved to <var>(6, 0)</var>. Figure 6 describes the room.</li>
+<li>In the event 7, Bitaro calculates the coordinates <var>(3, 2)</var> of the 4th dust.</li>
+<li>In the event 8, Bitaro uses a broom with width 2 and performs the procedure V. No dust is moved. Figure 7 describes the room.</li>
+<li>In the event 9, Bitaro calculates the coordinates <var>(3, 3)</var> of the 3rd dust.</li>
+<li>In the event 10, Bitaro calculates the coordinates <var>(6, 0)</var> of the 2nd dust.</li>
+</ul>
+<p>This sample input satisfies the constraints of Subtasks 1 and 5.</p>
+<p><img src="https://img.atcoder.jp/joisc2020/sweeping-en-p5-1.png" alt="Figure" style="max-width:100%;height:auto;"></p>
+
+<p><img src="https://img.atcoder.jp/joisc2020/sweeping-en-p6-1-captions-20abf1b7cc.png" alt="Figure" style="max-width:100%;height:auto;"></p>
+
+<p><img src="https://img.atcoder.jp/joisc2020/sweeping-en-p6-2-captions-bdb98ead5c.png" alt="Figure" style="max-width:100%;height:auto;"></p>
+
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>9 4 8
+2 3
+3 1
+1 6
+4 3
+2 6
+1 3
+2 2
+1 4
+2 3
+1 2
+2 4
+1 1
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>3 6
+4 3
+7 1
+6 3
+</pre>
+<p>This sample input satisfies the constraints of Subtasks 1, 2, 4, and 5.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 3</h3>
+<pre>8 1 8
+1 5
+4 4 1
+2 6
+1 2
+2 3
+4 2 2
+2 5
+1 1
+1 3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 3</h3>
+<pre>4 1
+3 5
+3 2
+</pre>
+<p>This sample input satisfies the constraints of Subtasks 1, 2, and 5.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 4</h3>
+<pre>7 4 9
+1 5
+2 2
+4 2
+5 0
+2 6
+2 3
+1 2
+3 6
+1 4
+3 1
+1 1
+2 2
+1 3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 4</h3>
+<pre>4 2
+5 1
+1 6
+5 2
+</pre>
+<p>This sample input satisfies the constraints of Subtasks 1, 3, 4, and 5.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 5</h3>
+<pre>20 5 25
+10 6
+0 4
+2 1
+1 0
+2 3
+2 18
+3 9
+4 1 5
+4 0 2
+3 10
+4 3 3
+3 3
+2 9
+4 9 1
+3 12
+1 4
+3 19
+1 3
+1 9
+2 1
+1 7
+1 6
+4 3 3
+1 10
+1 1
+1 5
+2 0
+1 2
+2 2
+1 7
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 5</h3>
+<pre>2 17
+2 17
+9 8
+0 17
+1 17
+3 3
+10 10
+2 17
+2 17
+0 17
+</pre>
+<p>This sample input satisfies the constraints of Subtasks 1 and 5.</p></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>ビ太郎は短辺の長さが <var>N</var> の直角二等辺三角形の部屋に住んでいる．この部屋の中のある <var>1</var> 点の座標は，直角になっている部屋の隅を原点，そこから出ている片方の壁を <var>x</var> 軸，もう片方の壁を <var>y</var> 軸として <var>(x, y)</var> で表される (<var>0 \leqq x \leqq N</var>，<var>0 \leqq y \leqq N</var>，<var>x + y \leqq N</var>) ．</p>
+<p><img src="https://img.atcoder.jp/joisc2020/sweeping-ja-p1-1.png" alt="図" style="max-width:100%;height:auto;"></p>
+
+<p>ある日，ビ太郎は自分の部屋にホコリが溜まっていることを感じた．ホコリは最初の時点で <var>M</var> 個あり，<var>i</var> 番目 (<var>1 \leqq i \leqq M</var>) のホコリは座標 <var>(X_{i}, Y_{i})</var> にある．同じ座標に <var>2</var> 個以上のホコリがあるかもしれない．</p>
+<p>ビ太郎はほうきを使った掃き掃除をすることにした．ほうきの接地面は線分であり，その長さをほうきの幅と呼ぶ．ビ太郎は几帳面なので，以下の <var>2</var> 通りの方法でしかほうきを動かさない．</p>
+<ul>
+<li>ほうきの片方の端が原点に来るように <var>y</var> 軸の壁に沿ってほうきを置く．その後，<var>y</var> 軸の壁と平行に，片方の端を <var>x</var> 軸の壁と接触させたまま，<var>x</var> 軸の正の方向にほうきを動かせるだけ動かす．幅 <var>l</var> のほうきを使うとき，<var>(x, y)</var> にあったホコリは，<var>x &lt; N - l</var> かつ <var>y \leqq l</var> を満たすならば <var>(N - l, y)</var> へと移動する (移動した先に別のホコリがあるかもしれない)．この動かし方を手順 H とする．</li>
+<li>ほうきの片方の端が原点に来るように <var>x</var> 軸の壁に沿ってほうきを置く．その後，<var>x</var> 軸の壁と平行に，片方の端を <var>y</var> 軸の壁に接触させたまま，<var>y</var> 軸の正の方向にほうきを動かせるだけ動かす．幅 <var>l</var> のほうきを使うとき，<var>(x, y)</var> にあったホコリは，<var>x \leqq l</var> かつ <var>y &lt; N - l</var> を満たすならば <var>(x, N - l)</var> へと移動する (移動した先に別のホコリがあるかもしれない)．この動かし方を手順 V とする．</li>
+</ul>
+<p>この部屋ではこれから <var>Q</var> 個のイベントが連続して起こる ．<var>j</var> 番目 (<var>1 \leqq j \leqq Q</var>) のイベントは以下のいずれかである．</p>
+<ul>
+<li>ビ太郎が <var>P_{j}</var> 番目のホコリの座標を求める．</li>
+<li>ビ太郎が幅 <var>L_{j}</var> のほうきを使い，手順 H を行う．</li>
+<li>ビ太郎が幅 <var>L_{j}</var> のほうきを使い，手順 V を行う．</li>
+<li>新たなホコリが <var>(A_{j}, B_{j})</var> に追加される．そのホコリが追加される前に存在していたホコリの数が <var>c</var> であるとき，そのホコリは <var>c + 1</var> 番目のホコリとなる．</li>
+</ul>
+<p>部屋の短辺の幅，もともとあったホコリの座標，イベントの内容が与えられたとき，ホコリの位置を求めるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力は以下の形式で標準入力から与えられる．入力される値はすべて整数である．</p>
+<pre><var>N</var> <var>M</var> <var>Q</var>
+<var>X_{1}</var> <var>Y_{1}</var>
+<var>\vdots</var>
+<var>X_{M}</var> <var>Y_{M}</var>
+(Query 1)
+<var>\vdots</var>
+(Query <var>Q</var>)
+</pre>
+<p>ただし，各 (Query <var>j</var>) (<var>1 \leqq j \leqq Q</var>) には <var>2</var> 個または <var>3</var> 個の整数が空白を区切りとして書かれている ．<var>1</var> 個目の整数を <var>T_{j}</var> とすると，この行の内容は以下のいずれかである．</p>
+<ul>
+<li><var>T_{j} = 1</var> のとき．この行には <var>2</var> 個の整数 <var>T_{j}, P_{j}</var> がこの順に書かれている．これは <var>j</var> 番目のイベントが，ビ太郎が <var>P_{j}</var> 番目のホコリの座標を求めるものであることを表す．</li>
+<li><var>T_{j} = 2</var> のとき．この行には <var>2</var> 個の整数 <var>T_{j}, L_{j}</var> がこの順に書かれている．これは <var>j</var> 番目のイベントが，ビ太郎が幅 <var>L_{j}</var> のほうきを使い，手順 H を行うものであることを表す．</li>
+<li><var>T_{j} = 3</var> のとき．この行には <var>2</var> 個の整数 <var>T_{j}, L_{j}</var> がこの順に書かれている．これは <var>j</var> 番目のイベントが，ビ太郎が幅 <var>L_{j}</var> のほうきを使い，手順 V を行うものであることを表す．</li>
+<li><var>T_{j} = 4</var> のとき．この行には <var>3</var> 個の整数 <var>T_{j}, A_{j}, B_{j}</var> がこの順に書かれている．これは <var>j</var> 番目のイベントが，新たなホコリが <var>(A_{j}, B_{j})</var> に追加されるものであることを表す．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に，<var>T_{j} = 1</var> となるイベントのそれぞれに対して，<var>j</var> 個目のイベントの時点でのホコリ <var>P_{j}</var> の <var>x</var> 座標，<var>y</var> 座標を空白区切りで <var>1</var> 行で出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>1 \leqq N \leqq 1\,000\,000\,000</var>．</li>
+<li><var>1 \leqq M \leqq 500\,000</var>．</li>
+<li><var>1 \leqq Q \leqq 1\,000\,000</var>．</li>
+<li><var>0 \leqq X_{i} \leqq N</var> (<var>1 \leqq i \leqq M</var>)．</li>
+<li><var>0 \leqq Y_{i} \leqq N</var> (<var>1 \leqq i \leqq M</var>)．</li>
+<li><var>X_{i} + Y_{i} \leqq N</var> (<var>1 \leqq i \leqq M</var>)．</li>
+<li><var>1 \leqq P_{j} \leqq</var> (その時点でのホコリの数) (<var>1 \leqq j \leqq Q</var>)．</li>
+<li><var>0 \leqq L_{j} \leqq N - 1</var> (<var>1 \leqq j \leqq Q</var>)．</li>
+<li><var>0 \leqq A_{j} \leqq N</var> (<var>1 \leqq j \leqq Q</var>)．</li>
+<li><var>0 \leqq B_{j} \leqq N</var> (<var>1 \leqq j \leqq Q</var>)．</li>
+<li><var>A_{j} + B_{j} \leqq N</var> (<var>1 \leqq j \leqq Q</var>)．</li>
+<li><var>T_{j} = 1</var> (<var>1 \leqq j \leqq Q</var>) となるイベントが <var>1</var> 個以上存在する．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>1</var> 点) <var>M \leqq 2\,000</var>，<var>Q \leqq 5\,000</var>．</li>
+<li>(<var>10</var> 点) <var>T_{j} = 1, 2, 4</var>．</li>
+<li>(<var>11</var> 点) <var>T_{j} = 1, 2, 3</var>，<var>X_{j} \leqq X_{j+1}</var>，<var>Y_{j} \geqq Y_{j+1}</var> (<var>1 \leqq j \leqq M - 1</var>)．</li>
+<li>(<var>53</var> 点) <var>T_{j} = 1, 2, 3</var>．</li>
+<li>(<var>25</var> 点) 追加の制約はない．</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入出力例</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>6 2 10
+1 1
+4 0
+4 2 3
+3 3
+1 1
+4 1 2
+2 3
+2 0
+1 4
+3 2
+1 3
+1 2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>1 3
+3 2
+3 3
+6 0
+</pre>
+<ul>
+<li>最初，<var>1</var> 番目のホコリが <var>(1, 1)</var>，<var>2</var> 番目のホコリが <var>(4, 0)</var> に存在している．図 <var>1</var> はこのときの部屋の様子を表している．</li>
+<li><var>1</var> 番目のイベントでは，<var>3</var> 番目のホコリが <var>(2, 3)</var> に追加される．図 <var>2</var> はこのときの部屋の様子を表している．</li>
+<li><var>2</var> 番目のイベントでは，幅 <var>3</var> のほうきを使って手順 V を行う．その結果，<var>1</var> 番目のホコリが <var>(1, 3)</var> に移動する．図 <var>3</var> はこのときの部屋の様子を表している．</li>
+<li><var>3</var> 番目のイベントでは，<var>1</var> 番目のホコリの座標 <var>(1, 3)</var> を求める．</li>
+<li><var>4</var> 番目のイベントでは，<var>4</var> 番目のホコリが <var>(1, 2)</var> に追加される．図 <var>4</var> はこのときの部屋の様子を表している．</li>
+<li><var>5</var> 番目のイベントでは，幅 <var>3</var> のほうきを使って手順 H を行う．その結果，<var>1</var> 番目のホコリが <var>(3, 3)</var>，<var>3</var> 番目のホコリが <var>(3, 3)</var>，<var>4</var> 番目のホコリが <var>(3, 2)</var> に移動する．図 <var>5</var> はこのときの部屋の様子を表している．</li>
+<li><var>6</var> 番目のイベントでは，幅 <var>0</var> のほうきを使って手順 H を行う．その結果，<var>2</var> 番目のホコリが <var>(6, 0)</var> に移動する．図 <var>6</var> はこのときの部屋の様子を表している．</li>
+<li><var>7</var> 番目のイベントでは，<var>4</var> 番目のホコリの座標 <var>(3, 2)</var> を求める．</li>
+<li><var>8</var> 番目のイベントでは，幅 <var>2</var> のほうきを使って手順 V を行う．その結果，どのホコリも移動しない．図 <var>7</var> はこのときの部屋の様子を表している．</li>
+<li><var>9</var> 番目のイベントでは，<var>3</var> 番目のホコリの座標 <var>(3, 3)</var> を求める．</li>
+<li><var>10</var> 番目のイベントでは，<var>2</var> 番目のホコリの座標 <var>(6, 0)</var> を求める．</li>
+</ul>
+<p>この入力例は小課題 <var>1, 5</var> の制約を満たす．</p>
+<p><img src="https://img.atcoder.jp/joisc2020/sweeping-ja-p5-1.png" alt="図" style="max-width:100%;height:auto;"></p>
+
+<p><img src="https://img.atcoder.jp/joisc2020/sweeping-ja-p6-1-captions-fc26d2b7b9.png" alt="図" style="max-width:100%;height:auto;"></p>
+
+<p><img src="https://img.atcoder.jp/joisc2020/sweeping-ja-p6-2-captions-d98819531d.png" alt="図" style="max-width:100%;height:auto;"></p>
+
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>9 4 8
+2 3
+3 1
+1 6
+4 3
+2 6
+1 3
+2 2
+1 4
+2 3
+1 2
+2 4
+1 1
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>3 6
+4 3
+7 1
+6 3
+</pre>
+<p>この入力例は小課題 <var>1, 2, 4, 5</var> の制約を満たす．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>8 1 8
+1 5
+4 4 1
+2 6
+1 2
+2 3
+4 2 2
+2 5
+1 1
+1 3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>4 1
+3 5
+3 2
+</pre>
+<p>この入力例は小課題 <var>1, 2, 5</var> の制約を満たす．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 4</h3>
+<pre>7 4 9
+1 5
+2 2
+4 2
+5 0
+2 6
+2 3
+1 2
+3 6
+1 4
+3 1
+1 1
+2 2
+1 3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 4</h3>
+<pre>4 2
+5 1
+1 6
+5 2
+</pre>
+<p>この入力例は小課題 <var>1, 3, 4, 5</var> の制約を満たす．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 5</h3>
+<pre>20 5 25
+10 6
+0 4
+2 1
+1 0
+2 3
+2 18
+3 9
+4 1 5
+4 0 2
+3 10
+4 3 3
+3 3
+2 9
+4 9 1
+3 12
+1 4
+3 19
+1 3
+1 9
+2 1
+1 7
+1 6
+4 3 3
+1 10
+1 1
+1 5
+2 0
+1 2
+2 2
+1 7
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 5</h3>
+<pre>2 17
+2 17
+9 8
+0 17
+1 17
+3 3
+10 10
+2 17
+2 17
+0 17
+</pre>
+<p>この入力例は小課題 <var>1, 5</var> の制約を満たす．</p></section>
+</div>
+</span>
+</span>

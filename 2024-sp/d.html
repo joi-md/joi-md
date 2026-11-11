@@ -5,14 +5,14 @@
 <div class="part">
 <section>
 <h3>Problem Statement</h3>
-<p>There is a board game for <var>K</var> players. The board of this game consists of <var>N</var> cells numbered from <var>1</var> to <var>N</var>, and <var>M</var> paths numbered from <var>1</var> to <var>M</var>, where path <var>j</var> (<var>1 \leq j \leq M</var>) connects cells <var>U_j</var> and <var>V_j</var> bidirectionally.</p>
+<p>There is a board game for <var>K</var> players. The board of this game consists of <var>N</var> cells numbered from <var>1</var> to <var>N</var>, and <var>M</var> paths numbered from <var>1</var> to <var>M</var>, where path <var>j</var> (<var>1 \le j \le M</var>) connects cells <var>U_j</var> and <var>V_j</var> bidirectionally.</p>
 <p>There are two types of cells on the board: <strong>re-activate cells</strong> and <strong>stop cells</strong>.
-This information is given by a string <var>S</var> of length <var>N</var> consisting of <code>0</code> and <code>1</code>, where the <var>i</var>-th character of <var>S</var> (<var>1 \leq i \leq N</var>) is <code>0</code> if cell <var>i</var> is a re-activate cell, and <code>1</code> if cell <var>i</var> is a stop cell.</p>
-<p>This board game is played by <var>K</var> players numbered from <var>1</var> to <var>K</var>. Each player has their own piece, and the game starts with each player placing their piece on a specified cell. At the beginning, player <var>p</var> (<var>1 \leq p \leq K</var>) places their piece on cell <var>X_p</var>. Note that multiple players' pieces can be placed on the same cell.</p>
+This information is given by a string <var>S</var> of length <var>N</var> consisting of <code>0</code> and <code>1</code>, where the <var>i</var>-th character of <var>S</var> (<var>1 \le i \le N</var>) is <code>0</code> if cell <var>i</var> is a re-activate cell, and <code>1</code> if cell <var>i</var> is a stop cell.</p>
+<p>This board game is played by <var>K</var> players numbered from <var>1</var> to <var>K</var>. Each player has their own piece, and the game starts with each player placing their piece on a specified cell. At the beginning, player <var>p</var> (<var>1 \le p \le K</var>) places their piece on cell <var>X_p</var>. Note that multiple players' pieces can be placed on the same cell.</p>
 <p>The game progresses with each player taking turns starting from player <var>1</var> and proceeding in numerical order. After player <var>p</var> finishes their turn, the turn moves to player <var>p+1</var> (if <var>p=K</var>, then the turn goes to player <var>1</var>). Each player takes the following actions on their turn:</p>
 <ol>
 <li>Choose one cell connected to the cell where their piece is placed via a path, and move their piece to the chosen cell.</li>
-<li>If the destination cell is a re-activate cell, repeat step <var>1</var> and continue their turn. If the destination cell is a stop cell, end their turn.</li>
+<li>If the destination cell is a re-activate cell, repeat step 1 and continue their turn. If the destination cell is a stop cell, end their turn.</li>
 </ol>
 <p>The team consisting of <var>K</var> members, including JOI-Kun, who represent Japan in this board game, are researching cooperative strategies to quickly conquer the game. They are currently studying the following problem:</p>
 <blockquote>
@@ -44,7 +44,7 @@ This information is given by a string <var>S</var> of length <var>N</var> consis
 <div class="part">
 <section>
 <h3>Output</h3>
-<p>Output <var>N</var> lines to the standard output. On the <var>T</var>-th line (<var>1 \leq T \leq N</var>), output the minimum total number of moves required by the <var>K</var> players to place player <var>1</var>'s piece on cell <var>T</var>.</p>
+<p>Output <var>N</var> lines to the standard output. On the <var>T</var>-th line (<var>1 \le T \le N</var>), output the minimum total number of moves required by the <var>K</var> players to place player <var>1</var>'s piece on cell <var>T</var>.</p>
 <hr />
 </section>
 </div>
@@ -54,17 +54,17 @@ This information is given by a string <var>S</var> of length <var>N</var> consis
 <section>
 <h3>Constraints</h3>
 <ul>
-<li><var>2 \leq N \leq 50\,000</var>.</li>
-<li><var>1 \leq M \leq 50\,000</var>.</li>
-<li><var>2 \leq K \leq 50\,000</var>.</li>
-<li><var>1 \leq U_j &lt; V_j \leq N</var> (<var>1 \leq j \leq M</var>).</li>
-<li><var>(U_j,V_j) \neq (U_k,V_k)</var> (<var>1 \leq j &lt; k \leq M</var>).</li>
+<li><var>2 \le N \le 50\,000</var>.</li>
+<li><var>1 \le M \le 50\,000</var>.</li>
+<li><var>2 \le K \le 50\,000</var>.</li>
+<li><var>1 \le U_j &lt; V_j \le N</var> (<var>1 \le j \le M</var>).</li>
+<li><var>(U_j,V_j) \neq (U_k,V_k)</var> (<var>1 \le j &lt; k \le M</var>).</li>
 <li>It is possible to reach any cell from any other cell by traversing several paths.</li>
 <li><var>S</var> is a string of length <var>N</var> consisting of <code>0</code> and <code>1</code>.</li>
-<li><var>1 \leq X_p \leq N</var> (<var>1 \leq p \leq K</var>).</li>
+<li><var>1 \le X_p \le N</var> (<var>1 \le p \le K</var>).</li>
 <li><var>N,M</var> and <var>K</var> are integers.</li>
-<li><var>U_j</var> and <var>V_j</var> are integers (<var>1 \leq j \leq M</var>).</li>
-<li><var>X_p</var> is an integer (<var>1 \leq p \leq K</var>).</li>
+<li><var>U_j</var> and <var>V_j</var> are integers (<var>1 \le j \le M</var>).</li>
+<li><var>X_p</var> is an integer (<var>1 \le p \le K</var>).</li>
 </ul>
 </section>
 </div>
@@ -76,10 +76,10 @@ This information is given by a string <var>S</var> of length <var>N</var> consis
 <li>(<var>3</var> points) There are no stop cells.</li>
 <li>(<var>7</var> points) There is exactly one stop cell.</li>
 <li>(<var>7</var> points) There are exactly two stop cells.</li>
-<li>(<var>19</var> points) <var>N \leq 3\,000</var>, <var>M \leq 3\,000</var>, <var>K \leq 3\,000</var>.</li>
+<li>(<var>19</var> points) <var>N \le 3\,000</var>, <var>M \le 3\,000</var>, <var>K \le 3\,000</var>.</li>
 <li>(<var>23</var> points) <var>K=2</var>.</li>
-<li>(<var>9</var> points) <var>K \leq 100</var>.</li>
-<li>(<var>23</var> points) <var>N \leq 30\,000</var>, <var>M \leq 30\,000</var>, <var>K \leq 30\,000</var>.</li>
+<li>(<var>9</var> points) <var>K \le 100</var>.</li>
+<li>(<var>23</var> points) <var>N \le 30\,000</var>, <var>M \le 30\,000</var>, <var>K \le 30\,000</var>.</li>
 <li>(<var>9</var> points) There are no additional constraints.</li>
 </ol>
 <hr />
@@ -267,7 +267,7 @@ This information is given by a string <var>S</var> of length <var>N</var> consis
 </div>
 </span>
 <span class="lang-ja">
-<p>配点： <var>100</var> 点</p>
+<p>配点 : <var>100</var> 点</p>
 
 <div class="part">
 <section>
@@ -278,7 +278,7 @@ This information is given by a string <var>S</var> of length <var>N</var> consis
 <p>ゲームはプレイヤー <var>1</var> から始めて番号順に自分のターンをプレイするという形で進行する．プレイヤー <var>p</var> が自分のターンをプレイし終わると，次はプレイヤー <var>p+1</var>（ただし <var>p=K</var> ならばプレイヤー <var>1</var>）のターンとなる．各プレイヤーは，自分のターンのときに次のような行動を行う：</p>
 <ol>
 <li>自分の駒が置かれているマスと道で接続されているマスをひとつ選び，選んだマスに自分の駒を移動させる．</li>
-<li>移動先のマスが再行動マスならば <var>1.</var> に戻り，自分のターンを継続する．移動先のマスが停止マスならば自分のターンを終了する．</li>
+<li>移動先のマスが再行動マスならば 1. に戻り，自分のターンを継続する．移動先のマスが停止マスならば自分のターンを終了する．</li>
 </ol>
 <p>このボードゲームの日本代表である JOI 君たち <var>K</var> 人は，ゲームを協力して高速に攻略する方法を研究している．現在研究しているのは次の問題である：</p>
 <blockquote>

@@ -1,0 +1,712 @@
+<span class="lang">
+<span class="lang-en">
+<blockquote>
+<p><strong>Submission on AtCoder</strong></p>
+<p>Include <code>navigation2.h</code> and implement all functions in a single source file. Do not share global variables between the two sides. This judge supports C++ only.</p>
+<p><a href="https://www2.ioi-jp.org/camp/2021/2021-sp-tasks/day4/navigation2-dist.zip">Distributed files</a></p>
+</blockquote>
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>JOI Kingdom is an island surrounded by sea. The land of JOI Kingdom is a grid of square cells consisting of <var>N</var> rows and <var>N</var> columns. The vertical direction is the north-south direction, and the horizontal direction is the west-east direction. The cell in the <var>(r + 1)</var>-th row (<var>0 \le r \le N - 1</var>) from north and the <var>(c + 1)</var>-th column (<var>0 \le c \le N - 1</var>) from west is denoted by the cell <var>(r, c)</var>.</p>
+<p>Anna, the queen of JOI Kingdom, will invite Bruno to a party. She is now choosing the place for the party. She already selected <var>K (= 7)</var> candidate cells of the place for the party. The candidate cells are numbered from 0 through <var>K - 1</var>. The candidate cell <var>i</var> is the cell <var>(R_{i},C_{i})</var>. No candidate cell is adjacent to sea.</p>
+<p>The place for the party will be determined on the day of the party.</p>
+<p>On the day before the party, in order to help Bruno arrive at the place for the party without getting lost, Anna will place a flag in every cell. On each flag, Anna will write an integer between 1 and 1 000 000 000, inclusive.</p>
+<p>On the day of the party, only the index <var>t</var> (<var>0 \le t \le K - 1</var>) of the candidate cell will be told to Bruno. After that, Bruno will take a helicopter and arrive at a cell which is not adjacent to sea. Then Bruno will start moving to the place for the party.</p>
+<p>Bruno does not know where he is, but he knows the directions of north, south, east, and west. Bruno can only see a flag in his current cell and its <var>8</var> surrounding cells. In other words, when Bruno is at the cell <var>(a, b)</var> (<var>1 \le a \le N - 2</var>, <var>1 \le b \le N - 2</var>), he can only see the flags in the following 9 cells:</p>
+<p><var>(a - 1, b - 1)</var>, <var>(a - 1, b)</var>, <var>(a - 1, b + 1)</var>, <var>(a, b - 1)</var>, <var>(a, b)</var>, <var>(a, b + 1)</var>, <var>(a + 1, b - 1)</var>, <var>(a + 1, b)</var>, <var>(a + 1, b + 1)</var></p>
+<p>Bruno can take one of the following 5 actions.</p>
+<ul>
+<li>Action 0: Bruno moves one cell to the east. Namely, he moves from the cell (<var>a, b</var>) to the cell <var>(a, b + 1)</var>.</li>
+<li>Action 1: Bruno moves one cell to the west. Namely, he moves from the cell (<var>a, b</var>) to the cell <var>(a, b - 1)</var>.</li>
+<li>Action 2: Bruno moves one cell to the south. Namely, he moves from the cell (<var>a, b</var>) to the cell <var>(a + 1, b)</var>.</li>
+<li>Action 3: Bruno moves one cell to the north. Namely, he moves from the cell (<var>a, b</var>) to the cell <var>(a - 1, b)</var>.</li>
+<li>Action 4: Bruno thinks the party will be held at his current cell, and stays there. He stops moving.</li>
+</ul>
+<p>Since it is forbidden to arrive at the party late, Bruno has to move to the place for the party so that the number of actions is the minimum possible. Thus, by the setting of this task, Bruno will never enter into a cell adjacent to sea.</p>
+<p>As it is tiresome to write large integers on flags, Anna wants to minimize the maximum integer written on the flags.</p>
+<p>Write a program which implements Anna’s strategy and Bruno’s strategy. Anna will write integers on the flags, and Bruno has to arrive at the place for the party with minimum number of actions.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Implementation Details</h3>
+<p>You need to submit two files.</p>
+<p>The first file is <code>Anna.cpp</code>. It should implement Anna’s strategy. It should implement the following function. The program should include <code>Anna.h</code> using the preprocessing directive <code>#include</code>.</p>
+<ul>
+<li><code>void Anna(int N, int K, std::vector&lt;int&gt; R, std::vector&lt;int&gt; C)</code>
+    This function implements Anna’s strategy to write integers on the flags. For each scenario (see Scoring), this function is called exactly once in the beginning.<ul>
+<li>The parameter <code>N</code> means the land of JOI Kingdom is a grid of square cells consisting of <var>N</var> rows and <var>N</var> columns.</li>
+<li>The parameter <code>K</code> is the number <var>K (= 7)</var> of the candidate cells of the place for the party.</li>
+<li>The parameters <code>R</code> and <code>C</code> are arrays of length <var>K</var>. Here <code>R[i]</code> and <code>C[i]</code> (<var>0 \le i \le K - 1</var>) denote the cell <var>(R_{i},C_{i})</var> of the candidate cell <var>i</var>.</li>
+<li>For the range of the values of the parameters <code>N</code>, <code>K</code>, <code>R[i]</code> and <code>C[i]</code> (<var>0 \le i \le K - 1</var>) see Constraints.</li>
+</ul>
+</li>
+</ul>
+<p>For each function call to <code>Anna</code>, the following function should be called exactly <var>N^{2}</var> times. It should be called once for every cell.</p>
+<ul>
+<li><code>void SetFlag(int r, int c, int value)</code><ul>
+<li>The parameters <code>r</code> and <code>c</code> mean Anna writes an integer on the flag at the cell (<code>r</code>, <code>c</code>). Here <var>0 \le \texttt{r} \le N - 1</var>, <var>0 \le \texttt{c} \le N - 1</var> should be satisfied. If this condition is not satisfied, your program is judged as Wrong Answer [1].</li>
+<li>The parameter <code>value</code> is the integer Anna writes on the flag. Here <var>1 \le \texttt{value} \le 1\,000\,000\,000</var> should be satisfied. If this condition is not satisfied, your program is judged as Wrong Answer [2].</li>
+<li>If the function <code>SetFlag</code> is called with the same parameters (<code>r</code>, <code>c</code>) more than once, your program is judged as Wrong Answer [3].</li>
+<li>When the function <code>Anna</code> terminates, if the number of function calls to the function <code>SetFlag</code> is different from <var>N^{2}</var>, your program is judged as Wrong Answer [4].</li>
+</ul>
+</li>
+</ul>
+<p>When a function call to the function <code>SetFlag</code> is considered as a Wrong Answer, your program is terminated immediately.</p>
+<p>The second file is <code>Bruno.cpp</code>. It should implement Bruno’s strategy. It should implement the following function. The program should include <code>Bruno.h</code> using the preprocessing directive <code>#include</code>.</p>
+<ul>
+<li>
+<p><code>std::vector&lt;int&gt; Bruno(int K, std::vector&lt;int&gt; value)</code> This function should describe Bruno’s next action. For each scenario (see Scoring), after the function <code>Anna</code> is called, this function is called exactly once.</p>
+<ul>
+<li>The parameter <code>K</code> is the number of candidate cells <var>K(= 7)</var>.</li>
+<li>
+<p>The parameter <code>value</code> is an array of length 9. It contains the integers written on the flags at Bruno’s current cell and its <var>8</var> surrounding cells. More precisely, if Bruno is currently at the cell <var>(a, b)</var> (<var>1 \le a \le N - 2</var>, <var>1 \le b \le N - 2</var>), the values of <code>value[0]</code>, <code>value[1]</code>, <var>\ldots</var>, <code>value[8]</code> are the integers written on the flags in the cells</p>
+<p><var>(a - 1, b - 1)</var>, <var>(a - 1, b)</var>, <var>(a - 1, b+1)</var>, <var>(a, b - 1)</var>, <var>(a, b)</var>, <var>(a, b+1)</var>, <var>(a+1, b - 1)</var>, <var>(a+1, b)</var>, <var>(a+1, b+1)</var>,
+respectively.</p>
+</li>
+<li>
+<p>For every <var>t = 0, 1, 2, \ldots, K - 1</var>, the function <code>Bruno</code> should determine Bruno’s next action when the party will be held at the candidate cell <var>t</var>. The return value is an array of length <var>K</var>. The <var>(i + 1)</var>-th element (<var>0 \le i \le K - 1</var>) of the array should be Bruno’s next action for <var>t = i</var>.</p>
+</li>
+<li>If the return value is not an array of length <var>K</var>, your program is judged as Wrong Answer [5].</li>
+<li>Every element in the array should be one of <var>0, 1, 2, 3</var>, or <var>4</var>. If this condition is not satisfied, your program is judged as Wrong Answer [6].</li>
+<li>For every <var>t</var>, the action given by the function <code>Bruno</code> should be Bruno’s next action so that he will move to the place of the party with minimum number of actions. In particular, if his next action is Action <var>4</var>, his current cell should be the place for the party. If this condition is not satisfied, your program is judged as Wrong Answer <var>[7]</var>. If there are multiple ways to move to the place for the party with the minimum number of actions, the return value can be any one of them.</li>
+</ul>
+</li>
+</ul>
+<p>In this task, each test case consists of <var>Q</var> scenarios. For each scenario, each of the function <code>Anna</code> and the function <code>Bruno</code> is called exactly once. Therefore, for each test case, each of the function <code>Anna</code> and the function <code>Bruno</code> is called <var>Q</var> times. These functions are called alternately. See Scoring for details.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Important Notices</h3>
+<ul>
+<li>Your program can implement other functions for internal use, or use global variables. Submitted files will be compiled with the grader, and become a single executable file. All global variables and internal functions should be declared in an unnamed namespace to avoid confliction with other files. When it is graded, it will be executed as two processes of Anna and Bruno. The process of Anna and the process of Bruno cannot share global variables.</li>
+<li>Your program must not use the standard input and the standard output. Your program must not communicate with other files by any methods. However, your program may output debugging information to the standard error.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Scoring</h3>
+<p>Each test case consists of <var>Q</var> scenarios. The scenarios are numbered from 0 through <var>Q - 1</var>. For each scenario, the following values are fixed. For the range of these values, see Constraints.</p>
+<ul>
+<li>The vertical and the horizontal size <var>N</var> of JOI Kingdom.</li>
+<li>The number of candidate cells <var>K(= 7)</var>.</li>
+<li>The candidate cells <var>(R_{0},C_{0})</var>, <var>(R_{1},C_{1})</var>, <var>\ldots</var>, <var>(R_{K - 1},C_{K - 1})</var> of the place for the party.</li>
+<li>Bruno’s current cell <var>(a, b)</var>.</li>
+</ul>
+<p>The function <code>Anna</code> is called for each scenario. For given parameters, Anna should write integers on flags. The function <code>Bruno</code> is also called for each scenario. It should determine Bruno’s next action. The function <code>Anna</code> and the function <code>Bruno</code> are called in the following way.</p>
+<ol>
+<li>For each <var>k = 0, 1, 2, \ldots, Q - 1</var>, in order, the following 2. and 3. are performed, in this order.</li>
+<li>The function <code>Anna</code> is called. The parameters for the scenario <var>k</var> are given as in Implementation Details.</li>
+<li>The function <code>Bruno</code> is called. The parameters for the scenario <var>k</var> are given as in Implementation Details.</li>
+</ol>
+<p>If your program is judged as Wrong Answer during this process, your program is terminated immediately, and it is considered as a Wrong Answer for the test case.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Compilation and Test Run</h3>
+<p>You can download an archive file from the contest webpage which contains the sample grader to test your program. The archive file also contains a sample source file of your program.</p>
+<p>The sample grader is the file <code>grader.cpp</code>. In order to test your program, put <code>grader.cpp</code>, <code>Anna.cpp</code>, <code>Bruno.cpp</code>, <code>Anna.h</code>, <code>Bruno.h</code> in the same directory, and run the following command to compile your programs.</p>
+<pre>g++ -std=gnu++17 -O2 -fsigned-char -o grader grader.cpp Anna.cpp Bruno.cpp
+</pre>
+<p>When the compilation succeeds, the executable file <code>grader</code> is generated.</p>
+<p>Note that the actual grader is different from the sample grader. The sample grader will be executed as a single process, which will read input data from the standard input and write the results to the standard output.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Input for the Sample Grader</h3>
+<p>The sample grader reads the following data from the standard input. Given values are all integers.</p>
+<pre><var>Q</var>
+(Input for scenario 0)
+<var>\vdots</var>
+(Input for scenario <var>Q - 1</var>)
+</pre>
+<p>The input for each scenario is given as follows.</p>
+<pre><var>N</var> <var>K</var>
+<var>R_{0}</var> <var>C_{0}</var>
+<var>\vdots</var>
+<var>R_{K - 1}</var> <var>C_{K - 1}</var>
+<var>a</var> <var>b</var>
+</pre>
+<p>As the input for the sample grader, you can set the value of <var>N</var> in the range <var>3 \le N \le100</var>, and the value of <var>K</var> in the range <var>1 \le K \le 7</var>. Note that these ranges are different from the actual constraints of this problem.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Output of the Sample Grader</h3>
+<p>When the program terminates successfully, the sample grader writes the following information to the standard output (quotes for clarity).</p>
+<ul>
+<li>If the answer is correct, it writes the maximum number written on the flags by the function <code>Anna</code> as “<code>Accepted : Maximum value = 12</code>’.</li>
+<li>If your program is judged as Wrong Answer, it writes its type as “<code>Wrong Answer [1]</code>”.</li>
+</ul>
+<p>If your program is judged as multiple types of Wrong Answer, the sample grader reports only one of them.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li><var>1 \le Q \le 300</var>.</li>
+<li><var>5 \le N \le 100</var>.</li>
+<li><var>K = 7</var>.</li>
+<li><var>1 \le R_{i} \le N - 2</var> (<var>0 \le i \le K - 1</var>).</li>
+<li><var>1 \le C_{i} \le N - 2</var> (<var>0 \le i \le K - 1</var>).</li>
+<li><var>(R_{i},C_{i}) \ne (R_{j},C_{j})</var> (<var>0 \le i &lt; j \le K - 1</var>).</li>
+<li><var>1 \le a \le N - 2</var>.</li>
+<li><var>1 \le b \le N - 2</var>.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Grading</h3>
+<p>If your program is judged as Wrong Answer in any one of the test cases, your score for this task is <var>0</var> point.</p>
+<p>If your program is judged as correct for every test case, your score for this task is calculated as follows. Let <var>L</var> be the maximum integer written on the flags among all test cases.</p>
+<ul>
+<li>If <var>70\,001\le L\le1\,000\,000\,000</var>, your score is <var>7</var> points.</li>
+<li>If <var>10\,001\le L\le70\,000</var>, your score is <var>13</var> points.</li>
+<li>If <var>2\,001\le L\le10\,000</var>, your score is <var>19</var> points.</li>
+<li>If <var>21\le L\le2\,000</var>, your score is <var>50 - 12.5\times\log_{10}\left(\frac{L}{20}\right)</var> points, rounded down to the nearest integer.</li>
+</ul>
+<p>If <var>L\le20</var>, your score is given by the following table.</p>
+<div class="joisc2021-navigation2-en-table">
+<table>
+<thead>
+<tr>
+<th><var>L</var></th>
+<th><var>20</var></th>
+<th><var>19</var></th>
+<th><var>18</var></th>
+<th><var>17</var></th>
+<th><var>16</var></th>
+<th><var>15</var></th>
+<th><var>14</var></th>
+<th><var>13</var></th>
+<th><var>\le 12</var></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Score</td>
+<td><var>50</var></td>
+<td><var>53</var></td>
+<td><var>56</var></td>
+<td><var>60</var></td>
+<td><var>64</var></td>
+<td><var>69</var></td>
+<td><var>75</var></td>
+<td><var>85</var></td>
+<td><var>100</var></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Communication</h3>
+<p>Here is a sample input for the sample grader and corresponding function calls. In the following example, the integers written by Anna on the 25 flags are as in the following table.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>1
+5 7
+1 1
+1 2
+2 1
+2 2
+2 3
+3 2
+3 3
+1 1
+</pre>
+<h4>Integers written by Anna on the flags</h4>
+<div class="joisc2021-navigation2-en-table">
+<table>
+<tr>
+<td>47</td>
+<td>15</td>
+<td>63</td>
+<td>56</td>
+<td>71</td>
+</tr>
+<tr>
+<td>10</td>
+<td>46</td>
+<td>52</td>
+<td>18</td>
+<td>67</td>
+</tr>
+<tr>
+<td>63</td>
+<td>56</td>
+<td>71</td>
+<td>19</td>
+<td>48</td>
+</tr>
+<tr>
+<td>52</td>
+<td>18</td>
+<td>67</td>
+<td>99</td>
+<td>26</td>
+</tr>
+<tr>
+<td>71</td>
+<td>19</td>
+<td>48</td>
+<td>60</td>
+<td>89</td>
+</tr>
+</table>
+</div>
+<h4>Sample Function Calls</h4>
+<div class="joisc2021-navigation2-en-table">
+<table>
+<thead>
+<tr>
+<th>Call to Anna</th>
+<th>Call to Bruno</th>
+<th>Return value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Anna(5,7,[1,1,2,...,3],[1,2,1,...,3])</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>SetFlag(0,0,47)</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>SetFlag(0,1,15)</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>SetFlag(0,2,63)</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><var>...</var></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>SetFlag(4,4,89)</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Bruno(7,[47,15,63,...,71])</code></td>
+<td><code>[4,0,2,2,2,0,0]</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>In this sample input, <var>(a, b) = (1, 1)</var>. When the party is held at the candidate cell 0, <var>1, 2</var>, or 3, Bruno’s next action should be as follows, and the function <code>Bruno</code> should return the actions accordingly.</p>
+<ul>
+<li>If the candidate 0 is chosen, the place of the party will be the cell <var>(1, 1)</var>, and Bruno has to take Action 4.</li>
+<li>If the candidate 1 is chosen, the place of the party will be the cell <var>(1, 2)</var>, and Bruno has to take Action 0.</li>
+<li>If the candidate 2 is chosen, the place of the party will be the cell <var>(2, 1)</var>, and Bruno has to take Action 2.</li>
+<li>If the candidate <var>3</var> is chosen, the place of the party will be the cell <var>(2, 2)</var>, and Bruno has to take either Action 0 or Action 2.</li>
+</ul>
+<p>In this sample communication, the return values are <code>[4,0,2,2,2,0,0]</code>. There can be multiple ways to move to the place for the party with the minimum number of actions. For example, your program is judged as correct as well if the return values are <code>[4,0,2,0,2,0,2]</code>.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>1
+100 7
+3 21
+16 9
+44 36
+44 78
+45 78
+67 59
+90 22
+84 59
+</pre>
+<p>In this sample input, your program is judged as correct if the return values of the function <code>Bruno</code> are <code>[3,1,1,0,0,3,2]</code>, for example.</p>
+<style>
+.joisc2021-navigation2-en-table { position:relative;max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisc2021-navigation2-en-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisc2021-navigation2-en-table th,.joisc2021-navigation2-en-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisc2021-navigation2-en-table th { background:#f5f5f5; }
+.joisc2021-navigation2-en-table code { white-space:nowrap; }
+.joisc2021-navigation2-en-table .katex { position:relative; }
+</style></section>
+</div>
+</span>
+<span class="lang-ja">
+<blockquote>
+<p><strong>AtCoder での提出方法</strong></p>
+<p><code>navigation2.h</code> をインクルードし，すべての関数を 1 つのファイル内で実装して提出してください．グローバル変数を両者の間で共有しないでください．このジャッジは C++ のみに対応しています．</p>
+<p><a href="https://www2.ioi-jp.org/camp/2021/2021-sp-tasks/day4/navigation2-dist.zip">配布ファイル</a></p>
+</blockquote>
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>JOI 王国は周囲をすべて海に囲まれた島であり，縦 <var>N</var> 行，横 <var>N</var> 列のマス目状に区切られた正方形の形をしている．JOI 王国の縦方向は南北方向に平行であり，横方向は東西方向に平行である．北から <var>r + 1</var> 行目 (<var>0 \leqq r \leqq N - 1</var>)，西から <var>c + 1</var> 列目 (<var>0 \leqq c \leqq N - 1</var>) にあるマスを区画 <var>(r, c)</var> と呼ぶ．</p>
+<p>JOI 王国の女王である Anna は，Bruno をパーティーに招待することになった．Anna はパーティーの会場を決めることになり，会場の候補として <var>K (= 7)</var> 個の区画が選ばれた．候補となった区画には <var>0</var> から <var>K - 1</var> までの候補地番号が割り当てられており，候補 <var>i</var> (<var>0 \leqq i \leqq K - 1</var>) は区画 <var>(R_{i},C_{i})</var> である．ただし，どの候補の区画も海に接することはない．</p>
+<p>パーティー会場となる区画は，パーティーの当日に決定される．</p>
+<p>パーティーの前日，Anna は，Bruno が道に迷わずにパーティーの会場にたどり着けるようにするために，すべての区画に <var>1</var> 本ずつ整数が書き込まれた旗を立てることにした．Anna は，それぞれの旗に，<var>1</var> 以上 <var>1\,000\,000\,000</var> 以下の整数を <var>1</var> 個ずつ書き込む．</p>
+<p>パーティーの当日，Bruno にはパーティー会場の候補地番号 <var>t</var> (<var>0 \leqq t \leqq K - 1</var>) のみが知らされる．その後， Bruno は海に接しない区画のいずれかにヘリコプターで到着し，そこからパーティー会場まで移動する．</p>
+<p>Bruno は自分が現在いる区画の場所は分からない．しかし，Bruno は東西南北の方位は分かる．また，自分が現在いる区画と，その周囲 <var>8</var> マスの区画に立てられた旗のみを見ることができる．すなわち，Bruno が区画 <var>(a, b)</var> (<var>1 \leqq a \leqq N - 2</var>，<var>1 \leqq b \leqq N - 2</var>) にいるとき，Bruno が見ることができる旗は <var>9</var> 個の区画</p>
+<p><var>(a - 1, b - 1)</var>, <var>(a - 1, b)</var>, <var>(a - 1, b + 1)</var>, <var>(a, b - 1)</var>, <var>(a, b)</var>, <var>(a, b + 1)</var>, <var>(a + 1, b - 1)</var>, <var>(a + 1, b)</var>, <var>(a + 1, b + 1)</var></p>
+<p>の旗のみである．Bruno は以下の <var>5</var> 種類の行動のいずれかを取ることができる．</p>
+<ul>
+<li>行動 <var>0</var>：東方向に <var>1</var> 区画分移動する．すなわち，区画 <var>(a, b)</var> から区画 <var>(a, b + 1)</var> に移動する．</li>
+<li>行動 <var>1</var>：西方向に <var>1</var> 区画分移動する．すなわち，区画 <var>(a, b)</var> から区画 <var>(a, b - 1)</var> に移動する．</li>
+<li>行動 <var>2</var>：南方向に <var>1</var> 区画分移動する．すなわち，区画 <var>(a, b)</var> から区画 <var>(a + 1, b)</var> に移動する．</li>
+<li>行動 <var>3</var>：北方向に <var>1</var> 区画分移動する．すなわち，区画 <var>(a, b)</var> から区画 <var>(a - 1, b)</var> に移動する．</li>
+<li>行動 <var>4</var>：現在いる区画でパーティーが行われると判断し，移動を終える．</li>
+</ul>
+<p>パーティーに遅刻することは許されないため，Bruno はパーティー会場まで最小の行動回数で移動する．したがって，Bruno は海に接した区画に立ち入ることはないことがこの問題の条件下で保証される．</p>
+<p>旗に大きな整数を書き込むのは大変なので，Anna は旗に書き込む整数の最大値をできるだけ小さくしたい．</p>
+<p>旗に整数を書き込む Anna の戦略を実装したプログラムおよび，最小の行動回数でパーティー会場にたどり着くための Bruno の戦略を実装したプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>実装の詳細</h3>
+<p>あなたは <var>2</var> つのファイルを提出しなければならない．</p>
+<p><var>1</var> つ目のファイルは <code>Anna.cpp</code> という名前である．このファイルは Anna の戦略を実装したファイルであり，以下の関数を実装していなければならない．また，<code>#include</code> プリプロセッサ指令によって <code>Anna.h</code> を読み込むこと．</p>
+<ul>
+<li><code>void Anna(int N, int K, std::vector&lt;int&gt; R, std::vector&lt;int&gt; C)</code>
+    これは，旗に整数を書き込む Anna の戦略を実装した関数である．この関数は，各シナリオ (詳しくは採点の方法の項を参照) について最初に <var>1</var> 回だけ呼び出される．<ul>
+<li>引数 <code>N</code> は，JOI 王国の縦方向および横方向のマス目の個数を表す．</li>
+<li>引数 <code>K</code> は，パーティー会場の候補の数 <var>K(= 7)</var> である．</li>
+<li>引数 <code>R</code>，<code>C</code> は長さ <var>K</var> の配列であり，<code>R[i]</code>，<code>C[i]</code> は候補 <var>i</var> の区画 <var>(R_{i},C_{i})</var> を表す (<var>0 \leqq i \leqq K - 1</var>)．</li>
+<li>引数 <code>N</code>，<code>K</code>，<code>R[i]</code>，<code>C[i]</code> (<var>0 \leqq i \leqq K - 1</var>) の値の範囲については，制約の項を参照せよ．</li>
+</ul>
+</li>
+</ul>
+<p>関数 <code>Anna</code> の <var>1</var> 回の呼び出しにおいて，以下の関数を，それぞれの区画に対して <var>1</var> 回ずつ，合計 <var>N^{2}</var> 回呼び出さなければならない．</p>
+<ul>
+<li><code>void SetFlag(int r, int c, int value)</code><ul>
+<li>引数 <code>r</code>，<code>c</code> は，Anna が区画 (<code>r</code>, <code>c</code>) の旗に整数を書き込むことを表す．ここで，<var>0 \leqq \texttt{r} \leqq N - 1</var>，<var>0 \leqq \texttt{c} \leqq N - 1</var> でなければならない．この範囲外の値で関数を呼び出した場合，不正解 <var>[1]</var> と判定される．</li>
+<li>引数 <code>value</code> は，Anna が指定した旗に書き込む整数である．ここで，<var>1 \leqq \texttt{value} \leqq 1\,000\,000\,000</var> でなければならない．この範囲外の値で関数を呼び出した場合，不正解 <var>[2]</var> と判定される．</li>
+<li>関数 <code>SetFlag</code> を同じ (<code>r</code>, <code>c</code>) で <var>2</var> 回呼び出した場合，不正解 <var>[3]</var> と判定される．</li>
+<li>関数 <code>Anna</code> の実行の終了時に関数 <code>SetFlag</code> の呼び出し回数が <var>N^{2}</var> 回でなかった場合，不正解 <var>[4]</var> と判定される．</li>
+</ul>
+</li>
+</ul>
+<p>関数 <code>SetFlag</code> の呼び出しが不正解と判定された場合，その時点でプログラムは終了する．</p>
+<p><var>2</var> つ目のファイルは <code>Bruno.cpp</code> という名前である．このファイルは Bruno の戦略を実装したファイルであり，以下の関数を実装していなければならない．また，<code>#include</code> プリプロセッサ指令によって <code>Bruno.h</code> を読み込むこと．</p>
+<ul>
+<li>
+<p><code>std::vector&lt;int&gt; Bruno(int K, std::vector&lt;int&gt; value)</code> この関数では，引数に対して，Bruno が取る行動を提示しなければならない．この関数は，各シナリオ (詳しくは採点の方法の項を参照) について，関数 <code>Anna</code> が呼び出された後に <var>1</var> 回だけ呼び出される．</p>
+<ul>
+<li>引数 <code>K</code> は，パーティー会場の候補の数 <var>K(= 7)</var> である．</li>
+<li>
+<p>引数 <code>value</code> は長さ <var>9</var> の配列であり，Bruno が現在いる区画と，その周囲 <var>8</var> マスの区画に立てられた旗に書かれた整数を表す．具体的には，Bruno が現在いる区画を <var>(a, b)</var> (<var>1 \leqq a \leqq N - 2</var>，<var>1 \leqq b \leqq N - 2</var>) とすると，<code>value[0]</code>，<code>value[1]</code>，…，<code>value[8]</code> はそれぞれ区画</p>
+<p><var>(a - 1, b - 1)</var>, <var>(a - 1, b)</var>, <var>(a - 1, b+1)</var>, <var>(a, b - 1)</var>, <var>(a, b)</var>, <var>(a, b+1)</var>, <var>(a+1, b - 1)</var>, <var>(a+1, b)</var>, <var>(a+1, b+1)</var>
+の旗に書かれた整数を表す．</p>
+</li>
+<li>
+<p>関数 <code>Bruno</code> は，パーティー会場が候補 <var>t = 0, 1, 2, \ldots, K - 1</var> になった場合それぞれについて， Bruno が取る行動を決定しなければならない．戻り値は長さ <var>K</var> の配列で，その <var>i + 1</var> 番目 (<var>0 \leqq i \leqq K - 1</var>) の要素は <var>t = i</var> である場合に Bruno が取る行動の番号となっている必要がある．</p>
+</li>
+<li>戻り値が長さ <var>K</var> の配列ではない場合，不正解 <var>[5]</var> と判定される．</li>
+<li>戻り値の配列のすべての要素は <var>0, 1, 2, 3, 4</var> のいずれかでなければならず，ひとつでもそれ以外の値となっていた場合，不正解 <var>[6]</var> と判定される．</li>
+<li>どの <var>t</var> に対しても，関数 <code>Bruno</code> で指定した行動が，最小の行動回数でパーティー会場に移動するものでなければならない．特に，行動 <var>4</var> を取る場合は，Bruno が現在いる区画がパーティー会場の区画と同じでなければならない．ひとつでもこれを満たさない場合は，不正解 <var>[7]</var> と判定される．また，最小の行動回数で会場に移動する方法が複数ある場合は，それらのうちどれを指定してもよい．</li>
+</ul>
+</li>
+</ul>
+<p>この問題では，ひとつのテストケースは <var>Q</var> 個のシナリオからなり，各シナリオにつき関数 <code>Anna</code> と関数 <code>Bruno</code> が <var>1</var> 回ずつ呼び出される．すなわち，全体では関数 <code>Anna</code> と関数 <code>Bruno</code> が交互に，合計 <var>Q</var> 回ずつ呼び出されることになる．詳しくは採点の方法の項を参照せよ．</p>
+<h4>重要な注意</h4>
+<ul>
+<li>内部での使用のために他の関数を実装したり，グローバル変数を宣言するのは自由である．ただし，提出された <var>2</var> つのプログラムは，採点プログラムとまとめてリンクされて <var>1</var> つの実行ファイルになるので，各ファイル内のすべてのグローバル変数と内部関数を無名名前空間内で宣言して，他のファイルとの干渉を避ける必要がある．採点時には，このプログラムは Anna 側，Bruno 側として <var>2</var> 個のプロセスとして実行されるので，Anna 側と Bruno 側でプログラム中のグローバル変数を共有することはできない．</li>
+<li>あなたの提出したプログラムは，標準入力・標準出力，あるいは他のファイルといかなる方法でもやりとりしてはならない．ただし，標準エラー出力にデバッグ情報等を出力することは許される．</li>
+</ul>
+<h4>採点の方法</h4>
+<p><var>1</var> つのテストケースは <var>Q</var> 個のシナリオからなり，シナリオには <var>0</var> から <var>Q - 1</var> までの番号が付けられている．各シナリオに対して，以下の値が定められている．ただし，以下に記された値の範囲については，制約の項を参照せよ．</p>
+<ul>
+<li>JOI 王国の縦方向および横方向のマス目の個数 <var>N</var>．</li>
+<li>パーティー会場の候補の数 <var>K(= 7)</var>．</li>
+<li>パーティー会場の候補の区画 <var>(R_{0},C_{0})</var>, <var>(R_{1},C_{1})</var>, <var>\ldots</var>, <var>(R_{K - 1},C_{K - 1})</var>．</li>
+<li>Bruno が現在いる区画 <var>(a, b)</var>．</li>
+</ul>
+<p>関数 <code>Anna</code> はそれぞれのシナリオに対して実行され，与えられた引数に対して旗に整数を書き込まなければならない．関数 <code>Bruno</code> もまた，それぞれのシナリオに対して実行され，与えられた引数に対して Bruno が取る行動を決定しなければならない．ここで，以下のような手順で関数 <code>Anna</code> と関数 <code>Bruno</code> が呼び出される．</p>
+<ol>
+<li><var>k = 0, 1, 2, \ldots, Q - 1</var> の順に，以下の処理 <var>2</var> と処理 <var>3</var> をこの順に行う．</li>
+<li>関数 <code>Anna</code> が呼び出される．引数は，シナリオ <var>k</var> について実装の詳細の項に書かれた通りに設定される．</li>
+<li>関数 <code>Bruno</code> が呼び出される．引数は，シナリオ <var>k</var> について実装の詳細の項に書かれた通りに設定される．</li>
+</ol>
+<p>ただし，これらの処理の途中で不正解と判定された場合，その時点で採点は終了し，そのテストケースは不正解となる．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>コンパイル・実行の方法</h3>
+<p>作成したプログラムをテストするための，採点プログラムのサンプルが，コンテストサイトからダウンロードできるアーカイブの中に含まれている．このアーカイブには，提出しなければならないファイルのサンプルも含まれている．</p>
+<p>採点プログラムのサンプルは <var>1</var> つのファイルからなる．そのファイルは <code>grader.cpp</code> である．作成したプログラムをテストするには，<code>grader.cpp</code>，<code>Anna.cpp</code>，<code>Bruno.cpp</code>，<code>Anna.h</code>，<code>Bruno.h</code> を同じディレクトリに置き，次のようにコマンドを実行する．</p>
+<pre>g++ -std=gnu++17 -O2 -fsigned-char -o grader grader.cpp Anna.cpp Bruno.cpp
+</pre>
+<p>コンパイルが成功すれば，<code>grader</code> という実行ファイルが生成される．</p>
+<p>実際の採点プログラムは，採点プログラムのサンプルとは異なることに注意すること．採点プログラムのサンプルは単一のプロセスとして起動する．このプログラムは，標準入力から入力を読み込み，標準出力に結果を出力する．</p>
+<h4>採点プログラムのサンプルの入力</h4>
+<p>採点プログラムのサンプルは標準入力から以下の形式で入力を読み込む．ただし，入力はすべて整数でなければならない．</p>
+<pre><var>Q</var>
+(シナリオ <var>0</var> に対する入力)
+<var>\vdots</var>
+(シナリオ <var>Q - 1</var> に対する入力)
+</pre>
+<p>また，それぞれのシナリオに対する入力は，以下の形式で与えられる．</p>
+<pre><var>N</var> <var>K</var>
+<var>R_{0}</var> <var>C_{0}</var>
+<var>\vdots</var>
+<var>R_{K - 1}</var> <var>C_{K - 1}</var>
+<var>a</var> <var>b</var>
+</pre>
+<p>ただし，採点プログラムのサンプルの入力には，<var>N</var> は <var>3 \leqq N \leqq 100</var> の範囲で，<var>K</var> は <var>1 \leqq K \leqq 7</var> の範囲で指定できる．これは実際の制約と異なることに注意せよ．</p>
+<h4>採点プログラムのサンプルの出力</h4>
+<p>採点プログラムのサンプルは標準出力へ以下の情報を出力する (引用符は実際には出力されない)．</p>
+<ul>
+<li>正解の場合，関数 <code>Anna</code> で旗に書き込まれた整数の最大値が “<code>Accepted : Maximum value = 12</code>” のように出力される．</li>
+<li>不正解の場合，不正解の種類が “<code>Wrong Answer [1]</code>” のように出力される．</li>
+</ul>
+<p>実行するプログラムが複数の不正解の条件を満たした場合，表示される不正解の種類はそれらのうち <var>1</var> つのみである．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>1 \leqq Q \leqq 300</var>．</li>
+<li><var>5 \leqq N \leqq 100</var>．</li>
+<li><var>K = 7</var>．</li>
+<li><var>1 \leqq R_{i} \leqq N - 2</var> (<var>0 \leqq i \leqq K - 1</var>)．</li>
+<li><var>1 \leqq C_{i} \leqq N - 2</var> (<var>0 \leqq i \leqq K - 1</var>)．</li>
+<li><var>(R_{i},C_{i}) \ne (R_{j},C_{j})</var> (<var>0 \leqq i &lt; j \leqq K - 1</var>)．</li>
+<li><var>1 \leqq a \leqq N - 2</var>．</li>
+<li><var>1 \leqq b \leqq N - 2</var>．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>採点基準</h3>
+<p>この課題におけるテストケースに対して，<var>1</var> つでも不正解があった場合，この課題の得点は <var>0</var> 点となる．</p>
+<p>また，この課題におけるすべてのテストケースに正解した場合，この課題のすべてのテストケースに対する「旗に書かれた整数の最大値」を <var>L</var> として，この課題の得点は以下のように与えられる．</p>
+<ul>
+<li><var>70\,001\leqq L\leqq1\,000\,000\,000</var> のとき，<var>7</var> 点．</li>
+<li><var>10\,001\leqq L\leqq70\,000</var> のとき，<var>13</var> 点．</li>
+<li><var>2\,001\leqq L\leqq10\,000</var> のとき，<var>19</var> 点．</li>
+<li><var>21\leqq L\leqq2\,000</var> のとき，<var>50 - 12.5\times\log_{10}\left(\frac{L}{20}\right)</var> 点を整数に切り捨てた得点．</li>
+</ul>
+<p>また，<var>L\leqq20</var> の場合は，以下の表の通りに得点が与えられる．</p>
+<div class="joisc2021-navigation2-ja-table">
+<table>
+<thead>
+<tr>
+<th><var>L</var></th>
+<th><var>20</var></th>
+<th><var>19</var></th>
+<th><var>18</var></th>
+<th><var>17</var></th>
+<th><var>16</var></th>
+<th><var>15</var></th>
+<th><var>14</var></th>
+<th><var>13</var></th>
+<th><var>12</var> 以下</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>得点</td>
+<td><var>50</var></td>
+<td><var>53</var></td>
+<td><var>56</var></td>
+<td><var>60</var></td>
+<td><var>64</var></td>
+<td><var>69</var></td>
+<td><var>75</var></td>
+<td><var>85</var></td>
+<td><var>100</var></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>やりとりの例</h3>
+<p>採点プログラムのサンプルが読み込む入力の例と，それに対応する関数の呼び出しの例を以下に示す．ただし以下の例は，Anna が関数 <code>SetFlag</code> で，<var>25</var> 本の旗に以下に示すような値を書き込んだ場合である．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>1
+5 7
+1 1
+1 2
+2 1
+2 2
+2 3
+3 2
+3 3
+1 1
+</pre>
+<h4>Anna が旗に書き込む整数の例</h4>
+<div class="joisc2021-navigation2-ja-table">
+<table>
+<tr>
+<td>47</td>
+<td>15</td>
+<td>63</td>
+<td>56</td>
+<td>71</td>
+</tr>
+<tr>
+<td>10</td>
+<td>46</td>
+<td>52</td>
+<td>18</td>
+<td>67</td>
+</tr>
+<tr>
+<td>63</td>
+<td>56</td>
+<td>71</td>
+<td>19</td>
+<td>48</td>
+</tr>
+<tr>
+<td>52</td>
+<td>18</td>
+<td>67</td>
+<td>99</td>
+<td>26</td>
+</tr>
+<tr>
+<td>71</td>
+<td>19</td>
+<td>48</td>
+<td>60</td>
+<td>89</td>
+</tr>
+</table>
+</div>
+<h4>関数の呼び出しの例</h4>
+<div class="joisc2021-navigation2-ja-table">
+<table>
+<thead>
+<tr>
+<th>Anna の呼び出し</th>
+<th>Bruno の呼び出し</th>
+<th>Bruno の戻り値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Anna(5,7,[1,1,2,...,3],[1,2,1,...,3])</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>SetFlag(0,0,47)</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>SetFlag(0,1,15)</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>SetFlag(0,2,63)</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><var>...</var></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>SetFlag(4,4,89)</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Bruno(7,[47,15,63,...,71])</code></td>
+<td><code>[4,0,2,2,2,0,0]</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>この例では，<var>(a, b) = (1, 1)</var> が指定されている．ここで，例えば候補 <var>0, 1, 2, 3</var> がパーティー会場として選ばれた場合，それぞれ次のような行動を取らなければならず，関数 <code>Bruno</code> の戻り値はその通りにしなければならない．</p>
+<ul>
+<li>候補 <var>0</var> が選ばれた場合，パーティー会場は区画 <var>(1, 1)</var> となり，行動 <var>4</var> を取らなければならない．</li>
+<li>候補 <var>1</var> が選ばれた場合，パーティー会場は区画 <var>(1, 2)</var> となり，行動 <var>0</var> を取らなければならない．</li>
+<li>候補 <var>2</var> が選ばれた場合，パーティー会場は区画 <var>(2, 1)</var> となり，行動 <var>2</var> を取らなければならない．</li>
+<li>候補 <var>3</var> が選ばれた場合，パーティー会場は区画 <var>(2, 2)</var> となり，行動 <var>0</var> または <var>2</var> を取らなければならない．</li>
+</ul>
+<p>この例では <code>[4,0,2,2,2,0,0]</code> を返しているが，最小の行動回数でパーティー会場に移動する方法が複数存在することもある．例えば <code>[4,0,2,0,2,0,2]</code> を返した場合でも正解とみなされる．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>1
+100 7
+3 21
+16 9
+44 36
+44 78
+45 78
+67 59
+90 22
+84 59
+</pre>
+<p>この例では，関数 <code>Bruno</code> が <code>[3,1,1,0,0,3,2]</code> などを返した場合，正解とみなされる．</p>
+<style>
+.joisc2021-navigation2-ja-table { position:relative;max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisc2021-navigation2-ja-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisc2021-navigation2-ja-table th,.joisc2021-navigation2-ja-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisc2021-navigation2-ja-table th { background:#f5f5f5; }
+.joisc2021-navigation2-ja-table code { white-space:nowrap; }
+.joisc2021-navigation2-ja-table .katex { position:relative; }
+</style></section>
+</div>
+</span>
+</span>

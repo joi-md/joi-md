@@ -1,0 +1,160 @@
+<span class="lang">
+<span class="lang-ja">
+<blockquote>
+<p><strong>AtCoder での提出方法</strong></p>
+<p>この提出先はテストケース 01 用です．このテストケースに対する出力ファイルを，言語 <code>Text (cat)</code> を選択して提出してください．</p>
+<p>各テストケースの提出先: <a href="https://atcoder.jp/contests/joisc2007/tasks/joisc2007_packin">01</a> | <a href="https://atcoder.jp/contests/joisc2007/tasks/joisc2007_packing2">02</a> | <a href="https://atcoder.jp/contests/joisc2007/tasks/joisc2007_packing3">03</a> | <a href="https://atcoder.jp/contests/joisc2007/tasks/joisc2007_packing4">04</a> | <a href="https://atcoder.jp/contests/joisc2007/tasks/joisc2007_packing5">05</a></p>
+<p>AtCoder では，各入力に対応する <var>5</var> つの提出先に個別に提出する．相対評価に用いる最大スコアは，データ番号順に <var>0.18767886</var>, <var>0.13896315</var>, <var>0.11200462</var>, <var>0.10566336</var>, <var>0.05263157</var> である．これらより良いスコアでも各提出先の上限は <var>20</var> 点である．第 <var>1, 2, 3, 5</var> データの値は当時の生徒の最大スコア，第 <var>4</var> データの値は当時のチューター解のうちの最良のものである．</p>
+</blockquote>
+<p>配点 : <var>20</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>あなたの勤めている半導体工場では，最新鋭の装置を用いてシリコン板を加工し，半導体チップの材料として出荷している．シリコン板の加工に用いる装置は極めて高精度であり，加工位置を <var>10</var> ナノメートル単位で調整することができる（<var>10</var> ナノメートル <var>= 100{,}000{,}000</var> 分の <var>1</var> メートル）．</p>
+<p>ある顧客からの注文により，あなたは，辺の長さが <var>1</var> メートルの正方形のシリコン板から，<var>n</var> 枚のシリコン円板を切り抜くことになった．切り抜くシリコン円板は全て同じ大きさでなければならない．また，貴重なシリコン板を無駄にしないよう，できるだけ大きい円板を切り抜くことが望ましい．</p>
+<p>正方形のシリコン板から，できるだけ大きな <var>n</var> 枚のシリコン円板を切り抜く方法を求めよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>以下の表の <var>n</var> の値を，入力として用いよ．</p>
+<div class="joisc2007-packing-table">
+<table>
+<thead>
+<tr>
+<th>データ番号</th>
+<th>シリコン円板の枚数 <var>n</var></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><var>1</var></td>
+<td><var>6</var></td>
+</tr>
+<tr>
+<td><var>2</var></td>
+<td><var>11</var></td>
+</tr>
+<tr>
+<td><var>3</var></td>
+<td><var>17</var></td>
+</tr>
+<tr>
+<td><var>4</var></td>
+<td><var>22</var></td>
+</tr>
+<tr>
+<td><var>5</var></td>
+<td><var>90</var></td>
+</tr>
+</tbody>
+</table>
+</div>
+<style>
+.joisc2007-packing-table { position:relative; max-width: 100%; overflow-x: auto; margin: 1em 0; }
+.joisc2007-packing-table table { display: table; width: auto; max-width: none; overflow: visible; border-collapse: collapse; margin: 0; }
+.joisc2007-packing-table th, .joisc2007-packing-table td { border: 1px solid #aaa; padding: 0.3em 0.6em; text-align: left; vertical-align: top; }
+.joisc2007-packing-table th { background: #f5f5f5; }
+</style>
+
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>出力データをファイルとして提出せよ．出力データの作成方法は問わない．プログラムに直接生成させてもよいし，必要に応じて，それをテキストエディタ等で加工してもよい．出力データの作成に用いたプログラムを提出する必要は無い．</p>
+<p>データ番号 <var>k</var> の入力に対する出力ファイル名は <code>packing-outk.txt</code> である（<var>k = 1, 2, 3, 4, 5</var>）．</p>
+<p>出力データは <var>n</var> 行からなる．<var>n</var> は切り抜くシリコン円板の枚数であり，入力の項で与えられている．<var>i</var> 行目 (<var>1 \leqq i \leqq n</var>) には，<var>i</var> 枚目のシリコン円板の中心の位置を表す <var>2</var> つの整数 <var>x_i, y_i</var> を空白を区切りとして出力せよ．これは，<var>i</var> 枚目のシリコン円板の中心が，正方形板の左端から <var>x_i \times 10</var> ナノメートル，上端から <var>y_i \times 10</var> ナノメートルの場所であることを意味する．<var>x_i, y_i</var> は <var>0 \leqq x_i, y_i \leqq 100{,}000{,}000</var> をみたす整数である．</p>
+<p>切り抜くシリコン円板の大きさは，装置により自動的に計算されるので，出力データの中に書く必要はない．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>モデル解法</h3>
+<p>この問題の一つの解法は次のようなものである．<var>(m - 1)^2 &lt; n \leqq m^2</var> をみたす整数 <var>m</var> を求める．正方形板を <var>m \times m</var> の小正方形板に分割する．そこから <var>n</var> 個の小正方形板を選び，内接する円板を切り抜く．これにより，半径 <var>\frac{1}{2m}</var> の円板を切り抜く解法が得られる．この解法を「モデル解法」と呼ぶことにする．モデル解法は必ずしも効率の良い解法ではない．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>例 1</h3>
+<p><var>n = 3</var> の場合に，「モデル解法」によって得られた出力データは以下の通りである．</p>
+<pre>25000000 25000000
+75000000 25000000
+25000000 75000000
+</pre>
+<p>これを図示すると下図の通りである．</p>
+<div style="text-align: center;">
+<img alt="2007-packing-example1.png" src="https://img.atcoder.jp/joisc2007/2007-packing-example1.png" style="max-width: 100%; width: 243px;" />
+</div>
+
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>例 2</h3>
+<p>例 <var>1</var> は最適解ではない．例えば，</p>
+<pre>74540929 25404070
+25474639 38662789
+61538179 74593059
+</pre>
+<p>の方が良い結果を与える．これを図示すると以下の通りである．</p>
+<div style="text-align: center;">
+<img alt="2007-packing-example2.png" src="https://img.atcoder.jp/joisc2007/2007-packing-example2.png" style="max-width: 100%; width: 243px;" />
+</div>
+
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>例 3</h3>
+<p>以下は，<var>n = 8</var> の場合の出力データの例である．このデータは，「モデル解法」よりも良い結果を与える．</p>
+<pre>50993849 72645350
+17399669 81993059
+83110119 83073720
+50245039 25147290
+83063380 16879409
+16948019 16965430
+26471179 49375439
+76212739 50011850
+</pre>
+<p>これを図示すると以下の通りである．</p>
+<div style="text-align: center;">
+<img alt="2007-packing-example3.png" src="https://img.atcoder.jp/joisc2007/2007-packing-example3.png" style="max-width: 100%; width: 249px;" />
+</div>
+
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>採点について</h3>
+<p>出力データ毎に配点を定め，以下に従い，相対評価で採点を行う．</p>
+<ul>
+<li>出力データが誤っていた場合や未提出の場合は，その出力データに関する得点は <var>0</var> 点である．また，半径が「モデル解法」以下の出力データも <var>0</var> 点である．</li>
+<li>「モデル解法」よりも半径の大きなデータが提出された場合，その得点は次のようにして計算される．「モデル解法」の半径を <var>d_0</var> とおく．提出された出力データの半径のうち，最も大きいものを <var>d_1</var> (<var>d_1 &gt; d_0</var>) とおく．半径 <var>d</var> (<var>d_1 \geqq d \geqq d_0</var>) の出力データには，配点のうち，<var>\left(\dfrac{d - d_0}{d_1 - d_0} \times 100\right)\%</var> の得点が与えられる．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>備考</h3>
+<p>計算途中でのオーバーフローに注意すること．<var>2^{32} = 4{,}294{,}967{,}296</var> である．C/C++ の場合は，必要に応じて，内部で <code>double</code> 型や <code>long long int</code> 型を用いて演算を行うと良いだろう．</p>
+<style>
+.joisc2007-packing-table .katex {position:relative;}
+</style></section>
+</div>
+</span>
+</span>

@@ -1,0 +1,246 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>Have you ever heard of Just Odd Inventions, Ltd.? This company is known for their “just odd inventions.” We call it JOI, Ltd. in this problem.</p>
+<p>A new year party is being held in JOI, Ltd. The staff is baking <var>N</var> hamburg steaks on a huge wire mesh. We consider the wire mesh as a <var>1\,000\,000\,000 \times 1\,000\,000\,000</var> grid. We denote by <var>(x, y)</var> the cell in the <var>x</var>-th column from the left and the <var>y</var>-th row from the bottom (<var>1 \le x \le 1\,000\,000\,000</var>, <var>1 \le y \le 1\,000\,000\,000</var>)</p>
+<p>Hamburg steaks are numbered from <var>1</var> to <var>N</var>. The Hamburg steak <var>i</var> (<var>1 \le i \le N</var>) is place on the rectangular area whose left-bottom vertex is <var>(L_{i}, D_{i})</var> and right-top vertex is <var>(R_{i}, U_{i})</var>. It is possible that the Hamburg steaks overlaps.</p>
+<p>You are a new employee of JOI, Ltd. Your task is to choose <var>K</var> cells on the wire mesh and stick bamboo skewers at the center of the cells perpendicularly to the wire mesh. For each hamburg steak, you can confirm how it is cooked by sticking at least one bamboo skewer at a cell on it. You need to confirm all the hamburg steaks. You are allowed to stick more than one bamboo skewer at a cell. You are also allowed to stick a bamboo skewer at a cell where no hamburg steak exists.</p>
+<p>Formally, your task is to find a tuple of (not necessarily distinct) <var>K</var> pairs of integers <var>(x_{1}, y_{1}), \ldots, (x_{K}, y_{K})</var> satisfying the following condition:</p>
+<ul>
+<li>For every <var>i</var> (<var>1 \le i \le N</var>), there exists <var>j</var> (<var>1 \le j \le K</var>) such that both <var>L_{i} \le x_{j} \le R_{i}</var> and <var>D_{i} \le y_{j} \le U_{i}</var> hold.</li>
+<li>For every <var>j</var> (<var>1 \le j \le K</var>), both <var>1 \le x_{j} \le 1\,000\,000\,000</var> and <var>1 \le y_{j} \le 1\,000\,000\,000</var> hold.</li>
+</ul>
+<p>Write a program which, given the positions of the hamburg steaks and the number of bamboo skewers, calculates one way to stick the bamboo skewers. For the input data given for this task, it is guaranteed that there exists a tuple of cells satisfying the above conditions.</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input. All the values in the input are integers.</p>
+<pre><var>N</var> <var>K</var>
+<var>L_{1}</var> <var>D_{1}</var> <var>R_{1}</var> <var>U_{1}</var>
+<var>L_{2}</var> <var>D_{2}</var> <var>R_{2}</var> <var>U_{2}</var>
+<var>\vdots</var>
+<var>L_{N}</var> <var>D_{N}</var> <var>R_{N}</var> <var>U_{N}</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>Write <var>K</var> lines to the standard output. In the <var>j</var>-th line (<var>1 \le j \le K</var>), output <var>x_{j}</var> and <var>y_{j}</var>, separating them by a space.</p>
+<p>If there are more than one way to stick the bamboo skewers satisfying the conditions, output any of them.</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li><var>1 \le N \le 200\,000</var>.</li>
+<li><var>1 \le K \le 4</var>.</li>
+<li><var>1 \le L_{i} \le R_{i} \le 1\,000\,000\,000</var> (<var>1 \le i \le N</var>).</li>
+<li><var>1 \le D_{i} \le U_{i} \le 1\,000\,000\,000</var> (<var>1 \le i \le N</var>).</li>
+<li>There exists a tuple of <var>K</var> cells satisfying the conditions in the problem statement.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li>(<var>1</var> point) <var>N \le 2000</var>, <var>K = 1</var>.</li>
+<li>(<var>1</var> point) <var>N \le 2000</var>, <var>K = 2</var>.</li>
+<li>(<var>3</var> points) <var>N \le 2000</var>, <var>K = 3</var>.</li>
+<li>(<var>6</var> points) <var>N \le 2000</var>, <var>K = 4</var>.</li>
+<li>(<var>1</var> point) <var>K = 1</var>.</li>
+<li>(<var>3</var> points) <var>K = 2</var>.</li>
+<li>(<var>6</var> points) <var>K = 3</var>.</li>
+<li>(<var>79</var> points) <var>K = 4</var>.</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input and Output</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>4 2
+2 1 3 3
+1 2 4 3
+6 1 7 4
+5 3 7 5
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>2 2
+7 4
+</pre>
+<p>By sticking a bamboo skewer at the cell <var>(2, 2)</var>, you can confirm how the hamburg steaks 1 and 2 are cooked, and by sticking a bamboo skewer at the cell <var>(7, 4)</var>, you can confirm how the hamburg steaks 3 and 4 are cooked.</p>
+<p>Other than the cells <var>(2, 2)</var> and <var>(7, 4)</var>, You can stick bamboo skewers, for example, at the cells <var>(3, 3)</var> and <var>(6, 4)</var>.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>3 3
+1 1 1 1
+1 2 1 2
+1 3 1 3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>1 1
+1 2
+1 3
+</pre></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>あなたは Just Odd Inventions 社を知っているだろうか？　この会社の業務は「ただ奇妙な発明 (just odd inventions)」をすることである．ここでは略して JOI 社と呼ぶ．</p>
+<p>今は JOI 社の新年会で，広大な金網の上で <var>N</var> 枚のハンバーグを焼いている．ここでは金網は縦と横が共に <var>1\,000\,000\,000</var> マスの <var>2</var> 次元のマス目として扱う．左から <var>x</var> 番目，下から <var>y</var> 番目のマス (<var>1 \leqq x \leqq 1\,000\,000\,000</var>， <var>1 \leqq y \leqq 1\,000\,000\,000</var>) を <var>(x, y)</var> と表すことにする．</p>
+<p>ハンバーグには <var>1</var> から <var>N</var> までの番号が付いており，ハンバーグ <var>i</var> (<var>1 \leqq i \leqq N</var>) は，マス <var>(L_{i}, D_{i})</var> を左下，マス <var>(R_{i}, U_{i})</var> を右上とする長方形領域にある．なお，ハンバーグ同士が重なっていることもあり得る．</p>
+<p>JOI 社の新入社員であるあなたの仕事は，鉄板上の <var>K</var> 個のマスを選び，それらのマスの中心に竹串を金網と垂直に刺すことによって，すべてのハンバーグの焼き加減を確認することである．各ハンバーグの焼き加減は，その上の <var>1</var> 個以上のマスに竹串を刺すことで確認することができる．同じマスに複数の竹串を刺してもよいし，ハンバーグのないマスに竹串を刺してもよい．</p>
+<p>すなわち，あなたの仕事は以下の条件を満たす，相異なるとは限らない <var>K</var> 個の整数対 <var>(x_{1}, y_{1}), \ldots, (x_{K}, y_{K})</var> を，<var>1</var> 組探すことである：</p>
+<ul>
+<li>すべての <var>i</var> (<var>1 \leqq i \leqq N</var>) について，<var>L_{i} \leqq x_{j} \leqq R_{i}</var> かつ <var>D_{i} \leqq y_{j} \leqq U_{i}</var> を満たす <var>j</var> (<var>1 \leqq j \leqq K</var>) が存在する．</li>
+<li>すべての <var>j</var> (<var>1 \leqq j \leqq K</var>) について，<var>1 \leqq x_{j} \leqq 1\,000\,000\,000</var> かつ <var>1 \leqq y_{j} \leqq 1\,000\,000\,000</var> である．</li>
+</ul>
+<p>ハンバーグの位置と竹串の本数が与えられたとき，竹串の刺し方を <var>1</var> つ求めるプログラムを作成せよ．ただしこの問題では，上の条件を満たすマスの組が存在するような入力のみが与えられる．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力は以下の形式で標準入力から与えられる．入力される値はすべて整数である．</p>
+<pre><var>N</var> <var>K</var>
+<var>L_{1}</var> <var>D_{1}</var> <var>R_{1}</var> <var>U_{1}</var>
+<var>L_{2}</var> <var>D_{2}</var> <var>R_{2}</var> <var>U_{2}</var>
+<var>\vdots</var>
+<var>L_{N}</var> <var>D_{N}</var> <var>R_{N}</var> <var>U_{N}</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に <var>K</var> 行で出力せよ ．<var>j</var> 行目 (<var>1 \leqq j \leqq K</var>) 行目には，<var>x_{j}, y_{j}</var> を空白区切りで出力せよ．</p>
+<p>条件を満たす竹串の刺し方が複数存在する場合は，どれを出力してもよい．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>1 \leqq N \leqq 200\,000</var>．</li>
+<li><var>1 \leqq K \leqq 4</var>．</li>
+<li><var>1 \leqq L_{i} \leqq R_{i} \leqq 1\,000\,000\,000</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>1 \leqq D_{i} \leqq U_{i} \leqq 1\,000\,000\,000</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li>問題文の条件を満たす <var>K</var> 個のマスの組が存在する．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>1</var> 点) <var>N \leqq 2000</var>，<var>K = 1</var>．</li>
+<li>(<var>1</var> 点) <var>N \leqq 2000</var>，<var>K = 2</var>．</li>
+<li>(<var>3</var> 点) <var>N \leqq 2000</var>，<var>K = 3</var>．</li>
+<li>(<var>6</var> 点) <var>N \leqq 2000</var>，<var>K = 4</var>．</li>
+<li>(<var>1</var> 点) <var>K = 1</var>．</li>
+<li>(<var>3</var> 点) <var>K = 2</var>．</li>
+<li>(<var>6</var> 点) <var>K = 3</var>．</li>
+<li>(<var>79</var> 点) <var>K = 4</var>．</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入出力例</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>4 2
+2 1 3 3
+1 2 4 3
+6 1 7 4
+5 3 7 5
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>2 2
+7 4
+</pre>
+<p>マス <var>(2, 2)</var> に竹串を刺すことでハンバーグ <var>1, 2</var> の焼き加減を確認することができ，マス <var>(7, 4)</var> に竹串を刺すことでハンバーグ <var>3, 4</var> の焼き加減を確認することができる．</p>
+<p><var>(2, 2)</var> と <var>(7, 4)</var> 以外にも，<var>(3, 3)</var> と <var>(6, 4)</var> なども条件を満たす．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>3 3
+1 1 1 1
+1 2 1 2
+1 3 1 3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>1 1
+1 2
+1 3
+</pre></section>
+</div>
+</span>
+</span>

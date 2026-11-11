@@ -1,0 +1,376 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>At the opening ceremony of IOI 2018, <var>N</var> contestants marches along a line, which is represented by a number line. All contestants head for the positive direction of the number line. At time 0, the <var>i</var>-th contestant (<var>1 \le i \le N</var>, counted from the front) stands at coordinate <var>-i</var>. In addition, IOI-chan, the flag-bearer, stands at coordinate 0.</p>
+<p>Each contestant has a value called slowness. The <var>i</var>-th contestant has slowness <var>D_{i}</var>. The contestants keep the following rule:</p>
+<ul>
+<li>If the <var>i</var>-th contestant is at a distance greater than or equal to <var>D_{i} + 1</var> from the person (a contestant or IOI-chan) right in front of him or her, the <var>i</var>-th contestant moves to the position at a distance 1 from that person. Otherwise, the <var>i</var>-th contestant does not move.</li>
+</ul>
+<p>IOI-chan moves a distance <var>1</var> in the positive direction on the line per unit time. A contestant moves instantly whenever the condition described above is satisfied.</p>
+<p>You are a reporter to cover the opening ceremony. You had to take photos, but you were fast asleep during the whole ceremony. It couldn’t be helped—you decided to cheat by taking photos of the hall and then drawing pictures of the people on them.</p>
+<p>In order not to get caught cheating, or to estimate the time to draw pictures, you want to know the following <var>Q</var> values:</p>
+<ul>
+<li>the number of people standing at coordinate between <var>L_{j}</var> and <var>R_{j}</var>, inclusive, at time <var>T_{j}</var> (<var>1 \le j \le Q</var>).</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Task</h3>
+<p>Given the slowness of each contestant and the data of the <var>Q</var> questions, write a program which calculates the number of people satisfying the condition for each question.</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input.</p>
+<ul>
+<li>The first line of the input contains two space separated integers <var>N</var> and <var>Q</var>. This means there are <var>N</var> contestants (not including IOI-chan) and there are <var>Q</var> questions.</li>
+<li>The <var>i</var>-th line (<var>1 \le i \le N</var>) of the following <var>N</var> lines contains an integer <var>D_{i}</var>. This means the <var>i</var>-th contestant from the front has slowness <var>D_{i}</var>.</li>
+<li>The <var>j</var>-th line (<var>1 \le j \le Q</var>) of the following <var>Q</var> lines contains three space separated integers <var>T_{j}, L_{j}</var> and <var>R_{j}</var>. These values represent the <var>j</var>-th question.</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>Write <var>Q</var> lines to the standard output. The <var>j</var>-th line (<var>1 \le j \le Q</var>) of the output should contain the answer to the <var>j</var>-th question.</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<p>All input data satisfy the following conditions.</p>
+<ul>
+<li><var>1 \le N \le 500\,000</var>．</li>
+<li><var>1 \le Q \le 500\,000</var>．</li>
+<li><var>1 \le D_{i} \le 1\,000\,000\,000</var> (<var>1 \le i \le N</var>)．</li>
+<li><var>1 \le T_{j} \le 1\,000\,000\,000</var> (<var>1 \le j \le Q</var>)．</li>
+<li><var>1 \le L_{j} \le R_{j} \le 1\,000\,000\,000</var> (<var>1 \le j \le Q</var>)．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<p>There are 3 subtasks. The score and additional constraints of each subtask are as follows:</p>
+<h4>Subtask 1 [<var>7</var> points]</h4>
+<ul>
+<li><var>D_{i} = 1</var> (<var>1 \le i \le N</var>)．</li>
+</ul>
+<h4>Subtask 2 [<var>12</var> points]</h4>
+<ul>
+<li><var>N \le 1\,000</var>．</li>
+<li><var>Q \le 1\,000</var>．</li>
+<li><var>T_{j} \le 1\,000</var> (<var>1 \le j \le Q</var>)．</li>
+<li><var>1 \le L_{j} \le R_{j} \le 1\,000</var> (<var>1 \le j \le Q</var>)．</li>
+</ul>
+<h4>Subtask 3 [<var>81</var> points]</h4>
+<p>There are no additional constraints.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input and Output</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>3 6
+2
+5
+3
+1 2 4
+2 2 4
+3 2 4
+4 2 4
+5 2 4
+6 2 4
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>0
+1
+1
+2
+1
+2
+</pre>
+<p>In this sample input, the contestants and IOI-chan move as follows.</p>
+<p>In the following, interval <var>[L, R]</var> denotes the set of points of coordinate between <var>L</var> and <var>R</var>, inclusive, on the number line.</p>
+<ul>
+<li>At time <var>0</var>, IOI-chan stands at coordinate <var>0</var>. The 1st, 2nd and 3rd contestants stand at coordinates <var>-1, -2</var> and <var>-3</var>, respectively.</li>
+<li>At time 1, IOI-chan moves to coordinate 1. No contestants move; the 1st, 2nd and 3rd contestants stand at coordinates <var>-1, -2</var> and <var>-3</var>, respectively. Since there are no people in interval <var>[2, 4]</var>, output <var>0</var> for the 1st question.</li>
+<li>At time 2, IOI-chan moves to coordinate 2. The distance between IOI-chan and the 1st contestant is now 3, so the 1st contestant moves to coordinate 1. The 1st, 2nd and 3rd contestants stand at coordinates 1, <var>-2</var> and <var>-3</var>, respectively. Since there is only IOI-chan in interval <var>[2, 4]</var>, output 1 for the 2nd question.</li>
+<li>At time 3, IOI-chan moves to coordinate 3. No contestants move; the 1st, 2nd and 3rd contestants stand at coordinates 1, <var>-2</var> and <var>-3</var>, respectively. Since there is only IOI-chan in interval <var>[2, 4]</var>, output 1 for the 3rd question.</li>
+<li>At time 4, IOI-chan moves to coordinate 4. The distance between IOI-chan and the 1st contestant is now 3, so the 1st contestant moves to coordinate 3. The 1st, 2nd and 3rd contestants stand at coordinates 3, <var>-2</var> and <var>-3</var>, respectively. Since there are IOI-chan and the 1st contestant in interval <var>[2, 4]</var>, output 2 for the 4th question.</li>
+<li>At time 5, IOI-chan moves to coordinate 5. No contestants move; the 1st, 2nd and 3rd contestants stand at coordinates 3, <var>-2</var> and <var>-3</var>, respectively. Since there is only the 1st contestant in interval <var>[2, 4]</var>, output 1 for the 5th question.</li>
+<li>At time 6, IOI-chan moves to coordinate 6. The distance between IOI-chan and the 1st contestant is now <var>3</var>, so the 1st contestant moves to coordinate <var>5</var>. Then, the distance between the 1st and 2nd contestants is now <var>7</var>, so the 2nd contestant moves to coordinate <var>4</var>. Furthermore, the distance between the 2st and 3nd contestants is now 7, so the 3nd contestant moves to coordinate 3. The 1st, 2nd and 3rd contestants stand at coordinate 5, 4 and 3, respectively. Since there are the 2nd and 3rd contestants in interval <var>[2, 4]</var>, output 2 for the 6th question.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>4 2
+1
+1
+1
+1
+2 1 4
+1 3 6
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>2
+0
+</pre>
+<p>This sample input satisfies the constraints for subtask 1.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 3</h3>
+<pre>6 6
+11
+36
+28
+80
+98
+66
+36 29 33
+190 171 210
+18 20 100
+1000 900 1100
+92 87 99
+200 100 300
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 3</h3>
+<pre>1
+6
+0
+5
+2
+7
+</pre></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>IOI 2018 の開会式では，<var>N</var> 人の選手が一列に並んで行進する．選手が進む道は数直線としてあらわされる．選手たちは全員，数直線上の正の方向を向いて行進する．最初，前から <var>i</var> 番目 (<var>1 \leqq i \leqq N</var>) の選手は，座標 <var>-i</var> に立っている．座標 <var>0</var> には，旗手の IOI ちゃんが立っている．</p>
+<p>すべての選手には呑気さという値が定まっている．前から <var>i</var> 番目の選手の呑気さは <var>D_{i}</var> である．選手たちは，常に，以下の規則で行動する．</p>
+<ul>
+<li>前から <var>i</var> 番目の選手は，自分の目の前の参加者 (選手または IOI ちゃん) との距離が <var>D_{i} + 1</var> 以上離れたなら，目の前の参加者から距離 <var>1</var> の位置まで進む．そうでないなら，動かない．</li>
+</ul>
+<p>IOI ちゃんは，単位時刻あたり <var>1</var> だけ道の上を正の方向に進む．選手たちは全員，上記の条件が満たされれば即座に進む．</p>
+<p>あなたは，開会式を取材しに来た記者である．あなたは写真を撮らなければならなかったが，開会式の間中ずっと熟睡していた．仕方がないので，あなたは会場の写真を撮り，その写真に参加者の絵を描いて誤魔化すことにした．</p>
+<p>誤魔化したことを明るみに出さないために，また絵を描く手間を見積もるために，あなたは以下の <var>Q</var> 個の値を知っておきたい．</p>
+<ul>
+<li>時刻 <var>T_{j}</var> における，<var>L_{j}</var> 以上 <var>R_{j}</var> 以下の座標に立っている参加者の人数 (<var>1 \leqq j \leqq Q</var>)</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p>各選手の呑気さと，<var>Q</var> 個の質問の情報が与えられるので，それぞれの質問ごとに，条件を満たす参加者の人数を求めるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>標準入力から以下の入力を読み込め．</p>
+<ul>
+<li><var>1</var> 行目には，整数 <var>N, Q</var> が空白を区切りとして書かれている．これらは順に，選手の人数と，質問の個数を表す．選手の人数に IOI ちゃんは含まれないことに注意せよ．</li>
+<li>続く <var>N</var> 行のうちの <var>i</var> 行目 (<var>1 \leqq i \leqq N</var>) には，整数 <var>D_{i}</var> が書かれている．これらは順に，前から <var>i</var> 番目の選手の呑気さを表す．</li>
+<li>続く <var>Q</var> 行のうちの <var>j</var> 行目 (<var>1 \leqq j \leqq Q</var>) には，整数 <var>T_{j}, L_{j}, R_{j}</var> が空白を区切りとして書かれている．これらは <var>j</var> 個目の質問の情報を表す．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に <var>Q</var> 行で出力せよ ．<var>j</var> 行目 (<var>1 \leqq j \leqq Q</var>) には，<var>j</var> 個目の質問の答えを表す整数を出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制限</h3>
+<p>すべての入力データは以下の条件を満たす．</p>
+<ul>
+<li><var>1 \leqq N \leqq 500\,000</var>．</li>
+<li><var>1 \leqq Q \leqq 500\,000</var>．</li>
+<li><var>1 \leqq D_{i} \leqq 1\,000\,000\,000</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>1 \leqq T_{j} \leqq 1\,000\,000\,000</var> (<var>1 \leqq j \leqq Q</var>)．</li>
+<li><var>1 \leqq L_{j} \leqq R_{j} \leqq 1\,000\,000\,000</var> (<var>1 \leqq j \leqq Q</var>)．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<h4>小課題 1 [<var>7</var> 点]</h4>
+<ul>
+<li><var>D_{i} = 1</var> (<var>1 \leqq i \leqq N</var>)．</li>
+</ul>
+<h4>小課題 2 [<var>12</var> 点]</h4>
+<p>以下の条件を満たす．</p>
+<ul>
+<li><var>N \leqq 1\,000</var>．</li>
+<li><var>Q \leqq 1\,000</var>．</li>
+<li><var>T_{j} \leqq 1\,000</var> (<var>1 \leqq j \leqq Q</var>)．</li>
+<li><var>1 \leqq L_{j} \leqq R_{j} \leqq 1\,000</var> (<var>1 \leqq j \leqq Q</var>)．</li>
+</ul>
+<h4>小課題 3 [<var>81</var> 点]</h4>
+<p>追加の制限はない．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入出力例</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>3 6
+2
+5
+3
+1 2 4
+2 2 4
+3 2 4
+4 2 4
+5 2 4
+6 2 4
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>0
+1
+1
+2
+1
+2
+</pre>
+<p>この入力例では，選手と IOI ちゃんは以下のように進む．</p>
+<p>以下では，数直線上において，座標が <var>L</var> 以上 <var>R</var> 以下の点の全体を区間 <var>[L, R]</var> で表す．</p>
+<ul>
+<li>最初，IOI ちゃんは座標 <var>0</var> に，<var>1, 2, 3</var> 番目の選手は座標 <var>-1, -2, -3</var> にいる．</li>
+<li>時刻 <var>1</var> に，IOI ちゃんは座標 <var>1</var> に進む．進む選手はおらず，<var>1, 2, 3</var> 番目の選手は座標 <var>-1, -2, -3</var> にいる．区間 <var>[2, 4]</var> には誰もいないので，<var>1</var> 個目の質問には <var>0</var> を出力する．</li>
+<li>時刻 <var>2</var> に，IOI ちゃんは座標 <var>2</var> に進む．IOI ちゃんと <var>1</var> 番目の選手の間の距離が <var>3</var> になったため，<var>1</var> 番目の選手は座標 <var>1</var> に進む ．<var>1, 2, 3</var> 番目の選手は座標 <var>1, -2, -3</var> にいる．区間 <var>[2, 4]</var> には IOI ちゃんのみがいるので，<var>2</var> 個目の質問には <var>1</var> を出力する．</li>
+<li>時刻 <var>3</var> に，IOI ちゃんは座標 <var>3</var> に進む．進む選手はおらず，<var>1, 2, 3</var> 番目の選手は座標 <var>1, -2, -3</var> にいる．区間 <var>[2, 4]</var> には IOI ちゃんのみがいるので，<var>3</var> 個目の質問には <var>1</var> を出力する．</li>
+<li>時刻 <var>4</var> に，IOI ちゃんは座標 <var>4</var> に進む．IOI ちゃんと <var>1</var> 番目の選手の間の距離が <var>3</var> になったため，<var>1</var> 番目の選手は座標 <var>3</var> に進む ．<var>1, 2, 3</var> 番目の選手は座標 <var>3, -2, -3</var> にいる．区間 <var>[2, 4]</var> には IOI ちゃんと <var>1</var> 番目の選手がいるので，<var>4</var> 個目の質問には <var>2</var> を出力する．</li>
+<li>時刻 <var>5</var> に，IOI ちゃんは座標 <var>5</var> に進む．進む選手はおらず，<var>1, 2, 3</var> 番目の選手は座標 <var>3, -2, -3</var> にいる．区間 <var>[2, 4]</var> には <var>1</var> 番目の選手のみがいるので，<var>5</var> 個目の質問には <var>1</var> を出力する．</li>
+<li>時刻 <var>6</var> に，IOI ちゃんは座標 <var>6</var> に進む．IOI ちゃんと <var>1</var> 番目の選手の間の距離が <var>3</var> になったため，<var>1</var> 番目の選手は座標 <var>5</var> に進む．さらに，<var>1</var> 番目の選手と <var>2</var> 番目の選手の間の距離が <var>7</var> になったため，<var>2</var> 番目の選手は座標 <var>4</var> に進む．さらに，<var>2</var> 番目の選手と <var>3</var> 番目の選手の間の距離が <var>7</var> になったため，<var>3</var> 番目の選手は座標 <var>3</var> に進む ．<var>1, 2, 3</var> 番目の選手は座標 <var>5, 4, 3</var> にいる．区間 <var>[2, 4]</var> には <var>2</var> 番目の選手と <var>3</var> 番目の選手がいるので，<var>6</var> 個目の質問には <var>2</var> を出力する．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>4 2
+1
+1
+1
+1
+2 1 4
+1 3 6
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>2
+0
+</pre>
+<p>この入力例は，小課題 <var>1</var> の条件を満たす．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>6 6
+11
+36
+28
+80
+98
+66
+36 29 33
+190 171 210
+18 20 100
+1000 900 1100
+92 87 99
+200 100 300
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>1
+6
+0
+5
+2
+7
+</pre></section>
+</div>
+</span>
+</span>

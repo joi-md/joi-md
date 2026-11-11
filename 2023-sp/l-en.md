@@ -2,7 +2,7 @@ Score: $100$ points
 
 ### Problem Statement
 
-There is a very long road in JOI City, which can be considered as the real number line. A position on the road is represented by a real number coordinate. In JOI City, there are $N$ sightseeing spots along the road, numbered from $1$ to $N$ in ascending order of the coordinates. The coordinate of the $i$-th sightseeing spot ($1 \leq i \leq N$) is $X_i$.
+There is a very long road in JOI City, which can be considered as the real number line. A position on the road is represented by a real number coordinate. In JOI City, there are $N$ sightseeing spots along the road, numbered from $1$ to $N$ in ascending order of the coordinates. The coordinate of the $i$-th sightseeing spot ($1 \le i \le N$) is $X_i$.
 
 Bitaro will visit all the sightseeing spots in JOI City. Since “greedy” is the slogan of his life, he will repeat the following procedures until he visits all the sightseeing spots.
 
@@ -30,22 +30,22 @@ $S_Q$
 
 ### Output
 
-Write $Q$ lines to the standard output. The $j$-th line ($1 \leq j \leq Q$) of output should contain the total traveling distance if Bitaro starts from the coordinate $S_j$.
+Write $Q$ lines to the standard output. The $j$-th line ($1 \le j \le Q$) of output should contain the total traveling distance if Bitaro starts from the coordinate $S_j$.
 
 ### Constraints
 
-- $1 \leq N \leq 200\,000$.
-- $1 \leq Q \leq 200\,000$.
-- $0 \leq X_i \leq 10^9$ ($1 \leq i \leq N$).
-- $X_i < X_{i+1}$ ($1 \leq i \leq N - 1$).
-- $0 \leq S_j \leq 10^9$ ($1 \leq j \leq Q$).
+- $1 \le N \le 200\,000$.
+- $1 \le Q \le 200\,000$.
+- $0 \le X_i \le 10^9$ ($1 \le i \le N$).
+- $X_i < X_{i+1}$ ($1 \le i \le N - 1$).
+- $0 \le S_j \le 10^9$ ($1 \le j \le Q$).
 - Given values are all integers.
 
 ### Subtasks
 
-1. ($5$ points) $Q = 1$, $N \leq 2\,000$.
+1. ($5$ points) $Q = 1$, $N \le 2\,000$.
 2. ($10$ points) $Q = 1$.
-3. ($30$ points) $X_{i+1} - X_i \leq 100$ ($1 \leq i \leq N - 1$).
+3. ($30$ points) $X_{i+1} - X_i \le 100$ ($1 \le i \le N - 1$).
 4. ($55$ points) No additional constraints.
 
 ---

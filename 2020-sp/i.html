@@ -1,0 +1,436 @@
+<span class="lang">
+<span class="lang-en">
+<blockquote>
+<p><strong>Submission on AtCoder</strong></p>
+<p>Include <code>stray.h</code> and implement all functions in a single source file. Do not share global variables between the two sides. This judge supports C++ only.</p>
+<p><a href="https://img.atcoder.jp/joisc2020/stray-dist-c61f1a807a.zip">Distributed files</a></p>
+</blockquote>
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>Anthony is an ant living in JOI City. There are <var>N</var> towns in JOI City, numbered from 0 to <var>N - 1</var>. Anthony lives in the town 0. There are <var>M</var> roads, numbered from 0 to <var>M - 1</var>. The road <var>i</var> (<var>0 \le i \le M - 1</var>) connects the town <var>U_{i}</var> and the town <var>V_{i}</var>, and it is possible to pass through it in both directions. Different roads connect different pairs of towns. It is possible to travel from any town to any other town by passing through several roads.</p>
+<p>Catherine is a cat who is a friend of Anthony. She is planning to visit JOI City, but she does not know the information of the roads and she often strays. Anthony decided to put marks on the roads in advance. There are <var>A</var> types for marks, numbered from 0 to <var>A - 1</var>.</p>
+<p>Now Catherine arrived at a town in JOI City. Whenever she is in a town other than the town 0, she does the following:</p>
+<blockquote>
+<p>For each type of marks, she can count the number of roads of that type going from her current town, except for the road which she passed lastly (if such a road exists).</p>
+</blockquote>
+<p>After that, she chooses a road to pass. Note that except for the road which she passed lastly, she can distinguish the road only by types of marks. Choosing roads suitably, she wants to arrive at the town <var>0</var> without taking much time. More precisely, the minimum number of roads to pass to travel from her first town to the town 0 is <var>d</var>, she wants to arrive at the town 0 by choosing roads at most <var>d + B</var> times.</p>
+<p>Write a program which, given the information of the roads, implements Anthony’s strategy to put marks on the roads, and a program which implements Catherine’s strategy to choose roads.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Implementation Details</h3>
+<p>You need to submit two files.</p>
+<p>The first file is <code>Anthony.cpp</code>. It implements Anthony’s strategy and it should implement the following function. The program should include <code>Anthony.h</code>.</p>
+<ul>
+<li><code>std::vector&lt;int&gt; Mark(int N, int M, int A, int B, std::vector&lt;int&gt; U, std::vector&lt;int&gt; V)</code>
+    This function is called exactly once in the beginning.<ul>
+<li>The parameter <code>N</code> is the number of towns <var>N</var>.</li>
+<li>The parameter <code>M</code> is the number of roads <var>M</var>.</li>
+<li>The parameter <code>A</code> is the number of types of marks <var>A</var>.</li>
+<li>The parameter <code>B</code> is the margin for the number of times Catherine can choose roads.</li>
+<li>The parameters <code>U</code> and <code>V</code> are arrays of length <var>M</var>, where <code>U[i]</code> and <code>V[i]</code> are the towns <var>U_{i}</var> and <var>V_{i}</var> connected by the road <var>i</var> (<var>0 \le i \le M - 1</var>).</li>
+<li>The return value <code>x</code> should be an array of length <var>M</var>. If the length is different from <var>M</var>, your program is judged as Wrong Answer [1]. The value <code>x[i]</code> (<var>0 \le i \le M - 1</var>) represents the mark put on the road <var>i</var>. The inequality <var>0 \le \texttt{x[i]} \le A - 1</var> should be satisfied. If <var>0 \le \texttt{x[i]} \le A - 1</var> is not satisfied, your program is judged as Wrong Answer [2].</li>
+</ul>
+</li>
+</ul>
+<p>The second file is <code>Catherine.cpp</code>. It implements Catherine’s strategy and it should implement the following function. The program should include <code>Catherine.h</code>.</p>
+<ul>
+<li><code>void Init(int A, int B)</code>
+    This function is called exactly once in the beginning.<ul>
+<li>The parameter <code>A</code> is the number of types of marks <var>A</var>.</li>
+<li>The parameter <code>B</code> is the margin for the number of times Catherine can choose roads.</li>
+</ul>
+</li>
+<li><code>int Move(std::vector&lt;int&gt; y)</code>
+    This function is called whenever Catherine arrives at a town different from the town 0.<ul>
+<li>The parameter <code>y</code> is an array of length <var>A</var> such that <code>y[j]</code> is the number of roads from her current town whose mark is <var>j</var> (<var>0 \le j \le A - 1</var>), except for the road she passed lastly (if such a road exists).</li>
+<li>The return value <code>z</code> should satisfy <var>-1 \le \texttt{z} \le A - 1</var>. If <var>-1 \le \texttt{z} \le A - 1</var> is not satisfied, your program is judged as Wrong Answer [3]. If <var>\texttt{z} = -1</var>, she turns back choosing the road she passed lastly. If <var>0 \le \texttt{z} \le A - 1</var>, she chooses a road whose mark is <code>z</code>. When the function <code>Move</code> is called for the first time, if <var>\texttt{z} = -1</var>, then your program is judged as Wrong Answer [4]. If <var>0 \le \texttt{z} \le A - 1</var> and <var>\texttt{y}[z] = 0</var>, your program is judged as Wrong Answer [5].</li>
+</ul>
+</li>
+</ul>
+<p>If Catherine chooses a road which is different from the road she passed lastly, the road she will actually pass will be one of the road whose mark is specified by the return value of the function <code>Move</code>. Note that this choice may not be made at random.</p>
+<p>If Catherine does not arrive at the town 0 after she passes roads <var>d + B</var> times (i.e., if the function <code>Move</code> is called <var>d + B</var> times), your program is judged as Wrong Answer [6].</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Important Notices</h3>
+<ul>
+<li>
+<p>Your program can implement other functions for internal use, or use global variables. Submitted files will be compiled with the grader, and become a single executable file. All global variables and internal functions should be declared in an unnamed namespace to avoid confliction with other files. When it is graded, it will be executed as two processes of Anthony and Catherine. The process of Anthony and the process of Catherine cannot share global variables.</p>
+</li>
+<li>
+<p>Your program must not use the standard input and the standard output. Your program must not communicate with other files by any methods. However, your program may output debugging information to the standard error.</p>
+</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Compilation and Test Run</h3>
+<p>You can download an archive file from the contest webpage which contains the sample grader to test your program. The archive file also contains a sample source file of your program.</p>
+<p>The sample grader is the file <code>grader.cpp</code>. In order to test your program, put <code>grader.cpp</code>, <code>Anthony.cpp</code>, <code>Catherine.cpp</code>, <code>Anthony.h</code>, <code>Catherine.h</code> in the same directory, and run the following command to compile your programs.</p>
+<pre>g++ -std=gnu++14 -O2 -o grader grader.cpp Anthony.cpp Catherine.cpp
+</pre>
+<p>When the compilation succeeds, the executable file <code>grader</code> is generated.</p>
+<p>Note that the actual grader is different from the sample grader. The sample grader will be executed as a single process, which will read input data from the standard input and write the results to the standard output.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Input for the Sample Grader</h3>
+<p>The sample grader reads the following data from the standard input.</p>
+<pre><var>N</var> <var>M</var> <var>A</var> <var>B</var> <var>S</var>
+<var>U_{0}</var> <var>V_{0}</var>
+<var>\vdots</var>
+<var>U_{M - 1}</var> <var>V_{M - 1}</var>
+</pre>
+<p>Here <var>S</var> is the index of the town where Catherine arrived at first.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Output of the Sample Grader</h3>
+<p>When the program terminates successfully, the sample grader writes the following information to the standard output (quotes for clarity).</p>
+<ul>
+<li>If your program is judged as Wrong Answer <var>[1], [2], [3], [4]</var> or <var>[5]</var>, it writes its type as “<code>Wrong Answer [1]</code>”.</li>
+<li>If Catherine does not arrive at the town 0 after <var>N + B</var> moves, it writes “<code>Wrong Answer; Number of moves &gt; N + B</code>”.</li>
+<li>Otherwise, it writes the number of moves (the number of calls to the function <code>Move</code>) as “<code>Number of moves = 4</code>”. Note that it does not judge whether it is correct or Wrong Answer [6].</li>
+</ul>
+<p>If your program is judged as several types of Wrong Answer, the sample grader reports only one of them. In the sample grader, when Catherine chooses a road which is different from the road she passed lastly, the road she will actually pass is chosen uniformly at random among the roads with the mark specified by the return value of the function <code>Move</code>, using pseudorandom numbers with a fixed seed. In order to run the program with a different seed, execute the grader as follows:</p>
+<pre>./grader 2020
+</pre>
+<p>Here the first argument is an integer which is the seed of the pseudorandom numbers.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li><var>2 \le N \le 20\,000</var>.</li>
+<li><var>1 \le M \le 20\,000</var>.</li>
+<li><var>1 \le S \le N - 1</var> (<var>S</var> is the number of the town where Catherine arrived at first).</li>
+<li><var>0 \le U_{i} &lt; V_{i} \le N - 1</var> (<var>0 \le i \le M - 1</var>).</li>
+<li><var>(U_{i}, V_{i}) \ne (U_{j}, V_{j})</var> (<var>0 \le i &lt; j \le M - 1</var>).</li>
+<li>It is possible to travel from any town to any other town by passing through several roads.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li>(<var>2</var> points) <var>A = 4</var>, <var>B = 0</var>, <var>M = N - 1</var>.</li>
+<li>(<var>2</var> points) <var>A = 4</var>, <var>B = 0</var>.</li>
+<li>(<var>2</var> points) <var>A = 3</var>, <var>B = 0</var>, <var>M = N - 1</var>.</li>
+<li>(<var>9</var> points) <var>A = 3</var>, <var>B = 0</var>.</li>
+<li>(<var>5</var> points) <var>A = 2</var>, <var>B = 2N</var>, <var>M = N - 1</var>, <var>6 \le N \le 500</var>.</li>
+<li>(<var>71</var> points) <var>A = 2</var>, <var>B = 12</var>, <var>M = N - 1</var>.</li>
+<li>(<var>9</var> points) <var>A = 2</var>, <var>B = 6</var>, <var>M = N - 1</var>.</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Communication</h3>
+<p>Here is a sample input for the sample grader and corresponding function calls.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>7 6 2 6 1
+0 2
+0 4
+1 2
+1 3
+1 5
+4 6
+</pre>
+<h4>Sample Function Calls</h4>
+<div class="joisc2020-stray-en-table">
+<table>
+<tr>
+<th colspan="2">Anthony</th>
+<th colspan="2">Catherine</th>
+</tr>
+<tr>
+<th>Call</th>
+<th>Return</th>
+<th>Call</th>
+<th>Return</th>
+</tr>
+<tr>
+<td><code>Mark(7,6,2,6,[0,0,1,1,1,4],[2,4,2,3,5,6])</code></td>
+<td><code>[1,0,0,1,0,1]</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>Init(2,6)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>Move([2,1])</code></td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>Move([0,0])</code></td>
+<td><code>-1</code></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>Move([1,1])</code></td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>Move([0,1])</code></td>
+<td><code>1</code></td>
+</tr>
+</table>
+</div>
+<p>In this sample communication, Catherine visits the town 1, 5, 1, 2, 0, in this order. We have <var>d = 2</var>. Catherine moves 4 times.</p>
+<p>This sample input satisfies the constraints for Subtask 7.</p>
+<p>Among the files you can download from the contest site, <code>sample-02.txt</code> satisfies the constraints for Subtask <var>4</var>.</p>
+<style>
+.joisc2020-stray-en-table { position:relative;max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisc2020-stray-en-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisc2020-stray-en-table th,.joisc2020-stray-en-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisc2020-stray-en-table th { background:#f5f5f5; }
+.joisc2020-stray-en-table code { white-space:nowrap; }
+</style></section>
+</div>
+</span>
+<span class="lang-ja">
+<blockquote>
+<p><strong>AtCoder での提出方法</strong></p>
+<p><code>stray.h</code> をインクルードし，すべての関数を 1 つのファイル内で実装して提出してください．グローバル変数を両者の間で共有しないでください．このジャッジは C++ のみに対応しています．</p>
+<p><a href="https://img.atcoder.jp/joisc2020/stray-dist-c61f1a807a.zip">配布ファイル</a></p>
+</blockquote>
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>蟻の Anthony が住む JOI 市には <var>N</var> 個の町があり，<var>0</var> から <var>N - 1</var> までの番号が付いている．Anthony の家は町 <var>0</var> にある．また，<var>M</var> 本の道があり，<var>0</var> から <var>M - 1</var> までの番号が付いている．道 <var>i</var> (<var>0 \leqq i \leqq M - 1</var>) は町 <var>U_{i}</var> と町 <var>V_{i}</var> を双方向に結んでいる．複数の道が同じ町の組を結んでいることはない．どの町からどの町へも，いくつかの道を通ることで移動することができる．</p>
+<p>Anthony の友達である，猫の Catherine が JOI 市に遊びに来ることになった．Catherine は道の情報を知らない上にすぐ道に迷ってしまうので，Anthony はあらかじめ道に印を付けておくことにした．Anthony は <var>A</var> 種類の印を付けることができ，<var>0</var> から <var>A - 1</var> までの番号が付いている．</p>
+<p>さて，Catherine は JOI 市のどこかの町に辿り着いた．Catherine は町 <var>0</var> 以外の町にいるとき，</p>
+<blockquote>
+<p>直前に通った道 (存在すれば) 以外に，今いる町にどの印が付いている道が何本出ているか</p>
+</blockquote>
+<p>を把握でき，次にどの道を進むか選ぶことができる．直前に通った道以外は，付いている印の種類でしか区別できない．進む道を上手く選んでいくことで，町 <var>0</var> にあまり時間をかけずに到着したい．具体的には，初めに着いた町から町 <var>0</var> まで行くために通る必要がある道の個数の最小値を <var>d</var> とするとき．道を高々 <var>d + B</var> 回進んで町 <var>0</var> に到着したい．</p>
+<p>道の情報が与えられたとき，道に印を付ける Anthony の戦略を実装したプログラムおよび，把握した情報が与えられたとき，進む道を選んでいく Catherine の戦略を実装したプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>実装の詳細</h3>
+<p>あなたは <var>2</var> つのファイルを提出しなければならない．</p>
+<p><var>1</var> つ目のファイルは <code>Anthony.cpp</code> という名前である．このファイルは Anthony の行動を実装したファイルであり，以下の関数を実装していなければならない．そのファイルは <code>Anthony.h</code> をインクルードすること．</p>
+<ul>
+<li><code>std::vector&lt;int&gt; Mark(int N, int M, int A, int B, std::vector&lt;int&gt; U, std::vector&lt;int&gt; V)</code>
+    この関数は，最初に <var>1</var> 回だけ実行される．<ul>
+<li>引数 <code>N</code> は，町の個数 <var>N</var> である．</li>
+<li>引数 <code>M</code> は，道の本数 <var>M</var> である．</li>
+<li>引数 <code>A</code> は，印の種類数 <var>A</var> である．</li>
+<li>引数 <code>B</code> は，道を進む回数の猶予を表す値 <var>B</var> である．</li>
+<li>引数 <code>U</code>, <code>V</code> は，長さ <var>M</var> の配列であり，<code>U[i]</code>，<code>V[i]</code> は道 <var>i</var> が結んでいる町 <var>U_{i}, V_{i}</var> を表す (<var>0 \leqq i \leqq M - 1</var>)．</li>
+<li>戻り値 <code>x</code> は，長さ <var>M</var> の配列でなければならない．長さが <var>M</var> でない場合，不正解 <var>[1]</var> と判定される．<code>x[i]</code> (<var>0 \leqq i \leqq M - 1</var>) は，道 <var>i</var> に付ける印を表す ．<var>0 \leqq \texttt{x[i]} \leqq A - 1</var> でなければならない． <var>0 \leqq \texttt{x[i]} \leqq A - 1</var> でない場合，不正解 <var>[2]</var> と判定される．</li>
+</ul>
+</li>
+</ul>
+<p><var>2</var> つ目のファイルは <code>Catherine.cpp</code> という名前である．このファイルは Catherine の行動を実装したファイルであり，以下の関数を実装していなければならない．そのファイルは <code>Catherine.h</code> をインクルードすること．</p>
+<ul>
+<li><code>void Init(int A, int B)</code>
+    この関数は，最初に <var>1</var> 回だけ実行される．<ul>
+<li>引数 <code>A</code> は，印の種類数 <var>A</var> である．</li>
+<li>引数 <code>B</code> は，道を進む回数の猶予を表す値 <var>B</var> である．</li>
+</ul>
+</li>
+<li><code>int Move(std::vector&lt;int&gt; y)</code>
+    この関数は，Catherine が町 <var>0</var> 以外の町に着くたびに実行される．<ul>
+<li>引数 <code>y</code> は，長さ <var>A</var> の配列であり，Catherine が今いる町から出ている道のうち，直前に通った道 (存在すれば) 以外に，印 <var>j</var> (<var>0 \leqq j \leqq A - 1</var>) がついている道が <code>y[j]</code> 本あることを表す．</li>
+<li>戻り値 <code>z</code> は，<var>-1 \leqq \texttt{z} \leqq A - 1</var> でなければならない ．<var>-1 \leqq \texttt{z} \leqq A - 1</var> でない場合，不正解 <var>[3]</var> と判定される．<var>\texttt{z} = -1</var> は直前に通った道を引き返すことを表し，<var>0 \leqq \texttt{z} \leqq A - 1</var> は直前に通った道以外の印 <code>z</code> が付いた道を進むことを表す．関数 <code>Move</code> が初めて呼び出されたときに <var>\texttt{z} = -1</var> である場合，不正解 <var>[4]</var> と判定される ．<var>0 \leqq \texttt{z} \leqq A - 1</var> かつ <var>\texttt{y}[z] = 0</var> である場合，不正解 <var>[5]</var> と判定される．</li>
+</ul>
+</li>
+</ul>
+<p>Catherine がある町から直前に通った道以外を進むとき，実際に進む道は，関数 <code>Move</code> の戻り値で指定された印が付いた道のうち <var>1</var> 本が採点プログラムによって選ばれる．この選択は無作為とは限らない．</p>
+<p>Catherine が道を <var>d + B</var> 回進んだ (すなわち，関数 <code>Move</code> が <var>d + B</var> 回実行された) 時点で町 <var>0</var> に到着していない場合，不正解 <var>[6]</var> と判定される．</p>
+<h4>重要な注意</h4>
+<ul>
+<li>内部での使用のために他の関数を実装したり，グローバル変数を宣言するのは自由である．ただし，提出された <var>2</var> つのプログラムは，採点プログラムとまとめてリンクされて <var>1</var> つの実行ファイルになるので，各ファイル内のすべてのグローバル変数と内部関数を無名名前空間内で宣言して，他のファイルとの干渉を避ける必要がある．採点時には，このプログラムは Anthony 側，Catherine 側として <var>2</var> 個のプロセスとして実行されるので，Anthony 側と Catherine 側でプログラム中のグローバル変数を共有することはできない．</li>
+<li>あなたの提出したプログラムは，標準入力・標準出力，あるいは他のファイルといかなる方法でもやりとりしてはならない．ただし，標準エラー出力にデバッグ情報等を出力することは許される．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>コンパイル・実行の方法</h3>
+<p>作成したプログラムをテストするための，採点プログラムのサンプルが，コンテストサイトからダウンロードできるアーカイブの中に含まれている．このアーカイブには，提出しなければならないファイルのサンプルも含まれている．</p>
+<p>採点プログラムのサンプルは <var>1</var> つのファイルからなる. そのファイルは <code>grader.cpp</code> である．作成したプログラムをテストするには，<code>grader.cpp</code>, <code>Anthony.cpp</code>, <code>Catherine.cpp</code>, <code>Anthony.h</code>, <code>Catherine.h</code> を同じディレクトリに置き，次のようにコマンドを実行する．</p>
+<pre>g++ -std=gnu++14 -O2 -o grader grader.cpp Anthony.cpp Catherine.cpp
+</pre>
+<p>コンパイルが成功すれば，<code>grader</code> という実行ファイルが生成される．</p>
+<p>実際の採点プログラムは，採点プログラムのサンプルとは異なることに注意すること．採点プログラムのサンプルは単一のプロセスとして起動する．このプログラムは，標準入力から入力を読み込み，標準出力に結果を出力する．</p>
+<h4>採点プログラムのサンプルの入力</h4>
+<p>採点プログラムのサンプルは標準入力から以下の形式で入力を読み込む．</p>
+<pre><var>N</var> <var>M</var> <var>A</var> <var>B</var> <var>S</var>
+<var>U_{0}</var> <var>V_{0}</var>
+<var>\vdots</var>
+<var>U_{M - 1}</var> <var>V_{M - 1}</var>
+</pre>
+<p><var>S</var> は Catherine が最初に着いた町の番号を表す．</p>
+<h4>採点プログラムのサンプルの出力</h4>
+<p>採点プログラムのサンプルは標準出力へ以下の情報を出力する (引用符は実際には出力されない)．</p>
+<ul>
+<li>不正解 <var>[1], [2], [3], [4], [5]</var> のいずれかの場合，不正解の種類が “<code>Wrong Answer [1]</code>” のように出力される．</li>
+<li>
+<p><var>N + B</var> 回の移動で町 <var>0</var> に到着していない場合，“<code>Wrong Answer; Number of moves &gt; N + B</code>” と出力される．</p>
+</li>
+<li>
+<p>その他の場合，移動回数 (関数 <code>Move</code> の呼び出し回数) が “<code>Number of moves = 4</code>” のように出力される．正解か不正解 <var>[6]</var> かは判定されないことに注意せよ．</p>
+</li>
+</ul>
+<p>実行するプログラムが複数の不正解の条件を満たした場合，表示される不正解の種類はそれらのうち <var>1</var> つのみである．</p>
+<p>採点プログラムのサンプルにおいては，Catherine がある町から直前に通った道以外を進むとき，実際に進む道は，関数 <code>Move</code> の戻り値で指定された印が付いた道のうち <var>1</var> 本が，実行ごとに結果が変わらない疑似乱数を用いて一様に無作為に選ばれる．シードの値を変更したい場合は，</p>
+<pre>./grader 2020
+</pre>
+<p>のように <var>1</var> 個目の引数に整数値を与えて実行せよ．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>2 \leqq N \leqq 20\,000</var>．</li>
+<li><var>1 \leqq M \leqq 20\,000</var>．</li>
+<li><var>1 \leqq S \leqq N - 1</var> (<var>S</var> は Catherine が最初に着いた町の番号を表す)．</li>
+<li><var>0 \leqq U_{i} &lt; V_{i} \leqq N - 1</var> (<var>0 \leqq i \leqq M - 1</var>)．</li>
+<li><var>(U_{i}, V_{i}) \ne (U_{j}, V_{j})</var> (<var>0 \leqq i &lt; j \leqq M - 1</var>)．</li>
+<li>どの町からどの町へも，いくつかの道を通ることで移動することができる．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>2</var> 点) <var>A = 4</var>，<var>B = 0</var>，<var>M = N - 1</var>．</li>
+<li>(<var>2</var> 点) <var>A = 4</var>，<var>B = 0</var>．</li>
+<li>(<var>2</var> 点) <var>A = 3</var>，<var>B = 0</var>，<var>M = N - 1</var>．</li>
+<li>(<var>9</var> 点) <var>A = 3</var>，<var>B = 0</var>．</li>
+<li>(<var>5</var> 点) <var>A = 2</var>，<var>B = 2N</var>，<var>M = N - 1</var>，<var>6 \leqq N \leqq 500</var>．</li>
+<li>(<var>71</var> 点) <var>A = 2</var>，<var>B = 12</var>，<var>M = N - 1</var>．</li>
+<li>(<var>9</var> 点) <var>A = 2</var>，<var>B = 6</var>，<var>M = N - 1</var>．</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>やりとりの例</h3>
+<p>採点プログラムのサンプルが読み込む入力の例と，それに対応する関数の呼び出しの例を以下に示す．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>7 6 2 6 1
+0 2
+0 4
+1 2
+1 3
+1 5
+4 6
+</pre>
+<h4>関数の呼び出しの例</h4>
+<div class="joisc2020-stray-ja-table">
+<table>
+<tr>
+<th colspan="2">Anthony</th>
+<th colspan="2">Catherine</th>
+</tr>
+<tr>
+<th>呼び出し</th>
+<th>戻り値</th>
+<th>呼び出し</th>
+<th>戻り値</th>
+</tr>
+<tr>
+<td><code>Mark(7,6,2,6,[0,0,1,1,1,4],[2,4,2,3,5,6])</code></td>
+<td><code>[1,0,0,1,0,1]</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>Init(2,6)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>Move([2,1])</code></td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>Move([0,0])</code></td>
+<td><code>-1</code></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>Move([1,1])</code></td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>Move([0,1])</code></td>
+<td><code>1</code></td>
+</tr>
+</table>
+</div>
+<p>この例では，Catherine は町 <var>1</var>，町 <var>5</var>，町 <var>1</var>，町 <var>2</var>，町 <var>0</var> の順に移動している ．<var>d = 2</var> であり，移動回数は <var>4</var> である．</p>
+<p>この入力例は小課題 <var>7</var> の制約を満たす．</p>
+<p>コンテストサイトからダウンロードできるファイルのうち，<code>sample-02.txt</code> は小課題 <var>4</var> の制約を満たす．</p>
+<style>
+.joisc2020-stray-ja-table { position:relative;max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisc2020-stray-ja-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisc2020-stray-ja-table th,.joisc2020-stray-ja-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisc2020-stray-ja-table th { background:#f5f5f5; white-space:nowrap; }
+.joisc2020-stray-ja-table code { white-space:nowrap; }
+</style></section>
+</div>
+</span>
+</span>

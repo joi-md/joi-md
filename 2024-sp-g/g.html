@@ -1,0 +1,339 @@
+<span class="lang">
+<span class="lang-ja">
+<blockquote>
+<p><strong>AtCoder での提出方法</strong></p>
+<p>配布ファイルは <a href="https://img.atcoder.jp/joisp2024/island-dist-d4bce4dc5d.zip">こちら</a>．</p>
+<h4>C++ を使用する場合</h4>
+<p><code>island.h</code> を include し，関数 <code>solve</code> を実装したソースコードを提出すること．</p>
+<details>
+<summary style="display:list-item;cursor:pointer;"><strong>その他の言語を使用する場合</strong></summary>
+<p><code>solve</code> の呼び出しに相当する入力が，以下の形式で与えられる．</p>
+<pre><var>N</var> <var>L</var>
+</pre>
+<p>終了時に，<code>0 0</code> を <var>1</var> 行で出力すること．</p>
+<p><code>query(v, k)</code> の呼び出しに相当する出力は，以下の形式で行うこと．</p>
+<pre><var>v</var> <var>k</var>
+</pre>
+<p>その後，<code>query</code> の戻り値が <var>1</var> 行で与えられる．</p>
+<p><code>answer(x, y)</code> の呼び出しに相当する出力は，<var>x &lt; y</var> として，以下の形式で行うこと．</p>
+<pre><var>-x</var> <var>y</var>
+</pre>
+<p>その後，<code>0</code> が <var>1</var> 行で与えられる．</p>
+<ul>
+<li><strong>各出力の後には必ず flush をすること．</strong></li>
+<li>出力の形式が正しくない場合や不正解の条件に当てはまった場合，与えられる入力は <code>-1</code> になる．この場合，ただちにプログラムを終了すること．</li>
+</ul>
+</details>
+</blockquote>
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>JOI 国には <var>N</var> 個の島があり，<var>1</var> から <var>N</var> までの番号が付けられている．また，JOI 国には <var>N - 1</var> 本の航路があり，<var>1</var> から <var>N - 1</var> までの番号が付けられている．航路 <var>j</var> (<var>1 \leqq j \leqq N - 1</var>) は島 <var>A_j</var> と島 <var>B_j</var> を双方向に結んでいる．どの島からどの島へも，いくつかの航路を乗り継ぐことで移動できる．</p>
+<p>葵は JOI 国での旅行を計画している．しかし，葵は JOI 国の航路について知らない．そこで，JOI 国に住んでいるビ太郎と以下のようなやりとりを行うことにした．</p>
+<ol>
+<li>葵は <var>1</var> 以上 <var>N</var> 以下の整数 <var>v</var> と <var>1</var> 以上 <var>N - 1</var> 以下の整数 <var>k</var> をビ太郎に伝える．</li>
+<li>ビ太郎は島 <var>v</var> 以外の <var>N - 1</var> 個の島のうち，島 <var>v</var> から <var>k</var> 番目に近い島の番号を葵に伝える．具体的には，整数 <var>i</var> (<var>1 \leqq i \leqq N</var>，<var>i \neq v</var>) について <var>\operatorname{dist}(v, i)</var> を島 <var>v</var> から島 <var>i</var> に移動する際に必要な航路の数の最小値としたとき，ビ太郎は <var>\operatorname{dist}(v, i) \times N + i</var> が <var>k</var> 番目に小さくなるような整数 <var>i</var> を葵に伝える．</li>
+</ol>
+<p>葵はビ太郎とのやりとりを通じて，どの島とどの島を結ぶ航路があるのかを知りたい．しかし，葵は忙しいので，ビ太郎とのやりとりを <var>L</var> 回までしかできない．</p>
+<p>JOI 国の島の数とビ太郎とのやりとりをできる回数が与えられたとき，どの島とどの島を結ぶ航路があるのかを求める葵の戦略を実装したプログラムを作成せよ．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>実装の詳細</h3>
+<p>あなたは <var>1</var> つのファイルを提出しなければならない．</p>
+<p>あなたの提出するファイルは <code>island.cpp</code> という名前である．<code>island.cpp</code> は <code>#include</code> プリプロセッサ指令によって <code>island.h</code> を読み込み，以下の関数を実装していなければならない．</p>
+<ul>
+<li><code>void solve(int N, int L)</code>
+    この関数は各テストケースにおいて <var>1</var> 回だけ呼び出される．<ul>
+<li>引数 <code>N</code> は JOI 国の島の数 <var>N</var> である．</li>
+<li>引数 <code>L</code> は葵がビ太郎とのやりとりをできる回数 <var>L</var> である．</li>
+</ul>
+</li>
+</ul>
+<p><code>island.cpp</code> 内では以下の関数を呼び出すことができる．</p>
+<ul>
+<li><code>int query(int v, int k)</code>
+    この関数を用いて，ビ太郎に質問を行う．<ul>
+<li>引数 <code>v</code> は，<var>1</var> 以上 <var>N</var> 以下でなければならない．これが満たされていない場合，不正解 [1] と判定される．</li>
+<li>引数 <code>k</code> は，<var>1</var> 以上 <var>N - 1</var> 以下でなければならない．これが満たされていない場合，不正解 [2] と判定される．</li>
+<li>戻り値は，島 <var>v</var> 以外の <var>N - 1</var> 個の島のうち，島 <var>v</var> から <var>k</var> 番目に近い島の番号である．より正確な定義については，問題文を参照せよ．</li>
+<li>関数 <code>query</code> を <var>L</var> 回を超えて呼び出してはならない．<var>L</var> 回を超えて呼び出した場合，不正解 [3] と判定される．</li>
+</ul>
+</li>
+<li><code>void answer(int x, int y)</code>
+    この関数を用いて，JOI 国の航路の情報を解答する．<ul>
+<li>引数 <code>x</code> と引数 <code>y</code> は，ある航路が結ぶ <var>2</var> つの島の番号である．</li>
+<li>引数 <code>x</code> と引数 <code>y</code> は，<var>1</var> 以上 <var>N</var> 以下でなければならない．これが満たされていない場合，不正解 [4] と判定される．</li>
+<li>島 <var>x</var> と島 <var>y</var> を結ぶ航路が存在しなければならない．すなわち，<var>x = A_j</var>，<var>y = B_j</var> もしくは <var>x = B_j</var>，<var>y = A_j</var> となる整数 <var>j</var> (<var>1 \leqq j \leqq N - 1</var>) が存在しなければならない．これが満たされていない場合，不正解 [5] と判定される．</li>
+<li>同じ航路の情報を累計で <var>2</var> 回以上解答してはならない．これが満たされていない場合，不正解 [6] と判定される．</li>
+<li>関数 <code>answer</code> はちょうど <var>N - 1</var> 回呼び出される必要がある．関数 <code>solve</code> の実行の終了時に関数 <code>answer</code> の呼び出し回数が <var>N - 1</var> 回でなかった場合，不正解 [7] と判定される．</li>
+</ul>
+</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>重要な注意</h3>
+<ul>
+<li>内部での使用のために他の関数を実装したり，グローバル変数を宣言することは自由に行える．</li>
+<li>あなたの提出したプログラムは，標準入力・標準出力，あるいは他のファイルといかなる方法でもやりとりしてはならない．ただし，標準エラー出力にデバッグ情報等を出力することは許される．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>コンパイル・実行の方法</h3>
+<p>作成したプログラムをテストするための，採点プログラムのサンプルが，コンテストサイトからダウンロードできるアーカイブの中に含まれている．このアーカイブには，提出しなければならないファイルのサンプルも含まれている．</p>
+<p>採点プログラムのサンプルは <var>1</var> つのファイルからなる．そのファイルは <code>grader.cpp</code> である．作成したプログラムをテストするには，これらのファイル <code>grader.cpp</code>, <code>island.cpp</code>, <code>island.h</code> を同じディレクトリに置き，次のようにコマンドを実行する．なお，アーカイブの中に含まれている <code>compile.sh</code> というファイルを代わりに実行してもよい．</p>
+<pre>g++ -std=gnu++20 -O2 -o grader grader.cpp island.cpp
+</pre>
+<p>コンパイルが成功すれば，<code>grader</code> という実行ファイルが生成される．</p>
+<p>実際の採点プログラムは，採点プログラムのサンプルとは異なることに注意せよ．採点プログラムのサンプルは単一のプロセスとして起動する．このプログラムは，標準入力から入力を読み込み，標準出力に結果を出力する．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>採点プログラムのサンプルの入力</h3>
+<p>採点プログラムのサンプルは標準入力から以下の形式で入力を読み込む．</p>
+<pre><var>N</var> <var>L</var>
+<var>A_1</var> <var>B_1</var>
+<var>A_2</var> <var>B_2</var>
+<var>\vdots</var>
+<var>A_{N - 1}</var> <var>B_{N - 1}</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>採点プログラムのサンプルの出力</h3>
+<p>採点プログラムのサンプルは標準出力へ以下の情報を出力する（引用符は実際には出力されない）．</p>
+<ul>
+<li>正解の場合，関数 <code>query</code> の呼び出し回数が “<code>Accepted: 2024</code>” のように出力される．</li>
+<li>不正解の場合，不正解の種類が “<code>Wrong Answer [4]</code>” のように出力される．</li>
+</ul>
+<p>実行するプログラムが複数の不正解の条件を満たした場合，表示される不正解の種類はそれらのうち <var>1</var> つのみである．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>採点に関する注意</h3>
+<p>すべてのテストケースについて，実際の採点プログラムは適応的 (adaptive) ではない．これは，採点プログラムは初めから固定された答えを持つということを意味する．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<p>すべての入力データは以下の条件を満たす．</p>
+<ul>
+<li><var>3 \leqq N \leqq 300</var>．</li>
+<li><var>1 \leqq A_j \leqq N</var> (<var>1 \leqq j \leqq N - 1</var>)．</li>
+<li><var>1 \leqq B_j \leqq N</var> (<var>1 \leqq j \leqq N - 1</var>)．</li>
+<li><var>A_j \neq B_j</var> (<var>1 \leqq j \leqq N - 1</var>)．</li>
+<li>どの島からどの島へも，いくつかの航路を乗り継ぐことで移動できる．</li>
+<li>入力される値はすべて整数である．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>4</var> 点) <var>N = 3</var>，<var>L = 9</var>．</li>
+<li>(<var>6</var> 点) <var>L = N^2</var>，どの島についてもその島から <var>1</var> 本の航路で移動できる島は <var>2</var> つ以下である．</li>
+<li>(<var>10</var> 点) <var>L = 2N</var>，どの島についてもその島から <var>1</var> 本の航路で移動できる島は <var>2</var> つ以下である．</li>
+<li>(<var>11</var> 点) <var>L = N^2</var>，島 <var>1</var> から <var>1</var> 本の航路で移動できる島は <var>3</var> つである．島 <var>1</var> 以外の他のどの島についてもその島から <var>1</var> 本の航路で移動できる島は <var>2</var> つ以下である．</li>
+<li>(<var>21</var> 点) <var>L = 3N</var>，島 <var>1</var> から <var>1</var> 本の航路で移動できる島は <var>3</var> つである．島 <var>1</var> 以外の他のどの島についてもその島から <var>1</var> 本の航路で移動できる島は <var>2</var> つ以下である．</li>
+<li>(<var>14</var> 点) <var>L = N^2</var>．</li>
+<li>(<var>19</var> 点) <var>L = 3N</var>．</li>
+<li>(<var>15</var> 点) <var>L = 2N</var>．</li>
+</ol>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>やりとりの例</h3>
+<p>採点プログラムのサンプルが読み込む入力の例と，それに対応する関数の呼び出しの例を以下に示す．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>4 16
+1 2
+2 4
+4 3
+</pre>
+<h4>関数の呼び出しの例</h4>
+<div class="joigsp2024-g-table">
+<table>
+<thead>
+<tr>
+<th>呼び出し（採点プログラム）</th>
+<th>呼び出し（提出プログラム）</th>
+<th>戻り値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>solve(4, 16)</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>query(2, 1)</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>query(3, 1)</code></td>
+<td><code>4</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>answer(2, 4)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>query(2, 2)</code></td>
+<td><code>4</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>answer(2, 1)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>query(3, 2)</code></td>
+<td><code>2</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>query(2, 1)</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>answer(3, 4)</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>島 <var>2</var> から島 <var>1</var>，島 <var>3</var>，島 <var>4</var> へ移動するのに必要な航路の数の最小値はそれぞれ <var>1, 2, 1</var> である．例えば，島 <var>2</var> から島 <var>3</var> へは航路 <var>2</var>，航路 <var>3</var> をこの順に乗り継ぐことで移動できる．</p>
+<p>島 <var>2</var> 以外の島 <var>i</var> を <var>\operatorname{dist}(2, i) \times N + i</var> が小さい順に並び替えると島 <var>1</var>，島 <var>4</var>，島 <var>3</var> となる．したがって，関数 <code>query(2, 1)</code> の戻り値は <var>1</var> となる．また，関数 <code>query(2, 2)</code> の戻り値は <var>4</var> となる．</p>
+<p>入力例 <var>1</var> は小課題 <var>2, 6</var> の制約を満たす．コンテストサイトからダウンロードできるファイルのうち，<code>sample-01-in.txt</code> は入力例 <var>1</var> に対応する．</p>
+<hr />
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>5 25
+5 2
+3 1
+1 4
+1 5
+</pre>
+<h4>関数の呼び出しの例</h4>
+<div class="joigsp2024-g-table">
+<table>
+<thead>
+<tr>
+<th>呼び出し（採点プログラム）</th>
+<th>呼び出し（提出プログラム）</th>
+<th>戻り値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>solve(5, 25)</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>query(1, 3)</code></td>
+<td><code>5</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>query(1, 4)</code></td>
+<td><code>2</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>answer(3, 1)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>query(2, 4)</code></td>
+<td><code>4</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>query(3, 1)</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>query(3, 2)</code></td>
+<td><code>4</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>answer(1, 5)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>answer(4, 1)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>answer(2, 5)</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>島 <var>1</var> から島 <var>2</var>，島 <var>3</var>，島 <var>4</var>，島 <var>5</var> へ移動するのに必要な航路の数の最小値はそれぞれ <var>2, 1, 1, 1</var> である．例えば，島 <var>1</var> から島 <var>2</var> へは航路 <var>4</var>，航路 <var>1</var> をこの順に乗り継ぐことで移動できる．</p>
+<p>島 <var>1</var> 以外の島 <var>i</var> を <var>\operatorname{dist}(1, i) \times N + i</var> が小さい順に並び替えると島 <var>3</var>，島 <var>4</var>，島 <var>5</var>，島 <var>2</var> となる．したがって，関数 <code>query(1, 3)</code> の戻り値は <var>5</var> となる．また，関数 <code>query(1, 4)</code> の戻り値は <var>2</var> となる．</p>
+<p>入力例 <var>2</var> は小課題 <var>4, 6</var> の制約を満たす．コンテストサイトからダウンロードできるファイルのうち，<code>sample-02-in.txt</code> は入力例 <var>2</var> に対応する．</p>
+<p>コンテストサイトからダウンロードできるファイルに含まれる <code>sample-01-in.txt</code>，<code>sample-02-in.txt</code> は，採点プログラムのサンプルの入力として用いることができる．</p>
+<style>
+.joigsp2024-g-table { position:relative; max-width:100%;overflow-x:auto;margin:1em 0; }
+.joigsp2024-g-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joigsp2024-g-table th,.joigsp2024-g-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joigsp2024-g-table th { background:#f5f5f5; white-space:nowrap; }
+.joigsp2024-g-table code { white-space:nowrap; }
+</style></section>
+</div>
+</span>
+</span>

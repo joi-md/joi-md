@@ -1,0 +1,334 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>Do you know Just Odd Inventions Co., Ltd.? The business of this company is doing “just odd inventions.” Here we just call it JOI Company.</p>
+<p>There is a security gate installed in the doorway of JOI Company, in order to prevent confidential information leaks. One must pass through the gate when entering or exiting the company. It is impossible for two or more people to pass through the gate at the same time.</p>
+<p>Whenever a person pass through this gate, it records the information indicating that a person enters or exits the company. Now, IOI-kun, an employee of JOI Company, has a record of the gate for some day. The record is represented by string <var>S</var>: if the <var>i</var>-th character of <var>S</var> is ‘<code>(</code>’, it means that the <var>i</var>-th person who passed through the gate entered the company, and if the <var>i</var>-th character of <var>S</var> is ‘<code>)</code>’, it means that the <var>i</var>-th person who passed through the gate exited the company. IOI-kun knows that there were no people inside JOI Company at the beginning or at the end of this day. Note that there exist strings consisting only of ‘<code>(</code>’ and ‘<code>)</code>’ which cannot represent a record: for example, a record cannot be <code>())(</code> or <code>(()</code> because it would follow that the number of people inside JOI Company had become negative or there had been a person inside JOI Company at the end of the day, respectively.</p>
+<p>The next moment IOI-kun checked the record, the string <var>S</var> was modified by a computer virus spread across JOI Company! After some investigation, he supposed that the modification took the following process:</p>
+<ul>
+<li>First, a contiguous segment in <var>S</var> changed as follows: for each character in the segment, if it was ‘<code>(</code>’ then it became ‘<code>)</code>’, and if it was ‘<code>)</code>’ then it became ‘<code>(</code>’. We denote the string after this change by <var>S^{\prime }</var>. The length of the changed segment might be 0, that is, <var>S = S^{\prime }</var>.</li>
+<li>Then, 0 or more characters in <var>S^{\prime }</var> became ‘<code>x</code>’. We denote the string after this change by <var>S^{\prime \prime }</var>.</li>
+</ul>
+<p>IOI-kun does not remember <var>S</var> , so he tries to recover <var>S</var> from <var>S^{\prime \prime }</var>. For that, he wants first to count the number of strings which can be <var>S^{\prime }</var> (not <var>S</var> , be careful).</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Task</h3>
+<p>Given string <var>S^{\prime \prime }</var>, write a program which calculates the number of strings which can be <var>S^{\prime }</var>, modulo 1 000 000 007.</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input.</p>
+<ul>
+<li>The first line of the input contains an integer <var>N</var>. This means that length of <var>S^{\prime \prime }</var>, the string after the modification, is <var>N</var>.</li>
+<li>The second line of the input contains a string <var>S^{\prime \prime }</var>, each character of which is ‘<code>(</code>’, ‘<code>)</code>’ or ‘<code>x</code>’. This means that the string after the modification is <var>S^{\prime \prime }</var>.</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>Write one line to the standard output. The output should contain the number of strings which can be <var>S^{\prime }</var>, modulo <var>1\,000\,000\,007</var>. If there is no such string, output 0.</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<p>All input data satisfy the following conditions.</p>
+<ul>
+<li><var>1 \le N \le 300</var>．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<p>There are 5 subtasks. The score and additional constraints of each subtask are as follows:</p>
+<h4>Subtask 1 [<var>4</var> points]</h4>
+<ul>
+<li><var>N \le 100</var>．</li>
+<li>The number of ‘<code>x</code>’s in <var>S^{\prime \prime }</var> is at most 4.</li>
+</ul>
+<h4>Subtask 2 [<var>8</var> points]</h4>
+<ul>
+<li><var>N \le 100</var>．</li>
+<li>The number of ‘<code>x</code>’s in <var>S^{\prime \prime }</var> is at most 12.</li>
+</ul>
+<h4>Subtask 3 [<var>18</var> points]</h4>
+<ul>
+<li><var>N \le 100</var>．</li>
+<li>The number of ‘<code>x</code>’s in <var>S^{\prime \prime }</var> is at most 20.</li>
+</ul>
+<h4>Subtask 4 [<var>43</var> points]</h4>
+<ul>
+<li><var>N \le 100</var>．</li>
+</ul>
+<h4>Subtask 5 [<var>27</var> points]</h4>
+<p>There are no additional constraints.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input and Output</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>4
+x))x
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>3
+</pre>
+<p>In Sample Input 1, <var>S^{\prime } = {}</var><code>)))(</code> is not possible because there is no string which can be <var>S</var>.</p>
+<p>The following three strings can be <var>S^{\prime }</var>:</p>
+<ul>
+<li><var>S^{\prime } = {}</var><code>())(</code>. For example, consider <var>S = {}</var><code>()()</code>.</li>
+<li><var>S^{\prime } = {}</var><code>()))</code>. For example, consider <var>S = {}</var><code>()()</code>.</li>
+<li><var>S^{\prime } = {}</var><code>))))</code>. For example, consider <var>S = {}</var><code>(())</code>.</li>
+</ul>
+<p>Since only these strings can be <var>S^{\prime }</var>, output 3.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>10
+xx(xx()x(x
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>45
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 3</h3>
+<pre>5
+x))x(
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 3</h3>
+<pre>0
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 4</h3>
+<pre>10
+xxxxxxxxxx
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 4</h3>
+<pre>684
+</pre></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>あなたは Just Odd Inventions 社を知っているだろうか？この会社の業務は「ただ奇妙な発明（just odd inventions)」をすることである．ここでは略して JOI 社と呼ぶ．</p>
+<p>JOI 社は機密情報の流出を防ぐべく，出入り口に防犯ゲートを設置している．会社に出入りする際は必ずこの防犯ゲートを通る必要がある．また，一度に <var>2</var> 人以上の人がこのゲートを通ることはできない．</p>
+<p>この防犯ゲートは，人がゲートを通るたびに，会社に人が入った，または出た，という情報を記録している．今，JOI 社の社員である IOI 君の前には，ある <var>1</var> 日の防犯ゲートの記録がある．この記録は文字列 <var>S</var> で表される ．<var>S</var> の <var>i</var> 文字目が ‘<code>(</code>’ であるときは，<var>i</var> 番目に人がゲートを通った際，その人が会社に入ったことを意味する．また，<var>S</var> の <var>i</var> 文字目が ‘<code>)</code>’ であるときは，<var>i</var> 番目に人がゲートを通った際，その人が会社から出たことを意味する．また IOI 君は，この日の始まりと終わりには，JOI 社内に誰もいなかったことを知っている．ここで，‘<code>(</code>’ と ‘<code>)</code>’ のみからなる文字列であっても，記録としてはありえないものがある点に注意せよ．例えば，<code>())(</code> や <code>(()</code> という記録は，JOI 社内にいる人数が負になったり，一日の終わりにまだ JOI 社内に人がいることになったりするので，ありえない．</p>
+<p>IOI 君が記録を確認した次の瞬間，JOI 社内に蔓延しているコンピュータウィルスによって，文字列 <var>S</var> が変化してしまった．IOI 君は調査の結果，文字列 <var>S</var> が次のような過程で変化したと予想した．</p>
+<ul>
+<li>まず，<var>S</var> のある連続する区間の文字が，すべて次のように変化した．その区間に含まれる文字全てについて，その文字が ‘<code>(</code>’ ならば ‘<code>)</code>’ に変化し，‘<code>)</code>’ ならば ‘<code>(</code>’ に変化した．変化後の文字列を <var>S^{\prime }</var> とする．なお，変化した区間の長さが <var>0</var> であること，つまり，<var>S = S^{\prime }</var> であることもありうる．</li>
+<li>次に，<var>S^{\prime }</var> の <var>0</var> 個以上の文字が ‘<code>x</code>’ に変化した．変化後の文字列を <var>S^{\prime \prime }</var> とする．</li>
+</ul>
+<p>IOI 君は <var>S</var> の情報を覚えていないため，<var>S^{\prime \prime }</var> から <var>S</var> を復元しようと考えている．そのために IOI 君はまず，<var>S^{\prime }</var> としてあり得るものが何通りあるかを調べることにした．(IOI 君が何通りあるかを調べるのは，<var>S</var> ではなく <var>S^{\prime }</var> であることに注意せよ．)</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p>文字列 <var>S^{\prime \prime }</var> が与えられたとき，<var>S^{\prime }</var> としてあり得るものの個数を，<var>1\,000\,000\,007</var> で割った余りを求めよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>標準入力から以下の入力を読み込め．</p>
+<ul>
+<li><var>1</var> 行目には整数 <var>N</var> が書かれている．これは，変化後の文字列 <var>S^{\prime \prime }</var> の長さが <var>N</var> であることを表す．</li>
+<li><var>2</var> 行目には長さ <var>N</var> の文字列 <var>S^{\prime \prime }</var> が書かれている．各文字は ‘<code>(</code>’，‘<code>)</code>’，もしくは ‘<code>x</code>’ のいずれかである．これは，変化後の文字列が <var>S^{\prime \prime }</var> であることを表す．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p><var>S^{\prime }</var> としてあり得るものの個数を，<var>1\,000\,000\,007</var> で割った余りを出力せよ．もし，<var>S^{\prime }</var> としてあり得るものがない場合は，<var>0</var> を出力せよ.</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制限</h3>
+<p>すべての入力データは以下の条件を満たす．</p>
+<ul>
+<li><var>1 \leqq N \leqq 300</var>．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<p>この課題では小課題は全部で <var>5</var> 個ある．各小課題の配点および追加の制限は以下の通りである．</p>
+<h4>小課題 1 [<var>4</var> 点]</h4>
+<ul>
+<li><var>N \leqq 100</var>．</li>
+<li><var>S^{\prime \prime }</var> 中の ‘<code>x</code>’ の個数は <var>4</var> 個以下である．</li>
+</ul>
+<h4>小課題 2 [<var>8</var> 点]</h4>
+<ul>
+<li><var>N \leqq 100</var>．</li>
+<li><var>S^{\prime \prime }</var> 中の ‘<code>x</code>’ の個数は <var>12</var> 個以下である．</li>
+</ul>
+<h4>小課題 3 [<var>18</var> 点]</h4>
+<ul>
+<li><var>N \leqq 100</var>．</li>
+<li><var>S^{\prime \prime }</var> 中の ‘<code>x</code>’ の個数は <var>20</var> 個以下である．</li>
+</ul>
+<h4>小課題 4 [<var>43</var> 点]</h4>
+<ul>
+<li><var>N \leqq 100</var>．</li>
+</ul>
+<h4>小課題 5 [<var>27</var> 点]</h4>
+<p>追加の制限はない．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入出力例</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>4
+x))x
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>3
+</pre>
+<p>入力例 <var>1</var> では，<var>S^{\prime } = {}</var><code>)))(</code> とすると，<var>S</var> としてありうるものが存在しないため，不適である．</p>
+<p>以下の <var>3</var> 通りの文字列は，<var>S^{\prime }</var> である可能性がある．</p>
+<ul>
+<li><var>S^{\prime } = {}</var><code>())(</code>．例えば，<var>S = {}</var><code>()()</code> とすればよい．</li>
+<li><var>S^{\prime } = {}</var><code>()))</code>．例えば，<var>S = {}</var><code>()()</code> とすればよい．</li>
+<li><var>S^{\prime } = {}</var><code>))))</code>．例えば，<var>S = {}</var><code>(())</code> とすればよい．</li>
+</ul>
+<p><var>S^{\prime }</var> としてあり得るものはこれらのみなので，<var>3</var> を出力する.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>10
+xx(xx()x(x
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>45
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>5
+x))x(
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>0
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 4</h3>
+<pre>10
+xxxxxxxxxx
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 4</h3>
+<pre>684
+</pre></section>
+</div>
+</span>
+</span>

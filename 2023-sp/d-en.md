@@ -1,9 +1,7 @@
-<blockquote markdown="1">
+<blockquote class="joisp2023-d-submission" markdown="1">
 **Submission on AtCoder**
 
 [Distributed Files](https://www2.ioi-jp.org/camp/2023/2023-sp-tasks/contest2/conveyor-dist.zip)
-
-The Implementation Details, Important Notices, and Compilation and Test Run sections below describe the library interface and local testing. If you use standard input and output, implement the same strategy using the communication protocol in this section.
 
 #### Using C++
 
@@ -15,7 +13,7 @@ Include `conveyor.h` and implement all functions in a single file.
 Initially, input is given in the following format.
 
 ~~~
-$N$ $A_0$ $A_1$ $\cdots$ $A_{N-2}$ $B_0$ $B_1$ $\cdots$ $B_{N-2}$
+$N$ $A_0$ $A_1$ $\cdots$ $A_{N - 2}$ $B_0$ $B_1$ $\cdots$ $B_{N - 2}$
 ~~~
 
 ##### Query
@@ -24,14 +22,14 @@ Output in the following format.
 
 ~~~
 Q
-$x_0$ $x_1$ $\cdots$ $x_{N-2}$
-$y_0$ $y_1$ $\cdots$ $y_{N-1}$
+$x_0$ $x_1$ $\cdots$ $x_{N - 2}$
+$y_0$ $y_1$ $\cdots$ $y_{N - 1}$
 ~~~
 
 Then input is given in the following format.
 
 ~~~
-$z_0$ $z_1$ $\cdots$ $z_{N-1}$
+$z_0$ $z_1$ $\cdots$ $z_{N - 1}$
 ~~~
 
 ##### Answer
@@ -40,7 +38,7 @@ Output in the following format.
 
 ~~~
 A
-$a_0$ $a_1$ $\cdots$ $a_{N-2}$
+$a_0$ $a_1$ $\cdots$ $a_{N - 2}$
 ~~~
 
 Then `0` is given on one line.
@@ -58,39 +56,41 @@ Output the character `F` and terminate your program.
 Score: $100$ points
 
 <style>
-#task-statement details {
-    margin: 1em 0;
+.joisp2023-d-submission details {
+    margin: 0;
 }
-#task-statement details > summary {
+.joisp2023-d-submission details > summary {
     display: list-item;
     cursor: pointer;
 }
-#task-statement table {
-    display: block;
-    width: fit-content;
-    max-width: 100%;
-    overflow-x: auto;
+.joisp2023-d-table table { position:relative;
+    display: table;
+    width: auto;
+    max-width: none;
+    overflow: visible;
     border-collapse: collapse;
-    margin: 1em 0;
+    margin: 0;
 }
-#task-statement table th,
-#task-statement table td {
+.joisp2023-d-table table th,
+.joisp2023-d-table table td {
     border: 1px solid #aaa;
     padding: 0.3em 0.6em;
     text-align: left;
     vertical-align: top;
 }
-#task-statement table th {
+.joisp2023-d-table table th {
     background-color: #f5f5f5;
 }
-#task-statement table code {
+.joisp2023-d-table table code {
     white-space: nowrap;
 }
+
+.joisp2023-d-table {position:relative;max-width:100%;overflow-x:auto;margin:1em 0;}
 </style>
 
 ### Problem Statement
 
-In the factory of JOI Co., Ltd., there are $N$ tables, numbered from $0$ to $N - 1$. In the factory, there are $N - 1$ belt conveyors, numbered from $0$ to $N - 2$. The belt conveyor $i$ ($0 \leq i \leq N - 2$) connects the table $A_i$ and the table $B_i$. It transports products from one table to the other table. However, we cannot see the direction of transportation. If we ignore the directions of the belt conveyors, every pair of tables is connected by a number of belt conveyors.
+In the factory of JOI Co., Ltd., there are $N$ tables, numbered from $0$ to $N - 1$. In the factory, there are $N - 1$ belt conveyors, numbered from $0$ to $N - 2$. The belt conveyor $i$ ($0 \le i \le N - 2$) connects the table $A_i$ and the table $B_i$. It transports products from one table to the other table. However, we cannot see the direction of transportation. If we ignore the directions of the belt conveyors, every pair of tables is connected by a number of belt conveyors.
 
 IOI-kun is the director of the factory. Since he forgets the direction of transportation of every belt conveyor, he will perform the following sequential operations several times.
 
@@ -100,7 +100,7 @@ IOI-kun is the director of the factory. Since he forgets the direction of transp
     - If there is no belt conveyor transporting products from it, nothing happens.
     - If there are belt conveyors transporting products from it, the product on the table is transported by one of such belt conveyors. The product stops at the destination of the belt conveyor. The product will not move anymore.
 4. IOI-kun confirms whether there are one or more products on each table. If there are products on a table, IOI-kun takes all of them.
-5. For every belt conveyor whose direction is reversed in the operation $1.$, IOI-kun reverts its direction. Its direction becomes the original direction.
+5. For every belt conveyor whose direction is reversed in the operation $1$., IOI-kun reverts its direction. Its direction becomes the original direction.
 
 IOI-kun wants to specify the original direction of every belt conveyor by performing the above sequential operations at most $30$ times.
 
@@ -123,30 +123,30 @@ In `conveyor.cpp`, the following function should be implemented.
     - The parameter `N` is the number of tables $N$.
     - The parameters `A`, `B` are arrays of length $N - 1$, describing the tables connected by the belt conveyors.
 
-Your program can call the following functions.
+    Your program can call the following functions.
 
-- `std::vector<int> Query(std::vector<int> x, std::vector<int> y)`
+    - `std::vector<int> Query(std::vector<int> x, std::vector<int> y)`
 
-    Using this function, IOI-kun performs the operations in the factory.
+        Using this function, IOI-kun performs the operations in the factory.
 
-    - The parameter `x` is an array of length $N - 1$. For $0 \leq i \leq N - 2$, IOI-kun reverses the direction of the belt conveyor $i$ if `x[i]` $= 1$, and does not reverse the direction of the belt conveyor $i$ if `x[i]` $= 0$.
-    - The parameter `y` is an array of length $N$. For $0 \leq j \leq N - 1$, IOI-kun puts a product on the table $j$ if `y[j]` $= 1$, and does not put a product on the table $j$ if `y[j]` $= 0$.
-    - Let `z` be the return value of this function. It is an array of length $N$. For $0 \leq j \leq N - 1$, there are one or more products on the table $j$ if `z[j]` $= 1$, and there is no product on the table $j$ if `z[j]` $= 0$.
-    - The length of the array `x` should be equal to $N - 1$. If this condition is not satisfied, your program is judged as **Wrong Answer [1]**.
-    - Every element of the array `x` should be $0$ or $1$. If this condition is not satisfied, your program is judged as **Wrong Answer [2]**.
-    - The length of the array `y` should be equal to $N$. If this condition is not satisfied, your program is judged as **Wrong Answer [3]**.
-    - Every element of the array `y` should be $0$ or $1$. If this condition is not satisfied, your program is judged as **Wrong Answer [4]**.
-    - The function `Query` should not be called more than $30$ times. If it is called more than $30$ times, your program is judged as **Wrong Answer [5]**.
+        - The parameter `x` is an array of length $N - 1$. For $0 \le i \le N - 2$, IOI-kun reverses the direction of the belt conveyor $i$ if $\texttt{x}[i] = 1$, and does not reverse the direction of the belt conveyor $i$ if $\texttt{x}[i] = 0$.
+        - The parameter `y` is an array of length $N$. For $0 \le j \le N - 1$, IOI-kun puts a product on the table $j$ if $\texttt{y}[j] = 1$, and does not put a product on the table $j$ if $\texttt{y}[j] = 0$.
+        - Let `z` be the return value of this function. It is an array of length $N$. For $0 \le j \le N - 1$, there are one or more products on the table $j$ if $\texttt{z}[j] = 1$, and there is no product on the table $j$ if $\texttt{z}[j] = 0$.
+        - The length of the array `x` should be equal to $N - 1$. If this condition is not satisfied, your program is judged as **Wrong Answer [1]**.
+        - Every element of the array `x` should be $0$ or $1$. If this condition is not satisfied, your program is judged as **Wrong Answer [2]**.
+        - The length of the array `y` should be equal to $N$. If this condition is not satisfied, your program is judged as **Wrong Answer [3]**.
+        - Every element of the array `y` should be $0$ or $1$. If this condition is not satisfied, your program is judged as **Wrong Answer [4]**.
+        - The function `Query` should not be called more than $30$ times. If it is called more than $30$ times, your program is judged as **Wrong Answer [5]**.
 
-- `void Answer(std::vector<int> a)`
+    - `void Answer(std::vector<int> a)`
 
-    Using this function, IOI-kun reports the original direction of each belt conveyor.
+        Using this function, IOI-kun reports the original direction of each belt conveyor.
 
-    - The parameter `a` is an array of length $N - 1$. For $0 \leq i \leq N - 2$, the belt conveyor $i$ transports products from $A_i$ to $B_i$ if `a[i]` $= 0$, and it transports products from $B_i$ to $A_i$ if `a[i]` $= 1$.
-    - The length of the array `a` should be equal to $N - 1$. If this condition is not satisfied, your program is judged as **Wrong Answer [6]**.
-    - Every element of the array `a` should be $0$ or $1$. If this condition is not satisfied, your program is judged as **Wrong Answer [7]**.
-    - If IOI-kun reports wrong direction of a belt conveyor, your program is judged as **Wrong Answer [8]**.
-    - The function `Answer` should be called exactly once. If the function `Answer` is called more than once, your program is judged as **Wrong Answer [9]**. When the function `Solve` terminates, if the function `Answer` is not called, your program is judged as **Wrong Answer [10]**.
+        - The parameter `a` is an array of length $N - 1$. For $0 \le i \le N - 2$, the belt conveyor $i$ transports products from $A_i$ to $B_i$ if $\texttt{a}[i] = 0$, and it transports products from $B_i$ to $A_i$ if $\texttt{a}[i] = 1$.
+        - The length of the array `a` should be equal to $N - 1$. If this condition is not satisfied, your program is judged as **Wrong Answer [6]**.
+        - Every element of the array `a` should be $0$ or $1$. If this condition is not satisfied, your program is judged as **Wrong Answer [7]**.
+        - If IOI-kun reports wrong direction of a belt conveyor, your program is judged as **Wrong Answer [8]**.
+        - The function `Answer` should be called exactly once. If the function `Answer` is called more than once, your program is judged as **Wrong Answer [9]**. When the function `Solve` terminates, if the function `Answer` is not called, your program is judged as **Wrong Answer [10]**.
 
 ### Important Notices
 
@@ -173,12 +173,12 @@ The sample grader reads the following data from the standard input.
 
 ~~~
 $N$
-$A_0$ $A_1$ $\cdots$ $A_{N-2}$
-$B_0$ $B_1$ $\cdots$ $B_{N-2}$
-$C_0$ $C_1$ $\cdots$ $C_{N-2}$
+$A_0$ $A_1$ $\cdots$ $A_{N - 2}$
+$B_0$ $B_1$ $\cdots$ $B_{N - 2}$
+$C_0$ $C_1$ $\cdots$ $C_{N - 2}$
 ~~~
 
-For $0 \leq i \leq N - 2$, we have $C_i = 0$ if the belt conveyor $i$ transports products from the table $A_i$ to the table $B_i$. Otherwise, we have $C_i = 1$.
+For $0 \le i \le N - 2$, we have $C_i = 0$ if the belt conveyor $i$ transports products from the table $A_i$ to the table $B_i$. Otherwise, we have $C_i = 1$.
 
 ### Output of the Sample Grader
 
@@ -205,15 +205,15 @@ For some of the test cases, the actual grader is adaptive. This means the grader
 
 All the input data satisfy the following conditions.
 
-- $0 \leq A_i \leq N - 1$ ($0 \leq i \leq N - 2$).
-- $0 \leq B_i \leq N - 1$ ($0 \leq i \leq N - 2$).
+- $0 \le A_i \le N - 1$ ($0 \le i \le N - 2$).
+- $0 \le B_i \le N - 1$ ($0 \le i \le N - 2$).
 - If we ignore the directions of the belt conveyors, every pair of tables is connected by a number of belt conveyors.
 
 ### Subtasks
 
 1. ($1$ point) $N = 2$.
 2. ($14$ points) $N = 30$.
-3. ($10$ points) $N = 100\,000$, $A_i = i$ ($0 \leq i \leq N - 2$), $B_i = i + 1$ ($0 \leq i \leq N - 2$).
+3. ($10$ points) $N = 100\,000$, $A_i = i$ ($0 \le i \le N - 2$), $B_i = i + 1$ ($0 \le i \le N - 2$).
 4. ($75$ points) $N = 100\,000$.
 
 ---
@@ -233,6 +233,8 @@ Here is a sample input for the sample grader and corresponding function calls.
 
 #### Sample Function Calls
 
+<div class="joisp2023-d-table" markdown="1">
+
 | Function Calls (Grader) | Function Calls (Submission) | Return Values |
 | --- | --- | --- |
 | `Solve(3, [0, 2], [2, 1])` | | |
@@ -241,6 +243,9 @@ Here is a sample input for the sample grader and corresponding function calls.
 | | `Query([1, 1], [0, 0, 1])` | `[0, 0, 1]` |
 | | `Query([0, 1], [1, 1, 1])` | `[1, 0, 1]` |
 | | `Answer([1, 0])` | |
+
+</div>
+
 
 For the first function call to `Query`, another possible return value is `[0, 1, 0]` other than `[1, 0, 0]`.
 

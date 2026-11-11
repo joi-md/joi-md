@@ -1,0 +1,608 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>Do you know Just Odd Ink Way? It is a national road of length <var>10^{100}</var> in Republic of EGOI from the east end to the west end. It is famous because there are several painting on the road painted by “Just Odd Ink.” In the following, we abbreviate it, and call it JOI Way.</p>
+<p>There are several painting of various sizes on JOI Way. Characters are written on some of them.</p>
+<p>Rie is a tour guide working on JOI Way. She plans to guide the participants of JOIG Spring Training Camp. In order to cheer the participants, she plans to choose the paintings on which ‘<code>J</code>’, ‘<code>O</code>’, ‘<code>I</code>’, ‘<code>G</code>’ are written, and visit them in this order. There are <var>N</var> candidates of paintings. The <var>i</var>-th painting (<var>1 \le i \le N</var>) is located at the place on JOI Way at a distance of <var>A_{i}</var> from the west end. In this painting, the character <var>C_{i}</var> is written.</p>
+<p>Rie has <var>Q</var> plans. In the <var>j</var>-th plan (<var>1 \le j \le Q</var>), she will travel as follows.</p>
+<ol>
+<li>Rie starts a tour from the place on JOI Way at a distance of <var>S_{j}</var> from the west end.</li>
+<li>She chooses a painting on which ‘<code>J</code>’ is written, and moves to its location.</li>
+<li>She chooses a painting on which ‘<code>O</code>’ is written, and moves to its location.</li>
+<li>She chooses a painting on which ‘<code>I</code>’ is written, and moves to its location.</li>
+<li>She chooses a painting on which ‘<code>G</code>’ is written, and moves to its location.</li>
+<li>She moves to the place on JOI Way at a distance of <var>T_{j}</var> from the west end, and finishes the tour.</li>
+</ol>
+<p>During the tour, it is not allowed to go outside JOI Way.</p>
+<p>Under the above conditions, Rie wants to minimize the total travel distance for each plan.</p>
+<p>Write a program which, given information on the paintings on JOI Way and Rie’s plans, calculates the minimum possible value of the total travel distance for each plan.</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input.</p>
+<pre><var>N</var>
+<var>A_{1}</var> <var>C_{1}</var>
+<var>A_{2}</var> <var>C_{2}</var>
+<var>\vdots</var>
+<var>A_{N}</var> <var>C_{N}</var>
+<var>Q</var>
+<var>S_1</var> <var>T_{1}</var>
+<var>S_2</var> <var>T_{2}</var>
+<var>\vdots</var>
+<var>S_{Q}</var> <var>T_{Q}</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>Write <var>Q</var> lines to the standard output. The <var>j</var>-th line (<var>1 \le j \le Q</var>) of the output should contain the minimum possible value of the total travel distance for the <var>j</var>-th plan.</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li><var>4 \le N \le 100\,000</var>.</li>
+<li><var>1 \le A_{i} \le 1\,000\,000\,000\,000\,000 (= 10^{15})</var> (<var>1 \le i \le N</var>).</li>
+<li><var>A_{i} &lt; A_{i+1}</var> (<var>1 \le i \le N - 1</var>).</li>
+<li><var>C_{i}</var> (<var>1 \le i \le N</var>) is either ‘<code>J</code>’，‘<code>O</code>’，‘<code>I</code>’，or ‘<code>G</code>’.</li>
+<li><var>C_{i}</var> is equal to ‘<code>J</code>’ for at least one <var>i</var> (<var>1 \le i \le N</var>).</li>
+<li><var>C_{i}</var> is equal to ‘<code>O</code>’ for at least one <var>i</var> (<var>1 \le i \le N</var>).</li>
+<li><var>C_{i}</var> is equal to ‘<code>I</code>’ for at least one <var>i</var> (<var>1 \le i \le N</var>).</li>
+<li><var>C_{i}</var> is equal to ‘<code>G</code>’ for at least one <var>i</var> (<var>1 \le i \le N</var>).</li>
+<li><var>1 \le Q \le 100\,000</var>.</li>
+<li><var>1 \le S_{j} \le 1\,000\,000\,000\,000\,000 (= 10^{15})</var> (<var>1 \le j \le Q</var>).</li>
+<li><var>1 \le T_{j} \le 1\,000\,000\,000\,000\,000 (= 10^{15})</var> (<var>1 \le j \le Q</var>).</li>
+<li><var>(S_{j}, T_{j}) \ne (S_{k}, T_{k})</var> (<var>1 \le j &lt; k \le Q</var>).</li>
+<li><var>N, Q</var> are integers.</li>
+<li><var>A_{i}</var> is an integer (<var>1 \le i \le N</var>).</li>
+<li><var>S_{j}, T_{j}</var> are integers (<var>1 \le j \le Q</var>).</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li>(<var>4</var> points) <var>N \le 80</var>, <var>Q \le 10</var>.</li>
+<li>(<var>10</var> points) <var>N \le 500</var>, <var>Q \le 10</var>.</li>
+<li>(<var>6</var> points) <var>N \le 3\,000</var>, <var>Q \le 100</var>.</li>
+<li>(<var>25</var> points) <var>N \le 5\,000</var>, <var>Q \le 1\,000</var>.</li>
+<li>(<var>12</var> points) <var>C_{i}</var> is equal to ‘<code>O</code>’ for a unique <var>i</var> (<var>1 \le i \le N</var>), <var>C_{j}</var> is equal to ‘<code>I</code>’ for a unique <var>j</var> (<var>1 \le j \le N</var>), and <var>C_{k}</var> is equal to ‘<code>G</code>’ for a unique <var>k</var> (<var>1 \le k \le N</var>).</li>
+<li>(<var>8</var> points) <var>C_{i}</var> is equal to ‘<code>O</code>’ for a unique <var>i</var> (<var>1 \le i \le N</var>), and <var>C_{j}</var> is equal to ‘<code>I</code>’ for a unique <var>j</var> (<var>1 \le j \le N</var>).</li>
+<li>(<var>20</var> points) <var>C_{i}</var> is equal to ‘<code>O</code>’ for a unique <var>i</var> (<var>1 \le i \le N</var>).</li>
+<li>(<var>15</var> points) No additional constraints.</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>7
+1 J
+2 O
+3 G
+4 I
+5 O
+8 G
+10 J
+2
+3 2
+7 5
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>7
+12
+</pre>
+<p>In the first plan, Rie starts a tour from the place on JOI Way at a distance of 3 from the west end, and finishes the tour from the place on JOI Way at a distance of <var>2</var> from the west end. For example, if she travels in the following way, the total travel distance becomes 7.</p>
+<ol>
+<li>She starts a tour from the place on JOI Way at a distance of 3 from the west end.</li>
+<li>She moves to the west for a distance of 2. She arrives at the place on JOI Way at a distance of 1 from the west end. She visits a painting of ‘<code>J</code>’.</li>
+<li>She moves to the east for a distance of 1. She arrives at the place on JOI Way at a distance of 2 from the west end. She visits a painting of ‘<code>O</code>’.</li>
+<li>She moves to the east for a distance of 2. She arrives at the place on JOI Way at a distance of 4 from the west end. She visits a painting of ‘<code>I</code>’.</li>
+<li>She moves to the west for a distance of 1. She arrives at the place on JOI Way at a distance of 3 from the west end. She visits a painting of ‘<code>G</code>’.</li>
+<li>She moves to the west for a distance of 1. She arrives at the place on JOI Way at a distance of 2 from the west end, and finishes the tour.</li>
+</ol>
+<p>Since 7 is the minimum possible value of the total travel distance, output 7 in the first line.</p>
+<p>In the second plan, she starts a tour from the place on JOI Way at a distance of <var>7</var> from the west end, and finishes the tour from the place on JOI Way at a distance of 5 from the west end. For example, if she travels in the following way, the total travel distance becomes 12.</p>
+<ol>
+<li>She starts a tour from the place on JOI Way at a distance of 7 from the west end.</li>
+<li>She moves to the east for a distance of 3. She arrives at the place on JOI Way at a distance of 10 from the west end. She visits a painting of ‘<code>J</code>’.</li>
+<li>She moves to the west for a distance of 5. She arrives at the place on JOI Way at a distance of 5 from the west end. She visits a painting of ‘<code>O</code>’.</li>
+<li>She moves to the west for a distance of 1. She arrives at the place on JOI Way at a distance of 4 from the west end. She visits a painting of ‘<code>I</code>’.</li>
+<li>She moves to the west for a distance of 1. She arrives at the place on JOI Way at a distance of 3 from the west end. She visits a painting of ‘<code>G</code>’.</li>
+<li>She moves to the east for a distance of 2. She arrives at the place on JOI Way at a distance of 5 from the west end, and finishes the tour.</li>
+</ol>
+<p>Since 12 is the minimum possible value of the total travel distance, output 12 in the second line.</p>
+<p>This sample input satisfies the constraints of Subtasks <var>1</var>, <var>2</var>, <var>3</var>, <var>4</var>, <var>8</var>.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>10
+5 J
+7 O
+10 J
+11 G
+12 J
+13 I
+17 J
+18 J
+19 J
+20 J
+4
+4 9
+15 14
+6 20
+7 20
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>13
+19
+20
+21
+</pre>
+<p>This sample input satisfies the constraints of all the subtasks.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 3</h3>
+<pre>10
+1 G
+2 J
+3 G
+4 O
+7 G
+9 J
+10 G
+14 I
+17 G
+19 G
+7
+11 6
+6 3
+17 19
+1 18
+17 17
+20 1
+20 10
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 3</h3>
+<pre>25
+27
+28
+17
+26
+39
+30
+</pre>
+<p>This sample input satisfies the constraints of Subtasks <var>1</var>, <var>2</var>, <var>3</var>, <var>4</var>, <var>6</var>, <var>7</var>, <var>8</var>.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 4</h3>
+<pre>10
+3 J
+5 G
+6 I
+7 I
+8 J
+9 I
+10 O
+14 G
+16 I
+19 J
+6
+4 4
+20 3
+18 5
+15 4
+20 11
+10 8
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 4</h3>
+<pre>12
+17
+15
+15
+19
+12
+</pre>
+<p>This sample input satisfies the constraints of Subtasks <var>1</var>, <var>2</var>, <var>3</var>, <var>4</var>, <var>7</var>, <var>8</var>.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 5</h3>
+<pre>12
+179948747891578 I
+263779425244614 I
+320153642407146 G
+383698990675423 J
+478483318441339 J
+505589213620811 G
+507468309040564 O
+530441288489671 J
+730036011088087 O
+896127332008998 I
+899298512463927 O
+915990785839829 J
+10
+744829561026263 366031656398270
+700496830781726 684771674298690
+314138534887378 222241904398827
+695615197615084 632164325876673
+418419052313523 409258287819812
+932490604948180 62799105708059
+738126150487131 45378717857226
+320047965627255 918203067583346
+859632377126681 967370566306944
+115848334010451 834089404672067
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 5</h3>
+<pre>583302366935305
+805077987955000
+591304613119987
+757352272699625
+478217003098189
+869691499240121
+805495866954969
+1085532869547991
+928541333618299
+1205618838253516
+</pre>
+<p>This sample input satisfies the constraints of Subtasks <var>1</var>, <var>2</var>, <var>3</var>, <var>4</var>, <var>8</var>.</p></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>あなたは Just Odd Ink 街道を知っているだろうか？この街道は EGOI 国を東西に横断する長さ <var>10^{100}</var> の街道であり，「ただ奇妙なインク (just odd ink)」によって描かれたたくさんのアートで有名である．ここでは略して JOI 街道と呼ぶ．</p>
+<p>さて，JOI 街道には大小様々なアートが描かれているが，そのうちいくつかは文字が描かれているように見える．</p>
+<p>JOI 街道のツアーガイドである理恵さんは，JOIG 春合宿の参加者を案内することになった．JOIG 春合宿の参加者を喜ばせたい理恵さんは，JOI 街道に描かれているアートのうち，‘<code>J</code>’, ‘<code>O</code>’, ‘<code>I</code>’, ‘<code>G</code>’ と読めるアートをこの順に訪れるツアーの計画を考えている．訪れる候補となるアートは <var>N</var> 個あり，<var>i</var> 番目 (<var>1 \leqq i \leqq N</var>) のアートは JOI 街道の西端から距離 <var>A_{i}</var> の地点にあり，このアートは <var>C_{i}</var> と読める．</p>
+<p>理恵さんは <var>Q</var> 個の計画を考えている．<var>j</var> 番目 (<var>1 \leqq j \leqq Q</var>) の計画におけるツアーでは，以下の順に移動を行う．</p>
+<ol>
+<li>JOI 街道の西端から距離 <var>S_{j}</var> の地点からツアーを開始する．</li>
+<li>‘<code>J</code>’ と読めるアートがある地点を <var>1</var> つ選び，その地点に移動する．</li>
+<li>‘<code>O</code>’ と読めるアートがある地点を <var>1</var> つ選び，その地点に移動する．</li>
+<li>‘<code>I</code>’ と読めるアートがある地点を <var>1</var> つ選び，その地点に移動する．</li>
+<li>‘<code>G</code>’ と読めるアートがある地点を <var>1</var> つ選び，その地点に移動する．</li>
+<li>JOI 街道の西端から距離 <var>T_{j}</var> の地点に移動し，ツアーを終了する．</li>
+</ol>
+<p>ただし，ツアーの経路は JOI 街道を外れないものとする．</p>
+<p>理恵さんはこの条件のもと，それぞれの計画についてなるべくツアーの総移動距離を短くしたい．</p>
+<p>JOI 街道のアートの情報と理恵さんの計画の情報が与えられたとき，それぞれの計画について，ツアーの総移動距離の最小値を求めるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力は以下の形式で標準入力から与えられる．</p>
+<pre><var>N</var>
+<var>A_{1}</var> <var>C_{1}</var>
+<var>A_{2}</var> <var>C_{2}</var>
+<var>\vdots</var>
+<var>A_{N}</var> <var>C_{N}</var>
+<var>Q</var>
+<var>S_1</var> <var>T_{1}</var>
+<var>S_2</var> <var>T_{2}</var>
+<var>\vdots</var>
+<var>S_{Q}</var> <var>T_{Q}</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に <var>Q</var> 行で出力せよ．<var>j</var> 行目 (<var>1 \leqq j \leqq Q</var>) には，理恵さんの <var>j</var> 番目の計画におけるツアーの総移動距離の最小値を出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>4 \leqq N \leqq 100\,000</var>．</li>
+<li><var>1 \leqq A_{i} \leqq 1\,000\,000\,000\,000\,000 (= 10^{15})</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>A_{i} &lt; A_{i+1}</var> (<var>1 \leqq i \leqq N - 1</var>)．</li>
+<li><var>C_{i}</var> (<var>1 \leqq i \leqq N</var>) は ‘<code>J</code>’，‘<code>O</code>’，‘<code>I</code>’，‘<code>G</code>’ のいずれかである．</li>
+<li><var>C_{i}</var> が ‘<code>J</code>’ であるような <var>i</var> (<var>1 \leqq i \leqq N</var>) は <var>1</var> つ以上存在する．</li>
+<li><var>C_{i}</var> が ‘<code>O</code>’ であるような <var>i</var> (<var>1 \leqq i \leqq N</var>) は <var>1</var> つ以上存在する．</li>
+<li><var>C_{i}</var> が ‘<code>I</code>’ であるような <var>i</var> (<var>1 \leqq i \leqq N</var>) は <var>1</var> つ以上存在する．</li>
+<li><var>C_{i}</var> が ‘<code>G</code>’ であるような <var>i</var> (<var>1 \leqq i \leqq N</var>) は <var>1</var> つ以上存在する．</li>
+<li><var>1 \leqq Q \leqq 100\,000</var>．</li>
+<li><var>1 \leqq S_{j} \leqq 1\,000\,000\,000\,000\,000 (= 10^{15})</var> (<var>1 \leqq j \leqq Q</var>)．</li>
+<li><var>1 \leqq T_{j} \leqq 1\,000\,000\,000\,000\,000 (= 10^{15})</var> (<var>1 \leqq j \leqq Q</var>)．</li>
+<li><var>(S_{j}, T_{j}) \ne (S_{k}, T_{k})</var> (<var>1 \leqq j &lt; k \leqq Q</var>)．</li>
+<li><var>N, Q</var> は整数である．</li>
+<li><var>A_{i}</var> は整数である (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>S_{j}, T_{j}</var> は整数である (<var>1 \leqq j \leqq Q</var>)．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>4</var> 点) <var>N \leqq 80</var>，<var>Q \leqq 10</var>．</li>
+<li>(<var>10</var> 点) <var>N \leqq 500</var>，<var>Q \leqq 10</var>．</li>
+<li>(<var>6</var> 点) <var>N \leqq 3\,000</var>，<var>Q \leqq 100</var>．</li>
+<li>(<var>25</var> 点) <var>N \leqq 5\,000</var>，<var>Q \leqq 1\,000</var>．</li>
+<li>(<var>12</var> 点) <var>C_{i}</var> が ‘<code>O</code>’ であるような <var>i</var> (<var>1 \leqq i \leqq N</var>)，<var>C_{j}</var> が ‘<code>I</code>’ であるような <var>j</var> (<var>1 \leqq j \leqq N</var>)，<var>C_{k}</var> が ‘<code>G</code>’ であるような <var>k</var> (<var>1 \leqq k \leqq N</var>) はそれぞれただ <var>1</var> つ存在する．</li>
+<li>(<var>8</var> 点) <var>C_{i}</var> が ‘<code>O</code>’ であるような <var>i</var> (<var>1 \leqq i \leqq N</var>) ，<var>C_{j}</var> が ‘<code>I</code>’ であるような <var>j</var> (<var>1 \leqq j \leqq N</var>) はそれぞれただ <var>1</var> つ存在する．</li>
+<li>(<var>20</var> 点) <var>C_{i}</var> が ‘<code>O</code>’ であるような <var>i</var> (<var>1 \leqq i \leqq N</var>) はただ <var>1</var> つ存在する．</li>
+<li>(<var>15</var> 点) 追加の制約はない．</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>7
+1 J
+2 O
+3 G
+4 I
+5 O
+8 G
+10 J
+2
+3 2
+7 5
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>7
+12
+</pre>
+<p><var>1</var> 番目の計画は，JOI 街道の西端から距離 <var>3</var> の地点からツアーを開始し，西端から距離 <var>2</var> の地点でツアーを終了するというものである．例えば，以下のように移動することで，ツアーの総移動距離を <var>7</var> とすることができる．</p>
+<ol>
+<li>JOI 街道の西端から距離 <var>3</var> の地点からツアーを開始する．</li>
+<li>西に距離 <var>2</var> だけ移動し，JOI 街道の西端から距離 <var>1</var> の地点にある ‘<code>J</code>’ と読めるアートを訪れる．</li>
+<li>東に距離 <var>1</var> だけ移動し，JOI 街道の西端から距離 <var>2</var> の地点にある ‘<code>O</code>’ と読めるアートを訪れる．</li>
+<li>東に距離 <var>2</var> だけ移動し，JOI 街道の西端から距離 <var>4</var> の地点にある ‘<code>I</code>’ と読めるアートを訪れる．</li>
+<li>西に距離 <var>1</var> だけ移動し，JOI 街道の西端から距離 <var>3</var> の地点にある ‘<code>G</code>’ と読めるアートを訪れる．</li>
+<li>西に距離 <var>1</var> だけ移動し，JOI 街道の西端から距離 <var>2</var> の地点でツアーを終了する．</li>
+</ol>
+<p>ツアーの総移動距離を <var>7</var> 未満にすることはできないため，<var>7</var> を <var>1</var> 行目に出力する．</p>
+<p><var>2</var> 番目の計画は，JOI 街道の西端から距離 <var>7</var> の地点からツアーを開始し，西端から距離 <var>5</var> の地点でツアーを終了するというものである．例えば，以下のように移動することで，ツアーの総移動距離を <var>12</var> とすることができる．</p>
+<ol>
+<li>JOI 街道の西端から距離 <var>7</var> の地点からツアーを開始する．</li>
+<li>東に距離 <var>3</var> だけ移動し，JOI 街道の西端から距離 <var>10</var> の地点にある ‘<code>J</code>’ と読めるアートを訪れる．</li>
+<li>西に距離 <var>5</var> だけ移動し，JOI 街道の西端から距離 <var>5</var> の地点にある ‘<code>O</code>’ と読めるアートを訪れる．</li>
+<li>西に距離 <var>1</var> だけ移動し，JOI 街道の西端から距離 <var>4</var> の地点にある ‘<code>I</code>’ と読めるアートを訪れる．</li>
+<li>西に距離 <var>1</var> だけ移動し，JOI 街道の西端から距離 <var>3</var> の地点にある ‘<code>G</code>’ と読めるアートを訪れる．</li>
+<li>東に距離 <var>2</var> だけ移動し，JOI 街道の西端から距離 <var>5</var> の地点でツアーを終了する．</li>
+</ol>
+<p>ツアーの総移動距離を <var>12</var> 未満にすることはできないため，<var>12</var> を <var>2</var> 行目に出力する．</p>
+<p>この入力例は小課題 <var>1, 2, 3, 4, 8</var> の制約を満たす．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>10
+5 J
+7 O
+10 J
+11 G
+12 J
+13 I
+17 J
+18 J
+19 J
+20 J
+4
+4 9
+15 14
+6 20
+7 20
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>13
+19
+20
+21
+</pre>
+<p>この入力例はすべての小課題の制約を満たす．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>10
+1 G
+2 J
+3 G
+4 O
+7 G
+9 J
+10 G
+14 I
+17 G
+19 G
+7
+11 6
+6 3
+17 19
+1 18
+17 17
+20 1
+20 10
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>25
+27
+28
+17
+26
+39
+30
+</pre>
+<p>この入力例は小課題 <var>1, 2, 3, 4, 6, 7, 8</var> の制約を満たす．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 4</h3>
+<pre>10
+3 J
+5 G
+6 I
+7 I
+8 J
+9 I
+10 O
+14 G
+16 I
+19 J
+6
+4 4
+20 3
+18 5
+15 4
+20 11
+10 8
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 4</h3>
+<pre>12
+17
+15
+15
+19
+12
+</pre>
+<p>この入力例は小課題 <var>1, 2, 3, 4, 7, 8</var> の制約を満たす．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 5</h3>
+<pre>12
+179948747891578 I
+263779425244614 I
+320153642407146 G
+383698990675423 J
+478483318441339 J
+505589213620811 G
+507468309040564 O
+530441288489671 J
+730036011088087 O
+896127332008998 I
+899298512463927 O
+915990785839829 J
+10
+744829561026263 366031656398270
+700496830781726 684771674298690
+314138534887378 222241904398827
+695615197615084 632164325876673
+418419052313523 409258287819812
+932490604948180 62799105708059
+738126150487131 45378717857226
+320047965627255 918203067583346
+859632377126681 967370566306944
+115848334010451 834089404672067
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 5</h3>
+<pre>583302366935305
+805077987955000
+591304613119987
+757352272699625
+478217003098189
+869691499240121
+805495866954969
+1085532869547991
+928541333618299
+1205618838253516
+</pre>
+<p>この入力例は小課題 <var>1, 2, 3, 4, 8</var> の制約を満たす．</p></section>
+</div>
+</span>
+</span>

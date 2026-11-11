@@ -1,0 +1,203 @@
+<span class="lang">
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>20XX 年，ついに IOI が JOI 国の JOI 町で行われることになり，これを記念してパーティーが開かれることになった．JOI 町には <var>A</var> 匹の犬 (<var>1, 2, \ldots, A</var> の番号がついている) と <var>B</var> 匹の猫 (<var>1, 2, \ldots, B</var> の番号がついている) がいる．あなたはこの <var>A + B</var> 匹みんなをパーティーに招待しようと考えた．</p>
+<p>犬たちと猫たちの間には，<var>N</var> 個の仲良しグループがある．<var>i</var> 番目の仲良しグループは番号が <var>P_{i}</var> 以上 <var>Q_{i}</var> 以下の犬たち <var>Q_{i} - P_{i} + 1</var> 匹と番号が <var>R_{i}</var> 以上 <var>S_{i}</var> 以下の猫たち <var>S_{i} - R_{i} + 1</var> 匹からなる．また，各仲良しグループには仲良し度と呼ばれる正の整数が定まっている．<var>i</var> 番目の仲良しグループの仲良し度は <var>T_{i}</var> である．<var>1</var> 匹の犬や <var>1</var> 匹の猫が複数の仲良しグループに所属しているかもしれないし，どの仲良しグループにも所属していない犬や猫がいるかもしれない．</p>
+<p>あなたは番号 <var>C</var> の犬と非常に仲が良く，その犬の招待に既に成功した．あなたは以下の行動を繰り返して残りの犬たちと猫たちを招待することにした．</p>
+<ul>
+<li><var>A + B</var> 匹みんなを既に招待できていれば終了する．</li>
+<li>まだ誘えていない犬または猫それぞれに対して，誘うときの幸せ値を考える．幸せ値とは，その犬または猫が所属している仲良しグループであって，既に招待することに成功した犬または猫が <var>1</var> 匹以上所属しているもののうちの，最大の仲良し度である．そのような仲良しグループが存在しない場合は幸せ値は <var>0</var> となる．</li>
+<li>幸せ値が最大の犬または猫を選ぶ．そのような犬または猫が複数いる場合は，犬を優先し，それでも <var>1</var> 匹に定まらない場合は，番号が小さい方を優先する．</li>
+<li>選ばれた犬または猫の幸せ値が <var>0</var> ならば，招待は失敗して終了する．そうでなければ，選ばれた犬または猫を招待することに成功する．</li>
+</ul>
+<p>あなたは，この招待方法がどういう結果になるのかを前もって計算することにした．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p>犬の数 <var>A</var>，猫の数 <var>B</var>，あなたと非常に仲が良い犬の番号 <var>C</var>，および <var>N</var> 個の仲良しグループの情報が与えられたとき，<var>A + B</var> 匹みんなを招待することに成功するかどうかを判定し，また，成功する場合は，各ステップで選ばれる犬または猫の幸せ値の合計がいくつになるかを求めるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>1 \leqq A \leqq 1\,000\,000\,000</var>：犬の数．</li>
+<li><var>1 \leqq B \leqq 1\,000\,000\,000</var>：猫の数．</li>
+<li><var>1 \leqq N \leqq 100\,000</var>：仲良しグループの個数．</li>
+<li><var>1 \leqq T_i \leqq 1\,000\,000\,000</var>：仲良し度．</li>
+</ul>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>標準入力から以下の入力を読み込め．</p>
+<ul>
+<li><var>1</var> 行目には整数 <var>A, B, C</var> (<var>1 \leqq C \leqq A</var>) が空白を区切りとして書かれており，それぞれ犬の数，猫の数，あなたと非常に仲が良い犬の番号を表す．</li>
+<li><var>2</var> 行目には整数 <var>N</var> が書かれており，仲良しグループの個数を表す．</li>
+<li><var>2 + i</var> 行目 (<var>1 \leqq i \leqq N</var>) には整数 <var>P_{i}, Q_{i}, R_{i}, S_{i}, T_{i}</var> (<var>1 \leqq P_{i} \leqq Q_{i} \leqq A</var>，<var>1 \leqq R_{i} \leqq S_{i} \leqq B</var>) が空白を区切りとして書かれており，<var>i</var> 番目の仲良しグループは番号が <var>P_{i}</var> 以上 <var>Q_{i}</var> 以下の犬たちと番号が <var>R_{i}</var> 以上 <var>S_{i}</var> 以下の猫たちからなり，仲良し度が <var>T_{i}</var> であることを表す．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に，次に示される整数 <var>1</var> つを <var>1</var> 行で出力せよ．</p>
+<ul>
+<li><var>A + B</var> 匹みんなを招待することに成功する場合，各ステップで選ばれる犬または猫の幸せ値の合計を表す整数．</li>
+<li>招待が途中で失敗する場合，整数 <var>-1</var>．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>採点基準</h3>
+<p>採点用データのうち，配点の <var>30\%</var> 分については，<var>A \leqq 1\,000</var>，<var>B \leqq 1\,000</var>，<var>N \leqq 2\,000</var> を満たす．</p>
+<p>採点用データのうち，配点の <var>50\%</var> 分については，<var>N \leqq 2\,000</var> を満たす．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入出力例</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>5 6 3
+4
+2 4 1 3 20
+1 2 2 4 40
+4 5 2 3 30
+4 4 4 6 10
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>280
+</pre>
+<p>この例では，犬たちと猫たちは次のように招待される．</p>
+<ul>
+<li>あなたは番号 <var>3</var> の犬 (以下「犬 <var>3</var>」のように呼ぶ) の招待に既に成功している．</li>
+<li>幸せ値を計算すると，犬 <var>2</var>：<var>20</var>，犬 <var>4</var>：<var>20</var>，猫 <var>1</var>：<var>20</var>，猫 <var>2</var>：<var>20</var>，猫 <var>3</var>：<var>20</var>，他の招待されていない犬や猫：<var>0</var> である．あなたは犬 <var>2</var> を選び，招待に成功する．</li>
+<li>幸せ値を計算すると，犬 <var>1</var>：<var>40</var>，犬 <var>4</var>：<var>20</var>，猫 <var>1</var>：<var>20</var>，猫 <var>2</var>：<var>40</var>，猫 <var>3</var>：<var>40</var>，猫 <var>4</var>：<var>40</var>，他の招待されていない犬や猫：<var>0</var> である．あなたは犬 <var>1</var> を選び，招待に成功する．</li>
+<li>以下同様に招待を続けると，以下の表の順番ですべての犬と猫が招待される．</li>
+</ul>
+<div class="joisc2012-invitation-ja-table">
+<table>
+<thead>
+<tr>
+<th>動物</th>
+<th>番号</th>
+<th>幸せ値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>犬</td>
+<td><var>3</var></td>
+<td>—</td>
+</tr>
+<tr>
+<td>犬</td>
+<td><var>2</var></td>
+<td><var>20</var></td>
+</tr>
+<tr>
+<td>犬</td>
+<td><var>1</var></td>
+<td><var>40</var></td>
+</tr>
+<tr>
+<td>猫</td>
+<td><var>2</var></td>
+<td><var>40</var></td>
+</tr>
+<tr>
+<td>猫</td>
+<td><var>3</var></td>
+<td><var>40</var></td>
+</tr>
+<tr>
+<td>猫</td>
+<td><var>4</var></td>
+<td><var>40</var></td>
+</tr>
+<tr>
+<td>犬</td>
+<td><var>4</var></td>
+<td><var>30</var></td>
+</tr>
+<tr>
+<td>犬</td>
+<td><var>5</var></td>
+<td><var>30</var></td>
+</tr>
+<tr>
+<td>猫</td>
+<td><var>1</var></td>
+<td><var>20</var></td>
+</tr>
+<tr>
+<td>猫</td>
+<td><var>5</var></td>
+<td><var>10</var></td>
+</tr>
+<tr>
+<td>猫</td>
+<td><var>6</var></td>
+<td><var>10</var></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>表の「幸せ値」の列の値は，その犬または猫を誘うときの幸せ値を表している．これらの合計である <var>280</var> を出力する．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>10 10 1
+2
+1 5 1 5 3
+6 10 6 10 4
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>-1
+</pre>
+<p>この例では，犬 <var>1</var>，犬 <var>2</var>，犬 <var>3</var>，犬 <var>4</var>，犬 <var>5</var>，猫 <var>1</var>，猫 <var>2</var>，猫 <var>3</var>，猫 <var>4</var>，猫 <var>5</var> の <var>10</var> 匹の招待の後に選ばれる犬 <var>6</var> は幸せ値 <var>0</var> であるため，招待は途中で失敗する．</p>
+<style>
+.joisc2012-invitation-ja-table { max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisc2012-invitation-ja-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisc2012-invitation-ja-table th,.joisc2012-invitation-ja-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisc2012-invitation-ja-table th { background:#f5f5f5; }
+</style></section>
+</div>
+</span>
+</span>

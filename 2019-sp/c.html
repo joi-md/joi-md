@@ -1,0 +1,340 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>JOI Curry Shop is famous for serving very long naans. They have <var>L</var> kinds of flavors, numbered from <var>1</var> through <var>L</var>, to flavor naans. “JOI Special Naan” is the most popular menu in the shop. The length of the naan is <var>L</var> cm. We define “the position <var>x</var>” as the position on the naan which is <var>x</var> cm distant from the left end of the naan. The segment between position <var>j - 1</var> and position <var>j</var> is flavored by flavor <var>j</var> (<var>1 \le j \le L</var>).</p>
+<p><var>N</var> people came to JOI Curry Shop. Their preferences are different from each other. Specifically, when the <var>i</var>-th (<var>1\le i\le N</var>) person eats naan with flavor <var>j</var> (<var>1 \le j \le L</var>), they will get happiness <var>V_{i,j}</var> per 1 cm.</p>
+<p>They ordered only one JOI Special Naan. They will share the naan in the following manner:</p>
+<ol>
+<li>Choose <var>N - 1</var> rational numbers <var>X_{1}, \ldots, X_{N - 1}</var> which satisfy <var>0 &lt; X_{1} &lt; X_{2} &lt; \cdots &lt; X_{N - 1} &lt; L</var>.</li>
+<li>Choose <var>N</var> integers <var>P_{1}, \ldots, P_{N}</var> which form a permutation of <var>1</var>, <var>\ldots</var>, <var>N</var>.</li>
+<li>For each <var>k</var> (<var>1 \le k \le N - 1</var>), cut the naan at the position <var>X_{k}</var>. Thus, the naan will be separated into <var>N</var> pieces.</li>
+<li>For each <var>k</var> (<var>1 \le k \le N</var>), give the piece between the position <var>X_{k - 1}</var> and position <var>X_{k}</var> to the <var>P_{k}</var>-th person. We consider <var>X_{0}</var> as 0 and <var>X_{N}</var> as <var>L</var>.</li>
+</ol>
+<p>We want to distribute the naan fairly. We say a distribution is fair if each person gets happiness of more than or equal to <var>\dfrac{1}{N}</var> of the amount of happiness they will get by eating the whole JOI Special Naan.</p>
+<p>Write a program which, given the information of preferences of <var>N</var> people, determines if it is possible to distribute the naan in a fair way, and if it is possible, finds such a fair way.</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input. All the values in the input are integers.</p>
+<pre><var>N</var> <var>L</var>
+<var>V_{1,1}</var> <var>V_{1,2}</var> <var>\cdots</var> <var>V_{1,L}</var>
+<var>\vdots</var>
+<var>V_{N,1}</var> <var>V_{N,2}</var> <var>\cdots</var> <var>V_{N,L}</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>Write to the standard output. If it is impossible to distribute naan in a fair way, write <var>-1</var> in a line. If it is possible, output <var>N - 1</var> rational numbers <var>X_{1}, \ldots, X_{N - 1}</var> and <var>N</var> integers <var>P_{1}, \ldots, P_{N}</var> which represent a fair distribution, in the following format.</p>
+<pre><var>A_{1}</var> <var>B_{1}</var>
+<var>A_{2}</var> <var>B_{2}</var>
+<var>\vdots</var>
+<var>A_{N - 1}</var> <var>B_{N - 1}</var>
+<var>P_{1}</var> <var>P_{2}</var> <var>\cdots</var> <var>P_{N}</var>
+</pre>
+<p><var>A_k</var> and <var>B_k</var> are a pair of integers which satisfies <var>X_k=\dfrac{A_k}{B_k}</var> (<var>1\le k\le N - 1</var>). These integers have to follow the “Constraints of Output” section.</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints of Input</h3>
+<ul>
+<li><var>2 \le N \le 2\,000</var>.</li>
+<li><var>1 \le L \le 2\,000</var>.</li>
+<li><var>1 \le V_{i,j} \le 100\,000</var> (<var>1 \le i \le N</var>, <var>1 \le j \le L</var>).</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints of Output</h3>
+<p>If it is possible to distribute the naan in a fair way, the output must satisfy the following constraints:</p>
+<ul>
+<li><var>1\le B_k\le1\,000\,000\,000\ {}</var> (<var>1\le k\le N - 1</var>).</li>
+<li><var>0&lt;\dfrac{A_1}{B_1}&lt;\dfrac{A_2}{B_2}&lt;\cdots&lt;\dfrac{A_{N - 1}}{B_{N - 1}}&lt; L</var>.</li>
+<li><var>P_1,\ldots,P_N</var> is a permutation of <var>1,\ldots,N</var>.</li>
+<li>In the distribution, the amount of happiness which <var>i</var>-th person will get is more than or equal to <var>\dfrac{V_{i,1}+V_{i,2}+\cdots+V_{i,L}}{N}</var> (<var>1\le i\le N</var>).</li>
+</ul>
+<p><var>A_k</var> and <var>B_k</var> are not necessary to be coprime (<var>1\le k\le N - 1</var>).</p>
+<p>Under the constraints of the input, it can be proved that if a fair distribution exists, there is a correct output which satisfies <var>1\le B_k\le1\,000\,000\,000\ {}</var> (<var>1\le k\le N - 1</var>).</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li>(<var>5</var> points) <var>N = 2</var>.</li>
+<li>(<var>24</var> points) <var>N \le 6</var>, <var>V_{i,j} \le 10</var> (<var>1 \le i \le N</var>, <var>1 \le j \le L</var>).</li>
+<li>(<var>71</var> points) No additional constraints.</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input and Output</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>2 5
+2 7 1 8 2
+3 1 4 1 5
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>14 5
+2 1
+</pre>
+<p>In this sample, the first person will get happiness of <var>2+7+1+8+2=20</var> when she eats the whole naan and the second person will get happiness of <var>3+1+4+1+5=14</var> when she eats the whole naan. Thus, if the first person gets happiness of more than or equal to <var>\dfrac{20}{2}=10</var> and the second person gets happiness of more than or equal to <var>\dfrac{14}{2}=7</var>, the distribution is fair.</p>
+<p>If you cut the naan at the position <var>\dfrac{14}{5}</var>, the first person will get happiness of <var>1\times\dfrac{1}{5}+8+2=\dfrac{51}{5}</var> and the second person will get happiness of <var>3+1+4\times\dfrac{4}{5}=\dfrac{36}{5}</var>. Hence, this is a fair distribution.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>7 1
+1
+2
+3
+4
+5
+6
+7
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>1 7
+2 7
+3 7
+4 7
+5 7
+6 7
+3 1 4 2 7 6 5
+</pre>
+<p>In this sample, the naan has only one flavor. If you equally divide the naan into 7 pieces, the distribution will be fair, regardless of <var>P_{1}, \ldots, P_{N}</var>.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 3</h3>
+<pre>5 3
+2 3 1
+1 1 1
+2 2 1
+1 2 2
+1 2 1
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 3</h3>
+<pre>15 28
+35 28
+50 28
+70 28
+3 1 5 2 4
+</pre>
+<p>Note that <var>A_{k}</var> and <var>B_{k}</var> are not necessary to be coprime (<var>1 \le k \le N - 1</var>).</p></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>JOI カレー店はとても長いナンを出すことで有名である．この店ではナンに <var>L</var> 種類の味付けを行っており，味はそれぞれ <var>1</var> 以上 <var>L</var> 以下の整数で番号付けされている．この店の目玉商品である JOI スペシャルナンは長さが <var>L</var> cm であり，左から <var>j - 1</var> cm から <var>j</var> cm の部分は味 <var>j</var> で味付けされている (<var>1 \leqq j \leqq L</var>)．</p>
+<p>あなたはお腹が空いたので，昼ごはんを食べに <var>N</var> 人で JOI カレー店に来た．みんなで <var>1</var> つの JOI スペシャルナンを食べるつもりである．人によって味の好みは異なる ．<var>i</var> 番目 (<var>1 \leqq i \leqq N</var>) の人は味 <var>j</var> (<var>1 \leqq j \leqq L</var>) で味付けされたナンを食べると 1 cm あたり <var>V_{i,j}</var> の幸福度を得る．</p>
+<p>あなたは JOI スペシャルナンを <var>N</var> 個のピースに切り分けて，みんなに分配することにした．具体的には，以下の手順でナンを分配する．</p>
+<ol>
+<li><var>N - 1</var> 個の有理数 <var>0 &lt; X_{1} &lt; X_{2} &lt; \cdots &lt; X_{N - 1} &lt; L</var> を決める．</li>
+<li><var>N</var> 個の整数 <var>P_{1}, P_{2}, \ldots, P_{N}</var> を決める．これは <var>1</var> 以上 <var>N</var> 以下の整数の並び替えでなければならない．</li>
+<li>各整数 <var>k</var> (<var>1 \leqq k \leqq N - 1</var>) に対して，ナンの左から <var>X_{k}</var> cm の場所をそれぞれ切る．これにより，ナンは <var>N</var> 個のピースに切り分けられる．</li>
+<li>各整数 <var>k</var> (<var>1 \leqq k \leqq N</var>) に対して，ナンの左から <var>X_{k - 1}</var> cm のところから <var>X_{k}</var> cm のところまでに該当するピースを <var>P_{k}</var> 番目の人に与える．ここで，<var>X_{0} = 0</var>，<var>X_{N} = L</var> とする．</li>
+</ol>
+<p>人によって味の好みが異なるので，なるべく公平になるように分配したい．どの人も，JOI スペシャルナンを <var>1</var> 人ですべて食べたときの幸福度の <var>\dfrac{1}{N}</var> 以上の幸福度が得られる分配を公平な分配と呼ぶ．あなたの目標は公平な分配を <var>1</var> つ見つけることである．</p>
+<p>人の味の好みが与えられたとき，公平な分配が可能かどうかを判定し，もし可能ならば公平な分配を <var>1</var> つ求めるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力は以下の形式で標準入力から与えられる．入力の値はすべて整数である．</p>
+<pre><var>N</var> <var>L</var>
+<var>V_{1,1}</var> <var>V_{1,2}</var> <var>\cdots</var> <var>V_{1,L}</var>
+<var>\vdots</var>
+<var>V_{N,1}</var> <var>V_{N,2}</var> <var>\cdots</var> <var>V_{N,L}</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>公平な分配が不可能ならば，標準出力に <var>-1</var> を出力せよ．公平な分配が可能ならば，標準出力にその分配を表す <var>N - 1</var> 個の有理数 <var>X_{1}, \ldots, X_{N - 1}</var> と <var>N</var> 個の整数 <var>P_{1}, \ldots, P_{N}</var> を以下の形式で出力せよ．</p>
+<pre><var>A_{1}</var> <var>B_{1}</var>
+<var>A_{2}</var> <var>B_{2}</var>
+<var>\vdots</var>
+<var>A_{N - 1}</var> <var>B_{N - 1}</var>
+<var>P_{1}</var> <var>P_{2}</var> <var>\cdots</var> <var>P_{N}</var>
+</pre>
+<p>ここで，<var>A_k,B_k</var> は <var>X_k=\dfrac{A_k}{B_k}</var> を満たす整数の組である (<var>1\leqq k\leqq N - 1</var>)．これらの整数は「出力の制約」の条件を満たすこと．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>入力の制約</h3>
+<ul>
+<li><var>2 \leqq N \leqq 2\,000</var>．</li>
+<li><var>1 \leqq L \leqq 2\,000</var>．</li>
+<li><var>1 \leqq V_{i,j} \leqq 100\,000</var> (<var>1 \leqq i \leqq N</var>，<var>1 \leqq j \leqq L</var>)．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力の制約</h3>
+<p>公平な分配が可能な場合，出力は以下の制約を満たさなければならない．</p>
+<ul>
+<li><var>1\leqq B_k\leqq1\,000\,000\,000\ {}</var> (<var>1\leqq k\leqq N - 1</var>)．</li>
+<li><var>0&lt;\dfrac{A_1}{B_1}&lt;\dfrac{A_2}{B_2}&lt;\cdots&lt;\dfrac{A_{N - 1}}{B_{N - 1}}&lt; L</var>．</li>
+<li><var>P_1,\ldots,P_N</var> は <var>1</var> 以上 <var>N</var> 以下の整数の並び替えである．</li>
+<li>出力された分配において，<var>i</var> 番目の人が得る幸福度が <var>\dfrac{V_{i,1}+V_{i,2}+\cdots+V_{i,L}}{N}</var> 以上である (<var>1\leqq i\leqq N</var>)．</li>
+</ul>
+<p>なお，<var>A_k</var> と <var>B_k</var> は互いに素でなくてもよい (<var>1\leqq k\leqq N - 1</var>)．</p>
+<p>この問題の制約の下，公平な分配が存在するならば，<var>1\leqq B_k\leqq1\,000\,000\,000\ {}</var> (<var>1\leqq k\leqq N - 1</var>) を満たす正しい出力が存在することが証明できる．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>5</var> 点) <var>N = 2</var>．</li>
+<li>(<var>24</var> 点) <var>N \leqq 6</var>，<var>V_{i,j} \leqq 10</var> (<var>1 \leqq i \leqq N</var>，<var>1 \leqq j \leqq L</var>)．</li>
+<li>(<var>71</var> 点) 追加の制約はない．</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入出力例</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>2 5
+2 7 1 8 2
+3 1 4 1 5
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>14 5
+2 1
+</pre>
+<p>この入力例では，<var>1</var> 番目の人がナンを <var>1</var> 人で全部食べたときに得る幸福度が <var>2+7+1+8+2=20</var> で，<var>2</var> 番目の人がナンを <var>1</var> 人で全部食べたときに得る幸福度が <var>3+1+4+1+5=14</var> である．よって，<var>1</var> 番目の人が <var>\dfrac{20}{2}=10</var> 以上，<var>2</var> 番目の人が <var>\dfrac{14}{2}=7</var> 以上の幸福度が得られる分配が公平な分配になる．</p>
+<p>左から <var>\dfrac{14}{5}</var> cm のところでナンを分け，<var>1</var> 番目の人に左から <var>2</var> つめのピースを，<var>2</var> 番目の人に左から <var>1</var> つめのピースを与えるようにすると，<var>1</var> 番目の人は <var>1\times\dfrac{1}{5}+8+2=\dfrac{51}{5}</var> の幸福度を得て，<var>2</var> 番目の人は <var>3+1+4\times\dfrac{4}{5}=\dfrac{36}{5}</var> の幸福度を得るので，公平な分配になる．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>7 1
+1
+2
+3
+4
+5
+6
+7
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>1 7
+2 7
+3 7
+4 7
+5 7
+6 7
+3 1 4 2 7 6 5
+</pre>
+<p>この入力例では，ナンの味が <var>1</var> 種類しかないので，ナンを <var>7</var> 等分する以外に公平な分配はない．どのピースも味が同じなので，誰がどれを食べても公平な分配になる．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>5 3
+2 3 1
+1 1 1
+2 2 1
+1 2 2
+1 2 1
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>15 28
+35 28
+50 28
+70 28
+3 1 5 2 4
+</pre>
+<p>出力において <var>A_{k}</var> と <var>B_{k}</var> が互いに素である必要はない (<var>1 \leqq k \leqq N - 1</var>)．</p></section>
+</div>
+</span>
+</span>

@@ -1,0 +1,416 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>JOI Railways is a company operating one railway. In the railway of JOI Railways, there are <var>N</var> stations on a straight line numbered from 1 to <var>N</var>. For each <var>i</var> (<var>1 \le i \le N - 1</var>), the station <var>i</var> and the station <var>i + 1</var> are connected by a railway track.</p>
+<p>JOI Railways has <var>K</var> types of trains running in both directions. The types of trains are expressed as integers between <var>1</var> and <var>K</var> inclusive. Each station has a level which is an integer between <var>1</var> and <var>K</var> inclusive. For each <var>i</var> (<var>1 \le i \le N</var>), the station <var>i</var> has level <var>L_{i}</var>. The stations in both ends, namely the station 1 and the station <var>N</var>, have level <var>K</var>.</p>
+<p>A train of type <var>j</var> (<var>1 \le j \le K</var>) stops at every station whose level is greater than or equal to <var>j</var>, and it does not stop at any other stations. Since the stations in both ends, namely the station 1 and the station <var>N</var>, have level <var>K</var>, every train stops at these stations.</p>
+<p>Many passengers use JOI Railways every day. During travel, they can take a train whose direction is opposite to the destination, or they can pass the destination. In the end of the travel, they have to stop at the destination. They do not like to stop at stations very much. Hence they try to take a route with minimum number of intermediate stops regardless of the number of passed stations or the number of connections. If a passenger stops at a station to change trains, we count it as one stop. The first stop at the starting station and the last stop at the destination are not considered as intermediate stops.</p>
+<p>Your task is to write a program which answers queries on the minimum number of intermediate stops for each passenger.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Task</h3>
+<p>Given information of the railway of JOI Railways and the starting station and the destination of each passenger, write a program which answers queries on the minimum number of intermediate stops for each passenger.</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input.</p>
+<ul>
+<li>The first line of input contains three space separated integers <var>N, K, Q</var>. This means there are <var>N</var> stations in JOI Railways, there are <var>K</var> types of trains, and <var>Q</var> queries about travels between two stations are given.</li>
+<li>The <var>i</var>-th line (<var>1 \le i \le N</var>) of the following <var>N</var> lines contains an integer <var>L_{i}</var>, the level of the station <var>i</var>.</li>
+<li>The <var>k</var>-th line (<var>1 \le k \le Q</var>) of the following <var>Q</var> lines contains two space separated integers <var>A_{i}, B_{i}</var>. This means the starting station and the destination of the <var>k</var>-th passenger are the stations <var>A_{i}, B_{i}</var>, respectively.</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>Write <var>Q</var> lines to the standard output. The <var>k</var>-th line (<var>1 \le k \le Q</var>) of output contains the minimum number of intermediate stops of a route from the station <var>A_{k}</var> to the station <var>B_{k}</var>.</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<p>All input data satisfy the following conditions.</p>
+<ul>
+<li><var>2 \le N \le 100\,000</var>.</li>
+<li><var>1 \le K \le N</var>.</li>
+<li><var>1 \le Q \le 100\,000</var>.</li>
+<li><var>1 \le L_{i} \le K</var> (<var>1 \le i \le N</var>).</li>
+<li><var>1 \le A_{k} \le N</var> (<var>1 \le k \le Q</var>).</li>
+<li><var>1 \le B_{k} \le N</var> (<var>1 \le k \le Q</var>).</li>
+<li><var>A_{k} \ne B_{k}</var> (<var>1 \le k \le Q</var>).</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtask</h3>
+<p>There are 4 subtasks. The score and additional constraints of each subtask are as follows:</p>
+<h4>Subtask 1 [<var>5</var> points]</h4>
+<ul>
+<li><var>N \le 100</var>.</li>
+<li><var>K \le 100</var>.</li>
+<li><var>Q \le 50</var>.</li>
+</ul>
+<h4>Subtask 2 [<var>15</var> points]</h4>
+<ul>
+<li><var>Q \le 50</var>.</li>
+</ul>
+<h4>Subtask 3 [<var>25</var> points]</h4>
+<ul>
+<li><var>K \le 20</var>.</li>
+</ul>
+<h4>Subtask 4 [<var>55</var> points]</h4>
+<p>There are no additional constraints.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input and Output</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>9 3 3
+3
+1
+1
+1
+2
+2
+2
+3
+3
+2 4
+4 9
+6 7
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>1
+3
+0
+</pre>
+<p>In this sample input, three queries about travels between two stations are given.</p>
+<ul>
+<li>The first query is about the travel from the station 2 to the station 4. If a passenger takes a train of type 1 from the station 2 to the station 4, there is only one intermediate stop, the station 3.</li>
+<li>The second query is about the travel from the station 4 to the station 9. If a passenger takes a train of type 1 from the station 4 to the station 5, then a train of type 2 from the station 5 to the station 1, and finally a train of type 3 from the station 1 to the station 9, there are three intermediate stops, the stations 5, 1, 8.</li>
+<li>The third query is about the travel from the station 6 to the station 7. If a passenger takes a train of type 2 from the station 6 to the station 7, there are no intermediate stops.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>5 2 1
+2
+1
+1
+1
+2
+1 4
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>1
+</pre>
+<p>Note that passengers can pass the destination during travel.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 3</h3>
+<pre>15 5 15
+5
+4
+1
+2
+3
+1
+1
+2
+4
+5
+4
+1
+5
+3
+5
+8 1
+11 1
+5 3
+6 11
+9 12
+15 14
+15 2
+3 12
+2 1
+4 8
+15 5
+12 6
+1 13
+13 8
+14 9
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 3</h3>
+<pre>2
+1
+1
+3
+2
+0
+3
+4
+0
+1
+3
+4
+1
+2
+2
+</pre></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>JOI 鉄道は <var>1</var> 本の鉄道路線を運営している．JOI 鉄道線には一直線上に並んだ <var>N</var> 個の駅があり，それぞれ <var>1</var> 以上 <var>N</var> 以下の整数で番号がつけられている．各 <var>i</var> (<var>1 \leqq i \leqq N - 1</var>) に対して，駅 <var>i</var> と駅 <var>i + 1</var> の間は線路で結ばれている．</p>
+<p>JOI 鉄道は，<var>K</var> 種類の列車を双方向に走らせている．列車種別には <var>1</var> 以上 <var>K</var> 以下の整数で番号がつけられている．また，各駅にはレベルと呼ばれる <var>1</var> 以上 <var>K</var> 以下の整数が <var>1</var> つ定まっており，駅 <var>i</var> (<var>1 \leqq i \leqq N</var>) のレベルは <var>L_{i}</var> である．両端の駅，すなわち駅 <var>1</var> および駅 <var>N</var> のレベルは <var>K</var> である．</p>
+<p>種別 <var>j</var> (<var>1 \leqq j \leqq K</var>) の列車はレベルが <var>j</var> 以上の駅すべてに停車し，それ以外の駅には停車しない．両端の駅，すなわち駅 <var>1</var> および駅 <var>N</var> のレベルは <var>K</var> なので，すべての列車が停車する．</p>
+<p>毎日多くの利用者が JOI 鉄道線を利用する．JOI 鉄道線を利用する際には，途中で目的地と反対の方向の列車に乗ったり，目的地を通り過ぎても構わないが，旅程の最後では目的地に停車する必要がある．利用者は，駅での停車を極端に嫌うため，途中で通過する駅の数や，乗り換えの回数などによらず，できるだけ途中の停車の回数が少なくなるような経路で駅間を移動しようとする．ただし，乗り換えのための停車は，<var>1</var> 回の停車と数える．途中の停車の回数には，出発駅や目的地における停車は含めない．</p>
+<p>あなたの仕事は，利用者の出発駅と目的地が与えられたときに，この <var>2</var> 駅の間を移動するための途中の停車の回数の最小値を求めよという質問に回答するプログラムを作成することである．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p>JOI 鉄道線の情報と，各利用者の出発駅，目的地が与えられたとき，各利用者について，出発駅から目的地まで移動するための途中の停車の回数の最小値を求めよという質問に回答するプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>標準入力から以下のデータを読み込め．</p>
+<ul>
+<li><var>1</var> 行目には，整数 <var>N, K, Q</var> が空白を区切りとして書かれている．これは，JOI 鉄道線には <var>N</var> 個の駅， <var>K</var> 種類の列車があり，<var>2</var> 駅間の移動の質問が <var>Q</var> 個与えられることを表す．</li>
+<li>続く <var>N</var> 行のうちの <var>i</var> 行目 (<var>1 \leqq i \leqq N</var>) には，整数 <var>L_{i}</var> が書かれている．これは，駅 <var>i</var> のレベルが <var>L_{i}</var> であることを表す．</li>
+<li>続く <var>Q</var> 行のうちの <var>k</var> 行目 (<var>1 \leqq k \leqq Q</var>) には，整数 <var>A_{k}, B_{k}</var> が空白を区切りとして書かれている．これは，<var>k</var> 番目の利用者の出発駅，目的地がそれぞれ駅 <var>A_{k}</var>，駅 <var>B_{k}</var> であることを表す．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に <var>Q</var> 行で出力せよ ．<var>k</var> 行目 (<var>1 \leqq k \leqq Q</var>) には，駅 <var>A_{k}</var> から駅 <var>B_{k}</var> まで移動するときの，途中の停車の回数の最小値を出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制限</h3>
+<p>すべての入力データは以下の条件を満たす．</p>
+<ul>
+<li><var>2 \leqq N \leqq 100\,000</var>．</li>
+<li><var>1 \leqq K \leqq N</var>．</li>
+<li><var>1 \leqq Q \leqq 100\,000</var>．</li>
+<li><var>1 \leqq L_{i} \leqq K</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>1 \leqq A_{k} \leqq N</var> (<var>1 \leqq k \leqq Q</var>)．</li>
+<li><var>1 \leqq B_{k} \leqq N</var> (<var>1 \leqq k \leqq Q</var>)．</li>
+<li><var>A_{k} \ne B_{k}</var> (<var>1 \leqq k \leqq Q</var>)．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<p>この課題では小課題は全部で <var>4</var> 個ある．各小課題の配点および追加の制限は以下の通りである．</p>
+<h4>小課題 1 [<var>5</var> 点]</h4>
+<ul>
+<li><var>N \leqq 100</var>．</li>
+<li><var>K \leqq 100</var>．</li>
+<li><var>Q \leqq 50</var>．</li>
+</ul>
+<h4>小課題 2 [<var>15</var> 点]</h4>
+<ul>
+<li><var>Q \leqq 50</var>．</li>
+</ul>
+<h4>小課題 3 [<var>25</var> 点]</h4>
+<ul>
+<li><var>K \leqq 20</var>．</li>
+</ul>
+<h4>小課題 4 [<var>55</var> 点]</h4>
+<p>追加の制限はない．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入出力例</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>9 3 3
+3
+1
+1
+1
+2
+2
+2
+3
+3
+2 4
+4 9
+6 7
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>1
+3
+0
+</pre>
+<p>この入力例では，<var>2</var> 駅間の移動の質問が <var>3</var> 個与えられる．</p>
+<ul>
+<li><var>1</var> 番目の質問は，駅 <var>2</var> から駅 <var>4</var> まで移動するものである．このとき，駅 <var>2</var> から駅 <var>4</var> まで種別 <var>1</var> の列車を利用すると，途中停車する駅は駅 <var>3</var> の <var>1</var> つのみとなる．</li>
+<li><var>2</var> 番目の質問は，駅 <var>4</var> から駅 <var>9</var> まで移動するものである．このとき，まず駅 <var>4</var> から駅 <var>5</var> まで種別 <var>1</var> の列車を利用し，次に駅 <var>5</var> から駅 <var>1</var> まで種別 <var>2</var> の列車を利用し，最後に駅 <var>1</var> から駅 <var>9</var> まで種別 <var>3</var> の列車を利用すると，途中停車する駅は順に駅 <var>5</var>，駅 <var>1</var>，駅 <var>8</var> の <var>3</var> つとなる．</li>
+<li><var>3</var> 番目の質問は，駅 <var>6</var> から駅 <var>7</var> まで移動するものである．このとき，駅 <var>6</var> から駅 <var>7</var> まで種別 <var>2</var> の列車を利用すると，途中他の駅に停車せずに移動することができる．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>5 2 1
+2
+1
+1
+1
+2
+1 4
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>1
+</pre>
+<p>途中で目的地の駅を通り過ぎても構わないことに注意せよ．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>15 5 15
+5
+4
+1
+2
+3
+1
+1
+2
+4
+5
+4
+1
+5
+3
+5
+8 1
+11 1
+5 3
+6 11
+9 12
+15 14
+15 2
+3 12
+2 1
+4 8
+15 5
+12 6
+1 13
+13 8
+14 9
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>2
+1
+1
+3
+2
+0
+3
+4
+0
+1
+3
+4
+1
+2
+2
+</pre></section>
+</div>
+</span>
+</span>

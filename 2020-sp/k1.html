@@ -1,0 +1,430 @@
+<span class="lang">
+<span class="lang-en">
+<blockquote>
+<p><strong>Submission on AtCoder</strong></p>
+<p>This task accepts the output for test case 01. Submit the corresponding output file using the language <code>Text (cat)</code>.</p>
+<p>Submission pages for each test case: <a href="https://atcoder.jp/contests/joisc2020/tasks/joisc2020_k">01</a> | <a href="https://atcoder.jp/contests/joisc2020/tasks/joisc2020_l">02</a> | <a href="https://atcoder.jp/contests/joisc2020/tasks/joisc2020_m">03</a> | <a href="https://atcoder.jp/contests/joisc2020/tasks/joisc2020_n">04</a> | <a href="https://atcoder.jp/contests/joisc2020/tasks/joisc2020_o">05</a> | <a href="https://atcoder.jp/contests/joisc2020/tasks/joisc2020_p">06</a></p>
+<p><a href="https://www2.ioi-jp.org/camp/2020/2020-sp-tasks/day4/dango2-data.zip">Input data</a></p>
+</blockquote>
+<p>Score: <var>15</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>You are a professional making delicious rice dumplings, called dangos. Now you are skewering dangos with sticks.</p>
+<p>Dangos are located in a rectangular grid of cells with <var>R</var> rows and <var>C</var> columns. Each cell contains one dango. The color of a dango is pink (<code>P</code>), white (<code>W</code>), or green (<code>G</code>). You will choose three consecutive dangos in the vertical direction (from top to bottom), the horizontal direction (from left to right), or the oblique direction (from left-top to right-bottom, or from right-top to left-bottom). Then you will take three dangos from these cells from end to end, and skewer them to a stick in order, to get a stick of dangos. For example, if you choose three consecutive dangos in the vertical direction, you can take dangos from top-middle-bottom or bottom-middle-top cells, in this order, and skewer them to a stick. You cannot take dangos from middle-bottom-top or bottom-top-middle cells. Moreover, you cannot skewer a dango to more than one stick.</p>
+<p>A stick of dangos is beautiful if the colors of the dangos in the stick are pink-white-green or green-white-pink, in this order. You want to make as many beautiful sticks of dangos as possible.</p>
+<p>How many beautiful sticks of dangos can you make?</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>For this task, there are six input data.</p>
+<p>The input is given in the following format.</p>
+<pre><var>R</var> <var>C</var>
+<var>D_{1}</var>
+<var>\vdots</var>
+<var>D_{R}</var>
+</pre>
+<p>Here <var>D_{i}</var> (<var>1 \le i \le R</var>) is a string of length <var>C</var> consisting of <code>P</code>, <code>W</code>, and <code>G</code>. The <var>j</var>-th character (<var>1 \le j \le C</var>) of <var>D_{i}</var> is the color of the dango in the cell located in the <var>i</var>-th row from the top and the <var>j</var>-th column from the left.</p>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>The format of the output data is as follows.</p>
+<pre><var>S_{1}</var>
+<var>\vdots</var>
+<var>S_{R}</var>
+</pre>
+<p>Here <var>S_{i}</var> (<var>1 \le i \le R</var>) is a string of length <var>C</var> consisting of <code>P</code>, <code>W</code>, <code>G</code>, <code>|</code>, <code>-</code>, <code>\</code>, and <code>/</code>. The <var>j</var>-th character (<var>1 \le j \le C</var>) of <var>S_{i}</var> describes how to skewer the dango in the cell located in the <var>i</var>-th row from the top and the <var>j</var>-th column from the left.</p>
+<ul>
+<li>The <var>j</var>-th character of <var>S_{i}</var> is the character <code>|</code> if you will make a beautiful stick of dangos using the dangos in that cell, the adjacent cell above, and the adjacent cell below.</li>
+<li>The <var>j</var>-th character of <var>S_{i}</var> is the character <code>-</code> if you will make a beautiful stick of dangos using the dangos in that cell, the adjacent cell to the left, and the adjacent cell to the right.</li>
+<li>The <var>j</var>-th character of <var>S_{i}</var> is the character <code>\</code> if you will make a beautiful stick of dangos using the dangos in that cell, the touching cell left above, and the touching cell right below.</li>
+<li>The <var>j</var>-th character of <var>S_{i}</var> is the character <code>/</code> if you will make a beautiful stick of dangos using the dangos in that cell, the touching cell right above, and the touching cell left below.</li>
+<li>Otherwise, the <var>j</var>-th character of <var>S_{i}</var> is <code>P</code>, <code>W</code>, or <code>G</code> according the color of the dango in that cell, i.e. it is the same as the <var>j</var>-th character of <var>D_{i}</var>.</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Submission</h3>
+<p>Submit output data for each input data.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li><var>3 \le R \le 500</var>.</li>
+<li><var>3 \le C \le 500</var>.</li>
+<li><var>D_{i}</var> (<var>1 \le i \le R</var>) is a string of length <var>C</var> consisting of <code>P</code>, <code>W</code>, and <code>G</code>.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Grading</h3>
+<p>Your score for this task is calculated in the following way.</p>
+<p>For each test case, we define four values <var>S</var> (denoting the assigned score), <var>X, Y</var> and <var>Z</var> as follows.</p>
+<div class="joisc2020-dango2-en-table">
+<table>
+<thead>
+<tr>
+<th>Test Case</th>
+<th><var>S</var></th>
+<th><var>X</var></th>
+<th><var>Y</var></th>
+<th><var>Z</var></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><var>01</var></td>
+<td><var>15</var></td>
+<td><var>44000</var></td>
+<td><var>47000</var></td>
+<td><var>47220</var></td>
+</tr>
+<tr>
+<td><var>02</var></td>
+<td><var>15</var></td>
+<td><var>39000</var></td>
+<td><var>41700</var></td>
+<td><var>41980</var></td>
+</tr>
+<tr>
+<td><var>03</var></td>
+<td><var>15</var></td>
+<td><var>45000</var></td>
+<td><var>51000</var></td>
+<td><var>51390</var></td>
+</tr>
+<tr>
+<td><var>04</var></td>
+<td><var>15</var></td>
+<td><var>18000</var></td>
+<td><var>19000</var></td>
+<td><var>19120</var></td>
+</tr>
+<tr>
+<td><var>05</var></td>
+<td><var>20</var></td>
+<td><var>43000</var></td>
+<td><var>48200</var></td>
+<td><var>48620</var></td>
+</tr>
+<tr>
+<td><var>06</var></td>
+<td><var>20</var></td>
+<td><var>44000</var></td>
+<td><var>46000</var></td>
+<td><var>46500</var></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>For each test case, let <var>N</var> be the number of beautiful sticks of dangos you can make by your submission. Your score for the test case is calculated as follows.</p>
+<ul>
+<li>If <var>N&lt;X</var>, your score is <var>0</var>.</li>
+<li>If <var>X\le N&lt;Y</var>, your score is <var>\dfrac{N - X}{2(Y - X)}\times S</var>.</li>
+<li>If <var>Y\le N&lt;Z</var>, your score is <var>\left(\dfrac{1}{2}+\dfrac{N - Y}{2(Z - Y)}\right)\times S</var>.</li>
+<li>If <var>Z\le N</var>, your score is <var>S</var>.</li>
+</ul>
+<p>Your score for this task is the sum of your scores for the test cases, rounded to the nearest integer.</p>
+<p>However, your score for a test case is <var>0</var> if your output data is incorrect, i.e. you cannot make beautiful sticks of dangos according to the characters <code>|</code>, <code>-</code>, <code>\</code>, <code>/</code> in your output data, the characters <code>P</code>, <code>W</code>, or <code>G</code> in your output data conflict with the input data, or the format of your output data is wrong.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input and Output</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>3 4
+PWGP
+WGPW
+GWPG
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>P-GP
+WGP|
+G-PG
+</pre>
+<p>In this sample, you make three beautiful sticks of dangos.</p>
+<p>Note that you cannot make a beautiful stick of dangos using <code>W G P</code>, in this order.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>3 4
+PWWP
+WWWW
+PGGP
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>PWWP
+W\/W
+PGGP
+</pre>
+<p>In this sample, you make two beautiful sticks of dangos.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Visualizer</h3>
+<p>A visualizer is available for this task, which shows the overview of the input data or the output data in a visual way. You can download the visualizer from the contest system as an attachment file to this task.</p>
+<p>To use the visualizer, you should open the attached <code>visualizer.html</code> by a web browser and choose or drag-and-drop the file. Note that the visualizer does not completely check the correctness of the format of the given file. It might not be executed correctly if the format of the input file is wrong. Also, it might not be executed correctly if the value of <var>R</var> or <var>C</var> exceeds the constraints.</p>
+<p><style>
+.joisc2020-dango2-en-table { position:relative;max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisc2020-dango2-en-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisc2020-dango2-en-table th,.joisc2020-dango2-en-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisc2020-dango2-en-table th { background-color:#f5f5f5; }
+.joisc2020-dango2-en-table .katex { position:relative; }
+</style></p></section>
+</div>
+</span>
+<span class="lang-ja">
+<blockquote>
+<p><strong>AtCoder での提出方法</strong></p>
+<p>この提出先はテストケース 01 用です．このテストケースに対する出力ファイルを，言語 <code>Text (cat)</code> を選択して提出してください．</p>
+<p>各テストケースの提出先: <a href="https://atcoder.jp/contests/joisc2020/tasks/joisc2020_k">01</a> | <a href="https://atcoder.jp/contests/joisc2020/tasks/joisc2020_l">02</a> | <a href="https://atcoder.jp/contests/joisc2020/tasks/joisc2020_m">03</a> | <a href="https://atcoder.jp/contests/joisc2020/tasks/joisc2020_n">04</a> | <a href="https://atcoder.jp/contests/joisc2020/tasks/joisc2020_o">05</a> | <a href="https://atcoder.jp/contests/joisc2020/tasks/joisc2020_p">06</a></p>
+<p><a href="https://www2.ioi-jp.org/camp/2020/2020-sp-tasks/day4/dango2-data.zip">入力データ</a></p>
+</blockquote>
+<p>配点 : <var>15</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>あなたは団子を作る職人である．今，あなたは団子に串を刺そうとしているところである．</p>
+<p>団子は，縦 <var>R</var> 行，横 <var>C</var> 列に仕切られたマスの中に配置されている．各マスには団子が <var>1</var> 個ずつ入っている．それぞれの団子には，桜色 (<code>P</code>)，白色 (<code>W</code>)，緑色 (<code>G</code>) のいずれかの色が付いている．あなたは，縦方向 (上から下) に連続する <var>3</var> マス，横方向 (左から右) に連続する <var>3</var> マス，あるいは斜め方向 (左上から右下，または右上から左下) に連続する <var>3</var> マスを選び，端にあるマスから順番に <var>3</var> 個の団子を取り出して，この順に串へ刺すことで，<var>1</var> 本の串団子を作ることができる．例えば，縦方向に連続する <var>3</var> マスを選んだときは，上，中央，下，もしくは，下，中央，上の順番でマスから団子を取り出して串に刺すことができるが，中央，下，上，あるいは，下，上，中央のような順番で取り出して串に刺すことはできない．また，同じ団子を <var>2</var> 本以上の異なる串に刺すことはできない．</p>
+<p>串団子のうち，団子の色の並びが桜，白，緑または緑，白，桜となっているような串団子のことをきれいな串団子と呼ぶ．あなたは，きれいな串団子を可能な限り多く作りたい．</p>
+<p>何本作ることができるだろうか．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>この課題の入力データは全部で <var>6</var> 個ある．</p>
+<p>入力は以下の形式で与えられる．</p>
+<pre><var>R</var> <var>C</var>
+<var>D_{1}</var>
+<var>\vdots</var>
+<var>D_{R}</var>
+</pre>
+<p><var>D_{i}</var> (<var>1 \leqq i \leqq R</var>) は <code>P</code>，<code>W</code>，<code>G</code> からなる長さ <var>C</var> の文字列である ．<var>D_{i}</var> の <var>j</var> 文字目 (<var>1 \leqq j \leqq C</var>) は，上から <var>i</var> 行目，左から <var>j</var> 列目のマスに入っている団子の色を表す．</p>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>以下の形式で出力せよ．</p>
+<pre><var>S_{1}</var>
+<var>\vdots</var>
+<var>S_{R}</var>
+</pre>
+<p><var>S_{i}</var> (<var>1 \leqq i \leqq R</var>) は <code>P</code>，<code>W</code>，<code>G</code>，<code>|</code>，<code>-</code>，<code>\</code>，<code>/</code> からなる長さ <var>C</var> の文字列である ．<var>S_{i}</var> の <var>j</var> 文字目 (<var>1 \leqq j \leqq C</var>) は，上から <var>i</var> 行目，左から <var>j</var> 列目のマスに入っている団子をどのように串に刺すかを表す．</p>
+<p><var>S_{i}</var> の <var>j</var> 文字目は，</p>
+<ul>
+<li>対応するマスと，その上および下に隣接するマスの団子を合わせて <var>1</var> 本のきれいな串団子を作るときは，文字 <code>|</code></li>
+<li>対応するマスと，その左および右に隣接するマスの団子を合わせて <var>1</var> 本のきれいな串団子を作るときは，文字 <code>-</code></li>
+<li>対応するマスと，その左上および右下に隣接するマスの団子を合わせて <var>1</var> 本のきれいな串団子を作るときは，文字 <code>\</code></li>
+<li>対応するマスと，その右上および左下に隣接するマスの団子を合わせて <var>1</var> 本のきれいな串団子を作るときは，文字 <code>/</code></li>
+<li>それ以外のときは，対応するマスに入っていた団子の色を表す <code>P</code>，<code>W</code>，<code>G</code> のいずれかの文字 (すなわち <var>D_{i}</var> の <var>j</var> 番目の文字)</li>
+</ul>
+<p>である．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>提出方法</h3>
+<p>各入力データに対する出力のみを提出せよ．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>3 \leqq R \leqq 500</var>．</li>
+<li><var>3 \leqq C \leqq 500</var>．</li>
+<li><var>D_{i}</var> (<var>1 \leqq i \leqq R</var>) は <code>P</code>，<code>W</code>，<code>G</code> からなる長さ <var>C</var> の文字列である．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>採点基準</h3>
+<p>得点は以下のように計算される．</p>
+<p>各テストケースについて，配点，基準スコア，中間スコア，満点スコアが以下のように定まっている．</p>
+<div class="joisc2020-dango2-ja-table">
+<table>
+<thead>
+<tr>
+<th>テストケース</th>
+<th>配点</th>
+<th>基準スコア</th>
+<th>中間スコア</th>
+<th>満点スコア</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><var>01</var></td>
+<td><var>15</var></td>
+<td><var>44000</var></td>
+<td><var>47000</var></td>
+<td><var>47220</var></td>
+</tr>
+<tr>
+<td><var>02</var></td>
+<td><var>15</var></td>
+<td><var>39000</var></td>
+<td><var>41700</var></td>
+<td><var>41980</var></td>
+</tr>
+<tr>
+<td><var>03</var></td>
+<td><var>15</var></td>
+<td><var>45000</var></td>
+<td><var>51000</var></td>
+<td><var>51390</var></td>
+</tr>
+<tr>
+<td><var>04</var></td>
+<td><var>15</var></td>
+<td><var>18000</var></td>
+<td><var>19000</var></td>
+<td><var>19120</var></td>
+</tr>
+<tr>
+<td><var>05</var></td>
+<td><var>20</var></td>
+<td><var>43000</var></td>
+<td><var>48200</var></td>
+<td><var>48620</var></td>
+</tr>
+<tr>
+<td><var>06</var></td>
+<td><var>20</var></td>
+<td><var>44000</var></td>
+<td><var>46000</var></td>
+<td><var>46500</var></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>提出された出力に従って作ることができるきれいな串団子の数を <var>N</var>，基準スコアを <var>X</var>，中間スコアを <var>Y</var>，満点スコアを <var>Z</var>，配点を <var>S</var> としたとき，各テストケースの得点は，以下のように計算される．</p>
+<ul>
+<li><var>N&lt;X</var> のとき，<var>0</var> 点．</li>
+<li><var>X\leqq N&lt;Y</var> のとき，<var>\dfrac{N - X}{2(Y - X)}\times S</var> 点．</li>
+<li><var>Y\leqq N&lt;Z</var> のとき，<var>\left(\dfrac{1}{2}+\dfrac{N - Y}{2(Z - Y)}\right)\times S</var> 点．</li>
+<li><var>Z\leqq N</var> のとき，<var>S</var> 点．</li>
+</ul>
+<p>各テストケースに対する得点の合計の小数点以下を四捨五入した値が，この課題でのあなたの得点となる．</p>
+<p>ただし，出力が誤っている場合，すなわち出力に含まれる <code>|</code>，<code>-</code>，<code>\</code>，<code>/</code> の文字に従ってもきれいな串団子を作ることができない場合や，出力に含まれる <code>P</code>，<code>W</code>，<code>G</code> が入力と矛盾する場合，あるいは出力が指定された形式に沿っていない場合などは，そのテストケースに対する得点は <var>0</var> 点となる．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入出力例</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>3 4
+PWGP
+WGPW
+GWPG
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>P-GP
+WGP|
+G-PG
+</pre>
+<p>この例では <var>3</var> 個のきれいな串団子を作っている．</p>
+<p><code>W G P</code> の並びではきれいな串団子とはならないことに注意せよ．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>3 4
+PWWP
+WWWW
+PGGP
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>PWWP
+W\/W
+PGGP
+</pre>
+<p>この例では <var>2</var> 個のきれいな串団子を作っている．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>ビジュアライザ</h3>
+<p>この課題ではビジュアライザが配布される．ビジュアライザを使うと，入力ファイルまたは出力ファイルの概要を視覚的に把握することができる．ビジュアライザは，課題に対する添付ファイルとして競技システムからダウンロードできる．</p>
+<p>添付された <code>visualizer.html</code> を Web ブラウザで開き，ファイルを選択するか，あるいはファイルをドラッグ&amp;ドロップすることで，ビジュアライザを利用できる．ただし，ビジュアライザは，与えられたファイルが正しい形式かどうかを完全には検証しない．ファイルの形式が誤っている場合には正しく動くとは限らない．また，<var>R</var> および <var>C</var> が制約の範囲を超える場合には正しく動くとは限らない．</p>
+<p><style>
+.joisc2020-dango2-ja-table { position:relative;max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisc2020-dango2-ja-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisc2020-dango2-ja-table th,.joisc2020-dango2-ja-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisc2020-dango2-ja-table th { background-color:#f5f5f5;white-space:nowrap; }
+.joisc2020-dango2-ja-table .katex { position:relative; }
+</style></p></section>
+</div>
+</span>
+</span>

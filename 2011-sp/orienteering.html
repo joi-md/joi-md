@@ -1,0 +1,111 @@
+<span class="lang">
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>あなたの通う JOI 高校では，年に一度，オリエンテーリングが行われ，全校生徒が参加する．オリエンテーリングとは，地図と方位磁針を用い，山野に設置されたチェックポイントを巡る競技である．</p>
+<p>JOI 高校のオリエンテーリングは，<var>2</var> 人一組のチームで参加するという特徴がある．各チームの <var>2</var> 人は，指定されたスタート地点から一緒にスタートするが，その後は別々に行動をし，指定されたゴール地点を目指す．<var>2</var> 人がゴール地点に到達した際，それぞれのチェックポイントをチームのうちの少なくとも <var>1</var> 人が訪れていないとならない．<var>2</var> 人は途中で同じ地点を訪れても構わない．また，<var>2</var> 人が途中で同じ道を通っても構わない．</p>
+<p>JOI 高校のオリエンテーリングが行われる JOI 山には，<var>N</var> 個の地点があり，それらの間を <var>M</var> 本の道が繋いでいる．<var>N</var> 個の地点には <var>1</var> から <var>N</var> までの番号が付いている．スタートはふもとにある地点 <var>1</var> であり，ゴールは頂上の地点 <var>N</var> である．スタートとゴール以外の地点のうち一部または全部がチェックポイントとして指定される．</p>
+<p>JOI 高校は，混乱を避けるため，オリエンテーリングの間，それぞれの道を，高度が低い方の地点から高度が高い方の地点への一方通行とする．高度が等しい <var>2</var> つの地点は存在しない．スタートである地点 <var>1</var> は最も高度の低い地点であり，ゴールである地点 <var>N</var> は最も高度の高い地点であるが，地点の番号は必ずしも高度の低い地点から順につけられているわけではないことに注意せよ．JOI 山では，このように道を一方通行にしても，地点 <var>1</var> から全ての地点に行くことができ，また，全ての地点から地点 <var>N</var> に行くことができる．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p>条件を満たすような一組のチームの <var>2</var> 人の移動方法に関して，移動距離の合計の最小値を求めるプログラムを作成せよ．そのような <var>2</var> 人の移動方法が存在することは保証されている．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>3 \leqq N \leqq 1\,000</var>：地点の個数．</li>
+<li><var>2 \leqq M \leqq 10\,000</var>：道の本数．</li>
+<li><var>1 \leqq K \leqq N - 2</var>：チェックポイントの数．</li>
+<li><var>1 \leqq C_j \leqq 10\,000</var>：道 <var>j</var> の長さ．</li>
+</ul>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>標準入力から以下の入力を読み込め．</p>
+<ul>
+<li><var>1</var> 行目には整数 <var>N, M</var> が空白を区切りとして書かれており，地点の数が <var>N</var> 個，道の数が <var>M</var> 本であることを表す．</li>
+<li>続く <var>N</var> 行には各地点がチェックポイントであるかどうかの情報が書かれている．<var>1+i</var> 行目 (<var>1 \leqq i \leqq N</var>) には，<var>0</var> か <var>1</var> の整数 <var>S_{i}</var> が書かれており，<var>S_{i}</var> が <var>0</var> の場合，地点 <var>i</var> はチェックポイントではなく，<var>S_{i}</var> が <var>1</var> の場合，地点 <var>i</var> はチェックポイントであることを表す．常に <var>S_{1} = S_{N} = 0</var> である．</li>
+<li>続く <var>M</var> 行には道の情報が書かれている．<var>1 + N + j</var> 行目 (<var>1 \leqq j \leqq M</var>) には，整数 <var>A_{j}, B_{j},C_{j}</var> が空白を区切りとして書かれており，道 <var>j</var> は地点 <var>A_{j}</var> から地点 <var>B_{j}</var> を結び，道 <var>j</var> の長さが <var>C_{j}</var> であることを表す．地点 <var>A_{j}</var> は地点 <var>B_{j}</var> より高度が低い地点であり，道 <var>j</var> は地点 <var>A_{j}</var> から地点 <var>B_{j}</var> への一方通行となるものとする．必ず <var>A_{j} \ne B_{j}</var> であり，また，<var>A_{j} = A_{k}</var> かつ <var>B_{j} = B_{k}</var> なる道 <var>k</var> (<var>k \ne j</var>) は存在しない．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>条件を満たすような一組のチームの <var>2</var> 人の移動方法に関する，移動距離の合計の最小値を出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>採点基準</h3>
+<p>以下，チェックポイントの数を <var>K</var> とおく．すなわち，<var>K = S_{1} + S_{2} + \cdots + S_{N}</var> である．</p>
+<p>採点用データのうち，配点の <var>30\%</var> 分については，<var>K \leqq 10</var> を満たす．</p>
+<p>採点用データのうち，配点の <var>30\%</var> 分については，<var>N \leqq 100</var> かつ <var>M \leqq 500</var> を満たす．</p>
+<p>採点用データのうち，配点の <var>10\%</var> 分については，これら <var>2</var> つの条件の両方を満たす.</p>
+<p>採点用データのうち，配点の <var>50\%</var> 分については，これら <var>2</var> つの条件の少なくとも一方を満たす.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入出力の例</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例</h3>
+<pre>8 12
+0
+1
+0
+0
+1
+1
+0
+0
+1 4 5
+1 6 5
+4 2 4
+4 7 9
+4 5 6
+2 5 8
+2 8 3
+6 2 7
+6 7 8
+7 3 2
+3 5 7
+5 8 3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例</h3>
+<pre>29
+</pre>
+<p>この入力例は，下図に対応する．チェックポイントとなっている地点は水色で示されている．また，最小の移動距離を達成する <var>2</var> 人の移動方法は赤色で示されている．</p>
+<p><img src="https://img.atcoder.jp/joisc2011/orienteering-ja-p13-group1.png" alt="図" style="max-width:100%;height:auto;"></p></section>
+</div>
+</span>
+</span>

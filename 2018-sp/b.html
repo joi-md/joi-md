@@ -1,0 +1,340 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>Mr. JOI owns a large lot in IOI Country. IOI Country is represented by a coordinate plane, with the X-axis and the Y-axis being orthogonal. The point with the X-coordinate <var>x</var> and the Y-coordinate <var>y</var> is denoted by <var>(x, y)</var>. His lot is the area with the X-coordinate and the Y-coordinate both between <var>-10^{100}</var> and <var>10^{100}</var>, inclusive. There, he breeds cows in a pasture, which is the area with the X-coordinate and the Y-coordinate both between <var>-S</var> and <var>S</var>, inclusive.</p>
+<p>Mr. JOI decided to enclose the pasture with some fences in order to keep the cows. A fence is represented by a line segment whose length is a positive real number. He will enclose the pasture in such a way that it is impossible to go from any point inside the pasture to the outside of his lot without passing any points where a fence exists (including the endpoints of the fences). There have already been some fences in the lot, which he may use to enclose the pasture. For any two fences among these, if they have a common point, it is an endpoint of at least one of the two.</p>
+<p>Mr. JOI can build any number of new fences. A new fence can be of arbitrary length and of arbitrary direction, as long as it passes neither inside the pasture nor outside the lot. He may build a fence which passes along the boundary of the pasture. Building a new fence with length <var>l</var> (<var>l &gt; 0</var>) costs <var>l</var>. It may be that two fences intersect, an endpoint of a fence coincides with an endpoint of another fence, or an endpoint of a fence lies on another fence.</p>
+<p>Mr. JOI wants to enclose the pasture with as low cost as possible.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Task</h3>
+<p>Given the size of the pasture and the data of fences already built, write a program which calculates the minimum total cost needed to enclose the pasture.</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input.</p>
+<ul>
+<li>The first line of the input contains two space separated integers <var>N</var> and <var>S</var>. This means the pasture is the area with the X-coordinate and the Y-coordinate both between <var>-S</var> and <var>S</var> , inclusive, and there have already been <var>N</var> fences in Mr. JOI’s lot.</li>
+<li>The <var>i</var>-th line (<var>1 \le i \le N</var>) of the following <var>N</var> lines contains four space separated integers <var>A_{i}, B_{i}, C_{i}</var> and <var>D_{i}</var>. This means the <var>i</var>-th fence already built is the line segment connecting two points (<var>A_{i}, B_{i}</var>) and <var>(C_{i}, D_{i})</var>.</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>Write one line to the standard output. The output should contain the minimum total cost needed to enclose the pasture. You may print any number of digits after the decimal point, but the absolute error between your output and the correct answer must be at most <var>0.01</var>.</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<p>All input data satisfy the following conditions.</p>
+<ul>
+<li><var>1 \le N \le 100</var>．</li>
+<li><var>1 \le S \le 200</var>．</li>
+<li><var>-200 \le A_{i} \le 200</var> (<var>1 \le i \le N</var>)．</li>
+<li><var>-200 \le B_{i} \le 200</var> (<var>1 \le i \le N</var>)．</li>
+<li><var>-200 \le C_{i} \le 200</var> (<var>1 \le i \le N</var>)．</li>
+<li><var>-200 \le D_{i} \le 200</var> (<var>1 \le i \le N</var>)．</li>
+<li><var>(A_{i}, B_{i}) \ne (C_{i}, D_{i})</var> (<var>1 \le i \le N</var>)．</li>
+<li>No fence in the input passes strictly inside the pasture.</li>
+<li>For any two distinct fences in the input, if they have a common point, it is an endpoint of at least one of the two.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtask</h3>
+<p>There are 3 subtasks. The score and additional constraints of each subtask are as follows:</p>
+<h4>Subtask 1 [<var>18</var> points]</h4>
+<ul>
+<li><var>N = 1</var>．</li>
+</ul>
+<h4>Subtask 2 [<var>33</var> points]</h4>
+<ul>
+<li><var>N \le 6</var>．</li>
+</ul>
+<h4>Subtask 3 [<var>49</var> points]</h4>
+<p>There are no additional constraints.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input and Output</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>3 4
+-3 5 1 8
+-4 3 -4 6
+5 1 7 2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>29.0000000000
+</pre>
+<p>The fences already built in Sample Input 1 are depicted on the left of the following picture. The dotted square at the center is the boundary of the pasture.</p>
+<p>A way to enclose the pasture in this sample input is depicted on the right, where thin line segments represent new fences. Building these fences costs 29, and this is the minimum possible cost. In this sample input, other than <code>29.0000000000</code>, outputs such as <code>29</code> and <code>28.999</code> are also judged correct.</p>
+<p><img src="https://img.atcoder.jp/joisc2018/fences-en-p3-1.png" alt="Figure" style="max-width:100%;height:auto;"></p>
+
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>1 2
+-3 -3 -3 -2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>16.0000000000
+</pre>
+<p>Note that it is fine to use no fences already built at all.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 3</h3>
+<pre>4 3
+4 -1 3 4
+-4 2 -2 4
+-4 0 -5 6
+0 -6 5 -2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 3</h3>
+<pre>14.1392801789
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 4</h3>
+<pre>10 80
+175 95 60 -146
+-106 57 18 185
+190 -68 177 -142
+84 -195 127 -179
+34 143 126 69
+-92 133 -190 80
+-157 -66 -119 -161
+-85 -124 129 -171
+141 181 175 175
+107 -38 150 148
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 4</h3>
+<pre>238.4778364511
+</pre></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>JOI 氏は，IOI 国に広大な土地を所有している．IOI 国の土地は座標平面として表され，直交する X 軸と Y 軸が設定されている．X 座標が <var>x</var>，Y 座標が <var>y</var> の点を <var>(x, y)</var> で表す．JOI 氏の所有している土地は，X 座標，Y 座標がいずれも <var>-10^{100}</var> 以上 <var>10^{100}</var> 以下の領域である．この土地のうち，X 座標，Y 座標がいずれも <var>-S</var> 以上 <var>S</var> 以下の領域は牧草地であり，牛を飼育している．</p>
+<p>JOI 氏は，牛が逃げ出さないように，牧草地をいくつかの柵で囲うことにした．いずれの柵の形状も，正の実数の長さをもつ線分で表される．ここで，牧草地を柵で囲うとは，牧草地の内部のどの点からも，柵が存在するような地点 (このような地点としては，柵の端点も含むことに注意せよ) を通ることなく，JOI 氏の土地の外側へ行くことが不可能であるようにすることを意味する．JOI 氏の土地には最初からいくつかの柵が置いてあるので，それを使って囲ってもよい．これらの柵は，どの <var>2</var> つの柵についても，それらが共有点をもつならば，その点は少なくとも片方の柵の端点であるように置かれている．</p>
+<p>JOI 氏は，柵を新たにいくらでも置くことができる．このとき，牧草地の内部や，JOI 氏の土地の外側を通るように柵を置いてはいけないが，牧草地の境界を通るように柵を置くのはかまわない．この条件を満たす限り，どのような長さの柵をどのような方向に置いてもかまわない．長さ <var>l</var> (<var>l &gt; 0</var>) の柵を <var>1</var> 個追加するためには，コストが <var>l</var> かかる．ここで，柵同士が交差したり，柵の端点が他の柵の端点と一致したりしてもよい．また，柵の端点が他の柵上にあってもかまわない．</p>
+<p>JOI 氏は，できるだけ少ないコストで，牧草地を柵で囲おうとしている．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p>JOI 氏の牧草地の大きさと，最初から置かれている柵の情報が与えられたとき，牧草地を柵で囲うために必要なコストの総和の最小値を求めるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>標準入力から以下の入力を読み込め．</p>
+<ul>
+<li><var>1</var> 行目には <var>2</var> 個の整数 <var>N, S</var> が空白を区切りとして書かれている．これらは牧草地が X 座標，Y 座標がいずれも <var>-S</var> 以上 <var>S</var> 以下の領域であり，JOI 氏の所有している土地には最初 <var>N</var> 個の柵が設置してあることを表す．</li>
+<li>続く <var>N</var> 行のうちの <var>i</var> 行目（<var>1 \leqq i \leqq N</var>）には <var>4</var> 個の整数 <var>A_{i}, B_{i}, C_{i}, D_{i}</var> が空白を区切りとして書かれている．これは <var>i</var> 番目の柵が，<var>2</var> つの地点 <var>(A_{i}, B_{i})</var> および <var>(C_{i}, D_{i})</var> を結ぶ線分であることを表す．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>牧草地を柵で囲うために必要なコストの総和の最小値を <var>1</var> 行で出力せよ．出力する小数点以下の桁数についての制限はないが，正解との絶対誤差は <var>0.01</var> 以下でなければならない．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制限</h3>
+<p>すべての入力データは以下の条件を満たす．</p>
+<ul>
+<li><var>1 \leqq N \leqq 100</var>．</li>
+<li><var>1 \leqq S \leqq 200</var>．</li>
+<li><var>-200 \leqq A_{i} \leqq 200</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>-200 \leqq B_{i} \leqq 200</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>-200 \leqq C_{i} \leqq 200</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>-200 \leqq D_{i} \leqq 200</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>(A_{i}, B_{i}) \ne (C_{i}, D_{i})</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li>入力で与えられるどの柵も，牧草地の内部を通らない．</li>
+<li>入力で与えられる異なる <var>2</var> つの柵が共有点をもつならば，その点は少なくとも片方の柵の端点である．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<p>この課題では小課題は全部で <var>3</var> 個ある．各小課題の配点および追加の制限は以下の通りである．</p>
+<h4>小課題 1 [<var>18</var> 点]</h4>
+<ul>
+<li><var>N = 1</var>．</li>
+</ul>
+<h4>小課題 2 [<var>33</var> 点]</h4>
+<ul>
+<li><var>N \leqq 6</var>．</li>
+</ul>
+<h4>小課題 3 [<var>49</var> 点]</h4>
+<p>追加の制限はない．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入出力例</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>3 4
+-3 5 1 8
+-4 3 -4 6
+5 1 7 2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>29.0000000000
+</pre>
+<p>入力例 <var>1</var> では，最初下左図のように柵が置かれている．ここで，中央の点線で示した正方形は，牧草地の外周を表す．</p>
+<p>この入力例では，下右図の細線で示したように新たな柵を置くと，牧草地を囲うことができる．このとき，柵のコストは <var>29</var> であり，これが最小値である．なお，この入力例の場合，<code>29.0000000000</code> 以外にも，例えば <code>29</code> や <code>28.999</code> と出力しても正解と判定される．</p>
+<p><img src="https://img.atcoder.jp/joisc2018/fences-ja-p3-1.png" alt="図" style="max-width:100%;height:auto;"></p>
+
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>1 2
+-3 -3 -3 -2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>16.0000000000
+</pre>
+<p>すでに置かれている柵をまったく使わずに牧草地を囲んでも良いことに注意せよ．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>4 3
+4 -1 3 4
+-4 2 -2 4
+-4 0 -5 6
+0 -6 5 -2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>14.1392801789
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 4</h3>
+<pre>10 80
+175 95 60 -146
+-106 57 18 185
+190 -68 177 -142
+84 -195 127 -179
+34 143 126 69
+-92 133 -190 80
+-157 -66 -119 -161
+-85 -124 129 -171
+141 181 175 175
+107 -38 150 148
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 4</h3>
+<pre>238.4778364511
+</pre></section>
+</div>
+</span>
+</span>

@@ -1,0 +1,294 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>Joitter is a trending social media where you can share your memories with your friends.</p>
+<p>In Joitter, you can follow other users. For example, when a user <var>a</var> follows another user <var>b</var>, user <var>a</var> can read user <var>b</var>’s posts on the timeline. In this case, it is possible that user <var>b</var> follows back user <var>a</var> or not. However, it is impossible that user <var>a</var> follows him/herself or user <var>a</var> follows a particular user <var>b</var> more than once.</p>
+<p><var>N</var> users, consisting of user 1, user 2, <var>\ldots</var>, user <var>N</var>, have started using Joitter. At first, none of them follows any other users.</p>
+<p>From now on, for <var>M</var> days, following events occur: user <var>A_{i}</var> follows user <var>B_{i}</var> on the <var>i</var>-th day (<var>1 \le i \le M</var>).</p>
+<p>The official of Joitter is planning to hold a social exchange event on its service once during the <var>M</var> days. A social exchange event occurs as follows:</p>
+<ol>
+<li>Select one user. We will call the selected user <var>x</var>.</li>
+<li>Select one user being followed by <var>x</var> at the moment. We will call the selected user <var>y</var>.</li>
+<li>Select one user <var>z</var> such that: <var>z</var> is different from <var>x, x</var> is not following <var>z, y</var> is following <var>z</var>, and <var>z</var> is following <var>y</var>.</li>
+<li><var>x</var> follows <var>z</var>.</li>
+<li>Reiterate these processes until it is impossible to select a tuple <var>(x, y, z)</var>.</li>
+</ol>
+<p>The official of Joitter still has not decided when to hold the social exchange event. So, they would like to know the maximum value of the total sum of the number of users each user follows after the social exchange event, if it happens right after the following event of the <var>i</var>-th day, for each <var>i</var> (<var>1 \le i \le M</var>). We assume that the social exchange event finishes before the following event on the next day.</p>
+<p>Write a program that, given the number of users and following events during <var>M</var> days, calculates the maximum value of the total sum of the number of users each user follows after the social exchange event, if the social exchange event falls right after the following event of the <var>i</var>-th day, for each <var>i</var> (<var>1 \le i \le M</var>).</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input. All the values in the input are integers.</p>
+<pre><var>N</var> <var>M</var>
+<var>A_{1}</var> <var>B_{1}</var>
+<var>\vdots</var>
+<var>A_{M}</var> <var>B_{M}</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>Write <var>M</var> lines to the standard output. In the <var>i</var>-th line (<var>1 \le i \le M</var>), output the maximum value of the total sum of the number of users each user follows after the social exchange event, if the social exchange event falls right after the following event of day <var>i</var>.</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li><var>2 \le N \le 100\,000</var>.</li>
+<li><var>1 \le M \le 300\,000</var>.</li>
+<li><var>1 \le A_{i} \le N</var> (<var>1 \le i \le M</var>).</li>
+<li><var>1 \le B_{i} \le N</var> (<var>1 \le i \le M</var>).</li>
+<li><var>A_{i} \ne B_{i}</var> (<var>1 \le i \le M</var>).</li>
+<li><var>(A_{i}, B_{i}) \ne (A_{j}, B_{j})</var> (<var>1 \le i &lt; j \le M</var>).</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li>(<var>1</var> point) <var>N \le 50</var>.</li>
+<li>(<var>16</var> points) <var>N \le 2000</var>.</li>
+<li>(<var>83</var> points) No additional constraints.</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input and Output</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>4 6
+1 2
+2 3
+3 2
+1 3
+3 4
+4 3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>1
+2
+4
+4
+5
+9
+</pre>
+<ul>
+<li>On day 1, user 1 follows user 2. Nobody would follow anyone else in the social exchange event falling on the day, so the total sum is 1.</li>
+<li>On day 2, user 2 follows user 3. Nobody would follow anyone else in the social exchange event falling on the day, so the total sum is 2.</li>
+<li>On day 3, user 3 follows user 2. User 1 would follow user 3 in the social exchange event falling on the day. In this case, the total sum is 4 and this is the largest possible value of the total sum.</li>
+<li>On day 4, user 1 follows user 3. Nobody would follow anyone else in the social exchange event falling on the day, so the total sum is 4.</li>
+<li>On day 5, user 3 follows user 4. Nobody would follow anyone else in the social exchange event falling on the day, so the total sum is 5.</li>
+<li>On day <var>6</var>, user <var>4</var> follows user <var>3</var>. User <var>1</var> would follow user <var>4</var>, user <var>2</var> would follow user <var>4</var>, and user <var>4</var> would follow user 2 in the social exchange event falling on the day. In this case, the total sum is 9 and this is the largest possible value of the total sum.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>6 10
+1 2
+2 3
+3 4
+4 5
+5 6
+6 5
+5 4
+4 3
+3 2
+2 1
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>1
+2
+3
+4
+5
+7
+11
+17
+25
+30
+</pre></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>ジョイッター (Joitter) は，短い日記の気軽な投稿や写真の共有を通して，知り合いとのインターネット上でのコミュニケーションをより快適にする，話題沸騰中のソーシャル・ネットワーキング・サービス (SNS) である．</p>
+<p>ジョイッターでは，自分以外のユーザをフォローすることができる．あるユーザ <var>a</var> がある他のユーザ <var>b</var> をフォローすると，ユーザ <var>a</var> のアカウントからユーザ <var>b</var> の発言を閲覧することができるようになる．このとき，ユーザ <var>b</var> がユーザ <var>a</var> をフォローすることも，しないことも可能である．ただし，自分自身をフォローしたり，あるユーザ <var>a</var> がユーザ <var>b</var> を <var>2</var> 回以上フォローすることはできない．</p>
+<p>今，人 <var>1, 2, \ldots, N</var> からなる <var>N</var> 人のユーザが Joitter に新規登録した．現時点ではどのユーザも他のユーザを誰もフォローしていない．</p>
+<p><var>N</var> 人は仲良くなるために，これから <var>M</var> 日間にわたり，<var>1</var> 日 <var>1</var> 回ずつあるユーザが別のユーザをフォローすることにした ．<var>i</var> 日目 (<var>1 \leqq i \leqq M</var>) には，人 <var>A_{i}</var> が人 <var>B_{i}</var> を新たにフォローする．</p>
+<p>Joitter では，ユーザ間のフォローを増やすため，<var>M</var> 日間のうちのある <var>1</var> 回，サービス内で交流イベントを開催しようと計画している．交流イベントは，以下のようにして行われる．</p>
+<ol>
+<li><var>N</var> 人のユーザのうち <var>1</var> 人 (以下，人 <var>x</var> と呼ぶことにする) を選ぶ．</li>
+<li>人 <var>x</var> が現在フォローしているユーザのうち <var>1</var> 人 (以下，人 <var>y</var> と呼ぶことにする) を選ぶ．</li>
+<li>人 <var>x</var> が現在フォローしておらず，人 <var>y</var> が現在フォローしている人 <var>x</var> 以外のユーザで，そのユーザも人 <var>y</var> を現在フォローしているもののうち <var>1</var> 人 (以下，人 <var>z</var> と呼ぶことにする) を選ぶ．</li>
+<li>人 <var>x</var> が人 <var>z</var> をフォローする．</li>
+<li>条件を満たす人 <var>x</var>，人 <var>y</var>，人 <var>z</var> の組が選べなくなるまで以上を繰り返す．</li>
+</ol>
+<p>交流イベントをいつ行うかはまだ決まっていない．そこで，<var>M</var> 日間の各日において，あるユーザが別のユーザをフォローした後に交流イベントを開催したとき，交流イベントが終了した直後に <var>N</var> 人がフォローしている人数の合計の最大値を求めたい．ただし，交流イベントはその日のうちに終了するものとする．</p>
+<p>ユーザの人数と <var>M</var> 日間のフォローの情報が与えられたとき，各日における交流イベントが終了した直後の <var>N</var> 人がフォローしている人数の合計の最大値を求めるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力は以下の形式で標準入力から与えられる．入力の値はすべて整数である．</p>
+<pre><var>N</var> <var>M</var>
+<var>A_{1}</var> <var>B_{1}</var>
+<var>\vdots</var>
+<var>A_{M}</var> <var>B_{M}</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p><var>M</var> 行出力せよ ．<var>i</var> 行目 (<var>1 \leqq i \leqq M</var>) には，<var>i</var> 日目にあるユーザが別のユーザをフォローした後に交流イベントを開催したとき，交流イベントが終了した直後に <var>N</var> 人がフォローしている人数の合計の最大値を出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>2 \leqq N \leqq 100\,000</var>．</li>
+<li><var>1 \leqq M \leqq 300\,000</var>．</li>
+<li><var>1 \leqq A_{i} \leqq N</var> (<var>1 \leqq i \leqq M</var>)．</li>
+<li><var>1 \leqq B_{i} \leqq N</var> (<var>1 \leqq i \leqq M</var>)．</li>
+<li><var>A_{i} \ne B_{i}</var> (<var>1 \leqq i \leqq M</var>)．</li>
+<li><var>(A_{i}, B_{i}) \ne (A_{j}, B_{j})</var> (<var>1 \leqq i &lt; j \leqq M</var>)．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>1</var> 点) <var>N \leqq 50</var>．</li>
+<li>(<var>16</var> 点) <var>N \leqq 2000</var>．</li>
+<li>(<var>83</var> 点) 追加の制限はない．</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入出力例</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>4 6
+1 2
+2 3
+3 2
+1 3
+3 4
+4 3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>1
+2
+4
+4
+5
+9
+</pre>
+<ul>
+<li><var>1</var> 日目に人 <var>1</var> が人 <var>2</var> をフォローする．この後交流イベントを開いても，新たに誰かが他の誰かをフォローすることはなく，フォロー人数の合計は <var>1</var> である．</li>
+<li><var>2</var> 日目に人 <var>2</var> が人 <var>3</var> をフォローする．この後交流イベントを開いても，新たに誰かが他の誰かをフォローすることはなく，フォロー人数の合計は <var>2</var> である．</li>
+<li><var>3</var> 日目に人 <var>3</var> が人 <var>2</var> をフォローする．この後交流イベントを開くと，例えば人 <var>1</var> が人 <var>3</var> をフォローする．この場合フォロー人数の合計は <var>4</var> となり，最大である．</li>
+<li><var>4</var> 日目に人 <var>1</var> が人 <var>3</var> をフォローする．この後交流イベントを開いても，新たに誰かが他の誰かをフォローすることはなく，フォロー人数の合計は <var>4</var> となる．</li>
+<li><var>5</var> 日目に人 <var>3</var> が人 <var>4</var> をフォローする．この後交流イベントを開いても，新たに誰かが他の誰かをフォローすることはなく，フォロー人数の合計は <var>5</var> となる．</li>
+<li><var>6</var> 日目に人 <var>4</var> が人 <var>3</var> をフォローする．この後交流イベントを開くと，例えば人 <var>1</var> が人 <var>4</var> をフォローし，人 <var>2</var> が人 <var>4</var> をフォローし，人 <var>4</var> が人 <var>2</var> をフォローする．この場合フォロー人数の合計は <var>9</var> となり，最大である．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>6 10
+1 2
+2 3
+3 4
+4 5
+5 6
+6 5
+5 4
+4 3
+3 2
+2 1
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>1
+2
+3
+4
+5
+7
+11
+17
+25
+30
+</pre></section>
+</div>
+</span>
+</span>

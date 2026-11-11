@@ -1,0 +1,315 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>JOI-kun runs a campsite. This campsite is divided into a rectangular grid of <var>H</var> rows and <var>W</var> columns. The rows are parallel to the east-west direction, and the columns are parallel to the north-south direction. The section in the <var>i</var>-th row from north and <var>j</var>-th column from east is called the section <var>(i, j)</var>.</p>
+<p>JOI-kun is going to put up some tents in some sections. Each tent must occupy exactly one section. No two tents may occupy the same section.</p>
+<p>Each tent has one entrance directed to one of the four directions: north, south, east or west. The directions of the entrances of the tents put up in the campsite must satisfy the following conditions.</p>
+<ul>
+<li>If both of the two sections (<var>i_{1}, j</var>) and <var>(i_{2}, j)</var> (<var>1 \le i_{1} &lt; i_{2} \le H</var>, <var>1 \le j \le W</var>) are occupied by tents, then the entrance of the tent in the section (<var>i_{1}, j</var>) must be directed to south, and the entrance of the tent in the section <var>(i_{2}, j)</var> must be directed to north.</li>
+<li>If both of the two sections (<var>i, j_{1}</var>) and <var>(i, j_{2})</var> (<var>1 \le i_{1} &lt; i_{2} \le H</var>, <var>1 \le j \le W</var>) are occupied by tents, then the entrance of the tent in the section (<var>i, j_{1}</var>) must be directed to east, and the entrance of the tent in the section <var>(i, j_{2})</var> must be directed to west.</li>
+</ul>
+<p>JOI-kun became curious about the number of ways to put up at least one tent in the campsite. Two ways to put up tents are distinguished when there exists a section such that the status of the tent in the section (existence of a tent, or the direction of the entrance of the tent) differs.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Task</h3>
+<p>Write a program which calculates the remainder of the number of ways to put up at least one tent satisfying the condition described in the problem statement, divided by 1 000 000 007.</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input.</p>
+<ul>
+<li>The first line of input contains two integers <var>H</var> and <var>W</var>. This means that the campsite ran by JOI-kun is divided into <var>H</var> rows and <var>W</var> columns.</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>Write one line to the standard output. The output should contain the remainder of the number of ways to put up at least one tent satisfying the condition described in the problem statement, divided by 1 000 000 007.</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<p>All input data satisfy the following conditions.</p>
+<ul>
+<li><var>1 \le H \le 3\,000</var>．</li>
+<li><var>1 \le W \le 3\,000</var>．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtask</h3>
+<p>There are 2 subtasks. The score and additional constraints of each subtask are as follows:</p>
+<h4>Subtask 1 [<var>48</var> points]</h4>
+<ul>
+<li><var>1 \le H \le 300</var>．</li>
+<li><var>1 \le W \le 300</var>．</li>
+</ul>
+<h4>Subtask 2 [<var>52</var> points]</h4>
+<p>There are no additional constraints.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input and Output</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>1 2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>9
+</pre>
+<p>Let us denote a tent with the entrance directed to east, west, south and north by the characters ’<code>E</code>’, ’<code>W</code>’, ’<code>S</code>’, ’<code>N</code>’, respectively. There are nine ways to put up some tents as illustrated below.</p>
+<div class="joisc2018-tents-en-table">
+<table>
+<tr>
+<td><code>E</code></td>
+<td></td>
+</tr>
+</table>
+<table>
+<tr>
+<td><code>W</code></td>
+<td></td>
+</tr>
+</table>
+<table>
+<tr>
+<td><code>S</code></td>
+<td></td>
+</tr>
+</table>
+<table>
+<tr>
+<td><code>N</code></td>
+<td></td>
+</tr>
+</table>
+<table>
+<tr>
+<td></td>
+<td><code>E</code></td>
+</tr>
+</table>
+<table>
+<tr>
+<td></td>
+<td><code>W</code></td>
+</tr>
+</table>
+<table>
+<tr>
+<td></td>
+<td><code>S</code></td>
+</tr>
+</table>
+<table>
+<tr>
+<td></td>
+<td><code>N</code></td>
+</tr>
+</table>
+<table>
+<tr>
+<td><code>E</code></td>
+<td><code>W</code></td>
+</tr>
+</table>
+</div>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>4 3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>3252
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 3</h3>
+<pre>100 100
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 3</h3>
+<pre>561068619
+</pre>
+<style>
+.joisc2018-tents-en-table { display:flex;flex-wrap:wrap;gap:0.8em 1.2em;max-width:100%;margin:1em 0; }
+.joisc2018-tents-en-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisc2018-tents-en-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisc2018-tents-en-table code { white-space:nowrap; }
+</style></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>JOI 君はキャンプ場を経営している．このキャンプ場は縦 <var>H</var> 行，横 <var>W</var> 列の区画に区切られている．キャンプ場の縦方向は南北方向に平行であり，横方向は東西方向に平行である．北から <var>i</var> 行目，西から <var>j</var> 列目 (<var>1 \leqq i \leqq H</var>，<var>1 \leqq j \leqq W</var>) にある区画を区画 <var>(i, j)</var> と書く．</p>
+<p>このキャンプ場に何張かのテントを設営することになった．<var>1</var> 張のテントはちょうど <var>1</var> つの区画を占める ．<var>2</var> 張以上のテントが同じ区画を占めることはない．</p>
+<p>それぞれのテントは，東西南北の <var>4</var> つの方向のうち，ちょうど <var>1</var> つの方向に出入口を持つ必要がある．また，テントの出入口の方向は以下の条件を満たす必要がある．</p>
+<ul>
+<li>区画 <var>(i_{1}, j)</var> および区画 <var>(i_{2}, j)</var> (<var>1 \leqq i_{1} &lt; i_{2} \leqq H</var>，<var>1 \leqq j \leqq W</var>) にともにテントを設営する場合，区画 <var>(i_{1}, j)</var> のテントの出入口は南を，区画 <var>(i_{2}, j)</var> のテントの出入口は北を向いていなければならない．</li>
+<li>区画 <var>(i, j_{1})</var> および区画 <var>(i, j_{2})</var> (<var>1 \leqq i \leqq H</var>，<var>1 \leqq j_{1} &lt; j_{2} \leqq W</var>) にともにテントを設営する場合，区画 <var>(i, j_{1})</var> のテントの出入口は東を，区画 <var>(i, j_{2})</var> のテントの出入口は西を向いていなければならない．</li>
+</ul>
+<p>JOI 君はキャンプ場に上記の条件を満たすように <var>1</var> 張以上のテントを設営する方法の数を知りたくなった．なお，テントを設営する方法 <var>2</var> つは，ある区画が存在し，<var>2</var> つの設営方法におけるその区画でのテントの置かれ方 (テントの有無や，出入口の方向) が異なる場合，区別する．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p>キャンプ場の情報が与えられたとき，キャンプ場に問題文の条件を満たすように <var>1</var> 張以上のテントを設営する方法の数を <var>1\,000\,000\,007</var> で割った余りを求めるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>標準入力から以下の入力を読み込め．</p>
+<ul>
+<li><var>1</var> 行目には <var>2</var> 個の整数 <var>H, W</var> が空白を区切りとして書かれている．これらは JOI 君が経営するキャンプ場が縦 <var>H</var> 行，横 <var>W</var> 列の区画に区切られていることを表す．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>キャンプ場に問題文の条件を満たすように <var>1</var> 張以上のテントを設営する方法の数を <var>1\,000\,000\,007</var> で割った余りを一行で出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制限</h3>
+<p>すべての入力データは以下の条件を満たす．</p>
+<ul>
+<li><var>1 \leqq H \leqq 3\,000</var>．</li>
+<li><var>1 \leqq W \leqq 3\,000</var>．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<p>この課題では小課題が全部で <var>2</var> 個ある．各小課題の配点および追加の制限は以下の通りである．</p>
+<h4>小課題 1 [<var>48</var> 点]</h4>
+<p>以下の条件を満たす．</p>
+<ul>
+<li><var>1 \leqq H \leqq 300</var>．</li>
+<li><var>1 \leqq W \leqq 300</var>．</li>
+</ul>
+<h4>小課題 2 [<var>52</var> 点]</h4>
+<p>追加の制限はない．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入出力例</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>1 2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>9
+</pre>
+<p>東方向，西方向，南方向，北方向に出入口を持つテントをそれぞれ文字 ’<code>E</code>’，’<code>W</code>’，’<code>S</code>’，’<code>N</code>’ で表すことにするとき，条件を満たすテントの設営方法は以下に示す <var>9</var> 通りある．</p>
+<p><img src="https://img.atcoder.jp/joisc2018/tents-ja-p2-1.png" alt="図" style="max-width:100%;height:auto;"></p>
+
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>4 3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>3252
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>100 100
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>561068619
+</pre></section>
+</div>
+</span>
+</span>

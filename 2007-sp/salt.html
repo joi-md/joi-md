@@ -1,0 +1,136 @@
+<span class="lang">
+<span class="lang-ja">
+<blockquote>
+<p><strong>AtCoder での提出方法</strong></p>
+<p><span style="color: red;">現在，この問題には提出できません．他のオンラインジャッジを利用してください．</span></p>
+</blockquote>
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>SALT TREE XV（“salt tree the fifteenth” と読む）は二人のプレイヤーで遊ぶゲームである．最初二人には一つの木が与えられる．二人は交互に木の辺か頂点を取る．プレイヤーが辺を取った場合，単にその辺が消滅する．プレイヤーが頂点を取った場合，その頂点だけでなく頂点に接続している辺があればそれらの辺も消滅する．最後の頂点（LAST VERTEX）を取ったプレイヤーが勝者となる．</p>
+<p>SALT TREE XV で先手が最善を尽くした場合，後手がどんな手を打っても必ず先手が勝つことが証明できる．先手としてプレイして必ず勝つプログラムを書け．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>補足</h3>
+<p>頂点を一つ以上持ち，閉路を持たない連結なグラフを木という．例えば，次の三つはどれも木である．</p>
+<div style="text-align: center;">
+<img alt="2007-salt-trees.png" src="https://img.atcoder.jp/joisc2007/2007-salt-trees.png" style="max-width: 100%; width: 712px;" />
+</div>
+
+<p>次の三つのグラフはどれも木でない．左下のグラフと中央のグラフは閉路を持つので木ではない．右下のグラフは連結でないので木ではない．</p>
+<div style="text-align: center;">
+<img alt="2007-salt-nontrees.png" src="https://img.atcoder.jp/joisc2007/2007-salt-nontrees.png" style="max-width: 100%; width: 712px;" />
+</div>
+
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>例</h3>
+<p>次の木が与えられた場合を考える．</p>
+<div style="text-align: center;">
+<img alt="2007-salt-step1.png" src="https://img.atcoder.jp/joisc2007/2007-salt-step1.png" style="max-width: 100%; width: 234px;" />
+</div>
+
+<p>先手が辺 <var>(5, 7)</var> を取ると，次のようになる．</p>
+<div style="text-align: center;">
+<img alt="2007-salt-step2.png" src="https://img.atcoder.jp/joisc2007/2007-salt-step2.png" style="max-width: 100%; width: 234px;" />
+</div>
+
+<p>続いて後手が頂点 <var>4</var> を取ると，次のようになる．</p>
+<div style="text-align: center;">
+<img alt="2007-salt-step3.png" src="https://img.atcoder.jp/joisc2007/2007-salt-step3.png" style="max-width: 100%; width: 234px;" />
+</div>
+
+<p>続いて先手が頂点 <var>3</var> を取ると，次のようになる．</p>
+<div style="text-align: center;">
+<img alt="2007-salt-step4.png" src="https://img.atcoder.jp/joisc2007/2007-salt-step4.png" style="max-width: 100%; width: 234px;" />
+</div>
+
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>プログラムは <code>salt.in</code> から木のデータを読み込む．<code>salt.in</code> は次のような構造をしている．この例は上の木に対応している．</p>
+<pre>7
+3 4
+5 7
+4 6
+2 4
+1 4
+1 7
+</pre>
+<p><var>1</var> 行目には木の頂点の個数 <var>n</var> (<var>1 \leqq n \leqq 1000</var>) が書かれている．木の頂点は <var>1</var> から <var>n</var> までの整数でラベル付けされる．<var>2</var> 行目から <var>n</var> 行目までの <var>n - 1</var> 行には木の辺の両端の頂点の番号が書かれている．各辺はちょうど <var>1</var> 度ずつ出現し，出現順には意味がない．各辺はラベルの小さい頂点，大きい頂点の順に書かれる．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>インターフェース</h3>
+<p>プログラムは以下のインターフェースを通して後手のプログラムと通信する．</p>
+<h4>C/C++ 版</h4>
+<p>次のようにしてインクルードファイル <code>saltc.h</code> をインクルードすること．</p>
+<pre>#include &quot;saltc.h&quot;
+</pre>
+<p>プログラムはライブラリーの次の関数を呼ぶ必要がある．</p>
+<ul>
+<li><code>void turn(int u, int v, int* ru, int* rv);</code>
+    最初の二つのパラメーターは先手（あなた）の手番に行うことを指定する．<var>u = v</var> のときは，頂点 <var>u</var> を取ることを意味する．<var>u &lt; v</var> のときは，頂点 <var>u</var> と頂点 <var>v</var> を結ぶ辺を取ることを意味する．<var>u &gt; v</var> であってはいけない．後の二つのパラメーターでは，後手の手番に行われたことを読み取る．<code>ru</code> と <code>rv</code> は有効なポインターでなければならず，また同じ領域を指していてはいけない．<code>*ru</code> と <code>*rv</code> は上の <var>u, v</var> と同じ意味を持つ．<code>*ru &gt; *rv</code> となることはない．ただし，あなたが最後の頂点を取った場合は，<code>*ru</code> と <code>*rv</code> は <var>0</var> となる．この場合は，他の API 関数を呼ばずに終了しなければならない．</li>
+</ul>
+<p><code>saltc.o</code> のソースファイルは <code>saltc.c</code> という名前で置いてある．</p>
+<p>プログラムは，<code>saltc.o</code> と <code>saltc.h</code> をカレントディレクトリにコピーして，</p>
+<pre>gcc -O2 -lm salt.c saltc.o -o salt
+g++ -O2 -lm salt.cpp saltc.o -o salt
+</pre>
+<p>とすることでコンパイルできる（上が C 言語，下が C++ の場合）．</p>
+<h4>Java 版</h4>
+<p>プログラムはライブラリーの次の関数を呼ぶ必要がある．</p>
+<ul>
+<li><code>static int[] Saltj.turn(int u, int v);</code>
+    パラメーターは先手（あなた）の手番に行うことを指定する．<var>u = v</var> のときは，頂点 <var>u</var> を取ることを意味する．<var>u &lt; v</var> のときは，頂点 <var>u</var> と頂点 <var>v</var> を結ぶ辺を取ることを意味する．<var>u &gt; v</var> であってはいけない．返り値は <code>int</code> 型のサイズ <var>2</var> の配列である．この配列を <var>r</var> とする．<code>r[0]</code> と <code>r[1]</code> は，後手の手番に行われたことを表す．<code>r[0]</code> と <code>r[1]</code> は上の <var>u, v</var> と同じ意味を持つ．<code>r[0] &gt; r[1]</code> となることはない．ただし，あなたが最後の頂点を取った場合は，<code>r[0]</code> と <code>r[1]</code> は <var>0</var> となる．この場合は，他の API 関数を呼ばずに終了しなければならない．</li>
+</ul>
+<p><code>Saltj.class</code> のソースファイルは <code>Saltj.java</code> という名前で置いてある．</p>
+<p>プログラムをコンパイルするときは，<code>Saltj.class</code> をカレントディレクトリにコピーしておく必要がある．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>プログラムは何も出力してはいけない．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>動作確認用プログラム</h3>
+<p>実行ファイルを作ったら，動作確認のため，ランダムな手を返す後手のプログラムと対戦させることができる．<code>salt-fake</code> という名前で入っている．なお，このプログラムは頂点が <var>15</var> 個以下のグラフでしか動作しないようになっている．</p>
+<p>カレントディレクトリに <code>salt.in</code> を置き，</p>
+<pre>./salt-fake ./salt
+./salt-fake java Salt
+</pre>
+<p>のように呼び出す（上が C/C++，下が Java の場合）．</p>
+<p>先手プログラムと後手プログラムは標準入出力を通して通信をするので，標準入出力を使うと予測のつかない結果になる可能性があることに注意せよ．</p>
+<p><code>salt-fake</code> はあくまでも受験者が動作確認のために使用できるように提供されるだけであり，実際の採点ではこれとは異なる方法で実行する可能性がある．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>採点</h3>
+<p>テストデータは複数用意されている．各テストデータにつき，何度かゲームを行い，プログラムがつねに勝てばそのテストデータの分の点数を与える．プログラムがゲームのルールに照らして正しくない手を指定した場合や，ゲームに負けた場合，ゲームに勝つ前に終了した場合は，そのテストデータの点数は与えない．</p></section>
+</div>
+</span>
+</span>

@@ -1,0 +1,439 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>JOI-kun has <var>N</var> fishes, numbered from 1 to <var>N</var>. The size of the fish <var>i</var> (<var>1 \le i \le N</var>) is <var>A_{i}</var>.</p>
+<p>When we grow fish, we have to pay attention to the following fact: if we have two nearby fishes, one fish eats the other fish as time passes. Here, two fishes are nearby if there is no fish between them. More precisely, if the size of the fish <var>x</var> is larger than or equal to the size of the fish <var>y</var>, and the fish <var>x</var> and the fish <var>y</var> are nearby, then the fish <var>x</var> eats the fish <var>y</var>, and the size of <var>x</var> becomes the sum of the original size of <var>x</var> and the size of <var>y</var>. If the fish <var>x</var> and the fish <var>y</var> have the same size, any one of them may eat the other.</p>
+<p>JOI-kun will grow fishes for <var>Q</var> days. To kill time, he does the following thought experiment. On the <var>j</var>-th day (<var>1 \le j \le Q</var>), JOI-kun takes one of the following actions.</p>
+<ul>
+<li>Type 1 : JOI-kun gives a special feed to the fish <var>X_{j}</var>. After that, the size of the fish <var>X_{j}</var> becomes <var>Y_{j}</var>.</li>
+<li>
+<p>Type <var>2</var>: JOI-kun takes only the fishes whose indices are between <var>L_{j}</var> and <var>R_{j}</var>, inclusive. Then JOI-kun performs the following thought experiment:</p>
+<p>JOI-kun puts the fishes <var>L_{j}, L_{j} + 1, \ldots, R_{j}</var> into an aquarium from left to right. By the above properties of the fishes, only one fish will survive in the aquarium. The index of the surviving fish depends on the choice of eaten fishes and the time when a fish eats another fish. JOI-kun wants to know the number of possible indices of surviving fishes. During the thought experiment, the order of the fishes does not change, and no two fishes eat the same fish simultaneously.</p>
+</li>
+</ul>
+<p>Write a program which, given information of JOI-kun’s fishes and JOI-kun’s plan, calculates the number of possible indices of surviving fishes for each action of Type 2 in order to determine whether JOI-kun’s thought is correct or not. Note that this is just a thought experiment. Please be assured that no fishes are eaten actually.</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input. Given values are all integers.</p>
+<pre><var>N</var>
+<var>A_{1}</var> <var>A_{2}</var> <var>\cdots</var> <var>A_{N}</var>
+<var>Q</var>
+(Query 1)
+(Query 2)
+<var>\vdots</var>
+(Query <var>Q</var>)
+</pre>
+<p>Each (Query <var>j</var>) (<var>1 \le j \le Q</var>) consists of space separated integers. Let <var>T_{j}</var> be the first integer of (Query <var>j</var>). The content of this line is one of the following.</p>
+<ul>
+<li>If <var>T_{j} = 1</var>, this line contains two more space separated integers <var>X_{j}, Y_{j}</var>, in this order. This means JOI-kun takes an action of Type 1 on <var>j</var>-th day. The size of the fish <var>X_{j}</var> becomes <var>Y_{j}</var>.</li>
+<li>If <var>T_{j} = 2</var>, this line contains two more space separated integers <var>L_{j}, R_{j}</var>, in this order. This means JOI-kun takes an action of Type 2 on <var>j</var>-th day. JOI-kun performs a thought experiment for fishes whose indices are between <var>L_{j}</var> and <var>R_{j}</var>, inclusive.</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>For each action of Type 2 (i.e., for each <var>j</var> (<var>1 \le j \le Q</var>) with <var>T_{j} = 2</var>), in order, write the number of possible indices of surviving fishes to the standard output. The outputs should be separated by line breaks.</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li><var>1 \le N \le 100\,000</var>.</li>
+<li><var>1 \le Q \le 100\,000</var>.</li>
+<li><var>1 \le A_{i} \le 1\,000\,000\,000 (= 10^{9})</var> (<var>1 \le i \le N</var>).</li>
+<li><var>T_{j}</var> is either 1 or 2 (<var>1 \le j \le Q</var>).</li>
+<li><var>1 \le X_{j} \le N</var> (<var>1 \le j \le Q</var>).</li>
+<li><var>1 \le Y_{j} \le 1\,000\,000\,000 (= 10^{9})</var> (<var>1 \le j \le Q</var>).</li>
+<li><var>1 \le L_{j} \le R_{j} \le N</var> (<var>1 \le j \le Q</var>).</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li>(<var>5</var> points) <var>N \le 500</var>, <var>Q \le 500</var>.</li>
+<li>(<var>8</var> points) <var>Q = 1</var>, <var>T_{j} = 2</var>, <var>L_{j} = 1</var>, <var>R_{j} = N</var> (<var>1 \le j \le Q</var>).</li>
+<li>(<var>12</var> points) <var>Q \le 1\,000</var>.</li>
+<li>(<var>23</var> points) <var>T_{j} = 2</var> (<var>1 \le j \le Q</var>)．</li>
+<li>(<var>35</var> points) For each <var>j</var> (<var>1 \le j \le Q</var>) with <var>T_{j} = 2</var>, the equalities <var>L_{j} = 1</var> and <var>R_{j} = N</var> are satisfied.</li>
+<li>(<var>17</var> points) No additional constraints.</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input and Output</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>5
+6 4 2 2 6
+6
+2 1 5
+2 1 3
+1 3 1
+2 2 5
+2 1 5
+2 2 4
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>5
+2
+2
+3
+1
+</pre>
+<p>For 6 days, JOI-kun takes the following actions.</p>
+<ul>
+<li>On the first day, JOI-kun performs a thought experiment for the fishes <var>1</var>, <var>2</var>, <var>3</var>, <var>4</var>, <var>5</var>.</li>
+<li>On the second day, JOI-kun performs a thought experiment for the fishes <var>1</var>, <var>2</var>, <var>3</var>.</li>
+<li>On the third day, JOI-kun gives a special feed to the fish 3. After that, the size of the fish 3 becomes 1.</li>
+<li>On the fourth day, JOI-kun performs a thought experiment for the fishes <var>2</var>, <var>3</var>, <var>4</var>, <var>5</var>.</li>
+<li>On the fifth day, JOI-kun performs a thought experiment for the fishes <var>1</var>, <var>2</var>, <var>3</var>, <var>4</var>, <var>5</var>.</li>
+<li>On the sixth day, JOI-kun performs a thought experiment for the fishes <var>2</var>, <var>3</var>, <var>4</var></li>
+</ul>
+<p>The results of a thought experiment for the first day are as follows.</p>
+<ul>
+<li>The sizes of the fishes in the aquarium are <var>6</var>, <var>4</var>, <var>2</var>, <var>2</var>, <var>6</var> from left to right.</li>
+<li>
+<p>For example, the fish 2 survives in the aquarium by the following process. (An array specifies the sizes of the fishes in the aquarium from left to right. A bold face character specifies the size of the fish 2.)</p>
+<p><var>[6, \mathbf{4}, 2, 2, 6]</var> (Initial State)<br />
+<var>\to [6, \mathbf{4}, 4, 6]</var> (The fish <var>4</var> eats the fish <var>3</var>)<br />
+<var>\to [6, \mathbf{8}, 6]</var> (The fish <var>2</var> eats the fish <var>4</var>)<br />
+<var>\to [\mathbf{14}, 6]</var> (The fish <var>2</var> eats the fish <var>1</var>)<br />
+<var>\to [\mathbf{20}]</var> (The fish <var>2</var> eats the fish <var>5</var>)</p>
+</li>
+<li>
+<p>Similarly, the possible indices of surviving fishes are <var>1</var>, <var>2</var>, <var>3</var>, <var>4</var>, <var>5</var>. Hence there are five possibilities.</p>
+</li>
+</ul>
+<p>This sample input satisfies the constraints of Subtasks <var>1</var>, <var>3</var>, <var>6</var>.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>13
+10 4 2 5 20 5 4 8 20 10 3 3 7
+1
+2 1 13
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>7
+</pre>
+<p>This sample input satisfies the constraints of all the subtasks.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 3</h3>
+<pre>12
+32 32 4 1 1 1 1 4 4 16 32 128
+7
+2 1 12
+2 2 6
+2 8 10
+2 1 9
+2 3 8
+2 5 9
+2 2 12
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 3</h3>
+<pre>12
+1
+1
+2
+6
+2
+1
+</pre>
+<p>This sample input satisfies the constraints of Subtasks <var>1</var>, <var>3</var>, <var>4</var>, <var>6</var>.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 4</h3>
+<pre>10
+2 3 5 10 1 3 4 9 5 2
+8
+2 1 10
+1 10 5
+2 1 10
+1 4 1000000000
+2 1 10
+1 8 20
+1 4 8
+2 1 10
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 4</h3>
+<pre>4
+6
+1
+6
+</pre>
+<p>This sample input satisfies the constraints of Subtasks <var>1</var>, <var>3</var>, <var>5</var>, <var>6</var>.</p></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>JOI 君は <var>N</var> 匹の魚を飼育しており，それぞれの魚に <var>1</var> から <var>N</var> までの番号を付けている．魚 <var>i</var> (<var>1 \leqq i \leqq N</var>) の大きさは <var>A_{i}</var> である．</p>
+<p>魚の飼育において，<var>2</var> 匹の魚が隣接している時，十分に時間が経過すると片方がもう一方を食べてしまうことに注意する必要がある．ここで，<var>2</var> 匹の魚が隣接するとは，その間に他の魚が存在しないことを意味する．具体的には，魚 <var>x</var> の大きさが魚 <var>y</var> の大きさ以上であり，かつ魚 <var>x</var> と魚 <var>y</var> が隣接している時，魚 <var>x</var> が魚 <var>y</var> を食べてしまい，魚 <var>x</var> の大きさは魚 <var>x</var> と魚 <var>y</var> の大きさの和になる．魚 <var>x</var> と魚 <var>y</var> の大きさが等しい場合は，どちらが相手を食べることもあり得る．</p>
+<p>JOI 君はこれから <var>Q</var> 日間，魚を飼育しつつ，暇つぶしに思考実験をすることにした ．<var>j</var> 日目 (<var>1 \leqq j \leqq Q</var>) には，以下のいずれかの行動をする．</p>
+<ul>
+<li>タイプ <var>1</var>: 魚 <var>X_{j}</var> に特殊な餌を与えることで，大きさを <var>Y_{j}</var> にする．</li>
+<li>タイプ <var>2</var>: <var>L_{j}</var> 以上 <var>R_{j}</var> 以下の番号の魚のみを考え，以下の思考実験を行う:水槽を用意し，左から順に魚 <var>L_{j}, L_{j} + 1, \ldots, R_{j}</var> を入れる．この時，上記の魚の性質より，最終的に水槽の中には <var>1</var> 匹の魚が残るが，その魚の番号は，食べる魚の選択と食べるタイミングによって定まる．その番号としてあり得るものは何個あるかを求める．ここで，思考実験の途中で <var>2</var> 匹の魚の順序が入れ替わることはなく，また <var>2</var> 匹の魚が同一の魚を同時に食べることもない．</li>
+</ul>
+<p>JOI 君が飼育する魚の情報と JOI 君の計画の情報が与えられたとき，JOI 君の思考が正しいかどうかを判定するため，それぞれのタイプ <var>2</var> の行動で求める，最後の <var>1</var> 匹の魚の番号としてあり得るものの個数を計算するプログラムを作成せよ．なお，上記はあくまで思考実験であり，どの魚も実際には食べられることはないため，安心してほしい．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力は以下の形式で標準入力から与えられる．入力される値はすべて整数である．</p>
+<pre><var>N</var>
+<var>A_{1}</var> <var>A_{2}</var> <var>\cdots</var> <var>A_{N}</var>
+<var>Q</var>
+(Query 1)
+(Query 2)
+<var>\vdots</var>
+(Query <var>Q</var>)
+</pre>
+<p>各 (Query <var>j</var>) (<var>1 \leqq j \leqq Q</var>) にはいくつかの整数が空白区切りで書かれている．そのうち <var>1</var> 個目の整数を <var>T_{j}</var> とすると，この行の内容は以下のいずれかである．</p>
+<ul>
+<li><var>T_{j} = 1</var> のとき，この行には続いて <var>2</var> 個の整数 <var>X_{j}, Y_{j}</var> がこの順に書かれている．これは JOI 君が <var>j</var> 日目に取る行動がタイプ <var>1</var> であり，魚 <var>X_{j}</var> の大きさを <var>Y_{j}</var> にすることを表す．</li>
+<li><var>T_{j} = 2</var> のとき，この行には続いて <var>2</var> 個の整数 <var>L_{j}, R_{j}</var> がこの順に書かれている．これは JOI 君が <var>j</var> 日目に取る行動がタイプ <var>2</var> であり，<var>L_{j}</var> 以上 <var>R_{j}</var> 以下の番号の魚のみを考え，思考実験を行うことを表す．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>タイプ <var>2</var> の行動，すなわち，<var>T_{j} = 2</var> となる <var>j</var> (<var>1 \leqq j \leqq Q</var>) それぞれに対して，最後の <var>1</var> 匹の魚の番号としてあり得るものの個数を標準出力に順に改行区切りで出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>1 \leqq N \leqq 100\,000</var>．</li>
+<li><var>1 \leqq Q \leqq 100\,000</var>．</li>
+<li><var>1 \leqq A_{i} \leqq 1\,000\,000\,000 (= 10^{9})</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>T_{j}</var> は <var>1, 2</var> のいずれかである (<var>1 \leqq j \leqq Q</var>)．</li>
+<li><var>1 \leqq X_{j} \leqq N</var> (<var>1 \leqq j \leqq Q</var>)．</li>
+<li><var>1 \leqq Y_{j} \leqq 1\,000\,000\,000 (= 10^{9})</var> (<var>1 \leqq j \leqq Q</var>)．</li>
+<li><var>1 \leqq L_{j} \leqq R_{j} \leqq N</var> (<var>1 \leqq j \leqq Q</var>)．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>5</var> 点) <var>N \leqq 500</var>，<var>Q \leqq 500</var>．</li>
+<li>(<var>8</var> 点) <var>Q = 1</var>，<var>T_{j} = 2</var>，<var>L_{j} = 1</var>，<var>R_{j} = N</var> (<var>1 \leqq j \leqq Q</var>)．</li>
+<li>(<var>12</var> 点) <var>Q \leqq 1\,000</var>．</li>
+<li>(<var>23</var> 点) <var>T_{j} = 2</var> (<var>1 \leqq j \leqq Q</var>)．</li>
+<li>(<var>35</var> 点) <var>T_{j} = 2</var> のとき <var>L_{j} = 1</var>，<var>R_{j} = N</var> (<var>1 \leqq j \leqq Q</var>)．</li>
+<li>(<var>17</var> 点) 追加の制約はない．</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入出力例</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>5
+6 4 2 2 6
+6
+2 1 5
+2 1 3
+1 3 1
+2 2 5
+2 1 5
+2 2 4
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>5
+2
+2
+3
+1
+</pre>
+<p>JOI 君の <var>6</var> 日間の行動は以下のようになる．</p>
+<ul>
+<li><var>1</var> 日目には，魚 <var>1, 2, 3, 4, 5</var> に対して思考実験を行う．</li>
+<li><var>2</var> 日目には，魚 <var>1, 2, 3</var> に対して思考実験を行う．</li>
+<li><var>3</var> 日目には，魚 <var>3</var> に特殊な餌を与えることで，大きさを <var>1</var> にする．</li>
+<li><var>4</var> 日目には，魚 <var>2, 3, 4, 5</var> に対して思考実験を行う．</li>
+<li><var>5</var> 日目には，魚 <var>1, 2, 3, 4, 5</var> に対して思考実験を行う．</li>
+<li><var>6</var> 日目には，魚 <var>2, 3, 4</var> に対して思考実験を行う．</li>
+</ul>
+<p>特に，<var>1</var> 日目の思考実験の詳細は以下の通りである．</p>
+<ul>
+<li>水槽にいる魚の大きさは左から順番に <var>6, 4, 2, 2, 6</var> である．</li>
+<li>
+<p>例えば，魚 <var>2</var> が最後の <var>1</var> 匹になるような手順として，以下のようなものが考えられる．（以下の数列は水槽にいる魚の大きさを左から順に記載したものであり，太字は魚 <var>2</var> の大きさを示す．）</p>
+<p><var>[6, \mathbf{4}, 2, 2, 6]</var>（最初の状態）<br />
+<var>\to [6, \mathbf{4}, 4, 6]</var>（魚 <var>4</var> が魚 <var>3</var> を食べる）<br />
+<var>\to [6, \mathbf{8}, 6]</var>（魚 <var>2</var> が魚 <var>4</var> を食べる）<br />
+<var>\to [\mathbf{14}, 6]</var>（魚 <var>2</var> が魚 <var>1</var> を食べる）<br />
+<var>\to [\mathbf{20}]</var>（魚 <var>2</var> が魚 <var>5</var> を食べる）</p>
+</li>
+<li>
+<p>同様に考えることで，最後の <var>1</var> 匹の魚の番号としてあり得るものは <var>1, 2, 3, 4, 5</var> であり，個数は <var>5</var> 個であることが分かる．</p>
+</li>
+</ul>
+<p>この入力例は小課題 <var>1, 3, 6</var> の制約を満たす．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>13
+10 4 2 5 20 5 4 8 20 10 3 3 7
+1
+2 1 13
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>7
+</pre>
+<p>この入力例はすべての小課題の制約を満たす．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>12
+32 32 4 1 1 1 1 4 4 16 32 128
+7
+2 1 12
+2 2 6
+2 8 10
+2 1 9
+2 3 8
+2 5 9
+2 2 12
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>12
+1
+1
+2
+6
+2
+1
+</pre>
+<p>この入力例は小課題 <var>1, 3, 4, 6</var> の制約を満たす．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 4</h3>
+<pre>10
+2 3 5 10 1 3 4 9 5 2
+8
+2 1 10
+1 10 5
+2 1 10
+1 4 1000000000
+2 1 10
+1 8 20
+1 4 8
+2 1 10
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 4</h3>
+<pre>4
+6
+1
+6
+</pre>
+<p>この入力例は小課題 <var>1, 3, 5, 6</var> の制約を満たす．</p></section>
+</div>
+</span>
+</span>

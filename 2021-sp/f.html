@@ -1,0 +1,463 @@
+<span class="lang">
+<span class="lang-en">
+<blockquote>
+<p><strong>Submission on AtCoder</strong></p>
+<p>Include <code>shopping.h</code> and implement all functions in a single source file. Do not share global variables between the two sides. This judge supports C++ only.</p>
+<p><a href="https://www2.ioi-jp.org/camp/2021/2021-sp-tasks/day2/shopping-dist.zip">Distributed files</a></p>
+</blockquote>
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>JOI Store sells <var>N</var> items, numbered from 0 through <var>N - 1</var>. The price of the item <var>i</var> (<var>0 \le i \le N - 1</var>) is <var>P_{i}</var>. The prices of any two items are different.</p>
+<p>Anna comes to JOI Store for shopping. Among the items whose indices are between <var>L</var> and <var>R</var>, inclusive, Anna wants to buy the cheapest one. Since Anna does not know the price of each item, she will communicate with Bruno, a clerk of JOI Store, to decide which item to buy. Bruno knows the price of every item, but he does not know the values of <var>L</var> and <var>R</var>.</p>
+<p>Anna and Bruno will use a telecommunication device to send characters. Every character they will send is 0 or 1. Anna can send at most 18 characters to Bruno, and Bruno can send at most 10 000 characters to Anna. Bruno wants to send as few characters as possible.</p>
+<p>The values of <var>N, L</var>, and <var>R</var> will be given to Anna, and the value of <var>N</var> and the price of each item will be given to Bruno. Write program which implements Anna’s strategy and Bruno’s strategy so that Anna can decide which item to buy.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Implementation Details</h3>
+<p>You need to submit two files.</p>
+<p>The first file is <code>Anna.cpp</code>. It should implement Anna’s strategy. It should implement the following function. The program should include <code>Anna.h</code> using the preprocessing directive <code>#include</code>.</p>
+<ul>
+<li><code>void InitA(int N, int L, int R)</code>
+    For each test case, this function is called exactly once in the beginning.<ul>
+<li>The parameter <code>N</code> is the number of items <var>N</var>.</li>
+<li>The parameters <code>L</code> and <code>R</code> mean Anna wants to buy the cheapest item among the items whose indices are between <var>L</var> and <var>R</var>, inclusive.</li>
+</ul>
+</li>
+<li><code>void ReceiveA(bool x)</code>
+    This function is called every time when Bruno sends a character to Anna.<ul>
+<li>The parameter <code>x</code> denotes the character sent by Bruno to Anna. Here <code>true</code> denotes the character 1, and <code>false</code> denotes the character 0.</li>
+</ul>
+</li>
+<li><code>int Answer()</code>
+    This function is called exactly once when all of the calls are finished. This function should return the index of the item Anna will buy.<ul>
+<li>The return value should be an integer between <var>L</var> and <var>R</var>, inclusive. If this condition is not satisfied, your program is judged as Wrong Answer [1]. If the return value is different from the item Anna will buy, your program is judged as Wrong Answer [2].</li>
+</ul>
+</li>
+</ul>
+<p>In this file, your program can call the following function.</p>
+<ul>
+<li><code>void SendA(bool y)</code>
+    Anna can send a character to Bruno by this function.<ul>
+<li>The parameter <code>y</code> denotes the character sent by Anna to Bruno. Here <code>true</code> denotes the character 1, and <code>false</code> denotes the character 0.</li>
+</ul>
+</li>
+</ul>
+<p>The second file is <code>Bruno.cpp</code>. It should implement Bruno’s strategy. It should implement the following function. The program should include <code>Bruno.h</code> using the preprocessing directive <code>#include</code>.</p>
+<ul>
+<li><code>void InitB(int N, std::vector&lt;int&gt; P)</code>
+    For each test case, this function is called exactly once in the beginning.<ul>
+<li>The parameter <code>N</code> is the number of items <var>N</var>.</li>
+<li>The parameter <code>P</code> is an array of length <var>N</var>. It means <code>P[i]</code> is the price <var>P_{i}</var> of the item <var>i</var> (<var>0 \le i \le N - 1</var>).</li>
+</ul>
+</li>
+<li><code>void ReceiveB(bool y)</code>
+    This function is called every time when Anna sends a character to Bruno.<ul>
+<li>The parameter <code>y</code> denotes the character sent by Anna to Bruno. Here <code>true</code> denotes the character 1, and <code>false</code> denotes the character 0</li>
+</ul>
+</li>
+</ul>
+<p>In this file, your program can call the following function.</p>
+<ul>
+<li><code>void SendB(bool x)</code>
+    Bruno can send a character to Anna by this function.<ul>
+<li>The parameter <code>x</code> denotes the character sent by Bruno to Anna. Here <code>true</code> denotes the character 1, and <code>false</code> denotes the character 0</li>
+</ul>
+</li>
+</ul>
+<p>You can assume the program will be executed as follows. For each test case, two queues are prepared: <var>Q_{Y}</var> for characters sent by Anna and <var>Q_{X}</var> for characters sent by Bruno. In the beginning, the functions <code>InitA</code> and <code>InitB</code> are called and characters sent by these functions are pushed to the corresponding queues. Then we will repeat the following processes.</p>
+<ul>
+<li>If either <var>Q_{X}</var> or <var>Q_{Y}</var> is non-empty, we pop a character from it, and call the corresponding function <code>ReceiveA</code> or <code>ReceiveB</code>. If both <var>Q_{X}</var> and <var>Q_{Y}</var> are non-empty, it is not determined which of <code>ReceiveA</code> or <code>ReceiveB</code> will be called.</li>
+<li>Whenever <code>SendA</code> is called during executions of <code>ReceiveA</code>, the sent character is pushed to <var>Q_{Y}</var>.</li>
+<li>Whenever <code>SendB</code> is called during executions of <code>ReceiveB</code>, the sent character is pushed to <var>Q_{X}</var>.</li>
+<li>If both of the queues are empty, <code>Answer</code> is called, and the program will be terminated.</li>
+</ul>
+<p>Anna should not send more than <var>18</var> characters to Bruno. If it exceeds, your program is judged as Wrong Answer [3]. Bruno should not send more than 10 000 characters to Anna. If it exceeds, your program is judged as Wrong Answer [4].</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Important Notices</h3>
+<ul>
+<li>Your program can implement other functions for internal use, or use global variables. Submitted files will be compiled with the grader, and become a single executable file. All global variables and internal functions should be declared in an unnamed namespace to avoid confliction with other files. When it is graded, it will be executed as two processes of Anna and Bruno. The process of Anna and the process of Bruno cannot share global variables.</li>
+<li>Your program must not use the standard input and the standard output. Your program must not communicate with other files by any methods. However, your program may output debugging information to the standard error.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Compilation and Test Run</h3>
+<p>You can download an archive file from the contest webpage which contains the sample grader to test your program. The archive file also contains a sample source file of your program.</p>
+<p>The sample grader is the file <code>grader.cpp</code>. In order to test your program, put <code>grader.cpp</code>, <code>Anna.cpp</code>, <code>Bruno.cpp</code>, <code>Anna.h</code>, <code>Bruno.h</code> in the same directory, and run the following command to compile your programs.</p>
+<pre>g++ -std=gnu++17 -O2 -fsigned-char -o grader grader.cpp Anna.cpp Bruno.cpp
+</pre>
+<p>When the compilation succeeds, the executable file <code>grader</code> is generated.</p>
+<p>Note that the actual grader is different from the sample grader. The sample grader will be executed as a single process, which will read input data from the standard input and write the results to the standard output and the standard error.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Input for the Sample Grader</h3>
+<p>The sample grader reads the following data from the standard input.</p>
+<pre><var>N</var> <var>L</var> <var>R</var>
+<var>P_{0}</var> <var>P_{1}</var> <var>\cdots</var> <var>P_{N - 1}</var>
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Output of the Sample Grader</h3>
+<p>When the program terminates successfully, the sample grader writes the following information to the standard output (quotes for clarity).</p>
+<ul>
+<li>If the answer is correct, it writes the total number <var>Y</var> of characters sent from Anna to Bruno and the total number <var>X</var> of characters sent from Bruno to Anna as “<code>Accepted: Y X</code>”.</li>
+<li>If your program is judged as Wrong Answer, it writes its type as “<code>Wrong Answer [1]</code>”.</li>
+</ul>
+<p>If your program is judged as several types of Wrong Answer, the sample grader reports only one of them.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li><var>1 \le N \le 1\,000\,000</var>.</li>
+<li><var>0 \le L \le R \le N - 1</var>.</li>
+<li><var>1 \le P_{i} \le N</var> (<var>0 \le i \le N - 1</var>).</li>
+<li><var>P_{i} \ne P_{j}</var> (<var>0 \le i &lt; j \le N - 1</var>).</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li>(<var>1</var> point) <var>N\le1\,000</var>.</li>
+<li>(<var>9</var> points) <var>N\le10\,000</var>.</li>
+<li>(<var>90</var> points) No additional constraints.</li>
+</ol>
+<p>Let <var>T</var> be the maximum total number of characters sent from Bruno to Anna over all test cases of this subtask. The score for this subtask is determined as follows.</p>
+<ul>
+<li>If <var>5\,000&lt;T\le10\,000</var>, your score is <var>\left\lfloor25\times\dfrac{10000 - T}{5000}\right\rfloor</var> points.</li>
+<li>If <var>1\,000&lt;T\le5\,000</var>, your score is <var>25+\left\lfloor40\times\dfrac{5000 - T}{4000}\right\rfloor</var> points.</li>
+<li>If <var>300&lt;T\le1\,000</var>, your score is <var>65+\left\lfloor25\times\dfrac{1000 - T}{700}\right\rfloor</var> points.</li>
+<li>If <var>T\le300</var>, your score is <var>90</var> points.</li>
+</ul>
+<p>Here, <var>\lfloor x\rfloor</var> denotes the largest integer not exceeding <var>x</var>.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Communication</h3>
+<p>Here is a sample input for the sample grader and corresponding function calls.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>4 0 2
+3 1 4 2
+</pre>
+<h4>Sample Function Calls</h4>
+<div class="joisc2021-shopping-en-table" markdown="1">
+<table>
+<thead>
+<tr>
+<th>Call</th>
+<th>Call</th>
+<th>Return</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>InitA(4, 0, 2)</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>SendA(true)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>SendA(false)</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>InitB(4, {3, 1, 4, 2})</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ReceiveB(true)</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>SendB(true)</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ReceiveA(true)</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ReceiveB(false)</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Answer()</code></td>
+<td></td>
+<td><code>1</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<style>
+.joisc2021-shopping-en-table { position:relative;max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisc2021-shopping-en-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisc2021-shopping-en-table th,.joisc2021-shopping-en-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisc2021-shopping-en-table th { background:#f5f5f5; }
+.joisc2021-shopping-en-table code { white-space:nowrap; }
+</style></section>
+</div>
+</span>
+<span class="lang-ja">
+<blockquote>
+<p><strong>AtCoder での提出方法</strong></p>
+<p><code>shopping.h</code> をインクルードし，すべての関数を 1 つのファイル内で実装して提出してください．グローバル変数を両者の間で共有しないでください．このジャッジは C++ のみに対応しています．</p>
+<p><a href="https://www2.ioi-jp.org/camp/2021/2021-sp-tasks/day2/shopping-dist.zip">配布ファイル</a></p>
+</blockquote>
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>JOI 商店には <var>N</var> 個の商品があり，各商品には <var>0</var> から <var>N - 1</var> までの番号が付いている．商品 <var>i</var> (<var>0 \leqq i \leqq N - 1</var>) の値段は <var>P_{i}</var> である．どの <var>2</var> つの商品の値段も相異なる．</p>
+<p>Anna は JOI 商店に買い物に来ている．Anna は番号が <var>L</var> 以上 <var>R</var> 以下の商品のうち，最も安い商品を購入することに決めた．しかし，Anna は各商品の値段が分からなかったため，店員である Bruno と通信をすることで，購入する商品の番号を求めることにした．Bruno は各商品の値段を知っているが，<var>L</var> と <var>R</var> の値は知らない．</p>
+<p>Anna と Bruno は，<var>0</var> または <var>1</var> の文字を送受信する機械を用いて通信を行う．Anna から Bruno へは合計で <var>18</var> 文字まで，Bruno から Anna へは合計で <var>10\,000</var> 文字まで送信することができる．ただし，Bruno は送信する文字数をできるだけ少なくしたい．</p>
+<p>Anna 側に <var>N, L, R</var> の値が，Bruno 側に <var>N</var> の値と各商品の値段が与えられたとき，通信を行うことで， Anna が購入する商品の番号を Anna 側で求めるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>実装の詳細</h3>
+<p>あなたは <var>2</var> つのファイルを提出しなければならない．</p>
+<p><var>1</var> つ目のファイルは <code>Anna.cpp</code> という名前である．このファイルは Anna の行動を実装したファイルであり，以下の関数を実装していなければならない．また，<code>#include</code> プリプロセッサ指令によって <code>Anna.h</code> を読み込むこと．</p>
+<ul>
+<li><code>void InitA(int N, int L, int R)</code>
+    この関数は，最初に <var>1</var> 回だけ実行される．<ul>
+<li>引数 <code>N</code> は，商品の個数 <var>N</var> である．</li>
+<li>引数 <code>L</code> と <code>R</code> は，Anna が番号が <var>L</var> 以上 <var>R</var> 以下の商品のうち，最も安い商品を購入することを表す．</li>
+</ul>
+</li>
+<li><code>void ReceiveA(bool x)</code>
+    この関数は，Bruno から文字が送られる度に実行される．<ul>
+<li>引数 <code>x</code> は，Bruno から送信された文字を表す．<code>true</code> は文字 <var>1</var> を表し，<code>false</code> は文字 <var>0</var> を表す．</li>
+</ul>
+</li>
+<li><code>int Answer()</code>
+    この関数は，文字の送受信がすべて完了したときに <var>1</var> 回だけ実行される．Anna が購入する商品の番号を戻り値として返さなければならない．<ul>
+<li>戻り値は，<var>L</var> 以上 <var>R</var> 以下の整数でなければならない．この条件を満たさない場合，不正解 <var>[1]</var> と判定される．また，戻り値が Anna の購入する商品の番号と異なる場合，不正解 <var>[2]</var> と判定される．</li>
+</ul>
+</li>
+</ul>
+<p>このファイルでは以下の関数を呼び出すことができる．</p>
+<ul>
+<li><code>void SendA(bool y)</code>
+    この関数を用いて，Bruno に文字を送信する．<ul>
+<li>引数 <code>y</code> は，Bruno に送信する文字を表す．<code>true</code> は文字 <var>1</var> を表し，<code>false</code> は文字 <var>0</var> を表す．</li>
+</ul>
+</li>
+</ul>
+<p><var>2</var> つ目のファイルは <code>Bruno.cpp</code> という名前である．このファイルは Bruno の行動を実装したファイルであり，以下の関数を実装していなければならない．また，<code>#include</code> プリプロセッサ指令によって <code>Bruno.h</code> を読み込むこと．</p>
+<ul>
+<li><code>void InitB(int N, std::vector&lt;int&gt; P)</code>
+    この関数は，最初に <var>1</var> 回だけ実行される．<ul>
+<li>引数 <code>N</code> は，商品の個数 <var>N</var> である．</li>
+<li>引数 <code>P</code> は，長さ <var>N</var> の配列であり，<code>P[i]</code> は商品 <var>i</var> の値段 <var>P_{i}</var> を表す (<var>0 \leqq i \leqq N - 1</var>)．</li>
+</ul>
+</li>
+<li><code>void ReceiveB(bool y)</code>
+    この関数は，Anna から文字が送られる度に実行される．<ul>
+<li>引数 <code>y</code> は，Anna から送信された文字を表す．<code>true</code> は文字 <var>1</var> を表し，<code>false</code> は文字 <var>0</var> を表す．</li>
+</ul>
+</li>
+</ul>
+<p>このファイルでは以下の関数を呼び出すことができる．</p>
+<ul>
+<li><code>void SendB(bool x)</code>
+    この関数を用いて，Anna に文字を送信する．<ul>
+<li>引数 <code>x</code> は，Anna に送信する文字を表す．<code>true</code> は文字 <var>1</var> を表し，<code>false</code> は文字 <var>0</var> を表す．</li>
+</ul>
+</li>
+</ul>
+<p>プログラムは次のように実行されると考えてよい．各テストケースにおいて，Anna が送信した文字を保管するキュー <var>Q_{Y}</var> と Bruno が送信した文字を保管するキュー <var>Q_{X}</var> が用意される．最初に <code>InitA</code> および <code>InitB</code> が呼び出され，そこで送信された文字がそれぞれのキューに追加される．次に，以下の処理を繰り返す．</p>
+<ul>
+<li><var>Q_{X}</var> と <var>Q_{Y}</var> のいずれかが空でない場合，そこから文字を <var>1</var> つ取り出し，対応する <code>ReceiveA</code> または <code>ReceiveB</code> が実行される．ただし，<var>Q_{X}</var> と <var>Q_{Y}</var> のどちらも空でない場合，<code>ReceiveA</code> と <code>ReceiveB</code> のどちらが実行されるかは分からない．</li>
+<li><code>ReceiveA</code> の実行中に <code>SendA</code> が実行された場合，送信された文字が <var>Q_{Y}</var> に追加される．</li>
+<li><code>ReceiveB</code> の実行中に <code>SendB</code> が実行された場合，送信された文字が <var>Q_{X}</var> に追加される．</li>
+<li>どちらのキューも空である場合は，<code>Answer</code> が実行された後，プログラムが終了する．</li>
+</ul>
+<p>Anna から Bruno へ送信する文字数の合計は <var>18</var> を超えてはならない．もし超えた場合，不正解 <var>[3]</var> と判定される．また，Bruno から Anna へ送信する文字数の合計は <var>10\,000</var> を超えてはならない．もし超えた場合，不正解 <var>[4]</var> と判定される．</p>
+<h4>重要な注意</h4>
+<ul>
+<li>内部での使用のために他の関数を実装したり，グローバル変数を宣言するのは自由である．ただし，提出された <var>2</var> つのプログラムは，採点プログラムとまとめてリンクされて <var>1</var> つの実行ファイルになるので，各ファイル内のすべてのグローバル変数と内部関数を無名名前空間内で宣言して，他のファイルとの干渉を避ける必要がある．採点時には，このプログラムは Anna 側，Bruno 側として <var>2</var> 個のプロセスとして実行されるので，Anna 側と Bruno 側でプログラム中のグローバル変数を共有することはできない．</li>
+<li>あなたの提出したプログラムは，標準入力・標準出力，あるいは他のファイルといかなる方法でもやりとりしてはならない．ただし，標準エラー出力にデバッグ情報等を出力することは許される．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>コンパイル・実行の方法</h3>
+<p>作成したプログラムをテストするための，採点プログラムのサンプルが，コンテストサイトからダウンロードできるアーカイブの中に含まれている．このアーカイブには，提出しなければならないファイルのサンプルも含まれている．</p>
+<p>採点プログラムのサンプルは <var>1</var> つのファイルからなる. そのファイルは <code>grader.cpp</code> である．作成したプログラムをテストするには，<code>grader.cpp</code>, <code>Anna.cpp</code>, <code>Bruno.cpp</code>, <code>Anna.h</code>, <code>Bruno.h</code> を同じディレクトリに置き，次のようにコマンドを実行する．</p>
+<pre>g++ -std=gnu++17 -O2 -fsigned-char -o grader grader.cpp Anna.cpp Bruno.cpp
+</pre>
+<p>コンパイルが成功すれば，<code>grader</code> という実行ファイルが生成される．</p>
+<p>実際の採点プログラムは，採点プログラムのサンプルとは異なることに注意すること．採点プログラムのサンプルは単一のプロセスとして起動する．このプログラムは，標準入力から入力を読み込み，標準出力と標準エラー出力に結果を出力する．</p>
+<h4>採点プログラムのサンプルの入力</h4>
+<p>採点プログラムのサンプルは標準入力から以下の形式で入力を読み込む．</p>
+<pre><var>N</var> <var>L</var> <var>R</var>
+<var>P_{0}</var> <var>P_{1}</var> <var>\cdots</var> <var>P_{N - 1}</var>
+</pre>
+<h4>採点プログラムのサンプルの出力</h4>
+<p>採点プログラムのサンプルは標準出力へ以下の情報を出力する (引用符は実際には出力されない)．</p>
+<ul>
+<li>正解の場合，Anna から Bruno へ送信された文字数の合計 <var>Y</var> と，Bruno から Anna へ送信された文字数の合計 <var>X</var> が “<code>Accepted: Y X</code>” のように出力される．</li>
+<li>不正解の場合，不正解の種類が “<code>Wrong Answer [1]</code>” のように出力される．</li>
+</ul>
+<p>実行するプログラムが複数の不正解の条件を満たした場合，表示される不正解の種類はそれらのうち <var>1</var> つのみである．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>1 \leqq N \leqq 1\,000\,000</var>．</li>
+<li><var>0 \leqq L \leqq R \leqq N - 1</var>．</li>
+<li><var>1 \leqq P_{i} \leqq N</var> (<var>0 \leqq i \leqq N - 1</var>)．</li>
+<li><var>P_{i} \ne P_{j}</var> (<var>0 \leqq i &lt; j \leqq N - 1</var>)．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>1</var> 点) <var>N\leqq1\,000</var>．</li>
+<li>(<var>9</var> 点) <var>N\leqq10\,000</var>．</li>
+<li>(<var>90</var> 点) 追加の制約はない．</li>
+</ol>
+<p>この小課題のすべてのテストケースにおける，Bruno から Anna へ送信された文字数の合計の最大値を <var>T</var> とする．このとき，この小課題の得点は以下のように決定される．</p>
+<ul>
+<li><var>5\,000&lt;T\leqq10\,000</var> のとき，<var>\left\lfloor25\times\dfrac{10000 - T}{5000}\right\rfloor</var> 点．</li>
+<li><var>1\,000&lt;T\leqq5\,000</var> のとき，<var>25+\left\lfloor40\times\dfrac{5000 - T}{4000}\right\rfloor</var> 点．</li>
+<li><var>300&lt;T\leqq1\,000</var> のとき，<var>65+\left\lfloor25\times\dfrac{1000 - T}{700}\right\rfloor</var> 点．</li>
+<li><var>T\leqq300</var> のとき，<var>90</var> 点．</li>
+</ul>
+<p>ここで，<var>\lfloor x\rfloor</var> は <var>x</var> を超えない最大の整数を表す．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>やり取りの例</h3>
+<p>採点プログラムのサンプルが読み込む入力の例と，それに対応する関数の呼び出しの例を以下に示す．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>4 0 2
+3 1 4 2
+</pre>
+<h4>関数の呼び出しの例</h4>
+<div class="joisc2021-shopping-ja-table" markdown="1">
+<table>
+<thead>
+<tr>
+<th>呼び出し</th>
+<th>呼び出し</th>
+<th>戻り値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>InitA(4, 0, 2)</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>SendA(true)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>SendA(false)</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>InitB(4, {3, 1, 4, 2})</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ReceiveB(true)</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>SendB(true)</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ReceiveA(true)</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ReceiveB(false)</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Answer()</code></td>
+<td></td>
+<td><code>1</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<style>
+.joisc2021-shopping-ja-table { position:relative;max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisc2021-shopping-ja-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisc2021-shopping-ja-table th,.joisc2021-shopping-ja-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisc2021-shopping-ja-table th { background:#f5f5f5; white-space:nowrap; }
+.joisc2021-shopping-ja-table code { white-space:nowrap; }
+</style></section>
+</div>
+</span>
+</span>

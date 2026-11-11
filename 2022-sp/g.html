@@ -1,0 +1,480 @@
+<span class="lang">
+<span class="lang-en">
+<blockquote>
+<p><strong>Submission on AtCoder</strong></p>
+<p>Include <code>Anna.h</code> and <code>Bruno.h</code> and implement all functions in a single source file. Do not share global variables between the two sides. This judge supports C++ only.</p>
+<p><a href="https://www2.ioi-jp.org/camp/2022/2022-sp-tasks/contest3/device2-dist.zip">Distributed files</a></p>
+</blockquote>
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>Anna and Bruno are gamble masters. They will play a game with D-taro who is the dealer of the game.</p>
+<p>In this game, Anna and Bruno stay in different rooms. They can communicate with each other using a broken device only. D-taro gives an integer to Anna. For Anna and Bruno, the purpose of this game is to send the given integer from Anna to Bruno using the device.</p>
+<p>When the game starts, in the beginning, Anna declares an integer <var>m</var> between <var>1</var> and <var>2\,000</var>, inclusive. Then they play <var>Q</var> rounds. The round <var>i</var> (<var>1 \le i \le Q</var>) is performed as follows.</p>
+<ol>
+<li>D-taro gives an integer <var>A_{i}</var> to Anna.</li>
+<li>Anna inputs arrays <var>s_{i}, t_{i}</var> into the device. Every element of the arrays <var>s_{i}, t_{i}</var> should be either <var>0</var> or <var>1</var>. The arrays <var>s_{i}, t_{i}</var> should have the same length, and the length is between 1 and <var>m</var>, inclusive.</li>
+<li>Let <var>u_{i}</var> be an array obtained from the arrays <var>s_{i}</var> and <var>t_{i}</var> by riffle shuffle (see below). Then the device sends <var>u_{i}</var> to Bruno.</li>
+<li>Bruno sends an integer to D-taro. If this integer is the same as the integer <var>A_{i}</var> given by D-taro to Anna, Anna and Bruno win for this round.</li>
+</ol>
+<p>Write programs which implements the strategies of Anna and Bruno so that theory win for all the <var>Q</var> rounds.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Riffle Shuffle</h3>
+<p>We say an array <var>Z</var> is obtained from the arrays <var>X</var> and <var>Y</var> by riffle shuffle if we can divide the elements of the array <var>Z</var> into two groups so that the following two conditions are satisfied.</p>
+<ul>
+<li>The array consisting of the elements in the first group in the same order is equal to the array <var>X</var>.</li>
+<li>The array consisting of the elements in the second group in the same order is equal to the array <var>Y</var>.</li>
+</ul>
+<p>For example, the array <var>Z = [1, 1, 1, 0, 0, 0]</var> is obtained from <var>X = [1, 1, 0]</var> and <var>Y = [1, 0, 0]</var> by riffle shuffle because the array consisting of the first, second, fourth elements of <var>Z</var> in the same order is the array <var>[1, 1, 0]</var>, and the array consisting of the third, fifth, sixth elements of <var>Z</var> in the same order is the array <var>[1, 0, 0]</var>.</p>
+<p>On the other hand, if <var>X = [1, 1, 0]</var>, <var>Y = [1, 0, 0]</var>，and <var>Z = [0, 0, 0, 1, 1, 1]</var>, the array <var>Z</var> is not obtained from <var>X</var> and <var>Y</var> by riffle shuffle.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Implementation Details</h3>
+<p>You need to submit two files.</p>
+<p>The first file is <code>Anna.cpp</code>. It should implement Anna’s strategy. It should implement the following functions. The program should include <code>Anna.h</code> using the preprocessing directive <code>#include</code>.</p>
+<ul>
+<li><code>int Declare()</code>
+    This function is called once in the beginning.<ul>
+<li>The return value is the integer <var>m</var> declared by Anna.</li>
+<li>The integer <var>m</var> should be between <var>1</var> and <var>2\,000</var>, inclusive. If this condition is not satisfied, your program is judged as Wrong Answer [1].</li>
+</ul>
+</li>
+<li><code>std::pair&lt;std::vector&lt;int&gt;, std::vector&lt;int&gt; &gt; Anna(long long A)</code> After the function <code>Declare</code> is called, this function is called <var>Q</var> times. The <var>i</var>-th call (<var>1 \le i \le Q</var>) to this function corresponds to Step 1 and Step 2 for the round <var>i</var>.<ul>
+<li>The parameter <code>A</code> is the integer <var>A_{i}</var> given by D-taro to Anna.</li>
+<li>The return value is the pair of the two arrays <var>s_{i}, t_{i}</var> input by Anna into the device.</li>
+<li>Every element of the arrays <var>s_{i}, t_{i}</var> should be either <var>0</var> or <var>1</var>. If this condition is not satisfied, your program is judged as Wrong Answer [2].</li>
+<li>Both of the lengths of the arrays <var>s_{i}, t_{i}</var> should be between 1 and <var>m</var>, inclusive. If this condition is not satisfied, your program is judged as Wrong Answer [3].</li>
+<li>The arrays <var>s_{i}, t_{i}</var> should have the same length. If this condition is not satisfied, your program is judged as Wrong Answer [4].</li>
+</ul>
+</li>
+</ul>
+<p>The second file is <code>Bruno.cpp</code>. It should implement Bruno’s strategy. It should implement the following function. The program should include <code>Bruno.h</code> using the preprocessing directive <code>#include</code>.</p>
+<ul>
+<li><code>long long Bruno(std::vector&lt;int&gt; u)</code>
+    After Anna inputs the arrays into the device, this function is called once. In total, this function is called <var>Q</var> times. The <var>i</var>-th call (<var>1 \le i \le Q</var>) to this function corresponds to Step 3 and Step 4 for the round <var>i</var>.<ul>
+<li>The parameter <code>u</code> is the array <var>u_{i}</var> sent by the device to Bruno for the round <var>i</var>.</li>
+<li>The return value is the integer sent by Bruno to D-taro.</li>
+<li>The return value should be the same as the integer <var>A_{i}</var> given by D-taro to Anna. If this condition is not satisfied, your program is judged as Wrong Answer [5].</li>
+</ul>
+</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Important Notices</h3>
+<ul>
+<li>Your program can implement other functions for internal use, or use global variables. Submitted files will be compiled with the grader, and become a single executable file. All global variables and internal functions should be declared in an unnamed namespace to avoid confliction with other files. When it is graded, it will be executed as two processes of Anna and Bruno. The process of Anna and the process of Bruno cannot share global variables.</li>
+<li>Your program must not use the standard input and the standard output. Your program must not communicate with other files by any methods. However, your program may output debugging information to the standard error.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Compilation and Test Run</h3>
+<p>You can download an archive file from the contest webpage which contains the sample grader to test your program. The archive file also contains a sample source file of your program.</p>
+<p>The sample grader is the file <code>grader.cpp</code>. In order to test your program, put <code>grader.cpp</code>，<code>Anna.cpp</code>， <code>Bruno.cpp</code>，<code>Anna.h</code>，<code>Bruno.h</code> in the same directory, and run the following command to compile your programs.</p>
+<pre>g++ -std=gnu++17 -O2 -o grader grader.cpp Anna.cpp Bruno.cpp
+</pre>
+<p>When the compilation succeeds, the executable file <code>grader</code> is generated.</p>
+<p>Note that the actual grader is different from the sample grader. The sample grader will be executed as a single process, which will read input data from the standard input and write the results to the standard output.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Input for the Sample Grader</h3>
+<p>The sample grader reads the following data from the standard input.</p>
+<pre><var>Q</var>
+<var>A_{1}</var>
+<var>A_{2}</var>
+<var>\vdots</var>
+<var>A_{Q}</var>
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Output of the Sample Grader</h3>
+<p>The sample grader outputs the following information to the standard output (quotes for clarity).</p>
+<ul>
+<li>If your program is judged as correct, it writes the return value <var>m</var> of the function <code>Declare</code> as “<code>Accepted: 2000</code>”.</li>
+<li>If your program is judged as any one of Wrong Answer, the sample grader writes its type as “<code>Wrong Answer [1]</code>”.</li>
+</ul>
+<p>If your program satisfies the conditions of several types of Wrong Answer, the sample grader reports only one of them.</p>
+<p>When the sample grader is executed, the riffle shuffle for each round is calculated using pseudo random numbers. Their results do not change for executions. In order to change the seed of pseudo random numbers, execute the sample grader by the following way.</p>
+<pre>./grader 2022
+</pre>
+<p>The first argument should be an integer.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li><var>1 \le Q \le 1\,000</var>.</li>
+<li><var>1 \le A_{i} \le 1\,000\,000\,000\,000\,000\,000 (= 10^{18})</var> (<var>1 \le i \le Q</var>).</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li>(<var>5</var> points) <var>A_{i} \le 2\,000</var> (<var>1 \le i \le Q</var>).</li>
+<li>(<var>5</var> points) <var>A_{i} \le 4\,000\,000</var> (<var>1 \le i \le Q</var>).</li>
+<li>(<var>3</var> points) <var>A_{i} \le 10\,000\,000 (= 10^{7})</var> (<var>1 \le i \le Q</var>).</li>
+<li>(<var>12</var> points) <var>A_{i} \le 100\,000\,000 (= 10^{8})</var> (<var>1 \le i \le Q</var>).</li>
+<li>(<var>15</var> points) <var>A_{i} \le 100\,000\,000\,000 (= 10^{11})</var> (<var>1 \le i \le Q</var>).</li>
+<li>(<var>60</var> points) No additional constraints. For this subtask, your score is calculated as follows.<ul>
+<li>Let <var>m^{\ast }</var> be the maximum of the integers <var>m</var> declared by Anna for all test cases of this subtask.</li>
+<li>Your score is as follows.</li>
+</ul>
+</li>
+</ol>
+<div class="joisc2022-device2-en-table">
+<table>
+<thead>
+<tr>
+<th>The value of <var>m^{\ast }</var></th>
+<th>Score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><var>201 \le m^{\ast }\le 2\,000</var></td>
+<td><var>40 - 25\times\log_{10}\left(\frac{m^{\ast}}{200}\right)</var> points (rounded down to the nearest integer)</td>
+</tr>
+<tr>
+<td><var>161 \le m^{\ast }\le 200</var></td>
+<td><var>40</var> points</td>
+</tr>
+<tr>
+<td><var>156 \le m^{\ast }\le 160</var></td>
+<td><var>44</var> points</td>
+</tr>
+<tr>
+<td><var>151 \le m^{\ast }\le 155</var></td>
+<td><var>48</var> points</td>
+</tr>
+<tr>
+<td><var>146 \le m^{\ast }\le 150</var></td>
+<td><var>52</var> points</td>
+</tr>
+<tr>
+<td><var>141 \le m^{\ast }\le 145</var></td>
+<td><var>56</var> points</td>
+</tr>
+<tr>
+<td><var>m^{\ast }\le 140</var></td>
+<td><var>60</var> points</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Communication</h3>
+<p>Here is a sample input for the sample grader and corresponding function calls.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>2
+42
+2000
+</pre>
+<h4>Sample Function Calls</h4>
+<div class="joisc2022-device2-en-table">
+<table>
+<thead>
+<tr>
+<th>Call</th>
+<th>Return Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Declare()</code></td>
+<td><code>4</code></td>
+</tr>
+<tr>
+<td><code>Anna(42)</code></td>
+<td><code>([0, 0, 1, 0], [1, 1, 0, 1])</code></td>
+</tr>
+<tr>
+<td><code>Bruno([1, 0, 0, 1, 0, 1, 0, 1])</code></td>
+<td><code>42</code></td>
+</tr>
+<tr>
+<td><code>Anna(2000)</code></td>
+<td><code>([0, 1], [0, 0])</code></td>
+</tr>
+<tr>
+<td><code>Bruno([0, 0, 1, 0])</code></td>
+<td><code>2000</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>In this sample input, there are <var>Q (= 2)</var> rounds. For the round 1, D-taro gives the integer <var>A_{1} (= 42)</var> to Anna. For the round 2, D-taro gives the integer <var>A_{2} (= 2000)</var> to Anna.</p>
+<p>This sample input satisfies the constraints of all the subtasks.</p>
+<style>
+.joisc2022-device2-en-table { position:relative;max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisc2022-device2-en-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisc2022-device2-en-table th,.joisc2022-device2-en-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:middle;white-space:nowrap; }
+.joisc2022-device2-en-table th { background:#f5f5f5; }
+.joisc2022-device2-en-table code { white-space:nowrap; }
+.joisc2022-device2-en-table .katex { position:relative; }
+</style></section>
+</div>
+</span>
+<span class="lang-ja">
+<blockquote>
+<p><strong>AtCoder での提出方法</strong></p>
+<p><code>Anna.h</code>，<code>Bruno.h</code> をインクルードし，すべての関数を 1 つのファイル内で実装して提出してください．グローバル変数を両者の間で共有しないでください．このジャッジは C++ のみに対応しています．</p>
+<p><a href="https://www2.ioi-jp.org/camp/2022/2022-sp-tasks/contest3/device2-dist.zip">配布ファイル</a></p>
+</blockquote>
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>賭け事の達人である Anna と Bruno の <var>2</var> 人組は，ディーラーのディ太郎を相手にゲームで勝負することとなった．</p>
+<p>ゲーム中，Anna と Bruno は別々の部屋に隔離され，ある壊れた機器を介してのみ意思疎通ができる．この機器を介して，Anna がディ太郎から伝えられた整数を Bruno に伝えることが，このゲームにおける <var>2</var> 人の目標である．</p>
+<p>ゲームが始まったら，はじめに Anna は <var>1</var> 以上 <var>2\,000</var> 以下の整数 <var>m</var> を宣言する．その後，<var>Q</var> 回のラウンドを行う ．<var>i</var> 回目 (<var>1 \leqq i \leqq Q</var>) のラウンドは，次の通りに進行する．</p>
+<ol>
+<li>ディ太郎は，整数 <var>A_{i}</var> を Anna に伝える．</li>
+<li>Anna は，すべての要素が <var>0</var> または <var>1</var> である数列 <var>s_{i}, t_{i}</var> を機器に入力する．数列 <var>s_{i}</var> と <var>t_{i}</var> の長さは等しく，かつその長さは <var>1</var> 以上 <var>m</var> 以下でなければならない．</li>
+<li>機器は，数列 <var>s_{i}</var> と <var>t_{i}</var> のリフルシャッフル（後述）で得られる数列のうちの一つである <var>u_{i}</var> を Bruno に伝える．</li>
+<li>Bruno は，<var>1</var> つの整数をディ太郎に伝える．この整数が，ラウンド冒頭でディ太郎が Anna に伝えた整数 <var>A_{i}</var> と一致すれば，このラウンドで Anna と Bruno は勝利する．</li>
+</ol>
+<p>Anna と Bruno が <var>Q</var> 回すべてのラウンドで勝利するための戦略を実装したプログラムを作成せよ．</p>
+<h4>リフルシャッフルについて</h4>
+<p>数列 <var>Z</var> が数列 <var>X</var> と <var>Y</var> のリフルシャッフルで得られるとは，<var>Z</var> の各要素を <var>2</var> つのグループに上手く分けることで，以下の条件をすべて満たすことが可能であることを言う．</p>
+<ul>
+<li><var>1</var> つ目のグループの要素をそのままの順番で抜き出すと，数列 <var>X</var> と一致する．</li>
+<li><var>2</var> つ目のグループの要素をそのままの順番で抜き出すと，数列 <var>Y</var> と一致する．</li>
+</ul>
+<p>たとえば，<var>X = [1, 1, 0]</var>，<var>Y = [1, 0, 0]</var>，<var>Z = [1, 1, 1, 0, 0, 0]</var> のとき，<var>Z</var> は <var>X</var> と <var>Y</var> のリフルシャッフルで得られる．なぜなら，<var>Z</var> の <var>1, 2, 4</var> 番目の要素をそのままの順番で抜き出すと <var>[1, 1, 0]</var> になり，<var>Z</var> の <var>3, 5, 6</var> 番目の要素をそのままの順番で抜き出すと <var>[1, 0, 0]</var> になるためである．</p>
+<p>一方，<var>X = [1, 1, 0]</var>，<var>Y = [1, 0, 0]</var>，<var>Z = [0, 0, 0, 1, 1, 1]</var> のとき，<var>Z</var> は <var>X</var> と <var>Y</var> のリフルシャッフルで得られない．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>実装の詳細</h3>
+<p>あなたは <var>2</var> つのファイルを提出しなければならない．</p>
+<p><var>1</var> つ目のファイルは <code>Anna.cpp</code> という名前である．このファイルは Anna の戦略を実装したファイルであり，以下の関数を実装していなければならない．また，<code>#include</code> プリプロセッサ指令によって <code>Anna.h</code> を読み込むこと．</p>
+<ul>
+<li><code>int Declare()</code>
+    この関数は，最初に <var>1</var> 回だけ呼び出される．<ul>
+<li>戻り値は，Anna が宣言する整数 <var>m</var> である．</li>
+<li><var>m</var> は <var>1</var> 以上 <var>2\,000</var> 以下でなければならない．これが満たされない場合，不正解 <var>[1]</var> と判定される．</li>
+</ul>
+</li>
+<li><code>std::pair&lt;std::vector&lt;int&gt;, std::vector&lt;int&gt; &gt; Anna(long long A)</code> この関数は，関数 <code>Declare</code> が呼び出された後に，合計で <var>Q</var> 回呼び出される ．<var>i</var> 回目 (<var>1 \leqq i \leqq Q</var>) の呼び出しは，ゲームにおける <var>i</var> 回目のラウンドの手順 <var>1</var>. および手順 <var>2</var>. に相当する．<ul>
+<li>引数 <code>A</code> は，<var>i</var> 回目のラウンド冒頭でディ太郎が Anna に伝える整数 <var>A_{i}</var> である．</li>
+<li>戻り値は，Anna が機器に入力する <var>2</var> つの数列 <var>s_{i}, t_{i}</var> を表す配列のペアである．</li>
+<li>数列 <var>s_{i}</var> と <var>t_{i}</var> の各要素は <var>0</var> または <var>1</var> でなければならない．これが満たされない場合，不正解 <var>[2]</var> と判定される．</li>
+<li>数列 <var>s_{i}</var> と <var>t_{i}</var> の長さはともに <var>1</var> 以上 <var>m</var> 以下でなければならない．これが満たされない場合，不正解 <var>[3]</var> と判定される．</li>
+<li>数列 <var>s_{i}</var> と <var>t_{i}</var> の長さは等しくなければならない．これが満たされない場合，不正解 <var>[4]</var> と判定される．</li>
+</ul>
+</li>
+</ul>
+<p><var>2</var> つ目のファイルは <code>Bruno.cpp</code> という名前である．このファイルは Bruno の戦略を実装したファイルであり，以下の関数を実装していなければならない．また，<code>#include</code> プリプロセッサ指令によって <code>Bruno.h</code> を読み込むこと．</p>
+<ul>
+<li><code>long long Bruno(std::vector&lt;int&gt; u)</code>
+    この関数は，Anna が機器への入力を完了するたびに <var>1</var> 回，合計で <var>Q</var> 回呼び出される ．<var>i</var> 回目 (<var>1 \leqq i \leqq Q</var>) の呼び出しは，ゲームにおける <var>i</var> 回目のラウンドの手順 <var>3</var>. および手順 <var>4</var>. に相当する．<ul>
+<li>引数 <code>u</code> は，<var>i</var> 回目のラウンドで機器が Bruno に伝える数列 <var>u_{i}</var> を表す配列である．</li>
+<li>戻り値は，Bruno がディ太郎に伝える整数である．</li>
+<li>戻り値は，ディ太郎が Anna に伝えた整数 <var>A_{i}</var> と一致していなければならない．これが満たされない場合，不正解 <var>[5]</var> と判定される．</li>
+</ul>
+</li>
+</ul>
+<h4>重要な注意</h4>
+<ul>
+<li>内部での使用のために他の関数を実装したり，グローバル変数を宣言するのは自由である．ただし，提出された <var>2</var> つのプログラムは，採点プログラムとまとめてリンクされて <var>1</var> つの実行ファイルになるので，各ファイル内のすべてのグローバル変数と内部関数を無名名前空間内で宣言して，他のファイルとの干渉を避ける必要がある．採点時には，このプログラムは Anna 側，Bruno 側として <var>2</var> 個のプロセスとして実行されるので，Anna 側と Bruno 側でプログラム中のグローバル変数を共有することはできない．</li>
+<li>あなたの提出したプログラムは，標準入力・標準出力，あるいは他のファイルといかなる方法でもやりとりしてはならない．ただし，標準エラー出力にデバッグ情報等を出力することは許される．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>コンパイル・実行の方法</h3>
+<p>作成したプログラムをテストするための，採点プログラムのサンプルが，コンテストサイトからダウンロードできるアーカイブの中に含まれている．このアーカイブには，提出しなければならないファイルのサンプルも含まれている．</p>
+<p>採点プログラムのサンプルは <var>1</var> つのファイルからなる．そのファイルは <code>grader.cpp</code> である．作成したプログラムをテストするには，<code>grader.cpp</code>，<code>Anna.cpp</code>，<code>Bruno.cpp</code>，<code>Anna.h</code>，<code>Bruno.h</code> を同じディレクトリに置き，次のようにコマンドを実行する．</p>
+<pre>g++ -std=gnu++17 -O2 -o grader grader.cpp Anna.cpp Bruno.cpp
+</pre>
+<p>コンパイルが成功すれば，<code>grader</code> という実行ファイルが生成される．</p>
+<p>実際の採点プログラムは，採点プログラムのサンプルとは異なることに注意すること．採点プログラムのサンプルは単一のプロセスとして起動する．このプログラムは，標準入力から入力を読み込み，標準出力に結果を出力する．</p>
+<h4>採点プログラムのサンプルの入力</h4>
+<p>採点プログラムのサンプルは標準入力から以下の形式で入力を読み込む．</p>
+<pre><var>Q</var>
+<var>A_{1}</var>
+<var>A_{2}</var>
+<var>\vdots</var>
+<var>A_{Q}</var>
+</pre>
+<h4>採点プログラムのサンプルの出力</h4>
+<p>採点プログラムのサンプルは標準出力へ以下の情報を出力する (引用符は実際には出力されない)．</p>
+<ul>
+<li>正解の場合，関数 <code>Declare</code> の戻り値 <var>m</var> が “<code>Accepted: 2000</code>” のように出力される．</li>
+<li>不正解の場合，不正解の種類が “<code>Wrong Answer [1]</code>” のように出力される．</li>
+</ul>
+<p>実行するプログラムが複数の不正解の条件を満たした場合，表示される不正解の種類はそれらのうち <var>1</var> つのみである．</p>
+<p>採点プログラムのサンプルにおいては，各ラウンドにおける機器のリフルシャッフルの結果が，実行ごとに結果が変わらない疑似乱数を用いて無作為に選ばれる．シードの値を変更したい場合は，</p>
+<pre>./grader 2022
+</pre>
+<p>のように <var>1</var> 個目の引数に整数値を与えて実行せよ．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>1 \leqq Q \leqq 1\,000</var>．</li>
+<li><var>1 \leqq A_{i} \leqq 1\,000\,000\,000\,000\,000\,000 (= 10^{18})</var> (<var>1 \leqq i \leqq Q</var>)．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>5</var> 点) <var>A_{i} \leqq 2\,000</var> (<var>1 \leqq i \leqq Q</var>)．</li>
+<li>(<var>5</var> 点) <var>A_{i} \leqq 4\,000\,000</var> (<var>1 \leqq i \leqq Q</var>)．</li>
+<li>(<var>3</var> 点) <var>A_{i} \leqq 10\,000\,000 (= 10^{7})</var> (<var>1 \leqq i \leqq Q</var>)．</li>
+<li>(<var>12</var> 点) <var>A_{i} \leqq 100\,000\,000 (= 10^{8})</var> (<var>1 \leqq i \leqq Q</var>)．</li>
+<li>(<var>15</var> 点) <var>A_{i} \leqq 100\,000\,000\,000 (= 10^{11})</var> (<var>1 \leqq i \leqq Q</var>)．</li>
+<li>(<var>60</var> 点) 追加の制約はない．この小課題では，以下に従い得点が決定される．<ul>
+<li>この小課題のすべてのテストケースにおける，Anna が宣言した整数 <var>m</var> の最大値を <var>m^{\ast }</var> とする．</li>
+<li>このとき，小課題の得点は以下のように決定される．</li>
+</ul>
+</li>
+</ol>
+<div class="joisc2022-device2-ja-table">
+<table>
+<thead>
+<tr>
+<th><var>m^{\ast }</var> の値</th>
+<th>得点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><var>201 \leqq m^{\ast }\leqq 2\,000</var></td>
+<td><var>40 - 25\times\log_{10}\left(\frac{m^{\ast}}{200}\right)</var> 点を整数に切り捨てた得点</td>
+</tr>
+<tr>
+<td><var>161 \leqq m^{\ast }\leqq 200</var></td>
+<td><var>40</var> 点</td>
+</tr>
+<tr>
+<td><var>156 \leqq m^{\ast }\leqq 160</var></td>
+<td><var>44</var> 点</td>
+</tr>
+<tr>
+<td><var>151 \leqq m^{\ast }\leqq 155</var></td>
+<td><var>48</var> 点</td>
+</tr>
+<tr>
+<td><var>146 \leqq m^{\ast }\leqq 150</var></td>
+<td><var>52</var> 点</td>
+</tr>
+<tr>
+<td><var>141 \leqq m^{\ast }\leqq 145</var></td>
+<td><var>56</var> 点</td>
+</tr>
+<tr>
+<td><var>m^{\ast }\leqq 140</var></td>
+<td><var>60</var> 点</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>やり取りの例</h3>
+<p>採点プログラムのサンプルが読み込む入力の例と，それに対応する関数の呼び出しの例を以下に示す．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 <var>1</var></h3>
+<pre>2
+42
+2000
+</pre>
+<h4>関数の呼び出しの例</h4>
+<div class="joisc2022-device2-ja-table">
+<table>
+<thead>
+<tr>
+<th>呼び出し</th>
+<th>戻り値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Declare()</code></td>
+<td><code>4</code></td>
+</tr>
+<tr>
+<td><code>Anna(42)</code></td>
+<td><code>([0, 0, 1, 0], [1, 1, 0, 1])</code></td>
+</tr>
+<tr>
+<td><code>Bruno([1, 0, 0, 1, 0, 1, 0, 1])</code></td>
+<td><code>42</code></td>
+</tr>
+<tr>
+<td><code>Anna(2000)</code></td>
+<td><code>([0, 1], [0, 0])</code></td>
+</tr>
+<tr>
+<td><code>Bruno([0, 0, 1, 0])</code></td>
+<td><code>2000</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>この入力例は <var>Q (= 2)</var> 回のラウンドからなる ．<var>1</var> 回目のラウンドでは整数 <var>A_{1} (= 42)</var> がディ太郎から Anna に伝えられ，<var>2</var> 回目のラウンドでは整数 <var>A_{2} (= 2000)</var> がディ太郎から Anna に伝えられる．</p>
+<p>この入力例はすべての小課題の制約を満たす．</p>
+<style>
+.joisc2022-device2-ja-table { position:relative;max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisc2022-device2-ja-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisc2022-device2-ja-table th,.joisc2022-device2-ja-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:middle;white-space:nowrap; }
+.joisc2022-device2-ja-table th { background:#f5f5f5; }
+.joisc2022-device2-ja-table code { white-space:nowrap; }
+.joisc2022-device2-ja-table .katex { position:relative; }
+</style></section>
+</div>
+</span>
+</span>

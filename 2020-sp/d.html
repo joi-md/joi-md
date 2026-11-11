@@ -1,0 +1,537 @@
+<span class="lang">
+<span class="lang-en">
+<blockquote>
+<p><strong>Submission on AtCoder</strong></p>
+<p>When using C++, follow the implementation instructions in the statement.</p>
+<details>
+<summary style="display:list-item;cursor:pointer;"><strong>Using other languages</strong></summary>
+<p>First, print <code>Start</code> followed by a newline and flush. Then read the integer <var>N</var> from the standard input.</p>
+<ul>
+<li>To call <code>Query</code>, print <code>Query</code> followed by a newline, print the length of array <var>p</var> followed by a newline, then print its elements separated by spaces followed by a newline. Flush and read the return value from the standard input.</li>
+<li>To call <code>Answer</code>, print <code>Answer</code> followed by a newline, then print integers <var>a, b</var> separated by a space followed by a newline and flush.</li>
+<li>Finally, print <code>End</code> followed by a newline and flush.</li>
+</ul>
+<h4>Example communication</h4>
+<pre>Start
+Query
+0
+
+Query
+2
+6 2
+Query
+3
+8 1 6
+Query
+6
+7 1 3 5 6 8
+Query
+5
+8 6 4 1 5
+Answer
+6 4
+Answer
+7 8
+Answer
+2 1
+Answer
+3 5
+End
+</pre>
+</details>
+<p><a href="https://img.atcoder.jp/joisc2020/chameleon-dist-7f5fc4cef5.zip">Distributed files</a></p>
+</blockquote>
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>In JOI Zoo, there are <var>2N</var> chameleons, numbered from 1 to <var>2N</var>. Among them, <var>N</var> chameleons have sex X. The remaining <var>N</var> chameleons have sex Y.</p>
+<p>Each chameleon has its original color. The following are known about the original colors.</p>
+<ul>
+<li>The original colors of the <var>N</var> chameleons of sex X are distinct.</li>
+<li>For each chameleon of sex X, there exists a unique chameleon of sex Y with the same original color.</li>
+</ul>
+<p>Now, JOI Zoo is in the season of new loves. Each chameleon loves another chameleon. The following are known about the chameleons’ loves.</p>
+<ul>
+<li>Each chameleon loves exactly one chameleon whose sex is different from itself.</li>
+<li>A chameleon and the chameleon which it loves have different original colors.</li>
+<li>There do not exist two chameleons which love the same chameleon.</li>
+</ul>
+<p>You can gather some of the chameleons and organize a meeting. For each chameleon <var>s</var> attending the meeting, let <var>t</var> be the chameleon which <var>s</var> loves. The skin color of <var>s</var> is decided as follows.</p>
+<ul>
+<li>If <var>t</var> attends the meeting, the skin color of <var>s</var> is the original color of <var>t</var>.</li>
+<li>If <var>t</var> does not attend the meeting, the skin color of <var>s</var> is the original color of <var>s</var>.</li>
+</ul>
+<p>The skin color of a chameleon may change for different meetings. For each meeting you organize, you can count the number of kinds of skin colors of the chameleons attending the meeting.</p>
+<p>By organizing meetings at most 20 000 times, you want to determine all pairs of chameleons with the same original color.</p>
+<p>Write a program which, given the number of chameleons, determines all pairs of chameleons with the same original color by organizing meetings at most 20 000 times.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Implementation Details</h3>
+<p>You need to submit one file.</p>
+<p>The name of the file you submit is <code>chameleon.cpp</code>. It should implement the following function. The program should include <code>chameleon.h</code>.</p>
+<ul>
+<li><code>void Solve(int N)</code>
+    This function is called exactly once for each test case.<ul>
+<li>The parameter <code>N</code> is <var>N</var>, the number of chameleons whose sexes are X.</li>
+</ul>
+</li>
+</ul>
+<p>Your program can call the following function.</p>
+<ul>
+<li><code>int Query(const std::vector&lt;int&gt; &amp;p)</code>
+    You organize a meeting of chameleons by calling this function.<ul>
+<li>The parameter <code>p</code> is the list of chameleons attending the meeting.</li>
+<li>The return value is the number of kinds of skin colors of the chameleons attending the meeting.</li>
+<li>Each element of the parameter <code>p</code> should be an integer greater between 1 and <var>2N</var>, inclusive. If this condition is not satisfied, your program is judged as Wrong Answer [1].</li>
+<li>The elements of the parameter <code>p</code> should be distinct. If this condition is not satisfied, your program is judged as Wrong Answer [2].</li>
+<li>Your program should not call the function <code>Query</code> more than <var>20\,000</var> times. If this condition is not satisfied, your program is judged as Wrong Answer [3].</li>
+</ul>
+</li>
+<li><code>void Answer(int a, int b)</code>
+    By calling this function, you answer a pair of chameleons with the same original color.<ul>
+<li>The parameters <code>a</code> and <code>b</code> mean the chameleon <var>a</var> and the chameleon <var>b</var> have the same original color.</li>
+<li>It must hold that <var>1 \le a \le 2N</var> and <var>1 \le b \le 2N</var>. If these conditions are not satisfied, your program is judged as Wrong Answer [4].</li>
+<li>Your program should not call this function with same values of <var>a</var> or <var>b</var> more than once in total. If this condition is not satisfied, your program is judged as Wrong Answer [5].</li>
+<li>If the original colors of the chameleon <var>a</var> and the chameleon <var>b</var> are different, your program is judged as Wrong Answer [6].</li>
+<li>Your program should call the function <code>Answer</code> exactly <var>N</var> times. When the function <code>Solve</code> terminates, if the number of calls to the function <code>Answer</code> is different from <var>N</var>, your program is judged as Wrong Answer [7].</li>
+</ul>
+</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Important Notices</h3>
+<ul>
+<li>Your program can implement other functions for internal use, or use global variables.</li>
+<li>Your program must not use the standard input and the standard output. Your program must not communicate with other files by any methods. However, your program may output debugging information to the standard error.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Compilation and Test Run</h3>
+<p>You can download an archive file from the contest webpage which contains the sample grader to test your program. The archive file also contains a sample source file of your program.</p>
+<p>The sample grader is the file <code>grader.cpp</code>. In order to test your program, put <code>grader.cpp</code>, <code>chameleon.cpp</code>, <code>chameleon.h</code> in the same directory, and run the following command to compile your programs.</p>
+<pre>g++ -std=gnu++14 -O2 -o grader grader.cpp chameleon.cpp
+</pre>
+<p>When the compilation succeeds, the executable file <code>grader</code> is generated.</p>
+<p>Note that the actual grader is different from the sample grader. The sample grader will be executed as a single process, which will read input data from the standard input and write the results to the standard output.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Input for the Sample Grader</h3>
+<p>The sample grader reads the following data from the standard input.</p>
+<pre><var>N</var>
+<var>Y_{1}</var> <var>\cdots</var> <var>Y_{2N}</var>
+<var>C_{1}</var> <var>\cdots</var> <var>C_{2N}</var>
+<var>L_{1}</var> <var>\cdots</var> <var>L_{2N}</var>
+</pre>
+<p><var>Y_{i}</var> (<var>1 \le i \le 2N</var>) is the sex of the chameleon <var>i</var>, which is 0 or 1. It is 0 if the sex is <var>X</var>, and 1 if the sex is <var>Y</var>.</p>
+<p><var>C_{i}</var> (<var>1 \le i \le 2N</var>) is the original color of the chameleon <var>i</var>, which is an integer greater than or equal to 1 and less than or equal to <var>N</var>.</p>
+<p><var>L_{i}</var> (<var>1 \le i \le 2N</var>) is the number of the chameleon which the chameleon <var>i</var> loves.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Output of the Sample Grader</h3>
+<p>When the program terminates successfully, the sample grader writes the following information to the standard output (quotes for clarity).</p>
+<ul>
+<li>If your program is judged as correct, it writes the number of calls to the function <code>Query</code> as “<code>Accepted: 100</code>”.</li>
+<li>If your program is judged as Wrong Answer, it writes its type as “<code>Wrong Answer [1]</code>”.</li>
+</ul>
+<p>If your program is judged as several types of Wrong Answer, the sample grader reports only one of them.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<p>All input data satisfy the following conditions. For the meaning of <var>Y, C</var>, and <var>L</var>, see Input for the Sample Grader.</p>
+<ul>
+<li><var>2 \le N \le 500</var>.</li>
+<li><var>0 \le Y_{i} \le 1</var> (<var>1 \le i \le 2N</var>).</li>
+<li><var>1 \le C_{i} \le N</var> (<var>1 \le i \le 2N</var>).</li>
+<li>For each <var>j</var> (<var>1 \le j \le N</var>), there exists a unique <var>i</var> (<var>1 \le i \le 2N</var>) satisfying <var>Y_{i} = 0</var> and <var>C_{i} = j</var>.</li>
+<li>For each <var>j</var> (<var>1 \le j \le N</var>), there exists a unique <var>i</var> (<var>1 \le i \le 2N</var>) satisfying <var>Y_{i} = 1</var> and <var>C_{i} = j</var>.</li>
+<li><var>1 \le L_{i} \le 2N</var> (<var>1 \le i \le 2N</var>).</li>
+<li><var>Y_{i} \ne Y_{L_{i}}</var> (<var>1 \le i \le 2N</var>).</li>
+<li><var>C_{i} \ne C_{L_{i}}</var> (<var>1 \le i \le 2N</var>).</li>
+<li><var>L_{k} \ne L_{l}</var> (<var>1 \le k &lt; l \le 2N</var>).</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li>(<var>4</var> points) <var>L_{L_{i}} = i</var> (<var>1 \le i \le 2N</var>).</li>
+<li>(<var>20</var> points) <var>N \le 7</var>.</li>
+<li>(<var>20</var> points) <var>N \le 50</var>.</li>
+<li>(<var>20</var> points) <var>Y_{i} = 0</var> (<var>1 \le i \le N</var>).</li>
+<li>(<var>36</var> points) No additional constraints.</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Communication</h3>
+<p>Here is a sample input for the sample grader and corresponding function calls.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>4
+1 0 1 0 0 1 1 0
+4 4 1 2 1 2 3 3
+4 3 8 7 6 5 2 1
+</pre>
+<h4>Sample Calls</h4>
+<div class="joisc2020-chameleon-en-table">
+<table>
+<thead>
+<tr>
+<th>Call</th>
+<th>Call</th>
+<th>Return</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Solve(4)</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Query([])</code></td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Query([6, 2])</code></td>
+<td><code>2</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Query([8, 1, 6])</code></td>
+<td><code>2</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Query([7, 1, 3, 5, 6, 8])</code></td>
+<td><code>4</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Query([8, 6, 4, 1, 5])</code></td>
+<td><code>3</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Answer(6, 4)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Answer(7, 8)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Answer(2, 1)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Answer(3, 5)</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Among the files you can download from the contest site, <code>sample-02.txt</code> satisfies the constraints for Subtask 1, and <code>sample-03.txt</code> satisfies the constraints for Subtask 4.</p>
+<style>
+.joisc2020-chameleon-en-table { position:relative;max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisc2020-chameleon-en-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisc2020-chameleon-en-table th,.joisc2020-chameleon-en-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisc2020-chameleon-en-table th { background:#f5f5f5; }
+.joisc2020-chameleon-en-table code { white-space:nowrap; }
+</style></section>
+</div>
+</span>
+<span class="lang-ja">
+<blockquote>
+<p><strong>AtCoder での提出方法</strong></p>
+<p>C++ を使用する場合は問題文の指示に従ってください．</p>
+<details>
+<summary style="display:list-item;cursor:pointer;"><strong>その他の言語を使用する場合</strong></summary>
+<p>最初に <code>Start</code> を出力して改行し，flush してください．その後，整数 <var>N</var> が標準入力から与えられます．</p>
+<ul>
+<li><code>Query</code> を呼び出すには，<code>Query</code> を出力して改行し，配列 <var>p</var> の要素数を出力して改行し，さらに <var>p</var> の各要素を空白区切りで出力して改行してください．flush 後，標準入力から戻り値を受け取ってください．</li>
+<li><code>Answer</code> を呼び出すには，<code>Answer</code> を出力して改行し，続いて整数 <var>a, b</var> を空白区切りで出力して改行し，flush してください．</li>
+<li>最後に <code>End</code> を出力して改行し，flush してください．</li>
+</ul>
+<h4>やり取りの例</h4>
+<pre>Start
+Query
+0
+
+Query
+2
+6 2
+Query
+3
+8 1 6
+Query
+6
+7 1 3 5 6 8
+Query
+5
+8 6 4 1 5
+Answer
+6 4
+Answer
+7 8
+Answer
+2 1
+Answer
+3 5
+End
+</pre>
+</details>
+<p><a href="https://img.atcoder.jp/joisc2020/chameleon-dist-7f5fc4cef5.zip">配布ファイル</a></p>
+</blockquote>
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>JOI 動物園には <var>2N</var> 匹のカメレオンがおり，<var>1</var> から <var>2N</var> までの番号が付けられている．このうち <var>N</var> 匹は性別 X のカメレオン，残りの <var>N</var> 匹は性別 Y のカメレオンである．</p>
+<p>各カメレオンには原色が定まっている．これついて，次のことが分かっている．</p>
+<ul>
+<li>性別 X のカメレオン <var>N</var> 匹の原色はすべて相異なる．</li>
+<li>性別 X の各カメレオンに対し，同じ原色を持つ性別 Y のカメレオンがちょうど <var>1</var> 匹存在する．</li>
+</ul>
+<p>いま，JOI 動物園は恋の季節を迎えているため，カメレオンは他のカメレオンを好んでいる．これついて，次のことが分かっている．</p>
+<ul>
+<li>各カメレオンは，ちょうど <var>1</var> 匹の，自身と性別の異なるカメレオンを好んでいる．</li>
+<li>自身と同じ原色を持つカメレオンを好んでいることはない．</li>
+<li>異なるカメレオンが同じカメレオンを好んでいることはない．</li>
+</ul>
+<p>あなたは，何匹かのカメレオンを集め，会合を開くことができる．会合に参加している各カメレオン <var>s</var> について，<var>s</var> が好んでいるカメレオンを <var>t</var> とするとき，<var>s</var> の皮膚色が次のように定まる．</p>
+<ul>
+<li><var>t</var> がその会合に参加しているとき，<var>s</var> の皮膚色は <var>t</var> の原色である．</li>
+<li><var>t</var> がその会合に参加していないとき，<var>s</var> の皮膚色は <var>s</var> の原色である．</li>
+</ul>
+<p>カメレオンの皮膚色は，会合のたびに変わるかもしれない．あなたは会合を開くたびに，その会合に参加したカメレオンの皮膚色の種類の数を知ることができる．</p>
+<p>あなたは <var>20\,000</var> 回以下の会合を開くことで，原色が同じカメレオンをすべて知りたい．</p>
+<p>カメレオンの数が与えられたとき，<var>20\,000</var> 回以下の会合を開くことで，原色が同じカメレオンをすべて求めるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>実装の詳細</h3>
+<p>あなたは <var>1</var> つのファイルを提出しなければならない．</p>
+<p>あなたの提出するファイルは <code>chameleon.cpp</code> という名前である．このファイルは以下の関数を実装していなければならない．そのプログラムは <code>chameleon.h</code> をインクルードすること．</p>
+<ul>
+<li><code>void Solve(int N)</code>
+    この関数は各テストケースにおいて <var>1</var> 回だけ呼び出される．<ul>
+<li>引数 <code>N</code> は性別 X のカメレオンの数 <var>N</var> を表す．</li>
+</ul>
+</li>
+</ul>
+<p>あなたのプログラムは以下の関数を呼び出すことができる．</p>
+<ul>
+<li><code>int Query(const std::vector&lt;int&gt; &amp;p)</code>
+    この関数を用いて，カメレオンの会合を開く．<ul>
+<li>引数 <code>p</code> は，会合に参加するカメレオンの番号のリストである．</li>
+<li>戻り値は，会合に参加したカメレオンの皮膚色の種類の数である．</li>
+<li>引数 <code>p</code> の各要素は，<var>1</var> 以上 <var>2N</var> 以下でなければならない．これが満たされない場合，不正解 <var>[1]</var> と判定される．</li>
+<li>引数 <code>p</code> の各要素はすべて異ならなければいけない．これが満たされない場合，不正解 <var>[2]</var> と判定される．</li>
+<li>関数 <code>Query</code> を <var>20\,000</var> 回を超えて呼び出してはならない ．<var>20\,000</var> 回を超えて呼び出した場合，不正解 <var>[3]</var> と判定される．</li>
+</ul>
+</li>
+<li><code>void Answer(int a, int b)</code>
+    この関数を用いて，原色が同じカメレオンの組を回答する．<ul>
+<li>引数 <code>a</code>, <code>b</code> は，カメレオン <var>a</var> とカメレオン <var>b</var> の原色が同じであることを表す．</li>
+<li><var>1 \leqq a \leqq 2N</var> かつ <var>1 \leqq b \leqq 2N</var> でなければならない．これが満たされない場合，不正解 <var>[4]</var> と判定される．</li>
+<li><var>a</var> または <var>b</var> に同じ値を累計で <var>2</var> 回以上指定してはならない．これが満たされない場合，不正解 <var>[5]</var> と判定される．</li>
+<li>原色の異なるカメレオンが指定された場合，不正解 <var>[6]</var> と判定される．</li>
+<li>関数 <code>Answer</code> はちょうど <var>N</var> 回呼び出される必要がある．関数 <code>Solve</code> の実行の終了時に関数 <code>Answer</code> の呼び出し回数が <var>N</var> 回でなかった場合，不正解 <var>[7]</var> と判定される．</li>
+</ul>
+</li>
+</ul>
+<h4>重要な注意</h4>
+<ul>
+<li>内部での使用のために他の関数を実装したり，グローバル変数を宣言するのは自由である．</li>
+<li>あなたの提出したプログラムは，標準入力・標準出力，あるいは他のファイルといかなる方法でもやりとりしてはならない．ただし，標準エラー出力にデバッグ情報等を出力することは許される．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>コンパイル・実行の方法</h3>
+<p>作成したプログラムをテストするための，採点プログラムのサンプルが，コンテストサイトからダウンロードできるアーカイブの中に含まれている．このアーカイブには，提出しなければならないファイルのサンプルも含まれている．</p>
+<p>採点プログラムのサンプルは <var>1</var> つのファイルからなる. そのファイルは <code>grader.cpp</code> である．作成したプログラムをテストするには，これらのファイル <code>grader.cpp</code>, <code>chameleon.cpp</code>, <code>chameleon.h</code> を同じディレクトリに置き，次のようにコマンドを実行する．</p>
+<pre>g++ -std=gnu++14 -O2 -o grader grader.cpp chameleon.cpp
+</pre>
+<p>コンパイルが成功すれば，<code>grader</code> という実行ファイルが生成される．</p>
+<p>実際の採点プログラムは，採点プログラムのサンプルとは異なることに注意すること．採点プログラムのサンプルは単一のプロセスとして起動する．このプログラムは，標準入力から入力を読み込み，標準出力に結果を出力する．</p>
+<h4>採点プログラムのサンプルの入力</h4>
+<p>採点プログラムのサンプルは標準入力から以下の入力を読み込む．</p>
+<pre><var>N</var>
+<var>Y_{1}</var> <var>\cdots</var> <var>Y_{2N}</var>
+<var>C_{1}</var> <var>\cdots</var> <var>C_{2N}</var>
+<var>L_{1}</var> <var>\cdots</var> <var>L_{2N}</var>
+</pre>
+<p><var>Y_{i}</var> (<var>1 \leqq i \leqq 2N</var>) は，カメレオン <var>i</var> の性別を表す，<var>0</var> または <var>1</var> の値である ．<var>0</var> は性別 X を，<var>1</var> は性別 Y を表す．</p>
+<p><var>C_{i}</var> (<var>1 \leqq i \leqq 2N</var>) は，カメレオン <var>i</var> の原色を表す，<var>1</var> 以上 <var>N</var> 以下の整数である．</p>
+<p><var>L_{i}</var> (<var>1 \leqq i \leqq 2N</var>) は，カメレオン <var>i</var> が好んでいるカメレオンの番号である．</p>
+<h4>採点プログラムのサンプルの出力</h4>
+<p>採点プログラムのサンプルは標準出力へ以下の情報を出力する (引用符は実際には出力されない)．</p>
+<ul>
+<li>正解の場合，関数 <code>Query</code> の呼び出し回数が “<code>Accepted: 100</code>” のように出力される．</li>
+<li>不正解の場合，不正解の種類が “<code>Wrong Answer [1]</code>” のように出力される．</li>
+</ul>
+<p>実行するプログラムが複数の不正解の条件を満たした場合，表示される不正解の種類はそれらのうち <var>1</var> つのみである．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<p>すべての入力データは以下の条件を満たす．<var>Y,C, L</var> の意味については「採点プログラムのサンプルの入力」の項目を参照せよ．</p>
+<ul>
+<li><var>2 \leqq N \leqq 500</var>．</li>
+<li><var>0 \leqq Y_{i} \leqq 1</var> (<var>1 \leqq i \leqq 2N</var>)．</li>
+<li><var>1 \leqq C_{i} \leqq N</var> (<var>1 \leqq i \leqq 2N</var>)．</li>
+<li>各 <var>j</var> (<var>1 \leqq j \leqq N</var>) に対し，<var>Y_{i} = 0</var>，<var>C_{i} = j</var> なる <var>i</var> (<var>1 \leqq i \leqq 2N</var>) がちょうど <var>1</var> つ存在する．</li>
+<li>各 <var>j</var> (<var>1 \leqq j \leqq N</var>) に対し，<var>Y_{i} = 1</var>，<var>C_{i} = j</var> なる <var>i</var> (<var>1 \leqq i \leqq 2N</var>) がちょうど <var>1</var> つ存在する．</li>
+<li><var>1 \leqq L_{i} \leqq 2N</var> (<var>1 \leqq i \leqq 2N</var>)．</li>
+<li><var>Y_{i} \ne Y_{L_{i}}</var> (<var>1 \leqq i \leqq 2N</var>)．</li>
+<li><var>C_{i} \ne C_{L_{i}}</var> (<var>1 \leqq i \leqq 2N</var>)．</li>
+<li><var>L_{k} \ne L_{l}</var> (<var>1 \leqq k &lt; l \leqq 2N</var>)．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>4</var> 点) <var>L_{L_{i}} = i</var> (<var>1 \leqq i \leqq 2N</var>)．</li>
+<li>(<var>20</var> 点) <var>N \leqq 7</var>．</li>
+<li>(<var>20</var> 点) <var>N \leqq 50</var>．</li>
+<li>(<var>20</var> 点) <var>Y_{i} = 0</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li>(<var>36</var> 点) 追加の制約はない．</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>やりとりの例</h3>
+<p>採点プログラムのサンプルが読み込む入力の例と，それに対応する関数の呼び出しの例を以下に示す．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>4
+1 0 1 0 0 1 1 0
+4 4 1 2 1 2 3 3
+4 3 8 7 6 5 2 1
+</pre>
+<h4>関数の呼び出しの例</h4>
+<div class="joisc2020-chameleon-ja-table">
+<table>
+<thead>
+<tr>
+<th>呼び出し</th>
+<th>呼び出し</th>
+<th>戻り値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Solve(4)</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Query([])</code></td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Query([6, 2])</code></td>
+<td><code>2</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Query([8, 1, 6])</code></td>
+<td><code>2</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Query([7, 1, 3, 5, 6, 8])</code></td>
+<td><code>4</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Query([8, 6, 4, 1, 5])</code></td>
+<td><code>3</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Answer(6, 4)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Answer(7, 8)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Answer(2, 1)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Answer(3, 5)</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>コンテストサイトからダウンロードできるファイルのうち，<code>sample-02.txt</code> は小課題 <var>1</var> の制約を，<code>sample-03.txt</code> は小課題 <var>4</var> の制約を，それぞれ満たす．</p>
+<style>
+.joisc2020-chameleon-ja-table { position:relative;max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisc2020-chameleon-ja-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisc2020-chameleon-ja-table th,.joisc2020-chameleon-ja-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisc2020-chameleon-ja-table th { background:#f5f5f5; white-space:nowrap; }
+.joisc2020-chameleon-ja-table code { white-space:nowrap; }
+</style></section>
+</div>
+</span>
+</span>

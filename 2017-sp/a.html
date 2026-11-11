@@ -1,0 +1,348 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>In 21XX, the residents of the IOI planet plan to immigrate to a recently discovered planet.</p>
+<p>The new planet has a field, which is a rectangular grid with <var>R</var> rows and <var>C</var> columns. The columns are parallel to the south-north direction, and the rows are parallel to the east-west direction. The cell in the <var>i</var>-th row from north and the <var>j</var>-th column from west is called the cell <var>(i, j)</var>. The north-west corner of the field is the cell <var>(1, 1)</var>, and the south-east corner is the cell <var>(R,C)</var>. In each year, the residents of the IOI planet choose the direction of the wind blowing on the field. The direction is one of east, west, south, or north.</p>
+<p>To engage in agriculture in the new planet, they will plant “JOI grasses” in all over the field in the new planet. In the spring of the first year of immigration, <var>N</var> cells in the field have JOI grasses.</p>
+<p>The range of JOI grasses are expanded by the wind. Each summer, the seeds of JOI grasses are blown by the wind to the direction chosen by the residents of the IOI planet. The seeds move one cell to the direction of the wind, and they land on. If the seeds land on a cell of the field without JOI grasses, it will have JOI grasses in the spring of the next year. Once a cell has JOI grasses, it will keep JOI grasses in the future.</p>
+<p>We want to calculate the minimum number of years until all the cells in the field have JOI grasses if we adjust the direction of the wind appropriately.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Task</h3>
+<p>Write a program which calculates the minimum number of years until all the cells in the field have JOI grasses if we adjust the direction of the wind appropriately.</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input.</p>
+<ul>
+<li>The first line of input contains two space separated integers <var>R, C</var>. This means the field is a rectangular grid with <var>R</var> rows and <var>C</var> columns.</li>
+<li>The second line of input contains an integer <var>N</var>, the number of cells in the field which have JOI grasses in the spring of the first year of immigration.</li>
+<li>The <var>i</var>-th line (<var>1 \le i \le N</var>) of the following <var>N</var> lines contains two space separated integers <var>S_{i}, E_{i}</var>. This means the cell (<var>S_{i}, E_{i}</var>) has JOI grasses in the spring of the first year of immigration.</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>Write one line to the standard output. The output contains the minimum number of years until all the cells in the field have JOI grasses if we adjust the direction of the wind appropriately.</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<p>All input data satisfy the following conditions.</p>
+<ul>
+<li><var>1 \le N \le 300</var>.</li>
+<li><var>1 \le R \le 1\,000\,000\,000</var>.</li>
+<li><var>1 \le C \le 1\,000\,000\,000</var>.</li>
+<li><var>1 \le S_{i} \le R</var> (<var>1 \le i \le N</var>).</li>
+<li><var>1 \le E_{i} \le C</var> (<var>1 \le i \le N</var>).</li>
+<li>In the spring of the first year of immigration, there is a cell in the field without JOI grasses.</li>
+<li><var>(S_{i}, E_{i}) \ne (S_{j}, E_{j})</var> (<var>1 \le i &lt; j \le N</var>).</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtask</h3>
+<p>There are 6 subtasks. The score and additional constraints of each subtask are as follows:</p>
+<h4>Subtask 1 [<var>5</var> points]</h4>
+<ul>
+<li><var>R \le 4</var>.</li>
+<li><var>C \le 4</var>.</li>
+</ul>
+<h4>Subtask 2 [<var>10</var> points]</h4>
+<ul>
+<li><var>R \le 40</var>.</li>
+<li><var>C \le 40</var>.</li>
+</ul>
+<h4>Subtask 3 [<var>15</var> points]</h4>
+<ul>
+<li><var>R \le 40</var>.</li>
+</ul>
+<h4>Subtask 4 [<var>30</var> points]</h4>
+<ul>
+<li><var>N \le 25</var>.</li>
+</ul>
+<h4>Subtask 5 [<var>20</var> points]</h4>
+<ul>
+<li><var>N \le 100</var>.</li>
+</ul>
+<h4>Subtask 6 [<var>20</var> points]</h4>
+<p>There are no additional constraints.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input and Output</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>3 4
+3
+1 2
+1 4
+2 3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>3
+</pre>
+<p>In Sample Input 1, the following cells have JOI grasses in the spring of the first year of immigration.</p>
+<p><img src="https://img.atcoder.jp/joisc2017/cultivation-en-p3-1.png" alt="Figure" style="max-width:100%;height:auto;"></p>
+
+<p>The field in the new planet; cells with ‘0’ have JOI grasses in the spring of the first year of immigration.</p>
+<p>In this sample input, if we choose the directions of the wind for the first 3 years are west, south, south, then all the cells will have JOI grasses in the spring after 3 years. The numbers in the following table describe when each cell has JOI grasses in the spring. This is the minimum number of years.</p>
+<div class="joisc2017-cultivation-en-table">
+<table>
+<tr>
+<td><var>1</var></td>
+<td><var>0</var></td>
+<td><var>1</var></td>
+<td><var>0</var></td>
+</tr>
+<tr>
+<td><var>2</var></td>
+<td><var>1</var></td>
+<td><var>0</var></td>
+<td><var>2</var></td>
+</tr>
+<tr>
+<td><var>3</var></td>
+<td><var>2</var></td>
+<td><var>2</var></td>
+<td><var>3</var></td>
+</tr>
+</table>
+</div>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>4 4
+4
+1 1
+1 4
+4 1
+4 4
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>4
+</pre>
+<style>
+.joisc2017-cultivation-en-table { position:relative; max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisc2017-cultivation-en-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisc2017-cultivation-en-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+</style>
+
+<style>
+.joisc2017-cultivation-en-table .katex {position:relative;}
+</style></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>21XX 年，IOI 星の住人は新たに発見された惑星に移住することになった．</p>
+<p>移住先の惑星には縦 <var>R</var> 行，横 <var>C</var> 列のマス目状に区切られた畑があり，畑の縦方向は南北方向に平行であり，横方向は東西方向に平行である．北から <var>i</var> 行目，西から <var>j</var> 列目にあるマスをマス <var>(i, j)</var> と呼ぶ．畑の北西の隅のマスはマス <var>(1,1)</var> であり，南東の隅のマスはマス <var>(R,C)</var> である．毎年，IOI 星の住人は，その年に畑に吹く風の向きを東西南北のいずれかに設定する．</p>
+<p>移住先で農業を行うため，移住先にある畑いっぱいに JOI 草を生息させることになった．移住開始時の春，畑のうち <var>N</var> マスには JOI 草が自生している．</p>
+<p>JOI 草は風によって生息圏を広げる．毎年夏になると，IOI 星の住人が設定した風の方向に種子を飛ばす．飛んだ種子はその風の向きに <var>1</var> マス進んた場所に着地する．その場所が畑のマスであり，かつ，そのマスがまだ JOI 草の生息圏でないなら，翌年の春にそのマスは JOI 草の生息圏となる．すでに JOI 草の生息圏となっているマスが，その後，JOI 草の生息圏でなくなることはない．</p>
+<p>風の向きをうまく設定することで，畑のすべてのマスを JOI 草の生息圏にするためにかかる年数の最小値を求めたい．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p>風の向きをうまく設定することで，畑のすべてのマスを JOI 草の生息圏にするためにかかる年数の最小値を求めるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>標準入力から以下の入力を読み込め．</p>
+<ul>
+<li><var>1</var> 行目には <var>2</var> 個の整数 <var>R, C</var> が空白を区切りとして書かれている．これらは畑が縦 <var>R</var> 行，横 <var>C</var> 列のマス目状に区切られていることを表す．</li>
+<li><var>2</var> 行目には整数 <var>N</var> が書かれている．これは移住開始時の春に，JOI 草が自生しているマスの個数を表す．</li>
+<li>続く <var>N</var> 行のうちの <var>i</var> 行目（<var>1 \leqq i \leqq N</var>）には <var>2</var> 個の整数 <var>S_{i}, E_{i}</var> が空白を区切りとして書かれている．これは移住開始時の春に，マス <var>(S_{i}, E_{i})</var> に JOI 草が自生していることを表す．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に，風の向きをうまく設定することで，畑のすべてのマスを JOI 草の生息圏にするためにかかる年数の最小値を <var>1</var> 行で出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制限</h3>
+<p>すべての入力データは以下の条件を満たす．</p>
+<ul>
+<li><var>1 \leqq N \leqq 300</var>．</li>
+<li><var>1 \leqq R \leqq 1\,000\,000\,000</var>．</li>
+<li><var>1 \leqq C \leqq 1\,000\,000\,000</var>．</li>
+<li><var>1 \leqq S_{i} \leqq R</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>1 \leqq E_{i} \leqq C</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li>移住開始時の春に，JOI 草が自生していない畑のマスがある．</li>
+<li><var>(S_{i}, E_{i}) \ne (S_{j}, E_{j})</var> (<var>1 \leqq i &lt; j \leqq N</var>)．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<p>この課題では小課題は全部で <var>6</var> 個ある．各小課題の配点および追加の制限は以下の通りである．</p>
+<h4>小課題 1 [<var>5</var> 点]</h4>
+<ul>
+<li><var>R \leqq 4</var>．</li>
+<li><var>C \leqq 4</var>．</li>
+</ul>
+<h4>小課題 2 [<var>10</var> 点]</h4>
+<ul>
+<li><var>R \leqq 40</var>．</li>
+<li><var>C \leqq 40</var>．</li>
+</ul>
+<h4>小課題 3 [<var>15</var> 点]</h4>
+<ul>
+<li><var>R \leqq 40</var>．</li>
+</ul>
+<h4>小課題 4 [<var>30</var> 点]</h4>
+<ul>
+<li><var>N \leqq 25</var>．</li>
+</ul>
+<h4>小課題 5 [<var>20</var> 点]</h4>
+<ul>
+<li><var>N \leqq 100</var>．</li>
+</ul>
+<h4>小課題 6 [<var>20</var> 点]</h4>
+<p>追加の制限はない．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入出力例</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>3 4
+3
+1 2
+1 4
+2 3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>3
+</pre>
+<p>入力例 <var>1</var> では，移住開始時の春に以下のように JOI 草が自生している．</p>
+<p><img src="https://img.atcoder.jp/joisc2017/cultivation-ja-p3-1.png" alt="図" style="max-width:100%;height:auto;"></p>
+
+<p>畑の様子．‘<code>0</code>’ は移住開始時の春に JOI 草が自生しているマスを表す．</p>
+<p>この入力例では，<var>3</var> 年間の畑に吹く風の向きを西，南，南の順番に設定することで，<var>3</var> 年後の春にすべてのマスが JOI 草の生息圏となる．下の表の数値は，何年後の春に各マスが JOI 草の生息圏となるかを表している．これが最小の年数である．</p>
+<div class="joisc2017-cultivation-ja-table">
+<table>
+<tr>
+<td><var>1</var></td>
+<td><var>0</var></td>
+<td><var>1</var></td>
+<td><var>0</var></td>
+</tr>
+<tr>
+<td><var>2</var></td>
+<td><var>1</var></td>
+<td><var>0</var></td>
+<td><var>2</var></td>
+</tr>
+<tr>
+<td><var>3</var></td>
+<td><var>2</var></td>
+<td><var>2</var></td>
+<td><var>3</var></td>
+</tr>
+</table>
+</div>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>4 4
+4
+1 1
+1 4
+4 1
+4 4
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>4
+</pre>
+<style>
+.joisc2017-cultivation-ja-table { position:relative; max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisc2017-cultivation-ja-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisc2017-cultivation-ja-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+</style>
+
+<style>
+.joisc2017-cultivation-ja-table .katex {position:relative;}
+</style></section>
+</div>
+</span>
+</span>

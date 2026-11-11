@@ -7,13 +7,12 @@ Your program must include `Anna.h` and `Bruno.h`, and implement all functions in
 
 You can submit only C++ source code.
 
-The two-file organization in Implementation Details and the instructions in Compilation and Test Run below describe local testing with the distributed sample grader. On AtCoder, submit one file as described above.
 </blockquote>
 
 Score: $100$ points
 
 <style>
-#task-statement .joisp2023-battle-table {
+#task-statement .joisp2023-battle-table { position:relative;
     max-width: 100%;
     overflow-x: auto;
     margin: 1em 0;
@@ -45,9 +44,9 @@ JOICup is a popular television variety program held by JOI broadcast station. No
 
 In the messenger game, the players send information using a grid of $8 \times 8$ cells. The rows of the grid are numbered from $0$ to $7$, and the columns of the grid are numbered from $0$ to $7$.
 
-In the messenger game, Anna and Bruno are isolated in different rooms. They will play $Q$ challenges. The $i$-th challenge ($1 \leq i \leq Q$) proceeds as follows.
+In the messenger game, Anna and Bruno are isolated in different rooms. They will play $Q$ challenges. The $i$-th challenge ($1 \le i \le Q$) proceeds as follows.
 
-1. Bitaro, the moderator of the game, gives a card and a grid of $8 \times 8$ cells to Anna. On the card, three integers $X_i, Y_i, N_i$ ($0 \leq X_i \leq 7$, $0 \leq Y_i \leq 7$, $1 \leq N_i \leq 43$) and a string $S_i$ of length $N_i$ consisting of `A` and `B` are written. All of the cells in the grid are white.
+1. Bitaro, the moderator of the game, gives a card and a grid of $8 \times 8$ cells to Anna. On the card, three integers $X_i, Y_i, N_i$ ($0 \le X_i \le 7$, $0 \le Y_i \le 7$, $1 \le N_i \le 43$) and a string $S_i$ of length $N_i$ consisting of `A` and `B` are written. All of the cells in the grid are white.
 2. Anna paints each of the $49$ cells whose row is different from $X_i$ and column is different from $Y_i$. The color of each cell is either blue or red.
 3. Anna gives the grid of cells to Bitaro, the moderator of the game.
 4. Bitaro paints each of the $15$ cells whose row is equal to $X_i$ or column is equal to $Y_i$. The color of each cell is either blue or red. This process is done in a room which is not seen by Anna nor Bruno.
@@ -72,19 +71,19 @@ The first file is `Anna.cpp`. It should implement Anna's strategy. It should imp
 
 - `void Anna(int X, int Y, int N, std::string S)`
 
-    This function is called $Q$ times. The $i$-th call ($1 \leq i \leq Q$) corresponds to the procedures $1.$, $2.$, $3.$ of the $i$-th challenge of the game.
+    This function is called $Q$ times. The $i$-th call ($1 \le i \le Q$) corresponds to the procedures $1$., $2$., $3$. of the $i$-th challenge of the game.
 
-    - The parameter `X` is the integer $X_i$ written on the card given to Anna in the procedure $1.$ of the $i$-th challenge.
-    - The parameter `Y` is the integer $Y_i$ written on the card given to Anna in the procedure $1.$ of the $i$-th challenge.
-    - The parameter `N` is the integer $N_i$ written on the card given to Anna in the procedure $1.$ of the $i$-th challenge.
-    - The parameter `S` is the string $S_i$ written on the card given to Anna in the procedure $1.$ of the $i$-th challenge.
+    - The parameter `X` is the integer $X_i$ written on the card given to Anna in the procedure $1$. of the $i$-th challenge.
+    - The parameter `Y` is the integer $Y_i$ written on the card given to Anna in the procedure $1$. of the $i$-th challenge.
+    - The parameter `N` is the integer $N_i$ written on the card given to Anna in the procedure $1$. of the $i$-th challenge.
+    - The parameter `S` is the string $S_i$ written on the card given to Anna in the procedure $1$. of the $i$-th challenge.
 
     For each function call to `Anna`, the following function should be called $49$ times in total. The following function should be called once for each of the $49$ cells whose row is different from $X_i$ and column is different from $Y_i$.
 
     - `void Paint(int a, int b, int c)`
 
-        - The parameters `a, b` mean Anna paints the cell whose row is $a$ and column is $b$. Here the conditions $0 \leq a \leq 7$, $0 \leq b \leq 7$, $a \neq X$, $b \neq Y$ should be satisfied. If this condition is not satisfied, your program is judged as Wrong Answer [1].
-        - The parameter `c` means the color painted by Anna is blue if $c = 0$, and red if $c = 1$. Here, $0 \leq c \leq 1$ should be satisfied. If this condition is not satisfied, your program is judged as Wrong Answer [2].
+        - The parameters `a, b` mean Anna paints the cell whose row is $a$ and column is $b$. Here the conditions $0 \le a \le 7$, $0 \le b \le 7$, $a \neq X$, $b \neq Y$ should be satisfied. If this condition is not satisfied, your program is judged as Wrong Answer [1].
+        - The parameter `c` means the color painted by Anna is blue if $c = 0$, and red if $c = 1$. Here, $0 \le c \le 1$ should be satisfied. If this condition is not satisfied, your program is judged as Wrong Answer [2].
         - If the function `Paint` is called with the same parameters $(a, b)$ more than once, your program is judged as Wrong Answer [3].
         - When the function `Anna` terminates, if the number of function calls to `Paint` is different from $49$, your program is judged as Wrong Answer [4].
 
@@ -92,10 +91,10 @@ The second file is `Bruno.cpp`. It should implement Bruno's strategy. It should 
 
 - `std::string Bruno(int N, std::vector<std::vector<int>> T)`
 
-    This function is called every time when Anna finishes painting the grid. This function is called $Q$ times in total. The $i$-th call ($1 \leq i \leq Q$) corresponds to the procedures $5.$, $6.$ of the $i$-th challenge of the game.
+    This function is called every time when Anna finishes painting the grid. This function is called $Q$ times in total. The $i$-th call ($1 \le i \le Q$) corresponds to the procedures $5$., $6$. of the $i$-th challenge of the game.
 
-    - The parameter `N` is the integer $N_i$ written on the card given to Bruno in the procedure $5.$ of the $i$-th challenge.
-    - The parameter `T` is a two-dimensional array of size $8 \times 8$ corresponding to the grid of cells given to Bruno in the procedure $5.$ of the $i$-th challenge. The color of the cell whose row is $a$ ($0 \leq a \leq 7$) and column is $b$ ($0 \leq b \leq 7$) is blue if `T[a][b] = 0`, and red if `T[a][b] = 1`.
+    - The parameter `N` is the integer $N_i$ written on the card given to Bruno in the procedure $5$. of the $i$-th challenge.
+    - The parameter `T` is a two-dimensional array of size $8 \times 8$ corresponding to the grid of cells given to Bruno in the procedure $5$. of the $i$-th challenge. The color of the cell whose row is $a$ ($0 \le a \le 7$) and column is $b$ ($0 \le b \le 7$) is blue if `T[a][b] = 0`, and red if `T[a][b] = 1`.
     - The return value is the string written by Bruno on a paper.
     - If the return value is a string of length $44$ or more, your program is judged as Wrong Answer [5].
     - Each character of the return value should be either `A` or `B`. If this condition is not satisfied, your program is judged as Wrong Answer [6].
@@ -150,12 +149,12 @@ In the sample grader, the colors chosen by Bitaro for challenges are randomly de
 
 ### Constraints
 
-- $1 \leq Q \leq 20\,000$.
-- $0 \leq X_i \leq 7$ ($1 \leq i \leq Q$).
-- $0 \leq Y_i \leq 7$ ($1 \leq i \leq Q$).
-- $1 \leq N_i \leq 43$ ($1 \leq i \leq Q$).
+- $1 \le Q \le 20\,000$.
+- $0 \le X_i \le 7$ ($1 \le i \le Q$).
+- $0 \le Y_i \le 7$ ($1 \le i \le Q$).
+- $1 \le N_i \le 43$ ($1 \le i \le Q$).
 - $Q, X_i, Y_i, N_i$ are integers.
-- $S_i$ ($1 \leq i \leq Q$) is a string of length $N_i$ consisting of `A` and `B`.
+- $S_i$ ($1 \le i \le Q$) is a string of length $N_i$ consisting of `A` and `B`.
 
 ### Grading
 
@@ -163,29 +162,13 @@ If your program is judged as any type of Wrong Answer [1]–[6] (see Implementat
 
 Otherwise, let $L^{\ast}$ be the minimum of the following values for all test cases of this task. Your score is calculated as in the following table.
 
-- The maximum value of $L$ such that Anna and Bruno win all the challenges satisfying $N_i \leq L$. However, if they win all the challenges in the test cases, we set $L = 43$.
+- The maximum value of $L$ such that Anna and Bruno win all the challenges satisfying $N_i \le L$. However, if they win all the challenges in the test cases, we set $L = 43$.
 
 <div class="joisp2023-battle-table" markdown="1">
 
-| $L^{\ast}$ | $0$ | $1$ | $2$ | $3$ | $4$ | $5$ | $6$ | $7$ | $8$ | $9$ | $10$ | $11$ | $12$ | $13$ | $14$ |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Score | $0$ | $5$ | $8$ | $10$ | $11$ | $13$ | $14$ | $16$ | $18$ | $19$ | $21$ | $22$ | $24$ | $26$ | $27$ |
-
-</div>
-
-<div class="joisp2023-battle-table" markdown="1">
-
-| $L^{\ast}$ | $15$ | $16$ | $17$ | $18$ | $19$ | $20$ | $21$ | $22$ | $23$ | $24$ | $25$ | $26$ | $27$ | $28$ | $29$ |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Score | $29$ | $30$ | $32$ | $34$ | $35$ | $37$ | $38$ | $40$ | $42$ | $43$ | $45$ | $46$ | $48$ | $50$ | $51$ |
-
-</div>
-
-<div class="joisp2023-battle-table" markdown="1">
-
-| $L^{\ast}$ | $30$ | $31$ | $32$ | $33$ | $34$ | $35$ | $36$ | $37$ | $38$ | $39$ | $40$ | $41$ | $42$ | $43$ |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Score | $53$ | $54$ | $56$ | $57$ | $59$ | $60$ | $62$ | $65$ | $68$ | $71$ | $74$ | $77$ | $84$ | $100$ |
+| $L^{\ast}$ | $0$ | $1$ | $2$ | $3$ | $4$ | $5$ | $6$ | $7$ | $8$ | $9$ | $10$ | $11$ | $12$ | $13$ | $14$ | $15$ | $16$ | $17$ | $18$ | $19$ | $20$ | $21$ | $22$ | $23$ | $24$ | $25$ | $26$ | $27$ | $28$ | $29$ | $30$ | $31$ | $32$ | $33$ | $34$ | $35$ | $36$ | $37$ | $38$ | $39$ | $40$ | $41$ | $42$ | $43$ |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Score | $0$ | $5$ | $8$ | $10$ | $11$ | $13$ | $14$ | $16$ | $18$ | $19$ | $21$ | $22$ | $24$ | $26$ | $27$ | $29$ | $30$ | $32$ | $34$ | $35$ | $37$ | $38$ | $40$ | $42$ | $43$ | $45$ | $46$ | $48$ | $50$ | $51$ | $53$ | $54$ | $56$ | $57$ | $59$ | $60$ | $62$ | $65$ | $68$ | $71$ | $74$ | $77$ | $84$ | $100$ |
 
 </div>
 
@@ -226,10 +209,10 @@ Here is a sample input for the sample grader and corresponding function calls. T
 
 </div>
 
-In this sample input, there are $Q$ ($= 2$) challenges.
+In this sample input, there are $Q (= 2)$ challenges.
 
-- In the first challenge, we have $X_1 = 0$, $Y_1 = 0$, $N_1 = 1$, $S_1 =$ `"B"`. Anna paints the $49$ cells whose row is different from $0$ and column is different from $0$.
-- In the second challenge, we have $X_2 = 5$, $Y_2 = 7$, $N_2 = 8$, $S_2 =$ `"AAAABBBB"`. Anna paints the $49$ cells whose row is different from $5$ and column is different from $7$.
+- In the first challenge, we have $X_1 = 0$, $Y_1 = 0$, $N_1 = 1$, $S_1 = {}$`"B"`. Anna paints the $49$ cells whose row is different from $0$ and column is different from $0$.
+- In the second challenge, we have $X_2 = 5$, $Y_2 = 7$, $N_2 = 8$, $S_2 = {}$`"AAAABBBB"`. Anna paints the $49$ cells whose row is different from $5$ and column is different from $7$.
 
 For example, if your program calls `Paint(0, 2, 1)` in the first challenge, it is judged as Wrong Answer [1] because it designates a cell whose row is $0$.
 
@@ -270,3 +253,7 @@ Here is another sample input for the sample grader.
 5 2 41 AABABBAAABBABAAAABBABABBAAAAAABBABBABBABA
 1 0 43 AABBABBBBABABBBABBBBAAAAAABABAAABBBAABBAAAB
 ~~~
+
+<style>
+.joisp2023-battle-table .katex {position:relative;}
+</style>

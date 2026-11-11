@@ -1,0 +1,158 @@
+<span class="lang">
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>JOI 君の住む IOI 市は，<var>1</var> 年を通じてとても暑くなることが知られている．</p>
+<p>IOI 市は，縦 <var>H \times</var> 横 <var>W</var> マスに区切られた長方形の形をしている．それぞれのマスは，建物か，野原か，壁のいずれかである．建物のマスは <var>P</var> 個あり，<var>1</var> から <var>P</var> までの番号が付けられている．</p>
+<p>JOI 君は，建物か野原のマスのみに入ることができる．また，あるマスから直接移動できるマスは，そのマスと隣接している（すなわち，<var>1</var> 辺を共有している）マスのみであり，JOI 君は移動の途中で IOI 市の外に出ることはできない．</p>
+<p>JOI 君は，様々な用事のためにいろいろな建物の間を歩いて移動する必要がある．建物の中は冷房が効いているが，野原は日差しが強く暑いため，野原のマスを <var>1</var> マス通るごとに水が <var>1</var> 必要である．さらに野原には自動販売機や水飲み場などはないので，IOI 市では水筒を持って移動を行うことが一般的である．大きさ <var>x</var> の水筒には，水を最大で <var>x</var> 入れることができる．建物のマスには水道があるので，水筒いっぱいに水を補給することができる．</p>
+<p>大きい水筒は持ち運びが大変なので，JOI 君はできるだけ小さい水筒を用いて移動を行いたい．そこで，いくつかの建物間の移動について，JOI 君がその移動のために必要な水筒の大きさの最小値を求めるプログラムを書いてほしい．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p>IOI 市の地図および，<var>Q</var> 個の質問が与えられる．<var>i</var> 番目 (<var>1 \leqq i \leqq Q</var>) の質問は，「建物 <var>S_{i}, T_{i}</var> の間を移動するのに必要な水筒の大きさの最小値は何か」というものである．このとき，それぞれの質問に答えるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>標準入力から以下のデータを読み込め．</p>
+<ul>
+<li><var>1</var> 行目には整数 <var>H, W, P, Q</var> が空白を区切りとして書かれている．これは，IOI 市は縦 <var>H \times</var> 横 <var>W</var> マスに区切られた長方形の形をしており，IOI 市には建物のマスが <var>P</var> 個あり，プログラムに与えられる質問の数が <var>Q</var> であることを表す．</li>
+<li>続く <var>H</var> 行には IOI 市の地図が書かれている．このうちの <var>r</var> 行目 (<var>1 \leqq r \leqq H</var>) には，<var>W</var> 文字の文字列が書かれており，この文字列の各文字は “<code>.</code>” または “<code>#</code>” のいずれかである．この文字列の <var>c</var> 文字目 (<var>1 \leqq c \leqq W</var>) は，IOI 市の上から <var>r</var> 行目，左から <var>c</var> 列目のマスが何であるかを表し，“<code>.</code>” は建物または野原を，“<code>#</code>” は壁を表す．</li>
+<li>続く <var>P</var> 行には IOI 市にある建物の位置が書かれている．このうちの <var>j</var> 行目 (<var>1 \leqq j \leqq P</var>) には，整数 <var>A_{j}, B_{j}</var> が空白を区切りとして書かれている．これは，建物 <var>j</var> が IOI 市の上から <var>A_{j}</var> 列目，左から <var>B_{j}</var> 行目のマスにあることを表す．先に与えられる地図上で，対応するマスは “<code>.</code>” であることが保証される．</li>
+<li>続く <var>Q</var> 行のうちの <var>i</var> 行目 (<var>1 \leqq i \leqq Q</var>) には，整数 <var>S_{i}, T_{i}</var> が空白を区切りとして書かれている．これは， <var>i</var> 番目の質問が，「建物 <var>S_{i}, T_{i}</var> の間を移動するのに必要な水筒の大きさの最小値は何か」であることを表す．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に <var>Q</var> 行出力せよ．<var>i</var> 行目 (<var>1 \leqq i \leqq Q</var>) に，建物 <var>S_{i}, T_{i}</var> の間を移動するのに必要な水筒の大きさの最小値を表す整数を出力せよ．ただし，移動が不可能な場合は，<code>-1</code> を出力せよ．また，野原のマスを通らずに移動が行える場合は，<code>0</code> を出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<p>すべての入力データは以下の条件を満たす．</p>
+<ul>
+<li><var>1 \leqq H \leqq 2\,000</var>．</li>
+<li><var>1 \leqq W \leqq 2\,000</var>.</li>
+<li><var>2 \leqq P \leqq 200\,000</var>．</li>
+<li><var>1 \leqq Q \leqq 200\,000</var>．</li>
+<li><var>1 \leqq A_{j} \leqq H</var> (<var>1 \leqq j \leqq P</var>) .</li>
+<li><var>1 \leqq B_{j} \leqq W</var> (<var>1 \leqq j \leqq P</var>) .</li>
+<li><var>(A_{i}, B_{i}) \ne (A_{j}, B_{j})</var> (<var>1 \leqq i &lt; j \leqq P</var>) .</li>
+<li><var>1 \leqq S_{i} &lt; T_{i} \leqq P</var> (<var>1 \leqq i \leqq Q</var>) .</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<h4>小課題 1 [<var>10</var> 点]</h4>
+<p>以下の条件を満たす．</p>
+<ul>
+<li><var>H \leqq 200</var>．</li>
+<li><var>W \leqq 200</var>．</li>
+<li><var>P \leqq 200</var>．</li>
+</ul>
+<h4>小課題 2 [<var>30</var> 点]</h4>
+<p>以下の条件を満たす．</p>
+<ul>
+<li><var>P \leqq 5\,000</var>.</li>
+<li><var>Q = 1</var>.</li>
+</ul>
+<h4>小課題 3 [<var>30</var> 点]</h4>
+<p>以下の条件を満たす．</p>
+<ul>
+<li><var>P \leqq 5\,000</var>．</li>
+<li><var>Q \leqq 10\,000</var>．</li>
+</ul>
+<h4>小課題 4 [<var>30</var> 点]</h4>
+<p>追加の制限はない．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>5 5 4 4
+.....
+..##.
+.#...
+..#..
+.....
+1 1
+4 2
+3 3
+2 5
+1 2
+2 4
+1 3
+3 4
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>3
+4
+4
+2
+</pre>
+<p>この入力において，IOI 市の地図は下図のようになる．黒の四角形が書かれたマスは壁を，数字の書かれたマスはその番号の建物を，何もないマスは野原を表す．</p>
+<p><img src="https://img.atcoder.jp/joisc2014/bottle-ja-p4-group1.png" alt="図" style="max-width:100%;height:auto;"></p>
+
+<p>例えば，建物 <var>2</var> から建物 <var>4</var> まで移動することを考える．</p>
+<p><img src="https://img.atcoder.jp/joisc2014/bottle-ja-p4-group2.png" alt="図" style="max-width:100%;height:auto;"></p>
+
+<p>このとき，他の建物を経由しない場合は，左の図の点で示したマスを通るのが最も経由する野原のマス数が少なく，大きさ <var>6</var> の水筒が必要になる．</p>
+<p>しかし，右の図のように，移動の際に建物 <var>1</var> を経由することにすると，建物 <var>2</var> から建物 <var>1</var> の移動の間では野原を <var>3</var> マス通り，建物 <var>1</var> から建物 <var>4</var> の移動の間では野原を <var>4</var> マス通るため，大きさ <var>4</var> の水筒で移動することができる．また，これより小さい水筒を持って移動することはできない．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>5 5 3 2
+...#.
+..#..
+#....
+.##..
+...#.
+1 3
+5 2
+1 5
+1 2
+1 3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>-1
+7
+</pre>
+<p>この入力において，建物 <var>1</var> と建物 <var>2</var> の間は壁があるため移動することができない．</p></section>
+</div>
+</span>
+</span>

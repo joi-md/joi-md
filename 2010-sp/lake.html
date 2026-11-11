@@ -1,0 +1,89 @@
+<span class="lang">
+<span class="lang-ja">
+<blockquote>
+<p><strong>AtCoder での提出方法</strong></p>
+<p>入力は標準入力から読み込み，出力は標準出力に行うこと．</p>
+</blockquote>
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>カナダの南東部，アメリカとの国境の場所には，「五大湖」として知られる有名な <var>5</var> つの湖がある．このたびカナダで IOI が開催されるのに伴い，会場にもっとも近いオンタリオ湖に観光船を運航する計画がいくつも持ち上がった．</p>
+<p>おのおのの観光船の計画は，湖の外周の <var>2</var> 点を結ぶものであり，計画は全部で <var>N</var> 個ある．<var>i</var> 個目の計画は，地点 <var>s_{i}</var> と地点 <var>t_{i}</var> を結ぶ観光船を運航するというものである．ここで，地点 <var>x</var> とは，湖の東の端から周に沿って反時計回りに距離 <var>x</var> メートルだけ進んだ地点のことを指す．湖の一周の長さは <var>500{,}000</var> メートルである．</p>
+<p>これらの中からできるだけ多くの計画を実現させたいが，船同士の衝突を避けるため，<var>2</var> つの航路が交差してはならない．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p><var>N</var> 個の運航計画が与えられたとき，実現できる計画の個数の最大値を求めるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>1 \leqq N \leqq 2{,}000</var>：計画の数．</li>
+<li><var>0 \leqq s_i &lt; 500{,}000</var>，<var>0 \leqq t_i &lt; 500{,}000</var>：地点の座標．</li>
+</ul>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>標準入力から以下の入力を読み込め．</p>
+<ul>
+<li>入力の <var>1</var> 行目には整数 <var>N</var> が書かれている．これは，観光船を運航する計画の個数を表す．</li>
+<li>入力の <var>i + 1</var> 行目 (<var>1 \leqq i \leqq N</var>) には <var>2</var> つの整数 <var>s_{i},t_{i}</var> が空白を区切りとして書かれている. これらは,<var>i</var> 番目の計画で結ばれる予定である <var>2</var> つの地点を表す．<var>s_1, \ldots, s_N, t_1, \ldots, t_N</var> の計 <var>2N</var> 個の値はすべて異なる．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に，与えられた運航計画のうち，実現できる計画の個数の最大値を表す <var>1</var> つの整数を出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>採点基準</h3>
+<p><var>40</var> 点分のテストグループにおいて，<var>N \leqq 200</var> である.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>5
+50000 150000
+450000 100000
+200000 300000
+260000 350000
+0 230000
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>3
+</pre>
+<div style="text-align: center;">
+<img alt="2010-lake-example.png" src="https://img.atcoder.jp/joisc2010/2010-lake-example.png" style="max-width: 100%; width: 543px;" />
+</div>
+
+<p>上の入力例における <var>5</var> つの計画を表した図 (地点間の間隔は正確ではない)．太線の <var>3</var> つの計画を選べば航路が交差することなく船を運航できる．</p></section>
+</div>
+</span>
+</span>

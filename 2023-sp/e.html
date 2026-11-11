@@ -5,12 +5,12 @@
 <div class="part">
 <section>
 <h3>Problem Statement</h3>
-<p>In the council of JOI City, there are <var>N</var> assembly members, numbered from <var>1</var> to <var>N</var>. The council will open a meeting, and the assembly members will take votes on <var>M</var> proposed ordinances, numbered from <var>1</var> to <var>M</var>. If <var>A_{i,j} = 1</var>, the assembly member <var>i</var> (<var>1 \leq i \leq N</var>) will cast an affirmative vote on the proposed ordinance <var>j</var> (<var>1 \leq j \leq M</var>). If <var>A_{i,j} = 0</var>, the assembly member <var>i</var> will cast a negative vote on the proposed ordinance <var>j</var>.</p>
+<p>In the council of JOI City, there are <var>N</var> assembly members, numbered from <var>1</var> to <var>N</var>. The council will open a meeting, and the assembly members will take votes on <var>M</var> proposed ordinances, numbered from <var>1</var> to <var>M</var>. If <var>A_{i,j} = 1</var>, the assembly member <var>i</var> (<var>1 \le i \le N</var>) will cast an affirmative vote on the proposed ordinance <var>j</var> (<var>1 \le j \le M</var>). If <var>A_{i,j} = 0</var>, the assembly member <var>i</var> will cast a negative vote on the proposed ordinance <var>j</var>.</p>
 <p>The council of JOI City will be performed as follows.</p>
 <ol>
 <li>Among the <var>N</var> assembly members, they will randomly choose a chairperson by drawing lots.</li>
 <li>The chairperson will choose a deputy chairperson among the <var>N - 1</var> assembly members except for the chairperson.</li>
-<li>The votes will be taken on <var>M</var> proposed ordinances. Each of the <var>N - 2</var> assembly members except for the chairperson and the deputy chairperson will cast an affirmative vote or a negative vote on each proposed ordinance. The council will approve a proposed ordinance if a majority of the assembly members (i.e., more than or equal to <var>\left\lfloor \dfrac{N}{2} \right\rfloor</var> assembly members) cast affirmative votes on it. Here, <var>\lfloor x \rfloor</var> is the largest integer not exceeding <var>x</var>.</li>
+<li>The votes will be taken on <var>M</var> proposed ordinances. Each of the <var>N - 2</var> assembly members except for the chairperson and the deputy chairperson will cast an affirmative vote or a negative vote on each proposed ordinance. The council will approve a proposed ordinance if a majority of the assembly members (i.e., more than or equal to <var>\left\lfloor \frac{N}{2} \right\rfloor</var> assembly members) cast affirmative votes on it. Here, <var>\lfloor x \rfloor</var> is the largest integer not exceeding <var>x</var>.</li>
 </ol>
 <p>Mayor K, the mayor of JOI City, wants the council to approve as many proposed ordinances as possible. Mayor K collected information on assembly members. Mayor K knows, on each proposed ordinance, who will cast an affirmative vote and who will cast a negative vote.</p>
 <p>Write a program which, given information of the votes of the assembly members, calculates, for each assembly member, the maximum possible number of proposed ordinances approved by the council if that assembly member is chosen as the chairperson.</p>
@@ -37,7 +37,7 @@
 <div class="part">
 <section>
 <h3>Output</h3>
-<p>Write <var>N</var> lines to the standard output. The <var>i</var>-th line (<var>1 \leq i \leq N</var>) of output should contain the maximum possible number of proposed ordinances approved by the council if the assembly member <var>i</var> is chosen as the chairperson.</p>
+<p>Write <var>N</var> lines to the standard output. The <var>i</var>-th line (<var>1 \le i \le N</var>) of output should contain the maximum possible number of proposed ordinances approved by the council if the assembly member <var>i</var> is chosen as the chairperson.</p>
 <hr />
 </section>
 </div>
@@ -47,9 +47,9 @@
 <section>
 <h3>Constraints</h3>
 <ul>
-<li><var>3 \leq N \leq 300\,000</var>.</li>
-<li><var>1 \leq M \leq 20</var>.</li>
-<li><var>0 \leq A_{i,j} \leq 1</var> (<var>1 \leq i \leq N</var>, <var>1 \leq j \leq M</var>).</li>
+<li><var>3 \le N \le 300\,000</var>.</li>
+<li><var>1 \le M \le 20</var>.</li>
+<li><var>0 \le A_{i,j} \le 1</var> (<var>1 \le i \le N</var>, <var>1 \le j \le M</var>).</li>
 <li>Given values are all integers.</li>
 </ul>
 </section>
@@ -59,12 +59,12 @@
 <section>
 <h3>Subtasks</h3>
 <ol>
-<li>(<var>8</var> points) <var>N \leq 300</var>.</li>
-<li>(<var>8</var> points) <var>N \leq 3\,000</var>.</li>
-<li>(<var>6</var> points) <var>M \leq 2</var>.</li>
-<li>(<var>19</var> points) <var>M \leq 10</var>.</li>
-<li>(<var>15</var> points) <var>M \leq 14</var>.</li>
-<li>(<var>22</var> points) <var>M \leq 17</var>.</li>
+<li>(<var>8</var> points) <var>N \le 300</var>.</li>
+<li>(<var>8</var> points) <var>N \le 3\,000</var>.</li>
+<li>(<var>6</var> points) <var>M \le 2</var>.</li>
+<li>(<var>19</var> points) <var>M \le 10</var>.</li>
+<li>(<var>15</var> points) <var>M \le 14</var>.</li>
+<li>(<var>22</var> points) <var>M \le 17</var>.</li>
 <li>(<var>22</var> points) No additional constraints.</li>
 </ol>
 <hr />
@@ -197,7 +197,7 @@
 </div>
 </span>
 <span class="lang-ja">
-<p>配点： <var>100</var> 点</p>
+<p>配点 : <var>100</var> 点</p>
 
 <div class="part">
 <section>
@@ -207,7 +207,7 @@
 <ol>
 <li>くじ引きで <var>N</var> 人の議員の中から議長を <var>1</var> 人ランダムに決める．</li>
 <li>議長は自分以外の <var>N - 1</var> 人の議員の中から副議長を <var>1</var> 人指名する．</li>
-<li><var>M</var> 個の条例案について採決を取る．議長と副議長以外の <var>N - 2</var> 人の議員が賛成票か反対票のどちらかを投じ，過半数（<var>\left\lfloor \dfrac{N}{2} \right\rfloor</var> 票以上）の賛成票を得た条例案が可決される．ここで，<var>\lfloor x \rfloor</var> は <var>x</var> を超えない最大の整数を表す．</li>
+<li><var>M</var> 個の条例案について採決を取る．議長と副議長以外の <var>N - 2</var> 人の議員が賛成票か反対票のどちらかを投じ，過半数（<var>\left\lfloor \frac{N}{2} \right\rfloor</var> 票以上）の賛成票を得た条例案が可決される．ここで，<var>\lfloor x \rfloor</var> は <var>x</var> を超えない最大の整数を表す．</li>
 </ol>
 <p>JOI 市の K 市長は，この議会でできるだけ多くの条例が成立してほしいと考えている．K 市長は，各議員がそれぞれの条例案に対して賛成か反対かの情報を集めた．</p>
 <p>各議員が投じる予定の票の情報が与えられたとき，それぞれの議員に対して，その議員が議長に選ばれた場合に可決される条例案の個数として考えられる最大値を求めるプログラムを作成せよ．</p>

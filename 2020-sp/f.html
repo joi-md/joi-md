@@ -1,0 +1,268 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>Professor JOI is a leading expert on the study of the history of IOI Kingdom. When he was surveying an old temple in IOI Kingdom, he found ruins where the stone pillars were constructed. He also found an old document which was supposedly written by ancient people in IOI Kingdom. The document contains descriptions on the stone pillars. More precisely, the following is written in the document.</p>
+<ul>
+<li>Just after the construction, there were <var>2N</var> stone pillars, numbered from 1 to <var>2N</var>.</li>
+<li>Just after the construction, for each <var>k</var> (<var>1 \le k \le N</var>), there were exactly two stone pillars of height <var>k</var>.</li>
+<li>The earthquake occurred <var>N</var> times. After each earthquake, some of the stone pillars collapsed and their heights decreased by <var>1</var>. However, other stone pillars were protected by ancient people. These stone pillars did not collapse, and their heights remained the same.</li>
+<li>When an earthquake occurred, for each <var>k</var> (<var>1 \le k \le N</var>), exactly one stone pillar of height <var>k</var> was protected by ancient people. If there were more than one stone pillar of height <var>k</var> when an earthquake occurred, the stone pillar of height <var>k</var> with largest number was protected. In other words, if the height of the stone pillar <var>i</var> (<var>1 \le i \le 2N</var>) was <var>h_{i}</var> before an earthquake, then the stone pillar <var>i</var> was protected if and only if <var>h_{i} \ge1</var> and <var>h_{j} \ne h_{i}</var> for every <var>j &gt; i</var>.</li>
+<li>After the <var>N</var> earthquakes occurred, <var>N</var> stone pillars remained (i.e. there were exactly <var>N</var> stone pillars with height at least 1).</li>
+</ul>
+<p>Professor JOI thinks it would be a great discovery if he can recover the heights of the <var>2N</var> stone pillars when they were constructed. He surveyed the place where the stone pillars were constructed in more detail. He found that, after the <var>N</var> earthquakes occurred, the indices of the remaining stone pillars were <var>A_{1}, A_{2}, \ldots, A_{N}</var>.</p>
+<p>Professor JOI wants to know the number of possible combinations of the heights of the <var>2N</var> stone pillars when they were constructed. Since you are a pupil of Professor JOI, you are asked to write a program which counts this number.</p>
+<p>Write a program which, given the indices of the remaining stone pillars after the <var>N</var> earthquakes occurred, calculates the number of possible combinations of the heights of the <var>2N</var> stone pillars when they were constructed, modulo 1 000 000 007.</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input. All the values in the input are integers.</p>
+<pre><var>N</var>
+<var>A_{1}</var> <var>\cdots</var> <var>A_{N}</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>Write one line to the standard output. Output the remainder when the answer is divided by 1 000 000 007.</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li><var>1 \le N \le 600</var>.</li>
+<li><var>1 \le A_{i} \le 2N</var> (<var>1 \le i \le N</var>).</li>
+<li><var>A_{i} &lt; A_{i+1}</var> (<var>1 \le i \le N - 1</var>).</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li>(<var>6</var> points) <var>N \le 13</var>.</li>
+<li>(<var>52</var> points) <var>N \le 60</var>.</li>
+<li>(<var>42</var> points) No additional constraints.</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input and Output</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>3
+3 4 6
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>5
+</pre>
+<p>For example, assume that the heights of the stone pillars were (<var>2</var>, <var>2</var>, <var>3</var>, <var>3</var>, <var>1</var>, <var>1</var>), from the stone pillar 1. Since there were exactly two stone pillars of height <var>k</var> for each <var>k</var> (<var>1 \le k \le3</var>), it agrees with the description in the old document.</p>
+<ul>
+<li>
+<p>When the first earthquake occurred, the stone pillars <var>2</var>, <var>4</var>, <var>6</var> were protected by ancient people. After the first earthquake, the heights of the stone pillars became <var>(1, 2, 2, 3, 0, 1)</var>.</p>
+</li>
+<li>
+<p>When the second earthquake occurred, the stone pillars <var>3</var>, <var>4</var>, <var>6</var> were protected by ancient people. After the second earthquake, the heights of the stone pillars became <var>(0, 1, 2, 3, 0, 1)</var>.</p>
+</li>
+<li>When the third earthquake occurred, the stone pillars <var>3</var>, <var>4</var>, <var>6</var> were protected by ancient people. After the third earthquake, the heights of the stone pillars became <var>(0, 0, 2, 3, 0, 1)</var>.</li>
+</ul>
+<p>After the three earthquakes, the stone pillars <var>3</var>, <var>4</var>, <var>6</var> remained. It coincides with the information given in the input.</p>
+<p>In addition to the above, there are four possible combinations of the heights of the stone pillars <var>(2, 3, 2, 3, 1, 1)</var>, <var>(2, 3, 3, 2, 1, 1)</var>, <var>(3, 2, 2, 3, 1, 1)</var>, <var>(3, 2, 3, 2, 1, 1)</var>.</p>
+<p>Therefore, there are five possible combinations of the heights of the six stone pillars which agree with the description in the old document and the information given in the input.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>1
+1
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>0
+</pre>
+<p>In this sample input, <var>(1, 1)</var> is the only combination of the heights of the stone pillars which agrees with the description in the old document. After the first earthquake, the heights of the stone pillars became <var>(0, 1)</var>.</p>
+<p>Therefore, there is no possible combination of the heights of the stone pillars which agrees with the description in the old document and the information given in the input.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 3</h3>
+<pre>10
+5 8 9 13 15 16 17 18 19 20
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 3</h3>
+<pre>147003663
+</pre>
+<p>There are <var>111\,147\,004\,440</var> possible combinations of the heights of the <var>2N</var> stone pillars, when they were constructed. When <var>111\,147\,004\,440</var> is divided by <var>1\,000\,000\,007</var>, the remainder is <var>147\,003\,663</var>. Thus, output <var>147\,003\,663</var>.</p></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>ジョイ教授は IOI 国の歴史の研究の第一人者である．IOI 国に関する神殿の調査中に，ジョイ教授は何本かの石柱が建てられた跡と古代の IOI 国の住民が書いたとされる古文書を発見した．古文書には石柱について詳しく書かれていた．具体的には以下の内容が書かれていた．</p>
+<ul>
+<li>建設された直後には <var>2N</var> 本の石柱が存在し，それぞれに <var>1</var> から <var>2N</var> までの番号が付けられていた．</li>
+<li>建設された直後には，高さが <var>k</var> (<var>1 \leqq k \leqq N</var>) の石柱はちょうど <var>2</var> 本存在した．</li>
+<li><var>N</var> 回の地震が発生し，各回の地震ごとに何本かの石柱が崩れて石柱の高さが <var>1</var> 低くなった．ただし，一部の石柱は住民が支えていたため崩れずに高さは変わらなかった．</li>
+<li>地震発生時には，それぞれの <var>k</var> (<var>1 \leqq k \leqq N</var>) について，ちょうど <var>1</var> 本の高さ <var>k</var> の石柱が住民によって支えられた．もし地震発生時に高さ <var>k</var> の石柱が複数本存在する場合は，番号が最も大きい石柱が支えられた．すなわち，地震直前の石柱 <var>i</var> (<var>1 \leqq i \leqq 2N</var>) の高さを <var>h_{i}</var> としたとき，石柱 <var>i</var> が支えられる条件は，<var>h_{i} \geqq 1</var>，かつ，すべての <var>j &gt; i</var> に対し <var>h_{j} \ne h_{i}</var> が成り立つことである．</li>
+<li><var>N</var> 回の地震後に残った，すなわち高さが <var>1</var> 以上である石柱は <var>N</var> 本であった．</li>
+</ul>
+<p>建設された直後の <var>2N</var> 本の石柱の高さを復元できれば世紀の大発見であると考えたジョイ教授は，石柱が建てられた跡を詳しく調査した．調査の結果，<var>N</var> 回の地震後に残った石柱の番号は <var>A_{1}, A_{2}, \ldots, A_{N}</var> であることがわかった．</p>
+<p>この情報と古文書に書かれていたことに合致するような，建設された直後の <var>2N</var> 本の石柱の高さとして考えられるのは何通り存在するのか気になったジョイ教授は，弟子であるあなたに場合の数を計算するプログラムを作るよう依頼した．</p>
+<p><var>N</var> 回の地震後に残った石柱の番号が与えられたとき，建設された直後の <var>2N</var> 本の石柱の高さとして考えられる場合の数を <var>1\,000\,000\,007</var> で割ったときの余りを求めるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力は以下の形式で標準入力から与えられる．入力の値はすべて整数である．</p>
+<pre><var>N</var>
+<var>A_{1}</var> <var>\cdots</var> <var>A_{N}</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に，建設された直後の <var>2N</var> 本の石柱の高さとして考えられる場合の数を <var>1\,000\,000\,007</var> で割ったときの余りを <var>1</var> 行で出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>1 \leqq N \leqq 600</var>．</li>
+<li><var>1 \leqq A_{i} \leqq 2N</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>A_{i} &lt; A_{i+1}</var> (<var>1 \leqq i \leqq N - 1</var>)．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>6</var> 点) <var>N \leqq 13</var>．</li>
+<li>(<var>52</var> 点) <var>N \leqq 60</var>．</li>
+<li>(<var>42</var> 点) 追加の制約はない．</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入出力例</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>3
+3 4 6
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>5
+</pre>
+<p>例えば，石柱の高さが石柱 <var>1</var> から順に <var>(2, 2, 3, 3, 1, 1)</var> であったとする．高さが <var>k</var> (<var>1 \leqq k \leqq 3</var>) であるような石柱はちょうど <var>2</var> 本存在するので古文書の情報と合致している．</p>
+<ul>
+<li><var>1</var> 回目の地震の際，石柱 <var>2, 4, 6</var> が住民によって支えられたので，地震直後の石柱の高さは <var>(1, 2, 2, 3, 0, 1)</var> となる．</li>
+<li><var>2</var> 回目の地震の際，石柱 <var>3, 4, 6</var> が住民によって支えられたので，地震直後の石柱の高さは <var>(0, 1, 2, 3, 0, 1)</var> となる．</li>
+<li><var>3</var> 回目の地震の際，石柱 <var>3, 4, 6</var> が住民によって支えられたので，地震直後の石柱の高さは <var>(0, 0, 2, 3, 0, 1)</var> となる．</li>
+</ul>
+<p>よって，<var>3</var> 回の地震後に残った石柱は石柱 <var>3, 4, 6</var> である．これは入力で与えられた情報と合致する．</p>
+<p>その他の石柱の高さとして考えられるのは <var>(2, 3, 2, 3, 1, 1)</var>, <var>(2, 3, 3, 2, 1, 1)</var>, <var>(3, 2, 2, 3, 1, 1)</var>, <var>(3, 2, 3, 2, 1, 1)</var> の <var>4</var> 通りのみである．</p>
+<p>したがって，地震後に残った石柱の番号と古文書の情報に合致するような <var>6</var> 本の石柱の高さは <var>5</var> 通りである．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>1
+1
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>0
+</pre>
+<p>古文書に合致するような石柱の高さは <var>(1, 1)</var> のみであり，<var>1</var> 回の地震後の高さは <var>(0, 1)</var> になる．</p>
+<p>したがって，地震後に残った石柱の番号と古文書の情報に合致するような <var>2</var> 本の石柱の高さは <var>0</var> 通りである．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>10
+5 8 9 13 15 16 17 18 19 20
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>147003663
+</pre>
+<p>建設された直後の <var>2N</var> 本の石柱の高さとして考えられるものは <var>111\,147\,004\,440</var> 通りあるから， <var>111\,147\,004\,440</var> を <var>1\,000\,000\,007</var> で割った余りである <var>147\,003\,663</var> を出力する．</p></section>
+</div>
+</span>
+</span>

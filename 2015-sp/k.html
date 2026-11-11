@@ -1,0 +1,137 @@
+<span class="lang">
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>IOI 国の鉄道をすべて所有していた大富豪の JOI 氏が逝去した．鉄道は遺言に従って分割相続されることになった．</p>
+<p>IOI 国には <var>N</var> 個の都市と，それらの間を結ぶ <var>M</var> 本の鉄道がある．都市には <var>1</var> から <var>N</var> までの番号が付けられ，鉄道には <var>1</var> から <var>M</var> までの番号が付けられている．鉄道 <var>i</var> は都市 <var>A_{i}</var> と都市 <var>B_{i}</var> の間を双方向に結び，また年間に <var>C_{i}</var> 円の収益を上げている．鉄道の利用客数や乗車料金は多様なため，<var>C_{1}, \ldots,C_{M}</var> はそれぞれ相異なる．同じ二つの都市を結ぶ鉄道が複数あるかもしれない．</p>
+<p>遺言には以下のように鉄道の分割相続の方法が記されていた．</p>
+<ul>
+<li>鉄道は，JOI 氏の <var>K</var> 人の子供に相続させる．子供たちには年齢が高い順に <var>1</var> から <var>K</var> までの番号が付いている．</li>
+<li>それぞれの子供は，<var>M</var> 本の鉄道のうちのいくつか (<var>0</var> 本の場合もありうる) を相続する．</li>
+<li>はじめに <var>M</var> 本の鉄道の中から，子供 <var>1</var> がいくつか選び，自分の相続分とする．次に残った鉄道の中から，子供 <var>2</var> が自分の相続分を決める．以下同様にして，<var>K</var> 人の子供が順番に，自分の相続分を決めていく．</li>
+<li>どの子供も，すでに相続先が決まった鉄道は相続することができない．すなわち，子供 <var>j</var> の相続分の中に鉄道 <var>i</var> が含まれていたら，それより若い子供 <var>k</var> (<var>k &gt; j</var>) は鉄道 <var>i</var> を自分の相続分の中に含めることができない．</li>
+<li>どの子供も，自分の相続分を決める際，相続分がサイクルを含まないようにしなければならない．すなわち，鉄道 <var>i_{1}, i_{2}, \ldots, i_{m}</var> (<var>i_{1}, i_{2}, \ldots, i_{m}</var> は相異なる) を一回ずつ利用することである都市から出発して同じ都市に戻ってくることができるとき，どの子供も，鉄道 <var>i_{1}, i_{2}, \ldots, i_{m}</var> をすべて一人で相続することはできない．</li>
+<li>誰にも相続されずに残った鉄道は IOI 国に寄贈される．</li>
+</ul>
+<p>どの子供も，父に似て貪欲であるため，相続する鉄道の年間収益の合計ができるだけ大きくなるように自分の相続分を選ぶ．どの子供についても，年間収益の合計が最大となるような相続分の選び方は，ただ一通りであることが証明できる．それぞれの鉄道が誰に相続されるかを求めよ．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p>IOI 国の鉄道の情報と，JOI 氏の子供の人数が与えられたとき，それぞれの鉄道が誰に相続されるかを求めるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>標準入力から以下の入力を読み込め．</p>
+<ul>
+<li><var>1</var> 行目には，<var>3</var> 個の整数 <var>N, M, K</var> が空白を区切りとして書かれている．これは IOI 国には <var>N</var> 個の都市と <var>M</var> 本の鉄道があり，JOI 氏には <var>K</var> 人の子供がいることを表す．</li>
+<li>続く <var>M</var> 行のうちの <var>i</var> 行目 (<var>1 \leqq i \leqq M</var>) には，整数 <var>A_{i}, B_{i},C_{i}</var> が空白を区切りとして書かれている．これは鉄道 <var>i</var> は都市 <var>A_{i}</var> と都市 <var>B_{i}</var> を双方向に結び，年間収益が <var>C_{i}</var> 円であることを表す．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>出力は <var>M</var> 行からなる．<var>i</var> 行目 (<var>1 \leqq i \leqq M</var>) には，鉄道 <var>i</var> を相続する子供の番号を出力せよ．IOI 国に寄贈される場合は <var>0</var> と出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<p>すべての入力データは以下の条件を満たす．</p>
+<ul>
+<li><var>2 \leqq N \leqq 1\,000</var>．</li>
+<li><var>1 \leqq M \leqq 300\,000</var>．</li>
+<li><var>1 \leqq K \leqq 10\,000</var>．</li>
+<li><var>1 \leqq A_{i} \leqq N</var>，<var>1 \leqq B_{i} \leqq N</var> (<var>1 \leqq i \leqq M</var>)．</li>
+<li><var>A_{i} \ne B_{i}</var> (<var>1 \leqq i \leqq M</var>)．</li>
+<li><var>1 \leqq C_{i} \leqq 1\,000\,000\,000</var> (<var>1 \leqq i \leqq M</var>)．</li>
+<li><var>C_{i} \ne C_{j}</var> (<var>1 \leqq i &lt; j \leqq M</var>)．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<h4>小課題 1 [<var>15</var> 点]</h4>
+<ul>
+<li><var>K \leqq 10</var> を満たす．</li>
+</ul>
+<h4>小課題 2 [<var>85</var> 点]</h4>
+<p>追加の制限はない．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>3 5 2
+1 2 3
+1 2 1
+2 3 4
+2 3 6
+1 3 2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>1
+0
+2
+1
+2
+</pre>
+<ul>
+<li>子供 <var>1</var> は，鉄道 <var>1, 2, 3, 4, 5</var> のうちから鉄道 <var>1, 4</var> を選んで相続する．このとき相続する鉄道の年間収益の合計が <var>3 + 6 = 9</var> 円となり，これが最大値である．</li>
+<li>子供 <var>2</var> は，残った鉄道 <var>2, 3, 5</var> のうちから鉄道 <var>3, 5</var> を選んで相続する．このとき相続する鉄道の年間収益の合計が <var>4 + 2 = 6</var> 円となり，これが最大値である．</li>
+<li>残った鉄道 <var>2</var> は IOI 国に寄贈される．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>3 6 5
+1 2 1
+1 2 2
+2 3 3
+2 3 4
+3 1 5
+3 1 6
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>4
+3
+2
+1
+2
+1
+</pre>
+<p>相続する鉄道の本数は子供によって異なっているかもしれない．<var>1</var> 本も鉄道を相続しない子供がいるかもしれない．</p></section>
+</div>
+</span>
+</span>

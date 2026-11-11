@@ -1,0 +1,387 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>IOI Center is a training center equipped with living facilities. There is a food court for large groups. In the food court, there are <var>N</var> shops in a row, numbered from <var>1</var> to <var>N</var>. In front of each shop, there is a queue for customers. Customers will make a line in each queue.</p>
+<p>Today, there are <var>M</var> groups staying in IOI Center, numbered from 1 to <var>M</var>. Members of groups will make lines in a rather strange way to enjoy chatting.</p>
+<p>In this food court, shops sometimes give free desserts to customers in their queue. JOI-kun, working in this food court, has a job to record the groups the customers who receive free desserts belong to.</p>
+<p>No customers were making lines in the queues when the shops were closed. Today, when the shops were open, <var>Q</var> events happened in the queues. The <var>i</var>-th event is one of the following.</p>
+<ul>
+<li><strong>Join</strong> For every shop whose number is between <var>L_{i}</var> and <var>R_{i}</var>, inclusive, <var>K_{i}</var> customers from the group <var>C_{i}</var> joined the queue at its end.</li>
+<li><strong>Leave</strong> For every shop whose number is between <var>L_{i}</var> and <var>R_{i}</var>, inclusive, if there were <var>K_{i}</var> or more customers in the queue, <var>K_{i}</var> customers from the beginning of the queue left. Otherwise, all the customers in the queue left.</li>
+<li><strong>Service</strong> If there were <var>B_{i}</var> or more customers in the queue of the shop <var>A_{i}</var>, the shop gave a free dessert to the <var>B_{i}</var>-th customer from the beginning of the queue. Otherwise, the staff of the shop ate the free dessert.</li>
+</ul>
+<p>Unfortunately, JOI-kun lost the record of the groups the customers who received the desserts belong to. He plans to recover the record using information of the above <var>Q</var> events.</p>
+<p>Write a program which, given the number of shops, groups, events, and the details of the events, determines for each “Service” whether a customer received a free dessert or not. If a customer received a free dessert, the program should find the index of the group the customer belongs to.</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input. Given values are all integers.</p>
+<pre><var>N</var> <var>M</var> <var>Q</var>
+(Query 1)
+<var>\vdots</var>
+(Query <var>Q</var>)
+</pre>
+<p>In (Query <var>i</var>) (<var>1 \le i \le Q</var>), space-separated integers are written. Let <var>T_{i}</var> be the first integer. Then (Query <var>i</var>)</p>
+<p>means as follows.</p>
+<ul>
+<li>If <var>T_{i} = 1</var>, four more integers <var>L_{i}, R_{i},C_{i}, K_{i}</var> are written in this order. This means the <var>i</var>-th event is “Join”, and, for every shop whose number is between <var>L_{i}</var> and <var>R_{i}</var>, inclusive, <var>K_{i}</var> customers from the group <var>C_{i}</var> joined the queue at its end.</li>
+<li>If <var>T_{i} = 2</var>, three more integers <var>L_{i}, R_{i}, K_{i}</var> are written in this order. This means the <var>i</var>-th event is “Leave”, and, for every shop whose number is between <var>L_{i}</var> and <var>R_{i}</var>, inclusive, if there were <var>K_{i}</var> or more customers in the queue, <var>K_{i}</var> customers from the beginning of the queue left. Otherwise, all the customers in the queue left.</li>
+<li>If <var>T_{i} = 3</var>, two more integers <var>A_{i}, B_{i}</var> are written in this order. This means the <var>i</var>-th event is “Service”, and, if there were <var>B_{i}</var> or more customers in the queue of the shop <var>A_{i}</var>, the shop gave a free dessert to the <var>B_{i}</var>-th customer from the beginning of the queue. Otherwise, the staff of the shop ate the free dessert.</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>Output one line to the standard output for each “Service”, i.e., for each event <var>i</var> (<var>1 \le i \le Q</var>) with <var>T_{i} = 3</var>. If a customer received a free dessert in the <var>i</var>-th event, the output should contain the number which represents the group the customer belongs to. If the staff of the shop ate the free dessert in the event <var>i</var>, the output should contain <code>0</code>.</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li><var>1 \le N \le 250\,000</var>.</li>
+<li><var>1 \le M \le 250\,000</var>.</li>
+<li><var>1 \le Q \le 250\,000</var>.</li>
+<li><var>T_{i}</var> is either 1, 2, or 3 (<var>1 \le i \le Q</var>).</li>
+<li>If <var>T_{i} = 1</var>, we have <var>1 \le L_{i} \le R_{i} \le N</var>, <var>1 \le C_{i} \le M</var>, <var>1 \le K_{i} \le 1\,000\,000\,000</var> (<var>1 \le i \le Q</var>).</li>
+<li>If <var>T_{i} = 2</var>, we have <var>1 \le L_{i} \le R_{i} \le N</var>, <var>1 \le K_{i} \le 1\,000\,000\,000</var> (<var>1 \le i \le Q</var>).</li>
+<li>If <var>T_{i} = 3</var>, we have <var>1 \le A_{i} \le N</var>, <var>1 \le B_{i} \le 1\,000\,000\,000\,000\,000 (= 10^{15})</var> (<var>1 \le i \le Q</var>).</li>
+<li><var>T_{i} = 3</var> holds for at least one <var>i</var> (<var>1 \le i \le Q</var>).</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li>(<var>2</var> points) <var>N \le 2\,000</var>, <var>Q \le 2\,000</var>. For each <var>i</var> (<var>1 \le i \le Q</var>) with <var>T_{i} = 1</var> or <var>T_{i} = 2</var>, we have <var>K_{i} = 1</var>.</li>
+<li>(<var>5</var> points) <var>N \le 2\,000</var>, <var>Q \le 2\,000</var>.</li>
+<li>(<var>7</var> points) <var>N \le 65\,000</var>, <var>Q \le 65\,000</var>. For each <var>i</var> (<var>1 \le i \le Q</var>) with <var>T_{i} = 1</var>, we have <var>R_{i} - L_{i} \le10</var> and <var>K_{i} = 1</var>.</li>
+<li>(<var>21</var> points) <var>M = 1</var>.</li>
+<li>(<var>15</var> points) <var>N \le 65\,000</var>, <var>Q \le 65\,000</var>. For each event <var>i</var> (<var>1 \le i \le Q</var>) with <var>T_{i} = 1</var> or <var>T_{i} = 2</var>, we have <var>K_{i} = 1</var>.</li>
+<li>(<var>13</var> points) <var>N \le 65\,000</var>, <var>Q \le 65\,000</var>. <var>T_{i} = 1</var> or <var>T_{i} = 3</var> (<var>1 \le i \le Q</var>)．</li>
+<li>(<var>26</var> points) <var>N \le 65\,000</var>, <var>Q \le 65\,000</var>.</li>
+<li>(<var>11</var> points) No additional constraints.</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input and Output</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>3 5 7
+1 2 3 5 2
+1 1 2 2 4
+3 2 3
+2 1 3 3
+3 1 2
+1 2 3 4 2
+3 3 2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>2
+0
+4
+</pre>
+<p>In the following, a queue is written as an integer sequence representing the groups of the customers in the queue. For example, if there are <var>3</var> customers in the queue of a shop and the groups they belong to are <var>1, 2, 2</var> from the beginning of the queue, we write it as <var>(1, 2, 2)</var>. The empty queue is written as ().</p>
+<p>In this sample input, 7 events happened.</p>
+<ol>
+<li>The 1-th event is “Join”, and 2 customers from the group 5 joined the queue of each of the shops <var>2, 3</var>. After that, the queues of the shops <var>1</var>, <var>2</var>, 3 became <var>()</var>, <var>(5, 5)</var>, <var>(5, 5)</var>.</li>
+<li>The 2-nd event is “Join”, and 4 customers from the group 2 joined the queue of each the shops <var>1</var>, <var>2</var>. After that, the queues of the shops <var>1</var>, <var>2</var>, 3 became <var>(2, 2, 2, 2)</var>, <var>(5, 5, 2, 2, 2, 2)</var>, <var>(5, 5)</var>.</li>
+<li>The 3-rd event is “Service”. There were 6 customers in the queue of the shop 2. Since it is larger than or equal to 3, the third customer in the queue received a free dessert. Since this customer belongs to the group 2, output 2.</li>
+<li>The 4-th event is “Leave”. For each of the shops <var>1, 2</var>, there were <var>3</var> customers in the queue. Thus <var>3</var> customers left the queue of each of the shops <var>1</var>, <var>2</var>. Since there were less than 3 customers in the queue of the shop <var>3</var>, all the customers in the queue left. After that, the queues of the shops <var>1, 2, 3</var> became <var>(2)</var>, <var>(2, 2, 2)</var>, <var>()</var>.</li>
+<li>The 5-th event is “Service”. There were 1 customer in the queue of the shop 1. Since it is smaller than 2, the staff of the shop 1 ate the free dessert. Hence output 0.</li>
+<li>The 6-th event is “Join”, and 2 customers from the group 4 joined the queue of each of the shops <var>2</var>, <var>3</var>. After that, the queues of the shops <var>1</var>, <var>2</var>, 3 became <var>(2)</var>, <var>(2, 2, 2, 4, 4)</var>, <var>(4, 4)</var>.</li>
+<li>The 7-th event is “Service”. There were 2 customers in the queue of the shop 3. Since it is larger than or equal to 2, the second customer received a free dessert. Since this customer belongs to the group 4, output 4.</li>
+</ol>
+<p>This sample input satisfies the constraints of Subtasks <var>2</var>, <var>7</var>, <var>8</var>.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>3 4 7
+1 1 2 1 1
+1 1 3 4 1
+2 2 3 1
+2 1 3 1
+1 1 2 2 1
+3 1 1
+3 3 2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>4
+0
+</pre>
+<p>This sample input satisfies the constraints of Subtasks <var>1</var>, <var>2</var>, <var>3</var>, <var>5</var>, <var>7</var>, <var>8</var>.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 3</h3>
+<pre>183326 218318 22
+1 106761 160918 151683 574906362
+3 68709 1
+1 29240 156379 22166 957318472
+1 14054 181502 82845 97183925
+2 112033 122908 587808357
+2 57819 160939 215041262
+3 36674 524274467
+1 35854 69866 32334 322730299
+1 1384 7230 115069 454256926
+1 44192 158235 8750 84192710
+3 54457 1077490708
+2 10592 110384 979714505
+2 44594 79244 311724477
+3 160965 97183926
+1 88748 101697 39148 373927458
+3 41166 58039001
+1 91501 137591 205480 958877326
+2 77775 169655 135756956
+1 12497 57047 60918 15666764
+1 47839 51716 144688 732270998
+3 114514 774994894
+3 48645 169986425
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 3</h3>
+<pre>0
+22166
+32334
+0
+82845
+8750
+60918
+</pre></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>合宿施設である IOI センターには，団体客専用のフードコートがある．フードコートには <var>N</var> 軒の店舗が横一列に並んでおり，<var>1</var> から <var>N</var> までの番号が付けられている．各店舗の前には客が一列に並ぶ待機列が <var>1</var> つずつある．</p>
+<p>今日 IOI センターには <var>M</var> 個の団体が宿泊しており，<var>1</var> から <var>M</var> までの番号が付けられている．それぞれの団体客は互いに会話を楽しむため，奇妙な並び方をする．</p>
+<p>このフードコートでは，待機列の客にデザートをおまけすることがある．ここでアルバイトをしている JOI 君の仕事は，どの団体の客にデザートをおまけしたかを記録することである．</p>
+<p>開店前に待機列に並んでいる人はいない．今日の開店から閉店までに，待機列で <var>Q</var> 回の出来事が起きたことが分かっている ．<var>i</var> 回目 (<var>1 \leqq i \leqq Q</var>) の出来事は以下のいずれかである．</p>
+<ul>
+<li><strong>加入</strong> 番号が <var>L_{i}</var> 以上 <var>R_{i}</var> 以下の店舗の待機列の末尾に，団体 <var>C_{i}</var> に属する客が <var>K_{i}</var> 人ずつ加わった．</li>
+<li><strong>脱退</strong> 番号が <var>L_{i}</var> 以上 <var>R_{i}</var> 以下の店舗の待機列のうち，<var>K_{i}</var> 人以上の客が並んでいるものからは先頭からちょうど <var>K_{i}</var> 人が，<var>K_{i}</var> 人未満の客が並んでいるものからは全員が，待機列を去った．</li>
+<li><strong>サービス</strong> その時点で店舗 <var>A_{i}</var> の待機列に <var>B_{i}</var> 人以上の客がいた場合，先頭から <var>B_{i}</var> 人目の客にデザートをおまけした．そうでない場合，店員がデザートを食べた．</li>
+</ul>
+<p>JOI 君はどの団体の客にデザートをおまけしたかの記録を紛失してしまったので，上に挙げた <var>Q</var> 回の出来事の情報を用いて記録を復元することにした．</p>
+<p>店舗の数，団体の数，出来事の数，および出来事の内容が与えられたとき，各「サービス」でデザートを客におまけしたかを判定し，またデザートを客におまけしていればその客が属する団体の番号を求めるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力は以下の形式で標準入力から与えられる．入力される値はすべて整数である．</p>
+<pre><var>N</var> <var>M</var> <var>Q</var>
+(Query 1)
+<var>\vdots</var>
+(Query <var>Q</var>)
+</pre>
+<p>各 (Query <var>i</var>) (<var>1 \leqq i \leqq Q</var>) にはいくつかの整数が空白区切りで書かれている．そのうち <var>1</var> 個目の整数を <var>T_{i}</var> とすると，この行の内容は以下のいずれかである．</p>
+<ul>
+<li><var>T_{i} = 1</var> のとき，この行には続いて <var>4</var> 個の整数 <var>L_{i}, R_{i},C_{i}, K_{i}</var> がこの順に書かれている．これは <var>i</var> 回目の出来事が「加入」で，番号が <var>L_{i}</var> 以上 <var>R_{i}</var> 以下の店舗の待機列の末尾に，団体 <var>C_{i}</var> に属する客が <var>K_{i}</var> 人ずつ加わったことを表す．</li>
+<li><var>T_{i} = 2</var> のとき，この行には続いて <var>3</var> 個の整数 <var>L_{i}, R_{i}, K_{i}</var> がこの順に書かれている．これは <var>i</var> 回目の出来事が「脱退」で，番号が <var>L_{i}</var> 以上 <var>R_{i}</var> 以下の店舗の待機列のうち，<var>K_{i}</var> 人以上の客が並んでいる待機列からは先頭からちょうど <var>K_{i}</var> 人が，<var>K_{i}</var> 人未満の客が並んでいる待機列からは全員が，待機列を去ったことを表す．</li>
+<li><var>T_{i} = 3</var> のとき，この行には続いて <var>2</var> 個の整数 <var>A_{i}, B_{i}</var> がこの順に書かれている．これは <var>i</var> 回目の出来事が「サービス」で，その時点で店舗 <var>A_{i}</var> の待機列に <var>B_{i}</var> 人以上の客がいた場合は先頭から <var>B_{i}</var> 人目の客にデザートをおまけし，そうでない場合は店員がデザートを食べたことを表す．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>「サービス」，つまり <var>T_{i} = 3</var> となる出来事 <var>i</var> (<var>1 \leqq i \leqq Q</var>) それぞれに対して，その時にデザートを客におまけしている場合はその客が属する団体の番号を，店員がデザートを食べた場合は <code>0</code> を，標準出力に <var>1</var> 行ずつ出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>1 \leqq N \leqq 250\,000</var>．</li>
+<li><var>1 \leqq M \leqq 250\,000</var>．</li>
+<li><var>1 \leqq Q \leqq 250\,000</var>．</li>
+<li><var>T_{i}</var> は <var>1, 2, 3</var> のいずれかである (<var>1 \leqq i \leqq Q</var>)．</li>
+<li><var>T_{i} = 1</var> のとき，<var>1 \leqq L_{i} \leqq R_{i} \leqq N</var>，<var>1 \leqq C_{i} \leqq M</var>，<var>1 \leqq K_{i} \leqq 1\,000\,000\,000</var> (<var>1 \leqq i \leqq Q</var>)．</li>
+<li><var>T_{i} = 2</var> のとき，<var>1 \leqq L_{i} \leqq R_{i} \leqq N</var>，<var>1 \leqq K_{i} \leqq 1\,000\,000\,000</var> (<var>1 \leqq i \leqq Q</var>)．</li>
+<li><var>T_{i} = 3</var> のとき，<var>1 \leqq A_{i} \leqq N</var>，<var>1 \leqq B_{i} \leqq 1\,000\,000\,000\,000\,000 (= 10^{15})</var> (<var>1 \leqq i \leqq Q</var>)．</li>
+<li><var>T_{i} = 3</var> となる <var>i</var> (<var>1 \leqq i \leqq Q</var>) が <var>1</var> つ以上存在する．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>2</var> 点) <var>N \leqq 2\,000</var>，<var>Q \leqq 2\,000</var>．<var>T_{i} = 1</var> または <var>T_{i} = 2</var> を満たす出来事 <var>i</var> (<var>1 \leqq i \leqq Q</var>) に対して <var>K_{i} = 1</var>．</li>
+<li>(<var>5</var> 点) <var>N \leqq 2\,000</var>，<var>Q \leqq 2\,000</var>．</li>
+<li>(<var>7</var> 点) <var>N \leqq 65\,000</var>，<var>Q \leqq 65\,000</var>．<var>T_{i} = 1</var> を満たす出来事 <var>i</var> (<var>1 \leqq i \leqq Q</var>) に対して <var>R_{i} - L_{i} \leqq 10</var>，<var>K_{i} = 1</var>．</li>
+<li>(<var>21</var> 点) <var>M = 1</var>．</li>
+<li>(<var>15</var> 点) <var>N \leqq 65\,000</var>，<var>Q \leqq 65\,000</var>．<var>T_{i} = 1</var> または <var>T_{i} = 2</var> を満たす出来事 <var>i</var> (<var>1 \leqq i \leqq Q</var>) に対して <var>K_{i} = 1</var>．</li>
+<li>(<var>13</var> 点) <var>N \leqq 65\,000</var>，<var>Q \leqq 65\,000</var>．<var>T_{i} = 1</var> または <var>T_{i} = 3</var> (<var>1 \leqq i \leqq Q</var>)．</li>
+<li>(<var>26</var> 点) <var>N \leqq 65\,000</var>，<var>Q \leqq 65\,000</var>．</li>
+<li>(<var>11</var> 点) 追加の制約はない．</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入出力例</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>3 5 7
+1 2 3 5 2
+1 1 2 2 4
+3 2 3
+2 1 3 3
+3 1 2
+1 2 3 4 2
+3 3 2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>2
+0
+4
+</pre>
+<p>以下の説明では各待機列を表記するとき，並んでいる客を先頭から順に所属する団体の番号に置き換えた数列で表す．例えば，ある店舗の待機列に <var>3</var> 人の客が並んでいて，客の所属する団体の番号が先頭から順に <var>1, 2, 2</var> である場合，<var>(1, 2, 2)</var> と表す. また，空の待機列は () と表す．</p>
+<p>この入力例では，次の <var>7</var> 回の出来事が順に起きた．</p>
+<ol>
+<li>出来事 <var>1</var> は「加入」であり，店舗 <var>2, 3</var> の待機列の末尾に団体 <var>5</var> の客が <var>2</var> 人ずつ加わった．この直後，店舗 <var>1, 2, 3</var> の待機列はそれぞれ <var>(), (5, 5), (5, 5)</var> となった．</li>
+<li>出来事 <var>2</var> は「加入」であり，店舗 <var>1, 2</var> の待機列の末尾に団体 <var>2</var> の客が <var>4</var> 人ずつ加わった．この直後，店舗 <var>1, 2, 3</var> の待機列はそれぞれ <var>(2, 2, 2, 2), (5, 5, 2, 2, 2, 2), (5, 5)</var> となった．</li>
+<li>出来事 <var>3</var> は「サービス」である．店舗 <var>2</var> の待機列には <var>6</var> 人の客がおり，これは <var>3</var> 人以上であるため，先頭から <var>3</var> 人目の客にデザートをおまけした．この客は団体 <var>2</var> に属するため，<var>2</var> を出力する．</li>
+<li>出来事 <var>4</var> は「脱退」であり，店舗 <var>1, 2, 3</var> の待機列のうち，並んでいる客が <var>3</var> 人以上である店舗 <var>1, 2</var> の待機列からは先頭から <var>3</var> 人が去り，並んでいる客が <var>3</var> 人未満である店舗 <var>3</var> の待機列からは全員が去った．この直後，店舗 <var>1, 2, 3</var> の待機列はそれぞれ <var>(2), (2, 2, 2), ()</var> となった．</li>
+<li>出来事 <var>5</var> は「サービス」である．店舗 <var>1</var> の待機列には <var>1</var> 人の客がおり，これは <var>2</var> 人未満であるため，店員がデザートを食べた．したがって，<var>0</var> を出力する．</li>
+<li>出来事 <var>6</var> は「加入」であり，店舗 <var>2, 3</var> の待機列の末尾に団体 <var>4</var> の客が <var>2</var> 人ずつ加わった．この直後，店舗 <var>1, 2, 3</var> の待機列はそれぞれ <var>(2), (2, 2, 2, 4, 4), (4, 4)</var> となった．</li>
+<li>出来事 <var>7</var> は「サービス」である．店舗 <var>3</var> の待機列には <var>2</var> 人の客がおり，これは <var>2</var> 人以上であるため，先頭から <var>2</var> 人目の客にデザートをおまけした．この客は団体 <var>4</var> に属するため，<var>4</var> を出力する．</li>
+</ol>
+<p>この入出力例は小課題 <var>2, 7, 8</var> の制約を満たす．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>3 4 7
+1 1 2 1 1
+1 1 3 4 1
+2 2 3 1
+2 1 3 1
+1 1 2 2 1
+3 1 1
+3 3 2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>4
+0
+</pre>
+<p>この入出力例は小課題 <var>1, 2, 3, 5, 7, 8</var> の制約を満たす．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>183326 218318 22
+1 106761 160918 151683 574906362
+3 68709 1
+1 29240 156379 22166 957318472
+1 14054 181502 82845 97183925
+2 112033 122908 587808357
+2 57819 160939 215041262
+3 36674 524274467
+1 35854 69866 32334 322730299
+1 1384 7230 115069 454256926
+1 44192 158235 8750 84192710
+3 54457 1077490708
+2 10592 110384 979714505
+2 44594 79244 311724477
+3 160965 97183926
+1 88748 101697 39148 373927458
+3 41166 58039001
+1 91501 137591 205480 958877326
+2 77775 169655 135756956
+1 12497 57047 60918 15666764
+1 47839 51716 144688 732270998
+3 114514 774994894
+3 48645 169986425
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>0
+22166
+32334
+0
+82845
+8750
+60918
+</pre></section>
+</div>
+</span>
+</span>

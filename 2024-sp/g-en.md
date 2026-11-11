@@ -2,7 +2,7 @@ Score: $100$ points
 
 ### Problem Statement
 
-JOI-kun is enthusiastic about collecting cards in a card game. Each card in the card game has two integers representing its strength and cost. To obtain a new card, JOI-kun brings $N$ cards to a card exchange. Each card is numbered from $1$ to $N$. The strength of card $i$ ($1 \leq i \leq N$) is $S_i$ and the cost of card $i$ is $V_i$.
+JOI-kun is enthusiastic about collecting cards in a card game. Each card in the card game has two integers representing its strength and cost. To obtain a new card, JOI-kun brings $N$ cards to a card exchange. Each card is numbered from $1$ to $N$. The strength of card $i$ ($1 \le i \le N$) is $S_i$ and the cost of card $i$ is $V_i$.
 
 There are two machines available in the card exchange. If you insert two cards, $A$ and $B$, into one of the machines, you will be able to receive any card $C$ satisfying the following conditions.
 
@@ -13,7 +13,7 @@ JOI-kun plans to use the machines exactly $N - 1$ times to obtain a new card. To
 
 > Choose two adjacent cards, exchange them with a new card using one of the machines, and place the new card where the chosen two cards were in the row before the operation.
 
-After performing $N - 1$ operations, JOI-kun will have only one card left. The strength and cost of this card will depend on the operations he performs. JOI-kun has a list of $M$ cards that he wants to obtain after performing $N - 1$ operations. The $j$-th card ($1 \leq j \leq M$) is represented by a pair of integers $(T_j, W_j)$, where $T_j$ is the strength and $W_j$ is the cost of the $j$-th card. Write a program that, given information about JOI-kun's cards and the list of cards he wants to obtain, determines all the cards in the list that he can obtain after performing $N - 1$ operations.
+After performing $N - 1$ operations, JOI-kun will have only one card left. The strength and cost of this card will depend on the operations he performs. JOI-kun has a list of $M$ cards that he wants to obtain after performing $N - 1$ operations. The $j$-th card ($1 \le j \le M$) is represented by a pair of integers $(T_j, W_j)$, where $T_j$ is the strength and $W_j$ is the cost of the $j$-th card. Write a program that, given information about JOI-kun's cards and the list of cards he wants to obtain, determines all the cards in the list that he can obtain after performing $N - 1$ operations.
 
 ---
 
@@ -39,19 +39,19 @@ Write one line to the standard output. The output should contain the indices of 
 
 ### Constraints
 
-- $2 \leq N \leq 200\,000$.
-- $1 \leq M \leq 200\,000$.
-- $1 \leq S_i \leq 10^9$ ($1 \leq i \leq N$).
-- $1 \leq V_i \leq 10^9$ ($1 \leq i \leq N$).
-- $1 \leq T_j \leq 10^9$ ($1 \leq j \leq M$).
-- $1 \leq W_j \leq 10^9$ ($1 \leq j \leq M$).
+- $2 \le N \le 200\,000$.
+- $1 \le M \le 200\,000$.
+- $1 \le S_i \le 10^9$ ($1 \le i \le N$).
+- $1 \le V_i \le 10^9$ ($1 \le i \le N$).
+- $1 \le T_j \le 10^9$ ($1 \le j \le M$).
+- $1 \le W_j \le 10^9$ ($1 \le j \le M$).
 - Given values are all integers.
 
 ### Subtasks
 
-1. ($11$ points) $N \leq 20$, $M \leq 10$.
-2. ($38$ points) $N \leq 2\,000$, $M \leq 10$.
-3. ($22$ points) $M \leq 10$.
+1. ($11$ points) $N \le 20$, $M \le 10$.
+2. ($38$ points) $N \le 2\,000$, $M \le 10$.
+3. ($22$ points) $M \le 10$.
 4. ($29$ points) No additional constraints.
 
 ---

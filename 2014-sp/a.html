@@ -1,0 +1,164 @@
+<span class="lang">
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>大学生の JOI 君はバスで通学している．JOI 君の自宅も JOI 君の通う大学も IOI 市内にある．IOI 市には <var>N</var> 個のバス停があり，<var>1</var> から <var>N</var> までの番号が付いている．JOI 君の自宅の最寄りはバス停 <var>1</var> で，大学の最寄りはバス停 <var>N</var> である．</p>
+<p>IOI 市内を走るバスは <var>M</var> 本あり，それぞれのバスは１日に１回，定められた時刻に定められたバス停を出発し，定められた時刻に定められたバス停に到着する．日付をまたぐような運行を行うバスは存在しない．JOI 君はバスに途中で乗ったりバスから途中で降りたりすることはできない．</p>
+<p>JOI 君は毎日，１本以上のバスを乗り継いで大学に通っている．JOI 君がバスを乗り換えるのにかかる時間は無視できるとする．すなわちある時刻にあるバス停を出発するバスに乗り換えるためには，そのバスの出発時刻またはそれ以前にそのバス停に到着していればよい．また，同じバス停を複数回利用してもよい．</p>
+<p>そのような条件のもとで，JOI 君はいつ家を出れば授業に間に合うように大学に到着できるかを知りたい．ただし大学は <var>1</var> 日の初めの授業が開始する時刻が日によって異なる．ある <var>Q</var> 日間について，その日の授業に間に合うためにはバス停 <var>N</var> にいつまでに到着すればよいかがわかっている．それぞれの日について， JOI 君は遅くともいつまでにバス停 <var>1</var> に到着すれば授業に間に合うだろうか．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p>バスの運行に関する情報が与えられる．さらにある <var>Q</var> 日間について，バス停 <var>N</var> にいつまでに到着すればよいかが与えられるので，それぞれについて，JOI 君が遅くともいつまでにバス停 <var>1</var> に到着すればよいかを求めよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>標準入力から以下の入力を読み込め．</p>
+<ul>
+<li>１行目には，２つの整数 <var>N, M</var> が空白を区切りとして書かれており，IOI 市内には <var>N</var> 個のバス停があり <var>M</var> 本のバスが走っていることを表す．</li>
+<li>続く <var>M</var> 行のうちの <var>i</var> 行目 (<var>1 \leqq i \leqq M</var>) には，<var>4</var> つの整数 <var>A_{i}, B_{i}, X_{i}, Y_{i}</var> (<var>1 \leqq A_{i} \leqq N</var>，<var>1 \leqq B_{i} \leqq N</var>，<var>A_{i} \ne B_{i}</var>) が空白を区切りとして書かれている．これは <var>i</var> 番目のバスが，バス停 <var>A_{i}</var> を時刻 <var>X_{i}</var> に出発し，バス停 <var>B_{i}</var> に時刻 <var>Y_{i}</var> に到着することを表す．ただし時刻は午前 <var>0</var> 時ちょうどからの経過時間をミリ秒単位で表したものである．</li>
+<li>次の行には整数 <var>Q</var> が書かれている．これは，バス停 <var>N</var> にいつまでに到着すればよいかが与えられる日数が <var>Q</var> 日間であることを表す．</li>
+<li>続く <var>Q</var> 行のうちの <var>j</var> 行目 (<var>1 \leqq j \leqq Q</var>) には，整数 <var>L_{j}</var> が書かれている．これは <var>j</var> 番目の日にはバス停 <var>N</var> に時刻 <var>L_{j}</var> までに到着しなければならないことを示す．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に <var>Q</var> 行出力せよ．<var>j</var> 行目 (<var>1 \leqq j \leqq Q</var>) に，<var>j</var> 番目の日に JOI 君が遅くともいつまでにバス停 <var>1</var> に到着すればよいかを表す整数を出力せよ．ただし，授業に間に合うように大学に到着することが不可能なときは <code>-1</code> を出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<p>すべての入力データは以下の条件を満たす．</p>
+<ul>
+<li><var>2 \leqq N \leqq 100\,000</var>．</li>
+<li><var>1 \leqq M \leqq 300\,000</var>．</li>
+<li><var>0 \leqq X_{i} &lt; Y_{i} &lt; 86\,400\,000 (= 24 \times 60 \times 60 \times 1000)</var> (<var>1 \leqq i \leqq M</var>)．</li>
+<li><var>1 \leqq Q \leqq 100\,000</var>．</li>
+<li><var>0 \leqq L_{j} &lt; 86\,400\,000 (= 24 \times 60 \times 60 \times 1000)</var> (<var>1 \leqq j \leqq Q</var>)．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<h4>小課題 1 [<var>20</var> 点]</h4>
+<p>以下の条件を満たす．</p>
+<ul>
+<li><var>N \leqq 2\,000</var>．</li>
+<li><var>M \leqq 2\,000</var>．</li>
+<li><var>Q = 1</var>．</li>
+</ul>
+<h4>小課題 2 [<var>15</var> 点]</h4>
+<p>以下の条件を満たす．</p>
+<ul>
+<li><var>N \leqq 2\,000</var>．</li>
+<li><var>M \leqq 2\,000</var>．</li>
+</ul>
+<h4>小課題 3 [<var>15</var> 点]</h4>
+<ul>
+<li><var>Q = 1</var> を満たす．</li>
+</ul>
+<h4>小課題 4 [<var>50</var> 点]</h4>
+<p>追加の制限はない．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>5 6
+1 2 10 25
+1 2 12 30
+2 5 26 50
+1 5 5 20
+1 4 30 40
+4 5 50 70
+4
+10
+30
+60
+100
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>-1
+5
+10
+30
+</pre>
+<p>バス停 <var>5</var> に時刻 <var>10</var> までに到着することはできない．</p>
+<p>時刻 <var>30</var> までに到着するためには，時刻 <var>5</var> に <var>4</var> 番目のバスに乗ればよい．</p>
+<p>時刻 <var>60</var> までに到着するためには次のようにすればよい．</p>
+<ul>
+<li>時刻 <var>10</var> に <var>1</var> 番目のバスに乗車．</li>
+<li>時刻 <var>25</var> にバス停 <var>2</var> に到着し，<var>1</var> ミリ秒待って <var>3</var> 番目のバスに乗車．</li>
+<li>時刻 <var>50</var> にバス停 <var>5</var> に到着．</li>
+</ul>
+<p>時刻 <var>100</var> までに到着するためには次のようにすればよい．</p>
+<ul>
+<li>時刻 <var>30</var> に <var>5</var> 番目のバスに乗車．</li>
+<li>時刻 <var>40</var> にバス停 <var>4</var> に到着し，<var>10</var> ミリ秒待って <var>6</var> 番目のバスに乗車．</li>
+<li>時刻 <var>70</var> にバス停 <var>5</var> に到着．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>3 8
+1 2 1 5
+1 3 0 1
+1 3 2 8
+2 3 2 3
+2 3 3 4
+2 3 4 5
+2 3 5 6
+2 3 6 7
+6
+3
+4
+5
+6
+7
+8
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>0
+0
+0
+1
+1
+2
+</pre></section>
+</div>
+</span>
+</span>

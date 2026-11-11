@@ -1,0 +1,384 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>In the JOI plain, people are living with dragons.</p>
+<p>The JOI plain is a wide coordinate plane with <var>X</var> and <var>Y</var> coordinates. The point with <var>X</var>-coordinate <var>x</var> and <var>Y</var>-coordinate <var>y</var> is denoted by <var>(x, y)</var>.</p>
+<p>There are <var>N</var> dragons in the JOI plain, numbered from <var>1</var> to <var>N</var>. There are <var>M</var> tribes of dragons. The tribes are numbered from 1 to <var>M</var>. The dragon <var>i</var> (<var>1 \le i \le N</var>) is always staying at the point (<var>A_{i}, B_{i}</var>) in the JOI plain, and its tribe is <var>C_{i}</var>. It is not always the case that dragons of all kinds live in the JOI plain.</p>
+<p>In the JOI plain, there are two villages of human beings at the points <var>(D_{1}, E_{1})</var>, <var>(D_{2}, E_{2})</var>. The two villages are connected by a road, which is a line segment connecting the two points of the villages.</p>
+<p>The points <var>(A_{1}, B_{1}), \ldots, (A_{N}, B_{N})</var> and the points <var>(D_{1}, E_{1}), (D_{2}, E_{2})</var> are different from each other. No three of them lie on a straight line.</p>
+<p>Sometimes, there are conflicts between tribes of dragons. If the tribe <var>a</var> (<var>1 \le a \le M</var>) gets hostile to the tribe <var>b</var> (<var>1 \le b \le M</var>, <var>a \ne b</var>), every dragon of tribe <var>a</var> launches balls of fire toward all dragons of tribe <var>b</var>. A ball of fire goes straight toward the target. After it gets to the target, it keeps going toward the same direction. Hence the track of a ball of fire is a half-line.</p>
+<p>When conflicts between tribes occur, the road must be damaged if a ball of fire from a dragon comes across it. You have a list of <var>Q</var> possible conflicts between tribes of dragons which can occur in the near future. For each possible conflict, you want to calculate the number of balls of fire coming across the road.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Task</h3>
+<p>Given the information of the dragons and the villages of human beings and a list of possible conflicts between tribes of dragons, write a program which calculates, for each conflict, the number of balls of fire coming across the road.</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input.</p>
+<ul>
+<li>The first line of input contains two space separated integers <var>N, M</var>. This means there are <var>N</var> dragons in the JOI plain, and there are <var>M</var> tribes of dragons.</li>
+<li>The <var>i</var>-th line (<var>1 \le i \le N</var>) of the following <var>N</var> lines contains three space separated integers <var>A_{i}, B_{i},C_{i}</var>. This means the dragon <var>i</var> (<var>1 \le i \le N</var>) is staying at the point (<var>A_{i}, B_{i}</var>) in the JOI plain, and its tribe is <var>C_{i}</var>.</li>
+<li>The following line contains four space separated integers <var>D_{1}, E_{1}, D_{2}, E_{2}</var>. This means there are two villages of human beings at the points <var>(D_{1}, E_{1})</var>, <var>(D_{2}, E_{2})</var> in the JOI plain.</li>
+<li>The following line contains an integer <var>Q</var>, the number of possible conflicts between tribes of dragons.</li>
+<li>The <var>j</var>-th line (<var>1 \le j \le Q</var>) of the following <var>Q</var> lines contains two space separated integers <var>F_{j},G_{j}</var>. This means, in the <var>j</var>-th possible conflict, the tribe <var>F_{j}</var> gets hostile to the tribe <var>G_{j}</var>.</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>Write <var>Q</var> lines to the standard output. The <var>j</var>-th line (<var>1 \le j \le Q</var>) of output contains the number of balls of fire coming across the road in the <var>j</var>-th conflict between tribes.</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<p>All input data satisfy the following conditions.</p>
+<ul>
+<li><var>2 \le N \le 30\,000</var>.</li>
+<li><var>2 \le M \le N</var>.</li>
+<li><var>-1\,000\,000\,000 \le A_{i} \le 1\,000\,000\,000</var> (<var>1 \le i \le N</var>).</li>
+<li><var>-1\,000\,000\,000 \le B_{i} \le 1\,000\,000\,000</var> (<var>1 \le i \le N</var>).</li>
+<li><var>1 \le C_{i} \le M</var> (<var>1 \le i \le N</var>).</li>
+<li><var>-1\,000\,000\,000 \le D_{1} \le 1\,000\,000\,000</var>.</li>
+<li><var>-1\,000\,000\,000 \le E_{1} \le 1\,000\,000\,000</var>.</li>
+<li><var>-1\,000\,000\,000 \le D_{2} \le 1\,000\,000\,000</var>.</li>
+<li><var>-1\,000\,000\,000 \le E_{2} \le 1\,000\,000\,000</var>.</li>
+<li>The <var>N+2</var> points <var>(A_1,B_1)</var>, <var>\ldots</var>, <var>(A_N,B_N)</var>, <var>(D_1,E_1)</var>, and <var>(D_2,E_2)</var> are different from each other. No three of them lie on a straight line.</li>
+<li><var>1 \le Q \le 100\,000</var>.</li>
+<li><var>1 \le F_{j} \le M</var> (<var>1 \le j \le Q</var>).</li>
+<li><var>1 \le G_{j} \le M</var> (<var>1 \le j \le Q</var>).</li>
+<li><var>F_{j} \ne G_{j}</var> (<var>1 \le j \le Q</var>).</li>
+<li><var>(F_{j},G_{j}) \ne (F_{k},G_{k})</var> (<var>1 \le j &lt; k \le Q</var>).</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtask</h3>
+<p>There are 3 subtasks. The score and additional constraints of each subtask are as follows:</p>
+<h4>Subtask 1 [<var>15</var> points]</h4>
+<ul>
+<li><var>N \le 3\,000</var>.</li>
+</ul>
+<h4>Subtask 2 [<var>45</var> points]</h4>
+<ul>
+<li><var>Q \le 100</var>.</li>
+</ul>
+<h4>Subtask 3 [<var>40</var> points]</h4>
+<p>There are no additional constraints.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input and Output</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>4 2
+0 1 1
+0 -1 1
+1 2 2
+-6 1 2
+-2 0 2 0
+2
+1 2
+2 1
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>1
+2
+</pre>
+<p>In the first conflict between tribes, the following are satisfied:</p>
+<ul>
+<li>The ball of fire launched by the dragon 1 toward the dragon 3 does not come across the road.</li>
+<li>The ball of fire launched by the dragon 1 toward the dragon 4 does not come across the road.</li>
+<li>The ball of fire launched by the dragon 2 toward the dragon 3 comes across the road.</li>
+<li>The ball of fire launched by the dragon 2 toward the dragon 4 does not come across the road.</li>
+</ul>
+<p>Hence one ball of fire comes across the road.</p>
+<p>In the second conflict between tribes, the following are satisfied:</p>
+<ul>
+<li>The ball of fire launched by the dragon 3 toward the dragon 1 comes across the road.</li>
+<li>The ball of fire launched by the dragon 3 toward the dragon 2 comes across the road.</li>
+<li>The ball of fire launched by the dragon 4 toward the dragon 1 does not come across the road.</li>
+<li>The ball of fire launched by the dragon 4 toward the dragon 2 does not come across the road.</li>
+</ul>
+<p>Hence two balls of fire come across the road.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>3 2
+-1000000000 -1 1
+-999999998 -1 1
+0 0 2
+999999997 1 999999999 1
+1
+1 2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>1
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 3</h3>
+<pre>6 3
+2 -1 1
+1 0 1
+0 3 2
+2 4 2
+5 4 3
+3 9 3
+0 0 3 3
+6
+1 2
+1 3
+2 1
+2 3
+3 1
+3 2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 3</h3>
+<pre>4
+2
+4
+0
+2
+1
+</pre></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>JOI 平原では，人々はドラゴンたちと共に生きている． JOI 平原は広大な座標平面であり，直交する X 軸と Y 軸が設定されている．X 座標が <var>x</var>，Y 座標が <var>y</var> の点を <var>(x, y)</var> で表す．</p>
+<p>JOI 平原には <var>N</var> 匹のドラゴンが生息しており，<var>1</var> から <var>N</var> の番号が付けられている．また，ドラゴンには <var>M</var> 種の種族があり，<var>1</var> から <var>M</var> の番号が付けられている．ドラゴン <var>i</var> (<var>1 \leqq i \leqq N</var>) は常に JOI 平原の点 <var>(A_{i}, B_{i})</var> におり，その種族は <var>C_{i}</var> である．JOI 平原には，すべての種族のドラゴンが生息しているとは限らない．</p>
+<p>JOI 平原には人間の住む村が <var>2</var> つあり，それぞれ JOI 平原の点 <var>(D_{1}, E_{1})</var> および点 <var>(D_{2}, E_{2})</var> に位置する ．<var>2</var> つの村は道で結ばれており，その道は村が存在する <var>2</var> 点を結ぶ線分である．</p>
+<p>点 <var>(A_{1}, B_{1}), \ldots, (A_{N}, B_{N})</var> および点 <var>(D_{1}, E_{1}), (D_{2}, E_{2})</var> は，互いに異なり，これらの内のどの <var>3</var> 点も同一直線上にない．</p>
+<p>ドラゴンたちはしばしば種族間で対立する．種族 <var>a</var> (<var>1 \leqq a \leqq M</var>) が種族 <var>b</var> (<var>1 \leqq b \leqq M</var>，<var>a \ne b</var>) に対して敵意を抱くと，種族 <var>a</var> に属するそれぞれのドラゴンが，種族 <var>b</var> に属するすべてのドラゴンに向けて火の玉を吐く．火の玉は標的のドラゴンに向かって直進し，標的に到達したあとも同じ方向に飛び去っていく．すなわち，火の玉の辿る経路は半直線である．</p>
+<p>種族間対立の際に，ドラゴンの吐いた火の玉が道を横切れば，道はダメージを受けるだろう．あなたは近い将来に起こりうるドラゴンたちの種族間対立として，考えられる <var>Q</var> 個の可能性をリストアップした．想定される種族間対立のそれぞれについて，道を横切る火の玉の個数を求めたい．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p>ドラゴンたちおよび人間の村の情報と，ドラゴンたちの種族間対立の可能性のリストが与えられるとき，それぞれの種族間対立について，道を横切る火の玉の個数を求めるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>標準入力から以下のデータを読み込め．</p>
+<ul>
+<li><var>1</var> 行目には，<var>2</var> 個の整数 <var>N, M</var> が空白を区切りとして書かれている．これは，JOI 平原にはドラゴンが <var>N</var> 匹おり，<var>M</var> 種の種族に分かれていることを表す．</li>
+<li>続く <var>N</var> 行のうちの <var>i</var> 行目 (<var>1 \leqq i \leqq N</var>) には，<var>3</var> 個の整数 <var>A_{i}, B_{i},C_{i}</var> が空白を区切りとして書かれている．これは，ドラゴン <var>i</var> が JOI 平原の点 <var>(A_{i}, B_{i})</var> におり，種族が <var>C_{i}</var> であることを表す．</li>
+<li>次の行には，<var>4</var> 個の整数 <var>D_{1}, E_{1}, D_{2}, E_{2}</var> が空白を区切りとして書かれている．これは，人間の住む村が JOI 平原の点 <var>(D_{1}, E_{1})</var> および点 <var>(D_{2}, E_{2})</var> に位置していることを表す．</li>
+<li>次の行には，整数 <var>Q</var> が書かれている．これは，想定される種族間対立が <var>Q</var> 個あることを表す．</li>
+<li>続く <var>Q</var> 行のうちの <var>j</var> 行目 (<var>1 \leqq j \leqq Q</var>) には，<var>2</var> 個の整数 <var>F_{j},G_{j}</var> が空白を区切りとして書かれている．これは，想定される種族間対立の <var>j</var> 個目において，種族 <var>F_{j}</var> が種族 <var>G_{j}</var> に対して敵意を抱くことを表す．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>出力は <var>Q</var> 行からなる．標準出力の <var>j</var> 行目 (<var>1 \leqq j \leqq Q</var>) には，<var>j</var> 個目の種族間対立において道を横切る火の玉の個数を出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制限</h3>
+<p>すべての入力データは以下の条件を満たす．</p>
+<ul>
+<li><var>2 \leqq N \leqq 30\,000</var>．</li>
+<li><var>2 \leqq M \leqq N</var>．</li>
+<li><var>-1\,000\,000\,000 \leqq A_{i} \leqq 1\,000\,000\,000</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>-1\,000\,000\,000 \leqq B_{i} \leqq 1\,000\,000\,000</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>1 \leqq C_{i} \leqq M</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>-1\,000\,000\,000 \leqq D_{1} \leqq 1\,000\,000\,000</var>．</li>
+<li><var>-1\,000\,000\,000 \leqq E_{1} \leqq 1\,000\,000\,000</var>．</li>
+<li><var>-1\,000\,000\,000 \leqq D_{2} \leqq 1\,000\,000\,000</var>．</li>
+<li><var>-1\,000\,000\,000 \leqq E_{2} \leqq 1\,000\,000\,000</var>．</li>
+<li><var>N + 2</var> 個の点 <var>(A_{1}, B_{1})</var>, <var>\ldots</var>, <var>(A_{N}, B_{N})</var>, <var>(D_{1}, E_{1})</var>, <var>(D_{2}, E_{2})</var> は互いに異なり，どの <var>3</var> 点も同一直線上にない．</li>
+<li><var>1 \leqq Q \leqq 100\,000</var>．</li>
+<li><var>1 \leqq F_{j} \leqq M</var> (<var>1 \leqq j \leqq Q</var>)．</li>
+<li><var>1 \leqq G_{j} \leqq M</var> (<var>1 \leqq j \leqq Q</var>)．</li>
+<li><var>F_{j} \ne G_{j}</var> (<var>1 \leqq j \leqq Q</var>)．</li>
+<li><var>(F_{j},G_{j}) \ne (F_{k},G_{k})</var> (<var>1 \leqq j &lt; k \leqq Q</var>)．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<p>この課題では小課題は全部で <var>3</var> 個ある．各小課題の配点および追加の制限は以下の通りである．</p>
+<h4>小課題 1 [<var>15</var> 点]</h4>
+<ul>
+<li><var>N \leqq 3\,000</var>．</li>
+</ul>
+<h4>小課題 2 [<var>45</var> 点]</h4>
+<ul>
+<li><var>Q \leqq 100</var>．</li>
+</ul>
+<h4>小課題 3 [<var>40</var> 点]</h4>
+<p>追加の制限はない．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入出力例</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>4 2
+0 1 1
+0 -1 1
+1 2 2
+-6 1 2
+-2 0 2 0
+2
+1 2
+2 1
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>1
+2
+</pre>
+<p><var>1</var> 個目の種族間対立では，</p>
+<ul>
+<li>ドラゴン <var>1</var> がドラゴン <var>3</var> に向けて吐いた火の玉は道を横切らない．</li>
+<li>ドラゴン <var>1</var> がドラゴン <var>4</var> に向けて吐いた火の玉は道を横切らない．</li>
+<li>ドラゴン <var>2</var> がドラゴン <var>3</var> に向けて吐いた火の玉は道を横切る．</li>
+<li>ドラゴン <var>2</var> がドラゴン <var>4</var> に向けて吐いた火の玉は道を横切らない．</li>
+</ul>
+<p>よって道を横切る火の玉は <var>1</var> 個である． <var>2</var> 個目の種族間対立では，</p>
+<ul>
+<li>ドラゴン <var>3</var> がドラゴン <var>1</var> に向けて吐いた火の玉は道を横切る．</li>
+<li>ドラゴン <var>3</var> がドラゴン <var>2</var> に向けて吐いた火の玉は道を横切る．</li>
+<li>ドラゴン <var>4</var> がドラゴン <var>1</var> に向けて吐いた火の玉は道を横切らない．</li>
+<li>ドラゴン <var>4</var> がドラゴン <var>2</var> に向けて吐いた火の玉は道を横切らない．</li>
+</ul>
+<p>よって道を横切る火の玉は <var>2</var> 個である．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>3 2
+-1000000000 -1 1
+-999999998 -1 1
+0 0 2
+999999997 1 999999999 1
+1
+1 2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>1
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>6 3
+2 -1 1
+1 0 1
+0 3 2
+2 4 2
+5 4 3
+3 9 3
+0 0 3 3
+6
+1 2
+1 3
+2 1
+2 3
+3 1
+3 2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>4
+2
+4
+0
+2
+1
+</pre></section>
+</div>
+</span>
+</span>

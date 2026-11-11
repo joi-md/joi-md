@@ -1,0 +1,80 @@
+<span class="lang">
+<span class="lang-ja">
+<blockquote>
+<p><strong>AtCoder での提出方法</strong></p>
+<p>標準入力から入力を読み込み，標準出力へ出力すること．</p>
+</blockquote>
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>クロアチアの首都ザグレブでは，IOI2007 の開催にあわせて，郊外に大型のショッピングモールを建設することにした．ショッピングモールの建設候補地は，下図のように横 <var>m</var> ブロック，縦 <var>n</var> ブロックの格子状に区切られている．</p>
+<div style="text-align: center;">
+<img src="https://img.atcoder.jp/joisc2007/2007-mall-grid.png" style="max-width: 100%; width: 234px;" />
+<p>建設候補地の例（m = 10，n = 7）</p>
+</div>
+
+<p>ザグレブ市では，建設候補地の中から横 <var>a</var> ブロック，縦 <var>b</var> ブロックの長方形の領域を選び，そこにショッピングモールを建設することにした．しかし，建設候補地内のいくつかのブロックには，すでに人が住んでおり，その土地にはショッピングモールを建設することができない．もし，横 <var>a</var> ブロック，縦 <var>b</var> ブロックの長方形領域の中に人が住んでいるブロックが無ければ，その長方形領域内のブロックを全て買収することにより，ショッピングモールを建設することができる．</p>
+<p>ザグレブ市の財政上の理由から，用地買収にかかる費用はできるだけ少なくする必要がある．予算案を策定するため，ショッピングモール建設のための用地買収に必要な費用を早急に計算する必要がある．そこで，ザグレブ市では，そのためのプログラムの作成を，IOI2007 の代表候補者であるあなたに依頼することにした．</p>
+<p>入力として，建設候補地の大きさと，ショッピングモールの大きさが与えられ，また，各ブロックごとに，そこに人が住んでいるかどうかの情報と，もし人が住んでいなければそのブロックを買収するのに必要な費用が与えられたとき，ショッピングモール建設のための用地買収に必要な費用の最小値を求めるプログラムを作れ．</p>
+<p>以下では，建設候補地の左から <var>i</var> 列目，上から <var>j</var> 行目のブロックを <var>(i, j)</var> で表す．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力の <var>1</var> 行目には，<var>2</var> つの整数 <var>m, n</var> (<var>1 \leqq m, n \leqq 1000</var>) が空白を区切りとして書かれている．これは，建設候補地の大きさが横 <var>m</var> ブロック，縦 <var>n</var> ブロックであることを表す．</p>
+<p><var>2</var> 行目には，<var>2</var> つの整数 <var>a, b</var> (<var>1 \leqq a, b \leqq 1000</var>) が空白を区切りとして書かれている．これは，ショッピングモールの大きさが横 <var>a</var> ブロック，縦 <var>b</var> ブロックであることを表す．</p>
+<p>続く <var>n</var> 行 (<var>3</var> 行目〜<var>n + 2</var> 行目) には，建設候補地内の各ブロックの情報が書かれている．<var>j + 2</var> 行目 (<var>1 \leqq j \leqq n</var>) は上から <var>j</var> 行目のブロックの情報を表しており，<var>m</var> 個の整数 <var>c_{1,j}, \ldots, c_{m,j}</var> (<var>-1 \leqq c_{i,j} \leqq 100</var>) が空白を区切りとして書かれている．<var>c_{i,j} = -1</var> のときは，ブロック <var>(i, j)</var> に人が住んでいることを表す．そうでないときは，ブロック <var>(i, j)</var> の買収にかかる費用が <var>c_{i,j}</var> であることを表す．</p>
+<p>なお，採点に用いる入力データに対しては，ショッピングモールの建設は常に可能である．</p>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>出力は，標準出力に行うこと．ショッピングモール建設のための用地買収に必要な費用の最小値を出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>7 6
+3 2
+26 29 84 15 -1 1 71
+45 14 38 91 62 77 35
+68 -1 -1 90 63 56 70
+31 2 4 74 72 41 90
+100 26 21 -1 44 72 60
+71 4 40 93 48 -1 50
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>184
+</pre>
+<p>この入出力例におけるショッピングモール建設地を図示すると，以下の通りである．×のブロックは，すでに人が住んでいることを意味する．</p>
+<div style="text-align: center;">
+<img alt="2007-mall-example.png" src="https://img.atcoder.jp/joisc2007/2007-mall-example.png" style="max-width: 100%; width: 282px;" />
+</div>
+
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>注意</h3>
+<p>入力データの大きさに注意すること．特に，C++ の iostream は遅いので，必要に応じて fscanf 等を用いるとよいだろう．</p></section>
+</div>
+</span>
+</span>

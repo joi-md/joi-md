@@ -1,0 +1,617 @@
+<span class="lang">
+<span class="lang-en">
+<blockquote>
+<p><strong>Submission on AtCoder</strong></p>
+<p>Use C++, include <code>City_lib.h</code>, and implement <code>Encode</code>, <code>Answer</code>, and <code>InitDevice</code> in a single source file.</p>
+<p><a href="https://img.atcoder.jp/joisc2017/city-dist-dcfd0fa6fd.zip">Distributed files</a></p>
+</blockquote>
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>There are many cities in the Kingdom of JOI. The road network satisfies the following conditions:</p>
+<ul>
+<li><strong>(Condition 1)</strong> The cities are numbered from 0 to <var>N - 1</var>. Here, <var>N</var> is the number of cities in the Kingdom of JOI.</li>
+<li><strong>(Condition 2)</strong> The cities are connected by <var>N - 1</var> roads. We can pass each road in both directions. We can travel from every city to any other cities if we pass through several roads.</li>
+<li><strong>(Condition 3)</strong> We can travel from the city 0 to every city by passing at most 18 roads.</li>
+</ul>
+<p>Every day, in the Kingdom of JOI, many people depart from the city <var>0</var> to other cities. Because many people have two destinations, they sometimes ask the following queries: for two different cities <var>X, Y</var>, which one of (0), (1), (2) is satisfied?</p>
+<ul>
+<li><strong>(0)</strong> We necessarily pass the city <var>Y</var> when we travel from the city 0 to the city <var>X</var>.</li>
+<li><strong>(1)</strong> We necessarily pass the city <var>X</var> when we travel from the city 0 to the city <var>Y</var>.</li>
+<li><strong>(2)</strong> Neither (0) nor (1).</li>
+</ul>
+<p>Note that, in the above situation, exactly one of (0), (1), (2) is satisfied. When <var>X = 0</var>, we consider (1) is satisfied regardless of the value of <var>Y</var>. Similarly, when <var>Y = 0</var>, we consider (0) is satisfied regardless of the value of <var>X</var>.</p>
+<p>It is known that, just like the road network in the Kingdom of JOI, the above Conditions 1–3 are satisfied in other countries as well. In the Kingdom of JOI, people plan to develop the following two machines so that they can be used also in other countries.</p>
+<ul>
+<li><strong>(Machine 1)</strong> Given the number of cities <var>N</var> and information of the road network, this machine assigns a code to each city. A code is an integer between 0 and <var>2^{60} - 1</var>, inclusive.</li>
+<li><strong>(Machine <var>2</var>)</strong> Given the codes of two different cities <var>X, Y</var> assigned by Machine <var>1</var>, this machine answers the query.</li>
+</ul>
+<p>If large integers are assigned as codes, it is difficult to treat them. We want to develop machines so that smaller values are assigned as codes.</p>
+<p>Note that, when Machine <var>2</var> is used, neither the number of cities <var>N</var> nor information of the road network is directly given to the machine.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Task</h3>
+<p>In order to develop two machines as above, write the following two programs:</p>
+<ul>
+<li>Given the number of cities <var>N</var> in the Kingdom of JOI and information of the road network, the first program assigns a code to each city.</li>
+<li>Given the codes of two different cities assigned by the first program, the second program answers the query for these cities.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Implementation Details</h3>
+<p>You need to submit two files written by the same programming language. The first file is either <code>Encoder.c</code> or <code>Encoder.cpp</code>. This file implements Machine 1. It should implement the following function. The program should include <code>Encoder.h</code>.</p>
+<ul>
+<li>
+<p><code>void Encode(int N, int A[], int B[])</code>
+    For each test case, this function is called once.</p>
+<ul>
+<li>The parameter <code>N</code> is the number of cities <var>N</var>.</li>
+<li>The parameters <code>A[]</code>, <code>B[]</code> are integer sequences of length <var>N - 1</var> describing the road network. The elements <code>A[i]</code>, <code>B[i]</code> (<var>0 \le \texttt{i} \le N - 2</var>) mean there is a road connecting the city <code>A[i]</code> and the city <code>B[i]</code> directly.</li>
+</ul>
+<p>Your program should call the following function.</p>
+<ul>
+<li><code>void Code(int city, long long code)</code>
+    This function assigns codes to the cities.<ul>
+<li>The parameter <code>city</code> is the city to which a code is assigned. The parameter <code>city</code> should be an integer between <var>0</var> and <var>N - 1</var>, inclusive. If the call to this function has parameters outside this range, your program is considered as Wrong Answer[1]. It should not be called twice with the same parameters. If it is called twice with the same parameters, your program is considered as Wrong Answer[2].</li>
+<li>The parameter <code>code</code> is the code assigned to the city whose number is <code>city</code>. The parameter <code>code</code> should be an integer between 0 and <var>2^{60} - 1</var>, inclusive. If the call to this function has parameters outside this range, your program is considered as Wrong Answer[3].</li>
+</ul>
+</li>
+</ul>
+<p>Your program should call the function <code>Code</code> exactly <var>N</var> times. If the number of calls to <code>Code</code> is not <var>N</var> when the function <code>Encode</code> is terminated, your program is considered as Wrong Answer[4].</p>
+<p>If the call to the function <code>Encode</code> is considered Wrong Answer, your program is terminated immediately.</p>
+</li>
+</ul>
+<p>The second file is either <code>Device.c</code> or <code>Device.cpp</code>. This file implements Machine 2. It should implement the following function. The program should include <code>Device.h</code>.</p>
+<ul>
+<li><code>void InitDevice()</code>
+    This function initializes Machine 2. The function <code>InitDevice</code> is called once before calls to the following function <code>Answer</code>.</li>
+<li>
+<p><code>int Answer(long long S, long long T)</code>
+    This function answers each query. For each query, the function <code>Answer</code> is called once.</p>
+<ul>
+<li>The parameters <code>S</code>, <code>T</code> are the codes assigned to two different cities <var>X, Y</var> by the function <code>Encode</code>.</li>
+<li>To answer the query, the return value of the function <code>Answer</code> should satisfy the following conditions:<ul>
+<li>The return value should be <code>0</code> if we necessarily pass the city <var>Y</var> when we travel from the city 0 to the city <var>X</var>.</li>
+<li>The return value should be <code>1</code> if we necessarily pass the city <var>X</var> when we travel from the city 0 to the city <var>Y</var>.</li>
+<li>Otherwise, the return value should be <code>2</code>.</li>
+</ul>
+</li>
+</ul>
+<p>Hence the return value of the function <code>Answer</code> should be an integer between <var>0</var> and <var>2</var>, inclusive. If the return value is outside this range, your program is considered as Wrong Answer[5]. If the return value is inside this range but it does not satisfy the above conditions, your program is considered as Wrong Answer[6].</p>
+</li>
+</ul>
+<h4>Grading Procedure</h4>
+<p>The grading is done in the following way. If your program is considered as Wrong Answer, it is terminated immediately.</p>
+<p>(1) The function <code>Encode</code> is called once.</p>
+<p>(2) The function <code>InitDevice</code> is called once.</p>
+<p>(3) For each test case, there are <var>Q</var> queries given to Machine <var>2</var>. For the <var>j</var>-th query (<var>1 \le j \le Q</var>), the function <code>Answer</code> is called whose parameter <code>S</code> is <var>S_{j}</var> and parameter <code>T</code> is <var>T_{j}</var>, where <var>S_{j}, T_{j}</var> are the codes assigned to the cities <var>X_{j}, Y_{j}</var> by the function <code>Encode</code>, respectively.</p>
+<p>(4) Your program is considered as correct.</p>
+<h4>Important Notices</h4>
+<ul>
+<li>Running time and memory usage are calculated for (1), (2), (3) of Grading Procedure. Note that, in the procedure (3), the function <code>Answer</code> is called <var>Q</var> times in total.</li>
+<li>Your program must not be considered as Wrong Answer in the function call to <code>Encode</code> in the procedure (1), <code>InitDevice</code> in the procedure (2), or <code>Answer</code> in the procedure (3). Your program must be executed without runtime error.</li>
+<li>Your program can implement other functions for internal use, or use global variables. Submitted programs will be compiled with the grader, and become a single executable file. All global variables and internal functions should be declared <code>static</code> to avoid confliction with other files. The programs of Machine 1 and Machine <var>2</var> will be executed as two distinct processes when they are graded. They can not share global variables.</li>
+<li>Your program should not use standard input and standard output. Your program should not communicate with other files by any methods.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Compilation and Test Run</h3>
+<p>You can download an archive file from the contest webpage which contains a sample grader to test your program. The archive file also contains a sample source file of your program.</p>
+<p>A sample grader consists of one source file which is either <code>grader.c</code> or <code>grader.cpp</code>. For example, if your programs are <code>Encoder.c</code> and <code>Device.c</code>, or <code>Encoder.cpp</code> and <code>Device.cpp</code>, you run the following commands to compile your programs.</p>
+<ul>
+<li>C</li>
+</ul>
+<pre>gcc -std=c11 -O2 -o grader grader.c Encoder.c Device.c -lm
+</pre>
+<ul>
+<li>C++</li>
+</ul>
+<pre>g++ -std=c++14 -O2 -o grader grader.cpp Encoder.cpp Device.cpp
+</pre>
+<p>When the compilation succeeds, the executable file <code>grader</code> is generated. Note that the actual grader is different from the sample grader. The sample grader will be executed as a single process, which will read input data from the standard input and write the results to the standard output.</p>
+<h4>Input for the Sample Grader</h4>
+<p>The sample grader reads the following data from the standard input.</p>
+<ul>
+<li>The first line contains two space separated integers <var>N, Q</var>. This means there are <var>N</var> cities, and <var>Q</var> queries are given.</li>
+<li>The (<var>i + 1</var>)-th line (<var>0 \le i \le N - 2</var>) of the following <var>N - 1</var> lines contains two space separated integers <var>A_{i}, B_{i}</var>. This means there is a road connecting the city <var>A_{i}</var> and the city <var>B_{i}</var> directly.</li>
+<li>The <var>j</var>-th line (<var>1 \le j \le Q</var>) of the following <var>Q</var> lines contains three space separated integers <var>X_{j}, Y_{j}, E_{j}</var>. This means <var>X = X_{j}</var> and <var>Y = Y_{j}</var> in the <var>j</var>-th query, and your program will be considered Wrong Answer by the sample grader if the answer to this query is different from <var>E_{j}</var>.</li>
+</ul>
+<h4>Output of the Sample Grader</h4>
+<p>When the program terminates successfully, the sample grader writes the following information to the standard output. (The quotation mark is not written actually.)</p>
+<ul>
+<li>If your program is considered as correct, the sample grader writes the maximum of the codes assigned to the cities in the following form “<code>Accepted : max_code=123456</code>.”</li>
+<li>If your program is considered as Wrong Answer, the sample grader writes its type in the following form “Wrong Answer [1].”</li>
+</ul>
+<p>If your program is considered as several types of Wrong Answer, the sample grader reports only one of them.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<p>All input data satisfy the following conditions. For the meaning of <var>N, Q, A_{i}, B_{i}, X_{j}, Y_{j}</var>, see Input for the Sample Grader.</p>
+<ul>
+<li><var>2 \le N \le 250\,000</var>.</li>
+<li><var>1 \le Q \le 250\,000</var>.</li>
+<li><var>0 \le A_{i} \le N - 1</var> (<var>0 \le i \le N - 2</var>).</li>
+<li><var>0 \le B_{i} \le N - 1</var> (<var>0 \le i \le N - 2</var>).</li>
+<li><var>A_{i} \ne B_{i}</var> (<var>0 \le i \le N - 2</var>).</li>
+<li>We can travel from the city 0 to every city by passing at most 18 roads.</li>
+<li><var>0 \le X_{j} \le N - 1</var> (<var>1 \le j \le Q</var>).</li>
+<li><var>0 \le Y_{j} \le N - 1</var> (<var>1 \le j \le Q</var>).</li>
+<li><var>X_{j} \ne Y_{j}</var> (<var>1 \le j \le Q</var>).</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtask</h3>
+<p>There are 2 subtasks. The score and additional constraints of each subtask are as follows:</p>
+<h4>Subtask 1 [<var>8</var> points]</h4>
+<ul>
+<li><var>N \le 10</var>.</li>
+</ul>
+<h4>Subtask 2 [<var>92</var> points]</h4>
+<p>There are no additional constraints. In this subtask, the score is calculated as follows:</p>
+<ul>
+<li>Let <var>L</var> be the maximum of the codes assigned to the cities in all test cases for this subtask.</li>
+<li>The score for this subtask is:<ul>
+<li><var>0</var> point if <var>2^{38}\le L</var>.</li>
+<li><var>10</var> points if <var>2^{36}\le L\le2^{38} - 1</var>.</li>
+<li><var>14</var> points if <var>2^{35}\le L\le2^{36} - 1</var>.</li>
+<li><var>22</var> points if <var>2^{34}\le L\le2^{35} - 1</var>.</li>
+<li><var>\lfloor372 - 10\log_2(L+1)\rfloor</var> points if <var>2^{28}\le L\le2^{34} - 1</var>. Here, <var>\lfloor x\rfloor</var> is the largest integer not exceeding <var>x</var>.</li>
+<li><var>92</var> points if <var>L\le2^{28} - 1</var>.</li>
+</ul>
+</li>
+</ul>
+<p>Note that, if <var>2^{38} \le L</var>, the result for this subtask may be displayed as “Accepted: <var>0</var> points” or “Wrong Answer” in the contest system,</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Communication</h3>
+<p>Here is a sample input for sample grader and corresponding function calls.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input</h3>
+<pre>6 5
+4 1
+0 3
+4 5
+3 2
+3 4
+2 4 2
+1 0 0
+5 1 2
+5 3 0
+4 1 1
+</pre>
+<h4>Sample Calls</h4>
+<div class="joisc2017-city-en-table">
+<table>
+<thead>
+<tr>
+<th>Machine 1</th>
+<th>Machine 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Encode(...)</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Code(0,0)</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Code(2,4)</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Code(4,16)</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Code(1,1)</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Code(3,9)</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Code(5,25)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>InitDevice()</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Answer(4,16)</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Answer(1,0)</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Answer(25,1)</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Answer(25,9)</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Answer(16,1)</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The function <code>Encode(...)</code> is called with the following parameters:</p>
+<div class="joisc2017-city-en-table">
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th><code>Encode(...)</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>N</code></td>
+<td><var>6</var></td>
+</tr>
+<tr>
+<td><code>A</code></td>
+<td><var>\{ 4, 0, 4, 3, 3\}</var></td>
+</tr>
+<tr>
+<td><code>B</code></td>
+<td><var>\{ 1, 3, 5, 2, 4\}</var></td>
+</tr>
+</tbody>
+</table>
+</div>
+<style>
+.joisc2017-city-en-table { position:relative; max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisc2017-city-en-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisc2017-city-en-table th,.joisc2017-city-en-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisc2017-city-en-table th { background:#f5f5f5; }
+.joisc2017-city-en-table code { white-space:nowrap; }
+</style>
+
+<style>
+.joisc2017-city-en-table .katex {position:relative;}
+</style></section>
+</div>
+</span>
+<span class="lang-ja">
+<blockquote>
+<p><strong>AtCoder での提出方法</strong></p>
+<p>C++ を使用し，<code>City_lib.h</code> をインクルードして，<code>Encode</code>，<code>Answer</code>，<code>InitDevice</code> を 1 つのファイルに実装して提出してください．</p>
+<p><a href="https://img.atcoder.jp/joisc2017/city-dist-dcfd0fa6fd.zip">配布ファイル</a></p>
+</blockquote>
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>JOI 王国にはいくつかの都市があり，都市を結ぶ道路網は以下の条件を満たす．</p>
+<ul>
+<li><strong>(条件 1)</strong> 都市には <var>0, 1, \ldots, N - 1</var> の番号が付けられている．ここで，<var>N</var> は JOI 国の都市の個数である．</li>
+<li><strong>(条件 2)</strong> 都市は <var>N - 1</var> 本の双方向に行き来可能な道路で結ばれており，すべての <var>2</var> つの異なる都市の間をいくつかの道路を通って行き来可能である．</li>
+<li><strong>(条件 3)</strong> 都市 <var>0</var> から他のどの都市へも，<var>18</var> 本以下の道路を通ることで行くことができる．</li>
+</ul>
+<p>JOI 王国では，都市 <var>0</var> からは毎日多くの国民が出発し，他の都市へ向かう．多くの国民は，<var>2</var> つの異なる都市を目的地としているため，次のような質問を行うことがある: <var>2</var> つの異なる都市 <var>X, Y</var> に対し，以下の (0), (1), (2) のどれが成り立つか?</p>
+<ul>
+<li><strong>(0)</strong> 都市 <var>0</var> から都市 <var>X</var> へ向かう途中に，都市 <var>Y</var> を必ず経由する．</li>
+<li><strong>(1)</strong> 都市 <var>0</var> から都市 <var>Y</var> へ向かう途中に，都市 <var>X</var> を必ず経由する．</li>
+<li><strong>(2)</strong> (0), (1) のいずれでもない．</li>
+</ul>
+<p>上の条件のもとで，(0), (1), (2) のうち，ちょうど一つが成り立つ．ただし，<var>X = 0</var> のときは，<var>Y</var> の値によらず (1) が成り立つとする．また，<var>Y = 0</var> のときは，<var>X</var> の値によらず (0) が成り立つとする．</p>
+<p>他国においても，JOI 王国の道路網と同様に，(条件 1)～(条件 3) を満たす道路網が存在することが分かっている．そこで，他国でも使えるように，JOI 王国では，次のような <var>2</var> つの装置を開発することになった．</p>
+<ul>
+<li><strong>(装置 1)</strong> 都市の個数 <var>N</var> と道路網の情報を元に，それぞれの都市に対して符号を割り当てる．符号は，<var>0</var> 以上 <var>2^{60} - 1</var> 以下の整数値である．</li>
+<li><strong>(装置 2)</strong> (装置 1) によって <var>2</var> つの異なる都市 <var>X, Y</var> に割り当てられた符号を入力したとき，これらの都市に対して上記の質問に答える．</li>
+</ul>
+<p>符号として大きな整数値が与えられると管理が大変であるため，できるだけ小さな符号を割り当てるような装置を開発したい．</p>
+<p>(装置 2) を利用する際には，都市の個数 <var>N</var> や道路網の情報は，入力として直接与えられないことに注意せよ．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p>条件を満たす <var>2</var> つの装置を開発するために，次の <var>2</var> つのプログラムを作成せよ：</p>
+<ul>
+<li><var>1</var> つ目のプログラムは，JOI 王国の都市の個数 <var>N</var> と道路網の情報を受け取り，各都市に符号を割り当てる．</li>
+<li><var>2</var> つ目のプログラムは，<var>1</var> つ目のプログラムによって割り当てられた <var>2</var> つの異なる都市の符号を受け取り，これらの都市に対して質問に答える．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>実装の詳細</h3>
+<p>あなたは同じプログラミング言語で <var>2</var> つのファイルを提出しなければならない． <var>1</var> つ目のファイルは <code>Encoder.c</code> または <code>Encoder.cpp</code> という名前である．このファイルは装置 <var>1</var> を実装したファイルであり，以下のルーチンを実装していなければならない．プログラムは <code>Encoder.h</code> をインクルードすること．</p>
+<ul>
+<li>
+<p><code>void Encode(int N, int A[], int B[])</code>
+    この関数は各テストケースにおいて <var>1</var> 回だけ呼び出される．</p>
+<ul>
+<li>引数 <code>N</code> は都市の個数 <var>N</var> を表す．</li>
+<li>引数 <code>A[]</code>, <code>B[]</code> は長さ <var>N - 1</var> の数列であり，道路網の情報を表す．要素 <code>A[i]</code>, <code>B[i]</code> (<var>0 \leqq \texttt{i} \leqq N - 2</var>) は，都市 <code>A[i]</code> と都市 <code>B[i]</code> の間が道路で直接結ばれていることを表す．</li>
+</ul>
+<p>あなたのプログラムは以下の関数を呼び出さなければならない．</p>
+<ul>
+<li><code>void Code(int city, long long code)</code>
+    この関数は，都市に符号を割り当てる操作を表す．<ul>
+<li>引数 <code>city</code> は符号を割り当てる都市を表す．<code>city</code> は <var>0</var> 以上 <var>N - 1</var> 以下の整数値でなければならない．この範囲外の値を指定して呼び出した場合，不正解 <var>[1]</var> と判定される．また，同じ引数 <code>city</code> で <var>2</var> 回以上呼び出すことはできない．同じ引数で <var>2</var> 回呼び出した場合，不正解 <var>[2]</var> と判定される．</li>
+<li>引数 <code>code</code> は都市 <code>city</code> に割り当てる符号を表す．<code>code</code> は <var>0</var> 以上 <var>2^{60} - 1</var> 以下の整数値でなければならない．この範囲外の値を指定して呼び出した場合，不正解 <var>[3]</var> と判定される．</li>
+</ul>
+</li>
+</ul>
+<p>あなたのプログラムは，関数 <code>Code</code> をちょうど <var>N</var> 回呼び出さなければならない．関数 <code>Encode</code> の実行の終了時に関数 <code>Code</code> の呼び出し回数が <var>N</var> でなかった場合，不正解 <var>[4]</var> と判定される．</p>
+<p>関数 <code>Encode</code> の呼び出しが不正解と判定された場合，その時点でプログラムは終了する．</p>
+</li>
+</ul>
+<p><var>2</var> つ目のファイルは <code>Device.c</code> または <code>Device.cpp</code> という名前である．このファイルは装置 <var>2</var> を実装したファイルであり，以下のルーチンを実装していなければならない．プログラムは <code>Device.h</code> をインクルードすること．</p>
+<ul>
+<li><code>void InitDevice()</code>
+    この関数は装置 <var>2</var> の初期化に対応する．次に示す関数 <code>Answer</code> が呼び出される前に，<code>InitDevice</code> が <var>1</var> 回だけ呼び出される．</li>
+<li>
+<p><code>int Answer(long long S, long long T)</code>
+    この関数は各質問に対応する．各質問に対して <code>Answer</code> が <var>1</var> 回ずつ呼び出される．</p>
+<ul>
+<li>引数 <code>S</code>, <code>T</code> は，<var>2</var> つの異なる都市 <var>X, Y</var> に関数 <code>Encode</code> の中で割り当てられた符号である．</li>
+<li>関数 <code>Answer</code> は，質問の答えとして，次の条件に従った値を返さなければならない．<ul>
+<li>都市 <var>0</var> から都市 <var>X</var> へ向かう途中に，都市 <var>Y</var> を必ず経由する場合は，<code>0</code> を返すこと．</li>
+<li>都市 <var>0</var> から都市 <var>Y</var> へ向かう途中に，都市 <var>X</var> を必ず経由する場合は，<code>1</code> を返すこと．</li>
+<li>上のいずれの条件も満たさない場合は，<code>2</code> を返すこと．</li>
+</ul>
+</li>
+</ul>
+<p>すなわち，<code>Answer</code> は <var>0</var> 以上 <var>2</var> 以下の整数値を返すべきである．この範囲外の値を返した場合は，不正解 <var>[5]</var> と判定される．また，値が範囲内であっても，これらの条件に従わない値を返した場合は，不正解 <var>[6]</var> と判定される．</p>
+</li>
+</ul>
+<h4>採点の手順</h4>
+<p>採点は以下の手順で行われる．不正解と判定された場合はその時点でプログラムは終了される．</p>
+<p>(1) 関数 <code>Encode</code> が <var>1</var> 回呼び出される．</p>
+<p>(2) 関数 <code>InitDevice</code> が <var>1</var> 回呼び出される．</p>
+<p>(3) テストケースにおいて，装置 <var>2</var> に与えられる質問が <var>Q</var> 個ある ．<var>j</var> 番目 (<var>1 \leqq j \leqq Q</var>) の質問では，関数 <code>Encode</code> の中で都市 <var>X_{j}, Y_{j}</var> に割り当てられた符号をそれぞれ <var>S_{j}, T_{j}</var> とし，関数 <code>Answer</code> を，引数 <code>S</code> を <var>S_{j}</var>，引数 <code>T</code> を <var>T_{j}</var> として呼び出す．</p>
+<p>(4) 正解となる．</p>
+<h4>重要な注意</h4>
+<ul>
+<li>実行時間計測・使用メモリ計測の対象となるのは，「採点の手順」における手順 (1), (2), (3) である．手順 (3) において <code>Answer</code> は合計 <var>Q</var> 回呼び出されることに注意せよ．</li>
+<li>手順 (1) における <code>Encode</code> の呼び出し，手順 (2) における <code>InitDevice</code> の呼び出しおよび，手順 (3) におけるすべての <code>Answer</code> の呼び出しにおいて，不正解と判定されたり，実行時エラーとなってはならない．</li>
+<li>内部での使用のために他のルーチンを実装したり，グローバル変数を宣言するのは自由である．ただし，提出された <var>2</var> つのプログラムは，採点プログラムとまとめてリンクされて <var>1</var> つの実行ファイルになるので，各ファイル内のすべてのグローバル変数と内部ルーチンを <code>static</code> で宣言して，他のファイルとの干渉を避ける必要がある．採点時には，このプログラムは装置 <var>1</var> 側，装置 <var>2</var> 側として <var>2</var> 個のプロセスとして実行されるので，装置 <var>1</var> 側と装置 <var>2</var> 側でプログラム中のグローバル変数を共有することはできない．</li>
+<li>あなたの提出は標準入力・標準出力，あるいは他のファイルといかなる方法でもやりとりしてはならない．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>コンパイル・実行の方法</h3>
+<p>作成したプログラムをテストするための，採点プログラムのサンプルが，コンテストサイトからダウンロードできるアーカイブの中に含まれている．このアーカイブには，提出しなければならないファイルのサンプルも含まれている．</p>
+<p>採点プログラムのサンプルは <var>1</var> つのファイルからなる．そのファイルは <code>grader.c</code> または <code>grader.cpp</code> である．作成したプログラムを <code>Encoder.c</code> および <code>Device.c</code>，または <code>Encoder.cpp</code> および <code>Device.cpp</code> とするとき，作成したプログラムをテストするには，次のようにコマンドを実行する．</p>
+<ul>
+<li>C の場合</li>
+</ul>
+<pre>gcc -std=c11 -O2 -o grader grader.c Encoder.c Device.c -lm
+</pre>
+<ul>
+<li>C++ の場合</li>
+</ul>
+<pre>g++ -std=c++14 -O2 -o grader grader.cpp Encoder.cpp Device.cpp
+</pre>
+<p>コンパイルが成功すれば，<code>grader</code> という実行ファイルが生成される．</p>
+<p>実際の採点プログラムは，採点プログラムのサンプルとは異なることに注意すること．採点プログラムのサンプルは単一のプロセスとして起動する．このプログラムは，標準入力から入力を読み込み，標準出力に結果を出力する．</p>
+<h4>採点プログラムのサンプルの入力</h4>
+<p>採点プログラムのサンプルは標準入力から以下の入力を読み込む．</p>
+<ul>
+<li><var>1</var> 行目には，<var>2</var> 個の整数 <var>N, Q</var> が空白を区切りとして書かれている．これは都市が <var>N</var> 個あり，与えられる質問が <var>Q</var> 個あることを表す．</li>
+<li>続く <var>N - 1</var> 行のうちの <var>i + 1</var> 行目 (<var>0 \leqq i \leqq N - 2</var>) には，<var>2</var> 個の整数 <var>A_{i}</var> と <var>B_{i}</var> が空白を区切りとして書かれている．これは都市 <var>A_{i}</var> と都市 <var>B_{i}</var> の間が道路で直接結ばれていることを表す．</li>
+<li>続く <var>Q</var> 行のうちの <var>j</var> 行目 (<var>1 \leqq j \leqq Q</var>) には，<var>3</var> 個の整数 <var>X_{j}, Y_{j}, E_{j}</var> が空白を区切りとして書かれている．これは <var>j</var> 番目の質問において，<var>X = X_{j}</var> かつ <var>Y = Y_{j}</var> であり，あなたのプログラムがこの質問に対して <var>E_{j}</var> 以外の解答を返したときに採点プログラムのサンプルが不正解と判定することを表す．</li>
+</ul>
+<h4>採点プログラムのサンプルの出力</h4>
+<p>採点プログラムのサンプルは標準出力へ以下の情報を出力する（引用符は実際には出力されない）．</p>
+<ul>
+<li>正解の場合，都市に割り当てられた符号の整数の最大値が “<code>Accepted : max_code=123456</code>” のように出力される．</li>
+<li>不正解の場合，不正解の種類が “<code>Wrong Answer [1]</code>” のように出力される．</li>
+</ul>
+<p>実行するプログラムが複数の不正解の条件を満たした場合，表示される不正解の種類はそれらのうち <var>1</var> つのみである．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>制限</h3>
+<p>すべての入力データは以下の条件を満たす．<var>N, Q, A_{i}, B_{i}, X_{j}, Y_{j}</var> の意味については「採点プログラムのサンプルの入力」の項目を参照せよ．</p>
+<ul>
+<li><var>2 \leqq N \leqq 250\,000</var>．</li>
+<li><var>1 \leqq Q \leqq 250\,000</var>．</li>
+<li><var>0 \leqq A_{i} \leqq N - 1</var> (<var>0 \leqq i \leqq N - 2</var>)．</li>
+<li><var>0 \leqq B_{i} \leqq N - 1</var> (<var>0 \leqq i \leqq N - 2</var>)．</li>
+<li><var>A_{i} \ne B_{i}</var> (<var>0 \leqq i \leqq N - 2</var>)．</li>
+<li>都市 <var>0</var> から他のどの都市までも，<var>18</var> 本以下の道路を通ることで行くことができる．</li>
+<li><var>0 \leqq X_{j} \leqq N - 1</var> (<var>1 \leqq j \leqq Q</var>)．</li>
+<li><var>0 \leqq Y_{j} \leqq N - 1</var> (<var>1 \leqq j \leqq Q</var>)．</li>
+<li><var>X_{j} \ne Y_{j}</var> (<var>1 \leqq j \leqq Q</var>)．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<p>この課題では小課題は全部で <var>2</var> 個ある．各小課題の配点および追加の制限は以下の通りである．</p>
+<h4>小課題 1 [<var>8</var> 点]</h4>
+<ul>
+<li><var>N \leqq 10</var>．</li>
+</ul>
+<h4>小課題 2 [<var>92</var> 点]</h4>
+<p>追加の制限はない．この小課題では，以下に従い得点が決定される．</p>
+<ul>
+<li>この小課題のすべてのテストケースにおける，都市に割り当てられた符号の整数の最大値を <var>L</var> とおく．</li>
+<li>このとき，この小課題の得点は，<ul>
+<li><var>2^{38} \leqq L</var> のとき，<var>0</var> 点．</li>
+<li><var>2^{36} \leqq L \leqq 2^{38} - 1</var> のとき，<var>10</var> 点．</li>
+<li><var>2^{35} \leqq L \leqq 2^{36} - 1</var> のとき，<var>14</var> 点．</li>
+<li><var>2^{34} \leqq L \leqq 2^{35} - 1</var> のとき，<var>22</var> 点．</li>
+<li><var>2^{28}\leqq L\leqq2^{34} - 1</var> のとき，<var>\lfloor372 - 10\log_2(L+1)\rfloor</var> 点（<var>\lfloor x\rfloor</var> は <var>x</var> を超えない最大の整数）．</li>
+<li><var>L \leqq 2^{28} - 1</var> のとき，<var>92</var> 点．</li>
+</ul>
+</li>
+</ul>
+<p>競技システムにおいては，<var>2^{38} \leqq L</var> のときは，この小課題の詳細が「正解: <var>0</var> 点」のように表示されることも，「不正解」と表示されることもあることに注意せよ．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>やり取りの例</h3>
+<p>採点プログラムのサンプルが読み込む入力の例と，それに対応する関数の呼び出しの例を以下に示す．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例</h3>
+<pre>6 5
+4 1
+0 3
+4 5
+3 2
+3 4
+2 4 2
+1 0 0
+5 1 2
+5 3 0
+4 1 1
+</pre>
+<h4>ルーチンの呼び出しの例</h4>
+<div class="joisc2017-city-ja-table">
+<table>
+<thead>
+<tr>
+<th>装置 <var>1</var></th>
+<th>装置 <var>2</var></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Encode(...)</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Code(0,0)</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Code(2,4)</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Code(4,16)</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Code(1,1)</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Code(3,9)</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Code(5,25)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>InitDevice()</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Answer(4,16)</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Answer(1,0)</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Answer(25,1)</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Answer(25,9)</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Answer(16,1)</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>このとき，<code>Encode(...)</code> に渡される引数は次の通りである．</p>
+<div class="joisc2017-city-ja-table">
+<table>
+<thead>
+<tr>
+<th>引数</th>
+<th><code>Encode(...)</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>N</code></td>
+<td><var>6</var></td>
+</tr>
+<tr>
+<td><code>A</code></td>
+<td><var>\{ 4, 0, 4, 3, 3\}</var></td>
+</tr>
+<tr>
+<td><code>B</code></td>
+<td><var>\{ 1, 3, 5, 2, 4\}</var></td>
+</tr>
+</tbody>
+</table>
+</div>
+<style>
+.joisc2017-city-ja-table { position:relative; max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisc2017-city-ja-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisc2017-city-ja-table th,.joisc2017-city-ja-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisc2017-city-ja-table th { background:#f5f5f5; }
+.joisc2017-city-ja-table code { white-space:nowrap; }
+</style>
+
+<style>
+.joisc2017-city-ja-table .katex {position:relative;}
+</style></section>
+</div>
+</span>
+</span>

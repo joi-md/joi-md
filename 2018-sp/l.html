@@ -1,0 +1,370 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>JOI-kun is a wild boar living in IOI Forest, which has <var>N</var> food stations and <var>M</var> roads. The food stations are numbered 1 through <var>N</var>. The <var>i</var>-th road (<var>1 \le i \le M</var>) connects food stations <var>A_{i}</var> and <var>B_{i}</var> in both directions, and it takes <var>C_{i}</var> hours for JOI-kun to go along this road in either direction. It is possible to go from any food station to any other using one or more roads.</p>
+<p>JOI-kun is poor at U-turning. He cannot U-turn halfway on a road to return to the food station where he was. Moreover, when he arrives at a food station using a road, he cannot go along that road to return to the food station where he was just before.</p>
+<p>Every day, JOI-kun supplies food at food stations according to the supply plan. The supply plan for a day consists of a sequence of <var>L</var> food stations <var>X_{1}, X_{2}, \ldots, X_{L}</var>. He starts supplying at food station <var>X_{1}</var>, visits food stations in this order, and ends supplying at food station <var>X_{L}</var>. He is allowed to go via other food stations in the middle. It is possible that he is to supply at a food station multiple times, but <var>X_{j} \ne X_{j+1}</var> holds for each <var>j</var> (<var>1 \le j \le L - 1</var>). Note that there might exist a supply plan which he cannot execute.</p>
+<p>At the beginning, JOI-kun determines the initial supply plan <var>X_{1}, X_{2}, \ldots, X_{L}</var>. He will change the <var>P_{k}</var>-th value of the supply plan into <var>Q_{k}</var> (i.e. <var>X_{P_{k}}</var> becomes <var>Q_{k}</var>) on the morning of the <var>k</var>-th day (<var>1 \le k \le T</var>), and then supply food according to the new supply plan. It is assured that <var>X_{j} \ne X_{j+1}</var> holds for each <var>j</var> (<var>1 \le j \le L - 1</var>) after the change.</p>
+<p>For each supply plan for the <var>T</var> days, JOI-kun wants to determine whether he can execute the supply plan or not, and, if he can, to find the minimum possible time to supply foods according to the supply plan.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Task</h3>
+<p>Given the data of IOI Forest and JOI-kun’s supply plans, for each supply plan for the <var>T</var> days, write a program which determines whether he can execute the supply plan or not, and, if he can, finds the minimum possible time to supply foods according to the supply plan.</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input.</p>
+<ul>
+<li>The first line of the input contains four space separated integers <var>N, M, T</var> and <var>L</var>. This means that there are <var>N</var> food stations and <var>M</var> roads in IOI Forest, JOI-kun considers supply plans for <var>T</var> days, and the supply plan consists of a sequence of length <var>L</var>.</li>
+<li>The <var>i</var>-th line (<var>1 \le i \le M</var>) of the following <var>M</var> lines contains three space separated integers <var>A_{i}, B_{i}</var> and <var>C_{i}</var>. This means that the <var>i</var>-th road connects food stations <var>A_{i}</var> and <var>B_{i}</var> in both directions, and it takes <var>C_{i}</var> hours for JOI-kun to go along this road in either directions.</li>
+<li>The <var>j</var>-th line (<var>1 \le j \le L</var>) of the following <var>L</var> lines contains an integer <var>X_{j}</var>. This means the initial supply plan is <var>X_{1}, X_{2}, \ldots, X_{L}</var>.</li>
+<li>The <var>k</var>-th line (<var>1 \le k \le T</var>) of the following <var>T</var> lines contains two space separated integers <var>P_{k}</var> and <var>Q_{k}</var>. This means that JOI-kun will change the <var>P_{k}</var>-th value of the supply plan into <var>Q_{k}</var> on the morning of the <var>k</var>-th day.</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>Write <var>T</var> lines to the standard output. The <var>k</var>-th line (<var>1 \le k \le T</var>) should contain <code>-1</code> if he cannot execute the supply plan on the <var>k</var>-th day, or the minimum possible time in hours to execute it if he can.</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<p>All input data satisfy the following conditions.</p>
+<ul>
+<li><var>2 \le N \le 2\,000</var>.</li>
+<li><var>N - 1 \le M \le 2\,000</var>.</li>
+<li><var>1 \le T \le 100\,000</var>.</li>
+<li><var>2 \le L \le 100\,000</var>.</li>
+<li><var>1 \le A_{i} &lt; B_{i} \le N</var> (<var>1 \le i \le M</var>).</li>
+<li><var>(A_{i}, B_{i}) \ne (A_{j}, B_{j})</var> (<var>1 \le i &lt; j \le M</var>).</li>
+<li>It is possible to go from any food station to any other using one or more roads.</li>
+<li><var>1 \le C_{i} \le 1\,000\,000\,000</var> (<var>1 \le i \le M</var>).</li>
+<li><var>1 \le X_{j} \le N</var> (<var>1 \le j \le L</var>).</li>
+<li><var>1 \le P_{k} \le L</var> (<var>1 \le k \le T</var>).</li>
+<li><var>1 \le Q_{k} \le N</var> (<var>1 \le k \le T</var>).</li>
+<li><var>X_{j} \ne X_{j+1}</var> holds for each <var>j</var> (<var>1 \le j \le L - 1</var>). Also after each change of the supply plan, <var>X_{j} \ne X_{j+1}</var> holds for each <var>j</var> (<var>1 \le j \le L - 1</var>).</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<p>There are 4 subtasks. The score and additional constraints of each subtask are as follows:</p>
+<h4>Subtask 1 [<var>12</var> points]</h4>
+<ul>
+<li><var>N \le 10</var>．</li>
+<li><var>M \le 10</var>.</li>
+<li><var>T = 1</var>.</li>
+<li><var>L \le 10</var>.</li>
+<li><var>C_{i} \le 10</var> (<var>1 \le i \le M</var>).</li>
+</ul>
+<h4>Subtask 2 [<var>35</var> points]</h4>
+<ul>
+<li><var>N \le 500</var>.</li>
+<li><var>M \le 500</var>.</li>
+<li><var>T = 1</var>.</li>
+</ul>
+<h4>Subtask 3 [<var>15</var> points]</h4>
+<ul>
+<li><var>T = 1</var>.</li>
+</ul>
+<h4>Subtask 4 [<var>38</var> points]</h4>
+<p>There are no additional constraints.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input and Output</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>3 3 1 3
+1 2 1
+2 3 1
+1 3 1
+1
+2
+3
+3 1
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>3
+</pre>
+<p>In Sample Input 1, the initial supply plan is <var>1</var>, <var>2</var>, <var>3</var>. JOI-kun changes the 3rd value of this supply plan into 1 on the morning of the 1st day. Therefore, the supply plan on the 1st day is <var>1</var>, <var>2</var>, <var>1</var>.</p>
+<p>At first, JOI-kun will supply food at food station 1. Next, he will use the 1st road to go from the food station 1 to the food station 2 and supply food at food station 2. Then, he will use the 2nd road to go from the food station 2 to the food station 3. Finally, he will use the 3rd road to go from the food station 3 to the food station 1 and supply food at food station <var>1</var>. In this way, it will take <var>3</var> hours to execute the supply plan. Since this is the minimum possible time, output 3.</p>
+<p>Note that JOI-kun cannot move food stations <var>1 \to 2 \to 1</var> because he cannot U-turn.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>4 4 4 3
+1 2 1
+2 3 1
+1 3 1
+1 4 1
+4
+1
+3
+3 4
+1 2
+3 2
+2 4
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>5
+2
+3
+-1
+</pre>
+<p>In Sample Input 2, the supply plan on the 1st day is <var>4</var>, <var>1</var>, <var>4</var>. First, JOI-kun will supply at food station 4. Next, he will use the 4th road to go from food station 4 to food station 1 and supply food at food station 1. Then, he will use the 1st, 2nd, 3rd and 4th roads in this order to move food stations <var>1 \to 2 \to 3 \to 1 \to 4</var> and supply food at food station 4. This takes the minimum possible time.</p>
+<p>The supply plan on the 4th day is <var>2</var>, <var>4</var>, <var>2</var>. Since JOI-kun cannot execute this supply plan, output <code>-1</code>.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 3</h3>
+<pre>5 6 1 5
+1 2 8
+1 3 8
+1 4 8
+2 5 2
+3 4 6
+4 5 6
+2
+5
+1
+5
+3
+5 2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 3</h3>
+<pre>38
+</pre></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>イノシシの JOI 君が住んでいる IOI 森には <var>N</var> 個の餌場と，<var>M</var> 本の道がある ．<var>i</var> (<var>1 \leqq i \leqq M</var>) 番目の道は餌場 <var>A_{i}</var> と餌場 <var>B_{i}</var> を双方向に結んでおり，JOI 君はこの道を移動するのに <var>C_{i}</var> 時間かかる．どの餌場から他のどの餌場にも，<var>1</var> 本以上の道を辿って到達できる．</p>
+<p>JOI 君は，引き返すことが苦手なので，道の途中で引き返して，もとの餌場に戻ることができない．また，道を通って次の餌場にたどり着いたときにも，今来た道を辿って直前に訪れていた餌場に戻ることができない．</p>
+<p>JOI 君は，毎日，補給計画に従って餌を補給する．<var>1</var> 日分の JOI 君の補給計画は <var>L</var> 個の餌場の列 <var>X_{1}, X_{2}, \ldots, X_{L}</var> からなる．JOI 君は，餌場 <var>X_{1}</var> から補給を開始して，この順に餌場を訪れて，餌場 <var>X_{L}</var> で補給を終える．途中で他の餌場を経由してもよい．同じ餌場で複数回補給することもありうるが，各 <var>j</var> (<var>1 \leqq j \leqq L - 1</var>) について，<var>X_{j} \ne X_{j+1}</var> を満たす．補給計画によっては，その計画を実行できないこともありうる．</p>
+<p>最初，JOI 君は，初期の補給計画 <var>X_{1}, X_{2}, \ldots, X_{L}</var> を決める．JOI 君は，<var>k</var> (<var>1 \leqq k \leqq T</var>) 日目の朝に，この補給計画の <var>P_{k}</var> 番目の値を <var>Q_{k}</var> に変更して，その日の補給を行う．つまり，<var>X_{P_{k}}</var> の値を <var>Q_{k}</var> に変更する．変更後の補給計画においても，各 <var>j</var> (<var>1 \leqq j \leqq L - 1</var>) について，<var>X_{j} \ne X_{j+1}</var> を満たす．</p>
+<p><var>T</var> 日間の補給計画それぞれについて，その補給計画が実行できるかどうかを判定し，もし実行できるときは，その補給計画に従って餌を補給するのにかかる最小時間を求めよ．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p>IOI 森と JOI 君の補給計画についての情報が与えられたとき，<var>T</var> 日間の補給計画それぞれについて，その補給計画が実行できるかどうかを判定し，もし実行できるときは，その補給計画に従って餌を補給するのにかかる最小時間を求めるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>標準入力から以下の入力を読み込め．</p>
+<ul>
+<li><var>1</var> 行目には <var>4</var> 個の整数 <var>N, M, T, L</var> が空白を区切りとして書かれている．これらは，IOI 森には <var>N</var> 個の餌場と <var>M</var> 本の道があり，JOI 君が <var>T</var> 日間の補給計画を考え，補給計画の列の長さが <var>L</var> であることを表す．</li>
+<li>続く <var>M</var> 行のうちの <var>i</var> 行目 (<var>1 \leqq i \leqq M</var>) には，<var>3</var> 個の整数 <var>A_{i}, B_{i}, C_{i}</var> が空白を区切りとして書かれている．これは <var>i</var> 番目の道が，餌場 <var>A_{i}</var> と餌場 <var>B_{i}</var> を双方向に結んでおり，JOI 君はこの道を移動するのに <var>C_{i}</var> 時間かかることを表す．</li>
+<li>続く <var>L</var> 行のうちの <var>j</var> 行目 (<var>1 \leqq j \leqq L</var>) には，<var>1</var> 個の整数 <var>X_{j}</var> が書かれている．これは初期の補給計画が列 <var>X_{1}, X_{2}, \ldots, X_{L}</var> であることを表す．</li>
+<li>続く <var>T</var> 行のうちの <var>k</var> 行目 (<var>1 \leqq k \leqq T</var>) には，<var>2</var> 個の整数 <var>P_{k}, Q_{k}</var> が空白を区切りとして書かれている．これは JOI 君が，<var>k</var> 日目の朝に，補給計画の <var>P_{k}</var> 番目の値を <var>Q_{k}</var> に変更することを表す．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に <var>T</var> 行で出力せよ ．<var>k</var> 行目 (<var>1 \leqq k \leqq T</var>) には，<var>k</var> 日目の補給計画について，もし補給計画を実行できないならば <code>-1</code> を出力し，実行できるならば実行にかかる最小時間を出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制限</h3>
+<p>すべての入力データは以下の条件を満たす．</p>
+<ul>
+<li><var>2 \leqq N \leqq 2\,000</var>．</li>
+<li><var>N - 1 \leqq M \leqq 2\,000</var>．</li>
+<li><var>1 \leqq T \leqq 100\,000</var>．</li>
+<li><var>2 \leqq L \leqq 100\,000</var>．</li>
+<li><var>1 \leqq A_{i} &lt; B_{i} \leqq N</var> (<var>1 \leqq i \leqq M</var>)．</li>
+<li><var>(A_{i}, B_{i}) \ne (A_{j}, B_{j})</var> (<var>1 \leqq i &lt; j \leqq M</var>)．</li>
+<li>どの餌場から他のどの餌場にも，<var>1</var> 本以上の道を辿って到達できる．</li>
+<li><var>1 \leqq C_{i} \leqq 1\,000\,000\,000</var> (<var>1 \leqq i \leqq M</var>)．</li>
+<li><var>1 \leqq X_{j} \leqq N</var> (<var>1 \leqq j \leqq L</var>)．</li>
+<li><var>1 \leqq P_{k} \leqq L</var> (<var>1 \leqq k \leqq T</var>)．</li>
+<li><var>1 \leqq Q_{k} \leqq N</var> (<var>1 \leqq k \leqq T</var>)．</li>
+<li>各 <var>j</var> (<var>1 \leqq j \leqq L - 1</var>) について，<var>X_{j} \ne X_{j+1}</var> を満たす．変更後の補給計画においても，各 <var>j</var> (<var>1 \leqq j \leqq L - 1</var>) について，<var>X_{j} \ne X_{j+1}</var> を満たす．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<p>この課題では小課題は全部で <var>4</var> 個ある．各小課題の配点および追加の制限は以下の通りである．</p>
+<h4>小課題 1 [<var>12</var> 点]</h4>
+<ul>
+<li><var>N \leqq 10</var>．</li>
+<li><var>M \leqq 10</var>．</li>
+<li><var>T = 1</var>．</li>
+<li><var>L \leqq 10</var>．</li>
+<li><var>C_{i} \leqq 10</var> (<var>1 \leqq i \leqq M</var>)．</li>
+</ul>
+<h4>小課題 2 [<var>35</var> 点]</h4>
+<ul>
+<li><var>N \leqq 500</var>．</li>
+<li><var>M \leqq 500</var>．</li>
+<li><var>T = 1</var>．</li>
+</ul>
+<h4>小課題 3 [<var>15</var> 点]</h4>
+<ul>
+<li><var>T = 1</var>．</li>
+</ul>
+<h4>小課題 4 [<var>38</var> 点]</h4>
+<p>追加の制約はない．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入出力例</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>3 3 1 3
+1 2 1
+2 3 1
+1 3 1
+1
+2
+3
+3 1
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>3
+</pre>
+<p>入力例 <var>1</var> では，初期の補給計画は <var>1, 2, 3</var> である．JOI 君は，<var>1</var> 日目の朝に，この補給計画の <var>3</var> 番目の値を <var>1</var> に変更する．従って，<var>1</var> 日目の補給計画は <var>1, 2, 1</var> である．</p>
+<p>まず，JOI 君は，餌場 <var>1</var> で補給する．次に，道 <var>1</var> を用いて餌場 <var>1</var> から餌場 <var>2</var> に移動し，餌場 <var>2</var> で補給する．次に，道 <var>2</var> を用いて餌場 <var>2</var> から餌場 <var>3</var> に移動する．最後に，道 <var>3</var> を用いて餌場 <var>3</var> から餌場 <var>1</var> に移動し，餌場 <var>1</var> で補給する．この補給計画の実行には <var>3</var> 時間かかる．これが最小なので，<var>3</var> を出力する．</p>
+<p>JOI 君は引き返すことができないので，餌場 <var>1 \to 2 \to 1</var> と移動することができないことに注意せよ．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>4 4 4 3
+1 2 1
+2 3 1
+1 3 1
+1 4 1
+4
+1
+3
+3 4
+1 2
+3 2
+2 4
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>5
+2
+3
+-1
+</pre>
+<p>入力例 <var>2</var> では，<var>1</var> 日目の補給計画は <var>4, 1, 4</var> である．JOI 君は，最初に餌場 <var>4</var> で補給する．次に，道 <var>4</var> を用いて餌場 <var>4</var> から餌場 <var>1</var> に移動し，餌場 <var>1</var> で補給する．次に，道 <var>1, 2, 3, 4</var> をこの順に用いて，餌場 <var>1 \to 2 \to 3 \to 1 \to 4</var> と移動し，餌場 <var>4</var> で補給する．これが最適である．</p>
+<p><var>4</var> 日目の補給計画は <var>2, 4, 2</var> である．この補給計画は実行することができないので，<code>-1</code> を出力する．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>5 6 1 5
+1 2 8
+1 3 8
+1 4 8
+2 5 2
+3 4 6
+4 5 6
+2
+5
+1
+5
+3
+5 2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>38
+</pre></section>
+</div>
+</span>
+</span>

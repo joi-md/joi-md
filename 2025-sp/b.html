@@ -1,24 +1,356 @@
 <span class="lang">
+<span class="lang-en">
+<blockquote class="joisp2025-b-submission">
+<p><strong>Submission on AtCoder</strong></p>
+<p><a href="https://img.atcoder.jp/joisp2025/fortune.zip">Distribution files</a></p>
+<p><strong>When using C++</strong></p>
+<ul>
+<li>Include <code>Anna.h</code> and <code>Bruno.h</code>, and implement all the functions in one source file.</li>
+<li><strong>Do not use standard input/output or file input/output.</strong></li>
+</ul>
+<details>
+<summary><strong>When using other languages</strong></summary>
+<p>Three processes run: the grader, your program with <code>argv[1]</code> set to <code>0</code> (Anna), and your program with <code>argv[1]</code> set to <code>1</code> (Bruno). The time and memory usage of these processes are added together.</p>
+<h4>Anna</h4>
+<p>When <code>argv[1]</code> is <code>0</code>, act as Anna. First read the integer <var>Q</var> from one line. Then process <var>Q</var> fortune tellings as follows:</p>
+<ol>
+<li>Read <var>N</var> from one line.</li>
+<li>Print <code>-1</code> on one line.</li>
+<li>Repeat the following <var>N</var> times: read the number <var>A</var> written on the drawn card, then print an integer <var>x</var> satisfying <var>-1 \le x \le l</var>, where <var>l</var> is the number of cards currently on the table. The meaning of <var>x</var> is the same as the argument of <code>DrawCard</code>.</li>
+<li>Finally, read a line containing <code>-1</code>.</li>
+</ol>
+<h4>Bruno</h4>
+<p>When <code>argv[1]</code> is <code>1</code>, act as Bruno. First read the integer <var>Q</var> from one line. Then process <var>Q</var> fortune tellings. For each one, read:</p>
+<pre><var>N</var>
+<var>L</var>
+<var>C[0]</var> <var>C[1]</var> <var>\cdots</var> <var>C[L - 1]</var>
+</pre>
+<p>Print the result of the fortune-telling on one line.</p>
+<h4>Notes</h4>
+<ul>
+<li><strong>Flush standard output after every output.</strong></li>
+<li>If your output is invalid or a wrong-answer condition is met, the next input is <code>-2</code>. <strong>Terminate your program immediately in this case.</strong></li>
+</ul>
+</details>
+</blockquote>
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>Anna and Bruno like fortune-telling and enjoy playing various styles of fortune-telling together. Today, they will play fortune-telling using cards, which is described below. They will play it for <var>Q</var> times.</p>
+<ol>
+<li>They prepare many cards with 0 or 1 written on each one, shuffle them, and pile them up on the deck.</li>
+<li>
+<p>Anna draws <var>N (= 900)</var> cards from the deck, one at a time. Anna and Bruno know the value of <var>N</var>. Every time she draws a card, she decides whether to discard the card or put the card on the table.</p>
+<ul>
+<li>If she selects to put the card on the table, she inserts the card into the sequence of cards on the table.</li>
+<li>More formally, when there are <var>l</var> cards on the table, she designates a non-negative integer <var>x</var> (<var>0 \le x \le l</var>) and puts the card immediately right to the <var>x</var>-th leftmost card on the table. In the case of <var>x = 0</var>, she puts the card on the leftmost of the sequence of cards on the table.</li>
+</ul>
+</li>
+<li>
+<p>The procedure for Anna finishes when she draws and processes <var>N</var> cards. The result of the fortune-telling is the number of cards with 1 among the <var>N</var> cards.</p>
+</li>
+<li>After Anna finishes her procedure, Bruno sees the sequence of cards on the table. Using the information, he needs to guess the result of the fortune-telling. If he guesses correctly, the fortune-telling is a success.</li>
+</ol>
+<p>The fortune-telling is considered more proficient when fewer cards are on the table. Write a program to implement Anna’s and Bruno’s strategies to succeed in all <var>Q</var> fortune tellings. In this task, the fewer cards Anna puts on the table, the higher the score will be.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Implementation Details</h3>
+<p>You should submit two files.</p>
+<p>The first file is <code>Anna.cpp</code>. This file is intended to implement Anna’s strategy and should implement the following function. The program should include <code>Anna.h</code> using the preprocessor directive <code>#include</code>.</p>
+<ul>
+<li>
+<p><code>void Anna(int N)</code></p>
+<p>This function is called <var>Q</var> times. The <var>i</var>-th call (<var>1 \le i \le Q</var>) of this function corresponds to Anna’s procedure in the <var>i</var>-th fortune-telling.</p>
+<ul>
+<li>The parameter <code>N</code> is the number of cards that Anna draws.</li>
+</ul>
+</li>
+</ul>
+<p>For each call of the function <code>Anna</code>, this function must call the following function <var>N + 1</var> times.</p>
+<ul>
+<li>
+<p><code>int DrawCard(int x)</code></p>
+<p>Using this function, Anna draws the card from the deck, and selects whether to discard it or put it on the table. She obtains the number written on the <var>j</var>-th card via the return value of the <var>j</var>-th call (<var>1 \le j \le N</var>) of this function. She designates the operation for the <var>(k - 1)</var>-th card via the parameter for the <var>k</var>-th call (<var>2 \le k \le N + 1</var>) of this function.</p>
+<ul>
+<li>The return value of the <var>j</var>-th call (<var>1 \le j \le N</var>) of this function is <var>0</var> or <var>1</var>, representing the number written on the <var>j</var>-th card.</li>
+<li>The return value of the <var>(N + 1)</var>-th call of this function is <var>- 1</var>, representing that Anna finished drawing cards.</li>
+<li>The parameter <var>x</var> for the 1-st call of this function must satisfy <var>x = -1</var>. If not, your program will be judged as Wrong Answer [1].</li>
+<li>The parameter <var>x</var> for the <var>k</var>-th call of this function represents the operation for the <var>(k - 1)</var>-th card. If <var>x = - 1</var>, the <var>(k - 1)</var>-th card will be discarded. If <var>0 \le x</var>, the <var>(k - 1)</var>-th card will be put immediately right to the <var>x</var>-th leftmost card on the table. In the case of <var>x = 0</var>, the card will be put on the leftmost of the sequence of cards on the table. Here, the parameter must satisfy <var>-1 \le x \le l</var>, where <var>l</var> is the current number of cards on the table. If not, your program will be judged as Wrong Answer [2].</li>
+<li>If the number of calls of the function DrawCard is not <var>N + 1</var>, your program will be judged as Wrong Answer [3].</li>
+</ul>
+</li>
+</ul>
+<p>The second file is <code>Bruno.cpp</code>. This file is intended to implement Bruno’s strategy and should implement the following function. The program should include Bruno.h using the preprocessor directive <code>#include</code>.</p>
+<ul>
+<li>
+<p><code>int Bruno(int N, int L, std::vector&lt;int&gt; C)</code></p>
+<p>This function is called exactly once after each call of the function Anna, totaling <var>Q</var> times. The <var>i</var>-th call (<var>1 \le i \le Q</var>) of this function corresponds to Bruno’s procedure in the <var>i</var>-th fortune-telling. It must return the number of cards with 1 among the cards Anna drew.</p>
+<ul>
+<li>The parameter <code>N</code> is the number of cards that Anna drew.</li>
+<li>The parameter <code>L</code> is the number of cards on the table.</li>
+<li>The parameter <code>C</code> is the array of length <var>L</var>, where <var>\texttt{C}[l - 1]</var> is the number written on the <var>l</var>-th leftmost card (<var>1 \le l \le L</var>) on the table.</li>
+<li>If the return value of the function Bruno is not equal to the number of cards with 1 among the cards Anna drew, your program will be judged as Wrong Answer [4].</li>
+</ul>
+</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Important Notices</h3>
+<ul>
+<li>Your program can implement other functions for internal use, or use global variables. Submitted files will be compiled with the grader, and become a single executable file. All global variables and internal functions should be declared in an unnamed namespace to avoid confliction with other files. When it is graded, it will be executed as two processes of Anna and Bruno. The process of Anna and the process of Bruno cannot share global variables.</li>
+<li>Your program must not use the standard input and the standard output. Your program must not communicate with other files by any method. However, your program may output debugging information to the standard error.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Compilation and Test Run</h3>
+<p>You can download an archive file from the contest webpage which contains the sample grader to test your program. The archive file also contains a sample source file of your program.</p>
+<p>The sample grader is the file <code>grader.cpp</code>. In order to test your program, put <code>grader.cpp</code>, <code>Anna.cpp</code>, <code>Bruno.cpp</code>, <code>Anna.h</code>, <code>Bruno.h</code> in the same directory, and run the following command to compile your programs.</p>
+<pre>g++ -std=gnu++20 -O2 -o grader grader.cpp Anna.cpp Bruno.cpp
+</pre>
+<p>Instead, you may run <code>compile.sh</code> contained in the archive file.</p>
+<pre>./compile.sh
+</pre>
+<p>When the compilation succeeds, the executable file <code>grader</code> is generated.</p>
+<p>Note that the actual grader is different from the sample grader. The sample grader will be executed as a single process, which will read input data from the standard input and write the results to the standard output and the standard error output.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Input for the Sample Grader</h3>
+<p>The sample grader reads the following data from the standard input.</p>
+<pre><var>Q</var> <var>N</var>
+<var>A_{1,1}</var> <var>A_{1,2}</var> <var>\cdots</var> <var>A_{1,N}</var>
+<var>A_{2,1}</var> <var>A_{2,2}</var> <var>\cdots</var> <var>A_{2,N}</var>
+<var>\vdots</var>
+<var>A_{Q,1}</var> <var>A_{Q,2}</var> <var>\cdots</var> <var>A_{Q,N}</var>
+</pre>
+<p><var>A_{i,j}</var> (<var>1 \le i \le Q</var>, <var>1 \le j \le N</var>) is the number written on the <var>j</var>-th card Anna draws in the <var>i</var>-th fortune telling.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Output of the Sample Grader</h3>
+<p>The sample grader outputs the following information to the standard output and the standard error output (quotes for clarity).</p>
+<ul>
+<li>If the program is judged as correct, the sample grader outputs the maximum value of the number of cards on the table in the format “<code>Accepted: 100</code>”.</li>
+<li>If the program is judged as wrong answer, the sample grader outputs the type of wrong answer in the format “<code>Wrong Answer [1]</code>”.</li>
+</ul>
+<p>If your program meets the conditions of several types of wrong answer, the sample grader reports only one of them. The sample grader may terminate the execution when one of the conditions for wrong answer is met.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Grading Considerations</h3>
+<p>The actual grader is not adaptive for all testcases. It means that the sequence of numbers written on the cards is fixed before the program’s execution.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<p>All the input data satisfy the following conditions.</p>
+<ul>
+<li><var>1 \le Q \le 100</var>.</li>
+<li><var>N = 900</var>.</li>
+<li><var>A_{i,j}</var> is either 0 or 1 (<var>1 \le i \le Q</var>, <var>1 \le j \le N</var>).</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Grading</h3>
+<p>If your program is judged as any type of Wrong Answer [1] – [4] (see Implementation Details), Time Limit Exceeded, Memory Limit Exceeded, or Runtime Error, in any testcase, your score is <var>0</var> points.</p>
+<p>If your program is judged as correct for all testcases, your score is determined by the maximum number of calls for the function <code>DrawCard</code> with parameter <var>0 \le x</var>, among all plays of the fortune-telling for all testcases. Let <var>L</var> be this number. Your score will be:</p>
+<ul>
+<li><var>500 &lt; L</var>: <var>3</var> points</li>
+<li><var>14 &lt; L \le 500</var>: <var>\left\lfloor 100 \times \left(\dfrac{2.5}{L - 11.5}\right)^{0.35}\right\rfloor</var> points</li>
+<li><var>L \le 14</var>: <var>100</var> points</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Communication</h3>
+<p>Here is a sample input for the sample grader and corresponding function calls.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>2 5
+0 1 0 0 1
+1 1 0 1 0
+</pre>
+<h4>Sample Function Calls</h4>
+<div class="joisp2025-fortune3-en-table">
+<table>
+<thead>
+<tr>
+<th>Call</th>
+<th>Return Value</th>
+<th>Call</th>
+<th>Return Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Anna(5)</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>DrawCard(-1)</code></td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>DrawCard(0)</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>DrawCard(-1)</code></td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>DrawCard(1)</code></td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>DrawCard(-1)</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>DrawCard(1)</code></td>
+<td><code>-1</code></td>
+</tr>
+<tr>
+<td><code>Bruno(5, 3, [0, 1, 0])</code></td>
+<td><code>2</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Anna(5)</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>DrawCard(-1)</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>DrawCard(0)</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>DrawCard(1)</code></td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>DrawCard(2)</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>DrawCard(-1)</code></td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>DrawCard(1)</code></td>
+<td><code>-1</code></td>
+</tr>
+<tr>
+<td><code>Bruno(5, 4, [1, 0, 1, 0])</code></td>
+<td><code>3</code></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The sample input consists of <var>Q (= 2)</var> plays of fortune-telling, and the number of cards Anna draws from the deck is <var>N (= 5)</var>. In this example, in the first fortune-telling, Anna plays in the following procedure:</p>
+<ol>
+<li>Anna draws a card from the deck. The number written on the card is 0.</li>
+<li>Anna selects to put the card on the table, and puts it on the left of the sequence of cards on the table. Then, the sequence of cards becomes 0. Anna draws another card from the deck, and 1 is written on it.</li>
+<li>Anna selects to discard the card. Then, Anna draws another card from the deck, and 0 is written on it.</li>
+<li>Anna selects to put the card on the table, and puts the card immediately right to the 1-st leftmost card on the table. Then, the sequence of cards becomes <var>0, 0</var>. Anna draws another card from the deck, and 0 is written on it.</li>
+<li>Anna selects to discard the card. Then, Anna draws another card from the deck, and 1 is written on it.</li>
+<li>Anna selects to put the card on the table, and puts the card immediately right to the 1-st leftmost card on the table. Then, the sequence of cards becomes <var>0, 1, 0</var>.</li>
+</ol>
+<p>Then, Bruno sees the sequence of cards: <var>0, 1, 0</var>. Based on this information, Bruno guesses that the number of cards with 1 among the cards Anna drew is 2. Since this is correct, fortune-telling is a success. The number of cards Anna put on the table is <var>L = 3</var>.</p>
+<p>In the second fortune-telling, the number of cards Anna put on the table is <var>L = 4</var>.</p>
+<p>Note that this sample input does not satisfy the constraints of the problem. The file <code>sample-01-in.txt</code>, which can be downloaded from the contest site, corresponds to Sample Input 1. The file <code>sample-02-in.txt</code>, which can be downloaded from the contest site, is a sample input that satisfies the constraints.</p>
+<style>
+.joisp2025-fortune3-en-table { position:relative; max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisp2025-fortune3-en-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisp2025-fortune3-en-table th,.joisp2025-fortune3-en-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisp2025-fortune3-en-table th { background:#f5f5f5; }
+.joisp2025-fortune3-en-table code { white-space:nowrap; }
+</style>
+
+<style>
+.joisp2025-b-submission summary { display:list-item;cursor:pointer; }
+</style></section>
+</div>
+</span>
 <span class="lang-ja">
-<p>配点： <var>100</var> 点</p>
-<blockquote>
+<blockquote class="joisp2025-b-statement">
+<p><strong>AtCoder での提出方法</strong></p>
 <p><a href="https://img.atcoder.jp/joisp2025/fortune.zip">配布ファイル</a></p>
-<h4>AtCoder での提出方法について</h4>
 <p><strong>C++ を使用する場合</strong></p>
 <ul>
 <li><code>Anna.h</code> と <code>Bruno.h</code> を include し，全ての関数を <var>1</var> つのファイルに実装してください．</li>
 <li><strong>標準入出力やファイルへの入出力を使用しないでください．</strong></li>
 </ul>
-<p><strong>その他の言語を使用する場合</strong>
-</p>
 <details>
+<summary><strong>その他の言語を使用する場合</strong></summary>
 <ul>
 <li>ジャッジ</li>
 <li><code>argv[1]</code> を <code>0</code> として起動されたあなたのプログラム（Anna 側）</li>
 <li><code>argv[1]</code> を <code>1</code> として起動されたあなたのプログラム（Bruno 側）</li>
 </ul>
 <p>の <var>3</var> つのプログラムが実行されます．実行時間・使用メモリはこれらの合計で計測されます．</p>
-
 <h4>Anna 側</h4>
 <p><code>argv[1]</code> が <code>0</code> のとき，Anna 側として振る舞ってください．</p>
 <p>まず，以下の形式で入力を読み込んでください．</p>
@@ -36,7 +368,6 @@
 <li><var>-1 \leqq x \leqq l</var> を満たす整数 <var>x</var> を <var>1</var> 行で出力してください．</li>
 </ol>
 <p>最後に，<code>-1</code> を含む <var>1</var> 行を読み込んでください．</p>
-
 <h4>Bruno 側</h4>
 <p><code>argv[1]</code> が <code>1</code> のとき，Bruno 側として振る舞ってください．</p>
 <p>まず，以下の形式で入力を読み込んでください．</p>
@@ -47,10 +378,9 @@
 <p>まず，以下の形式で入力を読み込んでください．</p>
 <pre><var>N</var>
 <var>L</var>
-<var>C[0]</var> <var>C[1]</var> <var>\cdots</var> <var>C[L-1]</var>
+<var>C[0]</var> <var>C[1]</var> <var>\cdots</var> <var>C[L - 1]</var>
 </pre>
 <p>その後，占いの結果を <var>1</var> 行で出力してください．</p>
-
 <h4>その他</h4>
 <ul>
 <li><strong>各出力の後には必ず flush をしてください．</strong></li>
@@ -58,7 +388,7 @@
 </ul>
 </details>
 </blockquote>
-
+<p>配点 : <var>100</var> 点</p>
 <hr />
 
 <div class="part">
@@ -85,33 +415,35 @@
 <p>あなたは <var>2</var> つのファイルを提出しなければならない．</p>
 <p><var>1</var> つ目のファイルは <code>Anna.cpp</code> という名前である．このファイルは Anna の戦略を実装したファイルであり，以下の関数を実装していなければならない．また，<code>#include</code> プリプロセッサ指令によって <code>Anna.h</code> を読み込むこと．</p>
 <ul>
-<li><code>void Anna(int N)</code><br />
-この関数は，合計 <var>Q</var> 回呼び出される．<var>i</var> 回目 (<var>1 \leqq i \leqq Q</var>) の呼び出しは，<var>i</var> 回目の占いにおける Anna の手順に相当する．</li>
-<li>引数 <code>N</code> は，Anna が山札からカードを引く枚数 <var>N</var> である．</li>
+<li>
+<p><code>void Anna(int N)</code>  </p>
+<p>この関数は，合計 <var>Q</var> 回呼び出される．<var>i</var> 回目 (<var>1 \leqq i \leqq Q</var>) の呼び出しは，<var>i</var> 回目の占いにおける Anna の手順に相当する．
+- 数 <code>N</code> は，Anna が山札からカードを引く枚数 <var>N</var> である．</p>
+</li>
 </ul>
 <p>関数 Anna の <var>1</var> 回の呼び出しについて，以下の関数を <var>N+1</var> 回呼び出さなければならない．</p>
 <ul>
-<li><code>int DrawCard(int x)</code><br />
-この関数を用いて，山札からカードを引き，そのカードを捨てるか，場に出して並べるかを選択する．<var>j</var> 回目 (<var>1 \leqq j \leqq N</var>) の呼び出しの戻り値で，<var>j</var> 枚目に引いたカードに書かれた数を受け取る．<var>k</var> 回目 (<var>2 \leqq k \leqq N+1</var>) の呼び出しの引数で <var>k-1</var> 枚目に引いたカードに対する操作を指定する．<ul>
-<li><var>j</var> 回目 (<var>1\leqq j \leqq N</var>) の呼び出しにおける戻り値は <var>0</var> または <var>1</var> であり，Annaが <var>j</var> 枚目に引いたカードに書かれた数を表す．</li>
-<li><var>N+1</var> 回目の呼び出しにおける戻り値は <var>-1</var> であり，Annaが <var>N</var> 枚のカードを引き終えたことを表す．</li>
-<li><strong><var>1</var> 回目の呼び出しにおける引数 <var>x</var> は <var>x=-1</var> を満たさなければならない</strong>．これが満たされない場合 <strong>不正解 [1]</strong> と判定される．</li>
-<li><var>k</var> 回目 (<var>2\leqq k \leqq N+1</var>) の呼び出しにおける引数 <var>x</var> は <var>k-1</var> 枚目に引いたカードに対する操作を指定する．<var>x=-1</var> のとき，<var>k-1</var> 枚目に引いたカードを捨てることを表す．<var>0\leqq x</var>のとき，<var>k-1</var> 枚目に引いたカードをすでに場にあるカードの列の左から <var>x</var> 枚目のカードのすぐ右に挿入することを表す．ただし <var>x=0</var> のときはカードの列の一番左に挿入することを表す．ここで，すでに場にあるカードの枚数を <var>l</var> として <var>-1 \leqq x \leqq l</var> を満たさなければならない．これが満たされない場合，<strong>不正解 [2]</strong> と判定される．</li>
-<li>関数 <code>Anna</code> の実行の終了時に関数 <code>DrawCard</code> の呼び出し回数が <var>N+1</var> 回でなかった場合，<strong>不正解 [3]</strong> と判定される．</li>
-</ul>
+<li>
+<p><code>int DrawCard(int x)</code>  </p>
+<p>この関数を用いて，山札からカードを引き，そのカードを捨てるか，場に出して並べるかを選択する．<var>j</var> 回目 (<var>1 \leqq j \leqq N</var>) の呼び出しの戻り値で，<var>j</var> 枚目に引いたカードに書かれた数を受け取る．<var>k</var> 回目 (<var>2 \leqq k \leqq N+1</var>) の呼び出しの引数で <var>k - 1</var> 枚目に引いたカードに対する操作を指定する．
+- <var>j</var> 回目 (<var>1\leqq j \leqq N</var>) の呼び出しにおける戻り値は <var>0</var> または <var>1</var> であり，Anna が <var>j</var> 枚目に引いたカードに書かれた数を表す．
+- <var>N+1</var> 回目の呼び出しにおける戻り値は <var>-1</var> であり，Anna が <var>N</var> 枚のカードを引き終えたことを表す．
+- <strong><var>1</var> 回目の呼び出しにおける引数 <var>x</var> は <var>x=-1</var> を満たさなければならない</strong>．これが満たされない場合 <strong>不正解 [1]</strong> と判定される．
+- <var>k</var> 回目 (<var>2\leqq k \leqq N+1</var>) の呼び出しにおける引数 <var>x</var> は <var>k - 1</var> 枚目に引いたカードに対する操作を指定する．<var>x=-1</var> のとき，<var>k - 1</var> 枚目に引いたカードを捨てることを表す．<var>0\leqq x</var> のとき，<var>k - 1</var> 枚目に引いたカードをすでに場にあるカードの列の左から <var>x</var> 枚目のカードのすぐ右に挿入することを表す．ただし <var>x=0</var> のときはカードの列の一番左に挿入することを表す．ここで，すでに場にあるカードの枚数を <var>l</var> として <var>-1 \leqq x \leqq l</var> を満たさなければならない．これが満たされない場合，<strong>不正解 [2]</strong> と判定される．
+- 関数 <code>Anna</code> の実行の終了時に関数 <code>DrawCard</code> の呼び出し回数が <var>N+1</var> 回でなかった場合，<strong>不正解 [3]</strong> と判定される．</p>
 </li>
 </ul>
 <p><var>2</var> つ目のファイルは <code>Bruno.cpp</code> という名前である．
 このファイルは Bruno の戦略を実装したファイルであり，以下の関数を実装していなければならない．
 また，<code>#include</code> プリプロセッサ指令によって <code>Bruno.h</code> を読み込むこと．</p>
 <ul>
-<li><code>int Bruno(int N, int L, std::vector&lt;int&gt; C)</code><br />
-この関数は，Anna が一連の占いの手順を終える度に <var>1</var> 回，合計で <var>Q</var> 回呼び出される．<var>i</var> 回目 (<var>1 \leqq i \leqq Q</var>) の呼び出しは，<var>i</var> 回目の占いにおける Bruno の手順に相当する．Anna が山札から引いた <var>1</var> の書かれたカードの枚数を戻り値として返さなければならない．<ul>
-<li>引数 <code>N</code> は Anna が山札からカードを引いた枚数 <var>N</var> である．</li>
-<li>引数 <code>L</code> は場に並べられたカードの枚数 <var>L</var> である．</li>
-<li>引数 <code>C</code> は，長さ <var>L</var> の配列であり，<code>C[l-1]</code> は場の左から <var>l</var> 番目 (<var>1 \leqq l \leqq L</var>) に並べられたカードに書かれた数を表す．</li>
-<li>関数 <code>Bruno</code> の戻り値が Anna が山札から引いた <var>1</var> の書かれたカードの枚数と異なる場合，<strong>不正解 [4]</strong> と判定される．</li>
-</ul>
+<li>
+<p><code>int Bruno(int N, int L, std::vector&lt;int&gt; C)</code>  </p>
+<p>この関数は，Anna が一連の占いの手順を終える度に <var>1</var> 回，合計で <var>Q</var> 回呼び出される．<var>i</var> 回目 (<var>1 \leqq i \leqq Q</var>) の呼び出しは，<var>i</var> 回目の占いにおける Bruno の手順に相当する．Anna が山札から引いた <var>1</var> の書かれたカードの枚数を戻り値として返さなければならない．
+- 引数 <code>N</code> は Anna が山札からカードを引いた枚数 <var>N</var> である．
+- 引数 <code>L</code> は場に並べられたカードの枚数 <var>L</var> である．
+- 引数 <code>C</code> は，長さ <var>L</var> の配列であり，<var>\texttt{C}[l - 1]</var> は場の左から <var>l</var> 番目 (<var>1 \leqq l \leqq L</var>) に並べられたカードに書かれた数を表す．
+- 関数 <code>Bruno</code> の戻り値が Anna が山札から引いた <var>1</var> の書かれたカードの枚数と異なる場合，<strong>不正解 [4]</strong> と判定される．</p>
 </li>
 </ul>
 <h4>重要な注意</h4>
@@ -146,7 +478,7 @@
 <var>\vdots</var>
 <var>A_{Q,1}</var> <var>A_{Q,2}</var> <var>\cdots</var> <var>A_{Q,N}</var>
 </pre>
-<p><var>A_{i,j}</var> (<var>1 \leqq i \leqq Q, 1 \leqq j \leqq N</var>) は Anna が <var>i</var> 回目の占いで <var>j</var> 枚目に引くカードに書かれた数を表す．</p>
+<p><var>A_{i,j}</var> (<var>1 \leqq i \leqq Q</var>，<var>1 \leqq j \leqq N</var>) は Anna が <var>i</var> 回目の占いで <var>j</var> 枚目に引くカードに書かれた数を表す．</p>
 </section>
 </div>
 </div>
@@ -155,10 +487,10 @@
 <div class="part">
 <section>
 <h3>採点プログラムのサンプルの出力</h3>
-<p>採点プログラムのサンプルは標準出力へ以下の情報を出力する(引用符は実際には出力されない)．</p>
+<p>採点プログラムのサンプルは標準出力へ以下の情報を出力する (引用符は実際には出力されない)．</p>
 <ul>
-<li>正解の場合，すべての占いにおける Anna が場に出したカードの枚数 <var>L</var> の最大値が <code>Accepted: 100</code> のように出力される．</li>
-<li>不正解の場合，不正解の種類が <code>Wrong Answer [1]</code> のように出力される．</li>
+<li>正解の場合，すべての占いにおける Anna が場に出したカードの枚数 <var>L</var> の最大値が “<code>Accepted: 100</code>” のように出力される．</li>
+<li>不正解の場合，不正解の種類が “<code>Wrong Answer [1]</code>” のように出力される．</li>
 </ul>
 <p>実行するプログラムが複数の不正解の条件を満たした場合，
 表示される不正解の種類はそれらのうち <var>1</var> つのみである．
@@ -182,7 +514,7 @@
 <ul>
 <li><var>1 \leqq Q \leqq 100</var>．</li>
 <li><var>N = 900</var>．</li>
-<li><var>A_{i,j}</var> は <var>0</var> または <var>1</var> である (<var>1 \leqq i \leqq Q, 1 \leqq j \leqq N</var>)．</li>
+<li><var>A_{i,j}</var> は <var>0</var> または <var>1</var> である (<var>1 \leqq i \leqq Q</var>，<var>1 \leqq j \leqq N</var>)．</li>
 </ul>
 </section>
 </div>
@@ -191,12 +523,12 @@
 <section>
 <h3>採点基準</h3>
 <p>この課題のテストケースの中で，<var>1</var> つでも<strong>不正解 [1] ～ [4]</strong> (実装の詳細を参照) と判定されたものや，
-実行時間制限超過，メモリ制限超過，実行時エラーと判定されたものがあった場合，<var>0</var>点となる．</p>
+実行時間制限超過，メモリ制限超過，実行時エラーと判定されたものがあった場合，<var>0</var> 点となる．</p>
 <p>またこの課題におけるすべてのテストケースに正解した場合，この課題のすべてのテストケースで，
 関数 Anna の <var>1</var> 回の呼び出しについて引数 <var>0 \leqq x</var> で関数 <code>DrawCard</code> を呼び出した回数の最大値を <var>L</var> として，以下のように採点される．</p>
 <ul>
 <li><var>500 &lt; L</var> のとき，<var>3</var> 点</li>
-<li><var>14 &lt; L \leqq 500</var> のとき，<var>\left\lfloor 100 \times \left(\dfrac{2.5}{L-11.5}\right)^{0.35} \right\rfloor</var> 点</li>
+<li><var>14 &lt; L \leqq 500</var> のとき，<var>\left\lfloor 100 \times \left(\dfrac{2.5}{L - 11.5}\right)^{0.35} \right\rfloor</var> 点</li>
 <li><var>L \leqq 14</var> のとき，<var>100</var> 点</li>
 </ul>
 </section>
@@ -216,8 +548,118 @@
 0 1 0 0 1
 1 1 0 1 0
 </pre>
-<p><img src="https://img.atcoder.jp/joisp2025/joisp2025-C01.png" class="img-responsive center-block" style="width: 540px; max-width: 100%"></p>
-<p>この入力例は <var>Q (=2)</var> 回の占いからなり，<var>2</var> 回の占いでAnnaが山札から引くカードの枚数は <var>N (=5)</var> 枚である．
+<h4>関数の呼び出しの例</h4>
+<div class="joisp2025-b-call-table">
+<table>
+<thead>
+<tr>
+<th>呼び出し</th>
+<th>戻り値</th>
+<th>呼び出し</th>
+<th>戻り値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Anna(5)</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>DrawCard(-1)</code></td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>DrawCard(0)</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>DrawCard(-1)</code></td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>DrawCard(1)</code></td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>DrawCard(-1)</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>DrawCard(1)</code></td>
+<td><code>-1</code></td>
+</tr>
+<tr>
+<td><code>Bruno(5, 3, [0, 1, 0])</code></td>
+<td><code>2</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Anna(5)</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>DrawCard(-1)</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>DrawCard(0)</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>DrawCard(1)</code></td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>DrawCard(2)</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>DrawCard(-1)</code></td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>DrawCard(1)</code></td>
+<td><code>-1</code></td>
+</tr>
+<tr>
+<td><code>Bruno(5, 4, [1, 0, 1, 0])</code></td>
+<td><code>3</code></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>この入力例は <var>Q (=2)</var> 回の占いからなり，<var>2</var> 回の占いで Anna が山札から引くカードの枚数は <var>N (=5)</var> 枚である．
 この例では，<var>1</var> 回目の占いは Anna は次のような手順で占いを行う．</p>
 <ol>
 <li>Anna が山札からカードを <var>1</var> 枚引く．引いたカードに書かれた数は <var>0</var> である．</li>
@@ -228,11 +670,22 @@
 <li>Anna は引いたカードを場に出して並べることを選択し，場に並べてあるカードの列の左から <var>1</var> 枚目のカードのすぐ右に挿入する．場に並べられたカードの列は <var>0,1,0</var> になる．</li>
 </ol>
 <p>Bruno は <var>N</var> の値と場に並べられたカードの列 <var>0,1,0</var> をもとに，Anna が引いた <var>1</var> の書かれたカードの枚数が <var>2</var> であると答える．
-これは正しいため，占いは成功である．1回目の占いで Anna が場に出したカードの枚数 <var>L</var> は <var>3</var> である．</p>
+これは正しいため，占いは成功である．1 回目の占いで Anna が場に出したカードの枚数 <var>L</var> は <var>3</var> である．</p>
 <p><var>2</var> 回目の占いで Anna が場に出したカードの枚数 <var>L</var> は <var>4</var> である．</p>
 <p>この入力例は<strong>制約を満たさない</strong>ことに注意すること．
 コンテストサイトからダウンロードできるファイルのうち，<code>sample-01-in.txt</code> は入力例 <var>1</var> に対応する．
-コンテストサイトからダウンロードできるファイルのうち，<code>sample-02-in.txt</code> は制約を満たす．</p></section>
+コンテストサイトからダウンロードできるファイルのうち，<code>sample-02-in.txt</code> は制約を満たす．</p>
+<style>
+.joisp2025-b-statement summary { display:list-item; cursor:pointer; }
+</style>
+
+<style>
+.joisp2025-b-call-table { position:relative;max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisp2025-b-call-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisp2025-b-call-table th,.joisp2025-b-call-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisp2025-b-call-table th { background:#f5f5f5;white-space:nowrap; }
+.joisp2025-b-call-table code { white-space:nowrap; }
+</style></section>
 </div>
 </span>
 </span>

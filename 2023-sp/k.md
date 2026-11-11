@@ -1,7 +1,7 @@
-配点： $100$ 点
+配点 : $100$ 点
 
 <style>
-#task-statement .joisp2023-guard-table {
+#task-statement .joisp2023-guard-table { position:relative;
     max-width: 100%;
     overflow-x: auto;
     margin: 1em 0;
@@ -312,3 +312,7 @@ $6$ 人以下の警備員で条件を満たすことは不可能なので，$7$ 
 ~~~
 
 この入力例は小課題 $5, 6, 7$ の制約を満たす．
+
+<style>
+.joisp2023-guard-table .katex {position:relative;}
+</style>

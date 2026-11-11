@@ -1,18 +1,18 @@
 <span class="lang">
 <span class="lang-ja">
-<p>配点： <var>100</var> 点</p>
+<p>配点 : <var>100</var> 点</p>
 
 <div class="part">
 <section>
-<h3></h3>
+<h3>問題文</h3>
 <p>葵さんは雪遊びをしている．
 葵さんの目の前には <var>N</var> 個の雪玉が一直線上に並んでおり，
 左から <var>i</var> 番目 (<var>1 \leqq i \leqq N</var>) の雪玉の大きさは <var>A_i</var> である．</p>
 <p>葵さんは，最終的に大きな <var>1</var> つの雪玉を作りたいと考えている．
 そのために，以下の一連の操作を雪玉が <var>1</var> つになるか操作ができなくなるまで繰り返すことにした．</p>
 <ol>
-<li>隣接する <var>2</var> つの雪玉を選ぶ．このとき，左側の雪玉の大きさを <var>l</var>，右側の雪玉の大きさを <var>r</var> とすると，<var>0 \leqq l-r \leqq 1</var> でなければならない．</li>
-<li>選んだ <var>2</var> つの雪玉を合成する．その結果，選んだ <var>2</var> つの雪玉は大きさ <var>l+r</var> の雪玉 <var>1</var> つに置き換えられる．つまり，操作を行う前に左から大きさ <var>s_1,s_2,\ldots,s_k</var> の <var>k</var> 個の雪玉が並んでいるとき，左から <var>t</var> 番目 (<var>1 \leqq t \leqq k-1</var>) の雪玉と <var>t+1</var> 番目の雪玉を合成すると，操作後には左から大きさ <var>s_1,s_2,\ldots,s_{t-1},s_t+s_{t+1},s_{t+2},\ldots,s_k</var> の <var>k-1</var> 個の雪玉が並ぶ．</li>
+<li>隣接する <var>2</var> つの雪玉を選ぶ．このとき，左側の雪玉の大きさを <var>l</var>，右側の雪玉の大きさを <var>r</var> とすると，<var>0 \leqq l - r \leqq 1</var> でなければならない．</li>
+<li>選んだ <var>2</var> つの雪玉を合成する．その結果，選んだ <var>2</var> つの雪玉は大きさ <var>l+r</var> の雪玉 <var>1</var> つに置き換えられる．つまり，操作を行う前に左から大きさ <var>s_1,s_2,\ldots,s_k</var> の <var>k</var> 個の雪玉が並んでいるとき，左から <var>t</var> 番目 (<var>1 \leqq t \leqq k - 1</var>) の雪玉と <var>t+1</var> 番目の雪玉を合成すると，操作後には左から大きさ <var>s_1,s_2,\ldots,s_{t - 1},s_t+s_{t+1},s_{t+2},\ldots,s_k</var> の <var>k - 1</var> 個の雪玉が並ぶ．</li>
 </ol>
 <p>並んでいる雪玉の情報が与えられたとき，葵さんが適切に操作を行うことで雪玉を <var>1</var> つにすることができるか判定するプログラムを作成せよ．</p>
 <hr />

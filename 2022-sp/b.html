@@ -1,0 +1,276 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>Kyoto City is a worldwide sightseeing place. It is also known as a city with grid of streets. You are now visiting Kyoto City for sightseeing. You are planning to visit a famous spot on foot. You want to arrive there as early as possible. In this task, we consider the following simplified situation.</p>
+<p>In this city, there are <var>H</var> streets in the east-west direction, and <var>W</var> streets in the south-north direction. The shape of the city is a grid of <var>(H - 1) \times (W - 1)</var> cells. The crossing of the <var>i</var>-th street (<var>1 \le i \le H</var>) from the north and the <var>j</var>-th street (<var>1 \le j \le W</var>) from the west is denoted by <var>(i, j)</var>.</p>
+<p>Different streets may have different width, material, and crowdedness. Your walking speed may be different for different streets. For each street, your walking speed is determined as follows.</p>
+<ul>
+<li>If you walk on the <var>i</var>-th street (<var>1 \le i \le H</var>) from the north for the unit length, it takes <var>A_{i}</var> seconds. In other words, for each <var>c</var> (<var>1 \le c \le W - 1</var>), it takes <var>A_{i}</var> seconds to walk from the crossing <var>(i, c)</var> to the crossing <var>(i, c + 1)</var>.</li>
+<li>If you walk on the <var>j</var>-th street (<var>1 \le j \le W</var>) from the west for the unit length, it takes <var>B_{j}</var> seconds. In other words, for each <var>r</var> (<var>1 \le r \le H - 1</var>), it takes <var>B_{j}</var> seconds to walk from the crossing <var>(r, j)</var> to the crossing <var>(r + 1, j)</var>.</li>
+</ul>
+<p>In order not to destroy the beautiful landscape of Kyoto City, you are not allowed to walk outside the streets.</p>
+<p>Now you are in the crossing <var>(1, 1)</var>. You want to walk to the crossing <var>(H, W)</var>. Since you will be tired if you walk for long distance, you do not want to make a detour. You will not walk to the north or west direction. Under this condition, you want to arrive at the destination as early as possible.</p>
+<p>Write a program which, given information of the streets, calculates the minimum time to walk from the crossing <var>(1, 1)</var> to the crossing (<var>H, W</var>) without making a detour.</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input. Given values are all integers.</p>
+<pre><var>H</var> <var>W</var>
+<var>A_{1}</var> <var>A_{2}</var> <var>\cdots</var> <var>A_{H}</var>
+<var>B_{1}</var> <var>B_{2}</var> <var>\cdots</var> <var>B_{W}</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>Write one line to the standard output. The output should contain the minimum time (seconds) to walk from the crossing <var>(1, 1)</var> to the crossing (<var>H, W</var>) without making a detour.</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li><var>2 \le H \le 100\,000</var>.</li>
+<li><var>2 \le W \le 100\,000</var>.</li>
+<li><var>1 \le A_{i} \le 1\,000\,000\,000 (= 10^{9})</var> (<var>1 \le i \le H</var>).</li>
+<li><var>1 \le B_{j} \le 1\,000\,000\,000 (= 10^{9})</var> (<var>1 \le j \le W</var>).</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li>(<var>10</var> points) <var>H \le 1\,000</var>, <var>W \le 1\,000</var>.</li>
+<li>(<var>30</var> points) <var>A_{i} \le 1\,000</var> (<var>1 \le i \le H</var>), <var>B_{j} \le 1\,000</var> (<var>1 \le j \le W</var>).</li>
+<li>(<var>60</var> points) No additional constraints.</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input and Output</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>2 2
+1 3
+2 5
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>5
+</pre>
+<p>There are two ways to walk from the crossing <var>(1, 1)</var> to the crossing <var>(2, 2)</var> without making a detour.</p>
+<ul>
+<li>Walk in the following way: crossing <var>(1, 1) \to (1, 2) \to (2, 2)</var>. It takes <var>A_{1} + B_{2} = 1 + 5 = 6</var> seconds.</li>
+<li>Walk in the following way: crossing <var>(1, 1) \to (2, 1) \to (2, 2)</var>. It takes <var>B_{1} + A_{2} = 2 + 3 = 5</var> seconds.</li>
+</ul>
+<p>Since the minimum time is <var>5</var> seconds, output <var>5</var>. These two ways are described in the following figure. An integer in the figure is the time needed to walk for the unit length on the corresponding street.</p>
+<p><img src="https://img.atcoder.jp/joisc2022/kyoto-en-p3-1.png" alt="Figure" style="max-width:100%;height:auto;"></p>
+
+<p>This sample input satisfies the constraints of all the subtasks.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>5 5
+7 1 5 2 8
+7 2 4 1 6
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>20
+</pre>
+<p>For example, if you walk from the crossing <var>(1, 1)</var> to the crossing <var>(5, 5)</var> in the following way, it takes <var>20</var> seconds. Since it is impossible to walk in <var>19</var> seconds or less, output <var>20</var>. An integer in the figure is the time needed to walk for the unit length on the corresponding street.</p>
+<p><img src="https://img.atcoder.jp/joisc2022/kyoto-en-p3-2.png" alt="Figure" style="max-width:100%;height:auto;"></p>
+
+<p>This sample input satisfies the constraints of all the subtasks.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 3</h3>
+<pre>4 6
+454863204 543362989 866044086 813602010
+71574269 17945210 688720933 392135202 38174709 168241720
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 3</h3>
+<pre>2737473954
+</pre>
+<p>This sample input satisfies the constraints of Subtasks <var>1</var>, <var>3</var>.</p></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>京都市は世界的な観光地であるとともに，格子状の道路でも有名である．あなたは京都市に観光に来ており，できるだけ早く目的の観光名所まで歩いて移動したいと思っている．ここで，現実を単純化した次のような状況設定を考えたい．</p>
+<p>この都市には，東西に伸びる道路が <var>H</var> 本，南北に伸びる道路が <var>W</var> 本通っており，これらは都市全体を <var>(H - 1) \times (W - 1)</var> 個の正方形の区画に分ける碁盤の目のような形をなしている．北から <var>i</var> 本目 (<var>1 \leqq i \leqq H</var>) の東西方向の道路と，西から <var>j</var> 本目 (<var>1 \leqq j \leqq W</var>) の南北方向の道路が交わる場所を，交差点 <var>(i, j)</var> とする．</p>
+<p>道路によって，広さ，材質，人通りの多さなどが様々であるため，あなたの歩く速さはすべての道路で同じとは限らない．具体的には，各道路に対して，歩く速さは以下のようになっている．</p>
+<ul>
+<li>北から <var>i</var> 本目 (<var>1 \leqq i \leqq H</var>) の東西方向の道路を <var>1</var> 区画分歩くのには <var>A_{i}</var> 秒かかる．すなわち，各 <var>c</var> (<var>1 \leqq c \leqq W - 1</var>) に対して，交差点 <var>(i, c)</var> と交差点 <var>(i, c + 1)</var> の間を <var>A_{i}</var> 秒で移動できる．</li>
+<li>西から <var>j</var> 本目 (<var>1 \leqq j \leqq W</var>) の南北方向の道路を <var>1</var> 区画分歩くのには <var>B_{j}</var> 秒かかる．すなわち，各 <var>r</var> (<var>1 \leqq r \leqq H - 1</var>) に対して，交差点 <var>(r, j)</var> と交差点 <var>(r + 1, j)</var> の間を <var>B_{j}</var> 秒で移動できる．</li>
+</ul>
+<p>ただし，あなたは京都市の美しい景観を損なうべきではないため，道路以外の部分を歩くことはできない．</p>
+<p>あなたは現在交差点 <var>(1, 1)</var> におり，交差点 <var>(H, W)</var> まで徒歩で移動したい．ただし，歩く距離が長いと疲れるので，遠回りをせずに，すなわち一度も北方向または西方向に進まずに移動するつもりである．この条件のもとで，できるだけ早く目的地に到着したい．</p>
+<p>道路の情報が与えられるので，交差点 <var>(1, 1)</var> から交差点 <var>(H, W)</var> まで遠回りせずに徒歩で移動するのに必要な最短の時間を求めるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力は以下の形式で標準入力から与えられる．入力される値はすべて整数である．</p>
+<pre><var>H</var> <var>W</var>
+<var>A_{1}</var> <var>A_{2}</var> <var>\cdots</var> <var>A_{H}</var>
+<var>B_{1}</var> <var>B_{2}</var> <var>\cdots</var> <var>B_{W}</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に，交差点 <var>(1, 1)</var> から交差点 <var>(H, W)</var> まで遠回りせずに徒歩で移動するのに必要な最短の時間を秒単位で表す整数を <var>1</var> 行で出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>2 \leqq H \leqq 100\,000</var>．</li>
+<li><var>2 \leqq W \leqq 100\,000</var>．</li>
+<li><var>1 \leqq A_{i} \leqq 1\,000\,000\,000 (= 10^{9})</var> (<var>1 \leqq i \leqq H</var>)．</li>
+<li><var>1 \leqq B_{j} \leqq 1\,000\,000\,000 (= 10^{9})</var> (<var>1 \leqq j \leqq W</var>)．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>10</var> 点) <var>H \leqq 1\,000</var>，<var>W \leqq 1\,000</var>．</li>
+<li>(<var>30</var> 点) <var>A_{i} \leqq 1\,000</var> (<var>1 \leqq i \leqq H</var>)，<var>B_{j} \leqq 1\,000</var> (<var>1 \leqq j \leqq W</var>)．</li>
+<li>(<var>60</var> 点) 追加の制約はない．</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入出力例</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>2 2
+1 3
+2 5
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>5
+</pre>
+<p>交差点 <var>(1, 1)</var> から交差点 <var>(2, 2)</var> まで遠回りせずに徒歩で移動する方法には，以下の <var>2</var> 通りがある．</p>
+<ul>
+<li>交差点 <var>(1, 1) \to (1, 2) \to (2, 2)</var> の経路で移動する．これには <var>A_{1} + B_{2} = 1 + 5 = 6</var> 秒かかる．</li>
+<li>交差点 <var>(1, 1) \to (2, 1) \to (2, 2)</var> の経路で移動する．これには <var>B_{1} + A_{2} = 2 + 3 = 5</var> 秒かかる．</li>
+</ul>
+<p>そのため，移動にかかる最短の時間は <var>5</var> 秒である．よって <var>5</var> を出力する．なお，<var>2</var> つの移動経路を図で表すと以下のようになる．ここで，図中の各道路に対応する整数は，その道路を <var>1</var> 区画分歩くのにかかる時間を表している．</p>
+<p><img src="https://img.atcoder.jp/joisc2022/kyoto-ja-p2-1.png" alt="図" style="max-width:100%;height:auto;"></p>
+
+<p>この入力例はすべての小課題の制約を満たす．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>5 5
+7 1 5 2 8
+7 2 4 1 6
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>20
+</pre>
+<p>例えば，下図のような経路で移動すると，交差点 <var>(1, 1)</var> から交差点 <var>(5, 5)</var> まで <var>20</var> 秒で移動できる．移動時間を <var>19</var> 秒以内にする方法は存在しないため，<var>20</var> を出力する．なお，図中の各道路に対応する整数は，その道路を <var>1</var> 区画分歩くのにかかる時間を表している．</p>
+<p><img src="https://img.atcoder.jp/joisc2022/kyoto-ja-p3-1.png" alt="図" style="max-width:100%;height:auto;"></p>
+
+<p>この入力例はすべての小課題の制約を満たす．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>4 6
+454863204 543362989 866044086 813602010
+71574269 17945210 688720933 392135202 38174709 168241720
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>2737473954
+</pre>
+<p>この入力例は小課題 <var>1, 3</var> の制約を満たす．</p></section>
+</div>
+</span>
+</span>

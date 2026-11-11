@@ -1,29 +1,28 @@
 <span class="lang">
 <span class="lang-en">
-<blockquote>
+<blockquote class="joisp2023-d-submission">
 <p><strong>Submission on AtCoder</strong></p>
 <p><a href="https://www2.ioi-jp.org/camp/2023/2023-sp-tasks/contest2/conveyor-dist.zip">Distributed Files</a></p>
-<p>The Implementation Details, Important Notices, and Compilation and Test Run sections below describe the library interface and local testing. If you use standard input and output, implement the same strategy using the communication protocol in this section.</p>
 <h4>Using C++</h4>
 <p>Include <code>conveyor.h</code> and implement all functions in a single file.</p>
 <details>
 <summary><strong>Using Standard Input and Output</strong></summary>
 <p>Initially, input is given in the following format.</p>
-<pre><var>N</var> <var>A_0</var> <var>A_1</var> <var>\cdots</var> <var>A_{N-2}</var> <var>B_0</var> <var>B_1</var> <var>\cdots</var> <var>B_{N-2}</var>
+<pre><var>N</var> <var>A_0</var> <var>A_1</var> <var>\cdots</var> <var>A_{N - 2}</var> <var>B_0</var> <var>B_1</var> <var>\cdots</var> <var>B_{N - 2}</var>
 </pre>
 <h5>Query</h5>
 <p>Output in the following format.</p>
 <pre>Q
-<var>x_0</var> <var>x_1</var> <var>\cdots</var> <var>x_{N-2}</var>
-<var>y_0</var> <var>y_1</var> <var>\cdots</var> <var>y_{N-1}</var>
+<var>x_0</var> <var>x_1</var> <var>\cdots</var> <var>x_{N - 2}</var>
+<var>y_0</var> <var>y_1</var> <var>\cdots</var> <var>y_{N - 1}</var>
 </pre>
 <p>Then input is given in the following format.</p>
-<pre><var>z_0</var> <var>z_1</var> <var>\cdots</var> <var>z_{N-1}</var>
+<pre><var>z_0</var> <var>z_1</var> <var>\cdots</var> <var>z_{N - 1}</var>
 </pre>
 <h5>Answer</h5>
 <p>Output in the following format.</p>
 <pre>A
-<var>a_0</var> <var>a_1</var> <var>\cdots</var> <var>a_{N-2}</var>
+<var>a_0</var> <var>a_1</var> <var>\cdots</var> <var>a_{N - 2}</var>
 </pre>
 <p>Then <code>0</code> is given on one line.</p>
 <p>Output the character <code>F</code> and terminate your program.</p>
@@ -36,41 +35,43 @@
 </blockquote>
 <p>Score: <var>100</var> points</p>
 <style>
-#task-statement details {
-    margin: 1em 0;
+.joisp2023-d-submission details {
+    margin: 0;
 }
-#task-statement details > summary {
+.joisp2023-d-submission details > summary {
     display: list-item;
     cursor: pointer;
 }
-#task-statement table {
-    display: block;
-    width: fit-content;
-    max-width: 100%;
-    overflow-x: auto;
+.joisp2023-d-table table { position:relative;
+    display: table;
+    width: auto;
+    max-width: none;
+    overflow: visible;
     border-collapse: collapse;
-    margin: 1em 0;
+    margin: 0;
 }
-#task-statement table th,
-#task-statement table td {
+.joisp2023-d-table table th,
+.joisp2023-d-table table td {
     border: 1px solid #aaa;
     padding: 0.3em 0.6em;
     text-align: left;
     vertical-align: top;
 }
-#task-statement table th {
+.joisp2023-d-table table th {
     background-color: #f5f5f5;
 }
-#task-statement table code {
+.joisp2023-d-table table code {
     white-space: nowrap;
 }
+
+.joisp2023-d-table {position:relative;max-width:100%;overflow-x:auto;margin:1em 0;}
 </style>
 
 
 <div class="part">
 <section>
 <h3>Problem Statement</h3>
-<p>In the factory of JOI Co., Ltd., there are <var>N</var> tables, numbered from <var>0</var> to <var>N - 1</var>. In the factory, there are <var>N - 1</var> belt conveyors, numbered from <var>0</var> to <var>N - 2</var>. The belt conveyor <var>i</var> (<var>0 \leq i \leq N - 2</var>) connects the table <var>A_i</var> and the table <var>B_i</var>. It transports products from one table to the other table. However, we cannot see the direction of transportation. If we ignore the directions of the belt conveyors, every pair of tables is connected by a number of belt conveyors.</p>
+<p>In the factory of JOI Co., Ltd., there are <var>N</var> tables, numbered from <var>0</var> to <var>N - 1</var>. In the factory, there are <var>N - 1</var> belt conveyors, numbered from <var>0</var> to <var>N - 2</var>. The belt conveyor <var>i</var> (<var>0 \le i \le N - 2</var>) connects the table <var>A_i</var> and the table <var>B_i</var>. It transports products from one table to the other table. However, we cannot see the direction of transportation. If we ignore the directions of the belt conveyors, every pair of tables is connected by a number of belt conveyors.</p>
 <p>IOI-kun is the director of the factory. Since he forgets the direction of transportation of every belt conveyor, he will perform the following sequential operations several times.</p>
 <ol>
 <li>He chooses a number of belt conveyors, and reverses the directions of transportation of the chosen belt conveyors.</li>
@@ -81,7 +82,7 @@
 </ul>
 </li>
 <li>IOI-kun confirms whether there are one or more products on each table. If there are products on a table, IOI-kun takes all of them.</li>
-<li>For every belt conveyor whose direction is reversed in the operation <var>1.</var>, IOI-kun reverts its direction. Its direction becomes the original direction.</li>
+<li>For every belt conveyor whose direction is reversed in the operation <var>1</var>., IOI-kun reverts its direction. Its direction becomes the original direction.</li>
 </ol>
 <p>IOI-kun wants to specify the original direction of every belt conveyor by performing the above sequential operations at most <var>30</var> times.</p>
 <p>Write a program which, given information of the tables connected by the belt conveyors, implements IOI-kun's strategy to specify the original direction of every belt conveyor by performing the above sequential operations at most <var>30</var> times.</p>
@@ -103,17 +104,15 @@
 <li>The parameter <code>N</code> is the number of tables <var>N</var>.</li>
 <li>The parameters <code>A</code>, <code>B</code> are arrays of length <var>N - 1</var>, describing the tables connected by the belt conveyors.</li>
 </ul>
-</li>
-</ul>
 <p>Your program can call the following functions.</p>
 <ul>
 <li>
 <p><code>std::vector&lt;int&gt; Query(std::vector&lt;int&gt; x, std::vector&lt;int&gt; y)</code></p>
 <p>Using this function, IOI-kun performs the operations in the factory.</p>
 <ul>
-<li>The parameter <code>x</code> is an array of length <var>N - 1</var>. For <var>0 \leq i \leq N - 2</var>, IOI-kun reverses the direction of the belt conveyor <var>i</var> if <code>x[i]</code> <var>= 1</var>, and does not reverse the direction of the belt conveyor <var>i</var> if <code>x[i]</code> <var>= 0</var>.</li>
-<li>The parameter <code>y</code> is an array of length <var>N</var>. For <var>0 \leq j \leq N - 1</var>, IOI-kun puts a product on the table <var>j</var> if <code>y[j]</code> <var>= 1</var>, and does not put a product on the table <var>j</var> if <code>y[j]</code> <var>= 0</var>.</li>
-<li>Let <code>z</code> be the return value of this function. It is an array of length <var>N</var>. For <var>0 \leq j \leq N - 1</var>, there are one or more products on the table <var>j</var> if <code>z[j]</code> <var>= 1</var>, and there is no product on the table <var>j</var> if <code>z[j]</code> <var>= 0</var>.</li>
+<li>The parameter <code>x</code> is an array of length <var>N - 1</var>. For <var>0 \le i \le N - 2</var>, IOI-kun reverses the direction of the belt conveyor <var>i</var> if <var>\texttt{x}[i] = 1</var>, and does not reverse the direction of the belt conveyor <var>i</var> if <var>\texttt{x}[i] = 0</var>.</li>
+<li>The parameter <code>y</code> is an array of length <var>N</var>. For <var>0 \le j \le N - 1</var>, IOI-kun puts a product on the table <var>j</var> if <var>\texttt{y}[j] = 1</var>, and does not put a product on the table <var>j</var> if <var>\texttt{y}[j] = 0</var>.</li>
+<li>Let <code>z</code> be the return value of this function. It is an array of length <var>N</var>. For <var>0 \le j \le N - 1</var>, there are one or more products on the table <var>j</var> if <var>\texttt{z}[j] = 1</var>, and there is no product on the table <var>j</var> if <var>\texttt{z}[j] = 0</var>.</li>
 <li>The length of the array <code>x</code> should be equal to <var>N - 1</var>. If this condition is not satisfied, your program is judged as <strong>Wrong Answer [1]</strong>.</li>
 <li>Every element of the array <code>x</code> should be <var>0</var> or <var>1</var>. If this condition is not satisfied, your program is judged as <strong>Wrong Answer [2]</strong>.</li>
 <li>The length of the array <code>y</code> should be equal to <var>N</var>. If this condition is not satisfied, your program is judged as <strong>Wrong Answer [3]</strong>.</li>
@@ -125,11 +124,13 @@
 <p><code>void Answer(std::vector&lt;int&gt; a)</code></p>
 <p>Using this function, IOI-kun reports the original direction of each belt conveyor.</p>
 <ul>
-<li>The parameter <code>a</code> is an array of length <var>N - 1</var>. For <var>0 \leq i \leq N - 2</var>, the belt conveyor <var>i</var> transports products from <var>A_i</var> to <var>B_i</var> if <code>a[i]</code> <var>= 0</var>, and it transports products from <var>B_i</var> to <var>A_i</var> if <code>a[i]</code> <var>= 1</var>.</li>
+<li>The parameter <code>a</code> is an array of length <var>N - 1</var>. For <var>0 \le i \le N - 2</var>, the belt conveyor <var>i</var> transports products from <var>A_i</var> to <var>B_i</var> if <var>\texttt{a}[i] = 0</var>, and it transports products from <var>B_i</var> to <var>A_i</var> if <var>\texttt{a}[i] = 1</var>.</li>
 <li>The length of the array <code>a</code> should be equal to <var>N - 1</var>. If this condition is not satisfied, your program is judged as <strong>Wrong Answer [6]</strong>.</li>
 <li>Every element of the array <code>a</code> should be <var>0</var> or <var>1</var>. If this condition is not satisfied, your program is judged as <strong>Wrong Answer [7]</strong>.</li>
 <li>If IOI-kun reports wrong direction of a belt conveyor, your program is judged as <strong>Wrong Answer [8]</strong>.</li>
 <li>The function <code>Answer</code> should be called exactly once. If the function <code>Answer</code> is called more than once, your program is judged as <strong>Wrong Answer [9]</strong>. When the function <code>Solve</code> terminates, if the function <code>Answer</code> is not called, your program is judged as <strong>Wrong Answer [10]</strong>.</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -163,11 +164,11 @@
 <h3>Input for the Sample Grader</h3>
 <p>The sample grader reads the following data from the standard input.</p>
 <pre><var>N</var>
-<var>A_0</var> <var>A_1</var> <var>\cdots</var> <var>A_{N-2}</var>
-<var>B_0</var> <var>B_1</var> <var>\cdots</var> <var>B_{N-2}</var>
-<var>C_0</var> <var>C_1</var> <var>\cdots</var> <var>C_{N-2}</var>
+<var>A_0</var> <var>A_1</var> <var>\cdots</var> <var>A_{N - 2}</var>
+<var>B_0</var> <var>B_1</var> <var>\cdots</var> <var>B_{N - 2}</var>
+<var>C_0</var> <var>C_1</var> <var>\cdots</var> <var>C_{N - 2}</var>
 </pre>
-<p>For <var>0 \leq i \leq N - 2</var>, we have <var>C_i = 0</var> if the belt conveyor <var>i</var> transports products from the table <var>A_i</var> to the table <var>B_i</var>. Otherwise, we have <var>C_i = 1</var>.</p>
+<p>For <var>0 \le i \le N - 2</var>, we have <var>C_i = 0</var> if the belt conveyor <var>i</var> transports products from the table <var>A_i</var> to the table <var>B_i</var>. Otherwise, we have <var>C_i = 1</var>.</p>
 </section>
 </div>
 
@@ -199,8 +200,8 @@
 <h3>Constraints</h3>
 <p>All the input data satisfy the following conditions.</p>
 <ul>
-<li><var>0 \leq A_i \leq N - 1</var> (<var>0 \leq i \leq N - 2</var>).</li>
-<li><var>0 \leq B_i \leq N - 1</var> (<var>0 \leq i \leq N - 2</var>).</li>
+<li><var>0 \le A_i \le N - 1</var> (<var>0 \le i \le N - 2</var>).</li>
+<li><var>0 \le B_i \le N - 1</var> (<var>0 \le i \le N - 2</var>).</li>
 <li>If we ignore the directions of the belt conveyors, every pair of tables is connected by a number of belt conveyors.</li>
 </ul>
 </section>
@@ -212,7 +213,7 @@
 <ol>
 <li>(<var>1</var> point) <var>N = 2</var>.</li>
 <li>(<var>14</var> points) <var>N = 30</var>.</li>
-<li>(<var>10</var> points) <var>N = 100\,000</var>, <var>A_i = i</var> (<var>0 \leq i \leq N - 2</var>), <var>B_i = i + 1</var> (<var>0 \leq i \leq N - 2</var>).</li>
+<li>(<var>10</var> points) <var>N = 100\,000</var>, <var>A_i = i</var> (<var>0 \le i \le N - 2</var>), <var>B_i = i + 1</var> (<var>0 \le i \le N - 2</var>).</li>
 <li>(<var>75</var> points) <var>N = 100\,000</var>.</li>
 </ol>
 <hr />
@@ -235,6 +236,7 @@
 1 0
 </pre>
 <h4>Sample Function Calls</h4>
+<div class="joisp2023-d-table">
 <table>
 <thead>
 <tr>
@@ -276,6 +278,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <p>For the first function call to <code>Query</code>, another possible return value is <code>[0, 1, 0]</code> other than <code>[1, 0, 0]</code>.</p>
 <p>For the second function call to <code>Query</code>, the product on the table <var>0</var> is transported to the table <var>2</var> by passing through the belt conveyor <var>0</var>, and stops there. Note that this product will not be transported to the table <var>1</var> by passing through the belt conveyor <var>1</var>.</p>
 <p>Note that this sample input does not satisfy the constraints of any subtask.</p>
@@ -283,30 +286,29 @@
 </div>
 </span>
 <span class="lang-ja">
-<blockquote>
+<blockquote class="joisp2023-d-submission">
 <p><strong>AtCoder での提出方法</strong></p>
 <p><a href="https://www2.ioi-jp.org/camp/2023/2023-sp-tasks/contest2/conveyor-dist.zip">配布ファイル</a></p>
-<p>以下の「実装の詳細」「重要な注意」「コンパイル・実行の方法」はライブラリ形式およびローカルでのテスト方法についての説明である．標準入出力を使用する場合は，この節の通信形式で同じ戦略を実装すること．</p>
 <h4>C++ を使用する場合</h4>
 <p><code>conveyor.h</code> を include し，すべての関数を <var>1</var> つのファイル内で実装してください．</p>
 <details>
 <summary><strong>標準入出力を使用する場合</strong></summary>
 <p>はじめに，以下の形式で入力が与えられます．</p>
-<pre><var>N</var> <var>A_0</var> <var>A_1</var> <var>\cdots</var> <var>A_{N-2}</var> <var>B_0</var> <var>B_1</var> <var>\cdots</var> <var>B_{N-2}</var>
+<pre><var>N</var> <var>A_0</var> <var>A_1</var> <var>\cdots</var> <var>A_{N - 2}</var> <var>B_0</var> <var>B_1</var> <var>\cdots</var> <var>B_{N - 2}</var>
 </pre>
 <h5>Query</h5>
 <p>以下の形式で出力してください．</p>
 <pre>Q
-<var>x_0</var> <var>x_1</var> <var>\cdots</var> <var>x_{N-2}</var>
-<var>y_0</var> <var>y_1</var> <var>\cdots</var> <var>y_{N-1}</var>
+<var>x_0</var> <var>x_1</var> <var>\cdots</var> <var>x_{N - 2}</var>
+<var>y_0</var> <var>y_1</var> <var>\cdots</var> <var>y_{N - 1}</var>
 </pre>
 <p>以下の形式で入力が与えられます．</p>
-<pre><var>z_0</var> <var>z_1</var> <var>\cdots</var> <var>z_{N-1}</var>
+<pre><var>z_0</var> <var>z_1</var> <var>\cdots</var> <var>z_{N - 1}</var>
 </pre>
 <h5>Answer</h5>
 <p>以下の形式で出力してください．</p>
 <pre>A
-<var>a_0</var> <var>a_1</var> <var>\cdots</var> <var>a_{N-2}</var>
+<var>a_0</var> <var>a_1</var> <var>\cdots</var> <var>a_{N - 2}</var>
 </pre>
 <p><code>0</code> が <var>1</var> 行で与えられます．</p>
 <p>文字 <code>F</code> を出力してプログラムを終了してください．</p>
@@ -317,36 +319,38 @@
 </ul>
 </details>
 </blockquote>
-<p>配点： <var>100</var> 点</p>
+<p>配点 : <var>100</var> 点</p>
 <style>
-#task-statement details {
-    margin: 1em 0;
+.joisp2023-d-submission details {
+    margin: 0;
 }
-#task-statement details > summary {
+.joisp2023-d-submission details > summary {
     display: list-item;
     cursor: pointer;
 }
-#task-statement table {
-    display: block;
-    width: fit-content;
-    max-width: 100%;
-    overflow-x: auto;
+.joisp2023-d-table table { position:relative;
+    display: table;
+    width: auto;
+    max-width: none;
+    overflow: visible;
     border-collapse: collapse;
-    margin: 1em 0;
+    margin: 0;
 }
-#task-statement table th,
-#task-statement table td {
+.joisp2023-d-table table th,
+.joisp2023-d-table table td {
     border: 1px solid #aaa;
     padding: 0.3em 0.6em;
     text-align: left;
     vertical-align: top;
 }
-#task-statement table th {
+.joisp2023-d-table table th {
     background-color: #f5f5f5;
 }
-#task-statement table code {
+.joisp2023-d-table table code {
     white-space: nowrap;
 }
+
+.joisp2023-d-table {position:relative;max-width:100%;overflow-x:auto;margin:1em 0;}
 </style>
 
 
@@ -364,7 +368,7 @@
 </ul>
 </li>
 <li>IOI 君はそれぞれの台に製品が <var>1</var> つ以上存在するか確認し，製品をすべて回収する．</li>
-<li><var>1.</var> で反転させたベルトコンベアの向きを元に戻す．</li>
+<li><var>1</var>. で反転させたベルトコンベアの向きを元に戻す．</li>
 </ol>
 <p>IOI 君はこの操作を <var>30</var> 回以下行うことで，それぞれのベルトコンベアが最初どちらを向いていたかを特定したい．</p>
 <p>それぞれのベルトコンベアが繋ぐ台の情報が与えられたとき，<var>30</var> 回以下の操作を行うことでそれぞれのベルトコンベアの向きを特定する IOI 君の戦略を実装したプログラムを作成せよ．</p>
@@ -385,8 +389,6 @@
 <ul>
 <li>引数 <code>N</code> は台の個数 <var>N</var> である．</li>
 <li>引数 <code>A</code>，<code>B</code> は長さ <var>N - 1</var> の配列であり，ベルトコンベアが繋ぐ台の情報を表す．</li>
-</ul>
-</li>
 </ul>
 <p>あなたのプログラムは以下の関数を呼び出すことができる．</p>
 <ul>
@@ -413,6 +415,8 @@
 <li>引数 <code>a</code> の各要素は，<var>0</var> または <var>1</var> でなければならない．これが満たされていない場合，<strong>不正解 [7]</strong> と判定される．</li>
 <li>誤った向きを回答した場合，<strong>不正解 [8]</strong> と判定される．</li>
 <li>関数 <code>Answer</code> は丁度 <var>1</var> 回呼び出さなければならない．関数 <code>Answer</code> を <var>2</var> 回以上呼び出した場合，<strong>不正解 [9]</strong> と判定される．関数 <code>Solve</code> の実行の終了時に関数 <code>Answer</code> が <var>1</var> 回も呼び出されていなかった場合，<strong>不正解 [10]</strong> と判定される．</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -447,9 +451,9 @@
 <h3>採点プログラムのサンプルの入力</h3>
 <p>採点プログラムのサンプルは標準入力から以下の形式で入力を読み込む．</p>
 <pre><var>N</var>
-<var>A_0</var> <var>A_1</var> <var>\cdots</var> <var>A_{N-2}</var>
-<var>B_0</var> <var>B_1</var> <var>\cdots</var> <var>B_{N-2}</var>
-<var>C_0</var> <var>C_1</var> <var>\cdots</var> <var>C_{N-2}</var>
+<var>A_0</var> <var>A_1</var> <var>\cdots</var> <var>A_{N - 2}</var>
+<var>B_0</var> <var>B_1</var> <var>\cdots</var> <var>B_{N - 2}</var>
+<var>C_0</var> <var>C_1</var> <var>\cdots</var> <var>C_{N - 2}</var>
 </pre>
 <p><var>C_i</var> (<var>0 \leqq i \leqq N - 2</var>) は，ベルトコンベア <var>i</var> が台 <var>A_i</var> から台 <var>B_i</var> に向けて製品を運搬するとき <var>0</var>，台 <var>B_i</var> から台 <var>A_i</var> に運搬するとき <var>1</var> である．</p>
 </section>
@@ -523,6 +527,7 @@
 1 0
 </pre>
 <h4>関数の呼び出しの例</h4>
+<div class="joisp2023-d-table">
 <table>
 <thead>
 <tr>
@@ -564,6 +569,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <p><var>1</var> 回目の <code>Query</code> の呼び出しの戻り値は，<code>[1, 0, 0]</code> の他に <code>[0, 1, 0]</code> となる可能性もある．</p>
 <p><var>2</var> 回目の <code>Query</code> の呼び出しにおいて，台 <var>0</var> に置かれた製品はベルトコンベア <var>0</var> を通って台 <var>2</var> に移動して停止する．この製品が続けてベルトコンベア <var>1</var> を通って台 <var>1</var> に移動することはないことに注意すること．</p>
 <p>この入力例はどの小課題の制約も満たさないことに注意すること．</p>

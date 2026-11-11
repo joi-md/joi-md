@@ -1,0 +1,390 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>IOI Farm is an agricultural farm growing apples. It is famous for being located around a large circular lake.</p>
+<p>In IOI Farm, there are <var>N</var> employees, numbered from 1 to <var>N</var>. There are <var>M</var> apple trees, numbered from 1 to <var>M</var>. The perimeter of the lake is <var>L</var> meter.</p>
+<p>In the beginning, the employee <var>i</var> (<var>1 \le i \le N</var>) is waiting at the distance of <var>A_{i}</var> meter from the northernmost point of the lake, in the clockwise direction. The values of <var>A_{i}</var> (<var>1 \le i \le N</var>) are distinct. The apple tree <var>j</var> (<var>1 \le j \le M</var>) is grown up at the distance of <var>B_{j}</var> meter from the northernmost point of the lake, in the clockwise direction. The values of <var>B_{j}</var> (<var>1 \le j \le M</var>) are distinct. Moreover, there is no apple tree at the initial position of any employee.</p>
+<p>Due to a special breed improvement of the apple trees in IOI Farm, every apple tree can have at most one apple at the same time. Moreover, if an apple is harvested from the apple tree, it will have a new apple exactly after <var>C</var> seconds. At time 0, every apple tree has an apple, and every employee starts walking around the lake in the clockwise direction. The speed of every employee is <var>1</var> meter per second. If an employee arrives at an apple tree with an apple, then the employee will always harvest it (If an apple tree has a new apple at the same time when an employee arrives there, then the employee will harvest it too). We ignore the time it takes for an employee to harvest an apple.</p>
+<p>President K is an stock holder of IOI Farm. Since you are a manager of IOI Farm, President K asked you to report on the efficiency of the employees. More precisely, President K wants to know the following <var>Q</var> values.</p>
+<ul>
+<li>For each <var>k</var> (<var>1 \le k \le Q</var>), the number of apples harvested by the employee <var>V_{k}</var> until time <var>T_{k}</var> (including an apple harvested exactly at time <var>T_{k}</var> if it exists).</li>
+</ul>
+<p>Write a program which, given the number of the employees, the number of the apple trees, the perimeter of the lake, the time it takes for an apple tree to have a new apple, the positions of the employees and the apple trees, and information on <var>Q</var> queries, calculates the number of harvested apples for each query.</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input. All the values in the input are integers.</p>
+<pre><var>N</var> <var>M</var> <var>L</var> <var>C</var>
+<var>A_{1}</var> <var>\cdots</var> <var>A_{N}</var>
+<var>B_{1}</var> <var>\cdots</var> <var>B_{M}</var>
+<var>Q</var>
+<var>V_{1}</var> <var>T_{1}</var>
+<var>\vdots</var>
+<var>V_{Q}</var> <var>T_{Q}</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>Write <var>Q</var> lines to the standard output. In the <var>k</var>-th line (<var>1 \le k \le Q</var>), output the answer to the <var>k</var>-th query.</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li><var>1 \le N \le 200\,000</var>.</li>
+<li><var>1 \le M \le 200\,000</var>.</li>
+<li><var>N + M \le L \le 1\,000\,000\,000</var>.</li>
+<li><var>1 \le C \le 1\,000\,000\,000</var>.</li>
+<li><var>0 \le A_{i} &lt; L</var> (<var>1 \le i \le N</var>).</li>
+<li><var>A_{i} &lt; A_{i+1}</var> (<var>1 \le i \le N - 1</var>).</li>
+<li><var>0 \le B_{j} &lt; L</var> (<var>1 \le j \le M</var>).</li>
+<li><var>B_{j} &lt; B_{j+1}</var> (<var>1 \le j \le M - 1</var>).</li>
+<li><var>A_{i} \ne B_{j}</var> (<var>1 \le i \le N</var>, <var>1 \le j \le M</var>).</li>
+<li><var>1 \le Q \le 200\,000</var>.</li>
+<li><var>1 \le V_{k} \le N</var> (<var>1 \le k \le Q</var>).</li>
+<li><var>1 \le T_{k} \le 1\,000\,000\,000\,000\,000\,000 = 10^{18}</var> (<var>1 \le k \le Q</var>).</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li>(<var>5</var> points) <var>N \le 3\,000</var>, <var>M \le 3\,000</var>, <var>Q \le 3\,000</var>.</li>
+<li>(<var>20</var> points) <var>T_{k} \ge 1\,000\,000\,000\,000\,000 = 10^{15}</var> (<var>1 \le k \le Q</var>)．</li>
+<li>(<var>75</var> points) No additional constraints.</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input and Output</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>3 2 7 3
+1 4 6
+0 5
+3
+1 7
+2 3
+3 8
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>2
+1
+1
+</pre>
+<ul>
+<li>At time 1, the employee 2 harvests an apple from the apple tree 2, and the employee 3 harvests an apple from the apple tree 1.</li>
+<li>At time <var>3</var>, the employee <var>2</var> arrives at the apple tree <var>1</var>. Since it has no apple at that time, the employee does no harvest an apple.</li>
+<li>At time 4, the employee 1 harvests an apple from the apple tree 2.</li>
+<li>At time 6, the employee 1 harvests an apple from the apple tree 1. The employee 3 arrives at the apple tree 2, but does not harvest an apple since the apple tree has no apple at that time.</li>
+<li>At time 8, the employee 2 harvests an apple from the apple tree 2. The employee 3 arrives at the apple tree 1, but does not harvest an apple since the apple tree has no apple at that time.</li>
+</ul>
+<p>As the number of apples harvested by the employee 1 until time 7 (including an apple harvested at time 7) is 2, output 2 in the first line.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>5 3 20 6
+0 4 8 12 16
+2 11 14
+9
+4 1932
+2 93787
+1 89
+5 98124798
+1 2684
+1 137598
+3 2
+3 8375
+4 237
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>146
+7035
+7
+7359360
+202
+10320
+0
+628
+18
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 3</h3>
+<pre>8 15 217 33608
+0 12 71 96 111 128 152 206
+4 34 42 67 76 81 85 104 110 117 122 148 166 170 212
+14
+2 223544052420046341
+3 86357593875941375
+4 892813012303440034
+1 517156961659770735
+7 415536186438473633
+6 322175014520330760
+7 557706040951533058
+6 640041274241532527
+5 286263974600593111
+8 349405886653104871
+1 987277313830536091
+5 989137777159975413
+2 50689028127994215
+7 445686748471896881
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 3</h3>
+<pre>33230868503053
+3
+5
+1
+123542793648997
+8
+165811220737767
+8
+7
+1
+1
+7
+7535161012043
+132506837660717
+</pre></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>IOI 農園は大きな湖の周りにあることで有名なりんご農園である．</p>
+<p>IOI 農園には <var>N</var> 人の従業員が雇われており，それぞれ <var>1</var> から <var>N</var> までの番号が付けられている．また，IOI 農園では <var>M</var> 本のりんごの木が生えており，それぞれ <var>1</var> から <var>M</var> までの番号が付けられている．湖の周りの長さは <var>L</var> メートルである．</p>
+<p>最初，従業員 <var>i</var> (<var>1 \leqq i \leqq N</var>) は湖の最北端から湖の周りに沿って時計回りに <var>A_{i}</var> メートルだけ進んだ地点で待機している ．<var>A_{i}</var> (<var>1 \leqq i \leqq N</var>) の値はすべて異なる．また，りんごの木 <var>j</var> (<var>1 \leqq j \leqq M</var>) は湖の最北端から湖の周りに沿って時計回りに <var>B_{j}</var> メートルだけ進んだ地点に生えている ．<var>B_{j}</var> (<var>1 \leqq j \leqq M</var>) の値はすべて異なる．また，従業員の最初の待機場所にはりんごの木はない．</p>
+<p>IOI 農園で育てられているりんごは特別な品種改良の結果，<var>1</var> 本の木に対して <var>1</var> 個のりんごしか実らないが，収穫してからちょうど <var>C</var> 秒後に新たなりんごが実る．時刻 <var>0</var> ではすべてのりんごの木でりんごが実っており，従業員たちは時刻 <var>0</var> に湖の周りを時計回りに秒速 <var>1</var> メートルで歩き始める．従業員がりんごの木がある地点に到着してりんごが実っている場合，必ずりんごを収穫する (従業員がりんごの木がある地点に到着したと同時に新たなりんごが実った場合も，そのりんごを収穫する)．また，従業員がりんごを収穫するのにかかる時間は無視できるものとする．</p>
+<p>IOI 農園の株主である K 理事長は，経営者であるあなたに従業員の作業効率に関する報告書を提出するよう要求した．具体的には以下の <var>Q</var> 個の値を知る必要がある．</p>
+<ul>
+<li>従業員 <var>V_{k}</var> が時刻 <var>T_{k}</var> までに収穫する (時刻 <var>T_{k}</var> ちょうどに収穫する場合を含む) りんごの個数 (<var>1 \leqq k \leqq Q</var>)．</li>
+</ul>
+<p>従業員の人数，りんごの木の本数，湖の長さ，りんごを収穫してから新たに実るまでの時間，従業員とりんごの木の位置，<var>Q</var> 個の質問の情報が与えられたとき，それぞれの質問ごとに収穫するりんごの個数を求めるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力は以下の形式で標準入力から与えられる．入力の値はすべて整数である．</p>
+<pre><var>N</var> <var>M</var> <var>L</var> <var>C</var>
+<var>A_{1}</var> <var>\cdots</var> <var>A_{N}</var>
+<var>B_{1}</var> <var>\cdots</var> <var>B_{M}</var>
+<var>Q</var>
+<var>V_{1}</var> <var>T_{1}</var>
+<var>\vdots</var>
+<var>V_{Q}</var> <var>T_{Q}</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に <var>Q</var> 行で出力せよ ．<var>k</var> 行目 (<var>1 \leqq k \leqq Q</var>) には，<var>k</var> 個目の質問の答えを表す整数を出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>1 \leqq N \leqq 200\,000</var>．</li>
+<li><var>1 \leqq M \leqq 200\,000</var>．</li>
+<li><var>N + M \leqq L \leqq 1\,000\,000\,000</var>．</li>
+<li><var>1 \leqq C \leqq 1\,000\,000\,000</var>．</li>
+<li><var>0 \leqq A_{i} &lt; L</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>A_{i} &lt; A_{i+1}</var> (<var>1 \leqq i \leqq N - 1</var>)．</li>
+<li><var>0 \leqq B_{j} &lt; L</var> (<var>1 \leqq j \leqq M</var>)．</li>
+<li><var>B_{j} &lt; B_{j+1}</var> (<var>1 \leqq j \leqq M - 1</var>)．</li>
+<li><var>A_{i} \ne B_{j}</var> (<var>1 \leqq i \leqq N</var>，<var>1 \leqq j \leqq M</var>)．</li>
+<li><var>1 \leqq Q \leqq 200\,000</var>．</li>
+<li><var>1 \leqq V_{k} \leqq N</var> (<var>1 \leqq k \leqq Q</var>)．</li>
+<li><var>1 \leqq T_{k} \leqq 1\,000\,000\,000\,000\,000\,000 = 10^{18}</var> (<var>1 \leqq k \leqq Q</var>)．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>5</var> 点) <var>N \leqq 3\,000</var>，<var>M \leqq 3\,000</var>，<var>Q \leqq 3\,000</var>．</li>
+<li>(<var>20</var> 点) <var>T_{k} \geqq 1\,000\,000\,000\,000\,000 = 10^{15}</var> (<var>1 \leqq k \leqq Q</var>)．</li>
+<li>(<var>75</var> 点) 追加の制約はない．</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入出力例</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>3 2 7 3
+1 4 6
+0 5
+3
+1 7
+2 3
+3 8
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>2
+1
+1
+</pre>
+<ul>
+<li>時刻 <var>1</var> に従業員 <var>2</var> がりんごの木 <var>2</var> に実っているりんごを収穫し，従業員 <var>3</var> がりんごの木 <var>1</var> に実っているりんごを収穫する．</li>
+<li>時刻 <var>3</var> に従業員 <var>2</var> がりんごの木 <var>1</var> の位置に到着するが，りんごは実っていないので収穫しない．</li>
+<li>時刻 <var>4</var> に従業員 <var>1</var> がりんごの木 <var>2</var> に実っているりんごを収穫する．</li>
+<li>時刻 <var>6</var> に従業員 <var>1</var> がりんごの木 <var>1</var> に実っているりんごを収穫する．従業員 <var>3</var> がりんごの木 <var>2</var> の位置に到着するが，りんごは実っていないので収穫しない．</li>
+<li>時刻 <var>8</var> に従業員 <var>2</var> がりんごの木 <var>2</var> に実っているりんごを収穫する．従業員 <var>3</var> がりんごの木 <var>1</var> の位置に到着するが，りんごは実っていないので収穫しない．</li>
+</ul>
+<p>従業員 <var>1</var> が時刻 <var>7</var> までに収穫する (時刻 <var>7</var> ちょうどに収穫する場合を含む) りんごの個数は <var>2</var> 個であるから，<var>1</var> 行目に <var>2</var> を出力する．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>5 3 20 6
+0 4 8 12 16
+2 11 14
+9
+4 1932
+2 93787
+1 89
+5 98124798
+1 2684
+1 137598
+3 2
+3 8375
+4 237
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>146
+7035
+7
+7359360
+202
+10320
+0
+628
+18
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>8 15 217 33608
+0 12 71 96 111 128 152 206
+4 34 42 67 76 81 85 104 110 117 122 148 166 170 212
+14
+2 223544052420046341
+3 86357593875941375
+4 892813012303440034
+1 517156961659770735
+7 415536186438473633
+6 322175014520330760
+7 557706040951533058
+6 640041274241532527
+5 286263974600593111
+8 349405886653104871
+1 987277313830536091
+5 989137777159975413
+2 50689028127994215
+7 445686748471896881
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>33230868503053
+3
+5
+1
+123542793648997
+8
+165811220737767
+8
+7
+1
+1
+7
+7535161012043
+132506837660717
+</pre></section>
+</div>
+</span>
+</span>

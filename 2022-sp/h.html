@@ -1,0 +1,477 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>JOI-kun has years of experience of growing vegetables in his home vegetable garden. Now he is planning to manage IOI Farm.</p>
+<p>IOI Farm consists of <var>N</var> lands, numbered from 1 to <var>N</var>. There are <var>N - 1</var> roads connecting with lands, numbered from 1 to <var>N - 1</var>. The road <var>i</var> (<var>1 \le i \le N - 1</var>) connects the land <var>A_{i}</var> and the land <var>B_{i}</var> bidirectionally. It is possible to move from any land to any other land by passing through roads. There is a sprinkler in every land of IOI Farm. Using a sprinkler, we can spray water on surrounding lands.</p>
+<p>JOI-kun is planning to grow JOI millets in IOI Farm. JOI millet is a curious plant. If we give water, the height of a JOI millet changes immediately. But, JOI millet is a weak plant. If the height of a JOI millet becomes larger than or equal to <var>L</var>, the top part of length <var>L</var> of the JOI millet is broken immediately. JOI-kun will harvest the broken parts of JOI millets.</p>
+<p>In the beginning, JOI-kun plants a JOI millet of height <var>H_{j}</var> in the land <var>j</var> (<var>1 \le j \le N</var>). After that, for <var>Q</var> days, JOI-kun will take care of the JOI millets everyday. On the <var>k</var>-th day (<var>1 \le k \le Q</var>), JOI-kun takes one of the following actions.</p>
+<ul>
+<li>Type 1 : JOI-kun uses the sprinkler of the land <var>X_{k}</var> to give water to every land whose distance from the land <var>X_{k}</var> is less than or equal to <var>D_{k}</var>. If water is given on a land, the JOI millet in that land grows, and its height is multiplied by <var>W_{k}</var>. But, the top part of length <var>L</var> of the JOI millet is broken immediately, when the height becomes larger than or equal to <var>L</var>. Therefore, if JOI-kun gives water to a JOI millet of height <var>h</var>, the height of the JOI millet finally becomes “the remainder of <var>h \times W_{k}</var> when divided by <var>L</var>.”</li>
+<li>Type 2 : JOI-kun measures the height of a JOI millet in the land <var>X_{k}</var>.</li>
+</ul>
+<p>Here, the distance from the land <var>x</var> (<var>1 \le x \le N</var>) to the land <var>y</var> (<var>1 \le y \le N</var>) is the minimum number of roads we have to pass through when we move from the land <var>x</var> to the land <var>y</var>.</p>
+<p>JOI-kun wants to see that the JOI millets are grown up as planned. For this purpose, he wants to calculate the height of a JOI millet measured by each action of Type 2 in advance.</p>
+<p>Write a program which, given information of IOI Farm and JOI-kun’s plan, calculates the height of a JOI millet measured by each action of Type 2 taken by JOI-kun.</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input. Given values are all integers.</p>
+<pre><var>N</var> <var>L</var>
+<var>A_{1}</var> <var>B_{1}</var>
+<var>A_{2}</var> <var>B_{2}</var>
+<var>\vdots</var>
+<var>A_{N - 1}</var> <var>B_{N - 1}</var>
+<var>H_{1}</var>
+<var>H_{2}</var>
+<var>\vdots</var>
+<var>H_{N}</var>
+<var>Q</var>
+(Query 1)
+(Query 2)
+<var>\vdots</var>
+(Query <var>Q</var>)
+</pre>
+<p>Each (Query <var>k</var>) (<var>1 \le k \le Q</var>) consists of space separated integers. Let <var>T_{k}</var> be the first integer of (Query <var>k</var>). The content of this line is one of the following.</p>
+<ul>
+<li>If <var>T_{k} = 1</var>, this line also contains three more space separated integers <var>X_{k}, D_{k}, W_{k}</var>, in this order. This means JOI-kun takes an action of Type 1 on the <var>k</var>-th day, JOI-kun gives water to every land whose distance from the land <var>X_{k}</var> is less than or equal to <var>D_{k}</var>, and the height of a JOI millet is multiplied by <var>W_{k}</var> after water is given.</li>
+<li>If <var>T_{k} = 2</var>, this line also contains one more integer <var>X_{k}</var>. This means JOI-kun takes an action of Type 2 on the <var>k</var>-th day, and JOI-kun measures the height of a JOI millet in the land <var>X_{k}</var>.</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>For each action of Type 2 (i.e., for each <var>k</var> (<var>1 \le k \le Q</var>) with <var>T_{k} = 2</var>), write the height of a JOI millet in the land <var>X_{k}</var> measured by the action of Type 2 on the <var>k</var>-th day to the standard output, in this order. The outputs should be separated by line breaks.</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li><var>2 \le N \le 200\,000</var>.</li>
+<li><var>2 \le L \le 1\,000\,000\,000 (= 10^{9})</var>.</li>
+<li><var>1 \le A_{i} &lt; B_{i} \le N</var> (<var>1 \le i \le N - 1</var>).</li>
+<li>It is possible to move from any land to any other land by passing through roads.</li>
+<li><var>0 \le H_{j} \le L - 1</var> (<var>1 \le j \le N</var>).</li>
+<li><var>1 \le Q \le 400\,000</var>.</li>
+<li><var>T_{k}</var> is either 1 or 2 (<var>1 \le k \le Q</var>).</li>
+<li>For every <var>k</var> (<var>1 \le k \le Q</var>) with <var>T_{k} = 1</var>, the following inequalities are satisfied:<ul>
+<li><var>1 \le X_{k} \le N</var>.</li>
+<li><var>0 \le D_{k} \le 40</var>.</li>
+<li><var>0 \le W_{k} \le L - 1</var>.</li>
+</ul>
+</li>
+<li>For every <var>k</var> (<var>1 \le k \le Q</var>) with <var>T_{k} = 2</var>, the inequality <var>1 \le X_{k} \le N</var> is satisfied.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li>(<var>3</var> points) <var>N \le 1\,000</var>, <var>Q \le 1\,000</var>.</li>
+<li>(<var>9</var> points) For every <var>k</var> (<var>1 \le k \le Q</var>) with <var>T_{k} = 1</var>, the inequality <var>D_{k} \le1</var> is satisfied.</li>
+<li>(<var>29</var> points) For every <var>k</var> (<var>1 \le k \le Q</var>) with <var>T_{k} = 1</var>, the inequality <var>D_{k} \le2</var> is satisfied.</li>
+<li>(<var>12</var> points) For every <var>k</var> (<var>1 \le k \le Q</var>) with <var>T_{k} = 1</var>, the inequality <var>W_{k} = 0</var> is satisfied.</li>
+<li>(<var>30</var> points) For every <var>k</var> (<var>1 \le k \le Q</var>) with <var>T_{k} = 1</var>, the inequality <var>W_{k} = 2</var> is satisfied.</li>
+<li>(<var>17</var> points) No additional constraints.</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input and Output</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>4 7
+1 2
+2 3
+3 4
+1
+1
+1
+1
+11
+1 2 1 2
+1 1 0 2
+2 1
+2 2
+2 3
+2 4
+1 4 10 2
+2 1
+2 2
+2 3
+2 4
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>4
+2
+2
+1
+1
+4
+4
+2
+</pre>
+<p>In the beginning, JOI-kun plants a JOI millet of height 1 in every land.</p>
+<p>On the first day, JOI-kun uses the sprinkler of the land 2. The heights of the JOI millets in the lands <var>1, 2, 3</var> (whose distances from the land 2 are less than or equal to 1) are multiplied by 2. After that, the heights of the JOI millets in the lands <var>1, 2, 3, 4</var> are <var>2, 2, 2, 1</var>, respectively.</p>
+<p>On the second day, JOI-kun uses the sprinkler of the land <var>1</var>. The heights of the JOI millets in the land <var>1</var> (whose distance from the land 1 is less than or equal to 0) are multiplied by 2. After that, the heights of the JOI millets in the lands <var>1, 2, 3, 4</var> are <var>4, 2, 2, 1</var>, respectively.</p>
+<p>On the seventh day, JOI-kun uses the sprinkler of the land <var>4</var>. The heights of the JOI millets in the lands <var>1, 2, 3, 4</var> (whose distances from the land <var>4</var> are less than or equal to <var>10</var>) are multiplied by <var>2</var>. After that, the heights of the JOI millets in the lands <var>1, 2, 3, 4</var> are <var>8, 4, 4, 2</var>, respectively. Since the height of the JOI millet in the land 1 is larger than 7, the top part of length 7 is broken immediately. Finally, the heights are <var>1, 4, 4, 2</var>.</p>
+<p>This sample input satisfies the constraints of Subtasks <var>1, 5, 6</var>.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>6 10
+5 6
+1 2
+1 4
+2 6
+3 6
+9
+2
+3
+4
+9
+1
+10
+1 5 1 7
+2 4
+1 4 1 9
+1 5 0 7
+2 1
+1 1 1 3
+1 6 1 4
+2 5
+2 4
+2 3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>4
+1
+4
+8
+2
+</pre>
+<p>On the first day, JOI-kun uses the sprinkler of the land <var>5</var>. The heights of the JOI millets in the lands <var>5, 6</var> (whose distances from the land 5 are less than or equal to 1) are multiplied by 7. After that, the heights of the JOI millets in the lands <var>5, 6</var> are <var>63, 7</var>, respectively. In the land 5, the top part of length 10 of the JOI millet is broken immediately. This process is repeated several times until the height becomes less than 10. Finally, the heights are <var>3, 7</var>, respectively.</p>
+<p>This sample input satisfies the constraints of Subtasks <var>1, 2, 3, 6</var>.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 3</h3>
+<pre>8 10
+1 3
+3 5
+4 7
+6 7
+4 5
+7 8
+2 4
+5
+8
+6
+4
+6
+2
+9
+3
+11
+1 2 2 0
+2 1
+1 6 1 0
+2 4
+2 6
+1 5 2 0
+2 8
+1 7 2 0
+2 6
+2 7
+2 4
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 3</h3>
+<pre>5
+0
+0
+3
+0
+0
+0
+</pre>
+<p>This sample input satisfies the constraints of Subtasks <var>1</var>, <var>3</var>, <var>4</var>, <var>6</var>.</p></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>JOI 君は，長年にわたる家庭菜園の経験を生かして IOI 農園を運営することを計画している．</p>
+<p>IOI 農園は <var>N</var> 個の土地からなり，<var>1</var> から <var>N</var> までの番号が付けられている．また，土地と土地の間をつなぐ <var>N - 1</var> 本の道があり，<var>1</var> から <var>N - 1</var> までの番号が付けられている．道 <var>i</var> (<var>1 \leqq i \leqq N - 1</var>) は土地 <var>A_{i}</var> と土地 <var>B_{i}</var> の間を双方向に結んでいる．どの土地からどの土地へも何本かの道を通ることで移動できる．IOI 農園の各土地にはスプリンクラーが設置され，その周囲の土地に水を与えることができる．</p>
+<p>JOI 君は IOI 農園でジョイキビを育てる予定である．ジョイキビは水を与えると背丈が急激に変化する不思議な植物である．その一方でジョイキビはあまり丈夫でなく，背丈が <var>L</var> 以上のジョイキビは先端から長さ <var>L</var> の部分が折れてしまう．JOI 君は，この折れた部分を収穫する．</p>
+<p>はじめに，JOI 君は土地 <var>j</var> (<var>1 \leqq j \leqq N</var>) に背丈が <var>H_{j}</var> のジョイキビを植える．その後 <var>Q</var> 日の間，毎日ジョイキビの世話をする ．<var>k</var> 日目 (<var>1 \leqq k \leqq Q</var>) には，以下のいずれかの行動をする．</p>
+<ul>
+<li>タイプ <var>1</var>: 土地 <var>X_{k}</var> のスプリンクラーを使用し，土地 <var>X_{k}</var> から距離 <var>D_{k}</var> 以下の範囲にある土地に水を与える．水が与えられた土地に生えているジョイキビは，背丈が <var>W_{k}</var> 倍になる．しかし，背丈が <var>L</var> 以上のジョイキビは先端から長さ <var>L</var> の部分が折れてしまうので，最終的に，水が与えられる前の背丈が <var>h</var> であったジョイキビは，水が与えられた後背丈が「<var>h \times W_{k}</var> を <var>L</var> で割ったあまり」になる．</li>
+<li>タイプ <var>2</var>: 土地 <var>X_{k}</var> に生えているジョイキビの背丈を調べる．</li>
+</ul>
+<p>ここで，土地 <var>x</var> (<var>1 \leqq x \leqq N</var>) と土地 <var>y</var> (<var>1 \leqq y \leqq N</var>) の間の距離とは，土地 <var>x</var> から土地 <var>y</var> へ道をつたって移動するために通る必要がある道の本数の最小値のことである．</p>
+<p>JOI 君は，ジョイキビが予定通りに育っていることを確認するために，あらかじめタイプ <var>2</var> の行動で調べるジョイキビの背丈を計算しておくことにした．</p>
+<p>IOI 農園の情報と JOI 君の計画の情報が与えられたとき，JOI 君がタイプ <var>2</var> の行動で調べるジョイキビの背丈を計算するプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力は以下の形式で標準入力から与えられる．入力される値はすべて整数である．</p>
+<pre><var>N</var> <var>L</var>
+<var>A_{1}</var> <var>B_{1}</var>
+<var>A_{2}</var> <var>B_{2}</var>
+<var>\vdots</var>
+<var>A_{N - 1}</var> <var>B_{N - 1}</var>
+<var>H_{1}</var>
+<var>H_{2}</var>
+<var>\vdots</var>
+<var>H_{N}</var>
+<var>Q</var>
+(Query 1)
+(Query 2)
+<var>\vdots</var>
+(Query <var>Q</var>)
+</pre>
+<p>各 (Query <var>k</var>) (<var>1 \leqq k \leqq Q</var>) にはいくつかの整数が空白区切りで書かれている．そのうち <var>1</var> 個目の整数を <var>T_{k}</var> とすると，この行の内容は以下のいずれかである．</p>
+<ul>
+<li><var>T_{k} = 1</var> のとき，この行には続いて <var>3</var> 個の整数 <var>X_{k}, D_{k}, W_{k}</var> がこの順に書かれている．これは JOI 君が <var>k</var> 日目に取る行動がタイプ <var>1</var> であり，土地 <var>X_{k}</var> から距離 <var>D_{k}</var> 以下の範囲にある土地に水を与え，水が与えられた土地に生えているジョイキビの背丈が <var>W_{k}</var> 倍になることを表す．</li>
+<li><var>T_{k} = 2</var> のとき，この行には続いて <var>1</var> 個の整数 <var>X_{k}</var> が書かれている．これは JOI 君が <var>k</var> 日目に取る行動がタイプ <var>2</var> であり，土地 <var>X_{k}</var> に生えているジョイキビの背丈を調べることを表す．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>タイプ <var>2</var> の行動，すなわち，<var>T_{k} = 2</var> となる <var>k</var> (<var>1 \leqq k \leqq Q</var>) それぞれに対して，<var>k</var> 日目時点での土地 <var>X_{k}</var> に生えているジョイキビの背丈を，標準出力に順に改行区切りで出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>2 \leqq N \leqq 200\,000</var>．</li>
+<li><var>2 \leqq L \leqq 1\,000\,000\,000 (= 10^{9})</var>．</li>
+<li><var>1 \leqq A_{i} &lt; B_{i} \leqq N</var> (<var>1 \leqq i \leqq N - 1</var>)．</li>
+<li>どの土地からどの土地へも何本かの道を通ることで移動できる．</li>
+<li><var>0 \leqq H_{j} \leqq L - 1</var> (<var>1 \leqq j \leqq N</var>)．</li>
+<li><var>1 \leqq Q \leqq 400\,000</var>．</li>
+<li><var>T_{k}</var> は <var>1, 2</var> のいずれかである (<var>1 \leqq k \leqq Q</var>)．</li>
+<li><var>T_{k} = 1</var> のとき，<var>1 \leqq X_{k} \leqq N</var>，<var>0 \leqq D_{k} \leqq 40</var>，<var>0 \leqq W_{k} \leqq L - 1</var> (<var>1 \leqq k \leqq Q</var>)．</li>
+<li><var>T_{k} = 2</var> のとき，<var>1 \leqq X_{k} \leqq N</var> (<var>1 \leqq k \leqq Q</var>)．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>3</var> 点) <var>N \leqq 1\,000</var>，<var>Q \leqq 1\,000</var>．</li>
+<li>(<var>9</var> 点) <var>T_{k} = 1</var> のとき，<var>D_{k} \leqq 1</var> (<var>1 \leqq k \leqq Q</var>)．</li>
+<li>(<var>29</var> 点) <var>T_{k} = 1</var> のとき，<var>D_{k} \leqq 2</var> (<var>1 \leqq k \leqq Q</var>)．</li>
+<li>(<var>12</var> 点) <var>T_{k} = 1</var> のとき，<var>W_{k} = 0</var> (<var>1 \leqq k \leqq Q</var>)．</li>
+<li>(<var>30</var> 点) <var>T_{k} = 1</var> のとき，<var>W_{k} = 2</var> (<var>1 \leqq k \leqq Q</var>)．</li>
+<li>(<var>17</var> 点) 追加の制約はない．</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入出力例</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>4 7
+1 2
+2 3
+3 4
+1
+1
+1
+1
+11
+1 2 1 2
+1 1 0 2
+2 1
+2 2
+2 3
+2 4
+1 4 10 2
+2 1
+2 2
+2 3
+2 4
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>4
+2
+2
+1
+1
+4
+4
+2
+</pre>
+<p>はじめに，JOI 君はすべての土地に背丈が <var>1</var> のジョイキビを植える．</p>
+<p><var>1</var> 日目には，JOI 君は土地 <var>2</var> のスプリンクラーを使用し，土地 <var>2</var> から距離 <var>1</var> 以下である土地 <var>1, 2, 3</var> に生えているジョイキビの背丈が <var>2</var> 倍になる．その結果，土地 <var>1, 2, 3, 4</var> に生えているジョイキビの背丈はそれぞれ <var>2, 2, 2, 1</var> となる．</p>
+<p><var>2</var> 日目には，JOI 君は土地 <var>1</var> のスプリンクラーを使用し，土地 <var>1</var> から距離 <var>0</var> 以下である土地 <var>1</var> に生えているジョイキビの背丈が <var>2</var> 倍になる．その結果，土地 <var>1, 2, 3, 4</var> に生えているジョイキビの背丈はそれぞれ <var>4, 2, 2, 1</var> となる．</p>
+<p><var>7</var> 日目には，JOI 君は土地 <var>4</var> のスプリンクラーを使用し，土地 <var>4</var> から距離 <var>10</var> 以下である土地 <var>1, 2, 3, 4</var> に生えているジョイキビの背丈が <var>2</var> 倍になる．その結果，土地 <var>1, 2, 3, 4</var> に生えているジョイキビの背丈はそれぞれ <var>8, 4, 4, 2</var> となるが，土地 <var>1</var> に生えているジョイキビの背丈が <var>7</var> 以上であるため先端から長さ <var>7</var> の部分が折れて，最終的にそれぞれ <var>1, 4, 4, 2</var> となる．</p>
+<p>この入力例は小課題 <var>1, 5, 6</var> の制約を満たす．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>6 10
+5 6
+1 2
+1 4
+2 6
+3 6
+9
+2
+3
+4
+9
+1
+10
+1 5 1 7
+2 4
+1 4 1 9
+1 5 0 7
+2 1
+1 1 1 3
+1 6 1 4
+2 5
+2 4
+2 3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>4
+1
+4
+8
+2
+</pre>
+<p><var>1</var> 日目には，JOI 君は土地 <var>5</var> のスプリンクラーを使用し，土地 <var>5</var> から距離 <var>1</var> 以下である土地 <var>5, 6</var> に生えているジョイキビの背丈が <var>7</var> 倍になる．その結果，土地 <var>5, 6</var> に生えているジョイキビの背丈はそれぞれ <var>63, 7</var> となるが，土地 <var>5</var> に生えているジョイキビは背丈が <var>10</var> 未満になるまで先端から長さ <var>10</var> の部分が折れ続け，最終的にそれぞれ <var>3, 7</var> となる．</p>
+<p>この入力例は小課題 <var>1, 2, 3, 6</var> の制約を満たす．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>8 10
+1 3
+3 5
+4 7
+6 7
+4 5
+7 8
+2 4
+5
+8
+6
+4
+6
+2
+9
+3
+11
+1 2 2 0
+2 1
+1 6 1 0
+2 4
+2 6
+1 5 2 0
+2 8
+1 7 2 0
+2 6
+2 7
+2 4
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>5
+0
+0
+3
+0
+0
+0
+</pre>
+<p>この入力例は小課題 <var>1, 3, 4, 6</var> の制約を満たす．</p></section>
+</div>
+</span>
+</span>

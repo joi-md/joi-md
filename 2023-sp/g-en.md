@@ -2,7 +2,7 @@ Score: $100$ points
 
 ### Problem Statement
 
-On the stage, $2N$ beavers are standing in a row. They are members of the chorus. Each beaver sings either the alto part or the bass part of the chorus. This information is given by a string $S$. Precisely, the $i$-th beaver ($1 \leq i \leq 2N$) from the stage right (i.e., from left when seen from the audience seats) sings the alto part if the $i$-th character of $S$ is `A`. The $i$-th beaver sings the bass part if the $i$-th character of $S$ is `B`. There are $N$ beavers singing the alto part, and $N$ beavers singing the bass part.
+On the stage, $2N$ beavers are standing in a row. They are members of the chorus. Each beaver sings either the alto part or the bass part of the chorus. This information is given by a string $S$. Precisely, the $i$-th beaver ($1 \le i \le 2N$) from the stage right (i.e., from left when seen from the audience seats) sings the alto part if the $i$-th character of $S$ is `A`. The $i$-th beaver sings the bass part if the $i$-th character of $S$ is `B`. There are $N$ beavers singing the alto part, and $N$ beavers singing the bass part.
 
 From now, the beavers will sing $K$ songs. However, since all the songs are very difficult, each beaver sings exactly one song only, and does not sing other songs. Moreover, in order to make singing voice more beautiful, for every song, the following conditions should be satisfied.
 
@@ -37,17 +37,17 @@ Write one line to the standard output. The output should contain the minimum num
 
 ### Constraints
 
-- $1 \leq N \leq 1\,000\,000$.
-- $1 \leq K \leq N$.
+- $1 \le N \le 1\,000\,000$.
+- $1 \le K \le N$.
 - $S$ is a string of length $2N$. In the string $S$, the character `A` appears $N$ times, and the character `B` appears $N$ times.
 - $N, K$ are integers.
 
 ### Subtasks
 
-1. ($16$ points) $N \leq 10$.
-2. ($24$ points) $N \leq 500$.
-3. ($21$ points) $N \leq 5\,000$.
-4. ($26$ points) $N \leq 100\,000$.
+1. ($16$ points) $N \le 10$.
+2. ($24$ points) $N \le 500$.
+3. ($21$ points) $N \le 5\,000$.
+4. ($26$ points) $N \le 100\,000$.
 5. ($13$ points) No additional constraints.
 
 ---

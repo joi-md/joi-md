@@ -1,0 +1,189 @@
+<span class="lang">
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>葵はパーティーを開催しようと計画している．このパーティーには葵を含めた <var>K</var> 人が参加予定であり，参加者には <var>1</var> から <var>K</var> までの番号が付けられている．</p>
+<p>パーティーでは <var>K</var> 人で <var>1</var> 個のバームクーヘンを食べる．バームクーヘンは円筒形のお菓子である．<var>K</var> 人に分けるために，葵は半径方向に刃を <var>K</var> 回入れて，これを <var>K</var> 個の等しい大きさのピースに切り分けなければならない．ただしこのバームクーヘンは本物の木材のように固いので，刃を入れるのは簡単ではない．そのためこのバームクーヘンにはあらかじめ <var>K \times L</var> 個の切れ込みが均等に入っており，葵は切れ込みがある位置でのみ切ることができる．切れ込みに <var>1</var> から <var>KL</var> まで時計回りに番号をふったとき，整数 <var>i</var> (<var>1 \leqq i \leqq KL - 1</var>) に対し，切れ込み <var>i</var> と切れ込み <var>i + 1</var> の間の部分をパーツ <var>i</var> と呼ぶ．また，切れ込み <var>KL</var> と切れ込み <var>1</var> の間の部分をパーツ <var>KL</var> と呼ぶ．</p>
+<p>葵は以下の手順に沿って，バームクーヘンを分けようとしている．</p>
+<ol>
+<li><var>K</var> 個の切れ込みに沿ってバームクーヘンを切り，<var>L</var> 個のパーツからなるピース <var>K</var> 個に分ける．</li>
+<li>各参加者にピースを <var>1</var> 個ずつ割り当てる．ただし，<var>1</var> 個のピースが <var>2</var> 人以上の参加者に割り当てられてはいけない．</li>
+</ol>
+<p>現在，葵はバームクーヘンを分ける手順を決めていない．これから，<var>Q</var> 回にわたり参加者が要望を葵に伝える．<var>j</var> 回目 (<var>1 \leqq j \leqq Q</var>) に葵に伝える要望は，以下のようなものである．</p>
+<ul>
+<li>各参加者にピースを割り当てた後に，パーツ <var>X_{j}</var> を含むピースが参加者 <var>Y_{j}</var> に割り当てられているようにしたい．</li>
+</ul>
+<p>ただし，すでに要望で指定されたパーツが新たに指定されることはない．</p>
+<p>葵は，各要望が伝えられた時点において，その時点までのすべての要望を満たすような手順が何通りあるかを求めたい．ここで，<var>2</var> つの手順が異なるとは，割り当てられている参加者が異なるようなパーツがあることとする．</p>
+<p>バームクーヘンと参加者の要望の情報と素数 <var>P</var> が与えられたとき，各要望が伝えられた時点において，その時点までのすべての要望を満たすような手順の個数を <var>P</var> で割った余りを求めるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力は以下の形式で標準入力から与えられる．</p>
+<pre><var>K</var> <var>L</var>
+<var>P</var>
+<var>Q</var>
+<var>X_{1}</var> <var>Y_{1}</var>
+<var>X_{2}</var> <var>Y_{2}</var>
+<var>\vdots</var>
+<var>X_{Q}</var> <var>Y_{Q}</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に <var>Q</var> 行出力せよ．<var>j</var> 行目 (<var>1 \leqq j \leqq Q</var>) には，<var>j</var> 回目の要望が伝えられた時点において，その時点までのすべての要望を満たすような手順の個数を <var>P</var> で割った余りを出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>2 \leqq K \leqq 200\,000</var>．</li>
+<li><var>1 \leqq L \leqq 200\,000</var>．</li>
+<li><var>10^{8} &lt; P &lt; 10^{9}</var>．</li>
+<li><var>P</var> は素数である．</li>
+<li><var>1 \leqq Q \leqq 200\,000</var>．</li>
+<li><var>1 \leqq X_{j} \leqq KL</var> (<var>1 \leqq j \leqq Q</var>)．</li>
+<li><var>X_{j} \ne X_{k}</var> (<var>1 \leqq j &lt; k \leqq Q</var>)．</li>
+<li><var>1 \leqq Y_{j} \leqq K</var> (<var>1 \leqq j \leqq Q</var>)．</li>
+<li>入力される値はすべて整数である．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>13</var> 点) <var>K \leqq 8</var>，<var>L \leqq 10</var>，<var>Q \leqq 10</var>．</li>
+<li>(<var>14</var> 点) <var>K \leqq 100</var>，<var>L \leqq 100</var>，<var>Q \leqq 100</var>．</li>
+<li>(<var>18</var> 点) <var>K \leqq 400</var>，<var>L \leqq 400</var>，<var>Q \leqq 400</var>．</li>
+<li>(<var>17</var> 点) <var>K \leqq 2\,500</var>，<var>L \leqq 2\,500</var>，<var>Q \leqq 2\,500</var>．</li>
+<li>(<var>28</var> 点) <var>K \leqq 10</var>．</li>
+<li>(<var>10</var> 点) 追加の制約はない．</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>3 2
+998244353
+2
+1 2
+6 2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>4
+2
+</pre>
+<p><var>1</var> 回目の要望はパーツ <var>1</var> を含むピースが参加者 <var>2</var> に割り当てられているようにしたいというものである．この時点までのすべての要望を満たすような手順の個数は <var>4</var> 通りである．例えば，以下のような手順が考えられる．</p>
+<ol>
+<li>切れ込み <var>1, 3, 5</var> に沿ってバームクーヘンを切り分ける．</li>
+<li>参加者 <var>1</var> にパーツ <var>3, 4</var> からなるピースを割り当てる．参加者 <var>2</var> にパーツ <var>1, 2</var> からなるピースを割り当てる．参加者 <var>3</var> にパーツ <var>5, 6</var> からなるピースを割り当てる．</li>
+</ol>
+<p><var>2</var> 回目の要望はパーツ <var>6</var> を含むピースが参加者 <var>2</var> に割り当てられているようにしたいというものである．この時点までのすべての要望を満たすような手順の個数は <var>2</var> 通りである．例えば，以下のような手順が考えられる．</p>
+<ol>
+<li>切れ込み <var>2, 4, 6</var> に沿ってバームクーヘンを切り分ける．</li>
+<li>参加者 <var>1</var> にパーツ <var>4, 5</var> からなるピースを割り当てる．参加者 <var>2</var> にパーツ <var>6, 1</var> からなるピースを割り当てる．参加者 <var>3</var> にパーツ <var>2, 3</var> からなるピースを割り当てる．</li>
+</ol>
+<p>この入出力例はすべての小課題の制約を満たす．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>8 10
+304623133
+10
+8 8
+6 8
+51 1
+36 5
+10 7
+38 5
+68 3
+57 4
+76 3
+19 2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>50400
+40320
+5760
+960
+48
+48
+12
+0
+0
+0
+</pre>
+<p>この入出力例はすべての小課題の制約を満たす．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>10 8
+446958661
+10
+26 5
+49 9
+37 6
+10 1
+15 3
+29 5
+69 2
+2 1
+25 5
+12 1
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>2903040
+322560
+40320
+5760
+600
+240
+48
+0
+0
+0
+</pre>
+<p>この入出力例は小課題 <var>2, 3, 4, 5, 6</var> の制約を満たす．</p></section>
+</div>
+</span>
+</span>

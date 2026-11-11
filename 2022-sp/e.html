@@ -1,0 +1,780 @@
+<span class="lang">
+<span class="lang-en">
+<blockquote>
+<p><strong>Submission on AtCoder</strong></p>
+<p>Include <code>Ali.h</code> and <code>Benjamin.h</code> and implement all functions in a single source file. Do not share global variables between the two sides. This judge supports C++ only.</p>
+<p><a href="https://www2.ioi-jp.org/camp/2022/2022-sp-tasks/contest2/flights-dist.zip">Distributed files</a></p>
+</blockquote>
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>In Republic of JOI, there are <var>N</var> airports numbered from 0 to <var>N - 1</var>. There are <var>N - 1</var> airline routes numbered from 0 to <var>N - 2</var>. The airline route <var>i</var> (<var>0 \le i \le N - 2</var>) connects the airport <var>U_{i}</var> and the airport <var>V_{i}</var> bidirectionally. It is possible to travel from any airport to any other airport by connecting several airline routes. For every airport, there are at most 3 airline routes connecting it with another airport.</p>
+<p>Benjamin is planning to take a trip in Republic of JOI. On the last day of the trip, he wants to arrive at the airport where the hot spring is located. The amusement park is located at the airport <var>x</var>, and the hot spring is located at the airport <var>y</var>. Since Benjamin does not know anything about the airline routes, he will communicate with Ali, a staff of the airplane company. Benjamin wants to know the minimum number of airline routes he has to take to travel from the airport where the amusement park is located to the airport where the hot spring is located. Ali knows information of the airplane routes. But Benjamin does not know which airline routes he has to take.</p>
+<ol>
+<li>Ali sets an ID code for each airport. An ID code is an integer between 0 and <var>2N + 19</var>, inclusive.</li>
+<li>Benjamin gets the ID code <var>X</var> of the airport where the amusement park is located, and the ID code <var>Y</var> of the airport where the hot spring is located.</li>
+<li>Benjamin sends an e-mail message to Ali. The message is a string whose length is exactly equal to 20. Every character of the message is either 0 or 1.</li>
+<li>Ali writes a letter to Benjamin. The letter contains a string whose length is between <var>1</var> and <var>300\,000</var>, inclusive. Every character of the letter is either 0 or 1.</li>
+</ol>
+<p>Write programs which implement the strategy of Ali, a staff of the airplane company, and the strategy of Benjamin, a traveler. Note that in Step 2, Benjamin can get the ID codes <var>X, Y</var> of the airports where the amusement park and the hot spring are located. However, Benjamin cannot get the airport numbers <var>x, y</var>.</p>
+<p><img src="https://img.atcoder.jp/joisc2022/flights-en-p1-1.png" alt="Figure" style="max-width:100%;height:auto;"></p>
+
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Implementation Details</h3>
+<p>You need to submit two files.</p>
+<p>The first file is <code>Ali.cpp</code>. It should implement Ali’s strategy. It should implement the following two functions. The program should include <code>Ali.h</code> using the preprocessing directive <code>#include</code>.</p>
+<ul>
+<li><code>void Init(int N, std::vector&lt;int&gt; U, std::vector&lt;int&gt; V)</code>
+    This function implements Ali’s strategy to set ID codes for each airport. For each scenario (see Grading for details), this function is called exactly once.<ul>
+<li>The parameter <code>N</code> is the number of airports in Republic of JOI.</li>
+<li>The parameters <code>U</code>，<code>V</code> are arrays of length <var>N - 1</var>. This means <code>U[i]</code>，<code>V[i]</code> are the airports <var>U_{i}, V_{i}</var> connected by the airline route <var>i</var> (<var>0 \le i \le N - 2</var>).</li>
+</ul>
+</li>
+<li><code>std::string SendA(std::string S)</code>
+    This function implements Ali’s strategy to send a letter to Benjamin. For each scenario (see Grading for details), this function is called exactly once after the function <code>SendB</code> (see below) is called.<ul>
+<li>The parameter <code>S</code> is a string of length 20. It is an e-mail message sent by Benjamin to Ali.</li>
+<li>The function <code>SendA</code> should return a string. It is a latter written by Ali to Benjamin.</li>
+<li>The return value should be a string whose length is between 1 and 300 000, inclusive. If this condition is not satisfied, your program is judged as Wrong Answer [5].</li>
+<li>Each character of the return value should be either <code>0</code> or <code>1</code>. If this condition is not satisfied, your program is judged as Wrong Answer [6].</li>
+</ul>
+</li>
+</ul>
+<p>For each function call to <code>Init</code>, the following function should be called once for each airport. In total, it should be called <var>N</var> times.</p>
+<ul>
+<li><code>void SetID(int p, int value)</code><ul>
+<li>The parameter <code>p</code> means Ali sets the ID code for the airport <code>p</code>. Here <var>0 \le \texttt{p} \le N - 1</var> should be satisfied. If this condition is not satisfied, your program is judged as Wrong Answer [1].</li>
+<li>The parameter <code>value</code> is the ID code for the airport specified by Ali. Here <var>0 \le \texttt{value} \le 2N + 19</var> should be satisfied. If this condition is not satisfied, your program is judged as Wrong Answer [2].</li>
+<li>It is not allowed to call the function <code>SetID</code> with same parameter <code>p</code> more than once. If this condition is not satisfied, your program is judged as Wrong Answer [3].</li>
+<li>When the function <code>Init</code> terminates, the number of function calls to <code>SetID</code> should be <var>N</var>. If this condition is not satisfied, your program is judged as Wrong Answer [4].</li>
+</ul>
+</li>
+</ul>
+<p>When the function call to <code>SetID</code> is judged as Wrong Answer, your program is terminated immediately.</p>
+<p>The second file is <code>Benjamin.cpp</code>. It should implement Benjamin’s strategy. It should implement the following two functions. The program should include <code>Benjamin.h</code> using the preprocessing directive <code>#include</code>.</p>
+<ul>
+<li><code>std::string SendB(int N, int X, int Y)</code>
+    This function implements Benjamin’s strategy to send an e-mail message to Ali. For each scenario (see Grading for details), this function is called exactly once after the function <code>Init</code> is called.<ul>
+<li>The parameter <code>N</code> is the number of airports in Republic of JOI.</li>
+<li>The parameter <code>X</code> is the ID code of the airport where the amusement park is located.</li>
+<li>The parameter <code>Y</code> is the ID code of the airport where the hot spring is located.</li>
+<li>The function <code>SendB</code> should return a string which is the e-mail message sent by Benjamin to Ali.</li>
+<li>If the return value is not a string of length 20, your program is judged as Wrong Answer [7].</li>
+<li>Each character of the return value should be either <code>0</code> or <code>1</code>. If this condition is not satisfied, your program is judged as Wrong Answer [8].</li>
+</ul>
+</li>
+<li><code>int Answer(std::string T)</code>
+    This function should calculate the minimum number of airline routes Benjamin has to take to travel from the airport <var>x</var> to the airport <var>y</var>. For each scenario (see Grading for details), this function is called exactly once after the function <code>SendA</code> is called.<ul>
+<li>The parameter <code>T</code> is a string whose length is between 1 and 300 000, inclusive. It is the letter sent by Ali to Benjamin.</li>
+<li>This function should return the minimum number of airline routes Benjamin has to take to travel from the airport <var>x</var> to the airport <var>y</var>.</li>
+</ul>
+</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Important Notices</h3>
+<ul>
+<li>Your program can implement other functions for internal use, or use global variables. Submitted files will be compiled with the grader, and become a single executable file. All global variables and internal functions should be declared in an unnamed namespace to avoid confliction with other files. When it is graded, it will be executed as two processes of Ali and Benjamin. The process of Ali and the process of Benjamin cannot share global variables.</li>
+<li>Your program must not use the standard input and the standard output. Your program must not communicate with other files by any methods. However, your program may output debugging information to the standard error.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Grading</h3>
+<p>A test case consists of <var>Q</var> scenarios, numbered from 0 to <var>Q - 1</var>. The following values are specified for each scenario. For the range of these values, see Constraints.</p>
+<ul>
+<li>The number <var>N</var> of airports in Republic of JOI.</li>
+<li>The airport number <var>x</var> of the airport where the amusement park is located.</li>
+<li>The airport number <var>y</var> of the airport where the hot spring is located.</li>
+<li>The information of the airline routes <var>(U_{0}, V_{0}), (U_{1}, V_{1}), \cdots, (U_{N - 2}, V_{N - 2})</var>.</li>
+</ul>
+<p>For each scenario, the functions <code>Init</code>，<code>SendB</code>，<code>SendA</code>，<code>Answer</code> are called. Your program should call appropriate functions with valid parameters, and return appropriate values. These functions are called in the following order.</p>
+<ol>
+<li>For <var>k = 0, 1, \cdots, Q - 1</var>, the following procedures 2–5 are performed in this order.</li>
+<li>The function <code>Init</code> is called. The parameters are set for the scenario <var>k</var> as specified in Implementation Details.</li>
+<li>The function <code>SendB</code> is called. The parameters are set for the scenario <var>k</var> as specified in Implementation Details.</li>
+<li>The function <code>SendA</code> is called. The parameters are set for the scenario <var>k</var> as specified in Implementation Details.</li>
+<li>The function <code>Answer</code> is called. The parameters are set for the scenario <var>k</var> as specified in Implementation Details.</li>
+</ol>
+<p>If your program is judged as Wrong Answer during these procedures, your program is terminated immediately, and your program is considered to fail the test case.</p>
+<p><img src="https://img.atcoder.jp/joisc2022/flights-en-p4-1.png" alt="Figure" style="max-width:100%;height:auto;"></p>
+
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Compilation and Test Run</h3>
+<p>You can download an archive file from the contest webpage which contains the sample grader to test your program. The archive file also contains a sample source file of your program.</p>
+<p>The sample grader is the file <code>grader.cpp</code>. In order to test your program, put <code>grader.cpp</code>，<code>Ali.cpp</code>， <code>Benjamin.cpp</code>，<code>Ali.h</code>，<code>Benjamin.h</code> in the same directory, and run the following command to compile your programs.</p>
+<pre>g++ -std=gnu++17 -O2 -o grader grader.cpp Ali.cpp Benjamin.cpp
+</pre>
+<p>When the compilation succeeds, the executable file <code>grader</code> is generated.</p>
+<p>Note that the actual grader is different from the sample grader. The sample grader will be executed as a single process, which will read input data from the standard input and write the results to the standard output.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Input for the Sample Grader</h3>
+<p>The sample grader reads the following data from the standard input. The input values should be all integers.</p>
+<pre><var>Q</var>
+(Input for Scenario 0)
+(Input for Scenario 1)
+<var>\vdots</var>
+(Input for Scenario <var>Q - 1</var>)
+</pre>
+<p>The format of the input data for each scenario is as follows.</p>
+<pre><var>N</var> <var>x</var> <var>y</var>
+<var>U_{0}</var> <var>V_{0}</var>
+<var>U_{1}</var> <var>V_{1}</var>
+<var>\vdots</var>
+<var>U_{N - 2}</var> <var>V_{N - 2}</var>
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Output of the Sample Grader</h3>
+<p>If your program is judged as any one of Wrong Answer <var>[1] - [8]</var>, the sample grader writes its type as “<code>Wrong Answer [1]</code>” (quotes for clarity).</p>
+<p>Otherwise, for each scenario, it writes the return value of the function <code>Answer</code> and the maximum length of the strings sent by Ali to Benjamin. The sample grader does not check whether the return value of the function <code>Answer</code> is correct or not.</p>
+<pre>Scenario 0: Your Answer = 3
+Scenario 1: Your Answer = 1
+Scenario 2: Your Answer = 4
+Scenario 3: Your Answer = 1
+Scenario 4: Your Answer = 5
+Accepted: Maximum Length = 24
+</pre>
+<p>If your program satisfies the conditions of several types of Wrong Answer, the sample grader reports only one of them. Moreover, if your program is not judged as Wrong Answer for the first scenario, the sample grader may output intermediate results as follows even if your program is judged as one of Wrong Answer [1]-[8] for a later scenario.</p>
+<pre>Scenario 0: Your Answer = 3
+Scenario 1: Your Answer = 1
+Scenario 2: Your Answer = 4
+Wrong Answer [8]
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li><var>1 \le Q \le 50</var>.</li>
+<li><var>2 \le N \le 10\,000</var>.</li>
+<li><var>0 \le U_{i} &lt; V_{i} \le N - 1</var> (<var>0 \le i \le N - 2</var>).</li>
+<li><var>0 \le x \le N - 1</var>.</li>
+<li><var>0 \le y \le N - 1</var>.</li>
+<li><var>x \ne y</var>.</li>
+<li>It is possible to travel from any airport to any other airport by connecting several airline routes.</li>
+<li>For every airport, there are at most 3 airline routes connecting it with another airport.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li>(<var>15</var> points) <var>Q = 1</var>.</li>
+<li>(<var>85</var> points) <var>Q \ge 2</var>.</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Grading for Subtask 1</h3>
+<p>If your program is judged as Wrong Answer in any of the scenarios for Subtask 1, your score for this subtask is <var>0</var>.</p>
+<p>If your program answers all the test cases for Subtask 1 correctly, your score for this subtask is calculated as follows. Here, <var>L_{1}</var> is the maximum length of the strings sent by Ali to Benjamin.</p>
+<div class="joisc2022-flights-en-table">
+<table>
+<thead>
+<tr>
+<th>The value of <var>L_{1}</var></th>
+<th>Score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><var>150\,001 \le L_{1} \le 300\,000</var></td>
+<td><var>7</var> points</td>
+</tr>
+<tr>
+<td><var>20\,001 \le L_{1} \le 150\,000</var></td>
+<td><var>11</var> points</td>
+</tr>
+<tr>
+<td><var>L_{1} \le 20\,000</var></td>
+<td><var>15</var> points</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Grading for Subtask 2</h3>
+<p>If your program is judged as Wrong Answer in any of the scenarios for Subtask 2, your score for this subtask is <var>0</var>.</p>
+<p>If your program answers all the test cases for Subtask 2 correctly, your score for this subtask is calculated as follows. Here, <var>L_{2}</var> is the maximum length of the strings sent by Ali to Benjamin. Note that if <var>1\,401 \le L_{2}</var>, your score for this subtask is <var>0</var>.</p>
+<div class="joisc2022-flights-en-table">
+<table>
+<thead>
+<tr>
+<th>The value of <var>L_{2}</var></th>
+<th>Score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><var>1\,401 \le L_{2} \le 300\,000</var></td>
+<td><var>0</var> points</td>
+</tr>
+<tr>
+<td><var>71 \le L_{2} \le 1\,400</var></td>
+<td><var>52 - 35\times\log_{10}\left(\frac{L_{2}}{70}\right)</var> points (rounded down to the nearest integer)</td>
+</tr>
+<tr>
+<td><var>45 \le L_{2} \le 70</var></td>
+<td><var>87 - 0.5 \times L_{2}</var> points (rounded down to the nearest integer)</td>
+</tr>
+<tr>
+<td><var>25 \le L_{2} \le 44</var></td>
+<td><var>109 - L_{2}</var> points</td>
+</tr>
+<tr>
+<td><var>L_{2} \le 24</var></td>
+<td><var>85</var> points</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Communication</h3>
+<p>Here is a sample input for the sample grader and corresponding function calls. In the following example, the ID codes of the airports <var>0</var>, <var>1</var>, <var>2</var>, <var>3</var> set by Ali by calling the function <code>Init</code> are <var>12</var>, <var>21</var>, <var>25</var>, <var>27</var>, respectively.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>1
+4 0 2
+0 1
+1 2
+2 3
+</pre>
+<h4>Sample Function Calls</h4>
+<div class="joisc2022-flights-en-table">
+<table>
+<thead>
+<tr>
+<th>Ali’s Call</th>
+<th>Ali’s Return Value</th>
+<th>Benjamin’s Call</th>
+<th>Benjamin’s Return Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Init(4,[0,1,2],[1,2,3])</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>SetID(0,12)</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>SetID(1,21)</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>SetID(2,25)</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>SetID(3,27)</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>SendB(12,25)</code></td>
+<td><code>"00000111110000011111"</code></td>
+</tr>
+<tr>
+<td><code>SendA("00...11")</code></td>
+<td><code>"10"</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>Answer("10")</code></td>
+<td><code>2</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>In this sample input, there are <var>N (= 4)</var> airports and three airline routes.</p>
+<ul>
+<li>An airline route connecting the airport 0 with the airport 1.</li>
+<li>An airline route connecting the airport 1 with the airport 2.</li>
+<li>An airline route connecting the airport 2 with the airport 3.</li>
+</ul>
+<p>Since we need to take at least two airilne routes to travel from the airport <var>x (= 0)</var> to the airport <var>y (= 2)</var>, the function <code>Answer</code> should return <code>2</code>.</p>
+<p>Note that the return value of the function <code>SendB</code> is not the airport numbers <var>(x, y) = (0, 2)</var>. It returns the ID codes of the airports <var>(X, Y) = (12, 25)</var>.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>2
+10 0 9
+0 1
+1 2
+2 3
+3 4
+4 5
+5 6
+6 7
+7 8
+8 9
+15 12 8
+0 1
+0 2
+1 3
+1 4
+2 5
+2 6
+3 7
+3 8
+4 9
+4 10
+5 11
+5 12
+6 13
+6 14
+</pre>
+<p>In this sample input, there are <var>Q = 2</var> scenarios.</p>
+<ul>
+<li>For the first scenario, the function <code>Answer</code> should return <code>9</code>.</li>
+<li>For the second scenario, the function <code>Answer</code> should return <code>6</code>.</li>
+</ul>
+<style>
+.joisc2022-flights-en-table { position:relative;max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisc2022-flights-en-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisc2022-flights-en-table th,.joisc2022-flights-en-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisc2022-flights-en-table th { background:#f5f5f5; }
+.joisc2022-flights-en-table code { white-space:nowrap; }
+.joisc2022-flights-en-table .katex { position:relative; }
+</style></section>
+</div>
+</span>
+<span class="lang-ja">
+<blockquote>
+<p><strong>AtCoder での提出方法</strong></p>
+<p><code>Ali.h</code>，<code>Benjamin.h</code> をインクルードし，すべての関数を 1 つのファイル内で実装して提出してください．グローバル変数を両者の間で共有しないでください．このジャッジは C++ のみに対応しています．</p>
+<p><a href="https://www2.ioi-jp.org/camp/2022/2022-sp-tasks/contest2/flights-dist.zip">配布ファイル</a></p>
+</blockquote>
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>JOI 国には <var>N</var> 個の空港があり，<var>0</var> から <var>N - 1</var> までの番号が付いている．JOI 国には <var>N - 1</var> 本の航空路線があり，<var>0</var> から <var>N - 2</var> までの番号が付いている．航空路線 <var>i</var> (<var>0 \leqq i \leqq N - 2</var>) は空港 <var>U_{i}</var> と空港 <var>V_{i}</var> を双方向に結んでいる．どの空港からどの空港へも，いくつかの航空路線を乗り継ぐことで移動することができる．また，どの空港についても，その空港と他の空港を結ぶ航空路線は高々 <var>3</var> 本である．</p>
+<p>Benjamin は JOI 国を旅行することを計画しており，最終日には遊園地のある空港から温泉のある空港に移動したい．遊園地のある空港に付けられた番号は <var>x</var> であり，温泉のある空港に付けられた番号は <var>y</var> である．しかし，彼は JOI 国の航空路線について何も知らないので，航空会社のスタッフである Ali と通信をすることで，遊園地のある空港から温泉のある空港まで移動するために最小何本の航空路線を利用する必要があるかを求めることにした．Ali は航空路線の情報を知っているが，Benjamin がどの空港の間を移動したいかを知らない．</p>
+<ol>
+<li>Ali は各空港に ID を設定する．ID は <var>0</var> 以上 <var>2N + 19</var> 以下の整数でなければならない．</li>
+<li>Benjamin は遊園地のある空港の ID <var>X</var> と，温泉のある空港の ID <var>Y</var> を入手する．</li>
+<li>Benjamin は Ali に電子メールで <var>0</var> と <var>1</var> からなる文字列を伝える．文字列はちょうど <var>20</var> 文字でなければならない．</li>
+<li>Ali は Benjamin に手紙で <var>0</var> と <var>1</var> からなる文字列を伝える．文字列は <var>1</var> 文字以上 <var>300\,000</var> 文字以下でなければならない．</li>
+</ol>
+<p>航空会社のスタッフである Ali と，観光客である Benjamin の戦略を実装したプログラムを作成せよ．なお，手順 <var>2</var>. では Benjamin は遊園地・温泉のある空港の ID <var>X, Y</var> を入手することができるが，空港の番号 <var>x, y</var> は入手できないことに注意せよ．</p>
+<p><img src="https://img.atcoder.jp/joisc2022/flights-ja-p1-1.png" alt="図" style="max-width:100%;height:auto;"></p>
+
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>実装の詳細</h3>
+<p>あなたは <var>2</var> つのファイルを提出しなければならない．</p>
+<p><var>1</var> つ目のファイルは <code>Ali.cpp</code> という名前である．このファイルは Ali の戦略を実装したファイルであり，以下の <var>2</var> つの関数を実装していなければならない．また，<code>#include</code> プリプロセッサ指令によって <code>Ali.h</code> を読み込むこと．</p>
+<ul>
+<li><code>void Init(int N, std::vector&lt;int&gt; U, std::vector&lt;int&gt; V)</code>
+    これは，空港に ID を付ける Ali の戦略を実装した関数である．この関数は，各シナリオ（詳しくは採点の方法の項を参照）について，最初に <var>1</var> 回だけ呼び出される．<ul>
+<li>引数 <code>N</code> は，JOI 国にある空港の数である．</li>
+<li>引数 <code>U</code>，<code>V</code> は長さ <var>N - 1</var> の配列であり，<code>U[i]</code>，<code>V[i]</code> は航空路線 <var>i</var> が結んでいる空港 <var>U_{i}, V_{i}</var> を表す (<var>0 \leqq i \leqq N - 2</var>)．</li>
+</ul>
+</li>
+<li><code>std::string SendA(std::string S)</code>
+    これは，Benjamin に手紙を送る Ali の戦略を実装した関数である．この関数は，各シナリオ（詳しくは採点の方法の項を参照）について，関数 <code>SendB</code>（後述）が呼び出された後に <var>1</var> 回だけ呼び出される．<ul>
+<li>引数 <code>S</code> は長さ <var>20</var> の文字列であり，受信した電子メールを表す．</li>
+<li>関数 <code>SendA</code> は，送信する手紙を表す文字列を返さなければならない．</li>
+<li>戻り値が長さ <var>1</var> 以上 <var>300\,000</var> 以下の文字列ではない場合，不正解 <var>[5]</var> と判定される．</li>
+<li>戻り値の文字列におけるすべての文字は <code>0</code>, <code>1</code> のいずれかでなければならず，これが満たされていない場合，不正解 <var>[6]</var> と判定される．</li>
+</ul>
+</li>
+</ul>
+<p>関数 <code>Init</code> の <var>1</var> 回の呼び出しにおいて，以下の関数を，それぞれの空港に対して <var>1</var> 回ずつ，合計 <var>N</var> 回呼び出さなければならない．</p>
+<ul>
+<li><code>void SetID(int p, int value)</code><ul>
+<li>引数 <code>p</code> は，Ali が空港 <code>p</code> の ID を設定することを表す．ここで，<var>0 \leqq \texttt{p} \leqq N - 1</var> でなければならない．この範囲外の値で関数を呼び出した場合，不正解 <var>[1]</var> と判定される．</li>
+<li>引数 <code>value</code> は，Ali が指定した空港に設定する ID である．ここで，<var>0 \leqq \texttt{value} \leqq 2N + 19</var> でなければならない．この範囲外の値で関数を呼び出した場合，不正解 <var>[2]</var> と判定される．</li>
+<li>関数 <code>SetID</code> を同じ <code>p</code> で <var>2</var> 回呼び出した場合，不正解 <var>[3]</var> と判定される．</li>
+<li>関数 <code>Init</code> の実行の終了時に関数 <code>SetID</code> の呼び出し回数が <var>N</var> 回でなかった場合，不正解 <var>[4]</var> と判定される．</li>
+</ul>
+</li>
+</ul>
+<p>関数 <code>SetID</code> の呼び出しが不正解と判定された場合，その時点でプログラムは終了する．</p>
+<p><var>2</var> つ目のファイルは <code>Benjamin.cpp</code> という名前である．このファイルは Benjamin の戦略を実装したファイルであり，以下の <var>2</var> つの関数を実装していなければならない．また，<code>#include</code> プリプロセッサ指令によって <code>Benjamin.h</code> を読み込むこと．</p>
+<ul>
+<li><code>std::string SendB(int N, int X, int Y)</code>
+    これは，Ali に電子メールを送る Benjamin の戦略を実装した関数である．この関数は，各シナリオ（詳しくは採点の方法の項を参照）について，関数 <code>Init</code> が呼び出された後に <var>1</var> 回だけ呼び出される．<ul>
+<li>引数 <code>N</code> は，JOI 国にある空港の数である．</li>
+<li>引数 <code>X</code> は，遊園地のある空港の ID である．</li>
+<li>引数 <code>Y</code> は，温泉のある空港の ID である．</li>
+<li>関数 <code>SendB</code> は，送信する電子メールを表す文字列を返さなければならない．</li>
+<li>戻り値が長さ <var>20</var> の文字列ではない場合，不正解 <var>[7]</var> と判定される．</li>
+<li>戻り値の文字列におけるすべての文字は <code>0</code>, <code>1</code> のいずれかでなければならず，これが満たされていない場合，不正解 <var>[8]</var> と判定される．</li>
+</ul>
+</li>
+<li><code>int Answer(std::string T)</code>
+    この関数では，空港 <var>x</var> から空港 <var>y</var> まで行くときに利用する航空路線の数の最小値を決定しなければならない．この関数は，各シナリオ（詳しくは採点の方法の項を参照）について，関数 <code>SendA</code> が呼び出された後に <var>1</var> 回だけ呼び出される．<ul>
+<li>引数 <code>T</code> は長さ <var>1</var> 以上 <var>300\,000</var> 以下の文字列であり，受信した手紙を表す．</li>
+<li>この関数は，空港 <var>x</var> から空港 <var>y</var> まで行くときに利用する航空路線の数の最小値を返さなければならない．</li>
+</ul>
+</li>
+</ul>
+<h4>重要な注意</h4>
+<ul>
+<li>内部での使用のために他の関数を実装したり，グローバル変数を宣言するのは自由である．ただし，提出された <var>2</var> つのプログラムは，採点プログラムとまとめてリンクされて <var>1</var> つの実行ファイルになるので，各ファイル内のすべてのグローバル変数と内部関数を無名名前空間内で宣言して，他のファイルとの干渉を避ける必要がある．採点時には，このプログラムは Ali 側，Benjamin 側として <var>2</var> 個のプロセスとして実行されるので，Ali 側と Benjamin 側でプログラム中のグローバル変数を共有することはできない．</li>
+<li>あなたの提出したプログラムは，標準入力・標準出力，あるいは他のファイルといかなる方法でもやりとりしてはならない．ただし，標準エラー出力にデバッグ情報等を出力することは許される．</li>
+</ul>
+<h4>採点の方法</h4>
+<p><var>1</var> つのテストケースは <var>Q</var> 個のシナリオからなり，シナリオには <var>0</var> から <var>Q - 1</var> までの番号が付けられている．各シナリオについて，以下の値が定められている．ただし，以下に記された値の範囲については，制約の項を参照せよ．</p>
+<ul>
+<li>JOI 国に存在する空港の数 <var>N</var>．</li>
+<li>遊園地のある空港の番号 <var>x</var>．</li>
+<li>温泉のある空港の番号 <var>y</var>．</li>
+<li>航空路線の情報 <var>(U_{0}, V_{0}), (U_{1}, V_{1}), \cdots, (U_{N - 2}, V_{N - 2})</var>．</li>
+</ul>
+<p>関数 <code>Init</code>，<code>SendB</code>，<code>SendA</code>，<code>Answer</code> は各シナリオに対して実行され，与えられた引数に対して適切な関数を呼び出したり，適切な値を返したりしなければならない．ここで，以下のような手順でそれぞれの関数が呼び出される．</p>
+<ol>
+<li><var>k = 0, 1, \cdots, Q - 1</var> の順に，以下の処理 <var>2 ～5</var> をこの順に行う．</li>
+<li>関数 <code>Init</code> が呼び出される．引数は，シナリオ <var>k</var> について実装の詳細の項に書かれた通りに設定される．</li>
+<li>関数 <code>SendB</code> が呼び出される．引数は，シナリオ <var>k</var> について実装の詳細の項に書かれた通りに設定される．</li>
+<li>関数 <code>SendA</code> が呼び出される．引数は，シナリオ <var>k</var> について実装の詳細の項に書かれた通りに設定される．</li>
+<li>関数 <code>Answer</code> が呼び出される．引数は，シナリオ <var>k</var> について実装の詳細の項に書かれた通りに設定される．</li>
+</ol>
+<p>ただし，これらの処理の途中で不正解と判定された場合，その時点で採点は終了し，そのテストケースは不正解となる．</p>
+<p><img src="https://img.atcoder.jp/joisc2022/flights-ja-p4-1.png" alt="図" style="max-width:100%;height:auto;"></p>
+
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>コンパイル・実行の方法</h3>
+<p>作成したプログラムをテストするための，採点プログラムのサンプルが，コンテストサイトからダウンロードできるアーカイブの中に含まれている．このアーカイブには，提出しなければならないファイルのサンプルも含まれている．</p>
+<p>採点プログラムのサンプルは <var>1</var> つのファイルからなる．そのファイルは <code>grader.cpp</code> である．作成したプログラムをテストするには，<code>grader.cpp</code>，<code>Ali.cpp</code>，<code>Benjamin.cpp</code>，<code>Ali.h</code>，<code>Benjamin.h</code> を同じディレクトリに置き，次のようにコマンドを実行する．</p>
+<pre>g++ -std=gnu++17 -O2 -o grader grader.cpp Ali.cpp Benjamin.cpp
+</pre>
+<p>コンパイルが成功すれば，<code>grader</code> という実行ファイルが生成される．</p>
+<p>実際の採点プログラムは，採点プログラムのサンプルとは異なることに注意すること．採点プログラムのサンプルは単一のプロセスとして起動する．このプログラムは，標準入力から入力を読み込み，標準出力に結果を出力する．</p>
+<h4>採点プログラムのサンプルの入力</h4>
+<p>採点プログラムのサンプルは標準入力から以下の形式で入力を読み込む．ただし，入力はすべて整数でなければならない．</p>
+<pre><var>Q</var>
+(シナリオ <var>0</var> に対する入力)
+(シナリオ <var>1</var> に対する入力)
+<var>\vdots</var>
+(シナリオ <var>Q - 1</var> に対する入力)
+</pre>
+<p>また，それぞれのシナリオに対する入力は，以下の形式で与えられる．</p>
+<pre><var>N</var> <var>x</var> <var>y</var>
+<var>U_{0}</var> <var>V_{0}</var>
+<var>U_{1}</var> <var>V_{1}</var>
+<var>\vdots</var>
+<var>U_{N - 2}</var> <var>V_{N - 2}</var>
+</pre>
+<h4>採点プログラムのサンプルの出力</h4>
+<p>不正解 <var>[1]</var> から不正解 <var>[8]</var> までのいずれかであると判定された場合，不正解の種類が “<code>Wrong Answer [1]</code>” のように出力される（引用符は実際には出力されない）．</p>
+<p>そうでない場合は，各シナリオに対する関数 <code>Answer</code> の戻り値と，Ali から Benjamin に送信された文字列の長さの最大値が次のように出力される．採点プログラムのサンプルは，関数 <code>Answer</code> の戻り値が正しいかどうかは判定しない．</p>
+<pre>Scenario 0: Your Answer = 3
+Scenario 1: Your Answer = 1
+Scenario 2: Your Answer = 4
+Scenario 3: Your Answer = 1
+Scenario 4: Your Answer = 5
+Accepted: Maximum Length = 24
+</pre>
+<p>実行するプログラムが複数の不正解の条件を満たした場合，表示される不正解の種類はそれらのうち <var>1</var> つのみである．また，最初のシナリオで不正解と判定されなかった場合，その後のシナリオで不正解 <var>[1]</var> から不正解 <var>[8]</var> までのいずれかであると判定されても，次のように途中までの結果が出力されることがある．</p>
+<pre>Scenario 0: Your Answer = 3
+Scenario 1: Your Answer = 1
+Scenario 2: Your Answer = 4
+Wrong Answer [8]
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>1 \leqq Q \leqq 50</var>．</li>
+<li><var>2 \leqq N \leqq 10\,000</var>．</li>
+<li><var>0 \leqq U_{i} &lt; V_{i} \leqq N - 1</var> (<var>0 \leqq i \leqq N - 2</var>)．</li>
+<li><var>0 \leqq x \leqq N - 1</var>．</li>
+<li><var>0 \leqq y \leqq N - 1</var>．</li>
+<li><var>x \ne y</var>．</li>
+<li>どの空港からどの空港へも，いくつかの航空路線を乗り継ぐことで移動することができる．</li>
+<li>どの空港についても，その空港と他の空港を結ぶ航空路線は高々 <var>3</var> 本である．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>15</var> 点) <var>Q = 1</var>．</li>
+<li>(<var>85</var> 点) <var>Q \geqq 2</var>．</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題 1 の採点基準</h3>
+<p>小課題 1 に対応するテストケースについて，1 つでも不正解があった場合，この小課題の得点は <var>0</var> 点となる．</p>
+<p>また，小課題 <var>1</var> に対応するすべてのテストケースに正解した場合，小課題 <var>1</var> のすべてのテストケースに対する「Ali から Benjamin へ送信された文字列の長さの最大値」を <var>L_{1}</var> として，この小課題の得点は以下のように与えられる．</p>
+<div class="joisc2022-flights-ja-table">
+<table>
+<thead>
+<tr>
+<th><var>L_{1}</var> の値</th>
+<th>得点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><var>150\,001 \leqq L_{1} \leqq 300\,000</var></td>
+<td><var>7</var> 点</td>
+</tr>
+<tr>
+<td><var>20\,001 \leqq L_{1} \leqq 150\,000</var></td>
+<td><var>11</var> 点</td>
+</tr>
+<tr>
+<td><var>L_{1} \leqq 20\,000</var></td>
+<td><var>15</var> 点</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題 2 の採点基準</h3>
+<p>小課題 2 に対応するテストケースについて，1 つでも不正解があった場合，この小課題の得点は <var>0</var> 点となる．</p>
+<p>また，小課題 <var>2</var> に対応するすべてのテストケースに正解した場合，小課題 <var>2</var> のすべてのテストケースに対する「Ali から Benjamin へ送信された文字列の長さの最大値」を <var>L_{2}</var> として，この小課題の得点は以下のように与えられる．特に <var>1\,401 \leqq L_{2}</var> であれば，この小課題の得点が <var>0</var> 点となることに注意せよ．</p>
+<div class="joisc2022-flights-ja-table">
+<table>
+<thead>
+<tr>
+<th><var>L_{2}</var> の値</th>
+<th>得点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><var>1\,401 \leqq L_{2} \leqq 300\,000</var></td>
+<td><var>0</var> 点</td>
+</tr>
+<tr>
+<td><var>71 \leqq L_{2} \leqq 1\,400</var></td>
+<td><var>52 - 35\times\log_{10}\left(\frac{L_{2}}{70}\right)</var> 点を整数に切り捨てた得点</td>
+</tr>
+<tr>
+<td><var>45 \leqq L_{2} \leqq 70</var></td>
+<td><var>87 - 0.5 \times L_{2}</var> 点を整数に切り捨てた得点</td>
+</tr>
+<tr>
+<td><var>25 \leqq L_{2} \leqq 44</var></td>
+<td><var>109 - L_{2}</var> 点</td>
+</tr>
+<tr>
+<td><var>L_{2} \leqq 24</var></td>
+<td><var>85</var> 点</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>やりとりの例</h3>
+<p>採点プログラムのサンプルが読み込む入力の例と，それに対応する関数の呼び出しの例を以下に示す．ただし以下の例は，Ali が関数 <code>Init</code> で，空港 <var>0, 1, 2, 3</var> にそれぞれ <var>12, 21, 25, 27</var> という ID を設定した場合である．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>1
+4 0 2
+0 1
+1 2
+2 3
+</pre>
+<h4>関数の呼び出しの例</h4>
+<div class="joisc2022-flights-ja-table">
+<table>
+<thead>
+<tr>
+<th>Ali の呼び出し</th>
+<th>Ali の戻り値</th>
+<th>Benjamin の呼び出し</th>
+<th>Benjamin の戻り値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Init(4,[0,1,2],[1,2,3])</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>SetID(0,12)</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>SetID(1,21)</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>SetID(2,25)</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>SetID(3,27)</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>SendB(12,25)</code></td>
+<td><code>"00000111110000011111"</code></td>
+</tr>
+<tr>
+<td><code>SendA("00...11")</code></td>
+<td><code>"10"</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>Answer("10")</code></td>
+<td><code>2</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>この例では空港が <var>N (= 4)</var> 個あり，次の <var>3</var> つの航空路線が存在する．</p>
+<ul>
+<li>空港 <var>0</var> と空港 <var>1</var> を結ぶ航空路線．</li>
+<li>空港 <var>1</var> と空港 <var>2</var> を結ぶ航空路線．</li>
+<li>空港 <var>2</var> と空港 <var>3</var> を結ぶ航空路線．</li>
+</ul>
+<p>空港 <var>x (= 0)</var> から空港 <var>y (= 2)</var> まで行くためには最小で <var>2</var> 本の航空路線を利用する必要があるため，関数 <code>Answer</code> は <code>2</code> を返さなければならない．</p>
+<p>なお，関数 <code>SendB</code> の引数は空港の番号 <var>(x, y) = (0, 2)</var> ではなく，空港の ID <var>(X, Y) = (12, 25)</var> であることに注意すること．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>2
+10 0 9
+0 1
+1 2
+2 3
+3 4
+4 5
+5 6
+6 7
+7 8
+8 9
+15 12 8
+0 1
+0 2
+1 3
+1 4
+2 5
+2 6
+3 7
+3 8
+4 9
+4 10
+5 11
+5 12
+6 13
+6 14
+</pre>
+<p>この例では，<var>Q = 2</var> 個のシナリオが存在する．</p>
+<ul>
+<li><var>1</var> 個目のシナリオでは，関数 <code>Answer</code> は <code>9</code> を返さなければならない．</li>
+<li><var>2</var> 個目のシナリオでは，関数 <code>Answer</code> は <code>6</code> を返さなければならない．</li>
+</ul>
+<style>
+.joisc2022-flights-ja-table { position:relative;max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisc2022-flights-ja-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisc2022-flights-ja-table th,.joisc2022-flights-ja-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisc2022-flights-ja-table th { background:#f5f5f5; }
+.joisc2022-flights-ja-table code { white-space:nowrap; }
+.joisc2022-flights-ja-table .katex { position:relative; }
+</style></section>
+</div>
+</span>
+</span>

@@ -1,0 +1,81 @@
+<span class="lang">
+<span class="lang-ja">
+<blockquote>
+<p><strong>AtCoder での提出方法</strong></p>
+<p>入力は標準入力から読み込み，出力は標準出力に行うこと．</p>
+</blockquote>
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p><var>2</var> つの整数の和を出力するプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>標準入力から以下の入力を読み込め．</p>
+<p>入力では足し合わせる <var>2</var> つの整数が以下の形式で順に与えられる．</p>
+<ul>
+<li><var>1</var> つ目の整数を表すデータの <var>1</var> 行目には整数 <var>m</var> (<var>1 \leqq m \leqq 20{,}000</var>) が書かれており, 続く <var>m</var> 行のうちの <var>i</var> 行目には，整数 <var>a_{i}</var> (<var>0 \leqq a_{i} \leqq 9</var>) と <var>l_{i}</var> (<var>1 \leqq l_{i} \leqq 100{,}000{,}000</var>) が空白を区切りとして書かれている．これらは，<var>1</var> つ目の整数が十進表記で上の桁から <var>a_{1}</var> が <var>l_{1}</var> 個,<var>a_{2}</var> が <var>l_{2}</var> 個, …,<var>a_{m}</var> が <var>l_{m}</var> 個並んだ整数であることを意味する．<var>a_{1} \neq  0</var>，<var>a_{i} \neq  a_{i+1}</var> (<var>1 \leqq i \leqq m - 1</var>) である．</li>
+<li><var>1</var> つ目の整数を表すデータの直後には，<var>2</var> つ目の整数を表すデータが同様の形式で続いている．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に以下のデータを出力せよ．</p>
+<p><var>2</var> つの整数の和が，十進表記で上の桁から <var>A_{1}</var> が <var>L_{1}</var> 個，<var>A_{2}</var> が <var>L_{2}</var> 個，…，<var>A_{M}</var> が <var>L_{M}</var> 個 (<var>0 \leqq A_{i} \leqq 9</var>，<var>A_{1} \neq  0</var>，<var>A_{i} \neq  A_{i+1}</var>，<var>L_{i} \geqq 1</var>) 並んだ整数であるとき，出力は <var>M + 1</var> 行からなり，出力の <var>1</var> 行目には整数 <var>M</var> を，<var>i + 1</var> 行目 (<var>1 \leqq i \leqq M</var>) には整数 <var>A_{i}</var> と <var>L_{i}</var> をこの順に空白区切りで出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>重要な注意</h3>
+<p><var>L_{i}</var> たちの値は，必ずしも 32 bit に収まらない．<code>long long</code> などの 64-bit データ型を使用すべきである．詳細については，技術情報を参照のこと．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>採点基準</h3>
+<p><var>30</var> 点分のテストグループにおいて，<var>m \leqq 1{,}000</var> かつ <var>l_{i} \leqq 1{,}000</var> (<var>1 \leqq i \leqq m</var>) である.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>3
+1 3
+2 4
+3 5
+3
+9 4
+8 3
+7 2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>4
+1 2
+2 8
+1 1
+0 1
+</pre>
+<p>この場合，入力で与えられる <var>2</var> つの整数は <var>111222233333</var> と <var>999988877</var> である．これらの和は <var>112222222210</var> なので，出力は上のようになる．</p></section>
+</div>
+</span>
+</span>

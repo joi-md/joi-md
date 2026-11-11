@@ -5,7 +5,7 @@
 <div class="part">
 <section>
 <h3>Problem Statement</h3>
-<p>There is a very long road in JOI City, which can be considered as the real number line. A position on the road is represented by a real number coordinate. In JOI City, there are <var>N</var> sightseeing spots along the road, numbered from <var>1</var> to <var>N</var> in ascending order of the coordinates. The coordinate of the <var>i</var>-th sightseeing spot (<var>1 \leq i \leq N</var>) is <var>X_i</var>.</p>
+<p>There is a very long road in JOI City, which can be considered as the real number line. A position on the road is represented by a real number coordinate. In JOI City, there are <var>N</var> sightseeing spots along the road, numbered from <var>1</var> to <var>N</var> in ascending order of the coordinates. The coordinate of the <var>i</var>-th sightseeing spot (<var>1 \le i \le N</var>) is <var>X_i</var>.</p>
 <p>Bitaro will visit all the sightseeing spots in JOI City. Since “greedy” is the slogan of his life, he will repeat the following procedures until he visits all the sightseeing spots.</p>
 <ul>
 <li>Let <var>x</var> be Bitaro's current coordinate. Among the sightseeing spots he has not yet visited, take the sightseeing spot <var>i</var> where the distance <var>|x - X_i|</var> from Bitaro's current position takes a minimum value. Then Bitaro moves to the position of the sightseeing spot <var>i</var>, and visits it. If there are more than one such sightseeing spots, he moves to the sightseeing spot whose coordinate is smaller than the others. Here, <var>|t|</var> is the absolute value of <var>t</var>.</li>
@@ -37,7 +37,7 @@
 <div class="part">
 <section>
 <h3>Output</h3>
-<p>Write <var>Q</var> lines to the standard output. The <var>j</var>-th line (<var>1 \leq j \leq Q</var>) of output should contain the total traveling distance if Bitaro starts from the coordinate <var>S_j</var>.</p>
+<p>Write <var>Q</var> lines to the standard output. The <var>j</var>-th line (<var>1 \le j \le Q</var>) of output should contain the total traveling distance if Bitaro starts from the coordinate <var>S_j</var>.</p>
 </section>
 </div>
 </div>
@@ -46,11 +46,11 @@
 <section>
 <h3>Constraints</h3>
 <ul>
-<li><var>1 \leq N \leq 200\,000</var>.</li>
-<li><var>1 \leq Q \leq 200\,000</var>.</li>
-<li><var>0 \leq X_i \leq 10^9</var> (<var>1 \leq i \leq N</var>).</li>
-<li><var>X_i &lt; X_{i+1}</var> (<var>1 \leq i \leq N - 1</var>).</li>
-<li><var>0 \leq S_j \leq 10^9</var> (<var>1 \leq j \leq Q</var>).</li>
+<li><var>1 \le N \le 200\,000</var>.</li>
+<li><var>1 \le Q \le 200\,000</var>.</li>
+<li><var>0 \le X_i \le 10^9</var> (<var>1 \le i \le N</var>).</li>
+<li><var>X_i &lt; X_{i+1}</var> (<var>1 \le i \le N - 1</var>).</li>
+<li><var>0 \le S_j \le 10^9</var> (<var>1 \le j \le Q</var>).</li>
 <li>Given values are all integers.</li>
 </ul>
 </section>
@@ -60,9 +60,9 @@
 <section>
 <h3>Subtasks</h3>
 <ol>
-<li>(<var>5</var> points) <var>Q = 1</var>, <var>N \leq 2\,000</var>.</li>
+<li>(<var>5</var> points) <var>Q = 1</var>, <var>N \le 2\,000</var>.</li>
 <li>(<var>10</var> points) <var>Q = 1</var>.</li>
-<li>(<var>30</var> points) <var>X_{i+1} - X_i \leq 100</var> (<var>1 \leq i \leq N - 1</var>).</li>
+<li>(<var>30</var> points) <var>X_{i+1} - X_i \le 100</var> (<var>1 \le i \le N - 1</var>).</li>
 <li>(<var>55</var> points) No additional constraints.</li>
 </ol>
 <hr />
@@ -137,7 +137,7 @@
 </div>
 </span>
 <span class="lang-ja">
-<p>配点： <var>100</var> 点</p>
+<p>配点 : <var>100</var> 点</p>
 
 <div class="part">
 <section>

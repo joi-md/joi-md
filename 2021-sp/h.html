@@ -1,0 +1,362 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>JOI Street is a long street from west to east. It is considered as the number line.</p>
+<p>From now, <var>N</var> very important people (VIP) will come to JOI Street and walk along it. VIPs are numbered from 1 to <var>N</var>. VIP <var>i</var> (<var>1 \le i \le N</var>) will depart from the coordinate <var>A_{i}</var> at time <var>T_{i}</var>, and walk to the coordinate <var>B_{i}</var>. Its speed is 1 per unit time. If <var>A_{i} &lt; B_{i}</var>, VIP <var>i</var> will move toward the positive direction at the constant speed. Similarly, if <var>A_{i} &gt; B_{i}</var>, VIP <var>i</var> will move toward the negative direction at the constant speed.</p>
+<p>A bodyguard’s job is to walk along JOI Street and guard the VIPs. To guard a VIP, it is necessary to walk with the VIP for some time. It is allowed for a bodyguard to start guarding a VIP in the middle of their walk, or to quit guarding before they end walking. The time to start or end guarding need not be an integer. However, even if multiple VIPs are at the same coordinate, a bodyguard can guard at most one VIP at a time.</p>
+<p>A bodyguard can walk JOI Street freely at the speed of at most 1 per unit time. When they finish guarding a VIP, it is allowed to move to another place and start guarding another VIP. If a bodyguard walks with VIP <var>i</var>, the VIP gives the bodyguard the reward of <var>C_{i}</var> yen per unit distance, according to the distance where the bodyguard guards the VIP. Here it is guaranteed that <var>C_{i}</var> is an even integer.</p>
+<p>You, working for a security company, are planning <var>Q</var> projects to guard the VIPs. The projects are numbered from 1 to <var>Q</var>. For the project <var>j</var> (<var>1 \le j \le Q</var>), a bodyguard starts working at coordinate <var>X_{j}</var> at time <var>P_{j}</var>. Your task is to calculate the maximum total reward for each project.</p>
+<p>Write a program which, given information of VIPs and projects, calculates the maximum total reward for each project.</p>
+<p>Under the constraints of this task, it can be proved that the maximum total reward of a project is always an integer.</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input. Given values are all integers.</p>
+<pre><var>N</var> <var>Q</var>
+<var>T_{1}</var> <var>A_{1}</var> <var>B_{1}</var> <var>C_{1}</var>
+<var>\vdots</var>
+<var>T_{N}</var> <var>A_{N}</var> <var>B_{N}</var> <var>C_{N}</var>
+<var>P_{1}</var> <var>X_{1}</var>
+<var>\vdots</var>
+<var>P_{Q}</var> <var>X_{Q}</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>Write <var>Q</var> lines to the standard output. The <var>j</var>-th line (<var>1 \le j \le Q</var>) of the output should contain an integer which is the maximum total reward for the project <var>j</var>.</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li><var>1 \le N \le 2\,800</var>.</li>
+<li><var>1 \le Q \le 3\,000\,000</var>.</li>
+<li><var>1 \le T_{i} \le 1\,000\,000\,000</var> (<var>1 \le i \le N</var>).</li>
+<li><var>1 \le A_{i} \le 1\,000\,000\,000</var> (<var>1 \le i \le N</var>).</li>
+<li><var>1 \le B_{i} \le 1\,000\,000\,000</var> (<var>1 \le i \le N</var>).</li>
+<li><var>A_{i} \ne B_{i}</var> (<var>1 \le i \le N</var>).</li>
+<li><var>1 \le C_{i} \le 1\,000\,000\,000</var> (<var>1 \le i \le N</var>).</li>
+<li><var>C_{i}</var> is an even integer (<var>1 \le i \le N</var>).</li>
+<li><var>1 \le P_{j} \le 1\,000\,000\,000</var> (<var>1 \le j \le Q</var>).</li>
+<li><var>1 \le X_{j} \le 1\,000\,000\,000</var> (<var>1 \le j \le Q</var>),</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li>(<var>6</var> points) <var>T_{i} \le 3\,000</var>, <var>A_{i} \le 3\,000</var>, <var>B_{i} \le 3\,000</var> (<var>1 \le i \le N</var>).<var>P_{j} \le 3\,000</var>, <var>X_{j} \le 3\,000</var> (<var>1 \le j \le Q</var>).</li>
+<li>(<var>7</var> points) <var>Q = 1</var>.</li>
+<li>(<var>15</var> points) <var>Q \le 3\,000</var>.</li>
+<li>(<var>20</var> points) <var>Q \le 40\,000</var>.</li>
+<li>(<var>52</var> points) No additional constraints.</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input and Output</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>2 2
+1 2 1 4
+3 1 3 2
+1 2
+3 3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>8
+2
+</pre>
+<p>In the project 1, a bodyguard gets a total reward of <var>4 + 4 = 8</var> yen by the following way.</p>
+<ol>
+<li>A bodyguard starts working at coordinate 2 at time 1.</li>
+<li>He guards VIP 1 from time 1 to time 2. Since he moves with VIP 1 for a distance 1, he gets a reward of <var>4 \times 1 = 4</var> yen.</li>
+<li>He stays at coordinate 1 from time 2 to time 3.</li>
+<li>He guards VIP 2 from time 3 to time 5. Since he moves with VIP 2 for a distance 2, he gets a reward of <var>2 \times 2 = 4</var> yen.</li>
+</ol>
+<p>Since it is the maximum value, output 8 in the first line of the output.</p>
+<p>In the project 2, a bodyguard will get a total reward of 2 yen by the following way.</p>
+<ol>
+<li>A bodyguard starts working at coordinate 3 at time 3.</li>
+<li>He departs from the coordinate 3 at time 3, and arrives at the coordinate 2 at time 4.</li>
+<li>He guards VIP 2 from time 4 to time 5. Since he moves with VIP 2 for a distance 1, he gets a reward of <var>2 \times 1 = 2</var> yen.</li>
+</ol>
+<p>Since it is the maximum value, output 2 in the second line of the output.</p>
+<p>This sample input satisfies the constraints of Subtasks <var>1</var>, <var>3</var>, <var>4</var>, <var>5</var>.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>3 2
+3 1 5 2
+1 4 1 4
+4 2 4 4
+2 2
+6 3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>15
+0
+</pre>
+<p>In the project 1, a bodyguard will get a total reward of <var>4 + 1 + 8 + 2 = 15</var> yen by the following way.</p>
+<ol>
+<li>A bodyguard will start working at coordinate 2 at time 2.</li>
+<li>He departs from the coordinate 2 at time 2, and arrives at the coordinate <var>2.5</var> at time <var>2.5</var>.</li>
+<li>He guards VIP 2 from time <var>2.5</var> to time <var>3.5</var>. Since he moves with VIP 2 for a distance 1, he gets a reward of <var>4 \times 1 = 4</var> yen.</li>
+<li>He guards VIP 1 from time <var>3.5</var> to time 4. Since he moves with VIP 1 for a distance <var>0.5</var>, he gets a reward of <var>2 \times 0.5 = 1</var> yen.</li>
+<li>He guards VIP 3 from time 4 to time 6. Since he moves with VIP 3 for a distance 2, he gets a reward of <var>4 \times 2 = 8</var> yen.</li>
+<li>He guards VIP 1 from time 6 to time 7. Since he moves with VIP 1 for a distance 1, he gets a reward of <var>2 \times 1 = 2</var> yen.</li>
+</ol>
+<p>Since it is the maximum value, output 15 in the first line of the output.</p>
+<p>In the project 2, a bodyguard starts working at coordinate 3 at time 6. However, it is impossible to guard a VIP. Thus, the maximum amount of reward is 0 yen. Therefore, output 0 in the second line of the output.</p>
+<p>This sample input satisfies the constraints of Subtasks <var>1</var>, <var>3</var>, <var>4</var>, <var>5</var>.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 3</h3>
+<pre>5 5
+8 1 4 10
+8 3 7 6
+1 4 6 2
+3 9 5 4
+6 1 9 6
+7 6
+6 8
+1 3
+9 4
+2 4
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 3</h3>
+<pre>30
+27
+48
+30
+48
+</pre>
+<p>This sample input satisfies the constraints of Subtasks <var>1</var>, <var>3</var>, <var>4</var>, <var>5</var>.</p></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>JOI 通りは東西に広がる長い道であり，数直線とみなすことが出来る．</p>
+<p>これから <var>N</var> 人の要人が JOI 通りを移動する．要人には <var>1</var> から <var>N</var> までの番号が付けられている．要人 <var>i</var> (<var>1 \leqq i \leqq N</var>) は時刻 <var>T_{i}</var> に座標 <var>A_{i}</var> を出発し，速さ <var>1</var> (単位時間あたりに座標を <var>1</var> 移動する速さ) で座標 <var>B_{i}</var> まで移動する ．<var>A_{i} &lt; B_{i}</var> ならば正の方向，<var>A_{i} &gt; B_{i}</var> ならば負の方向に，常に等速で移動することを意味している．</p>
+<p>ボディーガードの仕事は，JOI 通りを移動して，これらの要人を警護することである．要人の警護とは，ある時刻からある時刻まで，要人と一緒に移動することを指す．ある要人の移動の途中から警護を始めてもよいし，要人の移動が完了する前に警護をやめてもよい．警護の開始と終了の時刻は整数である必要はない．ただし，<var>2</var> 人以上の要人が同じ座標に存在する時間があっても，同時に警護できるのは <var>1</var> 人までである．</p>
+<p>ボディーガードは常に速さ <var>1</var> 以下で自由に JOI 通りを移動することが出来る．ある要人の警護を終了した後，移動して他の要人を警護することも出来る．要人 <var>i</var> の警護をすると，一緒に移動した距離に応じて，距離 <var>1</var> あたり <var>C_{i}</var> 円の報酬が得られる ．<var>C_{i}</var> は偶数であることが保証される．</p>
+<p>警備会社に勤務するあなたは，要人を警護する <var>Q</var> 個の計画を検討することにした．計画には <var>1</var> から <var>Q</var> までの番号が付けられている．計画 <var>j</var> (<var>1 \leqq j \leqq Q</var>) では，<var>1</var> 人のボディーガードが時刻 <var>P_{j}</var> に座標 <var>X_{j}</var> から仕事を開始する．あなたは，それぞれの計画について，得られる報酬をできるだけ大きくしたい．</p>
+<p>要人と計画の情報が与えられたとき，それぞれの計画について得られる報酬の最大値を求めるプログラムを作成せよ．</p>
+<p>この問題の制約の下では，得られる報酬の最大値は必ず整数になることが証明できる．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力は以下の形式で標準入力から与えられる．入力される値はすべて整数である．</p>
+<pre><var>N</var> <var>Q</var>
+<var>T_{1}</var> <var>A_{1}</var> <var>B_{1}</var> <var>C_{1}</var>
+<var>\vdots</var>
+<var>T_{N}</var> <var>A_{N}</var> <var>B_{N}</var> <var>C_{N}</var>
+<var>P_{1}</var> <var>X_{1}</var>
+<var>\vdots</var>
+<var>P_{Q}</var> <var>X_{Q}</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に <var>Q</var> 行で出力せよ ．<var>j</var> 行目 (<var>1 \leqq j \leqq Q</var>) には計画 <var>j</var> において得られる報酬の最大値を整数で出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>1 \leqq N \leqq 2\,800</var>．</li>
+<li><var>1 \leqq Q \leqq 3\,000\,000</var>．</li>
+<li><var>1 \leqq T_{i} \leqq 1\,000\,000\,000</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>1 \leqq A_{i} \leqq 1\,000\,000\,000</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>1 \leqq B_{i} \leqq 1\,000\,000\,000</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>A_{i} \ne B_{i}</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>1 \leqq C_{i} \leqq 1\,000\,000\,000</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>C_{i}</var> は偶数 (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>1 \leqq P_{j} \leqq 1\,000\,000\,000</var> (<var>1 \leqq j \leqq Q</var>)．</li>
+<li><var>1 \leqq X_{j} \leqq 1\,000\,000\,000</var> (<var>1 \leqq j \leqq Q</var>)．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>6</var> 点) <var>T_{i} \leqq 3\,000</var>，<var>A_{i} \leqq 3\,000</var>，<var>B_{i} \leqq 3\,000</var> (<var>1 \leqq i \leqq N</var>)．<var>P_{j} \leqq 3\,000</var>，<var>X_{j} \leqq 3\,000</var> (<var>1 \leqq j \leqq Q</var>)．</li>
+<li>(<var>7</var> 点) <var>Q = 1</var>．</li>
+<li>(<var>15</var> 点) <var>Q \leqq 3\,000</var>．</li>
+<li>(<var>20</var> 点) <var>Q \leqq 40\,000</var>．</li>
+<li>(<var>52</var> 点) 追加の制約はない．</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入出力例</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>2 2
+1 2 1 4
+3 1 3 2
+1 2
+3 3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>8
+2
+</pre>
+<p>計画 <var>1</var> では，以下の通りに行動することで，<var>4 + 4 = 8</var> 円の報酬を得る．</p>
+<ol>
+<li>ボディーガードは時刻 <var>1</var> に座標 <var>2</var> から仕事を開始する．</li>
+<li>時刻 <var>1</var> から時刻 <var>2</var> まで，要人 <var>1</var> を警護する．距離 <var>1</var> を移動したため，報酬として <var>4 \times 1 = 4</var> 円を得る．</li>
+<li>時刻 <var>2</var> から時刻 <var>3</var> まで，座標 <var>1</var> で留まる．</li>
+<li>時刻 <var>3</var> から時刻 <var>5</var> まで，要人 <var>2</var> を警護する．距離 <var>2</var> を移動したため，報酬として <var>2 \times 2 = 4</var> 円を得る．</li>
+</ol>
+<p>これより多くの報酬を得ることは不可能であるため，<var>1</var> 行目に <var>8</var> を出力する．</p>
+<p>計画 <var>2</var> では，以下の通りに行動することで，<var>2</var> 円の報酬を得る．</p>
+<ol>
+<li>ボディーガードは時刻 <var>3</var> に座標 <var>3</var> から仕事を開始する．</li>
+<li>時刻 <var>3</var> から時刻 <var>4</var> までかけて，座標 <var>3</var> から座標 <var>2</var> に移動する．</li>
+<li>時刻 <var>4</var> から時刻 <var>5</var> まで，要人 <var>2</var> を警護する．距離 <var>1</var> を移動したため，報酬として <var>2 \times 1 = 2</var> 円を得る．</li>
+</ol>
+<p>これより多くの報酬を得ることは不可能であるため，<var>2</var> 行目に <var>2</var> を出力する．</p>
+<p>この入力例は小課題 <var>1, 3, 4, 5</var> の制約を満たす．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>3 2
+3 1 5 2
+1 4 1 4
+4 2 4 4
+2 2
+6 3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>15
+0
+</pre>
+<p>計画 <var>1</var> では，以下の通りに行動することで，<var>4 + 1 + 8 + 2 = 15</var> 円の報酬を得る．</p>
+<ol>
+<li>ボディーガードは時刻 <var>2</var> に座標 <var>2</var> から仕事を開始する．</li>
+<li>時刻 <var>2</var> から時刻 <var>2.5</var> までかけて，座標 <var>2</var> から座標 <var>2.5</var> に移動する．</li>
+<li>時刻 <var>2.5</var> から時刻 <var>3.5</var> まで，要人 <var>2</var> を警護する．距離 <var>1</var> を移動したため，報酬として <var>4 \times 1 = 4</var> 円を得る．</li>
+<li>時刻 <var>3.5</var> から時刻 <var>4</var> まで，要人 <var>1</var> を警護する．距離 <var>0.5</var> を移動したため，報酬として <var>2 \times 0.5 = 1</var> 円を得る．</li>
+<li>時刻 <var>4</var> から時刻 <var>6</var> まで，要人 <var>3</var> を警護する．距離 <var>2</var> を移動したため，報酬として <var>4 \times 2 = 8</var> 円を得る．</li>
+<li>時刻 <var>6</var> から時刻 <var>7</var> まで，要人 <var>1</var> を警護する．距離 <var>1</var> を移動したため，報酬として <var>2 \times 1 = 2</var> 円を得る．</li>
+</ol>
+<p>これより多くの報酬を得ることは不可能であるため，<var>1</var> 行目に <var>15</var> を出力する．</p>
+<p>計画 <var>2</var> では，ボディーガードは時刻 <var>6</var> に座標 <var>3</var> から仕事を開始する．しかし，要人を警護することはできない．したがって報酬の最大値は <var>0</var> 円であり，<var>2</var> 行目に <var>0</var> を出力する．</p>
+<p>この入力例は小課題 <var>1, 3, 4, 5</var> の制約を満たす．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>5 5
+8 1 4 10
+8 3 7 6
+1 4 6 2
+3 9 5 4
+6 1 9 6
+7 6
+6 8
+1 3
+9 4
+2 4
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>30
+27
+48
+30
+48
+</pre>
+<p>この入力例は小課題 <var>1, 3, 4, 5</var> の制約を満たす．</p></section>
+</div>
+</span>
+</span>

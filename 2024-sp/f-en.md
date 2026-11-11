@@ -4,18 +4,18 @@ Score: $100$ points
 
 Bitaro, who has been enjoying gardening for many years, is planning to grow a plant called Bita-radish starting this spring.
 
-Bitaro has prepared $2N$ Bita-radish seedlings. The seedlings are numbered from $1$ to $2N$, and Bitaro plans to arrange them in this order for cultivation. The size of seedling $i$ ($1 \leq i \leq 2N$) is $A_i$. Bitaro wants every seedling to get enough sunlight, so the sizes of the seedlings satisfy the following conditions:
+Bitaro has prepared $2N$ Bita-radish seedlings. The seedlings are numbered from $1$ to $2N$, and Bitaro plans to arrange them in this order for cultivation. The size of seedling $i$ ($1 \le i \le 2N$) is $A_i$. Bitaro wants every seedling to get enough sunlight, so the sizes of the seedlings satisfy the following conditions:
 
-- $A_1 \leq A_2 \leq \cdots \leq A_N \leq A_{N+1}$.
-- $A_{N+1} \geq A_{N+2} \geq \cdots \geq A_{2N-1} \geq A_{2N} \geq A_1$.
+- $A_1 \le A_2 \le \cdots \le A_N \le A_{N+1}$.
+- $A_{N+1} \ge A_{N+2} \ge \cdots \ge A_{2N - 1} \ge A_{2N} \ge A_1$.
 
 Note that seedling $1$ is the smallest and seedling $N+1$ is the largest.
 
-Bitaro has also prepared $N$ red flowerpots and $N$ blue flowerpots, each of which also has a certain size. The size of the $j$-th ($1 \leq j \leq N$) red flowerpot is $B_j$, and the size of the $k$-th ($1 \leq k \leq N$) blue flowerpot is $C_k$. Bitaro plants one Bita-radish seedling in each of these total $2N$ flowerpots, and arranges the flowerpots in a row so that seedlings $1,2,\ldots,2N$ are in this order.
+Bitaro has also prepared $N$ red flowerpots and $N$ blue flowerpots, each of which also has a certain size. The size of the $j$-th ($1 \le j \le N$) red flowerpot is $B_j$, and the size of the $k$-th ($1 \le k \le N$) blue flowerpot is $C_k$. Bitaro plants one Bita-radish seedling in each of these total $2N$ flowerpots, and arranges the flowerpots in a row so that seedlings $1,2,\ldots,2N$ are in this order.
 
-Considering the appearance, the $2N$ flowerpots must be arranged in a **beautiful order**. Here, a beautiful order means an arrangement of flowerpots such that there exist consecutive $N$ flowerpots with the same color. More precisely, an arrangement of flowerpots is said to be a beautiful order if and only if there exists an integer $l$ between $1$ and $N+1$ inclusive such that the colors of the flowerpots planted with seedlings $l,l+1,\ldots,l+N-1$ are all the same.
+Considering the appearance, the $2N$ flowerpots must be arranged in a **beautiful order**. Here, a beautiful order means an arrangement of flowerpots such that there exist consecutive $N$ flowerpots with the same color. More precisely, an arrangement of flowerpots is said to be a beautiful order if and only if there exists an integer $l$ between $1$ and $N+1$ inclusive such that the colors of the flowerpots planted with seedlings $l,l+1,\ldots,l+N - 1$ are all the same.
 
-When a seedling of size $y$ is planted in a flowerpot of size $x$, the **difficulty of cultivation** for that pair is the absolute value $|x-y|$. Bitaro's **workload** in growing Bita-radish is the maximum difficulty of cultivation among the $2N$ pairs of flowerpots and seedlings.
+When a seedling of size $y$ is planted in a flowerpot of size $x$, the **difficulty of cultivation** for that pair is the absolute value $|x - y|$. Bitaro's **workload** in growing Bita-radish is the maximum difficulty of cultivation among the $2N$ pairs of flowerpots and seedlings.
 
 Write a program which, given the information about the Bita-radish seedlings and flowerpots, finds the minimum possible value of Bitaro's workload when planting the seedlings so that the flowerpots are arranged in a beautiful order.
 
@@ -40,19 +40,19 @@ Print a single value — the minimum possible value of Bitaro's workload when pl
 
 ### Constraints
 
-- $1 \leq N \leq 300\,000$.
-- $1 \leq A_i \leq 10^9$ ($1 \leq i \leq 2N$).
-- $1 \leq B_j \leq 10^9$ ($1 \leq j \leq N$).
-- $1 \leq C_k \leq 10^9$ ($1 \leq k \leq N$).
-- $A_1 \leq A_2 \leq \cdots \leq A_N \leq A_{N+1}$.
-- $A_{N+1} \geq A_{N+2} \geq \cdots \geq A_{2N-1} \geq A_{2N} \geq A_1$.
+- $1 \le N \le 300\,000$.
+- $1 \le A_i \le 10^9$ ($1 \le i \le 2N$).
+- $1 \le B_j \le 10^9$ ($1 \le j \le N$).
+- $1 \le C_k \le 10^9$ ($1 \le k \le N$).
+- $A_1 \le A_2 \le \cdots \le A_N \le A_{N+1}$.
+- $A_{N+1} \ge A_{N+2} \ge \cdots \ge A_{2N - 1} \ge A_{2N} \ge A_1$.
 - All input values are integers.
 
 ### Subtasks
 
-1. ($4$ points) $N \leq 5$.
-2. ($5$ points) $N \leq 10$.
-3. ($21$ points) $N \leq 2\,000$.
+1. ($4$ points) $N \le 5$.
+2. ($5$ points) $N \le 10$.
+3. ($21$ points) $N \le 2\,000$.
 4. ($37$ points) All values of $A_i$ are distinct. Additionally, $A_N < A_{2N}$ holds.
 5. ($33$ points) No additional constraints.
 
@@ -75,10 +75,10 @@ Print a single value — the minimum possible value of Bitaro's workload when pl
 
 In this sample input, Bitaro can achieve a workload of $2$ by planting the seedlings as follows:
 
-- Plant seedling $1$ in the first red flowerpot. The difficulty of cultivation for this pair is $|2-1|=1$.
-- Plant seedling $2$ in the second blue flowerpot. The difficulty of cultivation for this pair is $|3-2|=1$.
-- Plant seedling $3$ in the first blue flowerpot. The difficulty of cultivation for this pair is $|4-6|=2$.
-- Plant seedling $4$ in the second red flowerpot. The difficulty of cultivation for this pair is $|5-3|=2$.
+- Plant seedling $1$ in the first red flowerpot. The difficulty of cultivation for this pair is $|2 - 1|=1$.
+- Plant seedling $2$ in the second blue flowerpot. The difficulty of cultivation for this pair is $|3 - 2|=1$.
+- Plant seedling $3$ in the first blue flowerpot. The difficulty of cultivation for this pair is $|4 - 6|=2$.
+- Plant seedling $4$ in the second red flowerpot. The difficulty of cultivation for this pair is $|5 - 3|=2$.
 
 The colors of the flowerpots planted with seedlings $2$ and $3$ are both blue, so the flowerpots are arranged in a beautiful order.
 

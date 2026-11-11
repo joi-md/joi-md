@@ -1,0 +1,175 @@
+<span class="lang">
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>時は 21XX 年，競技プログラミングはマインドスポーツの <var>1</var> つとして広く認知されており，テレビ，新聞などのメディアで取り上げられることも多い．</p>
+<p>あなたは JOI 新聞社の記者であり，競技プログラミングの記事を担当している．</p>
+<p>昨日，<var>N</var> 人の選手による国際的な競技プログラミングのコンテストが開催された．このコンテストについての記事を書くために，あなたには次の情報が与えられた．</p>
+<ul>
+<li>国際情報オリンピックなどと同様，このコンテストにはいくつかの国から選手が参加した．国には <var>1</var> から <var>N</var> までのいずれかの番号が付けられている．一つの国から複数の選手が参加することもあり得る．また，選手が参加しない国があるかもしれない．</li>
+<li>このコンテストの競技時間は <var>5</var> 時間である．</li>
+<li>コンテスト中に選手の獲得した点数が，その後減らされることはない．</li>
+<li>コンテスト開始後 <var>2</var> 時間経過した時点において，同点の選手はいなかった．その時点の順位表において，<var>i</var> 位 (<var>1 \leqq i \leqq N</var>) の選手は国 <var>A_{i}</var> の出身で，その選手の点数は <var>B_{i}</var> 点であった．</li>
+<li>コンテスト終了時点において，同点の選手はいなかった．コンテスト終了時点の順位表において，<var>i</var> 位 (<var>1 \leqq i \leqq N</var>) の選手は国 <var>C_{i}</var> の出身で，その選手の点数は <var>D_{i}</var> 点であった．</li>
+</ul>
+<p>しかしながら，記事を書く段階になって，順位表の出身国の表示に不具合があったことが判明した．選手の出身国の情報が間違って表示されていた可能性がある．表示されていた選手の点数は正しいことが分かっている．</p>
+<p>そこで，あなたは，与えられた情報にできるだけ少ない修正を加えることで，順位表の情報として矛盾のない (同じ選手の出身国がコンテスト中に変わったり，選手の獲得した点数がコンテスト中に減少したりしない) ものを推測することにした．すなわち，<var>2N</var> 個の値 <var>A_{1}, \ldots, A_{N},C_{1}, \ldots,C_{N}</var> のうちのできるだけ少ない箇所を変更することで，次の条件を満たすようにしたい：</p>
+<ul>
+<li><var>1, 2, \ldots, N</var> のある並び替え <var>x_{1}, x_{2}, \ldots, x_{N}</var> であって，各 <var>i = 1, 2, \ldots, N</var> に対して <var>A_{i} = C_{x_{i}}</var> かつ <var>B_{i} \leqq D_{x_{i}}</var> が成り立つものが存在する．</li>
+</ul>
+<p>あなたは，与えられた情報に，最少で何箇所の修正を加える必要があるだろうか．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p>コンテストの参加者数と，コンテスト開始後 <var>2</var> 時間経過した時点とコンテスト終了時点の順位表についての情報が与えられたとき，順位表を矛盾のない状態にするために必要な，出身国情報の変更箇所の個数の最小値を求めるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>標準入力から以下のデータを読み込め．</p>
+<ul>
+<li><var>1</var> 行目には，整数 <var>N</var> が書かれている．これは，コンテストに <var>N</var> 人の選手が参加したことを表す．</li>
+<li>続く <var>N</var> 行のうちの <var>i</var> 行目 (<var>1 \leqq i \leqq N</var>) には，整数 <var>A_{i}, B_{i}</var> が空白を区切りとして書かれている．これは，コンテスト開始後 <var>2</var> 時間経過した時点の順位表において，<var>i</var> 位の選手は国 <var>A_{i}</var> 出身と表示され，獲得した点数は <var>B_{i}</var> 点であったことを表す．</li>
+<li>続く <var>N</var> 行のうちの <var>i</var> 行目 (<var>1 \leqq i \leqq N</var>) には，整数 <var>C_{i}, D_{i}</var> が空白を区切りとして書かれている．これは，コンテスト終了時点の順位表において，<var>i</var> 位の選手は国 <var>C_{i}</var> 出身と表示され，獲得した点数は <var>D_{i}</var> 点であったことを表す．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に，順位表を矛盾のない状態にするために必要な，出身国情報の変更箇所の個数の最小値を <var>1</var> 行で出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<p>すべての入力データは以下の条件を満たす．</p>
+<ul>
+<li><var>2 \leqq N \leqq 200\,000</var>．</li>
+<li><var>1 \leqq A_{i} \leqq N</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>0 \leqq B_{i} \leqq 1\,000\,000\,000</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>B_{i} &gt; B_{i+1}</var> (<var>1 \leqq i \leqq N - 1</var>)．</li>
+<li><var>1 \leqq C_{i} \leqq N</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>0 \leqq D_{i} \leqq 1\,000\,000\,000</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>D_{i} &gt; D_{i+1}</var> (<var>1 \leqq i \leqq N - 1</var>)．</li>
+<li><var>A_{1}, \ldots, A_{N},C_{1}, \ldots,C_{N}</var> の値を何箇所か変更することにより，順位表を矛盾のない状態にすることができる．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<h4>小課題 1 [<var>15</var> 点]</h4>
+<ul>
+<li><var>N \leqq 16</var> を満たす．</li>
+</ul>
+<h4>小課題 2 [<var>15</var> 点]</h4>
+<ul>
+<li><var>N \leqq 50</var> を満たす．</li>
+</ul>
+<h4>小課題 3 [<var>30</var> 点]</h4>
+<ul>
+<li><var>N \leqq 5000</var> を満たす．</li>
+</ul>
+<h4>小課題 4 [<var>40</var> 点]</h4>
+<p>追加の制約はない．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>3
+3 500
+2 200
+1 100
+1 1000
+3 700
+3 400
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>1
+</pre>
+<p><var>C_{3}</var> の値を <var>2</var> に修正すると，次のように矛盾のない順位表になる：</p>
+<ul>
+<li>コンテスト開始後 <var>2</var> 時間経過した時点において <var>500</var> 点で <var>1</var> 位だった国 <var>3</var> 出身の選手は，コンテスト終了時点において <var>700</var> 点で <var>2</var> 位となった．</li>
+<li>コンテスト開始後 <var>2</var> 時間経過した時点において <var>200</var> 点で <var>2</var> 位だった国 <var>2</var> 出身の選手は，コンテスト終了時点において <var>400</var> 点で <var>3</var> 位となった．</li>
+<li>コンテスト開始後 <var>2</var> 時間経過した時点において <var>100</var> 点で <var>3</var> 位だった国 <var>1</var> 出身の選手は，コンテスト終了時点において <var>1000</var> 点で <var>1</var> 位となった．</li>
+</ul>
+<p>ここで，<var>C_{2}</var> の値を <var>2</var> に修正した場合，国 <var>3</var> 出身の選手がコンテスト開始後 <var>2</var> 時間経過した時点において <var>500</var> 点を獲得しているにも関わらず，コンテスト終了時点において <var>400</var> 点となっているため，矛盾した順位表となる．</p>
+<p><var>1</var> 箇所より少ない修正によって矛盾のない順位表を得ることは不可能であるから，<var>1</var> を出力する．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>3
+3 3
+3 2
+1 1
+3 4
+3 2
+1 1
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>0
+</pre>
+<p>この場合，出身国情報を修正しなくても矛盾のない順位表となっている．コンテスト開始後 <var>2</var> 時間経過した時点の点数から点数を増やしていない選手が存在するかもしれないことに注意せよ．また，順位表において，同じ出身国の選手が複数いる可能性があることに注意せよ．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>6
+1 70
+4 50
+1 30
+2 20
+1 10
+3 0
+6 100
+2 90
+1 80
+2 60
+4 40
+1 10
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>3
+</pre>
+<p>この入力例において，<var>A_{1}</var> の値を <var>2</var> に修正し，<var>A_{6}</var> の値を <var>4</var> に修正し，<var>C_{1}</var> の値を <var>4</var> に修正すると，矛盾のない順位表になる．</p></section>
+</div>
+</span>
+</span>

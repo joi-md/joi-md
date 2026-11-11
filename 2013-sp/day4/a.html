@@ -1,0 +1,231 @@
+<span class="lang">
+<span class="lang-ja">
+<blockquote>
+<p><strong>AtCoder での提出方法</strong></p>
+<p><a href="https://www2.ioi-jp.org/camp/2013/2013-sp-tasks/2013-sp-day4-messenger-dist.zip">配布ファイル</a></p>
+<ul>
+<li><span style="color:red;">現在この問題には提出できません．他のオンラインジャッジに提出することを検討してください．<br>This problem is unavailable now. Please try to submit to other online judges.</span></li>
+<li>AtCoder では，提出する場合はすべての関数を <var>1</var> つのソースコードに記述して提出してください．</li>
+</ul>
+</blockquote>
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>国際情報オリンピックの日本代表に選ばれた A さんと B さんは，情報処理技術を高めるため，情報オリンピック日本委員会の K 理事長と「メッセンジャー・ゲーム」を行うことになった．以下にこのゲームのルールを説明する．</p>
+<p>A さんと B さんは，図のように部屋に隔離されている．A さん・B さん・K 理事長の各部屋には内線電話が設置されているが，電話を発信することが可能なのは K 理事長のみである．その他の連絡手段は断たれており，A さんと B さんは指示がない限り部屋から出ることはできない．</p>
+<p><img src="https://img.atcoder.jp/joisc2013-day4/messenger-ja-p1-group1.png" alt="図" style="max-width:100%;height:auto;"></p>
+
+<p>ゲームの開始時に，K 理事長は電話で A さんにある正の整数 <var>X</var> を伝える．ゲームの目的は，A さんと B さんが直接の連絡をとらずに，A さんが B さんに <var>X</var> の値を正しく伝えることである．</p>
+<p>K 理事長の部屋には <var>4\times 4</var> のマス目がある．<var>i</var> 行 <var>j</var> 列のマスを <var>(i, j)</var> と表す (<var>1 \leqq i \leqq 4</var>，<var>1 \leqq j \leqq 4</var>)．マス <var>(1, 1)</var> が左上の隅，マス <var>(1, 4)</var> が右上の隅，マス <var>(4, 1)</var> が左下の隅，マス <var>(4, 4)</var> が右下の隅である．ゲームの開始時，<var>1</var> つの駒がいずれかのマスに置かれる．以後，K 理事長は駒が置かれているマスを変えることはない．</p>
+<p>これから，K 理事長が A さんまたは B さんを電話で部屋に呼ぶということが繰り返される．A さんまたは B さんは，K 理事長の部屋に来るたびに，駒を上下左右のいずれかのマスに動かさなければならない．駒を動かしたら，A さんまたは B さんは自分の部屋に戻る．B さんは，K 理事長の部屋に来たときにもし <var>X</var> の値がわかったならば，駒を動かす代わりにそれを K 理事長に答えることができる．正しい <var>X</var> の値を答えられれば正解であり，そうでなければ不正解である．</p>
+<p>K 理事長が A さんまたは B さんを部屋に呼ぶタイミングは不規則であり，A さんと B さんは K 理事長がどういう順序で <var>2</var> 人を部屋に呼んでいるかはわからない．ただし，K 理事長は <var>2</var> 人を部屋に呼ぶ順序をゲームの開始時に決めており，また，K 理事長が A さんまたは B さんの一方を <var>100</var> 回より多く連続して部屋に呼ぶことはないことが保証されている．K 理事長が A さんと B さんを合計 <var>10\,000</var> 回部屋に呼んだ後に A さんまたは B さんが自分の部屋に戻った段階で B さんが <var>X</var> の値を答えていない場合は，不正解としてゲームは終了される．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p>A さんと B さんの戦略を実装し，上で説明された「メッセンジャー・ゲーム」で正解できるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>実装の詳細</h3>
+<p>あなたは同じプログラミング言語で <var>2</var> つのファイルを提出しなければならない．</p>
+<p><var>1</var> つ目のファイルは <code>playerA.c</code> または <code>playerA.cpp</code> という名前である．このファイルは A さんの戦略を実装したファイルであり，以下のルーチンを実装していなければならない．</p>
+<ul>
+<li>
+<p><code>void InitA(int T, int X)</code></p>
+<p>このルーチンは，最初に <var>1</var> 回だけ呼び出される．引数 <code>T</code> は，小課題の番号 <var>T</var> である．引数 <code>X</code> は，A さんが B さんに伝えるべき正の整数 <var>X</var> である．</p>
+</li>
+<li>
+<p><code>int GameA(int I, int J)</code></p>
+<p>このルーチンは，A さんが K 理事長の部屋に来ることに対応して呼び出される．引数 <code>I</code>, <code>J</code> は，A さんが K 理事長の部屋に来たときに駒があるマスを表す整数の組 <var>(I, J)</var> である．<var>1 \leqq I \leqq 4</var> および <var>1 \leqq J \leqq 4</var> を満たす．</p>
+<p>このルーチンは整数 <var>-1, -2, -3, -4</var> のいずれかを返さなければならない．それ以外の値を返した場合は，不正解 <var>[1]</var> と判定され，プログラムの実行は終了される．これらは A さんが以下の行動を行うことを表す．</p>
+<ul>
+<li><var>-1</var>：駒を上のマス <var>(I - 1, J)</var> に動かす．</li>
+<li><var>-2</var>：駒を下のマス <var>(I + 1, J)</var> に動かす．</li>
+<li><var>-3</var>：駒を左のマス <var>(I, J - 1)</var> に動かす．</li>
+<li><var>-4</var>：駒を右のマス <var>(I, J + 1)</var> に動かす．</li>
+</ul>
+<p>駒が盤の外に出るような動きを指定した場合は，不正解 <var>[2]</var> と判定され，プログラムの実行は終了される．</p>
+</li>
+</ul>
+<p><var>2</var> つ目のファイルは <code>playerB.c</code> または <code>playerB.cpp</code> という名前である．このファイルは B さんの戦略を実装したファイルであり，以下のルーチンを実装していなければならない．</p>
+<ul>
+<li>
+<p><code>void InitB(int T)</code></p>
+<p>このルーチンは，最初に <var>1</var> 回だけ呼び出される．引数 <code>T</code> は，小課題の番号 <var>T</var> である．</p>
+</li>
+<li>
+<p><code>int GameB(int I, int J)</code></p>
+<p>このルーチンは，B さんが K 理事長の部屋に来ることに対応して呼び出される．引数 <code>I</code>, <code>J</code> は，B さんが K 理事長の部屋に来たときに駒があるマスを表す整数の組 <var>(I, J)</var> である．<var>1 \leqq I \leqq 4</var> および <var>1 \leqq J \leqq 4</var> を満たす．</p>
+<p>このルーチンは整数 <var>-1, -2, -3, -4</var> のいずれか，または正の整数 <var>Y</var> を返さなければならない．それ以外の値を返した場合は，不正解 <var>[3]</var> と判定され，プログラムの実行は終了される．これらは B さんが以下の行動を行うことを表す．</p>
+<ul>
+<li><var>-1</var>：駒を上のマス <var>(I - 1, J)</var> に動かす．</li>
+<li><var>-2</var>：駒を下のマス <var>(I + 1, J)</var> に動かす．</li>
+<li><var>-3</var>：駒を左のマス <var>(I, J - 1)</var> に動かす．</li>
+<li><var>-4</var>：駒を右のマス <var>(I, J + 1)</var> に動かす．</li>
+</ul>
+<p>駒が盤の外に出るような動きを指定した場合は，不正解 <var>[4]</var> と判定され，プログラムの実行は終了される．</p>
+<ul>
+<li>正の整数 <var>Y</var>：<var>K</var> 理事長に，<var>X</var> の値は <var>Y</var> である，と答える．このとき，<var>X = Y</var> であれば正解，そうでなければ不正解 <var>[5]</var> と判定され，プログラムの実行は終了される．</li>
+</ul>
+</li>
+</ul>
+<p>ルーチン <code>GameA</code> および <code>GameB</code> は，一方が連続して <var>100</var> 回より多く呼び出されることはない．また，<code>GameA</code> と <code>GameB</code> が合計 <var>10\,000</var> 回呼び出された段階で <code>GameB</code> が正の整数を返していない場合は，不正解 <var>[6]</var> と判定され，プログラムの実行は終了される．</p>
+<p>内部での使用のために他のルーチンを実装したり，グローバル変数を宣言したりするのは自由である．ただし，提出された <var>2</var> つのプログラムは，採点プログラムとまとめてリンクされて <var>1</var> つの実行ファイルになるので，各ファイル内のすべてのグローバル変数と内部ルーチンを <code>static</code> で宣言して，他のファイルとの干渉を避ける必要がある．採点時には，このプログラムは A さん側，B さん側として <var>2</var> 個のプロセスとして実行されるので，A さん側と B さん側でプログラム中のグローバル変数を共有することはできない．</p>
+<p>あなたの提出は標準入力・標準出力，あるいは他のファイルといかなる方法でもやりとりしてはならない．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>コンパイル・実行の方法</h3>
+<p>作成したプログラムをテストするための，採点プログラムのサンプルが，コンテストサイトからダウンロードできるアーカイブの中に含まれている．このアーカイブには，提出しなければならないファイルのサンプルも含まれている．</p>
+<p>採点プログラムのサンプルは <var>1</var> つのファイルからなる．そのファイルは <code>grader.c</code> または <code>grader.cpp</code> である．作成したプログラムをテストするには，次のようにコマンドを実行する．</p>
+<ul>
+<li>C の場合</li>
+</ul>
+<pre>gcc -O2 -lm grader.c playerA.c playerB.c -o grader
+</pre>
+<ul>
+<li>C++ の場合</li>
+</ul>
+<pre>g++ -O2 -lm grader.cpp playerA.cpp playerB.cpp -o grader
+</pre>
+<p>コンパイルが成功すれば，<code>grader</code> という実行ファイルが生成される．</p>
+<p>実際の採点プログラムは，採点プログラムのサンプルとは異なることに注意すること．採点プログラムのサンプルは単一のプロセスとして起動する．このプログラムは，標準入力から入力を読み込み，標準出力に結果を出力する．</p>
+<h4>入力</h4>
+<p>採点プログラムのサンプルは標準入力から以下の入力を読み込む．</p>
+<ul>
+<li><var>1</var> 行目には整数 <var>T, X, I_{0}, J_{0}</var> が空白を区切りとして書かれており，小課題の番号が <var>T</var>，A さんが B さんに伝えるべき整数が <var>X</var>，ゲームの開始時の駒の位置が <var>(I_{0}, J_{0})</var> であることを表す．</li>
+<li><var>2</var> 行目には <var>2</var> 種類の文字 <code>A</code>, <code>B</code> からなる，長さがちょうど <var>10\,000</var> の文字列が書かれており，<var>k</var> 文字目 (<var>1 \leqq k \leqq 10\,000</var>) が <code>A</code> または <code>B</code> である場合，ルーチン <code>InitA</code> と <code>InitB</code> が呼び出された後に <var>k</var> 番目に呼び出されるルーチンがそれぞれ <code>GameA</code> または <code>GameB</code> であることを表す．</li>
+</ul>
+<h4>出力</h4>
+<p>プログラムの実行が正常に終了した場合，採点プログラムのサンプルは標準出力へ以下の情報を <var>1</var> 行で出力する．</p>
+<ul>
+<li>正解の場合，“<code>Accepted</code>” と出力される (引用符は実際には出力されない．以下同様である)．</li>
+<li>不正解の場合，不正解の種類が「実装の詳細」の節に書かれた番号によって “<code>Wrong Answer [1]</code>” のように出力される．さらに，不正解 <var>[5]</var> については，正しい <var>X</var> の値およびルーチン <code>GameB</code> が返した正の整数 <var>Y</var> の値が “<code>Wrong Answer [5] : X = 2, Y = 3</code>” のように出力される．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<p>すべての入力データは以下の条件を満たす．</p>
+<ul>
+<li><var>1 \leqq X \leqq 1\,000\,000\,000</var>．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<h4>小課題 1 [<var>20</var> 点]</h4>
+<ul>
+<li><var>T = 1</var> を満たす．</li>
+<li>最初に K 理事長の部屋に呼ばれるのは A さんであり，A さんと B さんは交互に K 理事長の部屋に呼ばれる．すなわち，ルーチン <code>InitA</code> および <code>InitB</code> が呼び出された後に，<code>GameA</code>, <code>GameB</code>, <code>GameA</code>, <code>GameB</code>, <var>\ldots</var> という順でルーチンが呼び出される．</li>
+</ul>
+<h4>小課題 2 [<var>20</var> 点]</h4>
+<ul>
+<li><var>T = 2</var> を満たす．</li>
+<li>ゲームの開始時の駒の位置は <var>(I_{0}, J_{0}) = (1, 1)</var> である．すなわち，ルーチン <code>InitA</code> および <code>InitB</code> が呼び出された後に，まずルーチン <code>GameA</code> または <code>GameB</code> が，<var>I = 1</var>，<var>J = 1</var> を引数として呼び出される．</li>
+</ul>
+<h4>小課題 3 [<var>60</var> 点]</h4>
+<ul>
+<li><var>T = 3</var> を満たす．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>やりとりの例</h3>
+<p>採点プログラムのサンプルが読み込む入力の例と，それに対応するルーチンの呼び出しの例を以下に示す．</p>
+<h4>入力</h4>
+<pre>2 6 1 1
+ABBAABAAABBBBBABBAABBBABBBBAAAAABABAABAABBBBABAAAA (以下省略)
+</pre>
+<div class="joisc2013-day4-messenger-ja-table">
+<table>
+<thead>
+<tr>
+<th colspan="2">A さん側</th>
+<th colspan="2">B さん側</th>
+</tr>
+<tr>
+<th>呼び出し</th>
+<th>返り値</th>
+<th>呼び出し</th>
+<th>返り値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>InitA(2, 6)</code></td>
+<td>なし</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>InitB(2)</code></td>
+<td>なし</td>
+</tr>
+<tr>
+<td><code>GameA(1, 1)</code></td>
+<td><code>-2</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>GameB(2, 1)</code></td>
+<td><code>-4</code></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>GameB(2, 2)</code></td>
+<td><code>-2</code></td>
+</tr>
+<tr>
+<td><code>GameA(3, 2)</code></td>
+<td><code>-3</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>GameA(3, 1)</code></td>
+<td><code>-1</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>GameB(2, 1)</code></td>
+<td><code>6</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>この例は，必ずしも意味のあるやりとりを記述しているとは限らないことに注意せよ．</p>
+<style>
+.joisc2013-day4-messenger-ja-table { max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisc2013-day4-messenger-ja-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisc2013-day4-messenger-ja-table th,.joisc2013-day4-messenger-ja-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisc2013-day4-messenger-ja-table th { background:#f5f5f5; white-space:nowrap; }
+.joisc2013-day4-messenger-ja-table code { white-space:nowrap; }
+</style></section>
+</div>
+</span>
+</span>

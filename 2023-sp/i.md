@@ -1,4 +1,4 @@
-配点： $100$ 点
+配点 : $100$ 点
 
 ### 問題文
 
@@ -34,7 +34,7 @@ $N$ $M$ $Q$
 $A_1$ $B_1$
 $A_2$ $B_2$
 $\vdots$
-$A_{N-1}$ $B_{N-1}$
+$A_{N - 1}$ $B_{N - 1}$
 $C_1$ $C_2$ $\cdots$ $C_M$
 $L_1$ $R_1$
 $L_2$ $R_2$
@@ -64,7 +64,7 @@ $L_Q$ $R_Q$
 2. ($5$ 点) $N \leqq 2\,000$，$M \leqq 2\,000$，$Q \leqq 2\,000$．
 3. ($7$ 点) $A_i = i$，$B_i = i + 1$ ($1 \leqq i \leqq N - 1$)．
 4. ($18$ 点) $L_1 = 1$，$R_k + 1 = L_{k+1}$ ($1 \leqq k \leqq Q - 1$)，$R_Q = M$．
-5. ($24$ 点) $A_i = \left\lfloor \dfrac{i+1}{2} \right\rfloor$，$B_i = i + 1$ ($1 \leqq i \leqq N - 1$)．ただし，$\lfloor x \rfloor$ は $x$ を超えない最大の整数を表す．
+5. ($24$ 点) $A_i = \left\lfloor \frac{i+1}{2} \right\rfloor$，$B_i = i + 1$ ($1 \leqq i \leqq N - 1$)．ただし，$\lfloor x \rfloor$ は $x$ を超えない最大の整数を表す．
 6. ($41$ 点) 追加の制約はない．
 
 ---

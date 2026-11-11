@@ -1,0 +1,418 @@
+<span class="lang">
+<span class="lang-en">
+<blockquote>
+<p><strong>Submission on AtCoder</strong></p>
+<p>This task accepts the output for test case 01. Submit the corresponding output file using the language <code>Text (cat)</code>.</p>
+<p>Submission pages for each test case: <a href="https://atcoder.jp/contests/joisc2021/tasks/joisc2021_a1">01</a> | <a href="https://atcoder.jp/contests/joisc2021/tasks/joisc2021_a2">02</a> | <a href="https://atcoder.jp/contests/joisc2021/tasks/joisc2021_a3">03</a> | <a href="https://atcoder.jp/contests/joisc2021/tasks/joisc2021_a4">04</a> | <a href="https://atcoder.jp/contests/joisc2021/tasks/joisc2021_a5">05</a> | <a href="https://atcoder.jp/contests/joisc2021/tasks/joisc2021_a6">06</a></p>
+<p><a href="https://img.atcoder.jp/joisc2021/aerobatics-inputs-56622e6c8e.zip">Input data</a></p>
+<p><a href="https://www2.ioi-jp.org/camp/2021/2021-sp-tasks/day1/aerobatics-dist.zip">Distributed files</a></p>
+</blockquote>
+<p>Score: <var>10</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>Bitaro will participate in an aerobatics competition. In this competition, Bitaro will fly an airplane. The airplane will keep a certain altitude, and pass through the checkpoints. The area where the airplane will fly is considered as a coordinate plane. There are <var>N</var> checkpoints, numbered from <var>1</var> to <var>N</var>. The coordinate of the checkpoint <var>i</var> (<var>1 \le i \le N</var>) is <var>(X_{i}, Y_{i})</var>.</p>
+<p>During the competition, the airplane must pass through each checkpoint once. More precisely, the airplane must fly in the following way.</p>
+<ol>
+<li>First, Bitaro chooses the starting checkpoint, and the airplane will start flying from there.</li>
+<li>Repeat the following <var>N - 1</var> times. Among the checkpoints which are not yet chosen, Bitaro chooses a checkpoint as the next check-point. Then the airplane will fly straight from the current checkpoint to the next checkpoint.</li>
+<li>When the airplane arrived at the last checkpoint, the flight is finished.</li>
+</ol>
+<p>Here, in the step 2, we consider the starting checkpoint as an already chosen checkpoint. The airplane must fly straight from a checkpoint to the next checkpoint. It is forbidden to draw a curve or make a turn on the way.</p>
+<p>The route of the airplane is a polygonal line. During the flight, the airplane will change its direction at most <var>N - 2</var> times. If the angle of the polygonal line at a checkpoint is small, the change of the direction of the airplane at that checkpoint is large, and there is a risk of failure of the flight.</p>
+<p>Therefore, Bitaro wants to make the minimum angle of the polygonal line at the <var>N - 2</var> checkpoints, except for the starting checkpoint and the last checkpoint, as large as possible.</p>
+<p>Given the coordinates of the checkpoints, find an order of the checkpoints to pass so that the minimum angle of the polygonal line is as large as possible.</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>The input data is given in the following format. Given values are all integers. Here, <var>Z_{0}</var> is a parameter used by the grader.</p>
+<pre><var>N</var> <var>Z_{0}</var>
+<var>X_{1}</var> <var>Y_{1}</var>
+<var>\vdots</var>
+<var>X_{N}</var> <var>Y_{N}</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>The output should consist of <var>N</var> lines. The <var>k</var>-th line (<var>1 \le k \le N</var>) of the output should contain the integer <var>P_{k}</var> (<var>1 \le P_{k} \le N</var>), which is the <var>k</var>-th checkpoint in the route of the airplane. Here, the starting checkpoint is the first checkpoint <var>P_{1}</var>.</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Submission</h3>
+<p>Submit output data <code>output_01.txt</code>, <code>output_02.txt</code>, ..., <code>output_06.txt</code> for each of the input files <code>input_01.txt</code>, <code>input_02.txt</code>, ..., <code>input_06.txt</code>.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li><var>3\le N\le1\,000</var>.</li>
+<li><var>\sqrt{X_i^2+Y_i^2}\le10\,000\,000\ {}</var> (<var>1\le i\le N</var>).</li>
+<li><var>(X_i,Y_i)\ne(X_j,Y_j)\ {}</var> (<var>1\le i&lt;j\le N</var>).</li>
+<li><var>1\le Z_0\le179</var>.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Library</h3>
+<p>In this task, you can use a library which contains a function calculating an angle determined by three points. The library is contained in the file <code>aerobatics.h</code> in the archive. The specification is as follows.</p>
+<ul>
+<li>
+<p><code>double GetAngle(int xa, int ya, int xb, int yb, int xc, int yc)</code> This function calculates the angle <var>BAC</var> in degree. It returns a real number with sufficiently small error. Make sure the order of the parameters.</p>
+<ul>
+<li>Concerning the point <var>A</var>, the parameter <code>xa</code> is the <var>x</var>-coordinate of the point <var>A</var>, and the parameter <code>ya</code> is the <var>y</var>-coordinate of the point <var>A</var>.</li>
+<li>Concerning the point <var>B</var>, the parameter <code>xb</code> is the <var>x</var>-coordinate of the point <var>B</var>, and the parameter <code>yb</code> is the <var>y</var>-coordinate of the point <var>B</var>.</li>
+<li>Concerning the point <var>C</var>, the parameter <code>xc</code> is the <var>x</var>-coordinate of the point <var>C</var>, and the parameter <code>yc</code> is the <var>y</var>-coordinate of the point <var>C</var>.</li>
+<li>If the coordinates of the points <var>A, B</var> are the same or the coordinates of the points <var>A,C</var> are the same, the behavior of this function is undefined.</li>
+</ul>
+<p>In your program calculating the solutions of this task, you may use the function <code>GetAngle</code> in the library. If you use it, you may modify the function.
+The <code>GetAngle</code> is the same as the function used by the grader.</p>
+</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Grading</h3>
+<p>For each output data, your score is calculated in the following way.</p>
+<p>If your output is incorrect, your score is <var>0</var>. For example, if the output sequence <var>P_{1}, P_{2}, \ldots, P_{N}</var> is not permutation of <var>1</var>, <var>2</var>, <var>\ldots</var>, <var>N</var> or the format of the output is incorrect, your score is <var>0</var>.</p>
+<p>If your output is correct, your score is calculated as follows. Let <var>Z</var> (degree) be the minimum angle of the polygonal line at the <var>N - 2</var> checkpoints, except for the starting checkpoint and the last checkpoint. Then your score <var>S</var> is calculated by the following formula.</p>
+<ul>
+<li>If <var>Z \ge Z_{0}</var>, your score is <var>S</var>.</li>
+<li>If <var>Z&lt;Z_0</var>, your score is <var>S\times\dfrac{f(Z/180)}{f(Z_0/180)}</var> points.</li>
+</ul>
+<p>Here the function <var>f(\alpha )</var> (<var>0 \le \alpha \le1</var>) is defined by</p>
+<p><var>f(\alpha) = 4\alpha^4 + \alpha</var>.</p>
+<p>Your score for this task is the sum of your scores for the 6 input data, rounded to the nearest integer.</p>
+<p>For each input data, the values of <var>N, Z_{0}</var> and the score are given in the following table.</p>
+<div class="joisc2021-aerobatics-en-table" markdown="1">
+<table>
+<thead>
+<tr>
+<th>Subtask</th>
+<th>Input data</th>
+<th><var>N</var></th>
+<th><var>Z_{0}</var></th>
+<th>score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><var>1</var></td>
+<td><code>input_01.txt</code></td>
+<td><var>15</var></td>
+<td><var>100</var></td>
+<td><var>10</var></td>
+</tr>
+<tr>
+<td><var>2</var></td>
+<td><code>input_02.txt</code></td>
+<td><var>200</var></td>
+<td><var>143</var></td>
+<td><var>15</var></td>
+</tr>
+<tr>
+<td><var>3</var></td>
+<td><code>input_03.txt</code></td>
+<td><var>200</var></td>
+<td><var>134</var></td>
+<td><var>15</var></td>
+</tr>
+<tr>
+<td><var>4</var></td>
+<td><code>input_04.txt</code></td>
+<td><var>1000</var></td>
+<td><var>156</var></td>
+<td><var>20</var></td>
+</tr>
+<tr>
+<td><var>5</var></td>
+<td><code>input_05.txt</code></td>
+<td><var>1000</var></td>
+<td><var>150</var></td>
+<td><var>20</var></td>
+</tr>
+<tr>
+<td><var>6</var></td>
+<td><code>input_06.txt</code></td>
+<td><var>1000</var></td>
+<td><var>153</var></td>
+<td><var>20</var></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input and Output</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>7 90
+3 1
+2 5
+0 2
+-1 6
+-3 1
+-1 -4
+4 -2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>5
+3
+1
+7
+6
+4
+2
+</pre>
+<p>If the airplane will pass through the checkpoints <var>5, 3, 1, 7, 6, 4, 2</var> in this order, the route of the airplane is as in the following figure. The checkpoint with the smallest angle is the checkpoint <var>6</var>. Its angle is <var>68.19859 \cdots</var> (degree). Since <var>Z_{0} = 90</var> (degree), your score for this output will be about <var>61.5</var> % of the score of this input data.</p>
+<p><img src="https://img.atcoder.jp/joisc2021/aerobatics-en-p4-1.png" alt="Figure" style="max-width:100%;height:auto;"></p>
+
+<style>
+.joisc2021-aerobatics-en-table { position:relative;max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisc2021-aerobatics-en-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisc2021-aerobatics-en-table th,.joisc2021-aerobatics-en-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisc2021-aerobatics-en-table th { background:#f5f5f5; }
+.joisc2021-aerobatics-en-table code { white-space:nowrap; }
+.joisc2021-aerobatics-en-table .katex { position:relative; }
+</style></section>
+</div>
+</span>
+<span class="lang-ja">
+<blockquote>
+<p><strong>AtCoder での提出方法</strong></p>
+<p>この提出先はテストケース 01 用です．このテストケースに対する出力ファイルを，言語 <code>Text (cat)</code> を選択して提出してください．</p>
+<p>各テストケースの提出先: <a href="https://atcoder.jp/contests/joisc2021/tasks/joisc2021_a1">01</a> | <a href="https://atcoder.jp/contests/joisc2021/tasks/joisc2021_a2">02</a> | <a href="https://atcoder.jp/contests/joisc2021/tasks/joisc2021_a3">03</a> | <a href="https://atcoder.jp/contests/joisc2021/tasks/joisc2021_a4">04</a> | <a href="https://atcoder.jp/contests/joisc2021/tasks/joisc2021_a5">05</a> | <a href="https://atcoder.jp/contests/joisc2021/tasks/joisc2021_a6">06</a></p>
+<p><a href="https://img.atcoder.jp/joisc2021/aerobatics-inputs-56622e6c8e.zip">入力データ</a></p>
+<p><a href="https://www2.ioi-jp.org/camp/2021/2021-sp-tasks/day1/aerobatics-dist.zip">配布ファイル</a></p>
+</blockquote>
+<p>配点 : <var>10</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>ビ太郎は曲芸飛行の競技に出場する予定である．この競技は，チェックポイントを通りながら飛行機を一定の高さで飛行させるものである．ここで，飛行機が飛ぶ領域は座標平面で表される．チェックポイントは <var>N</var> 個あり，<var>1</var> から <var>N</var> までの番号が付けられている．チェックポイント <var>i</var> (<var>1 \leqq i \leqq N</var>) の座標は <var>(X_{i}, Y_{i})</var> である．</p>
+<p>競技中，ビ太郎は飛行機で <var>N</var> 個のチェックポイントを一度ずつ通らなければならない．具体的には，以下の行動を順に行う必要がある．</p>
+<ol>
+<li>まず，<var>N</var> 個のチェックポイントのうち <var>1</var> つをスタート地点として選び，ここから飛行を開始する．</li>
+<li>次の行動を <var>N - 1</var> 回繰り返す．まだ到達したことがないチェックポイントを <var>1</var> つ選び，現在いる地点から選んだチェックポイントに向けて直進する．</li>
+<li>最後にたどり着いたチェックポイントで，飛行を終了する．</li>
+</ol>
+<p>ただし <var>2</var>. では，スタート地点は既に到達したチェックポイントとしてみなすものとする．また，あるチェックポイントから次のチェックポイントに向けて飛行するときに，曲線を描いたり途中で曲がったりしてはならず，直進しなければならない．</p>
+<p>すると，飛行機のルートは折れ線で表され，競技中に飛行機の方向を変えるタイミングが最大 <var>N - 2</var> 回あることになる．チェックポイントにおける折れ線の角度が小さいと，高速に動く飛行機を方向転換させる角度が大きくなり，操縦に失敗するリスクが高まってしまう．</p>
+<p>そこで，ビ太郎は，飛行機の操縦に成功する確率を上げるために，飛行開始地点と飛行終了地点を除く <var>N - 2</var> 個のチェックポイントにおける折れ線の角度の最小値をできるだけ大きくしたい．</p>
+<p>チェックポイントの座標が与えられたとき，折れ線の角度の最小値ができるだけ大きくなるようにチェックポイントを通る順番を決めよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力は以下の形式で与えられる．入力される値はすべて整数である．ただし，<var>Z_{0}</var> は採点のために使われる整数である．</p>
+<pre><var>N</var> <var>Z_{0}</var>
+<var>X_{1}</var> <var>Y_{1}</var>
+<var>\vdots</var>
+<var>X_{N}</var> <var>Y_{N}</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p><var>N</var> 行で出力せよ ．<var>k</var> 行目 (<var>1 \leqq k \leqq N</var>) には，<var>k</var> 番目に到達するチェックポイントの番号 <var>P_{k}</var> (<var>1 \leqq P_{k} \leqq N</var>) を出力せよ．ただし，スタート地点は <var>1</var> 番目に到達するチェックポイント <var>P_{1}</var> とする．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>提出方法</h3>
+<p>入力データ <code>input_01.txt</code>, <code>input_02.txt</code>, ..., <code>input_06.txt</code> に対する出力データ <code>output_01.txt</code>, <code>output_02.txt</code>, ..., <code>output_06.txt</code> のみを提出せよ．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>3\leqq N\leqq1\,000</var>．</li>
+<li><var>\sqrt{X_i^2+Y_i^2}\leqq10\,000\,000\ {}</var> (<var>1\leqq i\leqq N</var>)．</li>
+<li><var>(X_i,Y_i)\ne(X_j,Y_j)\ {}</var> (<var>1\leqq i&lt;j\leqq N</var>)．</li>
+<li><var>1\leqq Z_0\leqq179</var>．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>配布ライブラリ</h3>
+<p>この課題では，<var>3</var> 個の点がなす角を計算する関数をライブラリとして利用できる．これはアーカイブの中に含まれるファイル <code>aerobatics.h</code> に含まれており，次のような仕様となっている．</p>
+<ul>
+<li>
+<p><code>double GetAngle(int xa, int ya, int xb, int yb, int xc, int yc)</code> この関数は，以下のように点 <var>A, B,C</var> を定めたときに，角 <var>BAC</var> の大きさ (度) を <var>0</var> 以上 <var>180</var> 以下の実数値で，十分小さい誤差で返すものとなっている．引数の順序を間違えないように注意すること．</p>
+<ul>
+<li>点 <var>A</var> について，引数 <code>xa</code> は点 <var>A</var> の <var>x</var> 座標，引数 <code>ya</code> は点 <var>A</var> の <var>y</var> 座標を表す．</li>
+<li>点 <var>B</var> について，引数 <code>xb</code> は点 <var>B</var> の <var>x</var> 座標，引数 <code>yb</code> は点 <var>B</var> の <var>y</var> 座標を表す．</li>
+<li>点 <var>C</var> について，引数 <code>xc</code> は点 <var>C</var> の <var>x</var> 座標，引数 <code>yc</code> は点 <var>C</var> の <var>y</var> 座標を表す．</li>
+<li>ただし，点 <var>A</var> と点 <var>B</var> が同じ位置，または点 <var>A</var> と点 <var>C</var> が同じ位置にあるように引数が指定された場合の挙動は定義されない．</li>
+</ul>
+<p>この課題の解答を求めるプログラムには，配布ライブラリの関数 <code>GetAngle</code> を使用しても，使用しなくてもよい．また，使用する場合は，関数 <code>GetAngle</code> の中身を改変して使用しても構わない．
+なお，関数 <code>GetAngle</code> は，この課題の採点プログラムで用いられるものと同一である．</p>
+</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>採点基準</h3>
+<p>各入力データに対し，得点は以下のように計算される．</p>
+<p>あなたの出力が誤っている場合，すなわち出力された <var>P_{1}, P_{2}, \ldots, P_{N}</var> が <var>1, 2, \ldots, N</var> の並び替えではない場合や，出力が指定された形式に沿っていない場合は，あなたの得点は <var>0</var> 点となる．</p>
+<p>あなたの出力が正しい場合，あなたの指定した飛行機のルートを折れ線で表したときの，飛行開始地点と飛行終了地点を除く <var>N - 2</var> 個のチェックポイントにおける折れ線の角度の最小値を <var>Z</var> (度) とし，その入力データに対する配点を <var>S</var> とすると，あなたの得点は以下のように計算される．</p>
+<ul>
+<li><var>Z \geqq Z_{0}</var> の場合，<var>S</var> 点．</li>
+<li><var>Z&lt;Z_0</var> の場合，<var>S\times\dfrac{f(Z/180)}{f(Z_0/180)}</var> 点．</li>
+</ul>
+<p>ただし，関数 <var>f(\alpha )</var> (<var>0 \leqq \alpha \leqq 1</var>) は次のように定義される．</p>
+<p><var>f(\alpha) = 4\alpha^4 + \alpha</var></p>
+<p><var>6</var> 個の入力データの得点の合計を，小数点以下を四捨五入することで整数に丸めたものが，この課題の得点である．</p>
+<p>各入力データにおける，<var>N, Z_{0}</var> の値と配点は，以下の通りである．</p>
+<div class="joisc2021-aerobatics-ja-table" markdown="1">
+<table>
+<thead>
+<tr>
+<th>小課題</th>
+<th>入力データ</th>
+<th><var>N</var></th>
+<th><var>Z_{0}</var></th>
+<th>配点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><var>1</var></td>
+<td><code>input_01.txt</code></td>
+<td><var>15</var></td>
+<td><var>100</var></td>
+<td><var>10</var></td>
+</tr>
+<tr>
+<td><var>2</var></td>
+<td><code>input_02.txt</code></td>
+<td><var>200</var></td>
+<td><var>143</var></td>
+<td><var>15</var></td>
+</tr>
+<tr>
+<td><var>3</var></td>
+<td><code>input_03.txt</code></td>
+<td><var>200</var></td>
+<td><var>134</var></td>
+<td><var>15</var></td>
+</tr>
+<tr>
+<td><var>4</var></td>
+<td><code>input_04.txt</code></td>
+<td><var>1000</var></td>
+<td><var>156</var></td>
+<td><var>20</var></td>
+</tr>
+<tr>
+<td><var>5</var></td>
+<td><code>input_05.txt</code></td>
+<td><var>1000</var></td>
+<td><var>150</var></td>
+<td><var>20</var></td>
+</tr>
+<tr>
+<td><var>6</var></td>
+<td><code>input_06.txt</code></td>
+<td><var>1000</var></td>
+<td><var>153</var></td>
+<td><var>20</var></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入出力例</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>7 90
+3 1
+2 5
+0 2
+-1 6
+-3 1
+-1 -4
+4 -2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>5
+3
+1
+7
+6
+4
+2
+</pre>
+<p>チェックポイント <var>5, 3, 1, 7, 6, 4, 2</var> の順に進む場合，ビ太郎の飛行機のルートは下図のようになる．このとき，最も角が小さくなるのはチェックポイント <var>6</var> で，この角度は <var>68.19859 \cdots</var> 度である ．<var>Z_{0} = 90</var> (度) なので，この通りに出力すると配点の約 <var>61.5 \%</var> の点数が得られる．</p>
+<p><img src="https://img.atcoder.jp/joisc2021/aerobatics-ja-p4-1.png" alt="図" style="max-width:100%;height:auto;"></p>
+
+<style>
+.joisc2021-aerobatics-ja-table { position:relative;max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisc2021-aerobatics-ja-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisc2021-aerobatics-ja-table th,.joisc2021-aerobatics-ja-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisc2021-aerobatics-ja-table th { background:#f5f5f5; white-space:nowrap; }
+.joisc2021-aerobatics-ja-table code { white-space:nowrap; }
+.joisc2021-aerobatics-ja-table .katex { position:relative; }
+</style></section>
+</div>
+</span>
+</span>

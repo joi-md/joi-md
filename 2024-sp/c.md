@@ -1,7 +1,7 @@
-<blockquote markdown="1">
+<blockquote class="joisp2024-c-submission" markdown="1">
 **AtCoder での提出方法**
 
-[配布ファイル](https://www2.ioi-jp.org/camp/2024/2024-sp-tasks/contest1/spy3-dist.zip)
+[配布ファイル](https://img.atcoder.jp/joisp2024/spy3-dist-567b994e47.zip)
 
 #### C++ を使用する場合
 
@@ -30,11 +30,11 @@ C++ を使用する場合，`Aoi.h`，`Bitaro.h` を include し，すべての�
 $N$ $M$
 $A_0$ $B_0$ $C_0$
 $\vdots$
-$A_{M-1}$ $B_{M-1}$ $C_{M-1}$
+$A_{M - 1}$ $B_{M - 1}$ $C_{M - 1}$
 $Q$
-$T_0$ $\cdots$ $T_{Q-1}$
+$T_0$ $\cdots$ $T_{Q - 1}$
 $K$
-$X_0$ $\cdots$ $X_{K-1}$
+$X_0$ $\cdots$ $X_{K - 1}$
 ~~~
 
 以下の形式で $1$ 行出力してください．
@@ -55,11 +55,11 @@ A$s$F
 $N$ $M$
 $A_0$ $B_0$ $C_0$
 $\vdots$
-$A_{M-1}$ $B_{M-1}$ $C_{M-1}$
+$A_{M - 1}$ $B_{M - 1}$ $C_{M - 1}$
 $Q$
-$T_0$ $\cdots$ $T_{Q-1}$
+$T_0$ $\cdots$ $T_{Q - 1}$
 $K$
-$X_0$ $\cdots$ $X_{K-1}$
+$X_0$ $\cdots$ $X_{K - 1}$
 A$s$F
 ~~~
 
@@ -75,43 +75,10 @@ $\texttt{e[0]}$ $\cdots$ $\texttt{e[n-1]}$
 #### その他
 
 - **各出力の後には必ず flush をしてください．**
-- 出力の形式が正しくない場合や不正解の条件に当てはまったときに WA になるかは不明です．
-
 </details>
 </blockquote>
 
-配点： $100$ 点
-
-<style>
-#task-statement details {
-    margin: 1em 0;
-}
-#task-statement details > summary {
-    display: list-item;
-    cursor: pointer;
-}
-#task-statement table {
-    display: block;
-    width: fit-content;
-    max-width: 100%;
-    overflow-x: auto;
-    border-collapse: collapse;
-    margin: 1em 0;
-}
-#task-statement table th,
-#task-statement table td {
-    border: 1px solid #aaa;
-    padding: 0.3em 0.6em;
-    text-align: left;
-    vertical-align: top;
-}
-#task-statement table th {
-    background-color: #f5f5f5;
-}
-#task-statement table code {
-    white-space: nowrap;
-}
-</style>
+配点 : $100$ 点
 
 ### 問題文
 
@@ -125,7 +92,7 @@ $\texttt{e[0]}$ $\cdots$ $\texttt{e[n-1]}$
 
 葵，ビ太郎ともに以上の情報を持った上で，ビ太郎は IOI 国への潜入に臨んだ．
 
-ビ太郎は数々の追っ手を撒き，刺客を返り討ちにし，ついに IOI 国の都市 $0$ に潜入することに成功した．しかしながら，潜入作戦はとても困難であったため，ビ太郎は IOI 国の情報の一部を失ってしまった．具体的には，$K$ 本の道路，道路 $X_0, X_1, \ldots, X_{K-1}$ の長さの情報を失ってしまった．すなわち，ビ太郎は $C_{X_0}, C_{X_1}, \ldots, C_{X_{K-1}}$ の値がわからなくなってしまった．情報を失ったのはビ太郎であり，葵はこれらの情報を保持していることに注意せよ．
+ビ太郎は数々の追っ手を撒き，刺客を返り討ちにし，ついに IOI 国の都市 $0$ に潜入することに成功した．しかしながら，潜入作戦はとても困難であったため，ビ太郎は IOI 国の情報の一部を失ってしまった．具体的には，$K$ 本の道路，道路 $X_0, X_1, \ldots, X_{K - 1}$ の長さの情報を失ってしまった．すなわち，ビ太郎は $C_{X_0}, C_{X_1}, \ldots, C_{X_{K - 1}}$ の値がわからなくなってしまった．情報を失ったのはビ太郎であり，葵はこれらの情報を保持していることに注意せよ．
 
 ビ太郎はすぐさまどの道路の長さの情報を失ったか葵に報告した．
 
@@ -138,8 +105,6 @@ IOI 国の情報，調査計画の情報とビ太郎が紛失した道路の情�
 ---
 
 ### 実装の詳細
-
-以下のファイル構成は配布されている採点プログラムのサンプルを使用する場合のものである．AtCoder では，冒頭の「AtCoder での提出方法」に従って $1$ つのファイルを提出すること．以下の関数形式および標準入出力に関する「重要な注意」は C++ を使用する場合の説明であり，その他の言語では上記の通信形式を用いること．
 
 あなたは $2$ つのファイルを提出しなければならない．
 
@@ -223,19 +188,19 @@ $N$ $M$
 $A_0$ $B_0$ $C_0$
 $A_1$ $B_1$ $C_1$
 $\vdots$
-$A_{M-1}$ $B_{M-1}$ $C_{M-1}$
+$A_{M - 1}$ $B_{M - 1}$ $C_{M - 1}$
 $Q$
-$T_0$ $T_1$ $\ldots$ $T_{Q-1}$
+$T_0$ $T_1$ $\ldots$ $T_{Q - 1}$
 $K$
-$X_0$ $X_1$ $\ldots$ $X_{K-1}$
+$X_0$ $X_1$ $\ldots$ $X_{K - 1}$
 ~~~
 
 ### 採点プログラムのサンプルの出力
 
 採点プログラムのサンプルは標準出力と標準エラー出力へ以下の情報を出力する（引用符は実際には出力されない）．
 
-- **不正解 [1]**，**不正解 [2]**，**不正解 [3]**，**不正解 [4]**，**不正解 [6]** と判定された場合，標準エラー出力に，不正解の種類が `Wrong Answer [1]` のように出力される．標準出力には何も出力されない．
-- そうでない場合，標準エラー出力に，関数 `aoi` の戻り値 $s$ の長さが `Accepted: 2024` のように出力される．また，標準出力の $j + 1$ 行目 ($0 \leqq j \leqq Q - 1$) に $j + 1$ 回目の `answer` 関数の呼び出しにおける経路の長さが出力される．採点プログラムのサンプルは，経路が最短であるかは判定しない．
+- **不正解 [1]**，**不正解 [2]**，**不正解 [3]**，**不正解 [4]**，**不正解 [6]** と判定された場合，標準エラー出力に，不正解の種類が “`Wrong Answer [1]`” のように出力される．標準出力には何も出力されない．
+- そうでない場合，標準エラー出力に，関数 `aoi` の戻り値 $s$ の長さが “`Accepted: 2024`” のように出力される．また，標準出力の $j + 1$ 行目 ($0 \leqq j \leqq Q - 1$) に $j + 1$ 回目の `answer` 関数の呼び出しにおける経路の長さが出力される．採点プログラムのサンプルは，経路が最短であるかは判定しない．
 
 実行するプログラムが複数の不正解の条件を満たした場合，表示される不正解の種類はそれらのうち $1$ つのみである．
 
@@ -274,7 +239,7 @@ $X_0$ $X_1$ $\ldots$ $X_{K-1}$
 
 採点プログラムのサンプルが読み込む入力の例と，それに対応する関数の呼び出しの例を以下に示す．
 
-#### 入力例 1
+### 入力例 1
 
 ~~~
 3 3
@@ -289,6 +254,8 @@ $X_0$ $X_1$ $\ldots$ $X_{K-1}$
 
 #### 関数の呼び出しの例
 
+<div class="joisp2024-c-table" markdown="1">
+
 | 呼び出し | 呼び出し | 戻り値 |
 | --- | --- | --- |
 | `aoi(3, 3, 2, 2, [1, 0, 0], [2, 2, 1], [1, 2, 3], [2, 1], [0, 1])` | | `"101001"` |
@@ -296,8 +263,21 @@ $X_0$ $X_1$ $\ldots$ $X_{K-1}$
 | | `answer([1])` | |
 | | `answer([1, 0])` | |
 
+</div>
+
+
 都市 $0$ から都市 $1$ への最短経路は，道路 $1$，道路 $0$ をこの順に通る経路と，道路 $2$ を通る経路の $2$ 通りが考えられる．そのため，この入力例における $2$ 回目の `answer` 関数の呼び出しは，`answer([2])` と呼び出してもよい．
 
 コンテストサイトからダウンロードできるファイルのうち，`sample-01-in.txt` は入力例 $1$ に対応する．
 
 コンテストサイトからダウンロードできるファイルに含まれる `sample-01-in.txt`，`sample-02-in.txt` は，採点プログラムのサンプルの入力として用いることができる．
+
+<style>
+.joisp2024-c-submission details { margin:1em 0; }
+.joisp2024-c-submission summary { display:list-item;cursor:pointer; }
+.joisp2024-c-table { position:relative;max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisp2024-c-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisp2024-c-table th,.joisp2024-c-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisp2024-c-table th { background:#f5f5f5; }
+.joisp2024-c-table code { white-space:nowrap; }
+</style>

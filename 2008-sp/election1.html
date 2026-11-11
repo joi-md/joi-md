@@ -1,0 +1,118 @@
+<span class="lang">
+<span class="lang-ja">
+<blockquote>
+<p><strong>AtCoder での提出方法</strong></p>
+<p>この提出先はテストケース 01 用です．このテストケースに対する出力ファイルを，言語 <code>Text (cat)</code> を選択して提出してください．</p>
+<p>各テストケースの提出先: <a href="https://atcoder.jp/contests/joisc2008/tasks/joisc2008_election1">01</a> | <a href="https://atcoder.jp/contests/joisc2008/tasks/joisc2008_election2">02</a> | <a href="https://atcoder.jp/contests/joisc2008/tasks/joisc2008_election3">03</a> | <a href="https://atcoder.jp/contests/joisc2008/tasks/joisc2008_election4">04</a> | <a href="https://atcoder.jp/contests/joisc2008/tasks/joisc2008_election5">05</a></p>
+<p><a href="https://img.atcoder.jp/joisc2008/election-inputs-7d0697e81f.zip">入力データ</a></p>
+<p>AtCoder では，<var>5</var> つの入力に対する答えを，それぞれ対応する提出先へ個別に提出する．相対評価の最大スコアとして，データ番号順に <var>78100</var>, <var>32203804</var>, <var>50521280</var>, <var>49862445</var>, <var>42634574</var> を使用する．これらより良いスコアでも各提出先の上限は <var>20</var> 点である．</p>
+</blockquote>
+<p>配点 : <var>20</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>JOI 国で大統領選挙が行われることになった．その国には <var>n</var> 個の都市 <var>S_{1}, \ldots, S_{n}</var> があり，それぞれの都市の位置は座標を用いて <var>S_{1}(x_{1}, y_{1}), \ldots, S_{n}(x_{n}, y_{n})</var> で表される．都市 <var>S_{i}</var> には選挙権を持つ有権者が <var>p_{i}</var> 人住んでいる．同じ座標に <var>2</var> つ以上の都市が存在することはない．都市 <var>S_{i}</var> と都市 <var>S_{j}</var> の距離は</p>
+<p><var>\sqrt{(x_{i} - x_{j})^{2} + (y_{i} - y_{j})^{2}}</var></p>
+<p>である．</p>
+<p>あなたは，候補者の <var>1</var> 人である <var>A</var> 候補の選挙参謀であり，<var>A</var> 候補のスケジュール管理を行っている．選挙運動の期間は <var>m</var> 日間である．選挙運動の期間中，<var>1</var> 日あたり <var>1</var> つの都市において，<var>A</var> 候補の演説会を行うことにした．<var>A</var> 候補は演説の名手であり，ある都市で <var>A</var> 候補の演説会が行われると，演説会が行われた都市の有権者は全員が <var>A</var> 候補に確実に投票することが知られている．さらに驚くべきことに，演説会の効果は距離 <var>d</var> 以下の都市にも波及する．すなわち，ある都市で <var>A</var> 候補の演説会が行われると，その都市からの距離が <var>d</var> 以下の都市の有権者も全員が <var>A</var> 候補に確実に投票する．</p>
+<p>あなたの仕事は，できるだけ多くの有権者が <var>A</var> 候補に確実に投票するように，<var>A</var> 候補が演説会を行う <var>m</var> 個の都市を選ぶことである．</p>
+<p>入力として都市の数 <var>n</var>，選挙運動の日数 <var>m</var>，演説会の効果が波及する距離 <var>d</var>，それぞれの都市の座標とそこに住む有権者の数が与えられたとき，<var>A</var> 候補の演説会が行われた都市からの距離が <var>d</var> 以下の都市に住む有権者の総数ができるだけ多くなるように演説会の場所を選べ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力データは全部で <var>5</var> つあり，ファイル名は <code>election-in</code><var>k</var> (<var>k = 1, 2, 3, 4, 5</var>) である．</p>
+<p>入力ファイルの <var>1</var> 行目には都市の数 <var>n</var> (<var>1 \leqq n \leqq 10000</var>) が書かれている．<var>2</var> 行目には選挙運動の日数 <var>m</var> (<var>1 \leqq m \leqq 1000</var>，<var>m \leqq n</var>) が書かれている．<var>3</var> 行目には演説会の効果が波及する距離 <var>d</var> (<var>1 \leqq d \leqq 5000</var>) が書かれている．続く <var>n</var> 行は，各都市の座標とそこに住む有権者の数を表す．<var>i + 3</var> 行目 (<var>1 \leqq i \leqq n</var>) には <var>3</var> つの整数 <var>x_{i}, y_{i}, p_{i}</var> (<var>0 \leqq x_{i}, y_{i} \leqq 5000, 1 \leqq p_{i} \leqq 10000</var>) が空白を区切りとして書かれており，都市 <var>S_{i}</var> の座標が <var>(x_{i}, y_{i})</var> で，そこに <var>p_{i}</var> 人の有権者が住んでいることを表す．</p>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>出力データはファイルで提出せよ．出力ファイルのファイル名は <code>election-out</code><var>k</var> (<var>k = 1, 2, 3, 4, 5</var>) である．<code>election-out</code><var>k</var> には，<code>election-in</code><var>k</var> に対応した出力データを書け．</p>
+<p>各出力ファイルは全部で <var>m + 1</var> 行からなる．<var>1</var> 行目から <var>m</var> 行目には <var>A</var> 候補が演説を行う都市の番号を <var>1</var> 個ずつ書け．都市の番号は <var>1</var> 以上 <var>n</var> 以下の整数である．都市の番号を書く順番は問わないが，重複があってはならない．また，<var>m + 1</var> 行目には，<var>A</var> 候補の演説会が行われた都市からの距離が <var>d</var> 以下の都市に住む有権者の総数を書け．</p>
+<p>出力ファイルのみを提出すること．出力ファイルを作成する際に，プログラムを作成し利用してもよいし，しなくてもよい．プログラムの出力をそのまま提出しても良いし，必要に応じてテキストエディタなどで加工してから提出してもよい．また，テストデータごとに異なるプログラムを作成してもよい．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>モデル解法</h3>
+<p>この問題の解法として，次のようなものが考えられる．</p>
+<p>まず，各都市 <var>S_1, \ldots, S_n</var> に対し，その都市を中心とした半径 <var>d</var> の円内に住む有権者の総数を計算する．その値が最も大きい都市を <var>S_{i_1}</var> とおく．（もし総数が等しい都市が複数個あったら，その中で添字 <var>i</var> が最も小さい都市 <var>S_i</var> を選び，それを <var>S_{i_1}</var> とおく．）<var>S_1, \ldots, S_n</var> から，<var>S_{i_1}</var> からの距離が <var>d</var> 以下の都市を全て取り除き，残った都市に対して同様の計算を行い，都市 <var>S_{i_2}</var> を選ぶ．これを <var>m</var> 回繰り返して，<var>m</var> 個の都市 <var>S_{i_1}, \ldots, S_{i_m}</var> を順に選ぶ．<var>S_{i_1}, \ldots, S_{i_m}</var> において演説会を行う．</p>
+<p>この解法では，必ずしも最適解が得られるとは限らない．なお，もし途中で全ての都市が取り除かれてしまった場合，JOI 国に住む全ての有権者が <var>A</var> 候補に投票することになるから，その場合は最適解を与えることが分かる．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>採点方法について</h3>
+<p>入力データは全部で <var>5</var> つある．それぞれの入力データごとに配点を定め，以下の要領で採点を行う．（配点は overview sheet に記載してある．）</p>
+<p>あなたが提出した解答における <var>A</var> 候補の演説会が行われた都市からの距離が <var>d</var> 以下の都市に住む有権者の総数を <var>T</var>，モデル解法によって得られる値を <var>T_{\mathrm{model}}</var>，提出された全てのデータのうち <var>A</var> 候補に確実に投票する有権者の総数が最も多いものを <var>T_{\mathrm{max}}</var> とおく．</p>
+<ul>
+<li>出力データが未提出の場合や，出力データが誤っている場合は，その出力データに関する得点は <var>0</var> 点である．</li>
+<li><var>T &lt; T_{\mathrm{model}}</var> の場合の得点は <var>0</var> 点である．</li>
+<li><var>T \geqq T_{\mathrm{model}}</var> の場合は相対評価により採点を行う．<ul>
+<li><var>T_{\mathrm{max}} = T_{\mathrm{model}} (= T)</var> の場合：すなわち，モデル解法を上回るデータの提出者がいなかった場合は，配点の <var>20\%</var> 分の得点が与えられる．</li>
+<li><var>T_{\mathrm{max}} &gt; T_{\mathrm{model}}</var> の場合：配点の <var>\left(\dfrac{T - T_{\mathrm{model}}}{T_{\mathrm{max}} - T_{\mathrm{model}}} \times 80 + 20\right)\%</var> 分の得点が与えられる．</li>
+</ul>
+</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>15
+3
+4
+4 2 22
+1 2 58
+7 6 27
+2 3 28
+8 7 57
+9 9 96
+5 0 46
+3 8 72
+9 2 52
+9 6 53
+2 7 17
+0 3 53
+4 8 70
+4 1 4
+5 6 52
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>2
+8
+10
+661
+</pre>
+<p>この入力例において都市の数は <var>n = 15</var> である．選挙運動の日数は <var>m = 3</var> 日間である．また，演説会の効果が波及する距離は <var>d = 4</var> である．</p>
+<p>この入力例に対してモデル解法を適用してみよう．</p>
+<p>まず，各都市 <var>S_{1}, \ldots, S_{15}</var> に対し，そこを中心とした半径 <var>4</var> の円内に住む有権者の総数を求める．そして，その値が最も大きい都市を選ぶ．この場合，<var>S_{3}</var> がそのような都市であり，<var>S_{3}</var> を中心とした半径 <var>4</var> の円内には，<var>S_{3}</var>, <var>S_{5}</var>, <var>S_{6}</var>, <var>S_{10}</var>, <var>S_{13}</var>, <var>S_{15}</var> の <var>6</var> つの都市が含まれる．そこに住む有権者の総数は <var>355</var> 人である．</p>
+<p>この <var>6</var> つの都市を除いて同様の計算を行い，都市 <var>S_{4}</var> を選ぶ．<var>S_{4}</var> を中心とした半径 <var>4</var> の円内には，<var>S_{1}</var>, <var>S_{2}</var>, <var>S_{4}</var>, <var>S_{11}</var>, <var>S_{12}</var>, <var>S_{14}</var> の <var>6</var> つの都市が含まれており，そこに住む有権者の総数は <var>182</var> 人である．</p>
+<p>これらの都市を除き，残った <var>3</var> つの都市 <var>S_{7}</var>, <var>S_{8}</var>, <var>S_{9}</var> に対して同様の計算を行い，都市 <var>S_{8}</var> を選ぶ．残った都市の中で，<var>S_{8}</var> を中心とした半径 <var>4</var> の円内に含まれているのは <var>S_{8}</var> のみである．<var>S_{8}</var> には <var>72</var> 人の有権者が住んでいる．</p>
+<p>したがって，モデル解法により，<var>S_{3}</var>, <var>S_{4}</var>, <var>S_{8}</var> の <var>3</var> つの都市が演説会の会場として選ばれ，それらの都市からの距離が <var>d</var> 以下の都市に住む有権者の総数は <var>609</var> 人となる．</p>
+<p><var>3</var> つの都市 <var>S_{2}</var>, <var>S_{8}</var>, <var>S_{10}</var> で <var>A</var> 候補の演説会を行う場合を考えよう．</p>
+<p><var>S_{2}</var> を中心とした半径 <var>4</var> の円内には，<var>S_{1}</var>, <var>S_{2}</var>, <var>S_{4}</var>, <var>S_{12}</var>, <var>S_{14}</var> の <var>5</var> つの都市がある．<var>S_{8}</var> を中心とした半径 <var>4</var> の円内には，<var>S_{8}</var>, <var>S_{11}</var>, <var>S_{13}</var>, <var>S_{15}</var> の <var>4</var> つの都市がある．<var>S_{10}</var> を中心とした半径 <var>4</var> の円内には，<var>S_{3}</var>, <var>S_{5}</var>, <var>S_{6}</var>, <var>S_{9}</var>, <var>S_{10}</var>, <var>S_{15}</var> の <var>6</var> つの都市がある．したがって，演説会の会場である <var>S_{2}</var>, <var>S_{8}</var>, <var>S_{10}</var> と，上に挙げた都市のいずれかに住む有権者は <var>A</var> 候補に確実に投票する．<var>S_{7}</var> を除く <var>14</var> 個の都市の有権者が <var>A</var> 候補に確実に投票することになり，その総数は <var>661</var> 人である．これは，モデル解法により得られた人数よりも多い．また，これが，<var>A</var> 候補の演説会が行われた都市からの距離が <var>d</var> 以下の都市に住む有権者の総数の最大値である．</p>
+<p>この例からも，モデル解法では，必ずしも最適な結果が得られるわけではないことが分かる．</p>
+<div style="text-align: center;">
+<img alt="2008-election-example.png" src="https://img.atcoder.jp/joisc2008/2008-election-example.png" style="max-width: 100%; width: 502px;" />
+</div></section>
+</div>
+</span>
+</span>

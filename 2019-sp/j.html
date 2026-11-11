@@ -1,0 +1,228 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>Today is IOI-chan’s birthday, so her brother JOI-kun pre-ordered her birthday cake. Though he planned to buy a whole cake, he mistakenly ordered <var>N</var> pieces of cake. They are numbered from 1 to <var>N</var> and each piece of cake has value and color. The value of the piece <var>i</var> (<var>1 \le i \le N</var>) is <var>V_{i}</var> and the depth of its color is <var>C_{i}</var>.</p>
+<p>In order to make a whole cake, he decided to choose <var>M</var> distinct pieces and to arrange them in a circular form in an arbitrary order. The beauty of the whole cake he makes is defined as</p>
+<p><var>\displaystyle\sum_{j=1}^{M}V_{k_j} - \sum_{j=1}^{M}\left|C_{k_j} - C_{k_{j+1}}\right|</var></p>
+<p>if he chooses the pieces <var>k_{1}, \ldots, k_{M}</var> and arranges them in this order (here we set <var>k_{M+1} = k_{1}</var>). In other words, the beauty of the whole cake is the sum of the values of its pieces minus the sum of the differences in the depth of the color between every two adjacent pieces. JOI-kun wants to make the whole cake as beautiful as possible.</p>
+<p>Write a program which, given the number of pieces, the number of pieces needed to make a whole cake, the value and the depth of color for each piece, calculates the maximum beauty of a whole cake JOI-kun can make.</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input. All the values in the input are integers.</p>
+<pre><var>N</var> <var>M</var>
+<var>V_{1}</var> <var>C_{1}</var>
+<var>\vdots</var>
+<var>V_{N}</var> <var>C_{N}</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>Write one line to the standard output. The output should contain the maximum beauty of the whole cake JOI-kun can make.</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li><var>3 \le N \le 200\,000</var>.</li>
+<li><var>3 \le M \le N</var>.</li>
+<li><var>1 \le V_{i} \le 1000\,000\,000</var> (<var>1 \le i \le N</var>).</li>
+<li><var>1 \le C_{i} \le 1000\,000\,000</var> (<var>1 \le i \le N</var>).</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtask</h3>
+<ol>
+<li>(<var>5</var> points) <var>N \le 100</var>.</li>
+<li>(<var>19</var> points) <var>N \le 2000</var>.</li>
+<li>(<var>76</var> points) No additional constraints.</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input and Output</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>5 3
+2 1
+4 2
+6 4
+8 8
+10 16
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>6
+</pre>
+<p>If JOI-kun chooses the pieces 1, 3 and 2 and arranges them in this order, the sum of the values of its pieces is <var>2 + 6 + 4 = 12</var> and the sum of the differences in the depth of the color is <var>|1 - 4| + |4 - 2| + |2 - 1| = 6</var>. Thus, the beauty of the whole cake is <var>12 - 6 = 6</var>.</p>
+<p>He can also make a whole cake with beauty <var>6</var> if he chooses the pieces <var>2, 3</var> and <var>4</var> and arrange them in this order.</p>
+<p>Since he cannot make a more beautiful whole cake, you should output 6.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>8 4
+112103441 501365808
+659752417 137957977
+86280801 257419447
+902409188 565237611
+965602301 689654312
+104535476 646977261
+945132881 114821749
+198700181 915994879
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>2323231661
+</pre></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>今日は IOI ちゃんの誕生日である．この日のために JOI くんは誕生日ケーキを予約していたが，ホールケーキを予約したつもりが間違えてカットケーキを予約してしまっていた．JOI くんが購入したカットケーキの個数は <var>N</var> である．カットケーキには <var>1</var> から <var>N</var> までの番号が付けられていて，カットケーキ <var>i</var> (<var>1 \leqq i \leqq N</var>) の価値は <var>V_{i}</var>，色の濃さは <var>C_{i}</var> である．</p>
+<p>そこで JOI くんはこの中から異なる <var>M</var> 個のカットケーキを選び，好きな順に円状に並べ，貼り合わせて，ホールケーキを作ることにした．カットケーキ <var>k_{1}, \ldots, k_{M}</var> をこの順に並べてできるホールケーキに対し，その美しさが</p>
+<p><var>\displaystyle\sum_{j=1}^{M}V_{k_j} - \sum_{j=1}^{M}\left|C_{k_j} - C_{k_{j+1}}\right|</var></p>
+<p>で定義される (ただし <var>k_{M+1} = k_{1}</var> とする)．つまり，美しさは，用いられるカットケーキの価値の合計から，隣り合うカットケーキの色の濃さの差の絶対値の合計を引いた値となる．JOI くんはできるだけホールケーキの美しさが大きくなるようにしたい．</p>
+<p>カットケーキの個数，各カットケーキの価値と色の濃さ，貼り合わせるカットケーキの個数が与えられたとき，ホールケーキの美しさの最大値を求めるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力は以下の形式で標準入力から与えられる．入力の値はすべて整数である．</p>
+<pre><var>N</var> <var>M</var>
+<var>V_{1}</var> <var>C_{1}</var>
+<var>\vdots</var>
+<var>V_{N}</var> <var>C_{N}</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に，ホールケーキの美しさの最大値を <var>1</var> 行で出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>3 \leqq N \leqq 200\,000</var>．</li>
+<li><var>3 \leqq M \leqq N</var>．</li>
+<li><var>1 \leqq V_{i} \leqq 1\,000\,000\,000</var> (<var>1 \leqq i \leqq N</var>).</li>
+<li><var>1 \leqq C_{i} \leqq 1\,000\,000\,000</var> (<var>1 \leqq i \leqq N</var>).</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>5</var> 点) <var>N \leqq 100</var>．</li>
+<li>(<var>19</var> 点) <var>N \leqq 2\,000</var>．</li>
+<li>(<var>76</var> 点) 追加の制約はない．</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入出力例</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>5 3
+2 1
+4 2
+6 4
+8 8
+10 16
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>6
+</pre>
+<p>カットケーキ <var>1, 3, 2</var> を選び，この順に円状に並べて貼り合わせてホールケーキを作ると，価値の合計は <var>2 + 6 + 4 = 12</var> となり，隣り合うカットケーキの色の濃さの差の絶対値の合計は <var>|1 - 4| + |4 - 2| + |2 - 1| = 6</var> となる．ホールケーキの美しさは <var>12 - 6 = 6</var> である．</p>
+<p>カットケーキ <var>2, 3, 4</var> を選び，この順に円状に並べて貼り合わせてホールケーキを作った場合も，ホールケーキの美しさは <var>6</var> である．</p>
+<p>これより美しさの大きいホールケーキを作ることはできないので，<var>6</var> を出力する．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>8 4
+112103441 501365808
+659752417 137957977
+86280801 257419447
+902409188 565237611
+965602301 689654312
+104535476 646977261
+945132881 114821749
+198700181 915994879
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>2323231661
+</pre></section>
+</div>
+</span>
+</span>

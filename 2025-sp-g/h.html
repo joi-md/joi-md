@@ -1,10 +1,10 @@
 <span class="lang">
 <span class="lang-ja">
-<p>配点： <var>100</var> 点</p>
+<p>配点 : <var>100</var> 点</p>
 
 <div class="part">
 <section>
-<h3></h3>
+<h3>問題文</h3>
 <p>勇者ビ太郎は，モンスターから村を守る防衛戦のクエストに挑もうとしている．
 防衛戦の難易度は <var>1</var> 以上 <var>L</var> 以下の整数で表され，この値は挑戦時に選択することができる．
 難易度 <var>\ell</var> (<var>1 \leqq \ell \leqq L</var>) の防衛戦では，出現するモンスターの HP が (難易度 <var>1</var> の場合を基準として) <var>\ell</var> 倍になる．</p>
@@ -119,18 +119,7 @@
 2
 </pre>
 <p>難易度 <var>1</var> の防衛戦では，以下のように行動することで評価値 <var>4</var> を達成することができる．評価値 <var>3</var> 以下を達成することはできない．</p>
-<style>  
-style + table {  
-    border-collapse: collapse;  
-    border: 1px solid black;  
-    margin: 1em auto;  
-    th, td {  
-        padding: 0.25rem 1rem;  
-        border: 1px solid black;
-    }
-}  
-</style>
-
+<div class="joigsp2025-h-statement-table">
 <table>
 <thead>
 <tr>
@@ -169,10 +158,9 @@ style + table {
 </tr>
 </tbody>
 </table>
+</div>
 <p>また，難易度 <var>2</var> の防衛戦では，以下のように行動することで評価値 <var>26</var> を達成することができる．評価値 <var>25</var> 以下を達成することはできない．</p>
-<style>
-</style>
-
+<div class="joigsp2025-h-statement-table">
 <table>
 <thead>
 <tr>
@@ -203,6 +191,7 @@ style + table {
 </tr>
 </tbody>
 </table>
+</div>
 <p>さらに，この入力例においては <var>L = 2</var> であるため，難易度 <var>3</var> 以上の防衛戦を選択することができない．したがって，出力は以下のようになる．</p>
 <ul>
 <li><var>1</var> 個目の基準値 <var>M_1 = 0</var> ではどの難易度でもクエストを達成することができないため，<var>1</var> 行目には <code>0</code> を出力する．</li>
@@ -353,7 +342,17 @@ style + table {
 6594716
 8448125
 </pre>
-<p>この入力例は小課題 <var>5, 6, 7, 8</var> の制約を満たす．</p></section>
+<p>この入力例は小課題 <var>5, 6, 7, 8</var> の制約を満たす．</p>
+<style>
+.joigsp2025-h-statement-table { position:relative; max-width:100%; overflow-x:auto; margin:1em 0; }
+.joigsp2025-h-statement-table table { display:table; width:auto; max-width:none; overflow:visible; border-collapse:collapse; margin:0; }
+.joigsp2025-h-statement-table th, .joigsp2025-h-statement-table td { border:1px solid #aaa; padding:0.3em 0.6em; text-align:left; vertical-align:top; }
+.joigsp2025-h-statement-table th { background:#f5f5f5; }
+</style>
+
+<style>
+.joigsp2025-h-statement-table .katex {position:relative;}
+</style></section>
 </div>
 </span>
 </span>

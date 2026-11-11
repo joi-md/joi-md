@@ -1,0 +1,77 @@
+<span class="lang">
+<span class="lang-ja">
+<blockquote>
+<p><strong>AtCoder での提出方法</strong></p>
+<p>標準入力から入力を読み込み，標準出力へ出力すること．</p>
+</blockquote>
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>来る <var>\text{20XX}</var> 年, 国際情報学祭り (International Omatsuri in Informatics) が日本で開かれることになった．そこでその開催に向けて，あなたはこの祭りのロゴマークを作成することになった．</p>
+<p>国際情報学祭りのロゴマークは，毎回，ある一定の絵が下地となって作られている．この絵は，横 <var>W</var> 個，縦 <var>H</var> 個の長方形状に並んだ正方形のマス目のうちのいくつかのマス目から構成されている．今回あなたは，この絵を日本の国旗の色である赤と白で塗り分けてロゴマークとすることにした．色塗りの作業を煩雑にしないため，<var>1</var> つのマス目には <var>1</var> つの色しか使うことはできない．</p>
+<p>どのように塗り分けるのがよいかを決めるため，あなたは知り合いのデザイナーに助言を求めた．彼のすばらしい美的感覚によれば，赤く塗られた領域，白く塗られた領域がどちらも線対称な図形になっているデザインが望ましいという．また，色のバランスを考えると，赤く塗るマス目の個数は <var>K</var> 個にするのが良いとも言われた．これらの条件にしたがった塗り方を彼は教えてくれなかったので，あなたは自分で塗り方を求める必要がある．絵および <var>K</var> の値が与えられたとき，条件をみたす塗り方を <var>1</var> つ求めるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力ファイル <code>logo.in</code> の <var>1</var> 行目には，<var>3</var> つの整数 <var>W, H, K</var> (<var>1 \leqq W \leqq 40</var>，<var>1 \leqq H \leqq 40</var>，<var>1 \leqq K \leqq WH - 1</var>) が空白を区切りとして書かれている．これは，与えられた絵の横幅，縦幅と，赤く塗るマス目の個数を表す．</p>
+<p>続く <var>H</var> 行は絵のデータを表す．<var>i + 1</var> 行目 (<var>1 \leqq i \leqq H</var>) には <var>W</var> 個の <code>0</code> または <code>1</code> が空白を区切りとして書かれている．<var>i + 1</var> 行目の <var>j</var> 個目 (<var>1 \leqq j \leqq W</var>) の整数が <code>1</code> のときは，上から <var>i</var> 番目，左から <var>j</var> 番目のマス目が絵に使われていることを，<code>0</code> のときはそのマス目が絵に使われていないことを表す．絵には必ず <var>2</var> つ以上のマス目が使われている．<var>K</var> の値は，絵に使われているマス目の個数より小さいことが保証される．</p>
+<p>採点に使われるどの入力においても，条件をみたす塗り方は少なくとも <var>1</var> つ存在する．</p>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>出力は，標準出力に行うこと．塗り方を表す整数を，<var>1</var> 行に空白区切りで <var>W</var> 個，<var>H</var> 行にわたって出力せよ．<var>i</var> 行目の <var>j</var> 個目の整数が <code>1</code> の場合，上から <var>i</var> 番目，左から <var>j</var> 番目のマス目を赤く塗ることを，<code>2</code> の場合，そのマス目を白く塗ることを表す．絵に使われていないマス目については <code>0</code> を出力せよ．</p>
+<p>複数の塗り方が可能な場合は，そのうちのどれを出力してもよい．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>採点基準</h3>
+<p>採点に用いるデータのうち，配点の <var>20\%</var> 分については <var>W, H \leqq 5</var> である．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>4 3 2
+0 1 0 0
+1 0 1 1
+1 0 0 0
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>0 2 0 0
+1 0 2 1
+2 0 0 0
+</pre>
+<p>この出力は次のような塗り方に対応している. 灰色のマスは赤く塗ることを, 白のマスは白く塗ることを表す. 破線と点線がそれぞれ赤い領域, 白い領域の対称軸である.</p>
+<div style="text-align: center;">
+<img alt="2009-logo-valid.png" src="https://img.atcoder.jp/joisc2009/2009-logo-valid.png" style="max-width: 100%; width: 240px;" />
+</div>
+
+<p>次のような塗り方は条件をみたさない：</p>
+<div style="text-align: center;">
+<img alt="2009-logo-invalid.png" src="https://img.atcoder.jp/joisc2009/2009-logo-invalid.png" style="max-width: 100%; width: 520px;" />
+</div>
+
+<p>左図：赤い領域が線対称でない．右図：赤く塗られたマスの個数が <var>2</var> でない．</p></section>
+</div>
+</span>
+</span>

@@ -1,20 +1,15 @@
 <span class="lang">
 <span class="lang-ja">
-<p><a href="https://www2.ioi-jp.org/camp/2013/2013-sp-tasks/index.html">配布ファイル</a></p>
-
-<div class="part">
-<section>
-<h3>C++ を使用する場合</h3>
+<blockquote class="joisc2013-mountain-submission">
+<p><strong>AtCoder での提出方法</strong></p>
+<p><a href="https://www2.ioi-jp.org/camp/2013/2013-sp-tasks/2013-sp-day3-mountain-dist.zip">配布ファイル</a></p>
+<p><strong>C++ を使用する場合</strong></p>
 <ul>
 <li><code>grader.h</code> を include し，問題文で指定された関数を実装してください．</li>
 <li><strong>標準入出力やファイルへの入出力を使用しないでください．</strong></li>
 </ul>
-</section>
-</div>
-
-<div class="part">
-<section>
-<h3>その他の言語を使用する場合</h3>
+<details>
+<summary><strong>その他の言語を使用する場合</strong></summary>
 <p>まず，以下の形式で入力を受け取ってください．</p>
 <pre><var>R</var> <var>C</var> <var>R_S</var> <var>C_S</var> <var>X</var>
 </pre>
@@ -23,7 +18,7 @@
 <p>以下の形式で出力してください．</p>
 <pre>? <var>R_M</var> <var>C_M</var>
 </pre>
-<p>その後，マス <var>(R_M, C_M)</var> の高さが <var>1</var> 行に与えられます．</p>
+<p>その後，マス <var>(R_M,C_M)</var> の高さが <var>1</var> 行に与えられます．</p>
 <h4>Pinpoint</h4>
 <p>以下の形式で出力してください．</p>
 <pre>! <var>R_P</var> <var>C_P</var>
@@ -32,7 +27,189 @@
 <ul>
 <li><strong>各出力の後には改行を入れ，必ず flush を行ってください．</strong></li>
 <li><strong>出力の形式が正しくない場合や不正解の条件に当てはまったとき，与えられる入力は <code>-1</code> になります．この場合，ただちにプログラムを終了してください．</strong></li>
-</ul></section>
+</ul>
+</details>
+</blockquote>
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>IOI 国の政府は IOI 山で遭難事故が絶えないことから IOI 山専門の山岳救助隊を設置した．設置から数日が経ったある日，山岳救助隊のもとに遭難事故を知らせる通報が届いた．通報によれば遭難している人々はいま高度が <var>X</var> のところに留まっているという．</p>
+<p>IOI 山は縦 <var>R</var> 行，横 <var>C</var> 列のマス目で表され，各マス目に対して高度の値が決まっている．上から数えて <var>r</var> 行目，左から数えて <var>c</var> 列目のマスを <var>(r, c)</var> で表すことにする．山の形が次のようになっていることは分かっている．</p>
+<ul>
+<li>高度が同じであるようなふたつの異なるマスは存在しない．</li>
+<li>どのマスの高度も <var>1</var> 以上 <var>1\,000\,000\,000</var> 以下の整数である．</li>
+<li>マス <var>(R_{S} ,C_{S} )</var> が山の頂点である．すなわち，最も高度が大きいマスが <var>(R_{S}C_{S} )</var> である．</li>
+<li>ふたつのマス <var>(r_{1}, c_{1})</var> と <var>(r_{2}, c_{2})</var> の距離を <var>|r_{1} - r_{2}| + |c_{1} - c_{2}|</var> と定める．このとき，ふたつの隣接するマスについて，頂点からの距離が遠い方が高度が小さい．ただしふたつのマスが隣接しているとは，それらのマスが辺を共有していることを言う．</li>
+</ul>
+<p>山岳救助隊は設置されて間もないため IOI 山の調査はよく済んでおらず，頂点も含め各マスの高度は分かっていない．専門の測定機器を用いて位置を指定したひとつのマスの高度を調べることができるが，調べるのには一定の時間がかかる．この測定機器を用いて遭難者のいる高度 <var>X</var> のマスの位置を特定したいが，そのための測定機器の使用回数は <var>1\,000</var> 回以内におさえたい．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p>IOI 山を表すマス目の大きさを示す整数 <var>R, C</var>，頂点の位置 <var>R_{S} , C_{S}</var> および遭難者のいるマスの高度 <var>X</var> が与えられたとき，測定機器を最大でも <var>1\,000</var> 回用いることで遭難者のいるマスの位置を特定するためのプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>実装の詳細</h3>
+<p>あなたは測定機器を使用する方法を実装した <var>1</var> 個のプログラムを書かねばならない．</p>
+<p>プログラムは，以下のルーチンを実装しなければならない．</p>
+<ul>
+<li>
+<p><code>void Rescue(int R, int C, int RS, int CS, int X)</code></p>
+<p>このルーチンは，各テストケースに対し <var>1</var> 回だけ呼び出される．引数 <code>R</code>, <code>C</code> はそれぞれ山を表すマス目の縦の大きさと横の大きさ <var>R, C</var> である．引数 <code>RS</code>, <code>CS</code> はそれぞれ山の頂点の行番号と列番号 <var>R_{S} , C_{S}</var> である．引数 <code>X</code> は遭難者のいるマスの高度 <var>X</var> である．</p>
+</li>
+</ul>
+<p>また，プログラム中では以下のルーチンを呼び出すことができる．</p>
+<ul>
+<li>
+<p><code>int Measure(int RM, int CM)</code></p>
+<p>このルーチンは，測定機器を使用する際に呼び出す．引数 <code>RM</code>, <code>CM</code> はそれぞれ測定機器によって高度を調べるマスの行番号と列番号 <var>R_{M},C_{M}</var> である．<var>1 \leqq R_{M} \leqq R</var>，<var>1 \leqq C_{M} \leqq C</var> を満たす．このルーチンの戻り値はマス <var>(R_{M},C_{M})</var> の高度を表す <var>1</var> 以上 <var>1\,000\,000\,000</var> 以下の整数である．</p>
+<p><var>1 \leqq R_{M} \leqq R</var>，<var>1 \leqq C_{M} \leqq C</var> という条件を満たさないような値でこのルーチンを呼び出した場合は，不正解 <var>[1]</var> と判定され，プログラムの実行は終了される．</p>
+<p>また，このルーチンが <var>1\,000</var> 回呼び出されたあとに再び呼び出された場合は不正解 <var>[2]</var> と判定され，プログラムの実行は終了される．</p>
+</li>
+<li>
+<p><code>void Pinpoint(int RP, int CP)</code></p>
+<p>このルーチンは，遭難者のいるマスが特定できた際に <var>1</var> 回だけ呼び出す．引数 <code>RP</code>, <code>CP</code> はそれぞれ遭難者がいると特定したマスの行番号と列番号 <var>R_{P},C_{P}</var> である．<var>1 \leqq R_{P} \leqq R</var>，<var>1 \leqq C_{P} \leqq C</var> を満たす．このルーチンは戻り値を持たない．</p>
+<p><var>1 \leqq R_{P} \leqq R</var>，<var>1 \leqq C_{P} \leqq C</var> という条件を満たさないような値でこのルーチンを呼び出した場合は，不正解 <var>[3]</var> と判定され，プログラムの実行は終了される．</p>
+<p>プログラムがこのルーチンを呼び出したとき，マス <var>(R_{P},C_{P})</var> の高度が <var>X</var> に等しければ正解，そうでなければ不正解 <var>[4]</var> と判定され，プログラムの実行は終了される．</p>
+<p><code>Rescue</code> ルーチンがこのルーチンを <var>1</var> 回も呼び出さずに終了した場合は，不正解 <var>[5]</var> と判定され，プログラムの実行は終了される．</p>
+</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>コンパイル・実行の方法</h3>
+<p>作成したプログラムをテストするための採点プログラムのサンプルが，コンテストサイトからダウンロードできるアーカイブの中に含まれている．このアーカイブには，提出しなければならないファイルのサンプルも含まれている．</p>
+<p>採点プログラムのサンプルは <var>1</var> つのファイルからなる．そのファイルは <code>grader.c</code> または <code>grader.cpp</code> である．作成したプログラムをテストするには，次のようにコマンドを実行する．</p>
+<ul>
+<li>C の場合</li>
+</ul>
+<pre>gcc -O2 -lm grader.c mountain.c -o grader
+</pre>
+<ul>
+<li>C++ の場合</li>
+</ul>
+<pre>g++ -O2 grader.cpp mountain.cpp -o grader
+</pre>
+<p>コンパイルが成功すれば，<code>grader</code> という実行ファイルが生成される．</p>
+<p>実際の採点プログラムは，採点プログラムのサンプルとは異なることに注意すること．このプログラムは，標準入力から入力を読み込み，標準出力に結果を出力する．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>採点プログラムのサンプルは標準入力から以下の入力を読み込む．</p>
+<ul>
+<li><var>1</var> 行目には整数 <var>R,C, R_{S} ,C_{S} , X</var> が空白を区切りとして書かれており，山を表すマス目の縦の大きさが <var>R</var>，横の大きさが <var>C</var> ，頂点がマス <var>(R_{S} ,C_{S} )</var>，遭難者のいるマスの高度が <var>X</var> であることを表す．</li>
+<li>続く <var>R</var> 行には山の高度の情報が書かれている．そのうちの <var>i</var> 行目 (<var>1 \leqq i \leqq R</var>) には <var>C</var> 個の整数が書かれており，そのうちの <var>j</var> 番目 (<var>1 \leqq j \leqq C</var>) の整数はマス <var>(i, j)</var> の高度を表す．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>プログラムの実行が正常に終了した場合，採点プログラムのサンプルは標準出力へ以下の情報を <var>1</var> 行で出力する．</p>
+<ul>
+<li>正解の場合，<code>"Accepted"</code> と出力される．(引用符は実際には出力されない．以下同様である．)</li>
+<li>不正解の場合，不正解の種類が「実装の詳細」の節に書かれた番号によって <code>"Wrong Answer[1]"</code> のように出力される．さらに，不正解 <var>[4]</var> については，正しい遭難者の位置 <var>(R_{X},C_{X})</var> および <code>Pinpoint</code> ルーチンが呼び出された際に引数によって指定されたマス <var>(R_{P},C_{P})</var> の情報が <code>"Wrong Answer[4] : (RX, CX) = (3, 2), (RP, CP) = (4, 1)"</code> のように出力される．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<p>すべての入力データは以下の条件を満たす．</p>
+<ul>
+<li><var>1 \leqq R \leqq 200</var></li>
+<li><var>1 \leqq C \leqq 200</var></li>
+<li><var>1 \leqq R_{S} \leqq R</var></li>
+<li><var>1 \leqq C_{S} \leqq C</var></li>
+<li><var>1 \leqq X \leqq 1\,000\,000\,000</var></li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<h4>小課題 1 [<var>20</var> 点]</h4>
+<p>以下の条件を満たす．</p>
+<ul>
+<li><var>R \leqq 50</var></li>
+<li><var>C \leqq 50</var></li>
+</ul>
+<h4>小課題 2 [<var>80</var> 点]</h4>
+<p>追加の制限はない．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>やりとりの例</h3>
+<p>採点プログラムのサンプルが読み込み入力の例と，それに対応するルーチンの呼び出しの例を以下に示す．</p>
+<h4>入力</h4>
+<pre>5 5 3 3 76
+14 59 84 62 28
+15 73 92 76 35
+68 97 100 89 75
+58 67 86 79 55
+17 25 71 10 5
+</pre>
+<div class="joisc2013-day3-mountain-ja-table">
+<table>
+<thead>
+<tr>
+<th>呼び出し</th>
+<th>返り値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Measure(1, 1)</code></td>
+<td><code>14</code></td>
+</tr>
+<tr>
+<td><code>Measure(3, 5)</code></td>
+<td><code>75</code></td>
+</tr>
+<tr>
+<td><code>Measure(2, 4)</code></td>
+<td><code>76</code></td>
+</tr>
+<tr>
+<td><code>Pinpoint(2, 4)</code></td>
+<td>なし</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>この例は，必ずしも意味のあるルーチン呼び出しをしているとは限らないことに注意せよ．</p>
+<style>
+.joisc2013-day3-mountain-ja-table { max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisc2013-day3-mountain-ja-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisc2013-day3-mountain-ja-table th,.joisc2013-day3-mountain-ja-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisc2013-day3-mountain-ja-table th { background:#f5f5f5; }
+.joisc2013-day3-mountain-ja-table code { white-space:nowrap; }
+</style>
+
+<style>
+.joisc2013-mountain-submission summary { display:list-item;cursor:pointer; }
+</style></section>
 </div>
 </span>
 </span>

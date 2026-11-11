@@ -1,0 +1,477 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>JOI Kingdom is represented by a <var>xy</var>-plane. There are <var>N</var> houses in JOI Kingdom numbered from 1 to <var>N</var>. The coordinate of the house <var>i</var> (<var>1 \le i \le N</var>) is <var>(X_{i}, Y_{i})</var>. Different houses have different coordinates. A citizen lives in each house. The citizen in the house <var>i</var> is called the citizen <var>i</var>.</p>
+<p>A long holiday season begins in JOI Kingdom. At time 0, every citizen leaves the house, and starts traveling. In the beginning, every citizen chooses one of ‘east’, ‘west’, ‘south’, ‘north’, which is the direction for traveling. The citizens will travel in the following way.</p>
+<ul>
+<li>If the citizen <var>i</var> chooses ‘east’, the citizen moves along the <var>x</var>-axis toward the positive direction with speed 1. In other words, at time <var>t</var> (<var>t \ge0</var>), the coordinates of the citizen <var>i</var> becomes <var>(X_{i} + t, Y_{i})</var>.</li>
+<li>If the citizen <var>i</var> chooses ‘west’, the citizen moves along the <var>x</var>-axis toward the negative direction with speed 1. In other words, at time <var>t</var> (<var>t \ge0</var>), the coordinates of the citizen <var>i</var> becomes <var>(X_{i} - t, Y_{i})</var>.</li>
+<li>If the citizen <var>i</var> chooses ‘south’, the citizen moves along the <var>y</var>-axis toward the negative direction with speed 1. In other words, at time <var>t</var> (<var>t \ge0</var>), the coordinates of the citizen <var>i</var> becomes <var>(X_{i}, Y_{i} - t)</var>.</li>
+<li>If the citizen <var>i</var> chooses ‘north’, the citizen moves along the <var>y</var>-axis toward the positive direction with speed 1. In other words, at time <var>t</var> (<var>t \ge0</var>), the coordinates of the citizen <var>i</var> becomes <var>(X_{i}, Y_{i} + t)</var>.</li>
+</ul>
+<p>Unfortunately, at time <var>0</var>, the citizen <var>1</var> is infected with IOI fever, which is a newly discovered infectious disease. At time <var>0</var>, there are no infected people other than the citizen <var>1</var>. The IOI fever is transmitted among citizens in the following way.</p>
+<blockquote>
+<p>Assume that, at a certain time, the citizen <var>a</var> (<var>1 \le a \le N</var>) and the citizen <var>b</var> (<var>1 \le b \le N</var>) have the same coordinates, the citizen <var>a</var> is infected with IOI fever, and the citizen <var>b</var> is not infected with IOI fever. Then, the citizen <var>b</var> becomes infected with IOI fever.</p>
+</blockquote>
+<p>The IOI fever is not transmitted by other methods. Moreover, since IOI fever is an incurable disease, infected citizen will not be recovered.</p>
+<p>As a minister of JOI Kingdom, you need to estimate how many citizens will be infected with IOI fever if the citizens make the worst possible choice.</p>
+<p>Write a program which, given the number of houses and the coordinate of each house, calculates the largest possible number of infected citizens at time <var>10^{100}</var>.</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input. Given values are all integers.</p>
+<pre><var>N</var>
+<var>X_{1}</var> <var>Y_{1}</var>
+<var>\vdots</var>
+<var>X_{N}</var> <var>Y_{N}</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>Write one line to the standard output. Output the largest possible number of infected citizens at time <var>10^{100}</var>.</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li><var>1 \le N \le 100\,000</var>.</li>
+<li><var>0 \le X_{i} \le 500\,000\,000</var> (<var>1 \le i \le N</var>).</li>
+<li><var>0 \le Y_{i} \le 500\,000\,000</var> (<var>1 \le i \le N</var>).</li>
+<li><var>(X_{i}, Y_{i}) \ne (X_{j}, Y_{j})</var> (<var>1 \le i &lt; j \le N</var>).</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li>(<var>5</var> points) <var>N \le 7</var>, <var>X_{i} \ne X_{j}</var> (<var>1 \le i &lt; j \le N</var>),<var>Y_{i} \ne Y_{j}</var> (<var>1 \le i &lt; j \le N</var>).</li>
+<li>(<var>8</var> points) <var>N \le 15</var>, <var>X_{i} \ne X_{j}</var> (<var>1 \le i &lt; j \le N</var>),<var>Y_{i} \ne Y_{j}</var> (<var>1 \le i &lt; j \le N</var>).</li>
+<li>(<var>6</var> points) <var>N \le 100</var>, <var>X_{i} \ne X_{j}</var> (<var>1 \le i &lt; j \le N</var>),<var>Y_{i} \ne Y_{j}</var> (<var>1 \le i &lt; j \le N</var>),<var>X_{1} = 0</var>, <var>Y_{1} = 0</var>.</li>
+<li>(<var>6</var> points) <var>N \le 100</var>, <var>X_{i} \ne X_{j}</var> (<var>1 \le i &lt; j \le N</var>),<var>Y_{i} \ne Y_{j}</var> (<var>1 \le i &lt; j \le N</var>).</li>
+<li>(<var>12</var> points) <var>N \le 3\,000</var>.</li>
+<li>(<var>32</var> points) <var>X_{i} \ne X_{j}</var> (<var>1 \le i &lt; j \le N</var>),<var>Y_{i} \ne Y_{j}</var> (<var>1 \le i &lt; j \le N</var>).</li>
+<li>(<var>31</var> points) No additional constraints.</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input and Output</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>2
+0 0
+4 3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>1
+</pre>
+<p>In this sample input, the positions of the houses are as follows.</p>
+<p><img src="https://img.atcoder.jp/joisc2021/fever-en-p3-1.png" alt="Figure" style="max-width:100%;height:auto;"></p>
+
+<p>For example, assume that the citizen 1 chooses ‘east’ and the citizen 2 chooses ‘west.’</p>
+<p>Then, at any time, the coordinates of citizens <var>1</var> and <var>2</var> are different. Thus the citizen <var>2</var> will not be infected. Therefore the citizen 1 is the only infected citizen at time <var>10^{100}</var>. The number of infected citizens is 1.</p>
+<p>Regardless of the choices of the directions of the citizens 1 and 2, the number of infected citizens cannot be larger than 1. Hence the largest possible number of infected citizens is 1, and output 1.</p>
+<p>This sample input satisfies the constraints of Subtasks 1, 2, 3, 4, 5, 6, 7.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>3
+1 2
+2 1
+4 3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>3
+</pre>
+<p>In this sample input, the positions of the houses are as follows.</p>
+<p><img src="https://img.atcoder.jp/joisc2021/fever-en-p4-1.png" alt="Figure" style="max-width:100%;height:auto;"></p>
+
+<p>For example, assume that the citizen <var>1</var> chooses ‘east,’ the citizen <var>2</var> chooses ‘north,’ the citizen <var>3</var> chooses ‘west.’ Then the IOI fever is transmitted among citizens in the following way.</p>
+<ul>
+<li>At time 0, the citizen 1 is the only infected citizen.</li>
+<li>At time 1, the coordinates of the citizens <var>1</var>, <var>2</var>, <var>3</var> are <var>(2, 2)</var>, <var>(2, 2)</var>, <var>(3, 3)</var>, respectively. The coordinates of the citizens 1 and 2 are the same. At that time, the citizen 1 is infected with IOI fever, and the citizen 2 is not infected with IOI fever. Hence the citizen 2 becomes infected with IOI fever.</li>
+<li>At time 2, the coordinates of the citizens <var>1</var>, <var>2</var>, <var>3</var> are <var>(3, 2)</var>, <var>(2, 3)</var>, <var>(2, 3)</var>, respectively. The coordinates of the citizens 2 and 3 are the same. At that time, the citizen 2 is infected with IOI fever, and the citizen 3 is not infected with IOI fever. Hence the citizen 3 becomes infected with IOI fever.</li>
+</ul>
+<p>Finally, the number of infected citizens becomes 3. Since it is the largest possible value, output 3.</p>
+<p>This sample input satisfies the constraints of Subtasks 1, 2, 4, 5, 6, 7.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 3</h3>
+<pre>2
+20 20
+20 21
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 3</h3>
+<pre>2
+</pre>
+<p>Assume that the citizen 1 chooses ‘north’ and the citizen 2 chooses ‘south.’ Then the IOI fever is transmitted among citizens in the following way.</p>
+<ul>
+<li>At time 0, the citizen 1 is the only infected citizen.</li>
+<li>At time <var>0.5</var>, both of the coordinates of the citizens <var>1</var>, <var>2</var> are <var>(20, 20.5)</var>. At that time, the citizen 1 is infected with IOI fever, and the citizen 2 is not infected with IOI fever. Hence the citizen 2 becomes infected with IOI fever.</li>
+</ul>
+<p>Finally, the number of infected citizens becomes 2. Since it is the largest possible value, output 2.</p>
+<p>This sample input satisfies the constraints of Subtasks 5, 7.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 4</h3>
+<pre>15
+5 6
+2 9
+12 0
+4 11
+3 12
+6 5
+0 8
+9 10
+11 13
+8 7
+13 2
+1 1
+7 14
+10 4
+14 3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 4</h3>
+<pre>9
+</pre>
+<p>This sample input satisfies the constraints of Subtasks 2, 4, 5, 6, 7.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 5</h3>
+<pre>30
+275810186 246609547
+122805872 99671769
+243507947 220373844
+281305347 252104708
+237805644 214671541
+172469077 149334974
+222589229 229887956
+160653451 208404690
+241378966 211098219
+144302355 224755786
+186392385 163258282
+199129390 169928751
+294937491 265736852
+196096122 172962019
+314342944 285142305
+202720470 166337671
+157037485 133903382
+263858979 240724876
+210720220 181519581
+296402036 267201397
+186021287 183036854
+195081930 173976211
+328293029 299092390
+261195361 238061258
+323595085 294394446
+299933764 270733125
+240976723 128081418
+188501753 165367650
+277832422 248631783
+119896220 96762117
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 5</h3>
+<pre>11
+</pre>
+<p>This sample input satisfies the constraints of Subtasks 4, 5, 6, 7.</p></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>JOI 国は <var>xy</var> 座標平面として表される．JOI 国には <var>N</var> 軒の家があり，家には <var>1</var> から <var>N</var> までの番号が付けられている．家 <var>i</var> (<var>1 \leqq i \leqq N</var>) は座標 <var>(X_{i}, Y_{i})</var> にあり，同じ座標に複数の家は存在しない．また，各家には <var>1</var> 人の国民が住んでおり，家 <var>i</var> に住んでいる国民を国民 <var>i</var> と表す．今，JOI 国では大型連休が始まろうとしている．時刻 <var>0</var> になるとすべての国民は同時に家を出発し，旅行を始める．最初に，各国民は「東」「西」「南」「北」のうちいずれかの方向を選択し，以下の通りに動く．</p>
+<ul>
+<li>国民 <var>i</var> が「東」を選択した場合：<var>x</var> 軸の正の方向に速さ <var>1</var> で動く．つまり，時刻 <var>t</var> (<var>t \geqq 0</var>) における国民 <var>i</var> の座標は <var>(X_{i} + t, Y_{i})</var> となる．</li>
+<li>国民 <var>i</var> が「西」を選択した場合：<var>x</var> 軸の負の方向に速さ <var>1</var> で動く．つまり，時刻 <var>t</var> (<var>t \geqq 0</var>) における国民 <var>i</var> の座標は <var>(X_{i} - t, Y_{i})</var> となる．</li>
+<li>国民 <var>i</var> が「南」を選択した場合：<var>y</var> 軸の負の方向に速さ <var>1</var> で動く．つまり，時刻 <var>t</var> (<var>t \geqq 0</var>) における国民 <var>i</var> の座標は <var>(X_{i}, Y_{i} - t)</var> となる．</li>
+<li>国民 <var>i</var> が「北」を選択した場合：<var>y</var> 軸の正の方向に速さ <var>1</var> で動く．つまり，時刻 <var>t</var> (<var>t \geqq 0</var>) における国民 <var>i</var> の座標は <var>(X_{i}, Y_{i} + t)</var> となる．</li>
+</ul>
+<p>残念なことに，時刻 <var>0</var> に国民 <var>1</var> が新型の感染症である IOI 熱に感染してしまった．時刻 <var>0</var> において，国民 <var>1</var> 以外には感染者はいない．IOI 熱は国民の間で次のように伝染する．</p>
+<blockquote>
+<p>ある時刻において国民 <var>a</var> (<var>1 \leqq a \leqq N</var>) と国民 <var>b</var> (<var>1 \leqq b \leqq N</var>) が同じ座標に存在し，その時点で国民 <var>a</var> が感染者で国民 <var>b</var> が非感染者であった場合，国民 <var>b</var> が新たに感染する．</p>
+</blockquote>
+<p>これ以外の方法で新たな感染者が発生することはない．また，IOI 熱は不治の病であるため，感染者は二度と非感染者になることはない．</p>
+<p>JOI 国の大臣であるあなたは，国民が最悪な方向を選択した場合，何人の国民が IOI 熱に感染するかを見積もらなければならない．</p>
+<p>家の軒数と各家の座標が与えられたとき，時刻 <var>10^{100}</var> における感染者数としてあり得る最大値を求めるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力は以下の形式で標準入力から与えられる．入力される値はすべて整数である．</p>
+<pre><var>N</var>
+<var>X_{1}</var> <var>Y_{1}</var>
+<var>\vdots</var>
+<var>X_{N}</var> <var>Y_{N}</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に，時刻 <var>10^{100}</var> における感染者数としてあり得る最大値を <var>1</var> 行で出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>1 \leqq N \leqq 100\,000</var>．</li>
+<li><var>0 \leqq X_{i} \leqq 500\,000\,000</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>0 \leqq Y_{i} \leqq 500\,000\,000</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>(X_{i}, Y_{i}) \ne (X_{j}, Y_{j})</var> (<var>1 \leqq i &lt; j \leqq N</var>)．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>5</var> 点) <var>N \leqq 7</var>，<var>X_{i} \ne X_{j}</var> (<var>1 \leqq i &lt; j \leqq N</var>)，<var>Y_{i} \ne Y_{j}</var> (<var>1 \leqq i &lt; j \leqq N</var>)．</li>
+<li>(<var>8</var> 点) <var>N \leqq 15</var>，<var>X_{i} \ne X_{j}</var> (<var>1 \leqq i &lt; j \leqq N</var>)，<var>Y_{i} \ne Y_{j}</var> (<var>1 \leqq i &lt; j \leqq N</var>)．</li>
+<li>(<var>6</var> 点) <var>N \leqq 100</var>，<var>X_{i} \ne X_{j}</var> (<var>1 \leqq i &lt; j \leqq N</var>)，<var>Y_{i} \ne Y_{j}</var> (<var>1 \leqq i &lt; j \leqq N</var>)，<var>X_{1} = 0</var>，<var>Y_{1} = 0</var>．</li>
+<li>(<var>6</var> 点) <var>N \leqq 100</var>，<var>X_{i} \ne X_{j}</var> (<var>1 \leqq i &lt; j \leqq N</var>)，<var>Y_{i} \ne Y_{j}</var> (<var>1 \leqq i &lt; j \leqq N</var>)．</li>
+<li>(<var>12</var> 点) <var>N \leqq 3\,000</var>．</li>
+<li>(<var>32</var> 点) <var>X_{i} \ne X_{j}</var> (<var>1 \leqq i &lt; j \leqq N</var>)，<var>Y_{i} \ne Y_{j}</var> (<var>1 \leqq i &lt; j \leqq N</var>)．</li>
+<li>(<var>31</var> 点) 追加の制約はない．</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入出力例</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>2
+0 0
+4 3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>1
+</pre>
+<p>この入力例における家の位置関係は下図の通りとなる．</p>
+<p><img src="https://img.atcoder.jp/joisc2021/fever-ja-p3-1.png" alt="図" style="max-width:100%;height:auto;"></p>
+
+<p>例えば，国民 <var>1</var> が「東」，国民 <var>2</var> が「南」の方向を選択したとする．</p>
+<p>このとき，国民 <var>2</var> は国民 <var>1</var> と同じ座標に存在することはないので，国民 <var>2</var> は感染しない．したがって，時刻 <var>10^{100}</var> での感染者は国民 <var>1</var> のみであり，感染者数は <var>1</var> 人である．</p>
+<p>国民 <var>1</var>，国民 <var>2</var> がどのような方向を選択したとしても，感染者数が <var>2</var> 人以上とはならない．したがって，求める感染者数の最大値は <var>1</var> 人であるため，<var>1</var> を出力する．</p>
+<p>この入力例は小課題 <var>1, 2, 3, 4, 5, 6, 7</var> の制約を満たす．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>3
+1 2
+2 1
+4 3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>3
+</pre>
+<p>この入力例における家の位置関係は下図の通りとなる．</p>
+<p><img src="https://img.atcoder.jp/joisc2021/fever-ja-p4-1.png" alt="図" style="max-width:100%;height:auto;"></p>
+
+<p>例えば，国民 <var>1</var> が「東」，国民 <var>2</var> が「北」，国民 <var>3</var> が「西」の方向を選択したとする．このとき，以下のように感染が拡大していく．</p>
+<ul>
+<li>時刻 <var>0</var> において，国民 <var>1</var> のみが IOI 熱に感染している．</li>
+<li>時刻 <var>1</var> において，国民 <var>1, 2, 3</var> の座標は順に <var>(2, 2), (2, 2), (3, 3)</var> となる．国民 <var>1</var> と <var>2</var> が同じ座標に存在し，国民 <var>1</var> はその時点で感染者であるため，非感染者である国民 <var>2</var> が新たに感染する．</li>
+<li>時刻 <var>2</var> において，国民 <var>1, 2, 3</var> の座標は順に <var>(3, 2), (2, 3), (2, 3)</var> となる．国民 <var>2</var> と <var>3</var> が同じ座標に存在し，国民 <var>2</var> はその時点で感染者であるため，非感染者である国民 <var>3</var> が新たに感染する．</li>
+</ul>
+<p>このとき，最終的な感染者数は <var>3</var> 人となる．これが最大値であるため，<var>3</var> を出力する．</p>
+<p>この入力例は小課題 <var>1, 2, 4, 5, 6, 7</var> の制約を満たす．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>2
+20 20
+20 21
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>2
+</pre>
+<p>国民 <var>1</var> が「北」，国民 <var>2</var> が「南」の方向を選択した場合，以下のように感染が拡大していく．</p>
+<ul>
+<li>時刻 <var>0</var> において，国民 <var>1</var> のみが IOI 熱に感染している．</li>
+<li>時刻 <var>0.5</var> において，国民 <var>1, 2</var> 両方が座標 <var>(20, 20.5)</var> に存在する．国民 <var>1</var> はその時点で感染者であるため，非感染者である国民 <var>2</var> が新たに感染する．</li>
+</ul>
+<p>このとき，最終的な感染者数は <var>2</var> 人となる．これが最大値であるため，<var>2</var> を出力する．</p>
+<p>この入力例は小課題 <var>5, 7</var> の制約を満たす．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 4</h3>
+<pre>15
+5 6
+2 9
+12 0
+4 11
+3 12
+6 5
+0 8
+9 10
+11 13
+8 7
+13 2
+1 1
+7 14
+10 4
+14 3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 4</h3>
+<pre>9
+</pre>
+<p>この入力例は小課題 <var>2, 4, 5, 6, 7</var> の制約を満たす．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 5</h3>
+<pre>30
+275810186 246609547
+122805872 99671769
+243507947 220373844
+281305347 252104708
+237805644 214671541
+172469077 149334974
+222589229 229887956
+160653451 208404690
+241378966 211098219
+144302355 224755786
+186392385 163258282
+199129390 169928751
+294937491 265736852
+196096122 172962019
+314342944 285142305
+202720470 166337671
+157037485 133903382
+263858979 240724876
+210720220 181519581
+296402036 267201397
+186021287 183036854
+195081930 173976211
+328293029 299092390
+261195361 238061258
+323595085 294394446
+299933764 270733125
+240976723 128081418
+188501753 165367650
+277832422 248631783
+119896220 96762117
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 5</h3>
+<pre>11
+</pre>
+<p>この入力例は小課題 <var>4, 5, 6, 7</var> の制約を満たす．</p></section>
+</div>
+</span>
+</span>

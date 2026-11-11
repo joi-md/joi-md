@@ -1,0 +1,379 @@
+<span class="lang">
+<span class="lang-ja">
+<blockquote>
+<p><strong>AtCoder での提出方法</strong></p>
+<p><a href="https://img.atcoder.jp/joisc2014/kanji-dist-c4b56d084a.zip">配布ファイル</a></p>
+<ul>
+<li>C または C++ を使用し，<code>kanji.h</code> を include して，<code>Anna</code> と <code>Bruno</code> の両方を <strong>1 つのソースコード</strong>の中で実装して提出してください．このジャッジは C / C++ 以外の言語には対応していません．</li>
+<li>ランタイムエラーなどは WA として通知されます．</li>
+<li>正解ならば <code>Tap</code> を呼んだ回数によらず AC と通知されます．全体で AC となっていても，得点が <var>100</var> 点未満の場合があります．</li>
+</ul>
+</blockquote>
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>Anna と Bruno は学校で漢字の試験を受けることになった．Anna と Bruno は漢字 <var>0</var> から漢字 <var>N - 1</var> までの <var>N</var> 個の漢字と，単語 <var>0</var> から単語 <var>M - 1</var> までの <var>M</var> 個の単語を知っている．単語はふたりの知っている漢字から成っており，単語 <var>i</var> の最初の文字は漢字 <var>A_{i}</var> で，最後の文字は漢字 <var>B_{i}</var> である．すべての単語について <var>A_{i} \ne B_{i}</var> である．また，すべての単語の <var>(A_{i}, B_{i})</var> は異なる．すなわち，<var>i \ne j</var> なら <var>(A_{i}, B_{i}) \ne (A_{j}, B_{j})</var> である．また，それぞれの単語には書くための所要時間 <var>C_{i}</var> が定まっている．</p>
+<p>試験では，次のような問題が <var>Q</var> 個出題される．</p>
+<ul>
+<li>問題 <var>j</var>：漢字 <var>S_{j}</var> から始まり漢字 <var>T_{j}</var> で終わるような漢字しりとりを <var>1</var> つ答えよ．</li>
+</ul>
+<p>すべての問題について <var>S_{j} \ne T_{j}</var> である．また，すべての問題の <var>(S_{j}, T_{j})</var> は異なる．すなわち，<var>i \ne j</var> なら <var>(S_{i}, T_{i}) \ne (S_{j}, T_{j})</var> である．</p>
+<p>漢字しりとりとは，図 <var>1</var> のように単語の最後の文字と <var>1</var> つ後の単語の最初の文字が同じになるような単語の列である．漢字 <var>S_{j}</var> から始まり漢字 <var>T_{j}</var> で終わるような漢字しりとりとは，最初の単語の最初の文字が漢字 <var>S_{j}</var> で最後の単語の最後の文字が漢字 <var>T_{j}</var> であるような漢字しりとりである．</p>
+<p>報告書 <var>\to</var> 書体 <var>\to</var> 体感 <var>\to</var> 感情</p>
+<p>図 <var>1</var>: 漢字 <var>S_{j} =</var>「報」から始まり，漢字 <var>T_{j} =</var>「情」で終わるような漢字しりとりの例</p>
+<p>答えとなる漢字しりとりはいくつか考えられるが，試験時間が短いため，その中で所要時間が最短となるものを答えなければならない（複数ある場合は，その中のどれを答えてもよい）．漢字しりとりを書くための所要時間は，それに含まれるすべての単語の所要時間の合計である．</p>
+<p>試験直前になって，Bruno は単語 <var>U_{0}, U_{1}, \ldots, U_{K - 1}</var> の所要時間 <var>C_{U_{0}},C_{U_{1}}, \ldots,C_{U_{K - 1}}</var> を忘れてしまった．この <var>K</var> 個の単語は，偶然にも最初の文字が共通している．Anna はこのことを Bruno から伝えられたが，試験開始まで時間がなかったため，試験中に Bruno に情報を伝えることにした．試験中に Anna は机を叩く音で Bruno に <var>0</var> または <var>1</var> を送ることができる．Anna は <var>0</var> または <var>1</var> を送る回数をできるだけ少なくしたい．</p>
+<p>はたして Bruno は試験で満点を取ることができるだろうか？</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p>漢字の個数 <var>N</var>，単語の個数 <var>M</var> とそれぞれの単語の最初と最後の文字，問題の個数 <var>Q</var> とそれぞれの問題の情報，Bruno が所要時間を忘れてしまった単語の個数 <var>K</var> とその単語の番号が Anna と Bruno のそれぞれに与えられる．また，Anna には <var>M</var> 個すべての単語の所要時間が与えられ，Bruno には所要時間を忘れてしまった <var>K</var> 個の単語を除く <var>M - K</var> 個の単語の所要時間が与えられる．Anna が Bruno に情報を送り，Bruno が試験で満点を取るプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>実装の詳細</h3>
+<p>あなたは同じプログラミング言語で <var>2</var> つのファイルを提出しなければならない．</p>
+<p><var>1</var> つ目のファイルは <code>Anna.c</code> または <code>Anna.cpp</code> という名前である．このファイルは Anna の戦略を実装したファイルであり，以下のルーチンを実装していなければならない．</p>
+<ul>
+<li>
+<p><code>void Anna(int N, int M, int A[], int B[], long long C[], int Q, int S[], int T[], int K, int U[])</code></p>
+<p>このルーチンは，最初に <var>1</var> 回だけ呼び出される．</p>
+<ul>
+<li>引数 <code>N</code> は，漢字の個数 <var>N</var> である．</li>
+<li>引数 <code>M</code> は，単語の個数 <var>M</var> である．</li>
+<li>引数 <code>A</code> は，長さ <var>M</var> の配列であり，要素 <code>A[i]</code> は，単語 <var>i</var> の最初の文字の番号 <var>A_{i}</var> である．</li>
+<li>引数 <code>B</code> は，長さ <var>M</var> の配列であり，要素 <code>B[i]</code> は，単語 <var>i</var> の最後の文字の番号 <var>B_{i}</var> である．</li>
+<li>引数 <code>C</code> は，長さ <var>M</var> の配列であり，要素 <code>C[i]</code> は，単語 <var>i</var> を書くための所要時間 <var>C_{i}</var> である．</li>
+<li>引数 <code>Q</code> は，問題の個数 <var>Q</var> である．</li>
+<li>引数 <code>S</code> は，長さ <var>Q</var> の配列であり，要素 <code>S[j]</code> は，問題 <var>j</var> の答えの最初の文字の番号 <var>S_{j}</var> である．</li>
+<li>引数 <code>T</code> は，長さ <var>Q</var> の配列であり，要素 <code>T[j]</code> は，問題 <var>j</var> の答えの最後の文字の番号 <var>T_{j}</var> である．</li>
+<li>引数 <code>K</code> は，Bruno が所要時間を忘れてしまった単語の個数 <var>K</var> である．</li>
+<li>引数 <code>U</code> は，長さ <var>K</var> の配列であり，要素 <code>U[0]</code>, <code>U[1]</code>, . . . , <code>U[K-1]</code> は，Bruno が所要時間を忘れてしまった単語の番号 <var>U_{0}, U_{1}, \ldots, U_{K - 1}</var> である．</li>
+</ul>
+</li>
+</ul>
+<p>また，プログラム中で次のルーチンを呼び出し，Bruno に <var>0</var> または <var>1</var> を送ることができる．</p>
+<ul>
+<li>
+<p><code>void Tap(int x)</code></p>
+<p>引数 <code>x</code> は，Bruno に送る <var>0</var> または <var>1</var> である．</p>
+<ul>
+<li><code>x</code> は <var>0</var> または <var>1</var> でなければならない．これを満たさない場合，不正解 <var>[1]</var> となる．</li>
+<li><code>Tap</code> の呼び出しの回数が <var>1\,000</var> 回を超えた場合，不正解 <var>[2]</var> となる．</li>
+</ul>
+<p><code>Tap</code> の呼び出しが不正解と判定された場合，その時点でプログラムの実行は終了される．</p>
+</li>
+</ul>
+<p><var>2</var> つ目のファイルは <code>Bruno.c</code> または <code>Bruno.cpp</code> という名前である．このファイルは Bruno の戦略を実装したファイルであり，次のルーチンを実装していなければならない．</p>
+<ul>
+<li>
+<p><code>void Bruno(int N, int M, int A[], int B[], long long C[], int Q, int S[], int T[], int K, int U[], int L, int X[])</code></p>
+<p>このルーチンは，<code>Anna</code> が呼び出された後に，<var>1</var> 回だけ呼び出される．</p>
+<ul>
+<li>引数 <code>N</code>, <code>M</code>, <code>A</code>, <code>B</code>, <code>Q</code>, <code>S</code>, <code>T</code>, <code>K</code>, <code>U</code> は，<code>Anna</code> と同じである．</li>
+<li>引数 <code>C</code> は，長さ <var>N</var> の配列であり，要素 <code>C[i]</code> は，単語 <var>i</var> を書くための所要時間 <var>C_{i}</var> である．ただし，<var>i</var> が <var>U_{0}, U_{1}, \ldots, U_{K - 1}</var> のいずれかである場合，<var>-1</var> である．</li>
+<li>引数 <code>L</code> は Anna から送られてきた <var>0</var> または <var>1</var> の個数である．</li>
+<li>引数 <code>X</code> は，長さ <var>L</var> の配列であり，Anna から <var>0</var> または <var>1</var> が <code>X[0]</code>, <code>X[1]</code>, <var>\ldots</var>, <code>X[L-1]</code> の順に送られてきたことを表す．</li>
+</ul>
+</li>
+</ul>
+<p>プログラム中では，次のルーチンを呼び出す事ができる．</p>
+<ul>
+<li>
+<p><code>void Answer(int w)</code></p>
+<ul>
+<li>引数 <code>w</code> は，<var>0</var> 以上 <var>M - 1</var> 以下の整数または <var>-1</var> でなければならない．これを満たさない場合，不正解 <var>[3]</var> となる．</li>
+<li>引数 <code>w</code> が <var>-1</var> である呼び出しが <var>Q</var> 回行われた後にこのルーチンが呼び出された場合，不正解 <var>[4]</var> となる．</li>
+</ul>
+<p><code>Answer</code> の呼び出しが不正解と判定された場合，その時点でプログラムの実行は終了される．</p>
+</li>
+</ul>
+<p>プログラムはこのルーチンを用いて，<var>1</var> つの問題に答える操作を <var>Q</var> 回繰り返さなければならない．</p>
+<p><var>j + 1</var> 回目 (<var>0 \leqq j \leqq Q - 1</var>) の操作では次を行う．</p>
+<ol>
+<li>問題 <var>j</var> の答えの単語の列に対し，列の最初の単語から順に最後の単語まで，単語の番号を引数として <code>Answer(w)</code> を呼び出す．</li>
+<li>その後，<code>Answer(-1)</code> を呼び出す．</li>
+</ol>
+<p><code>Bruno</code> が呼び出された後，答えの判定が行われる．</p>
+<ul>
+<li>引数 <code>w</code> が <var>-1</var> である呼び出しの回数が <var>Q</var> 未満だった場合，不正解 <var>[5]</var> となる．</li>
+<li>ある問題の答えの列の長さが <var>0</var> だった場合，不正解 <var>[6]</var> となる．</li>
+<li>ある問題の答えで，ある単語の最後の文字と次の単語の最初の文字が異なる場合，不正解 <var>[7]</var> となる．</li>
+<li>ある問題 <var>j</var> の答えで，最初の単語の最初の文字が <var>S_{j}</var> でない，または最後の単語の最後の文字が <var>T_{j}</var> でない場合，不正解 <var>[8]</var> となる．</li>
+<li>ある問題について，答えの所要時間が最短でない場合，不正解 <var>[9]</var> となる．</li>
+</ul>
+<p>内部での使用のために他のルーチンを実装したり，グローバル変数を宣言するのは自由である．ただし，提出された <var>2</var> つのプログラムは，採点プログラムとまとめてリンクされて <var>1</var> つの実行ファイルになるので，各ファイル内のすべてのグローバル変数と内部ルーチンを <code>static</code> で宣言して，他のファイルとの干渉を避ける必要がある．採点時には，このプログラムは Anna 側，Bruno 側として <var>2</var> 個のプロセスとして実行されるので，Anna 側と Bruno 側でプログラム中のグローバル変数を共有することはできない．</p>
+<p>あなたの提出は標準入力・標準出力，あるいは他のファイルといかなる方法でもやりとりしてはならない．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>コンパイル・実行の方法</h3>
+<p>作成したプログラムをテストするための，採点プログラムのサンプルが，コンテストサイトからダウンロードできるアーカイブの中に含まれている．このアーカイブには，提出しなければならないファイルのサンプルも含まれている．</p>
+<p>採点プログラムのサンプルは <var>1</var> つのファイルからなる．そのファイルは <code>grader.c</code> または <code>grader.cpp</code> である．作成したプログラムをテストするには，次のようにコマンドを実行する．</p>
+<ul>
+<li>C の場合</li>
+</ul>
+<pre>gcc -O2 -lm grader.c Anna.c Bruno.c -o grader
+</pre>
+<ul>
+<li>C++ の場合</li>
+</ul>
+<pre>g++ -O2 grader.cpp Anna.cpp Bruno.cpp -o grader
+</pre>
+<p>コンパイルが成功すれば，<code>grader</code> という実行ファイルが生成される．</p>
+<p>実際の採点プログラムは，採点プログラムのサンプルとは異なることに注意すること．採点プログラムのサンプルは単一のプロセスとして起動する．このプログラムは，標準入力から入力を読み込み，標準出力に結果を出力する．</p>
+<h4>採点プログラムのサンプルの入力</h4>
+<p>採点プログラムのサンプルは標準入力から以下の入力を読み込む．</p>
+<ul>
+<li><var>1</var> 行目には整数 <var>N</var>，<var>M</var>，<var>Q</var>，<var>K</var> が空白を区切りとして書かれており，漢字の個数が <var>N</var>，単語の個数が <var>M</var>，問題の個数が <var>Q</var>，Bruno の忘れてしまった単語の個数が <var>K</var> であることを表す．</li>
+<li>続く <var>M</var> 行のうちの <var>i + 1</var> 行目 (<var>0 \leqq i &lt; M</var>) には整数 <var>A_{i}</var>，<var>B_{i}</var>，<var>C_{i}</var> が空白を区切りとして書かれており，単語 <var>i</var> の最初の文字が漢字 <var>A_{i}</var>，最後の文字が漢字 <var>B_{i}</var>，所要時間が <var>C_{i}</var> であることを表す．</li>
+<li>続く <var>Q</var> 行のうちの <var>j + 1</var> 行目 (<var>0 \leqq j &lt; Q</var>) には整数 <var>S_{j}</var>，<var>T_{j}</var>，<var>Z_{j}</var> が空白を区切りとして書かれており，問題 <var>j</var> の答えの最初の文字が漢字 <var>S_{j}</var>，最後の文字が漢字 <var>T_{j}</var>，最短の所要時間が <var>Z_{j}</var> であることを表す．</li>
+<li>続く <var>K</var> 行のうちの <var>k + 1</var> 行目 (<var>0 \leqq k &lt; K</var>) には整数 <var>U_{k}</var> が書かれており，Bruno が所要時間を忘れてしまった単語が単語 <var>U_{0}, U_{1}, \ldots, U_{K - 1}</var> であることを表す．</li>
+</ul>
+<h4>採点プログラムのサンプルの出力</h4>
+<p>プログラムの実行が正常に終了した場合，採点プログラムのサンプルは標準出力へ以下の情報を <var>1</var> 行で出力する (引用符は実際には出力されない)．</p>
+<ul>
+<li>正解の場合，<code>Tap</code> が呼び出された回数が “<code>Accepted : L = 100</code>” のように出力される．</li>
+<li>不正解の場合，不正解の種類が “<code>Wrong Answer [1]</code>” のように出力される．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<p>すべての入力データは以下の条件を満たす．</p>
+<ul>
+<li><var>2 \leqq N \leqq 300</var>．</li>
+<li><var>1 \leqq M \leqq N \times (N - 1)</var>．</li>
+<li><var>0 \leqq A_{i} &lt; N</var> (<var>0 \leqq i &lt; M</var>)．</li>
+<li><var>0 \leqq B_{i} &lt; N</var> (<var>0 \leqq i &lt; M</var>)．</li>
+<li><var>A_{i} \ne B_{i}</var> (<var>0 \leqq i &lt; M</var>)．</li>
+<li><var>(A_{i}, B_{i}) \ne (A_{j}, B_{j})</var> (<var>0 \leqq i &lt; j &lt; M</var>)．</li>
+<li><var>1 \leqq C_{i} \leqq 10^{16} (&lt; 2^{54})</var> (<var>0 \leqq i &lt; M</var>)．</li>
+<li><var>1 \leqq Q \leqq 60</var>．</li>
+<li><var>0 \leqq S_{j} &lt; N</var> (<var>0 \leqq j &lt; Q</var>)．</li>
+<li><var>0 \leqq T_{j} &lt; N</var> (<var>0 \leqq j &lt; Q</var>)．</li>
+<li><var>S_{j} \ne T_{j}</var> (<var>0 \leqq j &lt; Q</var>)．</li>
+<li><var>(S_{i}, T_{i}) \ne (S_{j}, T_{j})</var> (<var>0 \leqq i &lt; j &lt; Q</var>)．</li>
+<li>漢字 <var>S_{j}</var> から始まり漢字 <var>T_{j}</var> で終わる漢字しりとりが存在する (<var>0 \leqq j &lt; Q</var>)．</li>
+<li><var>1 \leqq K \leqq 5</var>．</li>
+<li><var>0 \leqq U_{k} &lt; M</var> (<var>0 \leqq k &lt; K</var>)．</li>
+<li><var>U_{i} \ne U_{j}</var> (<var>0 \leqq i &lt; j &lt; K</var>)．</li>
+<li>Bruno が忘れてしまった単語の最初の文字は共通である．すなわち <var>A_{U_{0}} = A_{U_{1}} = \cdot \cdot \cdot = A_{U_{K - 1}}</var>．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<h4>小課題 1 [<var>10</var> 点]</h4>
+<ul>
+<li><var>Q \leqq 10</var> を満たす．</li>
+<li>それぞれの問題について，使う単語が <var>10</var> 個以下であるような答えが存在する．</li>
+<li>Anna は <var>1\,000</var> 回までしか <code>Tap</code> を呼び出すことはできない．</li>
+</ul>
+<h4>小課題 2 [<var>22</var> 点]</h4>
+<ul>
+<li>Anna は <var>180</var> 回までしか <code>Tap</code> を呼び出すことはできない．</li>
+</ul>
+<h4>小課題 3 [<var>8</var> 点]</h4>
+<ul>
+<li>Anna は <var>160</var> 回までしか <code>Tap</code> を呼び出すことはできない．</li>
+</ul>
+<h4>小課題 4 [<var>40</var> 点]</h4>
+<ul>
+<li>Anna は <var>90</var> 回までしか <code>Tap</code> を呼び出すことはできない．</li>
+</ul>
+<h4>小課題 5 [<var>20</var> 点]</h4>
+<ul>
+<li>
+<p><code>Tap</code> の呼び出し回数のこの小課題の全てのテストケースにおける最大値を <var>L</var> とおく．この小課題の得点は</p>
+<ul>
+<li><var>L \leqq 64</var> のとき，<var>20</var> 点，</li>
+<li><var>64 &lt; L &lt; 90</var> のとき，<var>\left\lfloor\left(\frac{90 - L}{90 - 64}\right)^2 \times 20\right\rfloor</var> 点（ただし，<var>\lfloor x\rfloor</var> とは <var>x</var> 以下の最大の整数を表す），</li>
+<li><var>L \geqq 90</var> のとき，<var>0</var> 点</li>
+</ul>
+<p>で与えられる．</p>
+</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>やりとりの例</h3>
+<p>採点プログラムのサンプルが読み込む入力の例と，それに対応するルーチンの呼び出しの例を以下に示す．</p>
+<h4>入力例</h4>
+<pre>4 5 3 2
+2 1 10
+0 2 20
+3 1 30
+0 1 40
+3 0 50
+3 0 50
+3 1 30
+0 1 30
+1
+3
+</pre>
+<h4>ルーチンの呼び出しの例</h4>
+<div class="joisc2014-kanji-ja-table">
+<table>
+<thead>
+<tr>
+<th>Anna 側</th>
+<th>Bruno 側</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Anna(...)</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Tap(0)</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Tap(0)</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Tap(1)</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Tap(0)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Bruno(...)</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Answer(4)</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Answer(-1)</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Answer(2)</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Answer(-1)</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Answer(1)</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Answer(0)</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Answer(-1)</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>この例での <code>Tap</code> の呼び出しは，必ずしも意味のある呼び出しとは限らないことに注意せよ．このとき， <code>Anna(...)</code> と <code>Bruno(...)</code> に渡される引数は次の通りである．</p>
+<div class="joisc2014-kanji-ja-table">
+<table>
+<thead>
+<tr>
+<th>引数</th>
+<th><code>Anna(...)</code></th>
+<th><code>Bruno(...)</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>N</code></td>
+<td><var>4</var></td>
+<td><var>4</var></td>
+</tr>
+<tr>
+<td><code>M</code></td>
+<td><var>5</var></td>
+<td><var>5</var></td>
+</tr>
+<tr>
+<td><code>A</code></td>
+<td><var>\lbrace  2, 0, 3, 0, 3\rbrace</var></td>
+<td><var>\lbrace  2, 0, 3, 0, 3\rbrace</var></td>
+</tr>
+<tr>
+<td><code>B</code></td>
+<td><var>\lbrace  1, 2, 1, 1, 0\rbrace</var></td>
+<td><var>\lbrace  1, 2, 1, 1, 0\rbrace</var></td>
+</tr>
+<tr>
+<td><code>C</code></td>
+<td><var>\lbrace  10, 20, 30, 40, 50\rbrace</var></td>
+<td><var>\lbrace  10, -1, 30, -1, 50\rbrace</var></td>
+</tr>
+<tr>
+<td><code>Q</code></td>
+<td><var>3</var></td>
+<td><var>3</var></td>
+</tr>
+<tr>
+<td><code>S</code></td>
+<td><var>\lbrace  3, 3, 0\rbrace</var></td>
+<td><var>\lbrace  3, 3, 0\rbrace</var></td>
+</tr>
+<tr>
+<td><code>T</code></td>
+<td><var>\lbrace  0, 1, 1\rbrace</var></td>
+<td><var>\lbrace  0, 1, 1\rbrace</var></td>
+</tr>
+<tr>
+<td><code>K</code></td>
+<td><var>2</var></td>
+<td><var>2</var></td>
+</tr>
+<tr>
+<td><code>U</code></td>
+<td><var>\lbrace  1, 3\rbrace</var></td>
+<td><var>\lbrace  1, 3\rbrace</var></td>
+</tr>
+<tr>
+<td><code>L</code></td>
+<td>—</td>
+<td><var>4</var></td>
+</tr>
+<tr>
+<td><code>X</code></td>
+<td>—</td>
+<td><var>\lbrace  0, 0, 1, 0\rbrace</var></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><code>C</code> の要素 <code>C[1]</code> と要素 <code>C[3]</code> に注意すること．</p>
+<style>
+.joisc2014-kanji-ja-table { max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisc2014-kanji-ja-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisc2014-kanji-ja-table th,.joisc2014-kanji-ja-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisc2014-kanji-ja-table th { background:#f5f5f5; }
+.joisc2014-kanji-ja-table code { white-space:nowrap; }
+</style></section>
+</div>
+</span>
+</span>

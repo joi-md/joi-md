@@ -1,0 +1,205 @@
+<span class="lang">
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>JOI 国は平面上に存在する．<var>N</var> 個の村があり，村には <var>1</var> から <var>N</var> までの番号がついている．村 <var>i</var> は座標 <var>(i, 0)</var> に存在する点とみなす．現在，JOI 国では村を接続する通信回線を整備しようとしている．障害に備え，通信回線は二系統整備される予定である．これらを系統 <var>1</var> と系統 <var>2</var> と呼ぶ．</p>
+<p>系統 <var>k</var> には，ハブが <var>M_{k}</var> 個存在し，回線が <var>N + M_{k} - 1</var> 本ある．系統 <var>k</var> のハブには <var>1</var> から <var>M_{k}</var> までの番号がついており，ハブ <var>j</var> は座標 <var>(X_{k j}, Y_{k j})</var> に存在する点とみなす．系統 <var>k</var> の各回線は，村と系統 <var>k</var> のハブ，または系統 <var>k</var> のハブ同士を接続する．各回線は，両端を結ぶ線分とみなす．任意の <var>2</var> つの回線は端点同士以外で共有点を持たないようになっていることが保証されている．系統 <var>1</var> のハブ <var>j</var> の <var>y</var> 座標 <var>Y_{1j}</var> は <var>0</var> より大きい．また，系統 <var>2</var> のハブ <var>j</var> の <var>y</var> 座標 <var>Y_{2j}</var> は <var>0</var> より小さい．</p>
+<p>ある <var>2</var> つの地点が通信できるとは，それらの地点が回線により間接的に接続されていることとする．すなわち，回線に沿った移動を繰り返して，片方の地点からもう片方の地点へ移動できるならば，その <var>2</var> つの地点は通信ができる．系統 <var>1</var> の回線のみを考えても，系統 <var>2</var> の回線のみを考えても，任意の <var>2</var> つの村及びハブは通信可能である．</p>
+<p>下図は通信回線の例である．灰色の円は系統 <var>1</var> のハブ，黒い円は系統 <var>2</var> のハブ，白い円は村を表す．</p>
+<p><img src="https://img.atcoder.jp/joisc2013-day1/communication-ja-p8-group1.png" alt="図" style="max-width:100%;height:auto;"></p>
+
+<p>図 <var>1</var>: 通信回線の例 <var>1</var></p>
+<p>図 <var>2</var>: 通信回線の例 <var>2</var></p>
+<p>計画を検討するにあたって，外部からの攻撃で，どの程度攻撃を受けても通信が可能であるかを調べたい．外部からの攻撃は，<var>2</var> つの数 <var>A, B</var> (<var>A \geqq 0</var>，<var>B \leqq 0</var>) により表現され，<var>y</var> 座標が <var>A</var> より大きい全てのハブと <var>y</var> 座標が <var>B</var> より小さい全てのハブを破壊するものと想定している．ハブが破壊されると，そこを経由した通信は行えなくなる．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p>村や各系統の情報が与えられる．また，<var>Q</var> 個のクエリが与えられる．各クエリ <var>q</var> は <var>1</var> つの整数 <var>A_{q}</var> で表され，<var>y</var> 座標が <var>A_{q}</var> より大きい全てのハブが破壊される場合を意味する．各クエリに対し，加えて <var>y</var> 座標がいくつ未満のハブまでであれば破壊されても全村間の通信が可能であるかを答えよ．すなわち，整数 <var>B_{q}</var> であって，<var>y</var> 座標が <var>A_{q}</var> より大きい全てのハブと <var>y</var> 座標が <var>B_{q}</var> より小さい全てのハブを破壊しても全村間の通信が可能であるような最大の <var>B_{q}</var> (<var>B_{q} \leqq 0</var>) を答えよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>標準入力から以下の入力を読み込め．</p>
+<ul>
+<li><var>1</var> 行目には <var>4</var> つの整数 <var>N, M_{1}, M_{2}, Q</var> が空白を区切りとして書かれている．</li>
+<li>
+<p>続く <var>M_{1} + (N + M_{1} - 1)</var> 行には，系統 <var>1</var> の情報が書かれている．</p>
+<ul>
+<li>最初の <var>M_{1}</var> 行の <var>i</var> 行目 (<var>1 \leqq i \leqq M_{1}</var>) には，<var>2</var> つの整数 <var>X_{1i}, Y_{1i}</var> が書かれている．</li>
+<li>
+<p>続く <var>N + M_{1} - 1</var> 行の <var>i</var> 行目 (<var>1 \leqq i \leqq N + M_{1} - 1</var>) には，回線 <var>i</var> の情報を表す <var>3</var> つの整数 <var>T_{1i},C_{1i}, D_{1i}</var> が書かれている (<var>T_{1i} = 1, 2</var>)．</p>
+<ul>
+<li><var>T_{1i}</var> が <var>1</var> のとき，回線 <var>i</var> は村 <var>C_{1i}</var> とハブ <var>D_{1i}</var> を接続する (<var>1 \leqq C_{1i} \leqq N</var> かつ <var>1 \leqq D_{1i} \leqq M_{1}</var>)．</li>
+<li><var>T_{1i}</var> が <var>2</var> のとき，回線 <var>i</var> はハブ <var>C_{1i}</var> とハブ <var>D_{1i}</var> を接続する (<var>1 \leqq C_{1i}, D_{1i} \leqq M_{1}</var> かつ <var>C_{1i} \ne D_{1i}</var>)．</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>続く <var>M_{2} + (N + M_{2} - 1)</var> 行には，系統 <var>2</var> の情報が書かれている．</p>
+<ul>
+<li>最初の <var>M_{2}</var> 行の <var>i</var> 行目 (<var>1 \leqq i \leqq M_{2}</var>) には，<var>2</var> つの整数 <var>X_{2i}, Y_{2i}</var> が書かれている．</li>
+<li>
+<p>続く <var>N + M_{2} - 1</var> 行の <var>i</var> 行目 (<var>1 \leqq i \leqq N + M_{2} - 1</var>) には，回線 <var>i</var> の情報を表す <var>3</var> つの整数 <var>T_{2i},C_{2i}, D_{2i}</var> が書かれている (<var>T_{2i} = 1, 2</var>)．</p>
+<ul>
+<li><var>T_{2i}</var> が <var>1</var> のとき，回線 <var>i</var> は村 <var>C_{2i}</var> とハブ <var>D_{2i}</var> を接続する (<var>1 \leqq C_{2i} \leqq N</var> かつ <var>1 \leqq D_{2i} \leqq M_{2}</var>)．</li>
+<li><var>T_{2i}</var> が <var>2</var> のとき，回線 <var>i</var> はハブ <var>C_{2i}</var> とハブ <var>D_{2i}</var> を接続する (<var>1 \leqq C_{2i}, D_{2i} \leqq M_{2}</var> かつ <var>C_{2i} \ne D_{2i}</var>)．</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>続く <var>Q</var> 行の <var>i</var> 行目 (<var>1 \leqq i \leqq Q</var>) には <var>1</var> つの整数 <var>A_{i}</var> が書かれている．</p>
+</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に <var>Q</var> 行出力せよ．<var>i</var> 行目 (<var>1 \leqq i \leqq Q</var>) には，クエリ <var>i</var> への答えを表す整数 <var>B_{i}</var> を出力せよ．</p>
+<p>答えが <var>0</var> の場合，<code>-0</code> と出力してはならない．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<p>すべての入力データは以下の条件を満たす．</p>
+<ul>
+<li><var>1 \leqq N, M_{1}, M_{2} \leqq 100\,000</var>.</li>
+<li><var>-1\,000\,000\,000 \leqq X_{1i} \leqq 1\,000\,000\,000</var> (<var>1 \leqq i \leqq M_{1}</var>).</li>
+<li><var>-1\,000\,000\,000 \leqq X_{2i} \leqq 1\,000\,000\,000</var> (<var>1 \leqq i \leqq M_{2}</var>).</li>
+<li><var>1 \leqq Y_{1i} \leqq 1\,000\,000\,000</var> (<var>1 \leqq i \leqq M_{1}</var>).</li>
+<li><var>-1\,000\,000\,000 \leqq Y_{2i} \leqq -1</var> (<var>1 \leqq i \leqq M_{2}</var>).</li>
+<li><var>X_{1i} \ne X_{1j}</var> または <var>Y_{1i} \ne Y_{1j}</var> (<var>1 \leqq i, j \leqq M_{1}</var> かつ <var>i \ne j</var>).</li>
+<li><var>X_{2i} \ne X_{2j}</var> または <var>Y_{2i} \ne Y_{2j}</var> (<var>1 \leqq i, j \leqq M_{2}</var> かつ <var>i \ne j</var>).</li>
+<li><var>1 \leqq Q \leqq 100\,000</var>.</li>
+<li><var>0 \leqq A_{i} \leqq 1\,000\,000\,000</var> (<var>1 \leqq i \leqq Q</var>).</li>
+<li>任意の <var>2</var> つの回線は端点同士以外で共有点を持たない．</li>
+<li>系統 <var>1</var> の回線のみを考えても，系統 <var>2</var> の回線のみを考えても，任意の <var>2</var> つの村及びハブは通信可能である．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<h4>小課題 1 [<var>20</var> 点]</h4>
+<p>以下の条件を満たす．</p>
+<ul>
+<li><var>N, M_{1}, M_{2} \leqq 1\,000</var>.</li>
+<li><var>Q \leqq 1\,000</var>.</li>
+</ul>
+<h4>小課題 2 [<var>80</var> 点]</h4>
+<p>追加の制限はない．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入出力例</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>4 3 3 1
+1 1
+3 2
+2 3
+1 1 1
+1 2 1
+1 3 2
+1 4 2
+2 1 3
+2 2 3
+3 -1
+2 -2
+1 -3
+1 1 3
+1 2 2
+1 3 1
+1 4 1
+2 1 2
+2 2 3
+2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>-2
+</pre>
+<p>この入力例は，問題文中の例 <var>1</var> に対応している．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>6 4 5 4
+2 1
+4 1
+3 3
+5 2
+1 1 1
+1 2 1
+1 3 2
+1 4 2
+2 2 4
+1 5 4
+1 6 4
+2 1 3
+2 4 3
+3 -3
+5 -1
+2 -2
+2 -1
+4 -2
+1 2 4
+1 3 4
+1 1 4
+2 1 3
+1 5 2
+1 6 2
+1 4 5
+2 2 5
+1 3 1
+2 5 1
+3
+1
+2
+0
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>0
+-2
+-1
+-3
+</pre>
+<p>この入力例は，問題文中の例 <var>2</var> に対応している．</p></section>
+</div>
+</span>
+</span>

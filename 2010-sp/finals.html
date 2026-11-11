@@ -1,0 +1,113 @@
+<span class="lang">
+<span class="lang-ja">
+<blockquote>
+<p><strong>AtCoder での提出方法</strong></p>
+<p>入力は標準入力から読み込み，出力は標準出力に行うこと．</p>
+</blockquote>
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>JOI 国には <var>N</var> 個の都市があり，<var>1</var> から <var>N</var> の番号がついている．また，<var>M</var> 本の道路がある．全ての道路は異なる <var>2</var> つの都市を結び，双方向に通行可能である．JOI 国の任意の <var>2</var> つの都市は，道路をたどって片方からもう片方へ到達可能である．JOI 国の道路は全て有料道路であり，道路ごとに通行料金が決まっている．</p>
+<p>JOI 国でも情報オリンピックは開催される．JOI 国の情報オリンピックの本選には，各都市の代表選手が出場する．本選をどの都市で開催するかを決定し，選手をそれらの都市に集めるためにかかる金額を見積もっておく必要がある．本選は <var>K</var> 個の都市で開催し，本選の際には全ての選手をそれらのいずれかの都市に移動させなければならない．<var>1</var> つの都市に集まる選手の人数に制限はない．</p>
+<p>本選を開催する都市に選手を集める際には，道路を利用する．通行料金が <var>c</var> の道路は，一度に何人で通行しても料金は <var>c</var> である．そこで，選手を移動させる順番を工夫することによって，複数の選手を一度に通行させるようにすれば，料金を節約することができる．</p>
+<p>本選を開催する都市を決定し，選手を本選会場に集める際にかかる通行料金の和を最小化したい．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p><var>N,M,K</var> と全ての道路の情報が与えられたとき，選手を本選会場に集める際にかかる通行料金の和の最小値を計算するプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>1 \leqq N \leqq 100{,}000</var>：都市の数．</li>
+<li><var>1 \leqq M \leqq 100{,}000</var>：道路の数．</li>
+<li><var>1 \leqq K \leqq N</var>：本選を開催する都市の個数．</li>
+<li><var>1 \leqq A_i &lt; B_i \leqq N</var>：道路 <var>i</var> の結ぶ <var>2</var> つの都市．</li>
+<li><var>1 \leqq C_i \leqq 100</var>：道路 <var>i</var> の通行料金．</li>
+</ul>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>標準入力から以下の入力を読み込め．</p>
+<ul>
+<li><var>1</var> 行目には整数 <var>N,M,K</var> が空白を区切りとして書かれている．</li>
+<li>続く <var>M</var> 行には，<var>1</var> 行につき <var>1</var> つの道路について記述されている．これらの行のうちの <var>i</var> 行目は道路 <var>i</var> について記述しており，整数 <var>A_{i},B_{i},C_{i}</var> が空白を区切りとして書かれている．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に選手を本選会場に集める際にかかる金額の最小値を表す <var>1</var> つの整数を出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>採点基準</h3>
+<p><var>40</var> 点分のテストグループにおいて，<var>N \leqq 1{,}000</var> である．</p>
+<p><var>40</var> 点分のテストグループにおいて，<var>K = 1</var> である．</p>
+<p><var>20</var> 点分のテストグループは，これら <var>2</var> つの条件の両方をみたす．</p>
+<p><var>60</var> 点分のテストグループは，これら <var>2</var> つの条件の少なくとも一方をみたす．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>4 3 1
+1 2 2
+2 3 9
+2 4 5
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>16
+</pre>
+<p>例えば，都市 <var>1</var> で本選を開催するとし，まず都市 <var>4</var> の代表選手を都市 <var>2</var> へ移動させ，次に都市 <var>3</var> の代表選手を都市 <var>2</var> へ移動させ，都市 <var>2</var> に居る <var>3</var> 人の選手を都市 <var>1</var> へ移動させればよい．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>5 6 2
+1 2 5
+1 3 3
+2 3 4
+2 5 7
+3 4 6
+4 5 5
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>12
+</pre>
+<p>例えば，都市 <var>3</var> と都市 <var>4</var> で本選を開催するとし，都市 <var>1, 2</var> の代表選手は都市 <var>3</var> へ，都市 <var>5</var> の代表選手は都市 <var>4</var> へ集めればよい．</p></section>
+</div>
+</span>
+</span>

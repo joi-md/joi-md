@@ -1,0 +1,569 @@
+<span class="lang">
+<span class="lang-en">
+<blockquote>
+<p><strong>Submission on AtCoder</strong></p>
+<p>On AtCoder, use standard input and output. Implement a <code>main</code> function instead of <code>calculate_necessary_time</code>, using the format described under “Input for the Grader” and “Output of the Grader” in the statement.</p>
+<p>Input format:</p>
+<pre><var>N</var> <var>M</var> <var>S</var> <var>Q</var>
+<var>A_0</var> <var>B_0</var> <var>L_0</var> <var>C_0</var>
+<var>\vdots</var>
+<var>A_{M - 1}</var> <var>B_{M - 1}</var> <var>L_{M - 1}</var> <var>C_{M - 1}</var>
+<var>U_0</var> <var>V_0</var> <var>T_0</var>
+<var>\vdots</var>
+<var>U_{Q - 1}</var> <var>V_{Q - 1}</var> <var>T_{Q - 1}</var>
+</pre>
+<p>Print <var>Q</var> lines. Line <var>k+1</var> (<var>0 \le k \le Q - 1</var>) must contain <code>answer[k]</code>.</p>
+<p><a href="https://www2.ioi-jp.org/camp/2021/2021-sp-tasks/day2/escape_route-dist.zip">Distributed files</a></p>
+</blockquote>
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>In IOI Kingdom, they use Byou as the unit of time. A day in IOI Kingdom is divided into <var>S</var> units of time. The moment <var>x</var> Byous (<var>0 \le x &lt; S</var> ) after the beginning of a day is called time <var>x</var>. The IOI Kingdom consists of <var>N</var> cities, numbered from 0 to <var>N - 1</var>. There are <var>M</var> roads connecting cities, numbered from 0 to <var>M - 1</var>. You can travel from any city to any other city by passing through some of the roads. The road <var>i</var> (<var>0 \le i \le M - 1</var>) connects the city <var>A_{i}</var> and the city <var>B_{i}</var> bidirectionally. It takes <var>L_{i}</var> Byous to pass through the road <var>i</var> from an endpoint to the other endpoint. Every day, a strict security inspection is performed on the road <var>i</var> from time <var>C_{i}</var> to the end of the day.</p>
+<p>JOI Group is one of the secret sects in IOI Kingdom. Since it is a secret sect, the members of JOI Group is strictly confidential. This means members of JOI Group should not encounter a strict security inspection performed every day. Therefore, if a member of JOI Group wants to pass through the road <var>i</var>, the member should depart from either the city <var>A_{i}</var> or the city <var>B_{i}</var> at time <var>x</var> and arrive at the other city at time <var>x + L_{i}</var> for some <var>0 \le x \le C_{i} - L_{i}</var>. Since a strict security inspection is not performed in the cities, a member of JOI Group may be at in either the city <var>A_{i}</var> or the city <var>B_{i}</var> when a strict security inspection is performed on the road <var>i</var>.</p>
+<p>There are <var>Q</var> members in JOI Group, numbered from 0 to <var>Q - 1</var>. The member <var>j</var> (<var>0 \le j \le Q - 1</var>) departs from the city <var>U_{j}</var> at time <var>T_{j}</var> on some day and starts traveling to the city <var>V_{j}</var>. Members are allowed to stay in cities on the way for a while. It may take multiple days for the member <var>j</var> to arrive at the city <var>V_{j}</var>.</p>
+<p>Write a program which, given the information of the cities and the roads of IOI Kingdom, the information of strict security inspections, and the information of the members of JOI Group, calculates for each <var>j</var> (<var>0 \le j \le Q - 1</var>) the minimum amount of time required for the member <var>j</var> to travel from the city <var>U_{j}</var> to the city <var>V_{j}</var>.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Implementation Details</h3>
+<p>In order to speed up input and output, this task is graded with <code>grader</code>.</p>
+<p>You need to submit one file. The name of the file you submit is <code>escape_route.cpp</code>. It should implement the following function. The program should include <code>escape_route.h</code> using the preprocessing directive <code>#include</code>.</p>
+<ul>
+<li><code>std::vector&lt;long long&gt; calculate_necessary_time( int N, int M, long long S, int Q, std::vector&lt;int&gt; A, std::vector&lt;int&gt; B, std::vector&lt;long long&gt; L, std::vector&lt;long long&gt; C, std::vector&lt;int&gt; U, std::vector&lt;int&gt; V, std::vector&lt;long long&gt; T)</code>
+    This function is called exactly once for each test case.<ul>
+<li>The parameter <code>N</code> is the number of cities in IOI Kingdom.</li>
+<li>The parameter <code>M</code> is the number of roads in IOI Kingdom.</li>
+<li>The parameter <code>S</code> means a day in IOI Kingdom is <var>S</var> Byous.</li>
+<li>The parameter <code>Q</code> is the number of members of JOI Group.</li>
+<li>The parameters <code>A</code>，<code>B</code>，<code>L</code>，<code>C</code> are arrays of length <var>M</var>. They mean the road <var>i</var> (<var>0 \le i \le M - 1</var>) connects the city <code>A[i]</code> and the city <code>B[i]</code>, it takes <code>L[i]</code> Byous to pass through the road <var>i</var>, and a strict security inspection on the road <var>i</var> starts at time <code>C[i]</code>.</li>
+<li>The parameters <code>U</code>，<code>V</code>，<code>T</code> are arrays of length <var>Q</var>. They mean the member <var>j</var> (<var>0 \le j \le Q - 1</var>) departs from the city <code>U[j]</code> at time <code>T[j]</code> and starts traveling to the city <code>V[j]</code>.</li>
+<li>This function should return an array <code>answer</code> of <code>long long</code> type and of length <var>Q</var>. It means, for each <var>0 \le j \le Q - 1</var>, the minimum amount of time required for the member <var>j</var> to travel from the city <code>U[j]</code> to the city <code>V[j]</code> is <code>answer[j]</code> Byous.</li>
+</ul>
+</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Important Notices</h3>
+<ul>
+<li>Your program must not use the standard input and the standard output. Your program must not communicate with other files by any methods. However, your program may output debugging information to the standard error.</li>
+<li>The grader does not check the format of input. If the format of input is incorrect, the behavior of the grader is not guaranteed.</li>
+<li>If the length of the array returned by <code>calculate_necessary_time</code> is different from <var>Q</var> or the array contains negative integers, the behavior of the grader is not guaranteed.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Compilation and Test Run</h3>
+<p>You can download an archive file from the contest webpage which contains the grader to test your program. The archive file also contains a sample source file of your program.</p>
+<p>The grader is the file <code>grader.cpp</code>. In order to test your program, put <code>grader.cpp</code>，<code>escape_route.cpp</code>， <code>escape_route.h</code> in the same directory, and run the following command to compile your programs.</p>
+<pre>g++ -std=gnu++17 -O2 -fsigned-char -o grader grader.cpp escape_route.cpp
+</pre>
+<p>When the compilation succeeds, the executable file <code>grader</code> is generated.</p>
+<p>In this task, the grader available from the contest webpage is the same as the actual grader used for grading in CMS.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Input for the Grader</h3>
+<p>The grader reads the following data from the standard input. Given values are all integers.</p>
+<pre><var>N</var> <var>M</var> <var>S</var> <var>Q</var>
+<var>A_{0}</var> <var>B_{0}</var> <var>L_{0}</var> <var>C_{0}</var>
+<var>\vdots</var>
+<var>A_{M - 1}</var> <var>B_{M - 1}</var> <var>L_{M - 1}</var> <var>C_{M - 1}</var>
+<var>U_{0}</var> <var>V_{0}</var> <var>T_{0}</var>
+<var>\vdots</var>
+<var>U_{Q - 1}</var> <var>V_{Q - 1}</var> <var>T_{Q - 1}</var>
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Output of the Grader</h3>
+<p>The grader outputs <var>Q</var> lines to the standard output. The <var>(k + 1)</var>-th line (<var>0 \le k \le Q - 1</var>) of output contains <code>answer[k]</code>.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li><var>2 \le N \le 90</var>.</li>
+<li><var>N - 1\le M\le\dfrac{N(N - 1)}{2}</var>.</li>
+<li><var>2 \le S \le 1\,000\,000\,000\,000\,000 = 10^{15}</var>.</li>
+<li><var>1 \le Q \le 3\,000\,000</var>.</li>
+<li><var>0 \le A_{i} \le N - 1</var> (<var>0 \le i \le M - 1</var>).</li>
+<li><var>0 \le B_{i} \le N - 1</var> (<var>0 \le i \le M - 1</var>).</li>
+<li><var>A_{i} \ne B_{i}</var> (<var>0 \le i \le M - 1</var>).</li>
+<li><var>(A_{i}, B_{i}) \ne (A_{k}, B_{k})</var>, <var>(A_{i}, B_{i}) \ne (B_{k}, A_{k})</var> (<var>0 \le i &lt; k \le M - 1</var>).</li>
+<li><var>1 \le L_{i} &lt; S</var> (<var>0 \le i \le M - 1</var>).</li>
+<li><var>L_{i} \le C_{i} &lt; S</var> (<var>0 \le i \le M - 1</var>).</li>
+<li>You can travel from any city to any other city by passing through some of the roads.</li>
+<li><var>0 \le U_{j} \le N - 1</var> (<var>0 \le j \le Q - 1</var>).</li>
+<li><var>0 \le V_{j} \le N - 1</var> (<var>0 \le j \le Q - 1</var>).</li>
+<li><var>U_{j} \ne V_{j}</var> (<var>0 \le j \le Q - 1</var>).</li>
+<li><var>0 \le T_{j} &lt; S</var> (<var>0 \le j \le Q - 1</var>).</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li>(<var>5</var> points) <var>N \le 40</var>, <var>Q \le 1\,000</var>,</li>
+<li>(<var>20</var> points) <var>N \le 40</var>, <var>U_{j} = 0</var> (<var>0 \le j \le Q - 1</var>).</li>
+<li>(<var>10</var> points) <var>N \le 40</var>.</li>
+<li>(<var>35</var> points) <var>N \le 60</var>.</li>
+<li>(<var>30</var> points) No additional constraints.</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input and Output</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>4 5 20 6
+0 1 3 19
+0 2 2 8
+1 2 4 15
+1 3 5 14
+2 3 1 18
+0 3 5
+0 3 7
+0 3 9
+2 0 6
+3 1 10
+1 2 15
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>3
+8
+14
+2
+5
+7
+</pre>
+<p>This sample input satisfies the constraints of Subtasks 1, 3, 4, 5.</p>
+<p>At time 5, the member 0 starts traveling from the city 0 to the city 3. If the member 0 travels in the following way, it takes 3 Byous.</p>
+<ul>
+<li>Using the road 1, the member 0 departs from the city 0 at time 5, and arrives at the city 2 at time 7.</li>
+<li>Using the road 4, the member 0 departs from the city 2 at time 7, and arrives at the city 3 at time 8.</li>
+</ul>
+<p>Since this is the minimum value, we have <var>\texttt{answer}[0] = 3</var>.</p>
+<p>At time 7, the member 1 starts traveling from the city 0 to the city 3. If the member 1 travels in the following way, it takes 8 Byous.</p>
+<ul>
+<li>Using the road 0, the member 1 departs from the city 0 at time 7, and arrives at the city 1 at time 10.</li>
+<li>Using the road 2, the member 1 departs from the city 1 at time 10, and arrives at the city 2 at time 14.</li>
+<li>Using the road 4, the member 1 departs from the city 2 at time 14, and arrives at the city 3 at time 15.</li>
+</ul>
+<p>Since this is the minimum value, we have <var>\texttt{answer}[1] = 8</var>.</p>
+<p>At time 9, the member 2 starts traveling from the city 0 to the city 3. If the member 2 travels in the following way, the member 2 arrives at the city 3 at time 3 on the next day. In total, it takes 14 Byous.</p>
+<ul>
+<li>The member 2 stays in the city 0 until time 0 on the next day.</li>
+<li>Using the road 1, the member 2 departs from the city 0 at time 0, and arrives at the city 2 at time 2.</li>
+<li>Using the road 4, the member 2 departs from the city 2 at time 2, and arrives at the city 3 at time 3.</li>
+</ul>
+<p>Since this is the minimum value, we have <var>\texttt{answer}[2] = 14</var>.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>6 10 100 9
+5 3 4 29
+1 0 6 26
+0 4 2 7
+0 5 18 18
+2 0 79 82
+3 4 35 46
+1 2 15 57
+2 4 3 6
+4 1 21 83
+3 2 47 53
+0 2 63
+0 4 70
+0 4 98
+0 5 25
+0 5 19
+0 4 96
+0 5 2
+0 3 62
+0 3 83
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>42
+32
+4
+93
+99
+6
+102
+60
+39
+</pre>
+<p>This sample input satisfies the constraints of all Subtasks.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 3</h3>
+<pre>8 12 1000000000000000 13
+2 0 4451698272827 120985696255786
+6 5 78520421713825 342652131468508
+2 1 185377268405175 382583457603811
+0 4 54350742205838 133614919589507
+7 0 68486247989149 651590905094148
+0 6 85177550834829 299184420663240
+5 2 442329739732459 926608308293721
+3 7 78020232822359 913548478810253
+1 3 267796317244889 687571310475622
+5 4 90590208828121 910324397566584
+5 7 8414633059584 17796117322043
+4 6 45682367792138 204548471584556
+7 2 44779065000162
+3 5 79376234836942
+4 7 305556687070759
+4 3 927935834343174
+5 1 663284649258985
+2 5 967584209777344
+5 2 963749709374595
+7 4 484562389171308
+1 5 446160773830045
+6 4 801452311055604
+3 1 744524289545354
+0 6 467418420721777
+5 6 371181379240653
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 3</h3>
+<pre>72937946261976
+929038398222642
+702857945988825
+272921388674172
+580895059624855
+181808439529442
+117602869946965
+569788353034530
+1181546234307589
+244230056736534
+513790925121797
+617759130113052
+674500988551485
+</pre>
+<p>This sample input satisfies the constraints of Subtasks 1, 3, 4, 5.</p></section>
+</div>
+</span>
+<span class="lang-ja">
+<blockquote>
+<p><strong>AtCoder での提出方法</strong></p>
+<p>AtCoder では標準入出力を使用してください．<code>calculate_necessary_time</code> の代わりに <code>main</code> 関数を実装し，問題文の「採点プログラムのサンプルの入力・出力」と同じ形式で入出力してください．</p>
+<p>入力形式:</p>
+<pre><var>N</var> <var>M</var> <var>S</var> <var>Q</var>
+<var>A_0</var> <var>B_0</var> <var>L_0</var> <var>C_0</var>
+<var>\vdots</var>
+<var>A_{M - 1}</var> <var>B_{M - 1}</var> <var>L_{M - 1}</var> <var>C_{M - 1}</var>
+<var>U_0</var> <var>V_0</var> <var>T_0</var>
+<var>\vdots</var>
+<var>U_{Q - 1}</var> <var>V_{Q - 1}</var> <var>T_{Q - 1}</var>
+</pre>
+<p><var>Q</var> 行出力し，<var>k+1</var> 行目 (<var>0 \leqq k \leqq Q - 1</var>) に <code>answer[k]</code> を出力してください．</p>
+<p><a href="https://www2.ioi-jp.org/camp/2021/2021-sp-tasks/day2/escape_route-dist.zip">配布ファイル</a></p>
+</blockquote>
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>IOI 国の <var>1</var> 日は <var>S</var> 個の単位時間に分割されており，単位としてビョウを用いている ．<var>1</var> 日の始まりから <var>x</var> ビョウ (<var>0 \leqq x &lt; S</var>) 経過した時点を時刻 <var>x</var> とする．IOI 国は <var>N</var> 個の都市からなり，<var>0</var> から <var>N - 1</var> までの番号が付けられている．また，都市と都市を結ぶ道は <var>M</var> 本あり，<var>0</var> から <var>M - 1</var> までの番号が付けられている．どの都市からどの都市へも何本かの道を通ることによって移動することができる．道 <var>i</var> (<var>0 \leqq i \leqq M - 1</var>) は都市 <var>A_{i}</var> と都市 <var>B_{i}</var> を双方向に結んでおり，ちょうど <var>L_{i}</var> ビョウかけて通行することができる．また，毎日時刻 <var>C_{i}</var> からその日が終わるまで道 <var>i</var> 全体で一斉検問が行われている．</p>
+<p>秘密結社 JOI 団は IOI 国で暗躍する組織の <var>1</var> つである．秘密結社という組織の性質上，構成員は表の人間に知られるわけにはいかない．これは，IOI 国において毎日行われている一斉検問に，構成員が遭遇してはならないということを意味する．したがって，JOI 団の構成員が道 <var>i</var> を通行するには，<var>0 \leqq x \leqq C_{i} - L_{i}</var> を満たす時刻 <var>x</var> に都市 <var>A_{i}</var> と都市 <var>B_{i}</var> のいずれかから出発し，時刻 <var>x + L_{i}</var> にもう一方の都市に到着する必要がある．検問は都市では行われないので，道 <var>i</var> の一斉検問が行われている最中に，都市 <var>A_{i}</var> や都市 <var>B_{i}</var> に構成員がいてもよい．</p>
+<p>JOI 団の構成員は <var>Q</var> 人おり，<var>0</var> から <var>Q - 1</var> までの番号が付けられている．構成員 <var>j</var> (<var>0 \leqq j \leqq Q - 1</var>) はある日の時刻 <var>T_{j}</var> に都市 <var>U_{j}</var> を出発し，都市 <var>V_{j}</var> を目指して移動を開始する．構成員は移動の最中に都市で待機することもできる．都市 <var>V_{j}</var> にたどり着くまでに複数日かかるかもしれない．</p>
+<p>IOI 国の都市と道の情報，一斉検問の情報，JOI 団の構成員の情報が与えられたとき，それぞれの <var>j</var> (<var>0 \leqq j \leqq Q - 1</var>) について，構成員 <var>j</var> が都市 <var>U_{j}</var> を出発してから都市 <var>V_{j}</var> にたどり着くまでにかかる時間の最小値を求めよ．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>実装の詳細</h3>
+<p>この課題の採点は，入出力の高速化のため採点プログラム <code>grader</code> を用いて行う．</p>
+<p>あなたは <var>1</var> つのファイルを提出しなければならない．ファイルは <code>escape_route.cpp</code> という名前である．このファイルは以下の関数を実装していなければならない．また，<code>#include</code> プリプロセッサ指令によって <code>escape_route.h</code> を読み込むこと．</p>
+<ul>
+<li><code>std::vector&lt;long long&gt; calculate_necessary_time( int N, int M, long long S, int Q, std::vector&lt;int&gt; A, std::vector&lt;int&gt; B, std::vector&lt;long long&gt; L, std::vector&lt;long long&gt; C, std::vector&lt;int&gt; U, std::vector&lt;int&gt; V, std::vector&lt;long long&gt; T)</code>
+    この関数は，各テストケースにつき <var>1</var> 回だけ呼び出される．<ul>
+<li>引数 <code>N</code> は，IOI 国の都市の個数である．</li>
+<li>引数 <code>M</code> は，IOI 国の道の本数である．</li>
+<li>引数 <code>S</code> は，IOI 国の <var>1</var> 日が <code>S</code> ビョウであることを表す．</li>
+<li>引数 <code>Q</code> は，JOI 団の構成員の人数である．</li>
+<li>引数 <code>A</code>，<code>B</code>，<code>L</code>，<code>C</code> は長さ <var>M</var> の配列であり，道 <var>i</var> は都市 <code>A[i]</code> と都市 <code>B[i]</code> を結び，ちょうど <code>L[i]</code> ビョウかけて通行することができ，時刻 <code>C[i]</code> から一斉検問が始まることを表す (<var>0 \leqq i \leqq M - 1</var>)．</li>
+<li>引数 <code>U</code>，<code>V</code>，<code>T</code> は長さ <var>Q</var> の配列であり，構成員 <var>j</var> は時刻 <code>T[j]</code> に都市 <code>U[j]</code> を出発し，都市 <code>V[j]</code> を目指して移動を開始することを表す (<var>0 \leqq j \leqq Q - 1</var>)．</li>
+<li>この関数は長さ <var>Q</var> の <code>long long</code> 型の配列 <code>answer</code> を返さなければならない．すべての <var>0 \leqq j \leqq Q - 1</var> に対して，構成員 <var>j</var> が都市 <code>U[j]</code> を出発してから都市 <code>V[j]</code> にたどり着くまでにかかる時間の最小値は <code>answer[j]</code> ビョウであることを表す．</li>
+</ul>
+</li>
+</ul>
+<h4>重要な注意</h4>
+<ul>
+<li>あなたの提出したプログラムは，標準入力・標準出力，あるいは他のファイルといかなる方法でもやりとりしてはならない．ただし，標準エラー出力にデバッグ情報等を出力することは許される．</li>
+<li>採点プログラムは入力の形式のチェックを行わない．形式の異なる入力を与えた場合の動作は保証されない．</li>
+<li><code>calculate_necessary_time</code> が返す配列の長さが <var>Q</var> でなかったり，配列の要素に負の数が含まれている場合は，採点プログラムの動作は保証されない．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>コンパイル・実行の方法</h3>
+<p>作成したプログラムをテストするための，採点プログラムが，コンテストサイトからダウンロードできるアーカイブの中に含まれている．このアーカイブには，提出しなければならないファイルのサンプルも含まれている．</p>
+<p>採点プログラムは <var>1</var> つのファイルからなる．そのファイルは <code>grader.cpp</code> である．作成したプログラムをテストするには，<code>grader.cpp</code>，<code>escape_route.cpp</code>，<code>escape_route.h</code> を同じディレクトリに置き，次のようにコマンドを実行する．</p>
+<pre>g++ -std=gnu++17 -O2 -fsigned-char -o grader grader.cpp escape_route.cpp
+</pre>
+<p>コンパイルが成功すれば，<code>grader</code> という実行ファイルが生成される．</p>
+<p>この課題においては，配布される採点プログラムと CMS での評価に使われる採点プログラムは同一である．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>採点プログラムの入力</h3>
+<p>採点プログラムは標準入力から以下の形式で入力を読み込む．入力はすべて整数でなければならない．</p>
+<pre><var>N</var> <var>M</var> <var>S</var> <var>Q</var>
+<var>A_{0}</var> <var>B_{0}</var> <var>L_{0}</var> <var>C_{0}</var>
+<var>\vdots</var>
+<var>A_{M - 1}</var> <var>B_{M - 1}</var> <var>L_{M - 1}</var> <var>C_{M - 1}</var>
+<var>U_{0}</var> <var>V_{0}</var> <var>T_{0}</var>
+<var>\vdots</var>
+<var>U_{Q - 1}</var> <var>V_{Q - 1}</var> <var>T_{Q - 1}</var>
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>採点プログラムの出力</h3>
+<p>採点プログラムは標準出力に <var>Q</var> 行出力をする ．<var>k + 1</var> 行目 (<var>0 \leqq k \leqq Q - 1</var>) には，<code>answer[k]</code> を出力する．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>2 \leqq N \leqq 90</var>．</li>
+<li><var>N - 1\leqq M\leqq\dfrac{N(N - 1)}{2}</var>．</li>
+<li><var>2 \leqq S \leqq 1\,000\,000\,000\,000\,000 = 10^{15}</var>．</li>
+<li><var>1 \leqq Q \leqq 3\,000\,000</var>．</li>
+<li><var>0 \leqq A_{i} \leqq N - 1</var> (<var>0 \leqq i \leqq M - 1</var>)．</li>
+<li><var>0 \leqq B_{i} \leqq N - 1</var> (<var>0 \leqq i \leqq M - 1</var>)．</li>
+<li><var>A_{i} \ne B_{i}</var> (<var>0 \leqq i \leqq M - 1</var>)．</li>
+<li><var>(A_{i}, B_{i}) \ne (A_{k}, B_{k})</var>，<var>(A_{i}, B_{i}) \ne (B_{k}, A_{k})</var> (<var>0 \leqq i &lt; k \leqq M - 1</var>)．</li>
+<li><var>1 \leqq L_{i} &lt; S</var> (<var>0 \leqq i \leqq M - 1</var>)．</li>
+<li><var>L_{i} \leqq C_{i} &lt; S</var> (<var>0 \leqq i \leqq M - 1</var>)．</li>
+<li>どの <var>2</var> つの都市の間も，いくつかの道を通ることで行き来可能である．</li>
+<li><var>0 \leqq U_{j} \leqq N - 1</var> (<var>0 \leqq j \leqq Q - 1</var>)．</li>
+<li><var>0 \leqq V_{j} \leqq N - 1</var> (<var>0 \leqq j \leqq Q - 1</var>)．</li>
+<li><var>U_{j} \ne V_{j}</var> (<var>0 \leqq j \leqq Q - 1</var>)．</li>
+<li><var>0 \leqq T_{j} &lt; S</var> (<var>0 \leqq j \leqq Q - 1</var>)．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>5</var> 点) <var>N \leqq 40</var>，<var>Q \leqq 1\,000</var>．</li>
+<li>(<var>20</var> 点) <var>N \leqq 40</var>，<var>U_{j} = 0</var> (<var>0 \leqq j \leqq Q - 1</var>)．</li>
+<li>(<var>10</var> 点) <var>N \leqq 40</var>．</li>
+<li>(<var>35</var> 点) <var>N \leqq 60</var>．</li>
+<li>(<var>30</var> 点) 追加の制約はない．</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入出力例</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>4 5 20 6
+0 1 3 19
+0 2 2 8
+1 2 4 15
+1 3 5 14
+2 3 1 18
+0 3 5
+0 3 7
+0 3 9
+2 0 6
+3 1 10
+1 2 15
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>3
+8
+14
+2
+5
+7
+</pre>
+<p>この入力例は小課題 <var>1, 3, 4, 5</var> の制約を満たす．</p>
+<p>構成員 <var>0</var> は時刻 <var>5</var> に都市 <var>0</var> を出発し，都市 <var>3</var> に移動する．以下のように移動すると <var>3</var> ビョウかかる．</p>
+<ul>
+<li>道 <var>1</var> を使用し，時刻 <var>5</var> に都市 <var>0</var> を出発して，時刻 <var>7</var> に都市 <var>2</var> に到着する．</li>
+<li>道 <var>4</var> を使用し，時刻 <var>7</var> に都市 <var>2</var> を出発して，時刻 <var>8</var> に都市 <var>3</var> に到着する．</li>
+</ul>
+<p>これが最小値なので，<var>\texttt{answer}[0] = 3</var> である．</p>
+<p>構成員 <var>1</var> は時刻 <var>7</var> に都市 <var>0</var> を出発し，都市 <var>3</var> に移動する．以下のように移動すると <var>8</var> ビョウかかる．</p>
+<ul>
+<li>道 <var>0</var> を使用し，時刻 <var>7</var> に都市 <var>0</var> を出発して，時刻 <var>10</var> に都市 <var>1</var> に到着する．</li>
+<li>道 <var>2</var> を使用し，時刻 <var>10</var> に都市 <var>1</var> を出発して，時刻 <var>14</var> に都市 <var>2</var> に到着する．</li>
+<li>道 <var>4</var> を使用し，時刻 <var>14</var> に都市 <var>2</var> を出発して，時刻 <var>15</var> に都市 <var>3</var> に到着する．</li>
+</ul>
+<p>これが最小値なので，<var>\texttt{answer}[1] = 8</var> である．</p>
+<p>構成員 <var>2</var> は時刻 <var>9</var> に都市 <var>0</var> を出発し，都市 <var>3</var> に移動する．以下のように移動すると，翌日の時刻 <var>3</var> に都市 <var>3</var> に到着する．合計 <var>14</var> ビョウかかる．</p>
+<ul>
+<li>翌日の時刻 <var>0</var> まで都市 <var>0</var> で待機する．</li>
+<li>道 <var>1</var> を使用し，時刻 <var>0</var> に都市 <var>0</var> を出発して，時刻 <var>2</var> に都市 <var>2</var> に到着する．</li>
+<li>道 <var>4</var> を使用し，時刻 <var>2</var> に都市 <var>2</var> を出発して，時刻 <var>3</var> に都市 <var>3</var> に到着する．</li>
+</ul>
+<p>これが最小値なので，<var>\texttt{answer}[2] = 14</var> である．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>6 10 100 9
+5 3 4 29
+1 0 6 26
+0 4 2 7
+0 5 18 18
+2 0 79 82
+3 4 35 46
+1 2 15 57
+2 4 3 6
+4 1 21 83
+3 2 47 53
+0 2 63
+0 4 70
+0 4 98
+0 5 25
+0 5 19
+0 4 96
+0 5 2
+0 3 62
+0 3 83
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>42
+32
+4
+93
+99
+6
+102
+60
+39
+</pre>
+<p>この入力例はすべての小課題の制約を満たす．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>8 12 1000000000000000 13
+2 0 4451698272827 120985696255786
+6 5 78520421713825 342652131468508
+2 1 185377268405175 382583457603811
+0 4 54350742205838 133614919589507
+7 0 68486247989149 651590905094148
+0 6 85177550834829 299184420663240
+5 2 442329739732459 926608308293721
+3 7 78020232822359 913548478810253
+1 3 267796317244889 687571310475622
+5 4 90590208828121 910324397566584
+5 7 8414633059584 17796117322043
+4 6 45682367792138 204548471584556
+7 2 44779065000162
+3 5 79376234836942
+4 7 305556687070759
+4 3 927935834343174
+5 1 663284649258985
+2 5 967584209777344
+5 2 963749709374595
+7 4 484562389171308
+1 5 446160773830045
+6 4 801452311055604
+3 1 744524289545354
+0 6 467418420721777
+5 6 371181379240653
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>72937946261976
+929038398222642
+702857945988825
+272921388674172
+580895059624855
+181808439529442
+117602869946965
+569788353034530
+1181546234307589
+244230056736534
+513790925121797
+617759130113052
+674500988551485
+</pre>
+<p>この入力例は小課題 <var>1, 3, 4, 5</var> の制約を満たす．</p></section>
+</div>
+</span>
+</span>
