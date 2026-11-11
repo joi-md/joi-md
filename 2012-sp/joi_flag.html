@@ -1,0 +1,177 @@
+<span class="lang">
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>あなたは，日本情報オリンピックの新しい旗として，レベル <var>K</var> の JOI Flag を作ることにした．ただし，</p>
+<ul>
+<li>レベル <var>0</var> の JOI Flag とは，<var>1 \times 1</var> のマス目からなる旗で，<code>J</code>, <code>O</code>, <code>I</code> のいずれかの文字が書かれたものである．</li>
+<li>整数 <var>m &gt; 0</var> に対し，レベル <var>m</var> の JOI Flag とは，<var>2^{m} \times 2^{m}</var> のマス目からなる旗で，各マスに <code>J</code>, <code>O</code>, <code>I</code> のいずれかの文字が書かれたもののうち，次の条件を満たすものである：マス目全体を <var>2^{m - 1} \times 2^{m - 1}</var> の正方形 <var>4</var> つに分けたとき，レベル <var>m - 1</var> の JOI Flag ，<code>J</code> の書かれたマスのみからなる部分，<code>O</code> の書かれたマスのみからなる部分，<code>I</code> の書かれたマスのみからなる部分の <var>4</var> つの部分に分かれる．</li>
+</ul>
+<p>例えば，</p>
+<pre>OIJJ
+JJJJ
+OOII
+OOII
+</pre>
+<p>は，レベル <var>2</var> の JOI Flag である．また，</p>
+<pre>IIIIIIOO
+IIIIIIOO
+IIIIJOJJ
+IIIIOIJJ
+JJJJOOOO
+JJJJOOOO
+JJJJOOOO
+JJJJOOOO
+</pre>
+<p>は，レベル <var>3</var> の JOI Flag である．</p>
+<p>あなたの手元には，いくつかのマス目に <code>J</code>, <code>O</code>, <code>I</code> のいずれかの文字が書きこまれた <var>2^{K} \times 2^{K}</var> の旗がある．</p>
+<p>あなたは，この旗にいくつかの文字を書き加えたり，既に旗に書かれているいくつかの文字を修正したりして，レベル <var>K</var> の JOI Flag を完成させることにした．文字が書かれていないマスにはコスト <var>0</var> で文字を書けるが，文字が書かれたマスの文字を書き換えるにはコスト <var>1</var> がかかる．</p>
+<p>レベル <var>K</var> の JOI Flag を完成させるのに必要なコストの最小値を求めたい．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p>あなたの手元にある旗の情報が与えられたとき，レベル <var>K</var> の JOI Flag を完成させるのに必要なコストの最小値を求めるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>1 \leqq K \leqq 30</var>：JOI Flag のレベル．</li>
+<li><var>1 \leqq N \leqq 1\,000</var>：JOI Flag に書き込まれている文字の個数．</li>
+<li><var>1 \leqq X_i \leqq 2^K</var>：<var>i</var> 番目の文字の書かれている列番号．</li>
+<li><var>1 \leqq Y_i \leqq 2^K</var>：<var>i</var> 番目の文字の書かれている行番号．</li>
+<li><var>C_i</var> は <code>J</code>, <code>O</code>, <code>I</code> のいずれかである．</li>
+<li>組 <var>(X_i,Y_i)</var> はすべて異なる．</li>
+</ul>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>標準入力から以下の入力を読み込め．</p>
+<ul>
+<li><var>1</var> 行目には整数 <var>K, N</var> が空白を区切りとして書かれている．<var>K</var> は JOI Flag のレベルを，<var>N</var> は文字の書かれたマス目の個数をそれぞれ表す．文字には <var>1, 2, \cdot \cdot \cdot , N</var> の番号がつけられている．</li>
+<li>続く <var>N</var> 行には文字の情報が書かれている．<var>i + 1</var> 行目には <var>X_{i}, Y_{i},C_{i}</var> が空白を区切りとして書かれている．これは，文字 <var>C_{i}</var> が左から <var>X_{i}</var> 列目，上から <var>Y_{i}</var> 行目に書かれていることを表す．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に，レベル <var>K</var> の JOI Flag を作るのに必要なコストの最小値を表す整数を <var>1</var> 行で出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>採点基準</h3>
+<p>採点用データのうち，配点の <var>40\%</var> 分については，<var>K \leqq 10</var> を満たす．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入出力の例</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>2 10
+2 2 J
+3 3 I
+1 3 I
+1 1 O
+3 2 J
+2 1 I
+4 1 O
+3 4 I
+4 4 O
+2 3 O
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>3
+</pre>
+<p>この入力は，</p>
+<pre>OI-O
+-JJ-
+IOI-
+--IO
+</pre>
+<p>という旗を表す．ただし，何も書かれていないマス目を <code>-</code> で表すとする。</p>
+<p>これはコスト <var>3</var> で</p>
+<pre>OIJJ
+JJJJ
+OOII
+OOII
+</pre>
+<p>にすることができる．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>4 30
+16 14 J
+2 8 O
+10 9 J
+10 13 I
+6 6 O
+11 14 I
+1 2 I
+3 2 O
+3 10 O
+1 12 I
+4 11 I
+9 5 J
+15 1 O
+12 4 I
+16 5 J
+10 7 J
+3 8 J
+4 10 I
+4 7 I
+2 11 I
+2 12 O
+15 5 J
+15 7 J
+6 9 J
+5 7 O
+14 5 J
+12 11 J
+15 10 O
+13 16 I
+13 11 I
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>9
+</pre></section>
+</div>
+</span>
+</span>
