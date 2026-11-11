@@ -1,39 +1,37 @@
-配点： $100$ 点
+配点 : $100$ 点
 
 <style>
-#task-statement table {
-    display: block;
-    width: fit-content;
-    max-width: 100%;
-    overflow-x: auto;
+.joisp2023-f-table table { position:relative;
+    display: table;
+    width: auto;
+    max-width: none;
+    overflow: visible;
     border-collapse: collapse;
-    margin: 1em 0;
+    margin: 0;
 }
-#task-statement table th,
-#task-statement table td {
+.joisp2023-f-table table td {
     border: 1px solid #aaa;
     padding: 0.3em 0.6em;
     text-align: left;
     vertical-align: top;
 }
-#task-statement table th {
-    background-color: #f5f5f5;
-}
-#task-statement table.mizuyokan-figure {
+.joisp2023-f-table table.mizuyokan-figure {
     display: table;
     width: 480px;
     table-layout: fixed;
     margin: 0.2em 0;
 }
-#task-statement table.mizuyokan-figure td {
+.joisp2023-f-table table.mizuyokan-figure td {
     text-align: center;
 }
-#task-statement table.mizuyokan-figure .join-left {
+.joisp2023-f-table table.mizuyokan-figure .join-left {
     border-left: 0;
 }
-#task-statement table.mizuyokan-figure .join-right {
+.joisp2023-f-table table.mizuyokan-figure .join-right {
     border-right: 0;
 }
+
+.joisp2023-f-table {position:relative;max-width:100%;overflow-x:auto;margin:1em 0;}
 </style>
 
 ### 問題文
@@ -53,7 +51,7 @@ JOI 君は $Q$ 回のお茶会を計画している．$j$ 回目 ($1 \leqq j \le
 - $k = 1, 2, \ldots, m - 1$ に対して，$k$ が奇数ならば $x_k < x_{k+1}$ を，$k$ が偶数ならば $x_k > x_{k+1}$ を満たす．
 - $k = 1, 2, \ldots, m - 1$ に対して，$k$ が奇数ならば $x_k > x_{k+1}$ を，$k$ が偶数ならば $x_k < x_{k+1}$ を満たす．
 
-JOI 君は，できるだけ多くの友達に水ようかんをふるまうため，それぞれのお茶会の手順 $3.$ において得られるピースの個数をできるだけ多くしたい．
+JOI 君は，できるだけ多くの友達に水ようかんをふるまうため，それぞれのお茶会の手順 $3$. において得られるピースの個数をできるだけ多くしたい．
 
 水ようかん製造機のパラメータの初期値とお茶会の計画の情報が与えられるので，それぞれのお茶会において，条件を満たすような切り分け方で得られるピースの個数の最大値を求めるプログラムを作成せよ．なお，この問題の制約下では，条件を満たすように水ようかんを切り分ける方法が必ず存在する．
 
@@ -119,27 +117,43 @@ $1$ 回目のお茶会において，水ようかん製造機のパラメータ�
 
 表 $1$　お茶会で使用する水ようかん．
 
+<div class="joisp2023-f-table" markdown="1">
+
 <table class="mizuyokan-figure">
 <colgroup><col style="width: 16.6667%;"><col style="width: 20%;"><col style="width: 26.6666%;"><col style="width: 23.3334%;"><col style="width: 13.3333%;"></colgroup>
 <tbody><tr><td>$5$</td><td>$6$</td><td>$8$</td><td>$7$</td><td>$4$</td></tr></tbody>
 </table>
 
+</div>
+
 例えば，表 $2$ のような切り分け方が考えられる．
 
 表 $2$　水ようかんの切り分け方の例 $3$ つ．上から方法 $1, 2, 3$ とする．
+
+<div class="joisp2023-f-table" markdown="1">
 
 <table class="mizuyokan-figure">
 <colgroup><col style="width: 16.6667%;"><col style="width: 20%;"><col style="width: 26.6666%;"><col style="width: 23.3334%;"><col style="width: 13.3333%;"></colgroup>
 <tbody><tr><td>$5$</td><td class="join-right">$6$</td><td class="join-left">$8$</td><td>$7$</td><td>$4$</td></tr></tbody>
 </table>
+
+</div>
+<div class="joisp2023-f-table" markdown="1">
+
 <table class="mizuyokan-figure">
 <colgroup><col style="width: 16.6667%;"><col style="width: 20%;"><col style="width: 26.6666%;"><col style="width: 23.3334%;"><col style="width: 13.3333%;"></colgroup>
 <tbody><tr><td class="join-right">$5$</td><td class="join-left">$6$</td><td>$8$</td><td class="join-right">$7$</td><td class="join-left">$4$</td></tr></tbody>
 </table>
+
+</div>
+<div class="joisp2023-f-table" markdown="1">
+
 <table class="mizuyokan-figure">
 <colgroup><col style="width: 16.6667%;"><col style="width: 20%;"><col style="width: 26.6666%;"><col style="width: 23.3334%;"><col style="width: 13.3333%;"></colgroup>
 <tbody><tr><td class="join-right">$5$</td><td class="join-left join-right">$6$</td><td class="join-left join-right">$8$</td><td class="join-left join-right">$7$</td><td class="join-left">$4$</td></tr></tbody>
 </table>
+
+</div>
 
 方法 $1$ ではピースの長さが順に $5, 14, 7, 4$ となっており，この数列はジグザグではないので条件を満たさない．一方，方法 $2$ ではピースの長さが順に $11, 8, 11$ となっており，この数列はジグザグであるため条件を満たす．また，方法 $3$ ではピースの長さが順に $30$ となっており，この数列もジグザグであるため条件を満たす．
 
@@ -175,3 +189,7 @@ $2$ 回目のお茶会では，お茶会に使用する水ようかんの長さ�
 $3$ 回目のお茶会では，お茶会に使用する水ようかんの長さは $10$ であり，左から長さ $1, 3, 5$ の位置に切れ目がある．このとき，左から長さ $3, 5$ の位置の切れ目で切ることで，$3$ 個のピースが得られる．得られるピースの長さを順に並べた数列は $(3, 2, 5)$ であり，これはジグザグである．これよりも多くのピースを得ることはできないので，$3$ を出力する．
 
 この入力例は小課題 $1, 2, 3, 5, 6$ の制約を満たす．
+
+<style>
+.joisp2023-f-table .katex {position:relative;}
+</style>

@@ -2,14 +2,14 @@ Score: $100$ points
 
 ### Problem Statement
 
-JOI Kingdom is an insular country consisting of $N$ islands, numbered from $1$ to $N$. The islands are connected by $N - 1$ bridges, numbered from $1$ to $N - 1$. The bridge $i$ ($1 \leq i \leq N - 1$) connects the island $A_i$ and the island $B_i$ bidirectionally. It is possible to travel from any island to any other island by passing through a number of bridges.
+JOI Kingdom is an insular country consisting of $N$ islands, numbered from $1$ to $N$. The islands are connected by $N - 1$ bridges, numbered from $1$ to $N - 1$. The bridge $i$ ($1 \le i \le N - 1$) connects the island $A_i$ and the island $B_i$ bidirectionally. It is possible to travel from any island to any other island by passing through a number of bridges.
 
-In JOI Kingdom, there are $M$ sightseeing spots, numbered from $1$ to $M$. The sightseeing spot $j$ ($1 \leq j \leq M$) is located in the island $C_j$.
+In JOI Kingdom, there are $M$ sightseeing spots, numbered from $1$ to $M$. The sightseeing spot $j$ ($1 \le j \le M$) is located in the island $C_j$.
 
 There are $Q$ travelers. They plan to visit sightseeing spots in JOI Kingdom. The travelers are numbered from $1$ to $Q$. Each traveler makes a trip in the following way.
 
 <ol>
-<li>The traveler chooses an island $x$ ($1 \leq x \leq N$). Taking an airplane, the traveler arrives at the island $x$.</li>
+<li>The traveler chooses an island $x$ ($1 \le x \le N$). Taking an airplane, the traveler arrives at the island $x$.</li>
 <li>The traveler takes the following actions a number of times. The order and the kinds of actions are arbitrary.
 <ul>
 <li>The traveler chooses a sightseeing spot in the current island, and visits there.</li>
@@ -19,9 +19,9 @@ There are $Q$ travelers. They plan to visit sightseeing spots in JOI Kingdom. Th
 <li>Taking an airplane, the traveler leaves JOI Kingdom.</li>
 </ol>
 
-The traveler $k$ ($1 \leq k \leq Q$) wants to visit all of the sightseeing spots $L_k, L_k + 1, \ldots, R_k$. However, since the budget is limited, the traveler $k$ wants to minimize the number of islands where the traveler $k$ visits at least once.
+The traveler $k$ ($1 \le k \le Q$) wants to visit all of the sightseeing spots $L_k, L_k + 1, \ldots, R_k$. However, since the budget is limited, the traveler $k$ wants to minimize the number of islands where the traveler $k$ visits at least once.
 
-Write a program which, given information of JOI Kingdom and the travelers, calculates, for each $k$ ($1 \leq k \leq Q$), the minimum possible number of islands where the traveler $k$ visits at least once.
+Write a program which, given information of JOI Kingdom and the travelers, calculates, for each $k$ ($1 \le k \le Q$), the minimum possible number of islands where the traveler $k$ visits at least once.
 
 ---
 
@@ -34,7 +34,7 @@ $N$ $M$ $Q$
 $A_1$ $B_1$
 $A_2$ $B_2$
 $\vdots$
-$A_{N-1}$ $B_{N-1}$
+$A_{N - 1}$ $B_{N - 1}$
 $C_1$ $C_2$ $\cdots$ $C_M$
 $L_1$ $R_1$
 $L_2$ $R_2$
@@ -44,27 +44,27 @@ $L_Q$ $R_Q$
 
 ### Output
 
-Write $Q$ lines to the standard output. The $k$-th line ($1 \leq k \leq Q$) of output should contain the minimum possible number of islands where the traveler $k$ visits at least once.
+Write $Q$ lines to the standard output. The $k$-th line ($1 \le k \le Q$) of output should contain the minimum possible number of islands where the traveler $k$ visits at least once.
 
 ### Constraints
 
-- $1 \leq N \leq 100\,000$.
-- $1 \leq M \leq 100\,000$.
-- $1 \leq Q \leq 100\,000$.
-- $1 \leq A_i \leq N$ ($1 \leq i \leq N - 1$).
-- $1 \leq B_i \leq N$ ($1 \leq i \leq N - 1$).
+- $1 \le N \le 100\,000$.
+- $1 \le M \le 100\,000$.
+- $1 \le Q \le 100\,000$.
+- $1 \le A_i \le N$ ($1 \le i \le N - 1$).
+- $1 \le B_i \le N$ ($1 \le i \le N - 1$).
 - It is possible to travel from any island to any other island by passing through a number of bridges.
-- $1 \leq C_j \leq N$ ($1 \leq j \leq M$).
-- $1 \leq L_k \leq R_k \leq M$ ($1 \leq k \leq Q$).
+- $1 \le C_j \le N$ ($1 \le j \le M$).
+- $1 \le L_k \le R_k \le M$ ($1 \le k \le Q$).
 - Given values are all integers.
 
 ### Subtasks
 
-1. ($5$ points) $N \leq 300$, $M \leq 300$, $Q \leq 300$.
-2. ($5$ points) $N \leq 2\,000$, $M \leq 2\,000$, $Q \leq 2\,000$.
-3. ($7$ points) $A_i = i$, $B_i = i + 1$ ($1 \leq i \leq N - 1$).
-4. ($18$ points) $L_1 = 1$, $R_k + 1 = L_{k+1}$ ($1 \leq k \leq Q - 1$), $R_Q = M$.
-5. ($24$ points) $A_i = \left\lfloor \dfrac{i+1}{2} \right\rfloor$, $B_i = i + 1$ ($1 \leq i \leq N - 1$). Here, $\lfloor x \rfloor$ is the largest integer not exceeding $x$.
+1. ($5$ points) $N \le 300$, $M \le 300$, $Q \le 300$.
+2. ($5$ points) $N \le 2\,000$, $M \le 2\,000$, $Q \le 2\,000$.
+3. ($7$ points) $A_i = i$, $B_i = i + 1$ ($1 \le i \le N - 1$).
+4. ($18$ points) $L_1 = 1$, $R_k + 1 = L_{k+1}$ ($1 \le k \le Q - 1$), $R_Q = M$.
+5. ($24$ points) $A_i = \left\lfloor \frac{i+1}{2} \right\rfloor$, $B_i = i + 1$ ($1 \le i \le N - 1$). Here, $\lfloor x \rfloor$ is the largest integer not exceeding $x$.
 6. ($41$ points) No additional constraints.
 
 ---

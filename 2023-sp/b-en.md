@@ -5,8 +5,8 @@ Score: $100$ points
 In JOI Kingdom, a national festival is held once a year. During the period of the festival, there are $N$ events in total. The schedule for each event is already fixed. The schedule of the $N$ events are described by sequences $a, b$ of length $N$ satisfying the following conditions.
 
 - Every integer between $1$ and $2N$, inclusive, appears as an element of $a$ or $b$.
-- $a_i < b_i$ ($1 \leq i \leq N$).
-- $a_i < a_{i+1}$ ($1 \leq i \leq N - 1$).
+- $a_i < b_i$ ($1 \le i \le N$).
+- $a_i < a_{i+1}$ ($1 \le i \le N - 1$).
 
 The $i$-th event will start at $a_i$ minutes after the beginning of the festival, and end at $b_i$ minutes after the beginning of the festival.
 
@@ -42,18 +42,18 @@ Write one line to the standard output. The output should contain the remainder o
 
 ### Constraints
 
-- $1 \leq N \leq 20\,000$.
+- $1 \le N \le 20\,000$.
 - $10^8 < P < 10^9$.
 - $P$ is a prime number.
 - Given values are all integers.
 
 ### Subtasks
 
-1. ($5$ points) $N \leq 5$.
-2. ($5$ points) $N \leq 8$.
-3. ($27$ points) $N \leq 30$.
-4. ($14$ points) $N \leq 300$.
-5. ($36$ points) $N \leq 3\,000$.
+1. ($5$ points) $N \le 5$.
+2. ($5$ points) $N \le 8$.
+3. ($27$ points) $N \le 30$.
+4. ($14$ points) $N \le 300$.
+5. ($36$ points) $N \le 3\,000$.
 6. ($13$ points) No additional constraints.
 
 ---

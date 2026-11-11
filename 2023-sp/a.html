@@ -5,10 +5,10 @@
 <div class="part">
 <section>
 <h3>Problem Statement</h3>
-<p>There are <var>N</var> cities in JOI Kingdom, numbered from <var>1</var> to <var>N</var>. There are <var>N - 1</var> roads in JOI Kingdom, numbered from <var>1</var> to <var>N - 1</var>. The road <var>i</var> (<var>1 \leq i \leq N - 1</var>) connects the city <var>A_i</var> and the city <var>B_i</var> bi-directionally. It is possible to travel from any city to any other city by passing through some of the roads.</p>
-<p>There are checkpoints on some of the roads in JOI Kingdom. There are <var>M</var> checkpoints, numbered from <var>1</var> to <var>M</var>. The checkpoint <var>j</var> (<var>1 \leq j \leq M</var>) is located on the road <var>P_j</var>. In order to pass through it, you need to pay either one gold coin or <var>C_j</var> silver coins.</p>
-<p>There are <var>Q</var> citizens in JOI Kingdom, numbered from <var>1</var> to <var>Q</var>. The citizen <var>k</var> (<var>1 \leq k \leq Q</var>) has <var>X_k</var> gold coins and <var>Y_k</var> silver coins, and wants to travel from the city <var>S_k</var> to the city <var>T_k</var>. Since gold coins are valuable, all the citizens want to keep as many gold coins as possible.</p>
-<p>Write a program which, given information of the cities, the roads, the checkpoints, and the citizens in JOI Kingdom, for each <var>k</var> (<var>1 \leq k \leq Q</var>), determines whether it is possible for the citizen <var>k</var> to travel from the city <var>S_k</var> to the city <var>T_k</var>, and, if it is possible, calculates the maximum possible number of gold coins the citizen <var>k</var> can keep.</p>
+<p>There are <var>N</var> cities in JOI Kingdom, numbered from <var>1</var> to <var>N</var>. There are <var>N - 1</var> roads in JOI Kingdom, numbered from <var>1</var> to <var>N - 1</var>. The road <var>i</var> (<var>1 \le i \le N - 1</var>) connects the city <var>A_i</var> and the city <var>B_i</var> bi-directionally. It is possible to travel from any city to any other city by passing through some of the roads.</p>
+<p>There are checkpoints on some of the roads in JOI Kingdom. There are <var>M</var> checkpoints, numbered from <var>1</var> to <var>M</var>. The checkpoint <var>j</var> (<var>1 \le j \le M</var>) is located on the road <var>P_j</var>. In order to pass through it, you need to pay either one gold coin or <var>C_j</var> silver coins.</p>
+<p>There are <var>Q</var> citizens in JOI Kingdom, numbered from <var>1</var> to <var>Q</var>. The citizen <var>k</var> (<var>1 \le k \le Q</var>) has <var>X_k</var> gold coins and <var>Y_k</var> silver coins, and wants to travel from the city <var>S_k</var> to the city <var>T_k</var>. Since gold coins are valuable, all the citizens want to keep as many gold coins as possible.</p>
+<p>Write a program which, given information of the cities, the roads, the checkpoints, and the citizens in JOI Kingdom, for each <var>k</var> (<var>1 \le k \le Q</var>), determines whether it is possible for the citizen <var>k</var> to travel from the city <var>S_k</var> to the city <var>T_k</var>, and, if it is possible, calculates the maximum possible number of gold coins the citizen <var>k</var> can keep.</p>
 <hr />
 </section>
 </div>
@@ -22,7 +22,7 @@
 <var>A_1</var> <var>B_1</var>
 <var>A_2</var> <var>B_2</var>
 <var>\vdots</var>
-<var>A_{N-1}</var> <var>B_{N-1}</var>
+<var>A_{N - 1}</var> <var>B_{N - 1}</var>
 <var>P_1</var> <var>C_1</var>
 <var>P_2</var> <var>C_2</var>
 <var>\vdots</var>
@@ -40,7 +40,7 @@
 <div class="part">
 <section>
 <h3>Output</h3>
-<p>Write <var>Q</var> lines to the standard output. In the <var>k</var>-th line (<var>1 \leq k \leq Q</var>), if the citizen <var>k</var> can travel from the city <var>S_k</var> to the city <var>T_k</var>, output the maximum possible number of gold coins the citizen <var>k</var> can keep. Otherwise, output <code>-1</code> in the <var>k</var>-th line.</p>
+<p>Write <var>Q</var> lines to the standard output. In the <var>k</var>-th line (<var>1 \le k \le Q</var>), if the citizen <var>k</var> can travel from the city <var>S_k</var> to the city <var>T_k</var>, output the maximum possible number of gold coins the citizen <var>k</var> can keep. Otherwise, output <code>-1</code> in the <var>k</var>-th line.</p>
 <hr />
 </section>
 </div>
@@ -50,19 +50,19 @@
 <section>
 <h3>Constraints</h3>
 <ul>
-<li><var>2 \leq N \leq 100\,000</var>.</li>
-<li><var>1 \leq M \leq 100\,000</var>.</li>
-<li><var>1 \leq Q \leq 100\,000</var>.</li>
-<li><var>1 \leq A_i \leq N</var> (<var>1 \leq i \leq N - 1</var>).</li>
-<li><var>1 \leq B_i \leq N</var> (<var>1 \leq i \leq N - 1</var>).</li>
+<li><var>2 \le N \le 100\,000</var>.</li>
+<li><var>1 \le M \le 100\,000</var>.</li>
+<li><var>1 \le Q \le 100\,000</var>.</li>
+<li><var>1 \le A_i \le N</var> (<var>1 \le i \le N - 1</var>).</li>
+<li><var>1 \le B_i \le N</var> (<var>1 \le i \le N - 1</var>).</li>
 <li>It is possible to travel from any city to any other city by passing through some of the roads.</li>
-<li><var>1 \leq P_j \leq N - 1</var> (<var>1 \leq j \leq M</var>).</li>
-<li><var>1 \leq C_j \leq 10^9</var> (<var>1 \leq j \leq M</var>).</li>
-<li><var>1 \leq S_k \leq N</var> (<var>1 \leq k \leq Q</var>).</li>
-<li><var>1 \leq T_k \leq N</var> (<var>1 \leq k \leq Q</var>).</li>
-<li><var>S_k \neq T_k</var> (<var>1 \leq k \leq Q</var>).</li>
-<li><var>0 \leq X_k \leq 10^9</var> (<var>1 \leq k \leq Q</var>).</li>
-<li><var>0 \leq Y_k \leq 10^{18}</var> (<var>1 \leq k \leq Q</var>).</li>
+<li><var>1 \le P_j \le N - 1</var> (<var>1 \le j \le M</var>).</li>
+<li><var>1 \le C_j \le 10^9</var> (<var>1 \le j \le M</var>).</li>
+<li><var>1 \le S_k \le N</var> (<var>1 \le k \le Q</var>).</li>
+<li><var>1 \le T_k \le N</var> (<var>1 \le k \le Q</var>).</li>
+<li><var>S_k \neq T_k</var> (<var>1 \le k \le Q</var>).</li>
+<li><var>0 \le X_k \le 10^9</var> (<var>1 \le k \le Q</var>).</li>
+<li><var>0 \le Y_k \le 10^{18}</var> (<var>1 \le k \le Q</var>).</li>
 <li>Given values are all integers.</li>
 </ul>
 </section>
@@ -72,9 +72,9 @@
 <section>
 <h3>Subtasks</h3>
 <ol>
-<li>(<var>10</var> points) <var>N \leq 2\,000</var>, <var>M \leq 2\,000</var>, <var>Q \leq 2\,000</var>.</li>
+<li>(<var>10</var> points) <var>N \le 2\,000</var>, <var>M \le 2\,000</var>, <var>Q \le 2\,000</var>.</li>
 <li>(<var>28</var> points) <var>C_1 = C_2 = \cdots = C_M</var>.</li>
-<li>(<var>30</var> points) <var>A_i = i</var>, <var>B_i = i + 1</var> (<var>1 \leq i \leq N - 1</var>).</li>
+<li>(<var>30</var> points) <var>A_i = i</var>, <var>B_i = i + 1</var> (<var>1 \le i \le N - 1</var>).</li>
 <li>(<var>32</var> points) No additional constraints.</li>
 </ol>
 <hr />
@@ -283,7 +283,7 @@
 </div>
 </span>
 <span class="lang-ja">
-<p>配点： <var>100</var> 点</p>
+<p>配点 : <var>100</var> 点</p>
 
 <div class="part">
 <section>
@@ -305,7 +305,7 @@
 <var>A_1</var> <var>B_1</var>
 <var>A_2</var> <var>B_2</var>
 <var>\vdots</var>
-<var>A_{N-1}</var> <var>B_{N-1}</var>
+<var>A_{N - 1}</var> <var>B_{N - 1}</var>
 <var>P_1</var> <var>C_1</var>
 <var>P_2</var> <var>C_2</var>
 <var>\vdots</var>

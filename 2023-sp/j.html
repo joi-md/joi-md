@@ -5,11 +5,10 @@
 <p><a href="https://www2.ioi-jp.org/camp/2023/2023-sp-tasks/contest4/battle-dist.zip">Distributed Files</a></p>
 <p>Your program must include <code>Anna.h</code> and <code>Bruno.h</code>, and implement all functions in one file. Do NOT share global variables.</p>
 <p>You can submit only C++ source code.</p>
-<p>The two-file organization in Implementation Details and the instructions in Compilation and Test Run below describe local testing with the distributed sample grader. On AtCoder, submit one file as described above.</p>
 </blockquote>
 <p>Score: <var>100</var> points</p>
 <style>
-#task-statement .joisp2023-battle-table {
+#task-statement .joisp2023-battle-table { position:relative;
     max-width: 100%;
     overflow-x: auto;
     margin: 1em 0;
@@ -41,9 +40,9 @@
 <h3>Problem Statement</h3>
 <p>JOICup is a popular television variety program held by JOI broadcast station. Now JOICup becomes the final round. In the final round, the “messenger game” will be played. Only one team which passed the first round will play the game. The team consists of two players, Anna and Bruno.</p>
 <p>In the messenger game, the players send information using a grid of <var>8 \times 8</var> cells. The rows of the grid are numbered from <var>0</var> to <var>7</var>, and the columns of the grid are numbered from <var>0</var> to <var>7</var>.</p>
-<p>In the messenger game, Anna and Bruno are isolated in different rooms. They will play <var>Q</var> challenges. The <var>i</var>-th challenge (<var>1 \leq i \leq Q</var>) proceeds as follows.</p>
+<p>In the messenger game, Anna and Bruno are isolated in different rooms. They will play <var>Q</var> challenges. The <var>i</var>-th challenge (<var>1 \le i \le Q</var>) proceeds as follows.</p>
 <ol>
-<li>Bitaro, the moderator of the game, gives a card and a grid of <var>8 \times 8</var> cells to Anna. On the card, three integers <var>X_i, Y_i, N_i</var> (<var>0 \leq X_i \leq 7</var>, <var>0 \leq Y_i \leq 7</var>, <var>1 \leq N_i \leq 43</var>) and a string <var>S_i</var> of length <var>N_i</var> consisting of <code>A</code> and <code>B</code> are written. All of the cells in the grid are white.</li>
+<li>Bitaro, the moderator of the game, gives a card and a grid of <var>8 \times 8</var> cells to Anna. On the card, three integers <var>X_i, Y_i, N_i</var> (<var>0 \le X_i \le 7</var>, <var>0 \le Y_i \le 7</var>, <var>1 \le N_i \le 43</var>) and a string <var>S_i</var> of length <var>N_i</var> consisting of <code>A</code> and <code>B</code> are written. All of the cells in the grid are white.</li>
 <li>Anna paints each of the <var>49</var> cells whose row is different from <var>X_i</var> and column is different from <var>Y_i</var>. The color of each cell is either blue or red.</li>
 <li>Anna gives the grid of cells to Bitaro, the moderator of the game.</li>
 <li>Bitaro paints each of the <var>15</var> cells whose row is equal to <var>X_i</var> or column is equal to <var>Y_i</var>. The color of each cell is either blue or red. This process is done in a room which is not seen by Anna nor Bruno.</li>
@@ -68,20 +67,20 @@
 <ul>
 <li>
 <p><code>void Anna(int X, int Y, int N, std::string S)</code></p>
-<p>This function is called <var>Q</var> times. The <var>i</var>-th call (<var>1 \leq i \leq Q</var>) corresponds to the procedures <var>1.</var>, <var>2.</var>, <var>3.</var> of the <var>i</var>-th challenge of the game.</p>
+<p>This function is called <var>Q</var> times. The <var>i</var>-th call (<var>1 \le i \le Q</var>) corresponds to the procedures <var>1</var>., <var>2</var>., <var>3</var>. of the <var>i</var>-th challenge of the game.</p>
 <ul>
-<li>The parameter <code>X</code> is the integer <var>X_i</var> written on the card given to Anna in the procedure <var>1.</var> of the <var>i</var>-th challenge.</li>
-<li>The parameter <code>Y</code> is the integer <var>Y_i</var> written on the card given to Anna in the procedure <var>1.</var> of the <var>i</var>-th challenge.</li>
-<li>The parameter <code>N</code> is the integer <var>N_i</var> written on the card given to Anna in the procedure <var>1.</var> of the <var>i</var>-th challenge.</li>
-<li>The parameter <code>S</code> is the string <var>S_i</var> written on the card given to Anna in the procedure <var>1.</var> of the <var>i</var>-th challenge.</li>
+<li>The parameter <code>X</code> is the integer <var>X_i</var> written on the card given to Anna in the procedure <var>1</var>. of the <var>i</var>-th challenge.</li>
+<li>The parameter <code>Y</code> is the integer <var>Y_i</var> written on the card given to Anna in the procedure <var>1</var>. of the <var>i</var>-th challenge.</li>
+<li>The parameter <code>N</code> is the integer <var>N_i</var> written on the card given to Anna in the procedure <var>1</var>. of the <var>i</var>-th challenge.</li>
+<li>The parameter <code>S</code> is the string <var>S_i</var> written on the card given to Anna in the procedure <var>1</var>. of the <var>i</var>-th challenge.</li>
 </ul>
 <p>For each function call to <code>Anna</code>, the following function should be called <var>49</var> times in total. The following function should be called once for each of the <var>49</var> cells whose row is different from <var>X_i</var> and column is different from <var>Y_i</var>.</p>
 <ul>
 <li>
 <p><code>void Paint(int a, int b, int c)</code></p>
 <ul>
-<li>The parameters <code>a, b</code> mean Anna paints the cell whose row is <var>a</var> and column is <var>b</var>. Here the conditions <var>0 \leq a \leq 7</var>, <var>0 \leq b \leq 7</var>, <var>a \neq X</var>, <var>b \neq Y</var> should be satisfied. If this condition is not satisfied, your program is judged as Wrong Answer [1].</li>
-<li>The parameter <code>c</code> means the color painted by Anna is blue if <var>c = 0</var>, and red if <var>c = 1</var>. Here, <var>0 \leq c \leq 1</var> should be satisfied. If this condition is not satisfied, your program is judged as Wrong Answer [2].</li>
+<li>The parameters <code>a, b</code> mean Anna paints the cell whose row is <var>a</var> and column is <var>b</var>. Here the conditions <var>0 \le a \le 7</var>, <var>0 \le b \le 7</var>, <var>a \neq X</var>, <var>b \neq Y</var> should be satisfied. If this condition is not satisfied, your program is judged as Wrong Answer [1].</li>
+<li>The parameter <code>c</code> means the color painted by Anna is blue if <var>c = 0</var>, and red if <var>c = 1</var>. Here, <var>0 \le c \le 1</var> should be satisfied. If this condition is not satisfied, your program is judged as Wrong Answer [2].</li>
 <li>If the function <code>Paint</code> is called with the same parameters <var>(a, b)</var> more than once, your program is judged as Wrong Answer [3].</li>
 <li>When the function <code>Anna</code> terminates, if the number of function calls to <code>Paint</code> is different from <var>49</var>, your program is judged as Wrong Answer [4].</li>
 </ul>
@@ -93,10 +92,10 @@
 <ul>
 <li>
 <p><code>std::string Bruno(int N, std::vector&lt;std::vector&lt;int&gt;&gt; T)</code></p>
-<p>This function is called every time when Anna finishes painting the grid. This function is called <var>Q</var> times in total. The <var>i</var>-th call (<var>1 \leq i \leq Q</var>) corresponds to the procedures <var>5.</var>, <var>6.</var> of the <var>i</var>-th challenge of the game.</p>
+<p>This function is called every time when Anna finishes painting the grid. This function is called <var>Q</var> times in total. The <var>i</var>-th call (<var>1 \le i \le Q</var>) corresponds to the procedures <var>5</var>., <var>6</var>. of the <var>i</var>-th challenge of the game.</p>
 <ul>
-<li>The parameter <code>N</code> is the integer <var>N_i</var> written on the card given to Bruno in the procedure <var>5.</var> of the <var>i</var>-th challenge.</li>
-<li>The parameter <code>T</code> is a two-dimensional array of size <var>8 \times 8</var> corresponding to the grid of cells given to Bruno in the procedure <var>5.</var> of the <var>i</var>-th challenge. The color of the cell whose row is <var>a</var> (<var>0 \leq a \leq 7</var>) and column is <var>b</var> (<var>0 \leq b \leq 7</var>) is blue if <code>T[a][b] = 0</code>, and red if <code>T[a][b] = 1</code>.</li>
+<li>The parameter <code>N</code> is the integer <var>N_i</var> written on the card given to Bruno in the procedure <var>5</var>. of the <var>i</var>-th challenge.</li>
+<li>The parameter <code>T</code> is a two-dimensional array of size <var>8 \times 8</var> corresponding to the grid of cells given to Bruno in the procedure <var>5</var>. of the <var>i</var>-th challenge. The color of the cell whose row is <var>a</var> (<var>0 \le a \le 7</var>) and column is <var>b</var> (<var>0 \le b \le 7</var>) is blue if <code>T[a][b] = 0</code>, and red if <code>T[a][b] = 1</code>.</li>
 <li>The return value is the string written by Bruno on a paper.</li>
 <li>If the return value is a string of length <var>44</var> or more, your program is judged as Wrong Answer [5].</li>
 <li>Each character of the return value should be either <code>A</code> or <code>B</code>. If this condition is not satisfied, your program is judged as Wrong Answer [6].</li>
@@ -161,12 +160,12 @@
 <section>
 <h3>Constraints</h3>
 <ul>
-<li><var>1 \leq Q \leq 20\,000</var>.</li>
-<li><var>0 \leq X_i \leq 7</var> (<var>1 \leq i \leq Q</var>).</li>
-<li><var>0 \leq Y_i \leq 7</var> (<var>1 \leq i \leq Q</var>).</li>
-<li><var>1 \leq N_i \leq 43</var> (<var>1 \leq i \leq Q</var>).</li>
+<li><var>1 \le Q \le 20\,000</var>.</li>
+<li><var>0 \le X_i \le 7</var> (<var>1 \le i \le Q</var>).</li>
+<li><var>0 \le Y_i \le 7</var> (<var>1 \le i \le Q</var>).</li>
+<li><var>1 \le N_i \le 43</var> (<var>1 \le i \le Q</var>).</li>
 <li><var>Q, X_i, Y_i, N_i</var> are integers.</li>
-<li><var>S_i</var> (<var>1 \leq i \leq Q</var>) is a string of length <var>N_i</var> consisting of <code>A</code> and <code>B</code>.</li>
+<li><var>S_i</var> (<var>1 \le i \le Q</var>) is a string of length <var>N_i</var> consisting of <code>A</code> and <code>B</code>.</li>
 </ul>
 </section>
 </div>
@@ -177,7 +176,7 @@
 <p>If your program is judged as any type of Wrong Answer [1]–[6] (see Implementation Details) or any type of runtime errors (TLE (Time Limit Exceeded), MLE (Memory Limit Exceeded), Abnormal End, etc.) in any of the test cases, your score is <var>0</var> point regardless of whether your program wins challenges in other test cases.</p>
 <p>Otherwise, let <var>L^{\ast}</var> be the minimum of the following values for all test cases of this task. Your score is calculated as in the following table.</p>
 <ul>
-<li>The maximum value of <var>L</var> such that Anna and Bruno win all the challenges satisfying <var>N_i \leq L</var>. However, if they win all the challenges in the test cases, we set <var>L = 43</var>.</li>
+<li>The maximum value of <var>L</var> such that Anna and Bruno win all the challenges satisfying <var>N_i \le L</var>. However, if they win all the challenges in the test cases, we set <var>L = 43</var>.</li>
 </ul>
 <div class="joisp2023-battle-table">
 <table>
@@ -199,6 +198,35 @@
 <th><var>12</var></th>
 <th><var>13</var></th>
 <th><var>14</var></th>
+<th><var>15</var></th>
+<th><var>16</var></th>
+<th><var>17</var></th>
+<th><var>18</var></th>
+<th><var>19</var></th>
+<th><var>20</var></th>
+<th><var>21</var></th>
+<th><var>22</var></th>
+<th><var>23</var></th>
+<th><var>24</var></th>
+<th><var>25</var></th>
+<th><var>26</var></th>
+<th><var>27</var></th>
+<th><var>28</var></th>
+<th><var>29</var></th>
+<th><var>30</var></th>
+<th><var>31</var></th>
+<th><var>32</var></th>
+<th><var>33</var></th>
+<th><var>34</var></th>
+<th><var>35</var></th>
+<th><var>36</var></th>
+<th><var>37</var></th>
+<th><var>38</var></th>
+<th><var>39</var></th>
+<th><var>40</var></th>
+<th><var>41</var></th>
+<th><var>42</var></th>
+<th><var>43</var></th>
 </tr>
 </thead>
 <tbody>
@@ -219,35 +247,6 @@
 <td><var>24</var></td>
 <td><var>26</var></td>
 <td><var>27</var></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="joisp2023-battle-table">
-<table>
-<thead>
-<tr>
-<th><var>L^{\ast}</var></th>
-<th><var>15</var></th>
-<th><var>16</var></th>
-<th><var>17</var></th>
-<th><var>18</var></th>
-<th><var>19</var></th>
-<th><var>20</var></th>
-<th><var>21</var></th>
-<th><var>22</var></th>
-<th><var>23</var></th>
-<th><var>24</var></th>
-<th><var>25</var></th>
-<th><var>26</var></th>
-<th><var>27</var></th>
-<th><var>28</var></th>
-<th><var>29</var></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Score</td>
 <td><var>29</var></td>
 <td><var>30</var></td>
 <td><var>32</var></td>
@@ -263,34 +262,6 @@
 <td><var>48</var></td>
 <td><var>50</var></td>
 <td><var>51</var></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="joisp2023-battle-table">
-<table>
-<thead>
-<tr>
-<th><var>L^{\ast}</var></th>
-<th><var>30</var></th>
-<th><var>31</var></th>
-<th><var>32</var></th>
-<th><var>33</var></th>
-<th><var>34</var></th>
-<th><var>35</var></th>
-<th><var>36</var></th>
-<th><var>37</var></th>
-<th><var>38</var></th>
-<th><var>39</var></th>
-<th><var>40</var></th>
-<th><var>41</var></th>
-<th><var>42</var></th>
-<th><var>43</var></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Score</td>
 <td><var>53</var></td>
 <td><var>54</var></td>
 <td><var>56</var></td>
@@ -411,10 +382,10 @@
 </tbody>
 </table>
 </div>
-<p>In this sample input, there are <var>Q</var> (<var>= 2</var>) challenges.</p>
+<p>In this sample input, there are <var>Q (= 2)</var> challenges.</p>
 <ul>
-<li>In the first challenge, we have <var>X_1 = 0</var>, <var>Y_1 = 0</var>, <var>N_1 = 1</var>, <var>S_1 =</var> <code>"B"</code>. Anna paints the <var>49</var> cells whose row is different from <var>0</var> and column is different from <var>0</var>.</li>
-<li>In the second challenge, we have <var>X_2 = 5</var>, <var>Y_2 = 7</var>, <var>N_2 = 8</var>, <var>S_2 =</var> <code>"AAAABBBB"</code>. Anna paints the <var>49</var> cells whose row is different from <var>5</var> and column is different from <var>7</var>.</li>
+<li>In the first challenge, we have <var>X_1 = 0</var>, <var>Y_1 = 0</var>, <var>N_1 = 1</var>, <var>S_1 = {}</var><code>"B"</code>. Anna paints the <var>49</var> cells whose row is different from <var>0</var> and column is different from <var>0</var>.</li>
+<li>In the second challenge, we have <var>X_2 = 5</var>, <var>Y_2 = 7</var>, <var>N_2 = 8</var>, <var>S_2 = {}</var><code>"AAAABBBB"</code>. Anna paints the <var>49</var> cells whose row is different from <var>5</var> and column is different from <var>7</var>.</li>
 </ul>
 <p>For example, if your program calls <code>Paint(0, 2, 1)</code> in the first challenge, it is judged as Wrong Answer [1] because it designates a cell whose row is <var>0</var>.</p>
 <p>Here is another sample input for the sample grader.</p>
@@ -455,20 +426,22 @@
 2 5 38 BBBBAABAABAABABABBBBBAAABBABAAABAAABBB
 5 2 41 AABABBAAABBABAAAABBABABBAAAAAABBABBABBABA
 1 0 43 AABBABBBBABABBBABBBBAAAAAABABAAABBBAABBAAAB
-</pre></section>
+</pre>
+<style>
+.joisp2023-battle-table .katex {position:relative;}
+</style></section>
 </div>
 </span>
 <span class="lang-ja">
 <blockquote>
 <p><strong>AtCoder での提出方法</strong></p>
 <p><a href="https://www2.ioi-jp.org/camp/2023/2023-sp-tasks/contest4/battle-dist.zip">配布ファイル</a></p>
-<p><code>Anna.h</code>，<code>Bruno.h</code> を include し，すべての関数を <var>1</var> つのファイル内で実装してください．AtCoder の仕様上グローバル変数の共有が可能ですが，自粛してください．</p>
+<p><code>Anna.h</code>，<code>Bruno.h</code> を include し，すべての関数を <var>1</var> つのファイル内で実装してください．グローバル変数を両者の間で共有しないでください．</p>
 <p>このジャッジは C++ 以外に対応していません．</p>
-<p>以下の「実装の詳細」にある <var>2</var> ファイルの構成と「コンパイル・実行の方法」は，配布された採点プログラムでローカルにテストする場合の説明です．AtCoder には上記のとおり <var>1</var> つのファイルを提出してください．</p>
 </blockquote>
-<p>配点： <var>100</var> 点</p>
+<p>配点 : <var>100</var> 点</p>
 <style>
-#task-statement .joisp2023-battle-table {
+#task-statement .joisp2023-battle-table { position:relative;
     max-width: 100%;
     overflow-x: auto;
     margin: 1em 0;
@@ -527,12 +500,12 @@
 <ul>
 <li>
 <p><code>void Anna(int X, int Y, int N, std::string S)</code></p>
-<p>この関数は合計 <var>Q</var> 回呼び出される．<var>i</var> 回目 (<var>1 \leqq i \leqq Q</var>) の呼び出しは，ゲームにおける <var>i</var> 回目のチャレンジの手順 <var>1.</var>，手順 <var>2.</var>，手順 <var>3.</var> に相当する．</p>
+<p>この関数は合計 <var>Q</var> 回呼び出される．<var>i</var> 回目 (<var>1 \leqq i \leqq Q</var>) の呼び出しは，ゲームにおける <var>i</var> 回目のチャレンジの手順 <var>1</var>.，手順 <var>2</var>.，手順 <var>3</var>. に相当する．</p>
 <ul>
-<li>引数 <code>X</code> は，<var>i</var> 回目のチャレンジの手順 <var>1.</var> で Anna が受け取るカードに書かれた整数 <var>X_i</var> である．</li>
-<li>引数 <code>Y</code> は，<var>i</var> 回目のチャレンジの手順 <var>1.</var> で Anna が受け取るカードに書かれた整数 <var>Y_i</var> である．</li>
-<li>引数 <code>N</code> は，<var>i</var> 回目のチャレンジの手順 <var>1.</var> で Anna が受け取るカードに書かれた整数 <var>N_i</var> である．</li>
-<li>引数 <code>S</code> は，<var>i</var> 回目のチャレンジの手順 <var>1.</var> で Anna が受け取るカードに書かれた文字列 <var>S_i</var> である．</li>
+<li>引数 <code>X</code> は，<var>i</var> 回目のチャレンジの手順 <var>1</var>. で Anna が受け取るカードに書かれた整数 <var>X_i</var> である．</li>
+<li>引数 <code>Y</code> は，<var>i</var> 回目のチャレンジの手順 <var>1</var>. で Anna が受け取るカードに書かれた整数 <var>Y_i</var> である．</li>
+<li>引数 <code>N</code> は，<var>i</var> 回目のチャレンジの手順 <var>1</var>. で Anna が受け取るカードに書かれた整数 <var>N_i</var> である．</li>
+<li>引数 <code>S</code> は，<var>i</var> 回目のチャレンジの手順 <var>1</var>. で Anna が受け取るカードに書かれた文字列 <var>S_i</var> である．</li>
 </ul>
 <p>関数 <code>Anna</code> の <var>1</var> 回の呼び出しについて，以下の関数を，行番号が <var>X_i</var> でなく列番号が <var>Y_i</var> でない <var>49</var> 個のマスそれぞれについて <var>1</var> 回ずつ，合計 <var>49</var> 回呼び出さなければならない．</p>
 <ul>
@@ -552,10 +525,10 @@
 <ul>
 <li>
 <p><code>std::string Bruno(int N, std::vector&lt;std::vector&lt;int&gt;&gt; T)</code></p>
-<p>この関数は Anna がマス目を塗り終わるたびに <var>1</var> 回，合計で <var>Q</var> 回呼び出される．<var>i</var> 回目 (<var>1 \leqq i \leqq Q</var>) の呼び出しは，ゲームにおける <var>i</var> 回目のチャレンジの手順 <var>5.</var>，手順 <var>6.</var> に相当する．</p>
+<p>この関数は Anna がマス目を塗り終わるたびに <var>1</var> 回，合計で <var>Q</var> 回呼び出される．<var>i</var> 回目 (<var>1 \leqq i \leqq Q</var>) の呼び出しは，ゲームにおける <var>i</var> 回目のチャレンジの手順 <var>5</var>.，手順 <var>6</var>. に相当する．</p>
 <ul>
-<li>引数 <code>N</code> は，<var>i</var> 回目のチャレンジの手順 <var>5.</var> で Bruno が受け取るカードに書かれた整数 <var>N_i</var> である．</li>
-<li>引数 <code>T</code> は，<var>i</var> 回目のチャレンジの手順 <var>5.</var> で Bruno が受け取るマス目の各マスの色を表す <var>8 \times 8</var> の <var>2</var> 次元配列である．行番号が <var>a</var> (<var>0 \leqq a \leqq 7</var>) で列番号が <var>b</var> (<var>0 \leqq b \leqq 7</var>) のマスの色は，<code>T[a][b] = 0</code> であれば青，<code>T[a][b] = 1</code> であれば赤である．</li>
+<li>引数 <code>N</code> は，<var>i</var> 回目のチャレンジの手順 <var>5</var>. で Bruno が受け取るカードに書かれた整数 <var>N_i</var> である．</li>
+<li>引数 <code>T</code> は，<var>i</var> 回目のチャレンジの手順 <var>5</var>. で Bruno が受け取るマス目の各マスの色を表す <var>8 \times 8</var> の <var>2</var> 次元配列である．行番号が <var>a</var> (<var>0 \leqq a \leqq 7</var>) で列番号が <var>b</var> (<var>0 \leqq b \leqq 7</var>) のマスの色は，<code>T[a][b] = 0</code> であれば青，<code>T[a][b] = 1</code> であれば赤である．</li>
 <li>戻り値は，Bruno が紙に書く文字列である．</li>
 <li>戻り値が <var>44</var> 文字以上の文字列である場合，不正解 [5] と判定される．</li>
 <li>戻り値に <code>A</code> と <code>B</code> 以外の文字が含まれている場合，不正解 [6] と判定される．</li>
@@ -663,6 +636,35 @@
 <th><var>12</var></th>
 <th><var>13</var></th>
 <th><var>14</var></th>
+<th><var>15</var></th>
+<th><var>16</var></th>
+<th><var>17</var></th>
+<th><var>18</var></th>
+<th><var>19</var></th>
+<th><var>20</var></th>
+<th><var>21</var></th>
+<th><var>22</var></th>
+<th><var>23</var></th>
+<th><var>24</var></th>
+<th><var>25</var></th>
+<th><var>26</var></th>
+<th><var>27</var></th>
+<th><var>28</var></th>
+<th><var>29</var></th>
+<th><var>30</var></th>
+<th><var>31</var></th>
+<th><var>32</var></th>
+<th><var>33</var></th>
+<th><var>34</var></th>
+<th><var>35</var></th>
+<th><var>36</var></th>
+<th><var>37</var></th>
+<th><var>38</var></th>
+<th><var>39</var></th>
+<th><var>40</var></th>
+<th><var>41</var></th>
+<th><var>42</var></th>
+<th><var>43</var></th>
 </tr>
 </thead>
 <tbody>
@@ -683,35 +685,6 @@
 <td><var>24</var></td>
 <td><var>26</var></td>
 <td><var>27</var></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="joisp2023-battle-table">
-<table>
-<thead>
-<tr>
-<th><var>L^{\ast}</var></th>
-<th><var>15</var></th>
-<th><var>16</var></th>
-<th><var>17</var></th>
-<th><var>18</var></th>
-<th><var>19</var></th>
-<th><var>20</var></th>
-<th><var>21</var></th>
-<th><var>22</var></th>
-<th><var>23</var></th>
-<th><var>24</var></th>
-<th><var>25</var></th>
-<th><var>26</var></th>
-<th><var>27</var></th>
-<th><var>28</var></th>
-<th><var>29</var></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>得点</td>
 <td><var>29</var></td>
 <td><var>30</var></td>
 <td><var>32</var></td>
@@ -727,34 +700,6 @@
 <td><var>48</var></td>
 <td><var>50</var></td>
 <td><var>51</var></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="joisp2023-battle-table">
-<table>
-<thead>
-<tr>
-<th><var>L^{\ast}</var></th>
-<th><var>30</var></th>
-<th><var>31</var></th>
-<th><var>32</var></th>
-<th><var>33</var></th>
-<th><var>34</var></th>
-<th><var>35</var></th>
-<th><var>36</var></th>
-<th><var>37</var></th>
-<th><var>38</var></th>
-<th><var>39</var></th>
-<th><var>40</var></th>
-<th><var>41</var></th>
-<th><var>42</var></th>
-<th><var>43</var></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>得点</td>
 <td><var>53</var></td>
 <td><var>54</var></td>
 <td><var>56</var></td>
@@ -875,10 +820,10 @@
 </tbody>
 </table>
 </div>
-<p>この入力例は <var>Q</var> (<var>= 2</var>) 回のチャレンジからなる．</p>
+<p>この入力例は <var>Q (= 2)</var> 回のチャレンジからなる．</p>
 <ul>
-<li><var>1</var> 回目のチャレンジでは <var>X_1 = 0</var>，<var>Y_1 = 0</var>，<var>N_1 = 1</var>，<var>S_1 =</var> <code>"B"</code> であるため，Anna は行番号が <var>0</var> でなく列番号が <var>0</var> でない <var>49</var> 個のマスに色を塗らなければならない．</li>
-<li><var>2</var> 回目のチャレンジでは <var>X_2 = 5</var>，<var>Y_2 = 7</var>，<var>N_2 = 8</var>，<var>S_2 =</var> <code>"AAAABBBB"</code> であるため，Anna は行番号が <var>5</var> でなく列番号が <var>7</var> でない <var>49</var> 個のマスに色を塗らなければならない．</li>
+<li><var>1</var> 回目のチャレンジでは <var>X_1 = 0</var>，<var>Y_1 = 0</var>，<var>N_1 = 1</var>，<var>S_1 = {}</var><code>"B"</code> であるため，Anna は行番号が <var>0</var> でなく列番号が <var>0</var> でない <var>49</var> 個のマスに色を塗らなければならない．</li>
+<li><var>2</var> 回目のチャレンジでは <var>X_2 = 5</var>，<var>Y_2 = 7</var>，<var>N_2 = 8</var>，<var>S_2 = {}</var><code>"AAAABBBB"</code> であるため，Anna は行番号が <var>5</var> でなく列番号が <var>7</var> でない <var>49</var> 個のマスに色を塗らなければならない．</li>
 </ul>
 <p>たとえば，<var>1</var> 回目のチャレンジで <code>Paint(0, 2, 1)</code> を呼び出した場合，行番号が <var>0</var> のマスを指定しているため不正解 [1] となることに注意せよ．</p>
 <p>また，採点プログラムのサンプルが読み込む入力のもう <var>1</var> つの例を以下に示す．</p>
@@ -919,7 +864,10 @@
 2 5 38 BBBBAABAABAABABABBBBBAAABBABAAABAAABBB
 5 2 41 AABABBAAABBABAAAABBABABBAAAAAABBABBABBABA
 1 0 43 AABBABBBBABABBBABBBBAAAAAABABAAABBBAABBAAAB
-</pre></section>
+</pre>
+<style>
+.joisp2023-battle-table .katex {position:relative;}
+</style></section>
 </div>
 </span>
 </span>

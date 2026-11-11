@@ -2,7 +2,7 @@ Score: $100$ points
 
 ### Problem Statement
 
-Rie likes to make cookies. She made $N$ types of cookies. She made $A_i$ cookies of type $i$ ($1 \leq i \leq N$). In order to sell the cookies made by her, she will pack them into boxes. However, the following conditions should be satisfied.
+Rie likes to make cookies. She made $N$ types of cookies. She made $A_i$ cookies of type $i$ ($1 \le i \le N$). In order to sell the cookies made by her, she will pack them into boxes. However, the following conditions should be satisfied.
 
 - For every box, the types of the cookies in it should be different.
 - For every box, the number of cookies in it should be equal to one of the following $M$ numbers: $B_1, B_2, \ldots, B_M$.
@@ -24,7 +24,7 @@ $B_1$ $B_2$ $\cdots$ $B_M$
 
 ### Output
 
-If it is possible to pack all the cookies into boxes so that the conditions are satisfied, let $x$ be the number of used boxes, $c_k$ be the number of cookies in the $k$-th box ($1 \leq k \leq x$), and $v_{k,1}, v_{k,2}, \ldots, v_{k,c_k}$ be the types of the cookies in the $k$-th box. Write these numbers to the standard output as in the following format.
+If it is possible to pack all the cookies into boxes so that the conditions are satisfied, let $x$ be the number of used boxes, $c_k$ be the number of cookies in the $k$-th box ($1 \le k \le x$), and $v_{k,1}, v_{k,2}, \ldots, v_{k,c_k}$ be the types of the cookies in the $k$-th box. Write these numbers to the standard output as in the following format.
 
 ~~~
 $x$
@@ -40,21 +40,21 @@ If it is impossible to pack all the cookies into boxes so that the conditions ar
 
 ### Constraints
 
-- $1 \leq N \leq 15\,000$.
-- $A_i \geq 1$ ($1 \leq i \leq N$).
-- $A_1 + A_2 + \cdots + A_N \leq 15\,000$.
-- $1 \leq M \leq N$.
-- $1 \leq B_j \leq N$ ($1 \leq j \leq M$).
-- $B_j < B_{j+1}$ ($1 \leq j \leq M - 1$).
+- $1 \le N \le 15\,000$.
+- $A_i \ge 1$ ($1 \le i \le N$).
+- $A_1 + A_2 + \cdots + A_N \le 15\,000$.
+- $1 \le M \le N$.
+- $1 \le B_j \le N$ ($1 \le j \le M$).
+- $B_j < B_{j+1}$ ($1 \le j \le M - 1$).
 - Given values are all integers.
 
 ### Subtasks
 
-1. ($6$ points) $N \leq 500$, $A_i = 1$ ($1 \leq i \leq N$).
-2. ($7$ points) $N \leq 500$, $M = 1$.
-3. ($12$ points) $A_1 + A_2 + \cdots + A_N \leq 15$.
-4. ($45$ points) $A_1 + A_2 + \cdots + A_N \leq 500$.
-5. ($15$ points) $A_1 + A_2 + \cdots + A_N \leq 3\,000$.
+1. ($6$ points) $N \le 500$, $A_i = 1$ ($1 \le i \le N$).
+2. ($7$ points) $N \le 500$, $M = 1$.
+3. ($12$ points) $A_1 + A_2 + \cdots + A_N \le 15$.
+4. ($45$ points) $A_1 + A_2 + \cdots + A_N \le 500$.
+5. ($15$ points) $A_1 + A_2 + \cdots + A_N \le 3\,000$.
 6. ($15$ points) No additional constraints.
 
 ---

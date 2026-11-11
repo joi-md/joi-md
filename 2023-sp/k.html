@@ -2,7 +2,7 @@
 <span class="lang-en">
 <p>Score: <var>100</var> points</p>
 <style>
-#task-statement .joisp2023-guard-table {
+#task-statement .joisp2023-guard-table { position:relative;
     max-width: 100%;
     overflow-x: auto;
     margin: 1em 0;
@@ -37,12 +37,12 @@
 <div class="part">
 <section>
 <h3>Problem Statement</h3>
-<p>In JOI Kingdom, there are <var>N</var> islands, numbered from <var>1</var> to <var>N</var>. Each island has the insecurity level. The insecurity level of the island <var>i</var> (<var>1 \leq i \leq N</var>) is <var>S_i</var>.</p>
-<p>In JOI Kingdom, ships between pairs of islands are mostly used as the methods of transportations. There are <var>M</var> ships, numbered from <var>1</var> to <var>M</var>. The ship <var>j</var> (<var>1 \leq j \leq M</var>) connects the island <var>A_j</var> and the island <var>B_j</var>. We can run ships when necessary. It is possible to travel from any island to any other island by taking a number of ships.</p>
+<p>In JOI Kingdom, there are <var>N</var> islands, numbered from <var>1</var> to <var>N</var>. Each island has the insecurity level. The insecurity level of the island <var>i</var> (<var>1 \le i \le N</var>) is <var>S_i</var>.</p>
+<p>In JOI Kingdom, ships between pairs of islands are mostly used as the methods of transportations. There are <var>M</var> ships, numbered from <var>1</var> to <var>M</var>. The ship <var>j</var> (<var>1 \le j \le M</var>) connects the island <var>A_j</var> and the island <var>B_j</var>. We can run ships when necessary. It is possible to travel from any island to any other island by taking a number of ships.</p>
 <p>In JOI Kingdom, there is a plan to introduce new ships. We can choose any pairs of islands where newly introduced ships connect.</p>
 <p>One day, an incident occurred. A ship at anchor was attacked. Prime minister K of JOI Kingdom decided to introduce new ships. He also demands that ships in JOI Kingdom should satisfy the following Security Condition.</p>
 <ul>
-<li>When a ship is anchored at the island <var>i</var> (<var>1 \leq i \leq N</var>), the number of security guards on the ship is greater than or equal to <var>S_i</var>.</li>
+<li>When a ship is anchored at the island <var>i</var> (<var>1 \le i \le N</var>), the number of security guards on the ship is greater than or equal to <var>S_i</var>.</li>
 </ul>
 <p>However, since it is expensive to hire security guards, we want to minimize the number of hired security guards. As long as the condition “it is possible to travel from any island to any other island by taking a number of ships” is satisfied, it is possible to abolish ships which are currently running.</p>
 <p>Therefore, we will run ships as follows. Here, <var>k</var> is the number of newly introduced ships.</p>
@@ -51,13 +51,13 @@
 <li>We choose a number of (more than or equal to <var>0</var>) ships, and we abolish them. It is allowed to abolish newly introduced ships.</li>
 <li>For each of the ships, we anchor it at one of the two islands where it connects. We make a number of security guards get on it. Moreover, the following conditions should be satisfied.</li>
 </ol>
-<p><strong>Condition</strong> For every pair <var>u, v</var> (<var>1 \leq u \leq N</var>, <var>1 \leq v \leq N</var>) of islands, it is possible to transport a passenger from the island <var>u</var> to the island <var>v</var> by repeating the following operations a number of times. In the process, Security Condition should be satisfied all the time.</p>
+<p><strong>Condition</strong> For every pair <var>u, v</var> (<var>1 \le u \le N</var>, <var>1 \le v \le N</var>) of islands, it is possible to transport a passenger from the island <var>u</var> to the island <var>v</var> by repeating the following operations a number of times. In the process, Security Condition should be satisfied all the time.</p>
 <ul>
 <li>We make a passenger or security guards get on a ship which is anchored at the island where the passenger or security guards are staying.</li>
 <li>We make a passenger or security guards get off a ship at the island where the ship is currently anchored.</li>
 <li>We move a ship from the island where the ship is currently anchored to the other island where the ship connects.</li>
 </ul>
-<p>Since the budget is limited, we can introduce at most <var>Q</var> new ships. For each <var>k</var> (<var>0 \leq k \leq Q</var>), Prime minister K wants to know the minimum possible number of hired security guards if the number of newly introduced ships is <var>k</var>.</p>
+<p>Since the budget is limited, we can introduce at most <var>Q</var> new ships. For each <var>k</var> (<var>0 \le k \le Q</var>), Prime minister K wants to know the minimum possible number of hired security guards if the number of newly introduced ships is <var>k</var>.</p>
 <p>Write a program which, given the information of islands and the routes of the ships and the number of new ships we can introduce, calculates the minimum possible number of hired security guards for each <var>k</var>.</p>
 <hr />
 </section>
@@ -83,7 +83,7 @@
 <div class="part">
 <section>
 <h3>Output</h3>
-<p>Write <var>Q + 1</var> lines to the standard output. The <var>(k + 1)</var>-th line (<var>0 \leq k \leq Q</var>) of output should contain the minimum possible number of hired security guards if the number of newly introduced ships is <var>k</var>.</p>
+<p>Write <var>Q + 1</var> lines to the standard output. The <var>(k + 1)</var>-th line (<var>0 \le k \le Q</var>) of output should contain the minimum possible number of hired security guards if the number of newly introduced ships is <var>k</var>.</p>
 <hr />
 </section>
 </div>
@@ -93,12 +93,12 @@
 <section>
 <h3>Constraints</h3>
 <ul>
-<li><var>2 \leq N \leq 200\,000</var>.</li>
-<li><var>N - 1 \leq M \leq 400\,000</var>.</li>
-<li><var>0 \leq Q \leq 200\,000</var>.</li>
-<li><var>1 \leq S_i \leq 10^9</var> (<var>1 \leq i \leq N</var>).</li>
-<li><var>1 \leq A_j &lt; B_j \leq N</var> (<var>1 \leq j \leq M</var>).</li>
-<li><var>(A_x, B_x) \neq (A_y, B_y)</var> (<var>1 \leq x &lt; y \leq M</var>).</li>
+<li><var>2 \le N \le 200\,000</var>.</li>
+<li><var>N - 1 \le M \le 400\,000</var>.</li>
+<li><var>0 \le Q \le 200\,000</var>.</li>
+<li><var>1 \le S_i \le 10^9</var> (<var>1 \le i \le N</var>).</li>
+<li><var>1 \le A_j &lt; B_j \le N</var> (<var>1 \le j \le M</var>).</li>
+<li><var>(A_x, B_x) \neq (A_y, B_y)</var> (<var>1 \le x &lt; y \le M</var>).</li>
 <li>It is possible to travel from any island to any other island by taking a number of ships.</li>
 <li>Given values are all integers.</li>
 </ul>
@@ -109,12 +109,12 @@
 <section>
 <h3>Subtasks</h3>
 <ol>
-<li>(<var>12</var> points) <var>M = N - 1</var>, <var>Q = 0</var>, <var>S_i \leq 2</var> (<var>1 \leq i \leq N</var>), <var>A_j = j</var>, <var>B_j = j + 1</var> (<var>1 \leq j \leq M</var>).</li>
-<li>(<var>13</var> points) <var>M = N - 1</var>, <var>Q = 0</var>, <var>A_j = j</var>, <var>B_j = j + 1</var> (<var>1 \leq j \leq M</var>).</li>
+<li>(<var>12</var> points) <var>M = N - 1</var>, <var>Q = 0</var>, <var>S_i \le 2</var> (<var>1 \le i \le N</var>), <var>A_j = j</var>, <var>B_j = j + 1</var> (<var>1 \le j \le M</var>).</li>
+<li>(<var>13</var> points) <var>M = N - 1</var>, <var>Q = 0</var>, <var>A_j = j</var>, <var>B_j = j + 1</var> (<var>1 \le j \le M</var>).</li>
 <li>(<var>12</var> points) <var>M = N - 1</var>, <var>Q = 0</var>.</li>
 <li>(<var>13</var> points) <var>Q = 0</var>.</li>
-<li>(<var>8</var> points) <var>N \leq 16</var>.</li>
-<li>(<var>18</var> points) <var>N \leq 3\,000</var>.</li>
+<li>(<var>8</var> points) <var>N \le 16</var>.</li>
+<li>(<var>18</var> points) <var>N \le 3\,000</var>.</li>
 <li>(<var>24</var> points) No additional constraints.</li>
 </ol>
 <hr />
@@ -463,13 +463,16 @@
 2567
 2461
 </pre>
-<p>This sample input satisfies the constraints of Subtasks <var>5, 6, 7</var>.</p></section>
+<p>This sample input satisfies the constraints of Subtasks <var>5, 6, 7</var>.</p>
+<style>
+.joisp2023-guard-table .katex {position:relative;}
+</style></section>
 </div>
 </span>
 <span class="lang-ja">
-<p>配点： <var>100</var> 点</p>
+<p>配点 : <var>100</var> 点</p>
 <style>
-#task-statement .joisp2023-guard-table {
+#task-statement .joisp2023-guard-table { position:relative;
     max-width: 100%;
     overflow-x: auto;
     margin: 1em 0;
@@ -930,7 +933,10 @@
 2567
 2461
 </pre>
-<p>この入力例は小課題 <var>5, 6, 7</var> の制約を満たす．</p></section>
+<p>この入力例は小課題 <var>5, 6, 7</var> の制約を満たす．</p>
+<style>
+.joisp2023-guard-table .katex {position:relative;}
+</style></section>
 </div>
 </span>
 </span>

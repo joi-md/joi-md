@@ -2,13 +2,13 @@ Score: $100$ points
 
 ### Problem Statement
 
-In the council of JOI City, there are $N$ assembly members, numbered from $1$ to $N$. The council will open a meeting, and the assembly members will take votes on $M$ proposed ordinances, numbered from $1$ to $M$. If $A_{i,j} = 1$, the assembly member $i$ ($1 \leq i \leq N$) will cast an affirmative vote on the proposed ordinance $j$ ($1 \leq j \leq M$). If $A_{i,j} = 0$, the assembly member $i$ will cast a negative vote on the proposed ordinance $j$.
+In the council of JOI City, there are $N$ assembly members, numbered from $1$ to $N$. The council will open a meeting, and the assembly members will take votes on $M$ proposed ordinances, numbered from $1$ to $M$. If $A_{i,j} = 1$, the assembly member $i$ ($1 \le i \le N$) will cast an affirmative vote on the proposed ordinance $j$ ($1 \le j \le M$). If $A_{i,j} = 0$, the assembly member $i$ will cast a negative vote on the proposed ordinance $j$.
 
 The council of JOI City will be performed as follows.
 
 1. Among the $N$ assembly members, they will randomly choose a chairperson by drawing lots.
 2. The chairperson will choose a deputy chairperson among the $N - 1$ assembly members except for the chairperson.
-3. The votes will be taken on $M$ proposed ordinances. Each of the $N - 2$ assembly members except for the chairperson and the deputy chairperson will cast an affirmative vote or a negative vote on each proposed ordinance. The council will approve a proposed ordinance if a majority of the assembly members (i.e., more than or equal to $\left\lfloor \dfrac{N}{2} \right\rfloor$ assembly members) cast affirmative votes on it. Here, $\lfloor x \rfloor$ is the largest integer not exceeding $x$.
+3. The votes will be taken on $M$ proposed ordinances. Each of the $N - 2$ assembly members except for the chairperson and the deputy chairperson will cast an affirmative vote or a negative vote on each proposed ordinance. The council will approve a proposed ordinance if a majority of the assembly members (i.e., more than or equal to $\left\lfloor \frac{N}{2} \right\rfloor$ assembly members) cast affirmative votes on it. Here, $\lfloor x \rfloor$ is the largest integer not exceeding $x$.
 
 Mayor K, the mayor of JOI City, wants the council to approve as many proposed ordinances as possible. Mayor K collected information on assembly members. Mayor K knows, on each proposed ordinance, who will cast an affirmative vote and who will cast a negative vote.
 
@@ -30,25 +30,25 @@ $A_{N,1}$ $A_{N,2}$ $\cdots$ $A_{N,M}$
 
 ### Output
 
-Write $N$ lines to the standard output. The $i$-th line ($1 \leq i \leq N$) of output should contain the maximum possible number of proposed ordinances approved by the council if the assembly member $i$ is chosen as the chairperson.
+Write $N$ lines to the standard output. The $i$-th line ($1 \le i \le N$) of output should contain the maximum possible number of proposed ordinances approved by the council if the assembly member $i$ is chosen as the chairperson.
 
 ---
 
 ### Constraints
 
-- $3 \leq N \leq 300\,000$.
-- $1 \leq M \leq 20$.
-- $0 \leq A_{i,j} \leq 1$ ($1 \leq i \leq N$, $1 \leq j \leq M$).
+- $3 \le N \le 300\,000$.
+- $1 \le M \le 20$.
+- $0 \le A_{i,j} \le 1$ ($1 \le i \le N$, $1 \le j \le M$).
 - Given values are all integers.
 
 ### Subtasks
 
-1. ($8$ points) $N \leq 300$.
-2. ($8$ points) $N \leq 3\,000$.
-3. ($6$ points) $M \leq 2$.
-4. ($19$ points) $M \leq 10$.
-5. ($15$ points) $M \leq 14$.
-6. ($22$ points) $M \leq 17$.
+1. ($8$ points) $N \le 300$.
+2. ($8$ points) $N \le 3\,000$.
+3. ($6$ points) $M \le 2$.
+4. ($19$ points) $M \le 10$.
+5. ($15$ points) $M \le 14$.
+6. ($22$ points) $M \le 17$.
 7. ($22$ points) No additional constraints.
 
 ---

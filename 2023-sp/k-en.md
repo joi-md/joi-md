@@ -1,7 +1,7 @@
 Score: $100$ points
 
 <style>
-#task-statement .joisp2023-guard-table {
+#task-statement .joisp2023-guard-table { position:relative;
     max-width: 100%;
     overflow-x: auto;
     margin: 1em 0;
@@ -34,15 +34,15 @@ Score: $100$ points
 
 ### Problem Statement
 
-In JOI Kingdom, there are $N$ islands, numbered from $1$ to $N$. Each island has the insecurity level. The insecurity level of the island $i$ ($1 \leq i \leq N$) is $S_i$.
+In JOI Kingdom, there are $N$ islands, numbered from $1$ to $N$. Each island has the insecurity level. The insecurity level of the island $i$ ($1 \le i \le N$) is $S_i$.
 
-In JOI Kingdom, ships between pairs of islands are mostly used as the methods of transportations. There are $M$ ships, numbered from $1$ to $M$. The ship $j$ ($1 \leq j \leq M$) connects the island $A_j$ and the island $B_j$. We can run ships when necessary. It is possible to travel from any island to any other island by taking a number of ships.
+In JOI Kingdom, ships between pairs of islands are mostly used as the methods of transportations. There are $M$ ships, numbered from $1$ to $M$. The ship $j$ ($1 \le j \le M$) connects the island $A_j$ and the island $B_j$. We can run ships when necessary. It is possible to travel from any island to any other island by taking a number of ships.
 
 In JOI Kingdom, there is a plan to introduce new ships. We can choose any pairs of islands where newly introduced ships connect.
 
 One day, an incident occurred. A ship at anchor was attacked. Prime minister K of JOI Kingdom decided to introduce new ships. He also demands that ships in JOI Kingdom should satisfy the following Security Condition.
 
-- When a ship is anchored at the island $i$ ($1 \leq i \leq N$), the number of security guards on the ship is greater than or equal to $S_i$.
+- When a ship is anchored at the island $i$ ($1 \le i \le N$), the number of security guards on the ship is greater than or equal to $S_i$.
 
 However, since it is expensive to hire security guards, we want to minimize the number of hired security guards. As long as the condition “it is possible to travel from any island to any other island by taking a number of ships” is satisfied, it is possible to abolish ships which are currently running.
 
@@ -52,13 +52,13 @@ Therefore, we will run ships as follows. Here, $k$ is the number of newly introd
 2. We choose a number of (more than or equal to $0$) ships, and we abolish them. It is allowed to abolish newly introduced ships.
 3. For each of the ships, we anchor it at one of the two islands where it connects. We make a number of security guards get on it. Moreover, the following conditions should be satisfied.
 
-**Condition** For every pair $u, v$ ($1 \leq u \leq N$, $1 \leq v \leq N$) of islands, it is possible to transport a passenger from the island $u$ to the island $v$ by repeating the following operations a number of times. In the process, Security Condition should be satisfied all the time.
+**Condition** For every pair $u, v$ ($1 \le u \le N$, $1 \le v \le N$) of islands, it is possible to transport a passenger from the island $u$ to the island $v$ by repeating the following operations a number of times. In the process, Security Condition should be satisfied all the time.
 
 - We make a passenger or security guards get on a ship which is anchored at the island where the passenger or security guards are staying.
 - We make a passenger or security guards get off a ship at the island where the ship is currently anchored.
 - We move a ship from the island where the ship is currently anchored to the other island where the ship connects.
 
-Since the budget is limited, we can introduce at most $Q$ new ships. For each $k$ ($0 \leq k \leq Q$), Prime minister K wants to know the minimum possible number of hired security guards if the number of newly introduced ships is $k$.
+Since the budget is limited, we can introduce at most $Q$ new ships. For each $k$ ($0 \le k \le Q$), Prime minister K wants to know the minimum possible number of hired security guards if the number of newly introduced ships is $k$.
 
 Write a program which, given the information of islands and the routes of the ships and the number of new ships we can introduce, calculates the minimum possible number of hired security guards for each $k$.
 
@@ -79,29 +79,29 @@ $A_M$ $B_M$
 
 ### Output
 
-Write $Q + 1$ lines to the standard output. The $(k + 1)$-th line ($0 \leq k \leq Q$) of output should contain the minimum possible number of hired security guards if the number of newly introduced ships is $k$.
+Write $Q + 1$ lines to the standard output. The $(k + 1)$-th line ($0 \le k \le Q$) of output should contain the minimum possible number of hired security guards if the number of newly introduced ships is $k$.
 
 ---
 
 ### Constraints
 
-- $2 \leq N \leq 200\,000$.
-- $N - 1 \leq M \leq 400\,000$.
-- $0 \leq Q \leq 200\,000$.
-- $1 \leq S_i \leq 10^9$ ($1 \leq i \leq N$).
-- $1 \leq A_j < B_j \leq N$ ($1 \leq j \leq M$).
-- $(A_x, B_x) \neq (A_y, B_y)$ ($1 \leq x < y \leq M$).
+- $2 \le N \le 200\,000$.
+- $N - 1 \le M \le 400\,000$.
+- $0 \le Q \le 200\,000$.
+- $1 \le S_i \le 10^9$ ($1 \le i \le N$).
+- $1 \le A_j < B_j \le N$ ($1 \le j \le M$).
+- $(A_x, B_x) \neq (A_y, B_y)$ ($1 \le x < y \le M$).
 - It is possible to travel from any island to any other island by taking a number of ships.
 - Given values are all integers.
 
 ### Subtasks
 
-1. ($12$ points) $M = N - 1$, $Q = 0$, $S_i \leq 2$ ($1 \leq i \leq N$), $A_j = j$, $B_j = j + 1$ ($1 \leq j \leq M$).
-2. ($13$ points) $M = N - 1$, $Q = 0$, $A_j = j$, $B_j = j + 1$ ($1 \leq j \leq M$).
+1. ($12$ points) $M = N - 1$, $Q = 0$, $S_i \le 2$ ($1 \le i \le N$), $A_j = j$, $B_j = j + 1$ ($1 \le j \le M$).
+2. ($13$ points) $M = N - 1$, $Q = 0$, $A_j = j$, $B_j = j + 1$ ($1 \le j \le M$).
 3. ($12$ points) $M = N - 1$, $Q = 0$.
 4. ($13$ points) $Q = 0$.
-5. ($8$ points) $N \leq 16$.
-6. ($18$ points) $N \leq 3\,000$.
+5. ($8$ points) $N \le 16$.
+6. ($18$ points) $N \le 3\,000$.
 7. ($24$ points) No additional constraints.
 
 ---
@@ -312,3 +312,7 @@ This sample input satisfies the constraints of Subtasks $3, 4, 5, 6, 7$.
 ~~~
 
 This sample input satisfies the constraints of Subtasks $5, 6, 7$.
+
+<style>
+.joisp2023-guard-table .katex {position:relative;}
+</style>

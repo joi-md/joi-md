@@ -4,7 +4,7 @@ Score: $100$ points
 
 Passport is a certificate which is used worldwide when a traveler enters foreign countries.
 
-In a planet, there are $N$ countries, numbered from $1$ to $N$. Each country issues a passport. When a traveler has a passport issued by the country $i$ ($1 \leq i \leq N$), the traveler can enter the countries $L_i, L_i + 1, \ldots, R_i$. Here, it is guaranteed that the traveler can enter the country where the passport was issued. Namely, $L_i \leq i \leq R_i$ is satisfied.
+In a planet, there are $N$ countries, numbered from $1$ to $N$. Each country issues a passport. When a traveler has a passport issued by the country $i$ ($1 \le i \le N$), the traveler can enter the countries $L_i, L_i + 1, \ldots, R_i$. Here, it is guaranteed that the traveler can enter the country where the passport was issued. Namely, $L_i \le i \le R_i$ is satisfied.
 
 You have a friend who likes traveling. Although he dreams of traveling around the world, he does not have a passport in the beginning. Thus, he plans to visit all of the $N$ countries by repeating the following two actions.
 
@@ -36,25 +36,25 @@ $X_Q$
 
 ### Output
 
-Write $Q$ lines to the standard output. The $j$-th line ($1 \leq j \leq Q$) corresponds to the case where your friend lives in the country $X_j$. If it is possible for him to visit all of the $N$ countries, this line should contain the minimum number of passports he needs to get. Otherwise, this line should contain `-1`.
+Write $Q$ lines to the standard output. The $j$-th line ($1 \le j \le Q$) corresponds to the case where your friend lives in the country $X_j$. If it is possible for him to visit all of the $N$ countries, this line should contain the minimum number of passports he needs to get. Otherwise, this line should contain `-1`.
 
 ---
 
 ### Constraints
 
-- $2 \leq N \leq 200\,000$.
-- $1 \leq L_i \leq i \leq R_i \leq N$ ($1 \leq i \leq N$).
-- $1 \leq Q \leq N$.
-- $1 \leq X_j \leq N$ ($1 \leq j \leq Q$).
-- $X_j < X_{j+1}$ ($1 \leq j \leq Q - 1$).
+- $2 \le N \le 200\,000$.
+- $1 \le L_i \le i \le R_i \le N$ ($1 \le i \le N$).
+- $1 \le Q \le N$.
+- $1 \le X_j \le N$ ($1 \le j \le Q$).
+- $X_j < X_{j+1}$ ($1 \le j \le Q - 1$).
 - Given values are all integers.
 
 ### Subtasks
 
 1. ($6$ points) $Q = 1$, $X_1 = 1$.
-2. ($16$ points) $N \leq 300$, $Q = 1$.
-3. ($24$ points) $N \leq 2\,500$, $Q = 1$.
-4. ($8$ points) $N \leq 2\,500$.
+2. ($16$ points) $N \le 300$, $Q = 1$.
+3. ($24$ points) $N \le 2\,500$, $Q = 1$.
+4. ($8$ points) $N \le 2\,500$.
 5. ($46$ points) No additional constraints.
 
 ---

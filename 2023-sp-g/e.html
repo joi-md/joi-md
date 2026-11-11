@@ -1,0 +1,369 @@
+<span class="lang">
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>JOI 高校の生徒である葵は，<var>1</var> から <var>N</var> までの番号が付けられた <var>N</var> 台のスマートフォンをレンタルしており，それぞれのスマートフォンには使用日数制限が設けられている．スマートフォン <var>i</var> (<var>1 \leqq i \leqq N</var>) は，明日を <var>1</var> 日目としたとき，<var>A_{i}</var> 日目から <var>B_{i}</var> 日目までの <var>B_{i} - A_{i} + 1</var> 日のうち <var>1</var> 日単位で最大 <var>C_{i}</var> 日まで選んで使用することができる．このとき，使用する日は連続していなくても構わない．</p>
+<p>今レンタルしているスマートフォンはすべて <var>K + 1</var> 日目に返却しなくてはならない．そこで，葵はスマートフォンを最大限使用するために明日から <var>K</var> 日分の使用計画を立てようと思ったが，難しかったため，あなたに頼むことにした．</p>
+<p>葵がレンタルしているスマートフォンの台数 <var>N</var>，使用計画を立てる日数 <var>K</var>，それぞれのスマートフォンの使用日数制限が与えられる．葵が <var>K</var> 日の間で <var>1</var> 台以上のスマートフォンを使用することのできる最大日数を求めるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力は以下の形式で標準入力から与えられる．</p>
+<pre><var>N</var> <var>K</var>
+<var>A_{1}</var> <var>B_{1}</var> <var>C_{1}</var>
+<var>A_{2}</var> <var>B_{2}</var> <var>C_{2}</var>
+<var>\vdots</var>
+<var>A_{N}</var> <var>B_{N}</var> <var>C_{N}</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に，葵が <var>1</var> 台以上のスマートフォンを使用することのできる最大日数を <var>1</var> 行で出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>1 \leqq N \leqq 300\,000</var>．</li>
+<li><var>1 \leqq K \leqq 10^{15}</var>．</li>
+<li><var>1 \leqq A_{i} \leqq B_{i} \leqq K</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>1 \leqq C_{i} \leqq B_{i} - A_{i} + 1</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li>入力される値はすべて整数である．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>5</var> 点) <var>N \leqq 1\,000</var>，<var>K \leqq 1\,000</var>，<var>B_{i} &lt; A_{j}</var> または <var>B_{j} &lt; A_{i}</var> (<var>1 \leqq i &lt; j \leqq N</var>)．</li>
+<li>(<var>10</var> 点) <var>C_{i} = B_{i} - A_{i} + 1</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li>(<var>10</var> 点) <var>N \leqq 1\,000</var>，<var>K \leqq 1\,000</var>，<var>A_{i} = 1</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li>(<var>30</var> 点) <var>N \leqq 1\,000</var>，<var>K \leqq 1\,000</var>．</li>
+<li>(<var>15</var> 点) <var>K \leqq 300\,000</var>．</li>
+<li>(<var>30</var> 点) 追加の制約はない．</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>5 15
+1 6 3
+2 3 1
+2 2 1
+3 7 3
+11 13 2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>9
+</pre>
+<p>例えば次のようにすると，葵は <var>9</var> 日 <var>1</var> 台以上のスマートフォンを使用することができる．この表において，〇，<var>\times</var> はそれぞれ該当のスマートフォンを使う日，使わない日を表す．</p>
+<div class="joigsp2023-smartphone-ja-table">
+<table>
+<thead>
+<tr>
+<th>日数</th>
+<th><var>1</var></th>
+<th><var>2</var></th>
+<th><var>3</var></th>
+<th><var>4</var></th>
+<th><var>5</var></th>
+<th><var>6</var></th>
+<th><var>7</var></th>
+<th><var>8</var></th>
+<th><var>9</var></th>
+<th><var>10</var></th>
+<th><var>11</var></th>
+<th><var>12</var></th>
+<th><var>13</var></th>
+<th><var>14</var></th>
+<th><var>15</var></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>スマートフォン <var>1</var></td>
+<td>〇</td>
+<td><var>\times</var></td>
+<td><var>\times</var></td>
+<td>〇</td>
+<td>〇</td>
+<td><var>\times</var></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>スマートフォン <var>2</var></td>
+<td></td>
+<td><var>\times</var></td>
+<td>〇</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>スマートフォン <var>3</var></td>
+<td></td>
+<td>〇</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>スマートフォン <var>4</var></td>
+<td></td>
+<td></td>
+<td><var>\times</var></td>
+<td><var>\times</var></td>
+<td>〇</td>
+<td>〇</td>
+<td>〇</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>スマートフォン <var>5</var></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><var>\times</var></td>
+<td>〇</td>
+<td>〇</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><var>10</var> 日以上 <var>1</var> 台以上のスマートフォンを使用することはできないので，<var>9</var> を出力する．</p>
+<p>この入力例は小課題 <var>4, 5, 6</var> の制約を満たす．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>4 8
+1 2 2
+1 3 3
+1 3 3
+1 5 5
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>5
+</pre>
+<p>例えば次のようにすると，葵は <var>5</var> 日 <var>1</var> 台以上のスマートフォンを使用することができる．この表において，〇，<var>\times</var> はそれぞれ該当のスマートフォンを使う日，使わない日を表す．</p>
+<div class="joigsp2023-smartphone-ja-table">
+<table>
+<thead>
+<tr>
+<th>日数</th>
+<th><var>1</var></th>
+<th><var>2</var></th>
+<th><var>3</var></th>
+<th><var>4</var></th>
+<th><var>5</var></th>
+<th><var>6</var></th>
+<th><var>7</var></th>
+<th><var>8</var></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>スマートフォン <var>1</var></td>
+<td>〇</td>
+<td>〇</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>スマートフォン <var>2</var></td>
+<td>〇</td>
+<td>〇</td>
+<td>〇</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>スマートフォン <var>3</var></td>
+<td><var>\times</var></td>
+<td><var>\times</var></td>
+<td><var>\times</var></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>スマートフォン <var>4</var></td>
+<td>〇</td>
+<td>〇</td>
+<td>〇</td>
+<td>〇</td>
+<td>〇</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><var>6</var> 日以上 <var>1</var> 台以上のスマートフォンを使用することはできないので，<var>5</var> を出力する．</p>
+<p>この入力例は小課題 <var>2, 3, 4, 5, 6</var> の制約を満たす．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>3 6
+1 1 1
+2 3 2
+4 6 2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>5
+</pre>
+<p>この入力例は小課題 <var>1, 4, 5, 6</var> の制約を満たす．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 4</h3>
+<pre>3 7
+4 6 3
+4 6 1
+4 6 2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 4</h3>
+<pre>3
+</pre>
+<p>この入力例は小課題 <var>4, 5, 6</var> の制約を満たす．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 5</h3>
+<pre>15 4768558
+3025257 4432949 1319859
+3066618 4509446 1254699
+3417684 3665318 139375
+914550 2131942 1143715
+729276 928089 139749
+4634629 4763389 30565
+3554868 4214881 168515
+3206967 4721972 519481
+4595561 4755647 139316
+1423715 2437121 87927
+2355901 3933477 584228
+3076814 3150827 40891
+3280648 3632366 177447
+2224458 2296486 47900
+2693763 4283443 832253
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 5</h3>
+<pre>3826780
+</pre>
+<p>この入力例は小課題 <var>6</var> の制約を満たす．</p>
+<style>
+.joigsp2023-smartphone-ja-table { position:relative; max-width:100%;overflow-x:auto;margin:1em 0; }
+.joigsp2023-smartphone-ja-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joigsp2023-smartphone-ja-table th,.joigsp2023-smartphone-ja-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; white-space:nowrap; }
+.joigsp2023-smartphone-ja-table th { background:#f5f5f5; }
+.joigsp2023-smartphone-ja-table .katex { position:relative; }
+</style></section>
+</div>
+</span>
+</span>

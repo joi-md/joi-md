@@ -6,7 +6,7 @@
 <section>
 <h3>Problem Statement</h3>
 <p>Passport is a certificate which is used worldwide when a traveler enters foreign countries.</p>
-<p>In a planet, there are <var>N</var> countries, numbered from <var>1</var> to <var>N</var>. Each country issues a passport. When a traveler has a passport issued by the country <var>i</var> (<var>1 \leq i \leq N</var>), the traveler can enter the countries <var>L_i, L_i + 1, \ldots, R_i</var>. Here, it is guaranteed that the traveler can enter the country where the passport was issued. Namely, <var>L_i \leq i \leq R_i</var> is satisfied.</p>
+<p>In a planet, there are <var>N</var> countries, numbered from <var>1</var> to <var>N</var>. Each country issues a passport. When a traveler has a passport issued by the country <var>i</var> (<var>1 \le i \le N</var>), the traveler can enter the countries <var>L_i, L_i + 1, \ldots, R_i</var>. Here, it is guaranteed that the traveler can enter the country where the passport was issued. Namely, <var>L_i \le i \le R_i</var> is satisfied.</p>
 <p>You have a friend who likes traveling. Although he dreams of traveling around the world, he does not have a passport in the beginning. Thus, he plans to visit all of the <var>N</var> countries by repeating the following two actions.</p>
 <ul>
 <li>He gets a passport issued by the country where he is currently staying.</li>
@@ -42,7 +42,7 @@
 <div class="part">
 <section>
 <h3>Output</h3>
-<p>Write <var>Q</var> lines to the standard output. The <var>j</var>-th line (<var>1 \leq j \leq Q</var>) corresponds to the case where your friend lives in the country <var>X_j</var>. If it is possible for him to visit all of the <var>N</var> countries, this line should contain the minimum number of passports he needs to get. Otherwise, this line should contain <code>-1</code>.</p>
+<p>Write <var>Q</var> lines to the standard output. The <var>j</var>-th line (<var>1 \le j \le Q</var>) corresponds to the case where your friend lives in the country <var>X_j</var>. If it is possible for him to visit all of the <var>N</var> countries, this line should contain the minimum number of passports he needs to get. Otherwise, this line should contain <code>-1</code>.</p>
 <hr />
 </section>
 </div>
@@ -52,11 +52,11 @@
 <section>
 <h3>Constraints</h3>
 <ul>
-<li><var>2 \leq N \leq 200\,000</var>.</li>
-<li><var>1 \leq L_i \leq i \leq R_i \leq N</var> (<var>1 \leq i \leq N</var>).</li>
-<li><var>1 \leq Q \leq N</var>.</li>
-<li><var>1 \leq X_j \leq N</var> (<var>1 \leq j \leq Q</var>).</li>
-<li><var>X_j &lt; X_{j+1}</var> (<var>1 \leq j \leq Q - 1</var>).</li>
+<li><var>2 \le N \le 200\,000</var>.</li>
+<li><var>1 \le L_i \le i \le R_i \le N</var> (<var>1 \le i \le N</var>).</li>
+<li><var>1 \le Q \le N</var>.</li>
+<li><var>1 \le X_j \le N</var> (<var>1 \le j \le Q</var>).</li>
+<li><var>X_j &lt; X_{j+1}</var> (<var>1 \le j \le Q - 1</var>).</li>
 <li>Given values are all integers.</li>
 </ul>
 </section>
@@ -67,9 +67,9 @@
 <h3>Subtasks</h3>
 <ol>
 <li>(<var>6</var> points) <var>Q = 1</var>, <var>X_1 = 1</var>.</li>
-<li>(<var>16</var> points) <var>N \leq 300</var>, <var>Q = 1</var>.</li>
-<li>(<var>24</var> points) <var>N \leq 2\,500</var>, <var>Q = 1</var>.</li>
-<li>(<var>8</var> points) <var>N \leq 2\,500</var>.</li>
+<li>(<var>16</var> points) <var>N \le 300</var>, <var>Q = 1</var>.</li>
+<li>(<var>24</var> points) <var>N \le 2\,500</var>, <var>Q = 1</var>.</li>
+<li>(<var>8</var> points) <var>N \le 2\,500</var>.</li>
 <li>(<var>46</var> points) No additional constraints.</li>
 </ol>
 <hr />
@@ -210,7 +210,7 @@
 </div>
 </span>
 <span class="lang-ja">
-<p>配点： <var>100</var> 点</p>
+<p>配点 : <var>100</var> 点</p>
 
 <div class="part">
 <section>

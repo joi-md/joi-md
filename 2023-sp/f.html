@@ -2,39 +2,37 @@
 <span class="lang-en">
 <p>Score: <var>100</var> points</p>
 <style>
-#task-statement table {
-    display: block;
-    width: fit-content;
-    max-width: 100%;
-    overflow-x: auto;
+.joisp2023-f-table table { position:relative;
+    display: table;
+    width: auto;
+    max-width: none;
+    overflow: visible;
     border-collapse: collapse;
-    margin: 1em 0;
+    margin: 0;
 }
-#task-statement table th,
-#task-statement table td {
+.joisp2023-f-table table td {
     border: 1px solid #aaa;
     padding: 0.3em 0.6em;
     text-align: left;
     vertical-align: top;
 }
-#task-statement table th {
-    background-color: #f5f5f5;
-}
-#task-statement table.mizuyokan-figure {
+.joisp2023-f-table table.mizuyokan-figure {
     display: table;
     width: 480px;
     table-layout: fixed;
     margin: 0.2em 0;
 }
-#task-statement table.mizuyokan-figure td {
+.joisp2023-f-table table.mizuyokan-figure td {
     text-align: center;
 }
-#task-statement table.mizuyokan-figure .join-left {
+.joisp2023-f-table table.mizuyokan-figure .join-left {
     border-left: 0;
 }
-#task-statement table.mizuyokan-figure .join-right {
+.joisp2023-f-table table.mizuyokan-figure .join-right {
     border-right: 0;
 }
+
+.joisp2023-f-table {position:relative;max-width:100%;overflow-x:auto;margin:1em 0;}
 </style>
 
 
@@ -42,8 +40,8 @@
 <section>
 <h3>Problem Statement</h3>
 <p>Mizuyokan is a Japanese confectionery made of azuki beans paste. It was made by cooking azuki beans paste with agar, and solidifying them in a rectangular-shaped form.</p>
-<p>Now, JOI-kun has a mizuyokan machine. Using it, JOI-kun can make a horizontally long rectangular-shaped mizuyokan with <var>N - 1</var> vertical cutlines. The length of the mizuyokan and the positions of the cutlines are determined by the <var>N</var> parameters <var>d_1, d_2, \ldots, d_N</var> set on the machine. The length of the mizuyokan is <var>d_1 + d_2 + \cdots + d_N</var>. The distance between the <var>(i - 1)</var>-th cutline (<var>1 \leq i \leq N</var>) from the left and the <var>i</var>-th cutline from the left is <var>d_i</var>. Here, we consider the leftmost edge of the mizuyokan as the <var>0</var>-th cutline, and the rightmost edge of the mizuyokan as the <var>N</var>-th cutline. In the beginning, the parameters of the mizuyokan machine satisfy <var>d_i = L_i</var> (<var>1 \leq i \leq N</var>).</p>
-<p>JOI-kun has a plan to organize <var>Q</var> tea parties. The <var>j</var>-th tea party (<var>1 \leq j \leq Q</var>) is described by the integers <var>X_j, Y_j, A_j, B_j</var>. It proceeds as follows.</p>
+<p>Now, JOI-kun has a mizuyokan machine. Using it, JOI-kun can make a horizontally long rectangular-shaped mizuyokan with <var>N - 1</var> vertical cutlines. The length of the mizuyokan and the positions of the cutlines are determined by the <var>N</var> parameters <var>d_1, d_2, \ldots, d_N</var> set on the machine. The length of the mizuyokan is <var>d_1 + d_2 + \cdots + d_N</var>. The distance between the <var>(i - 1)</var>-th cutline (<var>1 \le i \le N</var>) from the left and the <var>i</var>-th cutline from the left is <var>d_i</var>. Here, we consider the leftmost edge of the mizuyokan as the <var>0</var>-th cutline, and the rightmost edge of the mizuyokan as the <var>N</var>-th cutline. In the beginning, the parameters of the mizuyokan machine satisfy <var>d_i = L_i</var> (<var>1 \le i \le N</var>).</p>
+<p>JOI-kun has a plan to organize <var>Q</var> tea parties. The <var>j</var>-th tea party (<var>1 \le j \le Q</var>) is described by the integers <var>X_j, Y_j, A_j, B_j</var>. It proceeds as follows.</p>
 <ol>
 <li>The parameter <var>d_{X_j}</var> of the mizuyokan machine is updated, and it is set as <var>Y_j</var>.</li>
 <li>JOI-kun makes a new mizuyokan using the mizuyokan machine. He takes the part of the mizuyokan between the <var>A_j</var>-th cutline and the <var>B_j</var>-th cutline, and uses it for the tea party. He eats the rest.</li>
@@ -54,7 +52,7 @@
 <li>For <var>k = 1, 2, \ldots, m - 1</var>, the inequality <var>x_k &lt; x_{k+1}</var> is satisfied if <var>k</var> is odd, and the inequality <var>x_k &gt; x_{k+1}</var> is satisfied if <var>k</var> is even.</li>
 <li>For <var>k = 1, 2, \ldots, m - 1</var>, the inequality <var>x_k &gt; x_{k+1}</var> is satisfied if <var>k</var> is odd, and the inequality <var>x_k &lt; x_{k+1}</var> is satisfied if <var>k</var> is even.</li>
 </ul>
-<p>Since JOI-kun wants to give mizuyokan to as many friends as possible, he wants to maximize the number of pieces obtained by the procedure <var>3.</var> of the tea party.</p>
+<p>Since JOI-kun wants to give mizuyokan to as many friends as possible, he wants to maximize the number of pieces obtained by the procedure <var>3</var>. of the tea party.</p>
 <p>Write a program which, given information of the initial parameters of the mizuyokan machine and the plan of the tea parties, calculates, for each tea party, the maximum possible number of pieces obtained by cutting the part of the mizuyokan so that the condition is satisfied. Note that, under the constraints of this task, it is always possible to cut the part of the mizuyokan so that the condition is satisfied.</p>
 <hr />
 </section>
@@ -81,7 +79,7 @@
 <div class="part">
 <section>
 <h3>Output</h3>
-<p>Write <var>Q</var> lines to the standard output. The <var>j</var>-th line (<var>1 \leq j \leq Q</var>) of output corresponds to the <var>j</var>-th tea party. It contains the maximum possible number of pieces obtained by cutting the part of the mizuyokan in the <var>j</var>-th tea party so that the condition is satisfied.</p>
+<p>Write <var>Q</var> lines to the standard output. The <var>j</var>-th line (<var>1 \le j \le Q</var>) of output corresponds to the <var>j</var>-th tea party. It contains the maximum possible number of pieces obtained by cutting the part of the mizuyokan in the <var>j</var>-th tea party so that the condition is satisfied.</p>
 <hr />
 </section>
 </div>
@@ -91,12 +89,12 @@
 <section>
 <h3>Constraints</h3>
 <ul>
-<li><var>1 \leq N \leq 250\,000</var>.</li>
-<li><var>1 \leq L_i \leq 10^9</var> (<var>1 \leq i \leq N</var>).</li>
-<li><var>1 \leq Q \leq 50\,000</var>.</li>
-<li><var>1 \leq X_j \leq N</var> (<var>1 \leq j \leq Q</var>).</li>
-<li><var>1 \leq Y_j \leq 10^9</var> (<var>1 \leq j \leq Q</var>).</li>
-<li><var>0 \leq A_j &lt; B_j \leq N</var> (<var>1 \leq j \leq Q</var>).</li>
+<li><var>1 \le N \le 250\,000</var>.</li>
+<li><var>1 \le L_i \le 10^9</var> (<var>1 \le i \le N</var>).</li>
+<li><var>1 \le Q \le 50\,000</var>.</li>
+<li><var>1 \le X_j \le N</var> (<var>1 \le j \le Q</var>).</li>
+<li><var>1 \le Y_j \le 10^9</var> (<var>1 \le j \le Q</var>).</li>
+<li><var>0 \le A_j &lt; B_j \le N</var> (<var>1 \le j \le Q</var>).</li>
 <li>Given values are all integers.</li>
 </ul>
 </section>
@@ -106,11 +104,11 @@
 <section>
 <h3>Subtasks</h3>
 <ol>
-<li>(<var>6</var> points) <var>N \leq 200</var>, <var>Q \leq 10</var>.</li>
-<li>(<var>9</var> points) <var>N \leq 2\,000</var>, <var>Q \leq 10</var>.</li>
-<li>(<var>13</var> points) <var>Q \leq 10</var>.</li>
-<li>(<var>32</var> points) <var>Y_j = L_{X_j}</var> (<var>1 \leq j \leq Q</var>).</li>
-<li>(<var>29</var> points) <var>L_i \leq 120\,000</var> (<var>1 \leq i \leq N</var>), <var>Y_j \leq 120\,000</var> (<var>1 \leq j \leq Q</var>).</li>
+<li>(<var>6</var> points) <var>N \le 200</var>, <var>Q \le 10</var>.</li>
+<li>(<var>9</var> points) <var>N \le 2\,000</var>, <var>Q \le 10</var>.</li>
+<li>(<var>13</var> points) <var>Q \le 10</var>.</li>
+<li>(<var>32</var> points) <var>Y_j = L_{X_j}</var> (<var>1 \le j \le Q</var>).</li>
+<li>(<var>29</var> points) <var>L_i \le 120\,000</var> (<var>1 \le i \le N</var>), <var>Y_j \le 120\,000</var> (<var>1 \le j \le Q</var>).</li>
 <li>(<var>11</var> points) No additional constraints.</li>
 </ol>
 <hr />
@@ -135,26 +133,64 @@
 </pre>
 <p>In the first tea party, the parameters of the mizuyokan machine is set as <var>(d_1, d_2, d_3, d_4, d_5, d_6) = (5, 6, 8, 7, 4, 9)</var>. JOI-kun uses the part of the mizuyokan between the <var>0</var>-th cutline and the <var>5</var>-th cutline as in Figure <var>1</var>.</p>
 <p>Figure <var>1</var>. The mizuyokan for the tea party</p>
+<div class="joisp2023-f-table">
 <table class="mizuyokan-figure">
 <colgroup><col style="width: 16.6667%;"><col style="width: 20%;"><col style="width: 26.6666%;"><col style="width: 23.3334%;"><col style="width: 13.3333%;"></colgroup>
-<tbody><tr><td><var>5</var></td><td><var>6</var></td><td><var>8</var></td><td><var>7</var></td><td><var>4</var></td></tr></tbody>
+<tbody>
+<tr>
+<td><var>5</var></td>
+<td><var>6</var></td>
+<td><var>8</var></td>
+<td><var>7</var></td>
+<td><var>4</var></td>
+</tr>
+</tbody>
 </table>
-
+</div>
 <p>For example, JOI-kun can cut the part of the mizuyokan as follows.</p>
 <p>Figure <var>2</var>. Three methods to cut the mizuyokan. Method <var>1</var>, Method <var>2</var>, Method <var>3</var> from the top.</p>
+<div class="joisp2023-f-table">
 <table class="mizuyokan-figure">
 <colgroup><col style="width: 16.6667%;"><col style="width: 20%;"><col style="width: 26.6666%;"><col style="width: 23.3334%;"><col style="width: 13.3333%;"></colgroup>
-<tbody><tr><td><var>5</var></td><td class="join-right"><var>6</var></td><td class="join-left"><var>8</var></td><td><var>7</var></td><td><var>4</var></td></tr></tbody>
+<tbody>
+<tr>
+<td><var>5</var></td>
+<td class="join-right"><var>6</var></td>
+<td class="join-left"><var>8</var></td>
+<td><var>7</var></td>
+<td><var>4</var></td>
+</tr>
+</tbody>
 </table>
+</div>
+<div class="joisp2023-f-table">
 <table class="mizuyokan-figure">
 <colgroup><col style="width: 16.6667%;"><col style="width: 20%;"><col style="width: 26.6666%;"><col style="width: 23.3334%;"><col style="width: 13.3333%;"></colgroup>
-<tbody><tr><td class="join-right"><var>5</var></td><td class="join-left"><var>6</var></td><td><var>8</var></td><td class="join-right"><var>7</var></td><td class="join-left"><var>4</var></td></tr></tbody>
+<tbody>
+<tr>
+<td class="join-right"><var>5</var></td>
+<td class="join-left"><var>6</var></td>
+<td><var>8</var></td>
+<td class="join-right"><var>7</var></td>
+<td class="join-left"><var>4</var></td>
+</tr>
+</tbody>
 </table>
+</div>
+<div class="joisp2023-f-table">
 <table class="mizuyokan-figure">
 <colgroup><col style="width: 16.6667%;"><col style="width: 20%;"><col style="width: 26.6666%;"><col style="width: 23.3334%;"><col style="width: 13.3333%;"></colgroup>
-<tbody><tr><td class="join-right"><var>5</var></td><td class="join-left join-right"><var>6</var></td><td class="join-left join-right"><var>8</var></td><td class="join-left join-right"><var>7</var></td><td class="join-left"><var>4</var></td></tr></tbody>
+<tbody>
+<tr>
+<td class="join-right"><var>5</var></td>
+<td class="join-left join-right"><var>6</var></td>
+<td class="join-left join-right"><var>8</var></td>
+<td class="join-left join-right"><var>7</var></td>
+<td class="join-left"><var>4</var></td>
+</tr>
+</tbody>
 </table>
-
+</div>
 <p>In Method <var>1</var>, the lengths of the pieces are <var>5, 14, 7, 4</var>. Since this sequence is not zigzag, it does not satisfy the condition. On the other hand, in Method <var>2</var>, the lengths of the pieces are <var>11, 8, 11</var>. Since this sequence is zigzag, it satisfies the condition. In Method <var>3</var>, the length of the piece is <var>30</var>. Since this sequence is zigzag, it also satisfies the condition.</p>
 <p>If JOI-kun cuts the part of the mizuyokan by Method <var>2</var>, he gets <var>3</var> pieces. Since it is not possible for him to cut the part of the mizuyokan so that the condition is satisfied and he gets more than or equal to <var>4</var> pieces, output <var>3</var> in the first line.</p>
 <p>This sample input satisfies the constraints of all the subtasks.</p>
@@ -185,45 +221,46 @@
 <p>In the first tea party, the length of the part of the mizuyokan for the tea party is <var>4</var>. There is a cutline whose distance is <var>2</var> from the leftmost edge. If JOI-kun uses the mizuyokan without cutting it, he gets one piece. The sequence of the lengths of the pieces is <var>(4)</var>, which is zigzag. Since he cannot obtain more than one piece, output <var>1</var>.</p>
 <p>In the second tea party, the length of the part of the mizuyokan for the tea party is <var>9</var>. There are two cutlines whose distances are <var>2, 4</var> from the leftmost edge. If JOI-kun cuts the mizuyokan at the cutline whose distance is <var>4</var> from the leftmost edge, he gets two pieces. The sequence of the lengths of the pieces is <var>(4, 5)</var>, which is zigzag. Since he cannot obtain more than two pieces, output <var>2</var>.</p>
 <p>In the third tea party, the length of the part of the mizuyokan for the tea party is <var>10</var>. There are three cutlines whose distances are <var>1, 3, 5</var> from the leftmost edge. If JOI-kun cuts the mizuyokan at the cutlines whose distances are <var>3, 5</var> from the leftmost edge, he gets three pieces. The sequence of the lengths of the pieces is <var>(3, 2, 5)</var>, which is zigzag. Since he cannot obtain more than three pieces, output <var>3</var>.</p>
-<p>This sample input satisfies the constraints of Subtasks <var>1, 2, 3, 5, 6</var>.</p></section>
+<p>This sample input satisfies the constraints of Subtasks <var>1, 2, 3, 5, 6</var>.</p>
+<style>
+.joisp2023-f-table .katex {position:relative;}
+</style></section>
 </div>
 </span>
 <span class="lang-ja">
-<p>配点： <var>100</var> 点</p>
+<p>配点 : <var>100</var> 点</p>
 <style>
-#task-statement table {
-    display: block;
-    width: fit-content;
-    max-width: 100%;
-    overflow-x: auto;
+.joisp2023-f-table table { position:relative;
+    display: table;
+    width: auto;
+    max-width: none;
+    overflow: visible;
     border-collapse: collapse;
-    margin: 1em 0;
+    margin: 0;
 }
-#task-statement table th,
-#task-statement table td {
+.joisp2023-f-table table td {
     border: 1px solid #aaa;
     padding: 0.3em 0.6em;
     text-align: left;
     vertical-align: top;
 }
-#task-statement table th {
-    background-color: #f5f5f5;
-}
-#task-statement table.mizuyokan-figure {
+.joisp2023-f-table table.mizuyokan-figure {
     display: table;
     width: 480px;
     table-layout: fixed;
     margin: 0.2em 0;
 }
-#task-statement table.mizuyokan-figure td {
+.joisp2023-f-table table.mizuyokan-figure td {
     text-align: center;
 }
-#task-statement table.mizuyokan-figure .join-left {
+.joisp2023-f-table table.mizuyokan-figure .join-left {
     border-left: 0;
 }
-#task-statement table.mizuyokan-figure .join-right {
+.joisp2023-f-table table.mizuyokan-figure .join-right {
     border-right: 0;
 }
+
+.joisp2023-f-table {position:relative;max-width:100%;overflow-x:auto;margin:1em 0;}
 </style>
 
 
@@ -243,7 +280,7 @@
 <li><var>k = 1, 2, \ldots, m - 1</var> に対して，<var>k</var> が奇数ならば <var>x_k &lt; x_{k+1}</var> を，<var>k</var> が偶数ならば <var>x_k &gt; x_{k+1}</var> を満たす．</li>
 <li><var>k = 1, 2, \ldots, m - 1</var> に対して，<var>k</var> が奇数ならば <var>x_k &gt; x_{k+1}</var> を，<var>k</var> が偶数ならば <var>x_k &lt; x_{k+1}</var> を満たす．</li>
 </ul>
-<p>JOI 君は，できるだけ多くの友達に水ようかんをふるまうため，それぞれのお茶会の手順 <var>3.</var> において得られるピースの個数をできるだけ多くしたい．</p>
+<p>JOI 君は，できるだけ多くの友達に水ようかんをふるまうため，それぞれのお茶会の手順 <var>3</var>. において得られるピースの個数をできるだけ多くしたい．</p>
 <p>水ようかん製造機のパラメータの初期値とお茶会の計画の情報が与えられるので，それぞれのお茶会において，条件を満たすような切り分け方で得られるピースの個数の最大値を求めるプログラムを作成せよ．なお，この問題の制約下では，条件を満たすように水ようかんを切り分ける方法が必ず存在する．</p>
 <hr />
 </section>
@@ -324,26 +361,64 @@
 </pre>
 <p><var>1</var> 回目のお茶会において，水ようかん製造機のパラメータは <var>(d_1, d_2, d_3, d_4, d_5, d_6) = (5, 6, 8, 7, 4, 9)</var> となる．お茶会には，表 <var>1</var> に示すような <var>0</var> 番目の切れ目と <var>5</var> 番目の切れ目の間の部分を使用する．</p>
 <p>表 <var>1</var>　お茶会で使用する水ようかん．</p>
+<div class="joisp2023-f-table">
 <table class="mizuyokan-figure">
 <colgroup><col style="width: 16.6667%;"><col style="width: 20%;"><col style="width: 26.6666%;"><col style="width: 23.3334%;"><col style="width: 13.3333%;"></colgroup>
-<tbody><tr><td><var>5</var></td><td><var>6</var></td><td><var>8</var></td><td><var>7</var></td><td><var>4</var></td></tr></tbody>
+<tbody>
+<tr>
+<td><var>5</var></td>
+<td><var>6</var></td>
+<td><var>8</var></td>
+<td><var>7</var></td>
+<td><var>4</var></td>
+</tr>
+</tbody>
 </table>
-
+</div>
 <p>例えば，表 <var>2</var> のような切り分け方が考えられる．</p>
 <p>表 <var>2</var>　水ようかんの切り分け方の例 <var>3</var> つ．上から方法 <var>1, 2, 3</var> とする．</p>
+<div class="joisp2023-f-table">
 <table class="mizuyokan-figure">
 <colgroup><col style="width: 16.6667%;"><col style="width: 20%;"><col style="width: 26.6666%;"><col style="width: 23.3334%;"><col style="width: 13.3333%;"></colgroup>
-<tbody><tr><td><var>5</var></td><td class="join-right"><var>6</var></td><td class="join-left"><var>8</var></td><td><var>7</var></td><td><var>4</var></td></tr></tbody>
+<tbody>
+<tr>
+<td><var>5</var></td>
+<td class="join-right"><var>6</var></td>
+<td class="join-left"><var>8</var></td>
+<td><var>7</var></td>
+<td><var>4</var></td>
+</tr>
+</tbody>
 </table>
+</div>
+<div class="joisp2023-f-table">
 <table class="mizuyokan-figure">
 <colgroup><col style="width: 16.6667%;"><col style="width: 20%;"><col style="width: 26.6666%;"><col style="width: 23.3334%;"><col style="width: 13.3333%;"></colgroup>
-<tbody><tr><td class="join-right"><var>5</var></td><td class="join-left"><var>6</var></td><td><var>8</var></td><td class="join-right"><var>7</var></td><td class="join-left"><var>4</var></td></tr></tbody>
+<tbody>
+<tr>
+<td class="join-right"><var>5</var></td>
+<td class="join-left"><var>6</var></td>
+<td><var>8</var></td>
+<td class="join-right"><var>7</var></td>
+<td class="join-left"><var>4</var></td>
+</tr>
+</tbody>
 </table>
+</div>
+<div class="joisp2023-f-table">
 <table class="mizuyokan-figure">
 <colgroup><col style="width: 16.6667%;"><col style="width: 20%;"><col style="width: 26.6666%;"><col style="width: 23.3334%;"><col style="width: 13.3333%;"></colgroup>
-<tbody><tr><td class="join-right"><var>5</var></td><td class="join-left join-right"><var>6</var></td><td class="join-left join-right"><var>8</var></td><td class="join-left join-right"><var>7</var></td><td class="join-left"><var>4</var></td></tr></tbody>
+<tbody>
+<tr>
+<td class="join-right"><var>5</var></td>
+<td class="join-left join-right"><var>6</var></td>
+<td class="join-left join-right"><var>8</var></td>
+<td class="join-left join-right"><var>7</var></td>
+<td class="join-left"><var>4</var></td>
+</tr>
+</tbody>
 </table>
-
+</div>
 <p>方法 <var>1</var> ではピースの長さが順に <var>5, 14, 7, 4</var> となっており，この数列はジグザグではないので条件を満たさない．一方，方法 <var>2</var> ではピースの長さが順に <var>11, 8, 11</var> となっており，この数列はジグザグであるため条件を満たす．また，方法 <var>3</var> ではピースの長さが順に <var>30</var> となっており，この数列もジグザグであるため条件を満たす．</p>
 <p>方法 <var>2</var> のようにして，条件を満たすような切り分け方で <var>3</var> 個のピースを得ることができる．また，条件を満たすような切り分け方で <var>4</var> 個以上のピースを得ることはできない．よって，<var>1</var> 行目には <var>3</var> を出力する．</p>
 <p>この入力例はすべての小課題の制約を満たす．</p>
@@ -374,7 +449,10 @@
 <p><var>1</var> 回目のお茶会では，お茶会に使用する水ようかんの長さは <var>4</var> であり，左から長さ <var>2</var> の位置に切れ目がある．このとき，切り分けずにそのまま使用することで <var>1</var> 個のピースが得られる．得られるピースの長さを順に並べた数列は <var>(4)</var> であり，これはジグザグである．これよりも多くのピースを得ることはできないので，<var>1</var> を出力する．</p>
 <p><var>2</var> 回目のお茶会では，お茶会に使用する水ようかんの長さは <var>9</var> であり，左から長さ <var>2, 4</var> の位置に切れ目がある．このとき，左から長さ <var>4</var> の位置の切れ目で切ることで，<var>2</var> 個のピースが得られる．得られるピースの長さを順に並べた数列は <var>(4, 5)</var> であり，これはジグザグである．これよりも多くのピースを得ることはできないので，<var>2</var> を出力する．</p>
 <p><var>3</var> 回目のお茶会では，お茶会に使用する水ようかんの長さは <var>10</var> であり，左から長さ <var>1, 3, 5</var> の位置に切れ目がある．このとき，左から長さ <var>3, 5</var> の位置の切れ目で切ることで，<var>3</var> 個のピースが得られる．得られるピースの長さを順に並べた数列は <var>(3, 2, 5)</var> であり，これはジグザグである．これよりも多くのピースを得ることはできないので，<var>3</var> を出力する．</p>
-<p>この入力例は小課題 <var>1, 2, 3, 5, 6</var> の制約を満たす．</p></section>
+<p>この入力例は小課題 <var>1, 2, 3, 5, 6</var> の制約を満たす．</p>
+<style>
+.joisp2023-f-table .katex {position:relative;}
+</style></section>
 </div>
 </span>
 </span>
