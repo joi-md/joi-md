@@ -1,0 +1,191 @@
+<span class="lang">
+<span class="lang-ja">
+<blockquote>
+<p><strong>AtCoder での提出方法</strong></p>
+<p>この提出先はテストケース 01 用です．このテストケースに対する出力ファイルを，言語 <code>Text (cat)</code> を選択して提出してください．</p>
+<p>各テストケースの提出先: <a href="https://atcoder.jp/contests/joisc2011/tasks/joisc2011_ufo1">01</a> | <a href="https://atcoder.jp/contests/joisc2011/tasks/joisc2011_ufo2">02</a> | <a href="https://atcoder.jp/contests/joisc2011/tasks/joisc2011_ufo3">03</a> | <a href="https://atcoder.jp/contests/joisc2011/tasks/joisc2011_ufo4">04</a> | <a href="https://atcoder.jp/contests/joisc2011/tasks/joisc2011_ufo5">05</a></p>
+<p><a href="https://www2.ioi-jp.org/camp/2011/2011-sp-tasks/Day3-ufo-in.zip">入力データ</a></p>
+</blockquote>
+<p>配点 : <var>20</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>IOI 星の宇宙人は日本にある JOI 公園 (ただし，一般の人には存在は秘密にされている) に UFO の飛行場を作る計画を立てている．IOI 星の宇宙人は JOI 公園を調査し，UFO が着陸可能な場所を示した地図を作成した．</p>
+<p>JOI 公園は東西 <var>W</var> メートル，南北 <var>H</var> メートルの長方形であり，<var>1</var> メートル四方の正方形の区画に分けられている．区画は全部で <var>W \times H</var> 個あり，西から <var>x</var> 列目，北から <var>y</var> 行目の区画を <var>(x, y)</var> と表す．北西の角の区画は <var>(1, 1)</var> であり，南東の角の区画は <var>(W, H)</var> である．各区画は「着陸可能」か「着陸不可能」かのいずれかであり，「着陸可能」は “<code>.</code>”，「着陸不可能」は “<code>w</code>” で表される．</p>
+<p>IOI 星の宇宙人が作る UFO は幅 <var>B</var> メートル，奥行き <var>D</var> メートルにおさまる．この UFO は仕様上，設計図での上下左右がそれぞれ UFO において北，南，西，東の方角となるように，また設計図での左上の角が JOI 公園のいずれかの区画の左上と一致するように着陸しなければならない．UFO の設計図は <var>D</var> 行 <var>B</var> 列のマス目からなる．マスは全部で <var>B \times D</var> 個あり，左から <var>i</var> 列目，上から <var>j</var> 行目のマスを <var>(i, j)</var> と表す．左上のマスは <var>(1, 1)</var> であり，右下のマスは <var>(B, D)</var> である．マス <var>(i, j)</var> は UFO の西の端から <var>i - 1</var> メートル～<var>i</var> メートル，北の端から <var>j - 1</var> メートル～<var>j</var> メートルの正方形の範囲に UFO の一部が含まれるか否かを示す．各マスは UFO の一部が「含まれる」か「含まれない」かのいずれかであり，含まれる場合は “<code>O</code>” (大文字のオー)，含まれない場合は “<code>.</code>” で表される．</p>
+<p>ある <var>1</var> 個の UFO が着陸する時，設計図上のマスで UFO に「含まれる」全ての場所は，着陸時に「着陸可能」な区画に含まれなければならない．また複数個の UFO が着陸する時は，ある UFO の設計図上のマスで「含まれる」全ての場所は，別の UFO の設計図上のマスで「含まれる」いずれの場所とも辺を共有することはできない．ただし，UFO は角を共有する場所に着陸することはできる．</p>
+<p>あなたは奇しくも IOI 星の親善大使として選ばれた．そこで，あなたには，出来る限り多くの UFO の着陸が可能な飛行場を作る計画書を作って欲しい．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p>JOI 公園に作る UFO の飛行場の計画書を作成せよ．より多くの個数の UFO を着陸させる計画書を作ることにより，あなたはより高い得点を得る．計画書は JOI 公園の地図上に着陸した UFO を書き加えたものであり，JOI 公園の「着陸可能」な区画のうち，着陸した UFO が含まれる区画を “<code>O</code>” (大文字のオー)，着陸した UFO が含まれない区画を “<code>.</code>” で表し，「着陸不可能」な区画は “<code>w</code>” で表す．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>1 \leqq B \leqq 5</var>：UFO の幅（メートル）．</li>
+<li><var>1 \leqq D \leqq 5</var>：UFO の奥行き（メートル）．</li>
+<li><var>1 \leqq W \leqq 200</var>：JOI 公園の東西方向の大きさ（メートル）．</li>
+<li><var>1 \leqq H \leqq 200</var>：JOI 公園の南北方向の大きさ（メートル）．</li>
+</ul>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力ファイルは以下の形式で与えられる．</p>
+<ul>
+<li><var>1</var> 行目には整数 <var>B, D</var> が空白を区切りとして書かれており，UFO の幅が <var>B</var> メートル，奥行きが <var>D</var> メートルであることを表す．</li>
+<li>続く <var>D</var> 行には UFO の設計図の情報が書かれている．<var>j + 1</var> 行目 (<var>1 \leqq j \leqq D</var>) には，<var>B</var> 文字の文字列が書かれており，<var>i</var> 文字目 (<var>1 \leqq i \leqq B</var>) には設計図のマス <var>(i, j)</var> を表す “<code>O</code>” または “<code>.</code>” の文字が書かれている．</li>
+<li><var>D+2</var> 行目には整数 <var>W, H</var> が空白を区切りとして書かれており，JOI 公園の東西方向の大きさが <var>W</var> メートル，南北方向の大きさが <var>H</var> メートルであることを表す．</li>
+<li>続く <var>H</var> 行には JOI 公園の地図の情報が書かれている．<var>y + D + 2</var> 行目 (<var>1 \leqq y \leqq H</var>) には，<var>W</var> 文字の文字列が書かれており，<var>x</var> 文字目 (<var>1 \leqq x \leqq W</var>) には公園の区画 <var>(x, y)</var> を表す “<code>.</code>” または “<code>w</code>” の文字が書かれている．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>出力の <var>y</var> 行目 (<var>1 \leqq y \leqq H</var>) には公園の北から <var>y</var> 行目の状態を表す <var>W</var> 文字の文字列を書け．<var>y</var> 行目 (<var>1 \leqq y \leqq H</var>) の <var>x</var> 文字目 (<var>1 \leqq x \leqq W</var>) は区画 <var>(x, y)</var> の状態を表す “<code>O</code>” または “<code>.</code>” または “<code>w</code>” のいずれかの文字である．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>提出方法</h3>
+<p>各入力データに対する出力を提出せよ．その際，出力のセクションで指定された形式に一致するかのみがチェックされる．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>採点基準</h3>
+<p>各入力ファイルには以下に示す <var>X</var> の値が割り当てられている．参加者が提出した計画書のうちの着陸できる UFO の個数の最大値を <var>Y</var> とする．あなたの計画書が問題の条件を満たさない場合，あなたの得点は <var>0</var> 点である．条件を満たす場合，<var>\alpha</var> をあなたの計画書における着陸できる UFO の個数とし，</p>
+<ul>
+<li><var>\alpha \leqq X</var> の時は，<var>\dfrac{4\alpha}{X}</var> の小数第 <var>2</var> 位を四捨五入した値，</li>
+<li><var>X &lt; \alpha</var> の時は，<var>4+16\times\left(\dfrac{\alpha - X}{Y - X}\right)^2</var> の小数第 <var>2</var> 位を四捨五入した値，</li>
+</ul>
+<p>があなたの得点となる．</p>
+<div class="joisc2011-ufo-ja-table">
+<table>
+<thead>
+<tr>
+<th>入力ファイル</th>
+<th><var>B</var></th>
+<th><var>D</var></th>
+<th><var>W</var></th>
+<th><var>H</var></th>
+<th><var>X</var></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><var>01</var></td>
+<td><var>1</var></td>
+<td><var>1</var></td>
+<td><var>15</var></td>
+<td><var>15</var></td>
+<td><var>90</var></td>
+</tr>
+<tr>
+<td><var>02</var></td>
+<td><var>1</var></td>
+<td><var>1</var></td>
+<td><var>10</var></td>
+<td><var>200</var></td>
+<td><var>750</var></td>
+</tr>
+<tr>
+<td><var>03</var></td>
+<td><var>3</var></td>
+<td><var>3</var></td>
+<td><var>100</var></td>
+<td><var>100</var></td>
+<td><var>500</var></td>
+</tr>
+<tr>
+<td><var>04</var></td>
+<td><var>5</var></td>
+<td><var>5</var></td>
+<td><var>180</var></td>
+<td><var>180</var></td>
+<td><var>1270</var></td>
+</tr>
+<tr>
+<td><var>05</var></td>
+<td><var>5</var></td>
+<td><var>5</var></td>
+<td><var>200</var></td>
+<td><var>200</var></td>
+<td><var>1050</var></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入出力の例</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例</h3>
+<pre>4 3
+O..O
+OOOO
+.O..
+20 10
+....................
+.w......w.......ww..
+....ww......w.w.....
+.w.....w............
+...w......w.........
+w................ww.
+....w...............
+.w.....w........w.ww
+............w.......
+....w..............w
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例</h3>
+<pre>..O..O......O..O....
+.wOOOO.Ow.O.OOOOww..
+...Oww.OOOO.wOw.O..O
+.w.....wO..O..O.OOOO
+.O.wO.O..OwOOOO..O..
+wOOOO.OOOO..O...OwwO
+..O.w..O..O..O..OOOO
+Ow.O.O.wO.OOOO..wOww
+OOOO.OOOO..Ow.......
+.O..w.O............w
+</pre>
+<p>この出力例は，<var>11</var> 個の UFO を着陸させることができる計画書である．</p>
+<style>
+.joisc2011-ufo-ja-table { max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisc2011-ufo-ja-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisc2011-ufo-ja-table th,.joisc2011-ufo-ja-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisc2011-ufo-ja-table th { background:#f5f5f5; }
+</style></section>
+</div>
+</span>
+</span>

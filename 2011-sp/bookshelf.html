@@ -1,0 +1,120 @@
+<span class="lang">
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>20XX 年，IOI が JOI 君の住む国で開催されることになった．このニュースを聞いた JOI 君は友人に知らせるために部屋を飛び出そうとした．しかし，あまりにも急いでいたため部屋の本棚にぶつかってしまい，本は本棚から全て落ちてしまった．とにかく急いでいた JOI 君は，落ちた本を順番を全く考慮せず全て本棚に入れて家を出た．帰宅後，JOI 君は滅茶苦茶な順番に並んだ本を本来の順番に戻す作業が必要になった．</p>
+<p>JOI 君の部屋の本棚は幅 <var>N</var> センチメートルであり，本棚には幅 <var>1</var> センチメートルの本が <var>N</var> 冊入っている．本には <var>1</var> から <var>N</var> までの番号がふられており，本来は本棚には左から <var>1, \ldots, N</var> の順番で本が並べられていた．また，本 <var>i</var> の重さは <var>A_{i}</var> グラムである．</p>
+<p>JOI 君は疲れていて本を同時にたくさん持ちたくなかったので，次のような操作を行うことで本棚を整理することにした:</p>
+<ul>
+<li>本棚に入っている本を <var>1</var> つ選び，取り出す．</li>
+<li>次に，本を取り出してできた隙間に隣接している本を動かすことを何度か行う．</li>
+<li>次に，取り出した本を本棚の隙間に戻す．</li>
+</ul>
+<p>本を本棚から同時に <var>2</var> 冊以上取り出すことはできない．</p>
+<p>例えば，本が左から <var>5, 3, 4, 1, 2</var> の順で並んでいるとき，本 <var>1</var> を取り出し，本 <var>4</var> と本 <var>3</var> を順に右に動かし，本 <var>1</var> を本棚に戻すことで，本棚の本を左から <var>5, 1, 3, 4, 2</var> の順にすることができる．（下図）</p>
+<p><img src="https://img.atcoder.jp/joisc2011/bookshelf-ja-p4-group1.png" alt="図" style="max-width:100%;height:auto;"></p>
+
+<p>この操作で，JOI 君が重さ <var>w</var> グラムの本を本棚から取り出すとき，JOI 君はちょうど <var>w</var> カロリーを消費する．また，JOI 君が重さ <var>w</var> グラムの本を本棚に戻すときも，JOI 君はちょうど <var>w</var> カロリーを消費する．また，本棚はなめらかな素材でできているので，JOI 君が本棚の中で本を動かすときには JOI 君はカロリーを消費しないとしてよい．</p>
+<p>JOI 君は疲れていたので，なるべくカロリーを消費しないようにして本棚の本を本来の順番に戻すことにした．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p>本の数と，それぞれの本の重さ，現在の本棚の本の並び順が与えられたとき，JOI 君が本棚の本を本来の順番に並び替えるために消費するカロリーの合計の最小値を求めるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>1 \leqq N \leqq 100\,000</var>：本の数．</li>
+<li><var>1 \leqq A_i \leqq 1\,000\,000\,000</var>：本 <var>i</var> の重さ（グラム）．</li>
+</ul>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>標準入力から以下の入力を読み込め．</p>
+<ul>
+<li><var>1</var> 行目には整数 <var>N</var> が書かれている．</li>
+<li>続く <var>N</var> 行には本の重さの情報が書かれている．<var>i + 1</var> 行目 (<var>1 \leqq i \leqq N</var>) には，本 <var>i</var> の重さを表す整数 <var>A_{i}</var> が書かれている．</li>
+<li>続く <var>N</var> 行には現在の本棚の本の並び順の情報が書かれている．<var>j + N + 1</var> 行目 (<var>1 \leqq j \leqq N</var>) には，現在左から <var>j</var> 番目にある本の番号を表す整数が書かれている．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に，JOI 君が消費するカロリーの合計の最小値を表す整数を <var>1</var> 行で出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>採点基準</h3>
+<p>採点用データのうち，配点の <var>30\%</var> 分については，<var>N \leqq 5\,000</var> を満たす．</p>
+<p>採点用データのうち，配点の <var>30\%</var> 分については，<var>1 \leqq i \leqq N</var> なる全ての <var>i</var> に対し <var>A_{i} = 1</var> を満たす．</p>
+<p>採点用データのうち，配点の <var>20\%</var> 分については，これら <var>2</var> つの条件の両方を満たす．</p>
+<p>採点用データのうち，配点の <var>40\%</var> 分については，これら <var>2</var> つの条件の少なくとも一方を満たす．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入出力の例</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例</h3>
+<pre>4
+1
+6
+4
+3
+3
+4
+2
+1
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例</h3>
+<pre>14
+</pre>
+<p>この入力例では，最初本は左から <var>3, 4, 2, 1</var> の順に並んでおり，本 <var>1, 2, 3, 4</var> の重さはそれぞれ <var>1, 6, 4, 3</var> グラムである．</p>
+<p>JOI 君は，まず以下の操作を順番に行う：</p>
+<ul>
+<li>本 <var>1</var> を取り出す．</li>
+<li>本 <var>2</var>，本 <var>4</var>，本 <var>3</var> を順に右に動かす．</li>
+<li>本 <var>1</var> を隙間に戻す．</li>
+</ul>
+<p>本棚の本は左から <var>1, 3, 4, 2</var> の順になる．本 <var>1</var> の重さは <var>1</var> グラムなので JOI 君は <var>1 \times 2 = 2</var> カロリーを消費する．</p>
+<p>次に，以下の操作を順番に行う：</p>
+<ul>
+<li>本 <var>2</var> を取り出す．</li>
+<li>本 <var>4</var>，本 <var>3</var> を順に右に動かす．</li>
+<li>本 <var>2</var> を隙間に戻す．</li>
+</ul>
+<p>本棚の本は左から <var>1, 2, 3, 4</var> の順になる．本 <var>2</var> の重さは <var>6</var> グラムなので JOI 君は <var>6 \times 2 = 12</var> カロリーを消費する．</p>
+<p>よって JOI 君は合計 <var>14</var> カロリーの消費で本を左から <var>1, 2, 3, 4</var> の順にできる．また，JOI 君が消費するカロリーをこれより少なくすることは不可能である．</p></section>
+</div>
+</span>
+</span>

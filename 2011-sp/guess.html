@@ -1,0 +1,139 @@
+<span class="lang">
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>あなたは JOI ちゃんと数当てゲームをしている．まず，JOI ちゃんは <var>1</var> 以上 <var>N</var> 以下の整数 <var>1</var> つずつをある順番に並べ替えた数列を用意する．この数列を「正解」と呼ぶことにしよう．あなたは「予想」という行動を <var>L</var> 回まで行うことができ，<var>L</var> 回以内に正解を当てることができればあなたの勝ちである．</p>
+<p><var>1</var> 回の「予想」では，あなたは <var>1</var> 以上 <var>N</var> 以下の整数 <var>N</var> 個を並べた数列を JOI ちゃんに伝える．予想の数列には，同じ整数が複数個含まれていてもかまわない．<var>1</var> 回の予想ごとに，予想の数列と正解とが何か所で一致したかを知ることができる．</p>
+<p>あなたはこのゲームに勝つため，プログラムを書くことにした．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p>正解の数列を指定された回数以下の予想で当てるプログラムを作れ．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<p>数列の長さ <var>N</var> と予想回数の上限 <var>L</var> は「採点基準」の項目で述べる．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>標準入力から以下の入力を読み込め．</p>
+<ul>
+<li><var>1</var> 行目には整数 <var>N</var> が書かれている．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>やりとり</h3>
+<p>入力データを読み込んだ後，あなたのプログラムは，標準出力への予想の書き出しと，標準入力からの回答の読み込みを交互に行わなければならない．各予想は，予想した数列の <var>i</var> 番目の整数を <var>i</var> 行目とした <var>N</var> 行を標準出力に書き出さなければならない．予想には <var>1</var> より小さい整数や <var>N</var> より大きい整数が含まれていてはならない．各回答は，予想の数列と正解の数列が何か所で一致したかを表す <var>1</var> 個の整数からなる <var>1</var> 行として，標準入力から与えられる．回答として <var>N</var> が返ってきた際は，数列を当てることに成功したということなので，その時点でプログラムを終了し，その後一切の出力を行ってはならない．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>注意</h3>
+<p>全ての採点用データについて，適切なアルゴリズムを用いれば，正解の数列が <var>1</var> 以上 <var>N</var> 以下の整数のどのような並べ替えであっても，<var>L</var> 回以下の予想で当てることができる．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>重要な注意</h3>
+<p>標準入力を読み込むときに，読み込みが誤ってブロックされてしまうことを防ぐ必要がある．そのため，読み込みを行う前に <code>fflush(stdout);</code> などを記述しておくことを勧める．以下が採点システムとのやりとりを行うサンプルプログラムである．</p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+int main(void) {
+    int i, N, ret;
+    scanf(&quot;%d&quot;, &amp;N);
+    for (;;) {
+        for (i = 1; i &lt;= N; i++) {
+            printf(&quot;%d\n&quot;, i);     // 予想
+        }
+        fflush(stdout);           // 回答を読む前に標準出力をフラッシュする
+        scanf(&quot;%d&quot;, &amp;ret);         // 採点システムからの回答を読む
+        if (ret == N) break;
+    }
+    return 0;
+}
+</code></pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>採点基準</h3>
+<p>採点用データのうち，配点の <var>10\%</var> 分については，<var>1 \leqq N \leqq 7</var>，<var>L = 6\,000</var> をみたす．</p>
+<p>採点用データのうち，配点の <var>40\%</var> 分については，<var>1 \leqq N \leqq 50</var>，<var>L = 3\,000</var> をみたす．</p>
+<p>採点用データのうち，配点の <var>30\%</var> 分については，<var>1 \leqq N \leqq 100</var>，<var>L = 1\,000</var> をみたす．</p>
+<p>採点用データのうち，配点の <var>20\%</var> 分については，<var>1 \leqq N \leqq 100</var>，<var>L = 700</var> をみたす．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入出力の例</h3>
+<div class="joisc2011-guess-ja-table">
+<table>
+<thead>
+<tr>
+<th>入力例</th>
+<th>出力例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>3</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>3</code><br><code>2</code><br><code>1</code></td>
+</tr>
+<tr>
+<td><code>1</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>1</code><br><code>2</code><br><code>3</code></td>
+</tr>
+<tr>
+<td><code>0</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>2</code><br><code>3</code><br><code>1</code></td>
+</tr>
+<tr>
+<td><code>3</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>この例では <var>3</var> 回の予想で正解に達している．</p>
+<style>
+.joisc2011-guess-ja-table { max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisc2011-guess-ja-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisc2011-guess-ja-table th,.joisc2011-guess-ja-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisc2011-guess-ja-table th { background:#f5f5f5; }
+.joisc2011-guess-ja-table code { white-space:nowrap; }
+</style></section>
+</div>
+</span>
+</span>

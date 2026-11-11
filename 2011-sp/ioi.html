@@ -1,0 +1,139 @@
+<span class="lang">
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>20XX 年，ついに JOI 国で行われることになった IOI には <var>K</var> 人の選手が参加した．選手には <var>1, 2, \ldots, K</var> と番号が付けられている．問題は全部で <var>N</var> 問出題され，各選手は各問題について <var>0</var> 以上 <var>100</var> 以下の整数の点数を付けられる．</p>
+<p>選手には <var>N</var> 問の合計点に応じてメダルが与えられる．メダルの与えられる詳しい条件は，たとえば金メダルについては次のように決まっている：</p>
+<ul>
+<li><var>G</var> を，<var>N</var> 問の合計点が <var>G</var> 点以上の選手の人数が全体の <var>\frac{1}{12}</var> 以上となるような最大の値とする．このとき，金メダルが与えられる条件は，<var>N</var> 問の合計点が <var>G</var> 点以上であることである．</li>
+</ul>
+<p>すでに競技が終了している問題が <var>M</var> 問あり，点数が確定している．IOI のウェブサイトで各選手の現在までの合計点を見ていたあなたは，金メダルを与えられることが確実な選手や金メダルを与えられる可能性のある選手がそれぞれどれだけいるのかが知りたくなった．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p>各選手の現在までの合計点が与えられたとき，金メダルを与えられることが確実な選手，および，金メダルを与えられる可能性のある選手をそれぞれ番号順に出力するプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>1 \leqq K \leqq 100\,000</var>：選手の人数．</li>
+<li><var>1 \leqq N \leqq 10\,000\,000</var>：全体の問題数．</li>
+<li><var>0 \leqq M \leqq N</var>：すでに終了した問題数．</li>
+<li><var>0 \leqq P_i \leqq 100 \times M</var>：番号 <var>i</var> の選手の現在までの合計点．</li>
+</ul>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>標準入力から以下の入力を読み込め．</p>
+<ul>
+<li><var>1</var> 行目には整数 <var>K, N, M</var> が空白を区切りとして書かれており，選手の人数が <var>K</var> 人であること，全体の問題数が <var>N</var> 問であること，そのうちすでに終了した問題が <var>M</var> 問あることを表す．</li>
+<li>続く <var>K</var> 行には各選手の得点が書かれている．<var>i + 1</var> 行目 (<var>1 \leqq i \leqq K</var>) には，番号 <var>i</var> の選手の現在までの合計点を表す整数 <var>P_{i}</var> が書かれている．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に以下の内容を出力せよ．</p>
+<ul>
+<li>初めの <var>a</var> 行は，金メダルを与えられることが確実な選手の番号を，<var>1</var> 行に <var>1</var> つずつ，小さい順に列挙していなければならない．ただし <var>a</var> は金メダルを与えられることが確実な選手の人数である．</li>
+<li>続く <var>1</var> 行には文字列 <code>--------</code> (ハイフンが <var>8</var> 個) を出力せよ．</li>
+<li>続く <var>b</var> 行は，金メダルを与えられる可能性のある選手の番号を，<var>1</var> 行に <var>1</var> つずつ，小さい順に列挙していなければならない．ただし <var>b</var> は金メダルを与えられる可能性のある選手の人数である．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>採点基準</h3>
+<p>採点用データのうち，配点の <var>20\%</var> 分については，<var>K \leqq 3\,000</var> を満たす．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入出力の例</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>15 3 2
+0
+30
+50
+100
+0
+190
+10
+50
+100
+80
+90
+200
+50
+100
+0
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>12
+--------
+4
+6
+9
+11
+12
+14
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>5 4 2
+0
+50
+100
+150
+200
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>--------
+1
+2
+3
+4
+5
+</pre></section>
+</div>
+</span>
+</span>

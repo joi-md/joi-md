@@ -1,0 +1,312 @@
+<span class="lang">
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>JOI 国では，<var>100</var> 種類の文字が使われている．これらの文字は，コンピュータ上では直接表すことが難しいので，代わりに以下の表記が用いられる．</p>
+<div class="joisc2011-shiritori-ja-table">
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>00</code></td>
+<td><code>01</code></td>
+<td><code>02</code></td>
+<td><code>03</code></td>
+<td><code>04</code></td>
+<td><code>05</code></td>
+<td><code>06</code></td>
+<td><code>07</code></td>
+<td><code>08</code></td>
+<td><code>09</code></td>
+</tr>
+<tr>
+<td><code>10</code></td>
+<td><code>11</code></td>
+<td><code>12</code></td>
+<td><code>13</code></td>
+<td><code>14</code></td>
+<td><code>15</code></td>
+<td><code>16</code></td>
+<td><code>17</code></td>
+<td><code>18</code></td>
+<td><code>19</code></td>
+</tr>
+<tr>
+<td><code>20</code></td>
+<td><code>21</code></td>
+<td><code>22</code></td>
+<td><code>23</code></td>
+<td><code>24</code></td>
+<td><code>25</code></td>
+<td><code>26</code></td>
+<td><code>27</code></td>
+<td><code>28</code></td>
+<td><code>29</code></td>
+</tr>
+<tr>
+<td><code>30</code></td>
+<td><code>31</code></td>
+<td><code>32</code></td>
+<td><code>33</code></td>
+<td><code>34</code></td>
+<td><code>35</code></td>
+<td><code>36</code></td>
+<td><code>37</code></td>
+<td><code>38</code></td>
+<td><code>39</code></td>
+</tr>
+<tr>
+<td><code>40</code></td>
+<td><code>41</code></td>
+<td><code>42</code></td>
+<td><code>43</code></td>
+<td><code>44</code></td>
+<td><code>45</code></td>
+<td><code>46</code></td>
+<td><code>47</code></td>
+<td><code>48</code></td>
+<td><code>49</code></td>
+</tr>
+<tr>
+<td><code>50</code></td>
+<td><code>51</code></td>
+<td><code>52</code></td>
+<td><code>53</code></td>
+<td><code>54</code></td>
+<td><code>55</code></td>
+<td><code>56</code></td>
+<td><code>57</code></td>
+<td><code>58</code></td>
+<td><code>59</code></td>
+</tr>
+<tr>
+<td><code>60</code></td>
+<td><code>61</code></td>
+<td><code>62</code></td>
+<td><code>63</code></td>
+<td><code>64</code></td>
+<td><code>65</code></td>
+<td><code>66</code></td>
+<td><code>67</code></td>
+<td><code>68</code></td>
+<td><code>69</code></td>
+</tr>
+<tr>
+<td><code>70</code></td>
+<td><code>71</code></td>
+<td><code>72</code></td>
+<td><code>73</code></td>
+<td><code>74</code></td>
+<td><code>75</code></td>
+<td><code>76</code></td>
+<td><code>77</code></td>
+<td><code>78</code></td>
+<td><code>79</code></td>
+</tr>
+<tr>
+<td><code>80</code></td>
+<td><code>81</code></td>
+<td><code>82</code></td>
+<td><code>83</code></td>
+<td><code>84</code></td>
+<td><code>85</code></td>
+<td><code>86</code></td>
+<td><code>87</code></td>
+<td><code>88</code></td>
+<td><code>89</code></td>
+</tr>
+<tr>
+<td><code>90</code></td>
+<td><code>91</code></td>
+<td><code>92</code></td>
+<td><code>93</code></td>
+<td><code>94</code></td>
+<td><code>95</code></td>
+<td><code>96</code></td>
+<td><code>97</code></td>
+<td><code>98</code></td>
+<td><code>99</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>すなわち，数字 <var>2</var> つによる <var>10 \times 10</var> 通りで表される．JOI 国の辞書では，この表によって定まる文字の順番によって単語を並べている．表の上の行にある文字がより早く，同じ行の文字ではより左の文字が早い．</p>
+<p>さて，JOI 国では今，しりとりが一大ブームである．しりとりとは，参加者が順番に，前の人が言った単語の最後の文字から始まる単語を言っていくゲームである．一度言われた単語を使うことはできない．</p>
+<p>ある日，あなたは友達と「<var>5</var> しりとり」で遊んでいた．「<var>5</var> しりとり」では，通常のしりとりのルールに加え，用いる単語はすべて <var>5</var> 文字でなければならない．あなたは「<var>5</var> しりとり」で言われた <var>N</var> 個の単語のリストをコンピュータに記録していたのだが，誤って並べ替えてしまった．そこで，単語のリストから「<var>5</var> しりとり」の様子を復元したい．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p>単語のリストが与えられたとき，「<var>5</var> しりとり」の様子を復元するプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>1 \leqq N \leqq 500\,000</var>：単語の個数．</li>
+</ul>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>標準入力から以下の入力を読み込め．</p>
+<ul>
+<li><var>1</var> 行目には整数 <var>N</var> が書かれており，単語の個数を表す．</li>
+<li>続く <var>N</var> 行には各単語が <var>1</var> 行に <var>1</var> つずつ書かれている．各単語は数字ちょうど <var>10</var> 個からなる文字列で表される．単語は辞書に掲載されている順に入力に書かれており，すべての単語は異なる．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>与えられた <var>N</var> 個の単語を用いた「<var>5</var> しりとり」が不可能である場合，<code>impossible</code> と <var>1</var> 行に出力せよ．</p>
+<p>「<var>5</var> しりとり」が可能である場合，用いられる <var>N</var> 個の単語を <var>1</var> 行 <var>1</var> つずつ出力せよ．可能な「<var>5</var> しりとり」が複数考えられるときは，以下の条件を満たすものを選べ．</p>
+<ul>
+<li><var>1</var> 番目の単語が辞書に最も早く掲載されているもの．</li>
+<li>以上で定まらない場合は，<var>2</var> 番目の単語が辞書に最も早く掲載されているもの．<br><var>\vdots</var></li>
+<li>以上で定まらない場合は，<var>N</var> 番目の単語が辞書に最も早く掲載されているもの．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>採点基準</h3>
+<p>採点用データのうち，配点の <var>65\%</var> 分については，現れる文字は <code>00</code> から <code>19</code> までの <var>20</var> 種類に限られる．</p>
+<p>採点用データのうち，配点の <var>65\%</var> 分については，<var>N \leqq 1\,000</var> を満たす．</p>
+<p>採点用データのうち，配点の <var>40\%</var> 分については，これら <var>2</var> つの条件の両方を満たす．</p>
+<p>採点用データのうち，配点の <var>90\%</var> 分については，これら <var>2</var> つの条件の少なくとも一方を満たす．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入出力の例</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>5
+0000010201
+0102030403
+0104050603
+0206070801
+0308090002
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>0000010201
+0102030403
+0308090002
+0206070801
+0104050603
+</pre>
+<p>この例では，以下の <var>2</var> 通りの「<var>5</var> しりとり」が考えられる．</p>
+<ul>
+<li><code>0000010201</code> <var>\to</var><code>0102030403</code> <var>\to</var><code>0308090002</code> <var>\to</var><code>0206070801</code> <var>\to</var><code>0104050603</code></li>
+<li><code>0000010201</code> <var>\to</var><code>0104050603</code> <var>\to</var><code>0308090002</code> <var>\to</var><code>0206070801</code> <var>\to</var><code>0102030403</code></li>
+</ul>
+<p><var>1</var> 番目の単語は同じであり，<var>2</var> 番目の単語が辞書に掲載されている順番を比較して，前者を出力する．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>4
+9600000098
+9700000099
+9800000099
+9900000098
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>impossible
+</pre>
+<p>この例では，可能な「<var>5</var> しりとり」は存在しない．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>12
+0114090401
+0214051905
+0304141219
+0510031717
+0703050011
+1102190101
+1108040907
+1110090702
+1313071203
+1707120711
+1902090011
+1909121313
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>1909121313
+1313071203
+0304141219
+1902090011
+1108040907
+0703050011
+1110090702
+0214051905
+0510031717
+1707120711
+1102190101
+0114090401
+</pre>
+<style>
+.joisc2011-shiritori-ja-table { max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisc2011-shiritori-ja-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisc2011-shiritori-ja-table thead { display:none; }
+.joisc2011-shiritori-ja-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisc2011-shiritori-ja-table code { white-space:nowrap; }
+</style></section>
+</div>
+</span>
+</span>
