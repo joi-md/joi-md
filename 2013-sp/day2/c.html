@@ -1,0 +1,189 @@
+<span class="lang">
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>あなたは Just Odd Inventions 社を知っているだろうか？この会社の業務は「ただ奇妙な発明 (just odd inventions)」をすることである．ここでは略して JOI 社と呼ぶ．</p>
+<p>ところで，あなたは Incredibly Odd Inventions 社を知っているだろうか？この会社の業務は「途方もなく奇妙な発明 (incredibly odd inventions)」をすることである．ここでは略して IOI 社と呼ぶ．</p>
+<p>JOI 社と IOI 社にはそれぞれ <var>N</var> 人の社員がいる．JOI 社の社員は <var>j_{1}, j_{2}, \cdot \cdot \cdot , j_{N}</var> と名付けられており，IOI 社の社員は <var>i_{1}, i_{2}, \cdot \cdot \cdot , i_{N}</var> と名付けられている．また，JOI 社の社員の内の一人は JOI 社の社長であり，IOI 社の社員の内の一人は IOI 社の社長である．社長を除く社員のそれぞれに対して，その社員を直接の部下とする同じ会社の社員がちょうど一人存在する．</p>
+<p><img src="https://img.atcoder.jp/joisc2013-day2/spy-ja-p8-group1.png" alt="図" style="max-width:100%;height:auto;"></p>
+
+<p>図 <var>1</var>: JOI 社と IOI 社の組織の例．社員を表す円から出る矢印はその社員の直接の部下を指している．</p>
+<p>IOI 社はいつも，JOI 社の研究プロジェクトの情報を盗むことで「途方もなく奇妙な発明」をしている．いま，JOI 社では，<var>r_{1}, r_{2}, \cdot \cdot \cdot , r_{M}</var> と名付けられた <var>M</var> 個の研究プロジェクトが発足し，IOI 社では，<var>s_{1}, s_{2}, \cdot \cdot \cdot , s_{M}</var> と名付けられた <var>M</var> 個のスパイプロジェクトが発足した．IOI 社のスパイプロジェクト <var>s_{b}</var> は JOI 社の研究プロジェクト <var>r_{b}</var> の情報を盗むプロジェクトである．</p>
+<p>プロジェクトに所属する社員の決め方は JOI 社と IOI 社で同じである．<var>1</var> つのプロジェクトにつき <var>1</var> 人のリーダーが決められ，リーダーはその直接の部下全員に命令を下す．命令を受け取った社員はまたその直接の部下全員に同じ命令を下す．命令を受け取った社員全てとリーダーがそのプロジェクトに所属し，その他の社員は所属しない．</p>
+<div class="joisc2013-day2-spy-ja-table">
+<table>
+<thead>
+<tr>
+<th>プロジェクト</th>
+<th>リーダー</th>
+<th>所属する社員</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>研究プロジェクト <var>r_{1}</var></td>
+<td><var>j_{1}</var></td>
+<td><var>j_{1}, j_{2}, j_{3}</var></td>
+</tr>
+<tr>
+<td>研究プロジェクト <var>r_{2}</var></td>
+<td><var>j_{2}</var></td>
+<td><var>j_{2}, j_{3}</var></td>
+</tr>
+<tr>
+<td>研究プロジェクト <var>r_{3}</var></td>
+<td><var>j_{2}</var></td>
+<td><var>j_{2}, j_{3}</var></td>
+</tr>
+<tr>
+<td>研究プロジェクト <var>r_{4}</var></td>
+<td><var>j_{3}</var></td>
+<td><var>j_{3}</var></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="joisc2013-day2-spy-ja-table">
+<table>
+<thead>
+<tr>
+<th>プロジェクト</th>
+<th>リーダー</th>
+<th>所属する社員</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>スパイプロジェクト <var>s_{1}</var></td>
+<td><var>i_{1}</var></td>
+<td><var>i_{1}</var></td>
+</tr>
+<tr>
+<td>スパイプロジェクト <var>s_{2}</var></td>
+<td><var>i_{1}</var></td>
+<td><var>i_{1}</var></td>
+</tr>
+<tr>
+<td>スパイプロジェクト <var>s_{3}</var></td>
+<td><var>i_{3}</var></td>
+<td><var>i_{3}</var></td>
+</tr>
+<tr>
+<td>スパイプロジェクト <var>s_{4}</var></td>
+<td><var>i_{2}</var></td>
+<td><var>i_{1}, i_{2}, i_{3}</var></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>図 <var>2</var>: 図 <var>1</var> の JOI 社と IOI 社におけるプロジェクトの例</p>
+<p>IOI 社の社員 <var>i_{a}</var> は JOI 社の社員 <var>j_{a}</var> から情報を盗む．スパイプロジェクト <var>s_{b}</var> に所属している IOI 社の社員 <var>i_{a}</var> は，JOI 社の社員 <var>j_{a}</var> が研究プロジェクト <var>r_{b}</var> に所属しているならばスパイ活動に成功する．それぞれの会社のすべての社員は複数のプロジェクトに所属している可能性があり，IOI 社の社員は複数のスパイプロジェクトにおいてスパイ活動に成功する可能性がある．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p>JOI 社と IOI 社における社員の情報とプロジェクトの情報が与えられたとき，IOI 社の社員のそれぞれについて，いくつのスパイプロジェクトにおいてスパイ活動に成功するかを求めるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>標準入力から以下の入力を読み込め．</p>
+<ul>
+<li><var>1</var> 行目には整数 <var>N, M</var> が空白を区切りとして書かれており，JOI 社と IOI 社の社員がそれぞれ <var>N</var> 人であることと，研究プロジェクトとスパイプロジェクトがそれぞれ <var>M</var> 個であることを表す．</li>
+<li>続く <var>N</var> 行のうち，<var>a</var> 行目 (<var>1 \leqq a \leqq N</var>) には <var>2</var> つの整数 <var>P_{a}, Q_{a}</var> (<var>0 \leqq P_{a} \leqq N</var> かつ <var>0 \leqq Q_{a} \leqq N</var>) が書かれており，JOI 社の社員 <var>j_{a}</var> が社員 <var>j_{P_{a}}</var> の直接の部下であり，IOI 社の社員 <var>i_{a}</var> が社員 <var>i_{Q_{a}}</var> の直接の部下であることを表す．また，<var>P_{a} = 0</var> のときは社員 <var>j_{a}</var> は JOI 社の社長であり，<var>Q_{a} = 0</var> のときは社員 <var>i_{a}</var> は IOI 社の社長である．</li>
+<li>続く <var>M</var> 行のうち，<var>b</var> 行目 (<var>1 \leqq b \leqq M</var>) には <var>2</var> つの整数 <var>R_{b}, S_{b}</var> (<var>1 \leqq R_{b} \leqq N</var> かつ <var>1 \leqq S_{b} \leqq N</var>) が書かれており，研究プロジェクト <var>r_{b}</var> のリーダーが社員 <var>j_{R_{b}}</var> で，スパイプロジェクト <var>s_{b}</var> のリーダーが社員 <var>i_{S_{b}}</var> であることを表す．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に <var>N</var> 行出力せよ．<var>a</var> 行目 (<var>1 \leqq a \leqq N</var>) には，IOI 社の社員 <var>i_{a}</var> がいくつのスパイプロジェクトにおいてスパイ活動に成功するかを表す <var>1</var> つの整数を出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<p>すべての入力データは以下の条件を満たす．</p>
+<ul>
+<li><var>1 \leqq N \leqq 2\,000</var>．</li>
+<li><var>1 \leqq M \leqq 500\,000</var>．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<h4>小課題 1 [<var>10</var> 点]</h4>
+<p>以下の条件を満たす．</p>
+<ul>
+<li><var>N \leqq 200</var>．</li>
+<li><var>M \leqq 200</var>．</li>
+</ul>
+<h4>小課題 2 [<var>20</var> 点]</h4>
+<ul>
+<li><var>M \leqq 2\,000</var> を満たす．</li>
+</ul>
+<h4>小課題 3 [<var>70</var> 点]</h4>
+<p>追加の制限はない．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入出力例</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>3 4
+0 2
+1 0
+2 2
+1 1
+2 1
+2 3
+3 2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>1
+0
+2
+</pre>
+<p>この入出力は問題文中の例に対応している．このとき，</p>
+<ul>
+<li>スパイプロジェクト <var>s_{1}, s_{2}, s_{4}</var> に所属する社員 <var>i_{1}</var> は，社員 <var>j_{1}</var> が研究プロジェクト <var>r_{1}</var> に属するため，スパイプロジェクト <var>s_{1}</var> においてスパイ活動に成功する．</li>
+<li>スパイプロジェクト <var>s_{4}</var> に属する社員 <var>i_{2}</var> は，社員 <var>j_{2}</var> が研究プロジェクト <var>r_{4}</var> に属さないため，どのスパイプロジェクトにおいてもスパイ活動に成功しない．</li>
+<li>スパイプロジェクト <var>s_{3}, s_{4}</var> に属する社員 <var>i_{3}</var> は，社員 <var>j_{3}</var> が研究プロジェクト <var>r_{3}, r_{4}</var> に属するため，スパイプロジェクト <var>s_{3}, s_{4}</var> においてスパイ活動に成功する．</li>
+</ul>
+<style>
+.joisc2013-day2-spy-ja-table { position:relative;max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisc2013-day2-spy-ja-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisc2013-day2-spy-ja-table th,.joisc2013-day2-spy-ja-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; white-space:nowrap; }
+.joisc2013-day2-spy-ja-table th { background:#f5f5f5; }
+.joisc2013-day2-spy-ja-table .katex { position:relative; }
+</style></section>
+</div>
+</span>
+</span>

@@ -1,0 +1,136 @@
+<span class="lang">
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>JOI 市では公共交通機関が発達している．特に，バス専用道路が碁盤目状に敷き詰められているので，バスは交通状況の影響を受けることなく，一定の速度で運行することができる．南北方向のバス専用道路は 1km 間隔で W 本あり，東西方向のバス専用道路は 1km 間隔で H 本ある．すべてのバスは，長方形の形をした経路上を時計回りに <var>1</var> 分あたり 1km の速度走る．また，バス専用道路が交わる点にバス停が設置されている．</p>
+<p>JOI 君は今日，クリケットの試合を観戦しに行く予定であったが，寝坊してしまった．もう試合開始には間に合わないかもしれないが，JOI 君はできるだけ長い間試合を観戦していたいので，できるだけ早く試合会場に到着したい．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p>JOI 君は，バスの運行情報を事前に調べていたので，バスの現在地と，それぞれのバスの運行経路はわかっている．今すぐ出発して，バスを乗り継いでいったとき，会場に到着するまでにかかる最短時間を求めるプログラムを書け．ただし，移動はバスを使ってのみ行うものとし，バスからバスへの乗り継ぎには時間がかかるので，バスを降りた瞬間に同じ交差点にいるバスに即座に乗り換えることはできず，降りてから <var>1</var> 分後以降に到着したバスに乗ることのみできるとする．また，JOI 君がバスのみをつかって会場までたどり着けることは保証されている．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>標準入力から以下の入力を読み込め．</p>
+<ul>
+<li><var>1</var> 行目には <var>6</var> つの整数 <var>W, H, S_{X}, S_{Y}, G_{X}, G_{Y}</var> (<var>1 \leqq S_{X} \leqq W</var> かつ <var>1 \leqq S_{Y} \leqq H</var> かつ <var>1 \leqq G_{X} \leqq W</var> かつ <var>1 \leqq G_{Y} \leqq H</var>) がこの順に空白で区切られて書かれている．これは，南北方向のバス専用道路が <var>W</var> 本通っており，それに直交する東西方向のバス専用道路が <var>H</var> 本通っていることを意味する．また，JOI 君ははじめ，西から <var>S_{X}</var> 番目のバス専用道路と，北から <var>S_{Y}</var> 番目のバス専用道路の交差する場所に居て，JOI 君の目的地である試合会場は，西から <var>G_{X}</var> 番目のバス専用道路と，北から <var>G_{Y}</var> 番目のバス専用道路の交差する場所にある．JOI 君の初期位置は，JOI 君の目的地とは異なる．また，JOI 君が出発した瞬間には，JOI 君の初期位置にバスがあることはない．</li>
+<li><var>2</var> 行目には JOI 市で運行されているバスの本数を表す <var>1</var> つの整数 <var>N</var> が書かれている．</li>
+<li>続く <var>N</var> 行には，バスの情報が書かれている．<var>N</var> 行のうちの <var>i</var> 行目には，<var>5</var> つの整数 <var>X_{1i}, Y_{1i}, X_{2i}, Y_{2i}</var>, <var>T_{i}</var> (<var>1 \leqq X_{1i} &lt; X_{2i} \leqq W</var> かつ <var>1 \leqq Y_{1i} \leqq Y_{2i} \leqq H</var> かつ <var>0 \leqq T &lt; 2 \times (X_{2i} - X_{1i} + Y_{2i} - Y_{1i})</var>) が書かれている．これは，<var>i</var> 番目のバスの経路の北西端は，西から <var>X_{1i}</var> 番目のバス専用道路と，北から <var>Y_{1i}</var> 番目のバス専用道路の交差するところであり，<var>i</var> 番目のバスの経路の南東端は，西から <var>X_{2i}</var> 番目のバス専用道路と，北から <var>Y_{2i}</var> 番目のバス専用道路の交差するところであることを表している．また，JOI 君が出発した時点で，<var>i</var> 番目のバスは，その経路上を北西端から時計回りに <var>T_{i}</var> km だけ進んだ位置にいる．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>JOI 君が出発してから，試合会場に到着するまでにかかる時間の最小値を <var>1</var> 行で出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<p>すべての入力データは以下の条件を満たす．</p>
+<ul>
+<li><var>2 \leqq W \leqq 1\,000</var>．</li>
+<li><var>2 \leqq H \leqq 1\,000</var>．</li>
+<li><var>1 \leqq N \leqq 1\,000</var>．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<h4>小課題 1 [<var>30</var> 点]</h4>
+<p>以下の条件を満たす．</p>
+<ul>
+<li><var>W \leqq 30</var>．</li>
+<li><var>H \leqq 30</var>．</li>
+<li><var>N \leqq 30</var>．</li>
+</ul>
+<h4>小課題 2 [<var>50</var> 点]</h4>
+<p>以下の条件を満たす．</p>
+<ul>
+<li><var>W \leqq 300</var>．</li>
+<li><var>H \leqq 300</var>．</li>
+<li><var>N \leqq 300</var>．</li>
+</ul>
+<h4>小課題 3 [<var>20</var> 点]</h4>
+<p>追加の制限はない．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入出力例</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>10 10 1 3 10 1
+3
+1 3 5 6 4
+5 5 7 10 1
+7 1 10 5 9
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>50
+</pre>
+<p><img src="https://img.atcoder.jp/joisc2013-day1/bustour-ja-p3-group1.png" alt="図" style="max-width:100%;height:auto;"></p>
+
+<p>上の図はこの入力例において JOI 市を上空から見た図である．丸印は，バスの現在地を表している．矢印が，そのバスの経路を表している．JOI 君の現在地は三角形で示されており，目的地である試合会場は四角形で示されている．</p>
+<p>JOI 君は，<var>1</var> 番のバスが来るまで待たなければいけない．<var>10</var> 分後に <var>1</var> 番のバスに乗り込んだとすると，<var>11</var> 分後の状態は次のようになる．</p>
+<p><img src="https://img.atcoder.jp/joisc2013-day1/bustour-ja-p3-group2.png" alt="図" style="max-width:100%;height:auto;"></p>
+
+<p>続いて，JOI 君は <var>1</var> 番のバスから <var>2</var> 番のバスへ乗り換える必要がある．出発から <var>16</var> 分後に JOI 君がバスを下車したとすると，<var>19</var> 分後の状態は次のようになる．</p>
+<p><img src="https://img.atcoder.jp/joisc2013-day1/bustour-ja-p4-group1.png" alt="図" style="max-width:100%;height:auto;"></p>
+
+<p><var>2</var> 番のバスに乗ったあと，<var>3</var> 番のバスに乗り換える．出発から <var>29</var> 分後，JOI 君が <var>2</var> 番のバスを下車したとすると，そのとき，同じ交差点に <var>3</var> 番のバスが停車している．しかし，乗り換えには <var>1</var> 分の時間を要するので，このバスに乗ることはできない．</p>
+<p>出発から <var>43</var> 分後，JOI 君が <var>3</var> 番のバスに乗ったとすると，試合会場に到着する直前の <var>49</var> 分後の様子は次のようになる．</p>
+<p><img src="https://img.atcoder.jp/joisc2013-day1/bustour-ja-p4-group2.png" alt="図" style="max-width:100%;height:auto;"></p>
+
+<p>この <var>1</var> 分後，JOI 君は試合会場に到着する．これよりも早く到着することはできないので，プログラムは <var>50</var> を出力する．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>4 3 2 1 4 3
+3
+1 1 4 2 0
+1 1 2 2 3
+2 2 4 3 3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>6
+</pre></section>
+</div>
+</span>
+</span>

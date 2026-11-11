@@ -1,0 +1,137 @@
+<span class="lang">
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>IOI 国では交通網の一斉整備を行うことになった．IOI 国は <var>xy</var> 座標平面として表され，その上に <var>N</var> 個の町がある．<var>i</var> 番目 (<var>1 \leqq i \leqq N</var>) の町は点 <var>(X_{i}, Y_{i})</var> として表される．交通網の整備は次の手順で行われる．</p>
+<ul>
+<li><var>N</var> 個の町のうちいくつかの町に国際空港を建設する．少なくとも <var>1</var> つは国際空港を建設する必要がある．国際空港は <var>1</var> つ建設するごとに決まったコストがかかる．</li>
+<li>町どうしを結ぶ道路をいくつか敷設する．道路は町を表す点どうしを直接結ぶ <var>x</var> 軸か <var>y</var> 軸に平行な線分であり，道路は <var>1</var> 本敷設するごとにその長さと同じぶんのコストがかかる．</li>
+</ul>
+<p>このとき，次の条件が満たされていなければならない．</p>
+<ul>
+<li>IOI 国には地盤の状態が悪いなどの理由で道路を敷設できない領域が <var>M</var> 個ある．各領域は長方形で表され，<var>j</var> 番目 (<var>1 \leqq j \leqq M</var>) の長方形の左下の点は <var>(P_{j}, Q_{j})</var> であり右上の点は <var>(R_{j}, S_{j})</var> である (すなわち <var>P_{j} &lt; R_{j}</var> かつ <var>Q_{j} &lt; S_{j}</var> である)．どの道路も，<var>M</var> 個の領域のうちいずれのものとも共通部分をもってはいけない．領域は周上も含むものとし，領域を表す長方形の周と共通部分を持つような道路も存在してはいけない．</li>
+<li><var>N</var> 個のどの町からも，道路を辿って別の町へ行くことを繰り返して国際空港のある町へ辿りつける必要がある．</li>
+</ul>
+<p>この事業の発注先として建設会社 <var>C</var> 社が候補に挙がっている．<var>k</var> 番目 (<var>1 \leqq k \leqq C</var>) の建設会社は国際空港を <var>1</var> つ建設するのにコスト <var>B_{k}</var> がかかり，最大で <var>H_{k}</var> 個までの国際空港を建設できる (道路の建設にかかるコストは建設会社によらず，また道路の本数や長さに制限はない)．それぞれの建設会社に対して，その建設会社が上の条件を満たすように交通網の整備を行うときにかかるコストの合計値の最小値を求めたい．</p>
+<p>建設できる国際空港の個数が小さいために，条件を満たすような交通網の整備を行えない建設会社があるかもしれない．その場合はコストの合計値ではなく，条件を満たせないということを報告してほしい．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p>IOI 国の町の数を表す整数 <var>N</var> と町の座標，道路を敷設できない領域の数を表す整数 <var>M</var> とそれぞれの領域を表す座標，発注先候補の建設会社の数を表す整数 <var>C</var> とそれぞれの建設会社の情報が与えられたとき，それぞれの建設会社に対して問題文中で述べられた条件を満たすように交通網の整備を行うときにかかるコストの合計値の最小値を求めるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>標準入力から以下の入力を読み込め．</p>
+<ul>
+<li><var>1</var> 行目には <var>3</var> つの整数 <var>N, M, C</var> が空白を区切りとして書かれており，それぞれ IOI 国にある町の個数，道路を敷設できない領域の個数，事業の発注先候補の建設会社の個数を表す．</li>
+<li>続く <var>N</var> 行のうちの <var>i</var> 行目 (<var>1 \leqq i \leqq N</var>) には <var>2</var> つの整数 <var>X_{i}, Y_{i}</var> が空白を区切りとして書かれており，<var>i</var> 番目の町の座標が <var>(X_{i}, Y_{i})</var> であることを表す．</li>
+<li>続く <var>M</var> 行のうちの <var>j</var> 行目 (<var>1 \leqq j \leqq M</var>) には <var>4</var> つの整数 <var>P_{j}, Q_{j}, R_{j}, S_{j}</var> が空白を区切りとして書かれており，<var>j</var> 番目の道路を敷設できない領域を表す長方形の左下の点の座標が <var>(P_{j}, Q_{j})</var> であり右上の点の座標が <var>(R_{j}, S_{j})</var> であることを表す．</li>
+<li>続く <var>C</var> 行のうちの <var>k</var> 行目 (<var>1 \leqq k \leqq C</var>) には <var>2</var> つの整数 <var>B_{k}, H_{k}</var> が空白を区切りとして書かれており，<var>k</var> 番目の発注先候補の建設会社が国際空港を <var>1</var> つ建設するのに <var>B_{k}</var> のコストがかかり，最大で <var>H_{k}</var> 個までの国際空港を建設できることを表す．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に <var>C</var> 行出力せよ．<var>k</var> 行目 (<var>1 \leqq k \leqq C</var>) には，<var>k</var> 番目の発注先候補の建設会社がこの事業を行うとしたときにかかるコストの合計値の最小値を表す <var>1</var> つの整数を出力せよ．ただし，<var>k</var> 番目の発注先候補の建設会社が条件を満たすように事業を行えない場合はかわりに整数 <var>-1</var> を出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<p>すべての入力データは以下の条件を満たす．</p>
+<ul>
+<li><var>1 \leqq N \leqq 200\,000</var>．</li>
+<li><var>1 \leqq M \leqq 200\,000</var>．</li>
+<li><var>1 \leqq C \leqq 500\,000</var>．</li>
+<li><var>0 \leqq X_{i} \leqq 1\,000\,000\,000</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>0 \leqq Y_{i} \leqq 1\,000\,000\,000</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li>同じ座標に <var>2</var> つ以上町があることはない．</li>
+<li><var>0 \leqq P_{j} &lt; R_{j} \leqq 1\,000\,000\,000</var> (<var>1 \leqq j \leqq M</var>)．</li>
+<li><var>0 \leqq Q_{j} &lt; S_{j} \leqq 1\,000\,000\,000</var> (<var>1 \leqq j \leqq M</var>)．</li>
+<li>どの領域も，町をその長方形の内部または周上に含むことはない．</li>
+<li><var>1 \leqq B_{k} \leqq 1\,000\,000\,000</var> (<var>1 \leqq k \leqq C</var>)．</li>
+<li><var>1 \leqq H_{k} \leqq N</var> (<var>1 \leqq k \leqq C</var>)．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<h4>小課題 1 [<var>10</var> 点]</h4>
+<p>以下の条件を満たす．</p>
+<ul>
+<li><var>M \leqq 100</var>.</li>
+<li><var>C \leqq 100</var>.</li>
+</ul>
+<h4>小課題 2 [<var>30</var> 点]</h4>
+<p>以下の条件を満たす．</p>
+<ul>
+<li><var>C \leqq 100</var>.</li>
+</ul>
+<h4>小課題 3 [<var>30</var> 点]</h4>
+<p>以下の条件を満たす．</p>
+<ul>
+<li><var>M \leqq 100</var>.</li>
+</ul>
+<h4>小課題 4 [<var>30</var> 点]</h4>
+<p>追加の制限はない．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入出力例</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>4 2 3
+1 1
+10 1
+1 10
+10 10
+4 0 8 9
+1 4 9 8
+7 4
+10 3
+1 1
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>28
+38
+-1
+</pre>
+<p>この入力例を図示すると以下のようになる．太い線による長方形が道路を敷設できない領域を示している．</p>
+<p><img src="https://img.atcoder.jp/joisc2013-day2/construction-ja-p4-group1.png" alt="図" style="max-width:100%;height:auto;"></p>
+
+<p>町 <var>2</var> と町 <var>4</var> および町 <var>3</var> と町 <var>4</var> を結ぶ道路を敷設することはできるが，道路を敷設できない領域と交わってしまうために町 <var>1</var> と町 <var>2</var> の間には道路を敷設することができない．同様に町 <var>1</var> と町 <var>3</var> の間にも道路を敷設することができない (道路は長方形の周とも共通部分を持ってはいけないことに注意せよ)．</p>
+<p><var>1</var> つめの建設会社は最大 <var>4</var> つの国際空港を <var>1</var> つあたりコスト <var>7</var> で建設できる．この場合，道路をひとつも敷設せずにすべての町に国際空港を建設するのが最善であり，そのときのコストの合計値は <var>7 \times 4 = 28</var> となる．</p>
+<p><var>2</var> つめの建設会社は最大 <var>3</var> つの国際空港を <var>1</var> つあたりコスト <var>10</var> で建設できる．この場合，たとえば町 <var>2</var> と町 <var>4</var> および町 <var>3</var> と町 <var>4</var> を結ぶ長さ <var>9</var> の道路を敷設し，町 <var>1</var> と町 <var>2</var> に国際空港を建設するのが最善であり，そのときのコストの合計値は <var>10 \times 2 + 9 + 9 = 38</var> となる．</p>
+<p><var>3</var> つめの建設会社は最大 <var>1</var> つの国際空港を <var>1</var> つあたりコスト <var>1</var> で建設することができるが，町 <var>1</var> が他のどの町との間にも道路を敷設できないため，問題文中の条件を満たすように事業を行うには少なくとも <var>2</var> つの国際空港を建設する必要があり，この会社は事業を行えないことがわかるので <var>-1</var> を出力する．</p></section>
+</div>
+</span>
+</span>

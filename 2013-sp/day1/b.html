@@ -1,0 +1,151 @@
+<span class="lang">
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>JOI 君は画像をたくさん集めることが大好きで，多くの画像を持っている．最近になって JOI 君は，画像を集めすぎてしまったせいでハードディスクの容量が不足気味になっていることに気がついた．新しくハードディスクを購入するお金はないが，JOI 君にとって持っている画像を削除することはこの上ない苦痛であるため，画像をうまく圧縮して容量を削減することにした．</p>
+<p>画像は縦 <var>2^{N}</var> 行，横 <var>2^{N}</var> 列の正方形状に並んだ合計 <var>2^{N} \times 2^{N}</var> 個の画素で表される．それぞれの画素は白か黒のいずれかである．</p>
+<p>このような画像を JOI 君は次の方法で圧縮することにした．</p>
+<ul>
+<li>画像内の画素がすべて同じ色ならば，その色だけを記録する．このとき圧縮後のデータの大きさは <var>1</var> である．</li>
+<li>そうでなければ，画像を <var>4</var> つのより小さな画像に分ける．画像が縦 <var>2^{k}</var> 行，横 <var>2^{k}</var> 列であるとすると，縦と横それぞれ中心で画像を分割し，縦 <var>2^{k - 1}</var> 行，横 <var>2^{k - 1}</var> 列の画像 <var>4</var> つを得る．これら <var>4</var> つの小さくなった画像を同じ方法で圧縮する．このとき圧縮後のデータの大きさは，<var>4</var> つの小さい画像の圧縮後のデータの大きさの和に，さらに <var>1</var> を加えたものであるとする．</li>
+</ul>
+<p>JOI 君はこの方法で本当に画像が圧縮できるのか不安になったため，さまざまな画像に対して実験をしてみることにした．実験の方法は次のようなものである．</p>
+<ul>
+<li>まずすべての画素が白であるような画像を用意する．</li>
+<li><var>i = 1, \cdot \cdot \cdot , Q</var> について，「<var>T_{i} = 0</var> ならば上から数えて <var>X_{i}</var> 行目の <var>2^{N}</var> 個の画素，<var>T_{i} = 1</var> ならば左から数えて <var>X_{i}</var> 列目の <var>2^{N}</var> 個の画素の，白黒をそれぞれ反転させる」という操作を行う．すなわち，上から <var>a</var> 行目で左から <var>b</var> 列目にあるカードを <var>(a, b)</var> と書いたとき，各 <var>i</var> について，<var>T_{i} = 0</var> ならば <var>1 \leqq b \leqq 2^{N}</var> をみたす画素 <var>(X_{i}, b)</var> に，<var>T_{i} = 1</var> ならば <var>1 \leqq a \leqq 2^{N}</var> をみたす画素 <var>(a, X_{i})</var> に対し，画素が白ならば黒に，黒ならば白に変える操作を行う．</li>
+<li>各 <var>i</var> について，<var>i</var> 回目の操作が終わったあとの画像を JOI 君の方法で圧縮したときの，圧縮後のデータの大きさを調べる．</li>
+</ul>
+<p>実験では操作をできるだけ多く行うために，圧縮後のデータの大きさを高速に調べる必要がある．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p>画像の大きさを表す整数 <var>N</var>，操作の回数 <var>Q</var> および <var>Q</var> 回の操作の指示が与えられたとき，それぞれの操作が終わった後の画像を JOI 君の方法で圧縮したときの，圧縮後のデータの大きさを求めるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>標準入力から以下の入力を読み込め．</p>
+<ul>
+<li><var>1</var> 行目には <var>2</var> つの整数 <var>N, Q</var> が空白を区切りとして書かれており，画像が <var>2^{N}</var> 行 <var>2^{N}</var> 列の大きさであることと，操作を行う回数が <var>Q</var> 回であることを表す．</li>
+<li>続く <var>Q</var> 行には操作の指示が書かれている．<var>Q</var> 行のうちの <var>i</var> 行目 (<var>1 \leqq i \leqq Q</var>) には <var>2</var> つの整数 <var>T_{i}, X_{i}</var> (<var>0 \leqq T_{i} \leqq 1</var> かつ <var>1 \leqq X_{i} \leqq 2^{N}</var>) が空白を区切りとして書かれており，<var>i</var> 回目の操作は <var>T_{i} = 0</var> なら上から <var>X_{i}</var> 行目，<var>T_{i} = 1</var> なら左から <var>X_{i}</var> 列目の画素の白黒を全て反転することを表す．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に <var>Q</var> 行出力せよ．<var>i</var> 行目 (<var>1 \leqq i \leqq Q</var>) には，<var>i</var> 回目の操作が終わった後の画像を JOI 君の方法で圧縮したときの，圧縮後のデータの大きさを表す <var>1</var> つの整数を出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<p>すべての入力データは以下の条件を満たす．</p>
+<ul>
+<li><var>1 \leqq N \leqq 20</var>.</li>
+<li><var>1 \leqq Q \leqq 2\,000\,000</var>.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<h4>小課題 1 [<var>10</var> 点]</h4>
+<p>以下の条件を満たす．</p>
+<ul>
+<li><var>N \leqq 6</var>.</li>
+<li><var>Q \leqq 128</var>.</li>
+</ul>
+<h4>小課題 2 [<var>20</var> 点]</h4>
+<p>以下の条件を満たす．</p>
+<ul>
+<li><var>N \leqq 10</var>.</li>
+<li><var>Q \leqq 2\,048</var>.</li>
+</ul>
+<h4>小課題 3 [<var>70</var> 点]</h4>
+<ul>
+<li>追加の制限はない．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入出力例</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>2 3
+0 1
+1 2
+0 3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>13
+17
+21
+</pre>
+<p>この例では，<var>Q = 3</var> 回の操作は以下のように行われる．</p>
+<div class="joisc2013-collecting-pixel-sequence">
+<p>初期状態</p>
+<table>
+<tr><td>□</td><td>□</td><td>□</td><td>□</td></tr>
+<tr><td>□</td><td>□</td><td>□</td><td>□</td></tr>
+<tr><td>□</td><td>□</td><td>□</td><td>□</td></tr>
+<tr><td>□</td><td>□</td><td>□</td><td>□</td></tr>
+</table>
+<p>↓</p>
+<table>
+<tr><td>■</td><td>■</td><td>■</td><td>■</td></tr>
+<tr><td>□</td><td>□</td><td>□</td><td>□</td></tr>
+<tr><td>□</td><td>□</td><td>□</td><td>□</td></tr>
+<tr><td>□</td><td>□</td><td>□</td><td>□</td></tr>
+</table>
+<p>↓</p>
+<table>
+<tr><td>■</td><td>□</td><td>■</td><td>■</td></tr>
+<tr><td>□</td><td>■</td><td>□</td><td>□</td></tr>
+<tr><td>□</td><td>■</td><td>□</td><td>□</td></tr>
+<tr><td>□</td><td>■</td><td>□</td><td>□</td></tr>
+</table>
+<p>↓</p>
+<table>
+<tr><td>■</td><td>□</td><td>■</td><td>■</td></tr>
+<tr><td>□</td><td>■</td><td>□</td><td>□</td></tr>
+<tr><td>■</td><td>□</td><td>■</td><td>■</td></tr>
+<tr><td>□</td><td>■</td><td>□</td><td>□</td></tr>
+</table>
+</div>
+
+<style>
+.joisc2013-collecting-pixel-sequence { text-align:center;margin:1em 0; }
+.joisc2013-collecting-pixel-sequence table { border-collapse:collapse;width:auto;margin:0 auto; }
+.joisc2013-collecting-pixel-sequence td { border:0;padding:0;line-height:1;font-family:monospace;font-size:1.2em;text-align:center; }
+.joisc2013-collecting-pixel-sequence p { margin:0.4em 0; }
+</style></section>
+</div>
+</span>
+</span>

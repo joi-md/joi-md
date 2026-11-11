@@ -1,0 +1,232 @@
+<span class="lang">
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>JOI ちゃんは友達とマスコットで遊んでいた．楽しかった時間はあっという間に過ぎ去り，友達が帰った今は後片付けの時間である．</p>
+<p>JOI ちゃんはマスコットを <var>R \times C</var> 個持っていて，片付けには縦 <var>R</var> 行，横 <var>C</var> 列のマスが並んだ長方形の領域を使う．<var>1</var> 個のマスには，<var>1</var> 個のマスコットが置かれる．上から <var>A</var> 行目，左から <var>B</var> 列目のマスのことを <var>(A, B)</var> と表現することにする．片付けが始まる段階で既に <var>N</var> 個のマスコットが置かれている．片付けを始めるときに少なくとも <var>1</var> 個はマスコットが置かれていないマスがある．</p>
+<p>JOI ちゃんはマスコットを <var>1</var> 個ずつ置いて片付けをする．新しくマスコットを <var>1</var> 個置いたときに，マスコットのあるマス全体が <var>1</var> 個の長方形となれば，JOI ちゃんは少し幸せになる（最初の状態でマスコットのあるマス全体が <var>1</var> 個の長方形になっていた場合を除く）．マスコットのあるマス全体が <var>1</var> 個の長方形となるとは，ある <var>4</var> つの整数 <var>r_{1}, r_{2}, c_{1}, c_{2}</var> (<var>1 \leqq r_{1} \leqq r_{2} \leqq R</var> かつ <var>1 \leqq c_{1} \leqq c_{2} \leqq C</var>) が存在して，<var>r_{1} \leqq i \leqq r_{2}</var> かつ <var>c_{1} \leqq j \leqq c_{2}</var> を満たすどのマス <var>(i, j)</var> にもマスコットがあり，さらに他のいずれのマスにもマスコットがないことをいう．少し幸せになる回数が多ければ多いほど JOI ちゃんは今晩ぐっすり眠ることができる．</p>
+<p>マスコットを置く際，置くマスコットの種類は区別しないものとする．少し幸せになる回数が最大となるような置き方は全部で何通りあるだろうか．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p>マスコットを片付ける場所と既に置かれているマスコットの情報が与えられると，少し幸せになる回数が最大となるようなマスコットの置き方の個数を <var>1\,000\,000\,007</var> で割った余りを求めるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>標準入力から以下の入力を読み込め．</p>
+<ul>
+<li><var>1</var> 行目には整数 <var>R,C</var> が空白を区切りとして書かれている．<var>R</var> はマスコットを置く場所の行数を，<var>C</var> はマスコットを置く場所の列数を表す．</li>
+<li><var>2</var> 行目には整数 <var>N</var> が書かれている．<var>N</var> は片付けが始まる段階で既に置かれているマスコットの個数を表す．</li>
+<li>続く <var>N</var> 行には，最初から置かれているマスコットの情報が書かれている．これらの行の <var>i</var> 行目には整数 <var>A_{i}, B_{i}</var> が空白を区切りとして書かれている．これはマス <var>(A_{i}, B_{i})</var> に最初からマスコットが置かれていることを表す．これらの数字の組は重複しない．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に，考えられる置き方の個数を <var>1\,000\,000\,007</var> で割った余りを出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<p>すべての入力データは以下の条件を満たす．</p>
+<ul>
+<li><var>2 \leqq R \leqq 3\,000</var>．</li>
+<li><var>2 \leqq C \leqq 3\,000</var>．</li>
+<li><var>1 \leqq N \leqq 100\,000</var>．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<h4>小課題 1 [<var>10</var> 点]</h4>
+<p>以下の条件を満たす．</p>
+<ul>
+<li><var>R \leqq 3</var>．</li>
+<li><var>C \leqq 3</var>．</li>
+</ul>
+<h4>小課題 2 [<var>30</var> 点]</h4>
+<p>以下の条件を満たす．</p>
+<ul>
+<li><var>R \leqq 50</var>．</li>
+<li><var>C \leqq 50</var>．</li>
+</ul>
+<h4>小課題 3 [<var>60</var> 点]</h4>
+<p>追加の制限はない．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入出力例</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>2 3
+2
+1 2
+2 2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>8
+</pre>
+<p>初期状態で <var>6</var> 個のマスは次のようになっている（△は初期状態でマスコットが置いてあるマス）．</p>
+<p><img src="https://img.atcoder.jp/joisc2013-day2/mascots-ja-p7-group1.png" alt="図" style="max-width:100%;height:auto;"></p>
+
+<p><var>6</var> マスのうち <var>(1, 2)</var> と <var>(2, 2)</var> には既にマスコットが置いてある．少し幸せになる回数の最大値は <var>2</var> である．少し幸せになる回数が <var>2</var> 回となる配置は次の <var>8</var> 通りである（数字は新しくマスコットを置く順番を表す）．</p>
+<div class="joisc2013-day2-mascots-ja-table mascots-boards">
+<table>
+<tr>
+<td><var>1</var></td>
+<td>△</td>
+<td><var>3</var></td>
+</tr>
+<tr>
+<td><var>2</var></td>
+<td>△</td>
+<td><var>4</var></td>
+</tr>
+</table>
+<table>
+<tr>
+<td><var>1</var></td>
+<td>△</td>
+<td><var>4</var></td>
+</tr>
+<tr>
+<td><var>2</var></td>
+<td>△</td>
+<td><var>3</var></td>
+</tr>
+</table>
+<table>
+<tr>
+<td><var>2</var></td>
+<td>△</td>
+<td><var>3</var></td>
+</tr>
+<tr>
+<td><var>1</var></td>
+<td>△</td>
+<td><var>4</var></td>
+</tr>
+</table>
+<table>
+<tr>
+<td><var>2</var></td>
+<td>△</td>
+<td><var>4</var></td>
+</tr>
+<tr>
+<td><var>1</var></td>
+<td>△</td>
+<td><var>3</var></td>
+</tr>
+</table>
+<table>
+<tr>
+<td><var>3</var></td>
+<td>△</td>
+<td><var>1</var></td>
+</tr>
+<tr>
+<td><var>4</var></td>
+<td>△</td>
+<td><var>2</var></td>
+</tr>
+</table>
+<table>
+<tr>
+<td><var>3</var></td>
+<td>△</td>
+<td><var>2</var></td>
+</tr>
+<tr>
+<td><var>4</var></td>
+<td>△</td>
+<td><var>1</var></td>
+</tr>
+</table>
+<table>
+<tr>
+<td><var>4</var></td>
+<td>△</td>
+<td><var>1</var></td>
+</tr>
+<tr>
+<td><var>3</var></td>
+<td>△</td>
+<td><var>2</var></td>
+</tr>
+</table>
+<table>
+<tr>
+<td><var>4</var></td>
+<td>△</td>
+<td><var>2</var></td>
+</tr>
+<tr>
+<td><var>3</var></td>
+<td>△</td>
+<td><var>1</var></td>
+</tr>
+</table>
+</div>
+<p><var>8</var> 通りの例のいずれにおいても <var>2</var> 番目のマスコットを置いたときにマスコットのあるマスが <var>2 \times 2</var> の長方形に，<var>4</var> 番目のマスコットを置いたときにマスコットのあるマスが <var>2 \times 3</var> の長方形になり，全体で <var>2</var> 回 JOI ちゃんは少し幸せになる．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>3 3
+2
+1 1
+3 3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>5040
+</pre>
+<p>どのような順番で配置しても少し幸せになる回数は <var>1</var> 回である．</p>
+<style>
+.joisc2013-day2-mascots-ja-table { position:relative;max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisc2013-day2-mascots-ja-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisc2013-day2-mascots-ja-table td { border:1px solid #aaa;width:2em;height:2em;padding:0;text-align:center;vertical-align:middle; }
+.joisc2013-day2-mascots-ja-table .katex { position:relative; }
+.joisc2013-day2-mascots-ja-table.mascots-boards { display:flex;flex-wrap:wrap;align-items:flex-start;gap:1em; }
+.joisc2013-day2-mascots-ja-table.mascots-boards table { flex:none;table-layout:fixed;width:6em; }
+</style></section>
+</div>
+</span>
+</span>
