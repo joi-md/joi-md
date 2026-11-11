@@ -1,0 +1,221 @@
+<span class="lang">
+<span class="lang-ja">
+<blockquote>
+<p><strong>AtCoder での提出方法</strong></p>
+<p><a href="https://img.atcoder.jp/joisc2016/memory2-dist-f38ec96f80.zip">配布ファイル</a></p>
+<ul>
+<li>C++ を使用し，<code>Memory2_lib.h</code> を include して，<code>Solve</code> を実装したソースコードを提出してください．このジャッジは C++ 以外の言語には対応していません．</li>
+<li><strong>標準入出力やファイルへの入出力を使用しないでください．</strong></li>
+</ul>
+</blockquote>
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>表に <var>0</var> 以上 <var>N - 1</var> 以下の整数が <var>1</var> つ書かれたカードが <var>2</var> 枚ずつある．あなたと JOI 君は，これら <var>2N</var> 枚のカードを用いて神経衰弱というゲームの練習をしている．</p>
+<p>ゲームの練習を始める時点では，カードは裏向きの状態でテーブルに横一列に並べられている．左から <var>i + 1</var> 枚目 (<var>0 \leqq i \leqq 2N - 1</var>) のカードを，カード <var>i</var> と呼ぶ．カード <var>i</var> の表に書かれた整数を <var>A_{i}</var> (<var>0 \leqq i \leqq 2N - 1</var>) とする．最初，JOI 君とあなたには，<var>A_{i}</var> (<var>0 \leqq i \leqq 2N - 1</var>) がどのような値であるかは分からない．</p>
+<p>あなたと JOI 君は，以下のやりとりを <var>K</var> 回まで繰り返すことができる．</p>
+<ol>
+<li>あなたは，<var>2N</var> 枚のカードのうちの <var>2</var> 枚のカードを指定する．</li>
+<li>JOI 君は，指定された <var>2</var> 枚のカードをめくり，表に書かれた整数をあなたに見えないようにこっそり見る．もし，<var>2</var> 枚のカードの表に書かれた整数が等しい場合は，その値を覚えてあなたに伝える．そうでない場合は，表に書かれている整数のうち JOI 君が覚えやすい方の整数を覚えてあなたに伝える．</li>
+</ol>
+<p>JOI 君にとっての整数の覚えやすさは，<var>N</var> 個の整数 <var>P_{0}, P_{1}, \ldots, P_{N - 1}</var> で表される．これらの整数は，以下の <var>2</var> つの条件を満たす．</p>
+<ul>
+<li><var>0 \leqq P_{i} \leqq N - 1</var> (<var>0 \leqq i \leqq N - 1</var>)．</li>
+<li><var>P_{i} \ne P_{j}</var> (<var>0 \leqq i &lt; j \leqq N - 1</var>)．</li>
+</ul>
+<p>JOI 君にとって <var>i</var> が <var>j</var> よりも覚えやすいことは，<var>P_{i} &lt; P_{j}</var> が成り立つことと同値である．</p>
+<p>あなたの課題は，JOI 君と <var>K</var> 回以下のやりとりを行うことで，それぞれのカードに書かれた整数を特定することである．ただし，あなたは，JOI 君にとっての整数の覚えやすさを表す整数 <var>P_{0}, P_{1}, \ldots, P_{N - 1}</var> がどのような値であるかを知らない．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p>JOI 君とやりとりを行って，それぞれのカードに書かれた整数を特定するプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>実装の詳細</h3>
+<p>あなたは，それぞれのカードに書かれた整数を特定する方法を実装した <var>1</var> 個のプログラムを書かねばならない．プログラムは <code>Memory2_lib.h</code> をインクルードすること．</p>
+<p>プログラムは，以下のルーチンを実装しなければならない．</p>
+<ul>
+<li>
+<p><code>void Solve(int T, int N)</code></p>
+<p>このルーチンは，各テストケースに対し <var>1</var> 回だけ呼び出される．引数 <code>T</code> は小課題の番号を表し，<code>N</code> はカードが <var>2N</var> 枚あることを表す．</p>
+<p>このルーチンは，<code>Flip</code> を呼び出すことによってカードに書かれた整数を特定し，その内容を <code>Answer</code> を呼び出すことによって答えなければならない．</p>
+</li>
+</ul>
+<p>プログラム中では以下の関数を呼び出すことができる．</p>
+<ul>
+<li>
+<p><code>int Flip(int I, int J)</code></p>
+<p>この関数は，JOI 君にカードを指定する際に呼び出す．引数 <code>I</code>, <code>J</code> は，JOI 君がめくるカードの番号 <var>I, J</var> である．</p>
+<p><var>I</var> と <var>J</var> はともに <var>0</var> 以上 <var>2N - 1</var> 以下の互いに異なる整数でなければならない．これを満たさない引数とともに <code>Flip</code> を呼び出した場合は不正解 <var>[1]</var> となる．</p>
+<p>この関数は，整数 <var>A_{I}</var> と整数 <var>A_{J}</var> が等しい場合はその値を，そうでない場合は整数 <var>A_{I}</var> と整数 <var>A_{J}</var> のうち JOI 君にとって覚えやすい方の値を返す．</p>
+<p>この関数を <var>K</var> 回を超えて呼び出した場合は不正解 <var>[2]</var> となる．</p>
+</li>
+<li>
+<p><code>void Answer(int I, int J, int X)</code></p>
+<p>この関数は，表に整数 <var>X</var> が書かれたカードの番号を特定できたことを表す．</p>
+<p>引数 <code>I</code>, <code>J</code>, <code>X</code> は，以下の条件を満たしていなければならない．</p>
+<ul>
+<li><var>0 \leqq I \leqq 2N - 1</var>．</li>
+<li><var>0 \leqq J \leqq 2N - 1</var>．</li>
+<li><var>I \ne J</var>．</li>
+<li><var>A_{I} = A_{J} = X</var>．</li>
+</ul>
+<p>これらを満たさない引数とともに <code>Answer</code> を呼び出した場合は不正解 <var>[3]</var> となる．</p>
+<p>引数 <code>X</code> は，以前のどの呼び出しにおける引数 <code>X</code> とも異ならなければならない．これが満たされない場合は不正解 <var>[4]</var> となる．</p>
+<p>この関数は，ちょうど <var>N</var> 回呼び出さなければならない．これが満たされない場合は不正解 <var>[5]</var> となる．</p>
+</li>
+</ul>
+<p>内部での使用のために他のルーチンを実装したり，グローバル変数を宣言したりするのは自由である．ただし，あなたの提出は標準入力・標準出力，あるいは他のファイルといかなる方法でもやりとりしてはならない．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>コンパイル・実行の方法</h3>
+<p>作成したプログラムをテストするための，採点プログラムのサンプルが，コンテストサイトからダウンロードできるアーカイブの中に含まれている．このアーカイブには，提出しなければならないファイルのサンプルも含まれている．</p>
+<p>採点プログラムのサンプルは <var>1</var> つのファイルからなる．そのファイルは <code>grader.c</code> または <code>grader.cpp</code> である．作成したプログラムをテストするには，次のようにコマンドを実行する．</p>
+<ul>
+<li>C の場合</li>
+</ul>
+<pre>gcc -std=c11 -O2 -o grader grader.c Memory2.c -lm
+</pre>
+<ul>
+<li>C++ の場合</li>
+</ul>
+<pre>g++ -std=c++11 -O2 -o grader grader.cpp Memory2.cpp
+</pre>
+<p>コンパイルが成功すれば，<code>grader</code> という実行ファイルが生成される．</p>
+<p>実際の採点プログラムは，採点プログラムのサンプルとは異なることに注意すること．採点プログラムのサンプルは単一のプロセスとして起動する．このプログラムは，標準入力から入力を読み込み，標準出力に結果を出力する．</p>
+<h4>採点プログラムのサンプルの入力</h4>
+<p>採点プログラムのサンプルは標準入力から以下のデータを読み込む．</p>
+<ul>
+<li><var>1</var> 行目には，整数 <var>T, N, K</var> が空白を区切りとして書かれている．これらは，小課題の番号が <var>T</var> で，カードが <var>2N</var> 枚あり，JOI 君とのやりとりが <var>K</var> 回まで許されていることを表す．</li>
+<li><var>2</var> 行目には，整数 <var>P_{0}, P_{1}, \ldots, P_{N - 1}</var> が空白を区切りとして書かれている．これらは JOI 君にとっての整数の覚えやすさを表す．</li>
+<li><var>3</var> 行目には，整数 <var>A_{0}, A_{1}, \ldots, A_{2N - 1}</var> が空白を区切りとして書かれている．これらはカードに書かれた整数を表す．</li>
+</ul>
+<h4>採点プログラムのサンプルの出力</h4>
+<p>プログラムの実行が正常に終了した場合，採点プログラムのサンプルは標準出力へ以下の情報を <var>1</var> 行で出力する (引用符は実際には出力されない)．</p>
+<ul>
+<li>正解の場合，“<code>Accepted</code>” と出力する．</li>
+<li>不正解の場合，不正解の種類を “<code>Wrong Answer [2]</code>” のように出力する．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<p>すべての入力データは以下の条件を満たす．</p>
+<ul>
+<li><var>1 \leqq N \leqq 50</var>．</li>
+<li><var>0 \leqq P_{i} \leqq N - 1</var> (<var>0 \leqq i \leqq N - 1</var>)．</li>
+<li><var>P_{i} \ne P_{j}</var> (<var>0 \leqq i &lt; j \leqq N - 1</var>)．</li>
+<li><var>0 \leqq A_{i} \leqq N - 1</var> (<var>0 \leqq i \leqq 2N - 1</var>)．</li>
+<li>どの <var>x</var> (<var>0 \leqq x \leqq N - 1</var>) に対しても，<var>A_{i} = x</var> を満たす <var>i</var> (<var>0 \leqq i \leqq 2N - 1</var>) はちょうど <var>2</var> つある．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<h4>小課題 1 [<var>10</var> 点]</h4>
+<p>以下の条件を満たす．</p>
+<ul>
+<li><var>T = 1</var>．</li>
+<li><var>K = 10\,000</var>．</li>
+<li><var>P_{i} = i</var> (<var>0 \leqq i \leqq N - 1</var>)．</li>
+</ul>
+<h4>小課題 2 [<var>50</var> 点]</h4>
+<p>以下の条件を満たす．</p>
+<ul>
+<li><var>T = 2</var>．</li>
+<li><var>K = 400</var>．</li>
+<li><var>P_{i} = i</var> (<var>0 \leqq i \leqq N - 1</var>)．</li>
+</ul>
+<h4>小課題 3 [<var>40</var> 点]</h4>
+<p>以下の条件を満たす．</p>
+<ul>
+<li><var>T = 3</var>．</li>
+<li><var>K = 300</var>．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>やりとりの例</h3>
+<p>採点プログラムのサンプルが読み込む入力の例と，それに対応するルーチンの呼び出しの例を以下に示す．</p>
+<h4>入力例</h4>
+<pre>1 3 10000
+0 1 2
+1 0 2 0 1 2
+</pre>
+<h4>ルーチンの呼び出しの例</h4>
+<div class="joisc2016-memory2-ja-table">
+<table>
+<thead>
+<tr>
+<th>呼び出し</th>
+<th>戻り値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Flip(0, 2)</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td><code>Flip(0, 4)</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td><code>Flip(1, 2)</code></td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td><code>Answer(0, 4, 1)</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Flip(1, 3)</code></td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td><code>Flip(5, 2)</code></td>
+<td><code>2</code></td>
+</tr>
+<tr>
+<td><code>Flip(4, 5)</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td><code>Answer(1, 3, 0)</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Answer(5, 2, 2)</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>この例での関数の呼び出しは，必ずしも意味のある呼び出しとは限らないことに注意せよ．</p>
+<style>
+.joisc2016-memory2-ja-table { max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisc2016-memory2-ja-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisc2016-memory2-ja-table th,.joisc2016-memory2-ja-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisc2016-memory2-ja-table th { background:#f5f5f5; }
+.joisc2016-memory2-ja-table code { white-space:nowrap; }
+</style></section>
+</div>
+</span>
+</span>

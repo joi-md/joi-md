@@ -1,0 +1,155 @@
+<span class="lang">
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>JOI 君は IOI の懇親会に参加している．懇親会ではサンドイッチが縦 <var>R</var> 行，横 <var>C</var> 列の正方形のマス目に沿って配置されていた．サンドイッチは <var>2</var> 辺がマス目の <var>1</var> 辺の長さに等しい直角二等辺三角形の形をしており，それぞれのマスには <var>2</var> 個のサンドイッチが斜辺が接するように置かれている．下図はサンドイッチの配置の例を表している．</p>
+<p><img src="https://img.atcoder.jp/joisc2016/sandwich-ja-p5-group1.png" alt="図" style="max-width:100%;height:auto;"></p>
+
+<p>図 <var>1</var>. サンドイッチの配置の例</p>
+<p>以下の <var>2</var> つの条件を同時に満たすサンドイッチは，取ることができない．</p>
+<ul>
+<li>斜辺が，まだ取られていない他のサンドイッチに接している．</li>
+<li>斜辺以外の <var>2</var> 本の辺のうち少なくとも <var>1</var> 本が，まだ取られていない他のサンドイッチに接している．</li>
+</ul>
+<p>これ以外のサンドイッチは取ることができる．</p>
+<p>サンドイッチが全く取られていない状態を初期状態とする．初期状態から，あるサンドイッチを取るためには，他のいくつかのサンドイッチを取らなければいけないかもしれない．サンドイッチの配置によっては，取ることができないサンドイッチもあるかもしれない．</p>
+<p>JOI 君は，同じマスに置かれている <var>2</var> 個のサンドイッチを両方とも食べたいと思っている．どのマスに置かれているサンドイッチを食べるかは，まだ決めていない．</p>
+<p>初期状態から，あるマスの <var>2</var> 個のサンドイッチを両方取るときに，取らなければならないサンドイッチの個数の最小値が気になる．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p>サンドイッチの配置が与えられたとき，それぞれのマスについて，そのマスの <var>2</var> 個のサンドイッチを，初期状態からいくつかのサンドイッチを取ることによって両方取ることができるか判定し，もし取ることができる場合は取る必要のあるサンドイッチの個数の最小値を求めるプログラムを作成せよ．ただし，サンドイッチの個数には，目的の <var>2</var> 個のサンドイッチも含めて数える．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>標準入力から以下のデータを読み込め．</p>
+<ul>
+<li><var>1</var> 行目には，整数 <var>R,C</var> が空白を区切りとして書かれている．これらは，サンドイッチが縦 <var>R</var> 行，横 <var>C</var> 列の正方形のマス目に沿って配置されていることを表す．</li>
+<li>続く <var>R</var> 行のうちの <var>i</var> 行目 (<var>1 \leqq i \leqq R</var>) には，<var>C</var> 文字からなる文字列が書かれている．各文字は ‘<code>N</code>’ または ‘<code>Z</code>’ である．この文字列の左から <var>j</var> 文字目 (<var>1 \leqq j \leqq C</var>) は，上から <var>i</var> 行目，左から <var>j</var> 列目のマスのサンドイッチの配置を表している．‘<code>N</code>’, ‘<code>Z</code>’ はそれぞれ以下のような配置を表している．</li>
+</ul>
+<p><img src="https://img.atcoder.jp/joisc2016/sandwich-ja-p6-group1.png" alt="図" style="max-width:100%;height:auto;"></p>
+
+<p>図 <var>2</var>. 各マスのサンドイッチの配置</p>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に <var>R</var> 行で出力せよ．<var>i</var> 行目 (<var>1 \leqq i \leqq R</var>) には，<var>C</var> 個の整数を空白を区切りとして出力せよ．<var>j</var> 番目 (<var>1 \leqq j \leqq C</var>) の整数として，上から <var>i</var> 行目，左から <var>j</var> 列目のマスのサンドイッチ <var>2</var> 個を両方取るときに取る必要があるサンドイッチの個数の最小値を出力せよ．もし，取ることができない場合は，<var>-1</var> を出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<p>すべての入力データは以下の条件を満たす．</p>
+<ul>
+<li><var>1 \leqq R \leqq 400</var>．</li>
+<li><var>1 \leqq C \leqq 400</var>．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<h4>小課題 1 [<var>35</var> 点]</h4>
+<p>以下の条件を満たす．</p>
+<ul>
+<li><var>R \leqq 50</var>．</li>
+<li><var>C \leqq 50</var>．</li>
+</ul>
+<h4>小課題 2 [<var>65</var> 点]</h4>
+<p>追加の制限はない．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>2 3
+NZN
+ZZN
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>10 8 2
+8 6 4
+</pre>
+<p>入力例 <var>1</var> のサンドイッチの配置は，問題文中の図 <var>1</var> に対応する．</p>
+<p>例えば，上から <var>2</var> 行目，左から <var>2</var> 列目のマスの <var>2</var> 個のサンドイッチを取るには，以下の順にサンドイッチを取っていけばよい．</p>
+<ul>
+<li>上から <var>1</var> 行目，左から <var>3</var> 列目のマスの右上のサンドイッチを取る．</li>
+<li>上から <var>1</var> 行目，左から <var>3</var> 列目のマスの左下のサンドイッチを取る．</li>
+<li>上から <var>2</var> 行目，左から <var>3</var> 列目のマスの右上のサンドイッチを取る．</li>
+<li>上から <var>2</var> 行目，左から <var>3</var> 列目のマスの左下のサンドイッチを取る．</li>
+<li>上から <var>2</var> 行目，左から <var>2</var> 列目のマスの右下のサンドイッチを取る．</li>
+<li>上から <var>2</var> 行目，左から <var>2</var> 列目のマスの左上のサンドイッチを取る．</li>
+</ul>
+<p>合計で <var>6</var> 個のサンドイッチを取ることになり，これが最小であるため <var>6</var> を出力する．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>2 2
+NZ
+ZN
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>-1 -1
+-1 -1
+</pre>
+<p>この場合，いずれのサンドイッチも取ることができない．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>5 5
+NZZZN
+NNNZN
+NNZNN
+NZNNN
+NZZZN
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>10 12 14 16 2
+8 -1 -1 -1 4
+6 -1 -1 -1 6
+4 -1 -1 -1 8
+2 16 14 12 10
+</pre></section>
+</div>
+</span>
+</span>
