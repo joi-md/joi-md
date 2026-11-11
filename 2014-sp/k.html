@@ -1,0 +1,172 @@
+<span class="lang">
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>JOI ちゃんと IOI ちゃんは親友同士である．ある日，JOI ちゃんと IOI ちゃんは山の上にある展望台で天体観測をすることにした．</p>
+<p>展望台では，<var>N</var> 個の星を観測することができる．それぞれの星には <var>1</var> から <var>N</var> まで番号が付いていて，それぞれの星は，赤色，青色，黄色のいずれかの色をしている．</p>
+<p>この展望台で観測された星は座標平面上の点で表される．この座標平面において，星 <var>i</var> (<var>1 \leqq i \leqq N</var>) に対応する点は <var>P_{i}(X_{i}, Y_{i})</var> である．座標平面上の点 <var>P_{1}, \ldots, P_{N}</var> は，どの <var>2</var> 点も異なる．また，点 <var>P_{1}, \ldots, P_{N}</var> は，どの <var>3</var> 点も同一直線上にない．</p>
+<p>JOI ちゃんと IOI ちゃんは，JOIOI 座という星座を作ることにした．まず <var>2</var> 人は，赤色，青色，黄色の <var>3</var> つの星を結んだ三角形を使うことを考えた．このような三角形のことを良い三角形と呼ぶ．</p>
+<p><var>2</var> 人は，以下の条件を満たす <var>2</var> つの良い三角形の組（順序を問わない）を JOIOI 座の候補とすることにした．</p>
+<ul>
+<li><var>2</var> つの良い三角形（三角形の周および内部）には共有点がない．すなわち，<var>2</var> つの良い三角形同士が重なったり，一方が他方に含まれることはない．</li>
+</ul>
+<p><img src="https://img.atcoder.jp/joisc2014/constellation2-ja-p1-group1.png" alt="図" style="max-width:100%;height:auto;"></p>
+
+<p>JOI ちゃんと IOI ちゃんは，JOIOI 座の候補として考えられるものがいくつあるか数えることにした．ただし，JOIOI 座の候補を構成する <var>6</var> 個の星が一致していても，良い三角形の結び方が異なる場合は，それらを別の候補として数えるものとする．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p>展望台で観測された星の情報が与えられたとき，JOIOI 座の候補の総数を出力するプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>標準入力から以下のデータを読み込め．</p>
+<ul>
+<li><var>1</var> 行目には整数 <var>N</var> が書かれている．これは展望台で観測された星の個数が <var>N</var> であることを表す．</li>
+<li>続く <var>N</var> 行のうちの <var>i</var> 行目 (<var>1 \leqq i \leqq N</var>) には，<var>3</var> つの整数 <var>X_{i}, Y_{i},C_{i}</var> が空白を区切りとして書かれている．これは，星 <var>i</var> の座標が <var>P_{i}(X_{i}, Y_{i})</var> であることを表し，<var>C_{i}</var> は星 <var>i</var> の色を表している．星 <var>i</var> の色は，<var>C_{i}</var> が <var>0</var> なら赤色であり，<var>1</var> なら青色であり，<var>2</var> なら黄色である．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に，JOIOI 座の候補の総数を表す整数を <var>1</var> 行で出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<p>すべての入力データは以下の条件を満たす．</p>
+<ul>
+<li><var>6 \leqq N \leqq 3\,000</var>．</li>
+<li><var>-100\,000 \leqq X_{i} \leqq 100\,000</var>．</li>
+<li><var>-100\,000 \leqq Y_{i} \leqq 100\,000</var>．</li>
+<li><var>0 \leqq C_{i} \leqq 2</var>．</li>
+<li>どの色の星も <var>1</var> 個以上存在する．</li>
+<li><var>P_{i} \ne P_{j}</var> (<var>1 \leqq i &lt; j \leqq N</var>)</li>
+<li><var>P_{i}, P_{j}, P_{k}</var> は同一直線上にない (<var>1 \leqq i &lt; j &lt; k \leqq N</var>)．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<h4>小課題 1 [<var>15</var> 点]</h4>
+<ul>
+<li><var>N \leqq 30</var> を満たす．</li>
+</ul>
+<h4>小課題 2 [<var>40</var> 点]</h4>
+<ul>
+<li><var>N \leqq 300</var> を満たす．</li>
+</ul>
+<h4>小課題 3 [<var>45</var> 点]</h4>
+<p>追加の制限はない．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>7
+0 0 0
+2 0 1
+1 2 2
+-2 1 0
+-2 -3 0
+0 -2 1
+2 -2 2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>4
+</pre>
+<p>この入力例では，星の配置は下図のようになる．この図において，赤色の星は丸，青色の星は菱型，黄色の星は三角形で表す．</p>
+<p><img src="https://img.atcoder.jp/joisc2014/constellation2-ja-p3-group1.png" alt="図" style="max-width:100%;height:auto;"></p>
+
+<p>この入力例では，JOIOI 座の候補は以下に示す <var>4</var> つである．</p>
+<p><img src="https://img.atcoder.jp/joisc2014/constellation2-ja-p4-group1.png" alt="図" style="max-width:100%;height:auto;"></p>
+
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>8
+16 0 0
+17 0 0
+0 7 2
+0 -7 2
+-1 -1 1
+-1 1 2
+-6 4 1
+-6 -4 1
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>12
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>21
+1 20 0
+4 20 0
+0 22 0
+5 22 0
+6 25 0
+8 25 0
+4 26 0
+11 11 1
+7 12 1
+14 13 1
+8 15 1
+15 16 1
+11 17 1
+18 0 2
+13 2 2
+16 2 2
+19 4 2
+18 6 2
+21 8 2
+24 8 2
+19 10 2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>7748
+</pre></section>
+</div>
+</span>
+</span>

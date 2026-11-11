@@ -1,0 +1,158 @@
+<span class="lang">
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>あなたは Just Odd Inventions 社を知っているだろうか？この会社の業務は「ただ奇妙な発明 (just odd inventions)」をすることである．ここでは略して JOI 社と呼ぶ．</p>
+<p>JOI 社のとある実験室には，複雑な電気回路がある．回路は <var>N</var> 個の節点と <var>M</var> 本の細長い電気抵抗からなる．節点には <var>1</var> から <var>N</var> までの番号が付けられている．各節点は「高電圧」または「低電圧」のいずれかの状態に設定することができる．各電気抵抗は <var>2</var> 個の節点を結んでおり，それらの節点の一方が「高電圧」，もう一方が「低電圧」の状態にあるときに電流が流れる．「高電圧」の節点どうし，あるいは「低電圧」の節点どうしを結んでいる電気抵抗には，電流は流れない．</p>
+<p>ある日，JOI 社はこの回路のメンテナンスのため，<var>1</var> 本の電気抵抗を選んで，その電気抵抗にのみ電流が流れず，残りの <var>M - 1</var> 本には電流が流れるように，各節点の電圧を設定することになった．この条件を満たすために，電流を流さない電気抵抗として選べるものは何本あるだろうか？</p>
+<p>なお，JOI 社がこの奇妙な回路を用いてどのような発明をしているかは，社内でも最高機密であり社長以外の誰も知らない．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p>回路の情報が与えられたとき，メンテナンスの際に電流を流さない電気抵抗として選ぶことができる電気抵抗の本数を求めるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>標準入力から以下のデータを読み込め．</p>
+<ul>
+<li><var>1</var> 行目には，整数 <var>N, M</var> が空白を区切りとして書かれており，節点が <var>N</var> 個，電気抵抗が <var>M</var> 本あることを表す．</li>
+<li>続く <var>M</var> 行のうちの <var>i</var> 行目 (<var>1 \leqq i \leqq M</var>) には，整数 <var>A_{i}, B_{i}</var> (<var>1 \leqq A_{i} \leqq N</var>，<var>1 \leqq B_{i} \leqq N</var>，<var>A_{i} \ne B_{i}</var>) が空白を区切りとして書かれており，<var>i</var> 番目の電気抵抗が節点 <var>A_{i}</var> と節点 <var>B_{i}</var> を結んでいることを表す．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に，メンテナンスの際に電流を流さない電気抵抗として選ぶことができる電気抵抗の本数を <var>1</var> 行で出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<p>すべての入力データは以下の条件を満たす．</p>
+<ul>
+<li><var>2 \leqq N \leqq 100\,000</var>．</li>
+<li><var>1 \leqq M \leqq 200\,000</var>．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<h4>小課題 1 [<var>10</var> 点]</h4>
+<p>以下の条件を満たす．</p>
+<ul>
+<li><var>N \leqq 1\,000</var>．</li>
+<li><var>M \leqq 2\,000</var>．</li>
+</ul>
+<h4>小課題 2 [<var>10</var> 点]</h4>
+<ul>
+<li>どの節点からどの節点へも，結ばれている電気抵抗を何本か辿って到達できる．</li>
+<li><var>M = N</var> を満たす．</li>
+</ul>
+<h4>小課題 3 [<var>35</var> 点]</h4>
+<ul>
+<li>どの節点からどの節点へも，結ばれている電気抵抗を何本か辿って到達できる．</li>
+<li><var>M \leqq N + 100</var> を満たす．</li>
+</ul>
+<h4>小課題 4 [<var>45</var> 点]</h4>
+<p>追加の制限はない．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>4 5
+1 2
+1 3
+1 4
+2 4
+3 4
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>1
+</pre>
+<p>この例では，<var>3</var> 番目の電気抵抗のみに電流が流れないようにすることができる．例えば，節点 <var>1</var> と節点 <var>4</var> を「高電圧」に，節点 <var>2</var> と節点 <var>3</var> を「低電圧」に設定すればよい．<var>3</var> 番目の電気抵抗は節点 <var>1</var> と節点 <var>4</var> を結んでいるので，<var>3</var> 番目の電気抵抗には電流は流れない．</p>
+<p><var>3</var> 番目の電気抵抗以外を，メンテナンスの際に電流を流さない電気抵抗として選ぶことはできない．</p>
+<p><img src="https://img.atcoder.jp/joisc2014/voltage-ja-p8-group1.png" alt="図" style="max-width:100%;height:auto;"></p>
+
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>4 4
+1 2
+2 3
+3 2
+4 3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>2
+</pre>
+<p>この例では，<var>1</var> 番目の電気抵抗または <var>4</var> 番目の電気抵抗を，メンテナンスの際に電流を流さない電気抵抗として選ぶことができる．</p>
+<p><img src="https://img.atcoder.jp/joisc2014/voltage-ja-p8-group2.png" alt="図" style="max-width:100%;height:auto;"></p>
+
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>13 16
+1 6
+2 6
+3 1
+3 2
+4 7
+4 7
+5 9
+6 5
+8 2
+8 13
+9 11
+10 3
+11 10
+11 12
+12 8
+13 6
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>3
+</pre></section>
+</div>
+</span>
+</span>
