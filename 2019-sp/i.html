@@ -1,0 +1,404 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>Beaverland consists of <var>N</var> cities, numbered from <var>1</var> to <var>N</var>. There are <var>N - 1</var> roads connecting cities. The <var>i</var>-th (<var>1 \le i \le N - 1</var>) road connects the city <var>i</var> and the city <var>i+1</var> bidirectionally. In Beaverland, they use Byou as the unit of time. Each day in Beaverland is 1 000 000 000 Byous long. The moment <var>x</var> Byous (<var>0 \le x &lt; 1\,000\,000\,000</var>) after the beginning of a day is called time <var>x</var>. It takes 1 Byou to pass through any of the roads, and the <var>i</var>-th road can be passed through only between time <var>L_{i}</var> and time <var>R_{i}</var> every day. Specifically, to pass through the <var>i</var>-th road, we must leave the city <var>i</var> or the city <var>i + 1</var> at time <var>x</var> satisfying <var>L_{i} \le x \le R_{i} - 1</var>, and must arrive at the other city at time <var>x + 1</var>.</p>
+<p>Bitaro used to be an ordinary Beaver living in Beaverland. However, as he tries to cope with his lateness, he has finally acquired the skill of leaping through time. By using this skill once, he can go back 1 Byou ago. He cannot go back to the day before: if he uses the skill between time 0 and time 1, he will go back to time 0 of the day. He can use this skill only when he is at a city. The position of Bitaro does not change on using the skill.</p>
+<p>Bitaro gets tired when he uses the skill. To find ways to travel with fewer number of usage of the skill, he decided to do a thought experiment consisting of <var>Q</var> steps. In the <var>j</var>-th (<var>1 \le j \le Q</var>) step in the thought experiment, he does one of the followings:</p>
+<ul>
+<li>Change the duration in which the <var>P_{j}</var>-th road can be traveled. After the modification, it can be passed through only between time <var>S_{j}</var> and time <var>E_{j}</var>.</li>
+<li>Suppose he is at the city <var>A_{j}</var> at time <var>B_{j}</var>. Then, compute the minimum number of usage of the skill to be at the city <var>C_{j}</var> at time <var>D_{j}</var> on the day.</li>
+</ul>
+<p>He wonders the result of the thought experiment.</p>
+<p>Write a program which, given the number of cities in Beaverland, the information of roads, and the details of the thought experiment, calculates the result of the thought experiment.</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input. All the values in the input are integers.</p>
+<pre><var>N</var> <var>Q</var>
+<var>L_{1}</var> <var>R_{1}</var>
+<var>\vdots</var>
+<var>L_{N - 1}</var> <var>R_{N - 1}</var>
+(Query 1)
+<var>\vdots</var>
+(Query <var>Q</var>)
+</pre>
+<p>Here, each (Query j) consists of 4 or 5 integers separated by a space. Let <var>T_{j}</var> be the first integer in it. Then,</p>
+<ul>
+<li>If <var>T_{j} = 1</var>, (Query <var>j</var>) consists of 4 integers <var>T_{j}, P_{j}, S_{j}</var> and <var>E_{j}</var>. This means that, in the <var>j</var>-th step of the thought experiment, the duration in which the <var>P_{j}</var>-th road can be passed is changed to the interval between time <var>S_{j}</var> and time <var>E_{j}</var>.</li>
+<li>If <var>T_{j} = 2</var>, (Query <var>j</var>) consists of 5 integers <var>T_{j}, A_{j}, B_{j}, C_{j}</var> and <var>D_{j}</var>. This means that, in the <var>j</var>-th step of the thought experiment, your program should compute the minimum number of usage of the skill to be at the city <var>C_{j}</var> at time <var>D_{j}</var> on the day, on the assumption that Bitaro is at the city <var>A_{j}</var> at time <var>B_{j}</var>.</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>For each step with <var>T_{j} = 2</var>, write a line containing the minimum number of usage of the skill to the standard output, in order.</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li><var>1 \le N \le 300\,000</var>．</li>
+<li><var>1 \le Q \le 300\,000</var>．</li>
+<li><var>0 \le L_{i} &lt; R_{i} \le 999\,999\,999</var> (<var>1 \le i \le N - 1</var>)．</li>
+<li><var>1 \le T_{j} \le 2</var> (<var>1 \le j \le Q</var>)．</li>
+<li><var>1 \le P_{j} \le N - 1</var> (<var>1 \le j \le Q</var>，<var>T_{j} = 1</var>)．</li>
+<li><var>0 \le S_{j} &lt; E_{j} \le 999\,999\,999</var> (<var>1 \le j \le Q</var>，<var>T_{j} = 1</var>)．</li>
+<li><var>1 \le A_{j} \le N</var> (<var>1 \le j \le Q</var>，<var>T_{j} = 2</var>)．</li>
+<li><var>0 \le B_{j} \le 999\,999\,999</var> (<var>1 \le j \le Q</var>，<var>T_{j} = 2</var>)．</li>
+<li><var>1 \le C_{j} \le N</var> (<var>1 \le j \le Q</var>，<var>T_{j} = 2</var>)．</li>
+<li><var>0 \le D_{j} \le 999\,999\,999</var> (<var>1 \le j \le Q</var>，<var>T_{j} = 2</var>)．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li>(<var>4</var> points) <var>N \le 1000</var>, <var>Q \le 1000</var>．</li>
+<li>(<var>30</var> points) <var>T_{j} = 2</var> (<var>1 \le j \le Q</var>).</li>
+<li>(<var>66</var> points) No additional constraints.</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input and Output</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>3 3
+0 5
+0 5
+2 1 3 3 3
+1 2 0 1
+2 1 3 3 3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>2
+4
+</pre>
+<p>In the 1st step of the thought experiment, Bitaro moves from the city 1 to the city 2 in 1 Byou, then moves from the city 2 to the city 3 in 1 Byou to be at the city 3 at time 5. Therefore, by using the skill twice, he can be at the city 3 at time 3.</p>
+<p>In the 2nd step of the thought experiment, the duration in which the 2nd road can be passed is changed to the interval between time 0 and time 1.</p>
+<p>In the 3rd step of the thought experiment, Bitaro moves from the city 1 to the city 2 in 1 Byou to be at the city 2 at time 4. Then, he uses the skill four times, moves to the city 3 in 1 Byou and wait 2 Byous to be at the city 3 at time 3.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>5 5
+3 5
+4 8
+2 6
+5 10
+2 5 3 1 10
+2 2 6 5 6
+1 3 4 6
+2 3 3 4 3
+2 4 5 1 5
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>4
+3
+2
+3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 3</h3>
+<pre>7 7
+112103440 659752416
+86280800 902409187
+104535475 965602300
+198700180 945132880
+137957976 501365807
+257419446 565237610
+2 4 646977260 7 915994878
+2 1 221570340 6 606208433
+2 7 948545948 4 604273995
+2 7 247791098 5 944822313
+2 7 250362511 2 50167280
+2 3 364109400 4 555412865
+2 7 33882587 7 186961394
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 3</h3>
+<pre>145611455
+0
+447180143
+0
+207252171
+0
+0
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 4</h3>
+<pre>7 7
+535825574 705426142
+964175291 996597835
+481817391 649559926
+4519006 410772613
+74521477 274584126
+256535565 899389890
+1 6 511428966 602601933
+1 1 69986642 201421232
+2 3 636443425 4 625975977
+1 6 235225515 405336399
+2 3 866680458 3 701821857
+1 6 180606048 900533151
+1 6 612564160 720179605
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 4</h3>
+<pre>10467449
+164858601
+</pre></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>ビーバーランドは <var>N</var> 個の都市からなり，都市には順に <var>1</var> から <var>N</var> の番号が付いている．都市と都市を結ぶ道は <var>N - 1</var> 個あり，<var>i</var> 番目 (<var>1 \leqq i \leqq N - 1</var>) の道は都市 <var>i</var> と都市 <var>i + 1</var> を双方向に結んでいる．また，ビーバーランドの <var>1</var> 日は <var>1\,000\,000\,000</var> 個の単位時間に分割されており，単位としてビョウを用いている ．<var>1</var> 日の始まりから <var>x</var> ビョウ (<var>0 \leqq x &lt; 1\,000\,000\,000</var>) 経過した時点を時刻 <var>x</var> とする．どの道を通るにもちょうど <var>1</var> ビョウかかり，<var>i</var> 番目の道は時刻 <var>L_{i}</var> から時刻 <var>R_{i}</var> までの間しか通ることができない．つまり，<var>i</var> 番目の道を通るには，<var>L_{i} \leqq x \leqq R_{i} - 1</var> を満たす時刻 <var>x</var> に都市 <var>i</var> と都市 <var>i + 1</var> のいずれかから出発し，時刻 <var>x + 1</var> にもう一方の都市に到着する必要がある．</p>
+<p>ビーバーのビ太郎はビーバーランドに住むごく普通のビーバーである．いや，であったというのが正しいであろうか．度重なる遅刻を改善しようと試みた結果，ビ太郎は時をさかのぼることができるようになってしまったのである．この能力を <var>1</var> 回用いるとビ太郎は <var>1</var> ビョウだけ時をさかのぼることができる．ただし，この能力を用いても日をさかのぼることはできず，時刻 <var>0</var> から時刻 <var>1</var> までの間に能力を用いても同じ日の時刻 <var>0</var> までしか戻ることができない．この能力はビ太郎が都市にいるときのみ用いる．また，この能力を用いてもビ太郎の位置は変化しない．</p>
+<p>しかし能力を使いすぎたビ太郎は，反動からか，体力をかなり消耗してしまった．反省したビ太郎は，できるだけ能力を使わずに移動する方法を見つけるため，<var>Q</var> ステップからなる思考実験を行うことにした．この思考実験において，<var>j</var> ステップ目 (<var>1 \leqq j \leqq Q</var>) では以下のいずれかを行う．</p>
+<ul>
+<li><var>P_{j}</var> 番目の道を通ることができる時刻の区間を，時刻 <var>S_{j}</var> から時刻 <var>E_{j}</var> までに変更する．</li>
+<li>都市 <var>A_{j}</var> に時刻 <var>B_{j}</var> の時点でいると仮定する．このとき，都市 <var>C_{j}</var> に同じ日の時刻 <var>D_{j}</var> の時点でいるためには，少なくとも何回能力を使う必要があるかを求める．</li>
+</ul>
+<p>果たして思考実験の結果はどうなるであろうか．</p>
+<p>ビーバーランドの都市の個数，道の情報，思考実験の内容が与えられたとき，思考実験の結果を求めるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力は以下の形式で標準入力から与えられる．入力の値はすべて整数である．</p>
+<pre><var>N</var> <var>Q</var>
+<var>L_{1}</var> <var>R_{1}</var>
+<var>\vdots</var>
+<var>L_{N - 1}</var> <var>R_{N - 1}</var>
+(Query 1)
+<var>\vdots</var>
+(Query <var>Q</var>)
+</pre>
+<p>ただし，各 (Query <var>j</var>) (<var>1 \leqq j \leqq Q</var>) には <var>4</var> 個または <var>5</var> 個の整数が空白を区切りとして書かれている ．<var>1</var> 個目の整数を <var>T_{j}</var> とすると，この行の内容は以下のいずれかである．</p>
+<ul>
+<li><var>T_{j} = 1</var> のとき．この行には <var>4</var> 個の整数 <var>T_{j}, P_{j}, S_{j}, E_{j}</var> がこの順に書かれている．これは思考実験の <var>j</var> ステップ目において，<var>P_{j}</var> 番目の道を通ることができる時刻の区間を時刻 <var>S_{j}</var> から時刻 <var>E_{j}</var> までに変更することを表す．</li>
+<li><var>T_{j} = 2</var> のとき．この行には <var>5</var> 個の整数 <var>T_{j}, A_{j}, B_{j}, C_{j}, D_{j}</var> がこの順に書かれている．これは思考実験の <var>j</var> ステップ目において，都市 <var>A_{j}</var> に時刻 <var>B_{j}</var> の時点でいると仮定したとき，都市 <var>C_{j}</var> に同じ日の時刻 <var>D_{j}</var> の時点でいるためには，少なくとも何回能力を使う必要があるかを求めることを表す．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に，<var>T_{j} = 2</var> となるステップのそれぞれに対して，使う能力の回数の最小値を順に <var>1</var> 行ずつ出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>1 \leqq N \leqq 300\,000</var>．</li>
+<li><var>1 \leqq Q \leqq 300\,000</var>．</li>
+<li><var>0 \leqq L_{i} &lt; R_{i} \leqq 999\,999\,999</var> (<var>1 \leqq i \leqq N - 1</var>)．</li>
+<li><var>1 \leqq T_{j} \leqq 2</var> (<var>1 \leqq j \leqq Q</var>)．</li>
+<li><var>1 \leqq P_{j} \leqq N - 1</var> (<var>1 \leqq j \leqq Q</var>，<var>T_{j} = 1</var>)．</li>
+<li><var>0 \leqq S_{j} &lt; E_{j} \leqq 999\,999\,999</var> (<var>1 \leqq j \leqq Q</var>，<var>T_{j} = 1</var>)．</li>
+<li><var>1 \leqq A_{j} \leqq N</var> (<var>1 \leqq j \leqq Q</var>，<var>T_{j} = 2</var>)．</li>
+<li><var>0 \leqq B_{j} \leqq 999\,999\,999</var> (<var>1 \leqq j \leqq Q</var>，<var>T_{j} = 2</var>)．</li>
+<li><var>1 \leqq C_{j} \leqq N</var> (<var>1 \leqq j \leqq Q</var>，<var>T_{j} = 2</var>)．</li>
+<li><var>0 \leqq D_{j} \leqq 999\,999\,999</var> (<var>1 \leqq j \leqq Q</var>，<var>T_{j} = 2</var>)．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>4</var> 点) <var>N \leqq 1000</var>，<var>Q \leqq 1000</var>．</li>
+<li>(<var>30</var> 点) <var>T_{j} = 2</var> (<var>1 \leqq j \leqq Q</var>)．</li>
+<li>(<var>66</var> 点) 追加の制約はない．</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入出力例</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>3 3
+0 5
+0 5
+2 1 3 3 3
+1 2 0 1
+2 1 3 3 3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>2
+4
+</pre>
+<p>思考実験の <var>1</var> ステップ目では，都市 <var>1</var> から都市 <var>2</var> に <var>1</var> ビョウかけて移動し，都市 <var>2</var> から都市 <var>3</var> に <var>1</var> ビョウかけて移動することで，都市 <var>3</var> に時刻 <var>5</var> に到着することができる．よって，その後 <var>2</var> 回能力を使うことで都市 <var>3</var> に時刻 <var>3</var> の時点でいることができる．</p>
+<p>思考実験の <var>2</var> ステップ目では，<var>2</var> 番目の道を通ることができる時刻の区間を，時刻 <var>0</var> から時刻 <var>1</var> までに変更する．</p>
+<p>思考実験の <var>3</var> ステップ目では，都市 <var>1</var> から都市 <var>2</var> に <var>1</var> ビョウかけて移動することで，都市 <var>2</var> に時刻 <var>4</var> の時点でいることができる．よって，その後 <var>4</var> 回能力を使ったあと，都市 <var>3</var> に <var>1</var> ビョウかけて移動し，<var>2</var> ビョウ待つことで，都市 <var>3</var> に時刻 <var>3</var> の時点でいることができる．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>5 5
+3 5
+4 8
+2 6
+5 10
+2 5 3 1 10
+2 2 6 5 6
+1 3 4 6
+2 3 3 4 3
+2 4 5 1 5
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>4
+3
+2
+3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>7 7
+112103440 659752416
+86280800 902409187
+104535475 965602300
+198700180 945132880
+137957976 501365807
+257419446 565237610
+2 4 646977260 7 915994878
+2 1 221570340 6 606208433
+2 7 948545948 4 604273995
+2 7 247791098 5 944822313
+2 7 250362511 2 50167280
+2 3 364109400 4 555412865
+2 7 33882587 7 186961394
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>145611455
+0
+447180143
+0
+207252171
+0
+0
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 4</h3>
+<pre>7 7
+535825574 705426142
+964175291 996597835
+481817391 649559926
+4519006 410772613
+74521477 274584126
+256535565 899389890
+1 6 511428966 602601933
+1 1 69986642 201421232
+2 3 636443425 4 625975977
+1 6 235225515 405336399
+2 3 866680458 3 701821857
+1 6 180606048 900533151
+1 6 612564160 720179605
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 4</h3>
+<pre>10467449
+164858601
+</pre></section>
+</div>
+</span>
+</span>

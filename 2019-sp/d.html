@@ -1,0 +1,284 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>There are <var>N</var> antennas, numbered from <var>1</var> to <var>N</var> along a line. Each antenna is one kilometer distant from consecutive antennas. The height of the antenna <var>i</var> (<var>1 \le i \le N</var>) is <var>H_{i}</var>. The antenna <var>i</var> can send information to the antennas located between <var>A_{i}</var> kilometers and <var>B_{i}</var> kilometers, inclusive, from the antenna <var>i</var>. If and only if the antenna <var>x</var> and the antenna <var>y</var> (<var>1 \le x &lt; y \le N</var>) can send information to each other, the pair of antennas is in communication, and the communication cost is equal to <var>|H_{x} - H_{y}|</var>.</p>
+<p>Mr. K, the Prime Minister of JOI Republic, has received <var>Q</var> complaints about bad connection from the citizens. A study showed that, for the <var>j</var>-th complaint (<var>1 \le j \le Q</var>), something among the antennas <var>L_{j}, L_{j} + 1, \ldots, R_{j}</var> has troubles. You are assigned to find whether there exists a pair of antennas in communication among the antennas <var>L_{j}, L_{j} + 1, \ldots, R_{j}</var>, and if there does, you also have to find the maximum communication cost among such pairs.</p>
+<p>Write a program which, given the information of antennas and complaints, determines whether there exists a pair of antennas in communication among the antennas <var>L_{j}, L_{j} + 1, \ldots, R_{j}</var> and calculates the maximum communication cost among such pairs if there exists such a pair.</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input. All the values in the input are integers.</p>
+<pre><var>N</var>
+<var>H_{1}</var> <var>A_{1}</var> <var>B_{1}</var>
+<var>\vdots</var>
+<var>H_{N}</var> <var>A_{N}</var> <var>B_{N}</var>
+<var>Q</var>
+<var>L_{1}</var> <var>R_{1}</var>
+<var>\vdots</var>
+<var>L_{Q}</var> <var>R_{Q}</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>Write <var>Q</var> lines to the standard output. The <var>j</var>-th line (<var>1 \le j \le Q</var>) should be <var>-1</var> if there is no pair of antennas in communication among the antennas <var>L_{j}, L_{j} + 1, \ldots, R_{j}</var>, or the maximum communication cost among such pairs otherwise.</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li><var>2 \le N \le 200\,000</var>.</li>
+<li><var>1 \le H_{i} \le 1\,000\,000\,000</var> (<var>1 \le i \le N</var>).</li>
+<li><var>1 \le A_{i} \le B_{i} \le N - 1</var> (<var>1 \le i \le N</var>).</li>
+<li><var>1 \le Q \le 200\,000</var>.</li>
+<li><var>1 \le L_{j} &lt; R_{j} \le N</var> (<var>1 \le j \le Q</var>).</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li>(<var>2</var> points) <var>N \le 300</var>, <var>Q \le 300</var>.</li>
+<li>(<var>11</var> points) <var>N \le 2\,000</var>.</li>
+<li>(<var>22</var> points) <var>Q = 1</var>, <var>L_{1} = 1</var>, <var>R_{1} = N</var>.</li>
+<li>(<var>65</var> points) No additional constraints.</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input and Output</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>5
+10 2 4
+1 1 1
+2 1 3
+1 1 1
+100 1 1
+5
+1 2
+2 3
+1 3
+1 4
+1 5
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>-1
+1
+8
+8
+99
+</pre>
+<p>The antenna 1 and the antenna 2 are not in communication, so the answer to the 1st complaint is <var>-1</var>.</p>
+<p>The pair of antennas in communication which has the maximum communication cost for the 2nd, 3rd, 4th and 5th complaint is <var>(2, 3)</var>, <var>(1, 3)</var>, <var>(1, 3)</var>, and <var>(4, 5)</var>, respectively.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>20
+260055884 2 15
+737689751 5 5
+575359903 1 15
+341907415 14 14
+162026576 9 19
+55126745 10 19
+95712405 11 14
+416027186 8 13
+370819848 11 14
+629309664 4 13
+822713895 5 15
+390716905 13 17
+577166133 8 19
+195931195 10 17
+377030463 14 17
+968486685 11 19
+963040581 4 10
+566835557 1 12
+586336111 6 16
+385865831 8 9
+1
+1 20
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>806460109
+</pre>
+<p>This sample input satisfies the constraints for Subtask 3.</p></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>JOI 国には直線上に 1 km おきに並んだ <var>N</var> 個のアンテナが立っている．アンテナには端から順に <var>1</var> から <var>N</var> までの番号が付けられている．アンテナ <var>i</var> (<var>1 \leqq i \leqq N</var>) の高さは <var>H_{i}</var> であり，水平距離が <var>A_{i}</var> km 以上 <var>B_{i}</var> km 以下のアンテナに電波を送ることができる．アンテナ <var>x, y</var> (<var>1 \leqq x &lt; y \leqq N</var>) が相互に電波を送れるとき，このアンテナのペアは通信を行っており，通信のしにくさが <var>|H_{x} - H_{y}|</var> と定義される．</p>
+<p>JOI 国の大臣である K 理事長は，国民から電波が悪いという苦情を <var>Q</var> 個受け取った．様々な調査の結果， <var>j</var> 個目 (<var>1 \leqq j \leqq Q</var>) の苦情についてはアンテナ <var>L_{j}, L_{j} + 1, \ldots, R_{j}</var> のどこかに問題がありそうだということがわかった．あなたの仕事は，各 <var>j</var> (<var>1 \leqq j \leqq Q</var>) について，アンテナ <var>L_{j}, L_{j} + 1, \ldots, R_{j}</var> の中に通信を行っているアンテナのペアが存在するか判定し，存在する場合はそのようなペアの中での通信のしにくさの最大値を求めることである．</p>
+<p>アンテナの情報と苦情の情報が与えられたとき，各苦情について，アンテナ <var>L_{j}, L_{j} + 1, \ldots, R_{j}</var> の中に通信を行っているアンテナのペアが存在するかを判定し，存在する場合はそのようなペアの中での通信のしにくさの最大値を求めるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力は以下の形式で標準入力から与えられる．入力の値はすべて整数である．</p>
+<pre><var>N</var>
+<var>H_{1}</var> <var>A_{1}</var> <var>B_{1}</var>
+<var>\vdots</var>
+<var>H_{N}</var> <var>A_{N}</var> <var>B_{N}</var>
+<var>Q</var>
+<var>L_{1}</var> <var>R_{1}</var>
+<var>\vdots</var>
+<var>L_{Q}</var> <var>R_{Q}</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に <var>Q</var> 行出力せよ ．<var>j</var> 行目 (<var>1 \leqq j \leqq Q</var>) には，アンテナ <var>L_{j}, L_{j} + 1, \ldots, R_{j}</var> の中に通信を行っているペアが存在しない場合は <var>-1</var> を，存在する場合はそのようなペアの中での通信のしにくさの最大値を出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>2 \leqq N \leqq 200\,000</var>．</li>
+<li><var>1 \leqq H_{i} \leqq 1\,000\,000\,000</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>1 \leqq A_{i} \leqq B_{i} \leqq N - 1</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>1 \leqq Q \leqq 200\,000</var>．</li>
+<li><var>1 \leqq L_{j} &lt; R_{j} \leqq N</var> (<var>1 \leqq j \leqq Q</var>)．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>2</var> 点) <var>N \leqq 300</var>，<var>Q \leqq 300</var>．</li>
+<li>(<var>11</var> 点) <var>N \leqq 2\,000</var>．</li>
+<li>(<var>22</var> 点) <var>Q = 1</var>，<var>L_{1} = 1</var>，<var>R_{1} = N</var>．</li>
+<li>(<var>65</var> 点) 追加の制約はない．</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入出力例</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>5
+10 2 4
+1 1 1
+2 1 3
+1 1 1
+100 1 1
+5
+1 2
+2 3
+1 3
+1 4
+1 5
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>-1
+1
+8
+8
+99
+</pre>
+<p>アンテナ <var>1</var> とアンテナ <var>2</var> の間では通信を行っていない ．<var>1</var> 個目の答えは <var>-1</var> である．</p>
+<p><var>2, 3, 4, 5</var> 個目の答えとなるアンテナのペアは，それぞれ <var>(2, 3), (1, 3), (1, 3), (4, 5)</var> である．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>20
+260055884 2 15
+737689751 5 5
+575359903 1 15
+341907415 14 14
+162026576 9 19
+55126745 10 19
+95712405 11 14
+416027186 8 13
+370819848 11 14
+629309664 4 13
+822713895 5 15
+390716905 13 17
+577166133 8 19
+195931195 10 17
+377030463 14 17
+968486685 11 19
+963040581 4 10
+566835557 1 12
+586336111 6 16
+385865831 8 9
+1
+1 20
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>806460109
+</pre>
+<p>この入力例は小課題 <var>3</var> の制約を満たす．</p></section>
+</div>
+</span>
+</span>

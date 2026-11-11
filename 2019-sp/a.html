@@ -1,0 +1,314 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p><var>N</var> students took an examination, which consisted of mathematics and informatics sections. The <var>i</var>-th student (<var>1 \le i \le N</var>) scored <var>S_{i}</var> points in mathematics, and <var>T_{i}</var> points in informatics. Professor T and Professor I are going to decide whether each student passes or fails, based on the scores.</p>
+<ul>
+<li>Professor T regards both subjects as important; he wants students who scored at least <var>A</var> points in mathematics and <var>B</var> points in informatics to pass.</li>
+<li>Professor I regards only the overall score as important; he wants students who scored at least <var>C</var> points in total to pass.</li>
+<li>Only students whom both professors want to pass can pass the examination.</li>
+</ul>
+<p>You do not know these criteria: the values of <var>A, B</var> and <var>C</var>. Instead, given <var>Q</var> triplets of integers <var>(X_{j}, Y_{j}, Z_{j})</var> (<var>1 \le j \le Q</var>), you want to know the number of students passing the examination when <var>A = X_{j}</var>, <var>B = Y_{j}</var> and <var>C = Z_{j}</var>.</p>
+<p>Write a program which, given the number of students, each student’s scores, and some criteria, calculates the number of students passing the examination under each criterion.</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input. All the values in the input are integers.</p>
+<pre><var>N</var> <var>Q</var>
+<var>S_{1}</var> <var>T_{1}</var>
+<var>\vdots</var>
+<var>S_{N}</var> <var>T_{N}</var>
+<var>X_{1}</var> <var>Y_{1}</var> <var>Z_{1}</var>
+<var>\vdots</var>
+<var>X_{Q}</var> <var>Y_{Q}</var> <var>Z_{Q}</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>Write <var>Q</var> lines to the standard output. The <var>j</var>-th line (<var>1 \le j \le Q</var>) should contain the number of students passing the examination when <var>A = X_{j}</var>, <var>B = Y_{j}</var> and <var>C = Z_{j}</var>.</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li><var>1 \le N \le 100\,000</var>.</li>
+<li><var>1 \le Q \le 100\,000</var>.</li>
+<li><var>0 \le S_{i} \le 1\,000\,000\,000</var> (<var>1 \le i \le N</var>).</li>
+<li><var>0 \le T_{i} \le 1\,000\,000\,000</var> (<var>1 \le i \le N</var>).</li>
+<li><var>0 \le X_{j} \le 1\,000\,000\,000</var> (<var>1 \le j \le Q</var>).</li>
+<li><var>0 \le Y_{j} \le 1\,000\,000\,000</var> (<var>1 \le j \le Q</var>).</li>
+<li><var>0 \le Z_{j} \le 2\,000\,000\,000</var> (<var>1 \le j \le Q</var>).</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li>(<var>2</var> points) <var>N \le 3\,000</var>, <var>Q \le 3\,000</var>.</li>
+<li>(<var>20</var> points) <var>S_{i} \le 100\,000</var>, <var>T_{i} \le 100\,000</var> (<var>1 \le i \le N</var>), <var>X_{j} \le 100\,000</var>, <var>Y_{j} \le 100\,000</var>, <var>Z_{j} = 0</var> (<var>1 \le j \le Q</var>).</li>
+<li>(<var>21</var> points) <var>S_{i} \le 100\,000</var>, <var>T_{i} \le 100\,000</var> (<var>1 \le i \le N</var>), <var>X_{j} \le 100\,000</var>, <var>Y_{j} \le 100\,000</var>, <var>Z_{j} \le 200\,000</var> (<var>1 \le j \le Q</var>).</li>
+<li>(<var>57</var> points) No additional constraints.</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input and Output</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>5 4
+35 100
+70 70
+45 15
+80 40
+20 95
+20 50 120
+10 10 100
+60 60 80
+0 100 100
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>2
+4
+1
+1
+</pre>
+<ul>
+<li>
+<p>When <var>A = 20</var>, <var>B = 50</var> and <var>C = 120</var>, only the 1st and the 2nd student can score at least <var>20</var> points in mathematics, at least 50 points in informatics, and at least 120 points in total. Therefore, the number of students passing the examination is 2.</p>
+</li>
+<li>
+<p>When <var>A = 10</var>, <var>B = 10</var> and <var>C = 100</var>, only the 1st, the 2nd, the 4th and 5th student can score at least 10 points in mathematics, at least 10 points in informatics, and at least 100 points in total. Therefore, the number of students passing the examination is 4.</p>
+</li>
+<li>When <var>A = 60</var>, <var>B = 60</var> and <var>C = 80</var>, only the 2nd student can score at least 60 points in mathematics, at least 60 points in informatics, and at least 80 points in total. Therefore, the number of students passing the examination is 1.</li>
+<li>When <var>A = 0</var>, <var>B = 100</var> and <var>C = 100</var>, only the 1st student can score at least 0 points in mathematics, at least 100 points in informatics, and at least 100 points in total. Therefore, the number of students passing the examination is 1.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>10 10
+41304 98327
+91921 28251
+85635 59191
+30361 72671
+28949 96958
+99041 37826
+10245 2726
+19387 20282
+60366 87723
+95388 49726
+52302 69501 66009
+43754 45346 3158
+25224 58881 18727
+7298 24412 63782
+24107 10583 61508
+65025 29140 7278
+36104 56758 2775
+23126 67608 122051
+56910 17272 62933
+39675 15874 117117
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>1
+3
+5
+8
+8
+3
+3
+3
+5
+6
+</pre></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p><var>N</var> 人の学生が数学と情報の <var>2</var> 科目からなる試験を受けた ．<var>i</var> 人目 (<var>1 \leqq i \leqq N</var>) の学生は，数学で <var>S_{i}</var> 点，情報で <var>T_{i}</var> 点を取った．T 教授と I 教授は，これらの学生を，試験の結果によって合格と不合格に振り分けようとしている．</p>
+<ul>
+<li>T 教授は，数学と情報のいずれの科目も重要だと考えており，数学で <var>A</var> 点以上，かつ，情報で <var>B</var> 点以上取った学生を合格させたいと思っている．</li>
+<li>I 教授は，合計点のみを重視しており，数学と情報の合計で <var>C</var> 点以上取った学生を合格させたいと思っている．</li>
+<li><var>2</var> 人の教授いずれも合格させたいと思っている学生のみが合格となる．</li>
+</ul>
+<p>あなたは，これらの合格基準 <var>A, B,C</var> の値を知らない．代わりに，<var>Q</var> 通りの <var>3</var> つの整数の組 <var>(X_{j}, Y_{j}, Z_{j})</var> (<var>1 \leqq j \leqq Q</var>) それぞれについて，<var>A = X_{j}</var>，<var>B = Y_{j}</var>，<var>C = Z_{j}</var> であったときに合格する学生の人数を知りたい．</p>
+<p>学生の人数，各学生の成績，いくつかの合格基準が与えられたとき，それぞれの合格基準について合格する学生の人数を求めるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力は以下の形式で標準入力から与えられる．入力の値はすべて整数である．</p>
+<pre><var>N</var> <var>Q</var>
+<var>S_{1}</var> <var>T_{1}</var>
+<var>\vdots</var>
+<var>S_{N}</var> <var>T_{N}</var>
+<var>X_{1}</var> <var>Y_{1}</var> <var>Z_{1}</var>
+<var>\vdots</var>
+<var>X_{Q}</var> <var>Y_{Q}</var> <var>Z_{Q}</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>出力は <var>Q</var> 行からなる ．<var>j</var> 行目 (<var>1 \leqq j \leqq Q</var>) には，<var>A = X_{j}</var>，<var>B = Y_{j}</var>，<var>C = Z_{j}</var> であったときに合格する学生の人数を出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>1 \leqq N \leqq 100\,000</var>．</li>
+<li><var>1 \leqq Q \leqq 100\,000</var>．</li>
+<li><var>0 \leqq S_{i} \leqq 1\,000\,000\,000</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>0 \leqq T_{i} \leqq 1\,000\,000\,000</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>0 \leqq X_{j} \leqq 1\,000\,000\,000</var> (<var>1 \leqq j \leqq Q</var>)．</li>
+<li><var>0 \leqq Y_{j} \leqq 1\,000\,000\,000</var> (<var>1 \leqq j \leqq Q</var>)．</li>
+<li><var>0 \leqq Z_{j} \leqq 2\,000\,000\,000</var> (<var>1 \leqq j \leqq Q</var>)．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>2</var> 点) <var>N \leqq 3\,000</var>，<var>Q \leqq 3\,000</var>．</li>
+<li>(<var>20</var> 点) <var>S_{i} \leqq 100\,000</var>，<var>T_{i} \leqq 100\,000</var> (<var>1 \leqq i \leqq N</var>)，<var>X_{j} \leqq 100\,000</var>，<var>Y_{j} \leqq 100\,000</var>，<var>Z_{j} = 0</var> (<var>1 \leqq j \leqq Q</var>)．</li>
+<li>(<var>21</var> 点) <var>S_{i} \leqq 100\,000</var>，<var>T_{i} \leqq 100\,000</var> (<var>1 \leqq i \leqq N</var>)，<var>X_{j} \leqq 100\,000</var>，<var>Y_{j} \leqq 100\,000</var>，<var>Z_{j} \leqq 200\,000</var> (<var>1 \leqq j \leqq Q</var>)．</li>
+<li>(<var>57</var> 点) 追加の制約はない．</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入出力例</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>5 4
+35 100
+70 70
+45 15
+80 40
+20 95
+20 50 120
+10 10 100
+60 60 80
+0 100 100
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>2
+4
+1
+1
+</pre>
+<ul>
+<li><var>A = 20</var>，<var>B = 50</var>，<var>C = 120</var> のとき，<var>1</var> 人目および <var>2</var> 人目の学生のみが数学で <var>20</var> 点以上，情報で <var>50</var> 点以上，合計で <var>120</var> 点以上を取っているので，合格する学生は <var>2</var> 人である．</li>
+<li><var>A = 10</var>，<var>B = 10</var>，<var>C = 100</var> のとき，<var>1</var> 人目，<var>2</var> 人目，<var>4</var> 人目，<var>5</var> 人目の学生のみが数学で <var>10</var> 点以上，情報で <var>10</var> 点以上，合計で <var>100</var> 点以上を取っているので，合格する学生は <var>4</var> 人である．</li>
+<li><var>A = 60</var>，<var>B = 60</var>，<var>C = 80</var> のとき，<var>2</var> 人目の学生のみが数学で <var>60</var> 点以上，情報で <var>60</var> 点以上，合計で <var>80</var> 点以上を取っているので，合格する学生は <var>1</var> 人である．</li>
+<li><var>A = 0</var>，<var>B = 100</var>，<var>C = 100</var> のとき，<var>1</var> 人目の学生のみが数学で <var>0</var> 点以上，情報で <var>100</var> 点以上，合計で <var>100</var> 点以上を取っているので，合格する学生は <var>1</var> 人である．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>10 10
+41304 98327
+91921 28251
+85635 59191
+30361 72671
+28949 96958
+99041 37826
+10245 2726
+19387 20282
+60366 87723
+95388 49726
+52302 69501 66009
+43754 45346 3158
+25224 58881 18727
+7298 24412 63782
+24107 10583 61508
+65025 29140 7278
+36104 56758 2775
+23126 67608 122051
+56910 17272 62933
+39675 15874 117117
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>1
+3
+5
+8
+8
+3
+3
+3
+5
+6
+</pre></section>
+</div>
+</span>
+</span>

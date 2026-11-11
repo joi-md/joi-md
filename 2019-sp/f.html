@@ -1,0 +1,513 @@
+<span class="lang">
+<span class="lang-en">
+<blockquote>
+<p><strong>Submission on AtCoder</strong></p>
+<p>Include <code>transportations.h</code> and implement all functions in a single source file. Do not share global variables between the two sides. This judge supports C++ only.</p>
+<p><a href="https://www2.ioi-jp.org/camp/2019/2019-sp-tasks/day2/transportations-dist.zip">Distributed files</a></p>
+</blockquote>
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>There are <var>N</var> cities in JOI country, numbered from 0 to <var>N - 1</var>. There are <var>A</var> railway lines, numbered from 0 to <var>A - 1</var>. The railway line <var>i</var> (<var>0 \le i \le A - 1</var>) connects the city <var>U_{i}</var> and the city <var>V_{i}</var> bidirectionally, and its fare is <var>C_{i}</var>. Different railway lines connect different pairs of cities. There are <var>B</var> bus lines, numbered from 0 to <var>B - 1</var>. The bus line <var>j</var> (<var>0 \le j \le B - 1</var>) connects the city <var>S_{j}</var> and the city <var>T_{j}</var> bidirectionally, and its fare is <var>D_{j}</var>. Different bus lines connect different pairs of cities, but a railway line and a bus line might connect the same pair of cities. It is possible to travel between any pair of cities by taking railways and/or buses.</p>
+<p>Azer wants to know the minimum total fare needed to travel from the city 0 to each city. As Azer knows only about railway lines, he cooperates with Baijan, who knows only about bus lines.</p>
+<p>They communicate with each other by sending and receiving characters 0 or 1. The total number of the sent characters should be less than or equal to 58 000.</p>
+<p>Write programs which, Azer’s program given the information of railway lines, and Baijan’s given the information of bus lines, communicating with each other, help Azer find the minimum total fare needed to travel from the city 0 to each city.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Implementation Details</h3>
+<p>You need to submit two files.</p>
+<p>The name of the first file is <code>Azer.cpp</code>. It represents the behavior of Azer and should implement the following functions. The file should include <code>Azer.h</code>.</p>
+<ul>
+<li><code>void InitA(int N, int A, std::vector&lt;int&gt; U, std::vector&lt;int&gt; V, std::vector&lt;int&gt; C)</code>
+    This function is executed exactly once at the beginning.<ul>
+<li>Parameter <code>N</code> is <var>N</var>, the number of cities.</li>
+<li>Parameter <code>A</code> is <var>A</var>, the number of railway lines.</li>
+<li>Parameters <code>U</code>, <code>V</code> are arrays of length <var>A</var>. <code>U[i]</code> and <code>V[i]</code> are <var>U_{i}</var> and <var>V_{i}</var>, the cities connected by the railway line <var>i</var> (<var>0 \le i \le A - 1</var>).</li>
+<li>Parameter <code>C</code> is an array of length <var>A</var>. <code>C[i]</code> is <var>C_{i}</var>, the fare of the railway line <var>i</var> (<var>0 \le i \le A - 1</var>).</li>
+</ul>
+</li>
+<li><code>void ReceiveA(bool x)</code>
+    This function is executed every time a character is sent from Baijan.<ul>
+<li>The parameter <code>x</code> represents the character sent from Baijan: <code>true</code> for character <var>1</var>, and <code>false</code> for character 0.</li>
+</ul>
+</li>
+<li><code>std::vector&lt;int&gt; Answer()</code> This function is executed exactly once when all the sent characters have been received. This function must return an array <code>Z</code> containing the minimum total fare needed to travel from the city 0 to each city.<ul>
+<li>The return value <code>Z</code> must be an array of length <var>N</var>. If its length is not <var>N</var>, your program is judged as Wrong Answer [1]. <code>Z[k]</code> (<var>0 \le k \le N - 1</var>) must be the minimum total fare needed to travel from the city 0 to the city <var>k</var>. In particular, note that <var>\texttt{Z}[0] = 0</var> must be satisfied.</li>
+</ul>
+</li>
+</ul>
+<p>Your program can call the following function in this file.</p>
+<ul>
+<li><code>void SendA(bool y)</code>
+    Use this function to send a character to Baijan.<ul>
+<li>The parameter <code>y</code> represents the character to send to Baijan: <code>true</code> for character <var>1</var>, and <code>false</code> for character 0.</li>
+</ul>
+</li>
+</ul>
+<p>The name of the second file is <code>Baijan.cpp</code>. It represents the behavior of Baijan and should implement the following functions. The file should include <code>Baijan.h</code>.</p>
+<ul>
+<li><code>void InitB(int N, int B, std::vector&lt;int&gt; S, std::vector&lt;int&gt; T, std::vector&lt;int&gt; D)</code>
+    This function is executed exactly once at the beginning.<ul>
+<li>Parameter <code>N</code> is <var>N</var>, the number of cities.</li>
+<li>Parameter <code>B</code> is <var>B</var>, the number of bus lines.</li>
+<li>Parameters <code>S</code>, <code>T</code> are arrays of length <var>B</var>. <code>S[j]</code> and <code>T[j]</code> are <var>S_{j}</var> and <var>T_{j}</var>, the cities connected by bus line <var>j</var> (<var>0 \le j \le B - 1</var>).</li>
+<li>Parameter <code>D</code> is an array of length <var>B</var>. <code>D[j]</code> is <var>D_{j}</var>, the fare of bus line <var>j</var> (<var>0 \le j \le B - 1</var>).</li>
+</ul>
+</li>
+<li><code>void ReceiveB(bool y)</code>
+    This function is executed every time a character is sent from Azer.<ul>
+<li>The parameter <code>y</code> represents the character sent from Azer: <code>true</code> for character <var>1</var>, and <code>false</code> for character 0.</li>
+</ul>
+</li>
+</ul>
+<p>Your program can call the following function in this file.</p>
+<ul>
+<li><code>void SendB(bool x)</code>
+    Use this function to send a character to Azer.<ul>
+<li>The parameter <code>x</code> represents the character to send to Azer: <code>true</code> for character <var>1</var>, and <code>false</code> for character 0.</li>
+</ul>
+</li>
+</ul>
+<p>You can assume that the program is executed as follows. For each test case, two queues are prepared: <var>Q_{Y}</var>, where characters Azer sends are stored, and <var>Q_{X}</var>, where characters Baijan sends are stored. First, <code>InitA</code> and <code>InitB</code> are executed, and the sent characters are pushed to the corresponding queues.</p>
+<ul>
+<li>If either <var>Q_{X}</var> or <var>Q_{Y}</var> is not empty, one character is popped from it and corresponding <code>ReceiveA</code> or <code>ReceiveB</code> is executed.However, if both <var>Q_{X}</var> and <var>Q_{Y}</var> are not empty, it is not determined whether <code>ReceiveA</code> or <code>ReceiveB</code> is executed.</li>
+<li>When <code>SendA</code> is executed during executions of <code>ReceiveA</code>, the sent character is pushed to <var>Q_{Y}</var>.</li>
+<li>When <code>SendB</code> is executed during executions of <code>ReceiveB</code>, the sent character is pushed to <var>Q_{X}</var>.</li>
+<li>If both queues are empty, <code>Answer</code> is executed and the program ends.</li>
+</ul>
+<p>The total number of characters Azer and Baijan send should be less than or equal to <var>58\,000</var>. If it is larger, your program is judged as Wrong Answer [2].</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Important Notices</h3>
+<ul>
+<li>Your program can implement other functions for internal use, or use global variables. Submitted files will be compiled with the grader, and become a single executable file. All global variables and internal functions should be declared in an unnamed namespace to avoid confliction with other files. When it is graded, it will be executed as two processes of Azer and Baijan. The process of Azer and the process of Baijan cannot share global variables.</li>
+<li>Your program should not use the standard input and the standard output. Your program should not communicate with other files by any methods. However, your program may output debugging information to the standard error.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Compilation and Test Run</h3>
+<p>You can download an archive file from the contest webpage which contains the sample grader to test your program. The archive file also contains sample source files of your program.</p>
+<p>The sample grader is the file <code>grader.cpp</code>. In order to test your program, put <code>grader.cpp</code>, <code>Azer.cpp</code>, <code>Baijan.cpp</code>, <code>Azer.h</code>, and <code>Baijan.h</code> in the same directory, and run the following command to compile your program.</p>
+<pre>g++ -std=gnu++14 -O2 -o grader grader.cpp Azer.cpp Baijan.cpp
+</pre>
+<p>If the compilation succeeds, the executable file <code>grader</code> is generated.</p>
+<p>Note that the actual grader is different from the sample grader. The sample grader will be executed as a single process, which will read input data from the standard input and write the results to the standard output and the standard error.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Input for the Sample Grader</h3>
+<p>The sample grader reads the input data from the standard input in the following format.</p>
+<pre><var>N</var> <var>A</var> <var>B</var>
+<var>U_{0}</var> <var>V_{0}</var> <var>C_{0}</var>
+<var>\vdots</var>
+<var>U_{A - 1}</var> <var>V_{A - 1}</var> <var>C_{A - 1}</var>
+<var>S_{0}</var> <var>T_{0}</var> <var>D_{0}</var>
+<var>\vdots</var>
+<var>S_{B - 1}</var> <var>T_{B - 1}</var> <var>D_{B - 1}</var>
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Output of the Sample Grader</h3>
+<p>The sample grader writes the following information to the standard output and the standard error (quotes for clarity).</p>
+<ul>
+<li>If your program is judged as Wrong Answer <var>[1]</var> or Wrong Answer <var>[2]</var>, it writes its type as “<code>Wrong Answer [1]</code>” to the standard error. It writes nothing to the standard output.</li>
+<li>Otherwise, it writes the total number of the sent characters <var>L</var> as “<code>Accepted: L</code>” to the standard error. It also writes your answer <code>Z</code> to the standard output as follows:</li>
+</ul>
+<pre>Z[0]
+<var>\vdots</var>
+Z[N - 1]
+</pre>
+<p>The sample grader does not check if the value of <code>Z</code> is correct.</p>
+<p>If your program is judged as several types of Wrong Answer, the sample grader reports only one of them.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li><var>1 \le N \le 2\,000</var>.</li>
+<li><var>0 \le A \le 500\,000</var>.</li>
+<li><var>0 \le B \le 500\,000</var>.</li>
+<li><var>0 \le U_{i} \le N - 1</var> (<var>0 \le i \le A - 1</var>).</li>
+<li><var>0 \le V_{i} \le N - 1</var> (<var>0 \le i \le A - 1</var>).</li>
+<li><var>U_{i} \ne V_{i}</var> (<var>0 \le i \le A - 1</var>).</li>
+<li><var>(U_{i_{1}}, V_{i_{1}}) \ne (U_{i_{2}}, V_{i_{2}})</var> and <var>(U_{i_{1}}, V_{i_{1}}) \ne (V_{i_{2}}, U_{i_{2}})</var> (<var>0 \le i_{1} &lt; i_{2} \le A - 1</var>).</li>
+<li><var>0 \le S_{j} \le N - 1</var> (<var>0 \le j \le B - 1</var>).</li>
+<li><var>0 \le T_{j} \le N - 1</var> (<var>0 \le j \le B - 1</var>).</li>
+<li><var>S_{j} \ne T_{j}</var> (<var>0 \le j \le B - 1</var>).</li>
+<li><var>(S_{j_{1}}, T_{j_{1}}) \ne (S_{j_{2}}, T_{j_{2}})</var> and <var>(S_{j_{1}}, T_{j_{1}}) \ne (T_{j_{2}}, S_{j_{2}})</var> (<var>0 \le j_{1} &lt; j_{2} \le B - 1</var>).</li>
+<li>It is possible to travel between any pair of cities by taking railways and/or buses.</li>
+<li><var>1 \le C_{i} \le 500</var> (<var>0 \le i \le A - 1</var>).</li>
+<li><var>1 \le D_{j} \le 500</var> (<var>0 \le j \le B - 1</var>).</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li>(<var>6</var> points) <var>A = 0</var>.</li>
+<li>(<var>8</var> points) <var>B \le 1\,000</var>.</li>
+<li>(<var>8</var> points) <var>A + B = N - 1</var>.</li>
+<li>(<var>38</var> points) <var>N \le 900</var>.</li>
+<li>(<var>14</var> points) <var>N \le 1\,100</var>.</li>
+<li>(<var>10</var> points) <var>N \le 1\,400</var>.</li>
+<li>(<var>16</var> points) No additional constraints.</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Communication</h3>
+<p>Here is a sample input for the sample grader and corresponding function calls.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>4 3 4
+0 1 6
+2 1 4
+2 0 10
+1 2 3
+3 1 1
+3 2 3
+3 0 7
+</pre>
+<h4>Sample Calls</h4>
+<div class="joisc2019-transportations-en-table">
+<table>
+<thead>
+<tr>
+<th>Call</th>
+<th>Call</th>
+<th>Return</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>InitA(4, 3, {0,2,2}, {1,1,0}, {6,4,10})</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>SendA(true)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>SendA(false)</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>InitB(4, 4, {1,3,3,3}, {2,1,2,0}, {3,1,3,7})</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ReceiveB(true)</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>SendB(true)</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ReceiveA(true)</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ReceiveB(false)</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Answer()</code></td>
+<td></td>
+<td><code>{0,6,9,7}</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<style>
+.joisc2019-transportations-en-table { position:relative;max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisc2019-transportations-en-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisc2019-transportations-en-table th,.joisc2019-transportations-en-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisc2019-transportations-en-table th { background:#f5f5f5; }
+.joisc2019-transportations-en-table code { white-space:nowrap; }
+</style></section>
+</div>
+</span>
+<span class="lang-ja">
+<blockquote>
+<p><strong>AtCoder での提出方法</strong></p>
+<p><code>transportations.h</code> をインクルードし，すべての関数を 1 つのファイル内で実装して提出してください．グローバル変数を両者の間で共有しないでください．このジャッジは C++ のみに対応しています．</p>
+<p><a href="https://www2.ioi-jp.org/camp/2019/2019-sp-tasks/day2/transportations-dist.zip">配布ファイル</a></p>
+</blockquote>
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>JOI 国には <var>N</var> 個の街があり，<var>0</var> から <var>N - 1</var> までの番号が付いている．JOI 国には <var>A</var> 本の鉄道路線があり， <var>0</var> から <var>A - 1</var> までの番号が付いている．鉄道路線 <var>i</var> (<var>0 \leqq i \leqq A - 1</var>) は都市 <var>U_{i}</var> と都市 <var>V_{i}</var> を双方向に結んでおり，<var>C_{i}</var> 円で乗ることができる．複数の鉄道路線が同じ都市の組を結んでいることはない．JOI 国には <var>B</var> 本のバス路線があり，<var>0</var> から <var>B - 1</var> までの番号が付いている．バス路線 <var>j</var> (<var>0 \leqq j \leqq B - 1</var>) は都市 <var>S_{j}</var> と都市 <var>T_{j}</var> を双方向に結んでおり，<var>D_{j}</var> 円で乗ることができる．複数のバス路線が同じ都市の組を結んでいることはないが，ある鉄道路線とあるバス路線が同じ都市の組を結んでいることはあるかもしれない．どの都市からどの都市へも，いくつかの鉄道路線やバス路線を乗り継ぐことで移動することができる．</p>
+<p>Azer は，都市 <var>0</var> から各都市まで鉄道路線やバス路線を使って移動するときに，少なくともいくらかかるのか知りたい．しかし，Azer は鉄道好きであり鉄道路線のことしか知らないため，バス路線のことしか知らない Baijan と協力することにした．</p>
+<p><var>2</var> 人は，<var>0</var> または <var>1</var> の文字を送受信する機械を用いて通信する．ただし，送受信する文字数の合計を <var>58\,000</var> 以下にしたい．</p>
+<p>Azer 側に鉄道路線の情報が，Baijan 側にバス路線の情報が与えられたとき，通信を行うことで，各都市について都市 <var>0</var> からその都市まで移動するために必要な金額の最小値を Azer 側で求めるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>実装の詳細</h3>
+<p>あなたは <var>2</var> つのファイルを提出しなければならない．</p>
+<p><var>1</var> つ目のファイルは <code>Azer.cpp</code> という名前である．このファイルは Azer の行動を実装したファイルであり，以下の関数を実装していなければならない．そのファイルは <code>Azer.h</code> をインクルードすること．</p>
+<ul>
+<li><code>void InitA(int N, int A, std::vector&lt;int&gt; U, std::vector&lt;int&gt; V, std::vector&lt;int&gt; C)</code>
+    この関数は，最初に <var>1</var> 回だけ実行される．<ul>
+<li>引数 <code>N</code> は，街の数 <var>N</var> である．</li>
+<li>引数 <code>A</code> は，鉄道路線の数 <var>A</var> である．</li>
+<li>引数 <code>U</code>，<code>V</code> は，長さ <var>A</var> の配列であり，<code>U[i]</code>，<code>V[i]</code> は鉄道路線 <var>i</var> が結んでいる都市 <var>U_{i}, V_{i}</var> を表す (<var>0 \leqq i \leqq A - 1</var>)．</li>
+<li>引数 <code>C</code> は，長さ <var>A</var> の配列であり，<code>C[i]</code> は鉄道路線 <var>i</var> の運賃 <var>C_{i}</var> を表す (<var>0 \leqq i \leqq A - 1</var>)．</li>
+</ul>
+</li>
+<li><code>void ReceiveA(bool x)</code>
+    この関数は，Baijan から文字が送られる度に実行される．<ul>
+<li>引数 <code>x</code> は，Baijan から送信された文字を表す．<code>true</code> は文字 <var>1</var> を表し，<code>false</code> は文字 <var>0</var> を表す．</li>
+</ul>
+</li>
+<li><code>std::vector&lt;int&gt; Answer()</code> この関数は，文字の送受信がすべて完了したときに <var>1</var> 回だけ実行される．都市 <var>0</var> から各都市まで移動するために必要な金額の最小値を表す配列 (以下 <code>Z</code> とする) を戻り値として返さなければならない．<ul>
+<li>戻り値 <code>Z</code> は，長さ <var>N</var> の配列でなければならない．長さが <var>N</var> でない場合，不正解 <var>[1]</var> と判定される．<code>Z[k]</code> (<var>0 \leqq k \leqq N - 1</var>) は，都市 <var>0</var> から都市 <var>k</var> まで移動するために必要な金額の最小値でなければならない．特に，<var>\texttt{Z}[0] = 0</var> でなければならないことに注意せよ．</li>
+</ul>
+</li>
+</ul>
+<p>このファイルでは以下の関数を呼び出すことができる．</p>
+<ul>
+<li><code>void SendA(bool y)</code>
+    この関数を用いて，Baijan に文字を送信する．<ul>
+<li>引数 <code>y</code> は，Baijan に送信する文字を表す．<code>true</code> は文字 <var>1</var> を表し，<code>false</code> は文字 <var>0</var> を表す．</li>
+</ul>
+</li>
+</ul>
+<p><var>2</var> つ目のファイルは <code>Baijan.cpp</code> という名前である．このファイルは Baijan の行動を実装したファイルであり，以下の関数を実装していなければならない．そのファイルは <code>Baijan.h</code> をインクルードすること．</p>
+<ul>
+<li><code>void InitB(int N, int B, std::vector&lt;int&gt; S, std::vector&lt;int&gt; T, std::vector&lt;int&gt; D)</code>
+    この関数は，最初に <var>1</var> 回だけ実行される．<ul>
+<li>引数 <code>N</code> は，街の数 <var>N</var> である．</li>
+<li>引数 <code>B</code> は，バス路線の数 <var>B</var> である．</li>
+<li>引数 <code>S</code>，<code>T</code> は，長さ <var>B</var> の配列であり，<code>S[j]</code>，<code>T[j]</code> はバス路線 <var>j</var> が結んでいる都市 <var>S_{j}, T_{j}</var> を表す (<var>0 \leqq j \leqq B - 1</var>)．</li>
+<li>引数 <code>D</code> は，長さ <var>B</var> の配列であり，<code>D[j]</code> はバス路線 <var>j</var> の運賃 <var>D_{j}</var> を表す (<var>0 \leqq j \leqq B - 1</var>)．</li>
+</ul>
+</li>
+<li><code>void ReceiveB(bool y)</code>
+    この関数は，Azer から文字が送られる度に実行される．<ul>
+<li>引数 <code>y</code> は，Azer から送信された文字を表す．<code>true</code> は文字 <var>1</var> を表し，<code>false</code> は文字 <var>0</var> を表す．</li>
+</ul>
+</li>
+</ul>
+<p>このファイルでは以下の関数を呼び出すことができる．</p>
+<ul>
+<li><code>void SendB(bool x)</code>
+    この関数を用いて，Azer に文字を送信する．<ul>
+<li>引数 <code>x</code> は，Azer に送信する文字を表す．<code>true</code> は文字 <var>1</var> を表し，<code>false</code> は文字 <var>0</var> を表す．</li>
+</ul>
+</li>
+</ul>
+<p>プログラムは次のように実行されると考えてよい．各テストケースにおいて，Azer が送信した文字を保管するキュー <var>Q_{Y}</var> と Baijan が送信した文字を保管するキュー <var>Q_{X}</var> が用意される．最初に <code>InitA</code> および <code>InitB</code> が呼び出され，そこで送信された文字がそれぞれのキューに追加される．次に，以下の処理を繰り返す．</p>
+<ul>
+<li><var>Q_{X}</var> と <var>Q_{Y}</var> のいずれかが空でない場合，そこから文字を <var>1</var> つ取り出し，対応する <code>ReceiveA</code> または <code>ReceiveB</code> が実行される．ただし，<var>Q_{X}</var> と <var>Q_{Y}</var> のどちらも空でない場合，<code>ReceiveA</code> と <code>ReceiveB</code> のどちらが実行されるかは分からない．</li>
+<li><code>ReceiveA</code> の実行中に <code>SendA</code> が実行された場合，送信された文字が <var>Q_{Y}</var> に追加される．</li>
+<li><code>ReceiveB</code> の実行中に <code>SendB</code> が実行された場合，送信された文字が <var>Q_{X}</var> に追加される．</li>
+<li>どちらのキューも空である場合は，<code>Answer</code> が実行された後，プログラムが終了する．</li>
+</ul>
+<p>Azer と Baijan が送信する文字数の合計は <var>58\,000</var> を超えてはならない．もし超えた場合，不正解 <var>[2]</var> と判定される．</p>
+<h4>重要な注意</h4>
+<ul>
+<li>内部での使用のために他の関数を実装したり，グローバル変数を宣言するのは自由である．ただし，提出された <var>2</var> つのプログラムは，採点プログラムとまとめてリンクされて <var>1</var> つの実行ファイルになるので，各ファイル内のすべてのグローバル変数と内部関数を無名名前空間内で宣言して，他のファイルとの干渉を避ける必要がある．採点時には，このプログラムは Azer 側，Baijan 側として <var>2</var> 個のプロセスとして実行されるので，Azer 側と Baijan 側でプログラム中のグローバル変数を共有することはできない．</li>
+<li>あなたの提出したプログラムは，標準入力・標準出力，あるいは他のファイルといかなる方法でもやりとりしてはならない．ただし，標準エラー出力にデバッグ情報等を出力することは許される．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>コンパイル・実行の方法</h3>
+<p>作成したプログラムをテストするための，採点プログラムのサンプルが，コンテストサイトからダウンロードできるアーカイブの中に含まれている．このアーカイブには，提出しなければならないファイルのサンプルも含まれている．</p>
+<p>採点プログラムのサンプルは <var>1</var> つのファイルからなる. そのファイルは <code>grader.cpp</code> である．作成したプログラムをテストするには，<code>grader.cpp</code>, <code>Azer.cpp</code>, <code>Baijan.cpp</code>, <code>Azer.h</code>, <code>Baijan.h</code> を同じディレクトリに置き，次のようにコマンドを実行する．</p>
+<pre>g++ -std=gnu++14 -O2 -o grader grader.cpp Azer.cpp Baijan.cpp
+</pre>
+<p>コンパイルが成功すれば，<code>grader</code> という実行ファイルが生成される．</p>
+<p>実際の採点プログラムは，採点プログラムのサンプルとは異なることに注意すること．採点プログラムのサンプルは単一のプロセスとして起動する．このプログラムは，標準入力から入力を読み込み，標準出力と標準エラー出力に結果を出力する．</p>
+<h4>採点プログラムのサンプルの入力</h4>
+<p>採点プログラムのサンプルは標準入力から以下の形式で入力を読み込む．</p>
+<pre><var>N</var> <var>A</var> <var>B</var>
+<var>U_{0}</var> <var>V_{0}</var> <var>C_{0}</var>
+<var>\vdots</var>
+<var>U_{A - 1}</var> <var>V_{A - 1}</var> <var>C_{A - 1}</var>
+<var>S_{0}</var> <var>T_{0}</var> <var>D_{0}</var>
+<var>\vdots</var>
+<var>S_{B - 1}</var> <var>T_{B - 1}</var> <var>D_{B - 1}</var>
+</pre>
+<h4>採点プログラムのサンプルの出力</h4>
+<p>採点プログラムのサンプルは標準出力と標準エラー出力へ以下の情報を出力する (引用符は実際には出力されない)．</p>
+<ul>
+<li>不正解 <var>[1]</var> または不正解 <var>[2]</var> と判定された場合，標準エラー出力に，不正解の種類が “<code>Wrong Answer [1]</code>” のように出力される．標準出力には何も出力されない．</li>
+<li>そうでない場合，標準エラー出力に，送受信された文字数の合計 <var>L</var> が “<code>Accepted: L</code>” のように出力される．また，標準出力にあなたの回答 <code>Z</code> が</li>
+</ul>
+<pre>Z[0]
+<var>\vdots</var>
+Z[N - 1]
+</pre>
+<p>のように出力される．採点プログラムのサンプルは，<code>Z</code> の値が正しいかどうかは判定しない．</p>
+<p>実行するプログラムが複数の不正解の条件を満たした場合，表示される不正解の種類はそれらのうち <var>1</var> つのみである．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>1 \leqq N \leqq 2\,000</var>．</li>
+<li><var>0 \leqq A \leqq 500\,000</var>．</li>
+<li><var>0 \leqq B \leqq 500\,000</var>．</li>
+<li><var>0 \leqq U_{i} \leqq N - 1</var> (<var>0 \leqq i \leqq A - 1</var>)．</li>
+<li><var>0 \leqq V_{i} \leqq N - 1</var> (<var>0 \leqq i \leqq A - 1</var>)．</li>
+<li><var>U_{i} \ne V_{i}</var> (<var>0 \leqq i \leqq A - 1</var>)．</li>
+<li><var>(U_{i_{1}}, V_{i_{1}}) \ne (U_{i_{2}}, V_{i_{2}})</var> かつ <var>(U_{i_{1}}, V_{i_{1}}) \ne (V_{i_{2}}, U_{i_{2}})</var> (<var>0 \leqq i_{1} &lt; i_{2} \leqq A - 1</var>)．</li>
+<li><var>0 \leqq S_{j} \leqq N - 1</var> (<var>0 \leqq j \leqq B - 1</var>)．</li>
+<li><var>0 \leqq T_{j} \leqq N - 1</var> (<var>0 \leqq j \leqq B - 1</var>)．</li>
+<li><var>S_{j} \ne T_{j}</var> (<var>0 \leqq j \leqq B - 1</var>)．</li>
+<li><var>(S_{j_{1}}, T_{j_{1}}) \ne (S_{j_{2}}, T_{j_{2}})</var> かつ <var>(S_{j_{1}}, T_{j_{1}}) \ne (T_{j_{2}}, S_{j_{2}})</var> (<var>0 \leqq j_{1} &lt; j_{2} \leqq B - 1</var>)．</li>
+<li>どの都市からどの都市へも，いくつかの鉄道路線やバス路線を乗り継ぐことで移動することができる．</li>
+<li><var>1 \leqq C_{i} \leqq 500</var> (<var>0 \leqq i \leqq A - 1</var>)．</li>
+<li><var>1 \leqq D_{j} \leqq 500</var> (<var>0 \leqq j \leqq B - 1</var>)．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>6</var> 点) <var>A = 0</var>．</li>
+<li>(<var>8</var> 点) <var>B \leqq 1\,000</var>．</li>
+<li>(<var>8</var> 点) <var>A + B = N - 1</var>．</li>
+<li>(<var>38</var> 点) <var>N \leqq 900</var>．</li>
+<li>(<var>14</var> 点) <var>N \leqq 1\,100</var>．</li>
+<li>(<var>10</var> 点) <var>N \leqq 1\,400</var>．</li>
+<li>(<var>16</var> 点) 追加の制約はない．</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>やり取りの例</h3>
+<p>採点プログラムのサンプルが読み込む入力の例と，それに対応する関数の呼び出しの例を以下に示す．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>4 3 4
+0 1 6
+2 1 4
+2 0 10
+1 2 3
+3 1 1
+3 2 3
+3 0 7
+</pre>
+<h4>関数の呼び出しの例</h4>
+<div class="joisc2019-transportations-ja-table">
+<table>
+<thead>
+<tr>
+<th>呼び出し</th>
+<th>呼び出し</th>
+<th>戻り値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>InitA(4, 3, {0,2,2}, {1,1,0}, {6,4,10})</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>SendA(true)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>SendA(false)</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>InitB(4, 4, {1,3,3,3}, {2,1,2,0}, {3,1,3,7})</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ReceiveB(true)</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>SendB(true)</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ReceiveA(true)</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ReceiveB(false)</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Answer()</code></td>
+<td></td>
+<td><code>{0,6,9,7}</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<style>
+.joisc2019-transportations-ja-table { position:relative;max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisc2019-transportations-ja-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisc2019-transportations-ja-table th,.joisc2019-transportations-ja-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisc2019-transportations-ja-table th { background:#f5f5f5; }
+.joisc2019-transportations-ja-table code { white-space:nowrap; }
+</style></section>
+</div>
+</span>
+</span>

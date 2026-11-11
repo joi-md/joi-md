@@ -1,0 +1,426 @@
+<span class="lang">
+<span class="lang-en">
+<blockquote>
+<p><strong>Submission on AtCoder</strong></p>
+<p>This judge supports C++ only. Implement the functions specified in the statement.</p>
+<p><a href="https://www2.ioi-jp.org/camp/2019/2019-sp-tasks/day4/minerals-dist.zip">Distributed files</a></p>
+</blockquote>
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>Professor JOI’s laboratory is researching <var>N</var> kinds of minerals. There are <var>2</var> slices of each kind of mineral. There are <var>2N</var> slices in total, numbered from 1 to <var>2N</var>.</p>
+<p>One day, as assistant Bitaro has dropped the box containing the <var>2N</var> slices, he has no idea which slice and which slice are of the same kind of mineral.</p>
+<p>The laboratory owns a device which can count the number of kinds of minerals when some slices are inserted in it, by measuring the wavelength each mineral absorbs. Bitaro is going to determine the <var>N</var> pairs of the same kind of mineral from the <var>2N</var> slices. At first, there are no slices inserted in the device. Bitaro can perform the following operations:</p>
+<ul>
+<li>Inserting one slice into the device, Bitaro knows how many kinds of minerals are in the device.</li>
+<li>Extracting one slice from the device, Bitaro knows how many kinds of minerals are in the device.</li>
+</ul>
+<p>So that Professor JOI will not find Bitaro bringing about troubles, Bitaro can perform these operations at most 1 000 000 times in total.</p>
+<p>Write a program which, given the number of kinds of minerals, using the device, determines all the pairs of the same kind of mineral.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Implementation Details</h3>
+<p>You need to submit one file.</p>
+<p>The name of the file is <code>minerals.cpp</code>. It should implement the following function. The program should include <code>minerals.h</code>.</p>
+<ul>
+<li>
+<p><code>void Solve(int N)</code>
+    This function is called exactly once for each test case.</p>
+<ul>
+<li>The parameter <code>N</code> represents <var>N</var>, the number of kinds of minerals.</li>
+</ul>
+<p>Your program can call the following functions.</p>
+<ul>
+<li><code>int Query(int x)</code>
+    For the index of the slice you specify, this function extracts the slice from the device if the slice is already in the device, or inserts the slice into the device otherwise. Then it returns the number of kinds of minerals in the device.<ul>
+<li>You specify the index <var>x</var> of the slice via parameter <code>x</code>. This must satisfy <var>1 \le x \le 2N</var>. Otherwise, your program is considered as Wrong Answer [1].</li>
+<li>The function <code>Query</code> must not be called more than 1 000 000 times. Otherwise, your program is considered as Wrong Answer [2].</li>
+</ul>
+</li>
+<li><code>void Answer(int a, int b)</code>
+    Using this function, you answer the pairs of the same mineral.<ul>
+<li>The parameters <code>a</code> and <code>b</code> represent that the <var>a</var>-th slice and the <var>b</var>-th slice are the same kind of mineral. These must satisfy <var>1 \le a \le 2N</var> and <var>1 \le b \le 2N</var>. Otherwise, your program is considered as Wrong Answer [3]. If the same value appears more than once in <var>a</var> or <var>b</var> in total, your program is considered as Wrong Answer <var>[4]</var>. If slices of different kinds of mineral are specified, your program is considered as Wrong Answer [5].</li>
+</ul>
+</li>
+</ul>
+<p>The function <code>Answer</code> must be called exactly <var>N</var> times. If the number of calls to the function <code>Answer</code> is not <var>N</var> at the end of the execution of the function <code>Solve</code>, your program is considered as Wrong Answer [6].</p>
+</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Important Notices</h3>
+<ul>
+<li>Your program can implement other functions for internal use, or use global variables.</li>
+<li>Your program must not use the standard input and the standard output. Your program must not communicate with other files by any methods. However, your program may output debugging information to the standard error.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Compilation and Test Run</h3>
+<p>You can download an archive file from the contest webpage which contains the sample grader to test your program. The archive file also contains a sample source file of your program.</p>
+<p>The sample grader is the file <code>grader.cpp</code>. In order to test your program, put <code>grader.cpp</code>, <code>minerals.cpp</code>, and <code>minerals.h</code> in the same directory, and run the following command to compile your programs.</p>
+<pre>g++ -std=gnu++14 -O2 -o grader grader.cpp minerals.cpp
+</pre>
+<p>When the compilation succeeds, the executable file <code>grader</code> is generated.</p>
+<p>Note that the actual grader is different from the sample grader. The sample grader will be executed as a single process, which will read input data from the standard input and write the results to the standard output.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Input for the Sample Grader</h3>
+<p>The sample grader reads the following data from the standard input.</p>
+<pre><var>N</var>
+<var>X_{1}</var> <var>Y_{1}</var>
+<var>\vdots</var>
+<var>X_{N}</var> <var>Y_{N}</var>
+</pre>
+<p><var>X_{i}</var> and <var>Y_{i}</var> (<var>1 \le i \le N</var>) denote that the <var>X_{i}</var>-th slice and the <var>Y_{i}</var>-th slice are the same kind of mineral.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Output of the Sample Grader</h3>
+<p>When the program terminates successfully, the sample grader writes the following information to the standard output (quotes for clarity).</p>
+<ul>
+<li>If your program is considered correct, it writes the number of calls to the function <code>Query</code> as “<code>Accepted: 100</code>”.</li>
+<li>If your program is considered as Wrong Answer, it writes its type as “<code>Wrong Answer [1]</code>”.</li>
+</ul>
+<p>If your program is considered as several types of Wrong Answer, the sample grader reports only one of them.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<p>Refer to the “Input for the Sample Grader” section for the definition of <var>X_{i}</var> and <var>Y_{i}</var>.</p>
+<ul>
+<li><var>1 \le N \le 43\,000</var>.</li>
+<li><var>1 \le X_{i} \le 2N</var> (<var>1 \le i \le N</var>).</li>
+<li><var>1 \le Y_{i} \le 2N</var> (<var>1 \le i \le N</var>).</li>
+<li><var>X_{i} \ne X_{j}</var> (<var>1 \le i &lt; j \le N</var>).</li>
+<li><var>Y_{i} \ne Y_{j}</var> (<var>1 \le i &lt; j \le N</var>).</li>
+<li><var>X_{i} \ne Y_{j}</var> (<var>1 \le i \le N</var>, <var>1 \le j \le N</var>).</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li>(<var>6</var> points) <var>N \le 100</var>.</li>
+<li>(<var>25</var> points) <var>N \le 15\,000</var>, <var>1 \le X_{i} \le N</var>, <var>N + 1 \le Y_{i} \le 2N</var> (<var>1 \le i \le N</var>).</li>
+<li>(<var>9</var> points) <var>N \le 15\,000</var>.</li>
+<li>(<var>30</var> points) <var>N \le 38\,000</var>.</li>
+<li>(<var>5</var> points) <var>N \le 39\,000</var>.</li>
+<li>(<var>5</var> points) <var>N \le 40\,000</var>.</li>
+<li>(<var>5</var> points) <var>N \le 41\,000</var>.</li>
+<li>(<var>5</var> points) <var>N \le 42\,000</var>.</li>
+<li>(<var>10</var> points) No additional constraints.</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Communication</h3>
+<p>Here is a sample input for the sample grader and corresponding function calls.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>4
+1 5
+2 6
+3 4
+7 8
+</pre>
+<h4>Sample Calls</h4>
+<div class="joisc2019-minerals-en-table">
+<table>
+<thead>
+<tr>
+<th>Call</th>
+<th>Call</th>
+<th>Return</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Solve(4)</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Query(1)</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Query(2)</code></td>
+<td><code>2</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Query(5)</code></td>
+<td><code>2</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Query(2)</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Answer(3, 4)</code></td>
+<td>(none)</td>
+</tr>
+<tr>
+<td></td>
+<td><code>Answer(5, 1)</code></td>
+<td>(none)</td>
+</tr>
+<tr>
+<td></td>
+<td><code>Answer(8, 7)</code></td>
+<td>(none)</td>
+</tr>
+<tr>
+<td></td>
+<td><code>Answer(2, 6)</code></td>
+<td>(none)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<style>
+.joisc2019-minerals-en-table { position:relative;max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisc2019-minerals-en-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisc2019-minerals-en-table th,.joisc2019-minerals-en-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisc2019-minerals-en-table th { background:#f5f5f5; }
+.joisc2019-minerals-en-table code { white-space:nowrap; }
+</style></section>
+</div>
+</span>
+<span class="lang-ja">
+<blockquote>
+<p><strong>AtCoder での提出方法</strong></p>
+<p>このジャッジは C++ のみに対応しています．問題文の指示に従って関数を実装してください．</p>
+<p><a href="https://www2.ioi-jp.org/camp/2019/2019-sp-tasks/day4/minerals-dist.zip">配布ファイル</a></p>
+</blockquote>
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>JOI 教授の研究室では，<var>N</var> 種類の鉱物を研究している．研究室には，それぞれの種類の鉱物の薄い切片が <var>2</var> 枚ずつ保管されている．切片は合計 <var>2N</var> 枚あり，<var>1</var> から <var>2N</var> までの番号が付けられている．</p>
+<p>しかしある日，助手のビ太郎は <var>2N</var> 枚の切片が入っている箱を落としてしまい，どの切片とどの切片が同じ種類の鉱物のものであるかが分からなくなってしまった．</p>
+<p>研究室には，<var>0</var> 枚以上 <var>2N</var> 枚以下の切片を入れると，鉱物が吸収する光の波長を測定することで，何種類の鉱物が入っているかを調べる装置がある．ビ太郎はこの装置を使うことにより，<var>2N</var> 枚の切片から，同じ種類の鉱物である <var>N</var> 組のペアを特定しようとしている．ビ太郎は，最初は装置に切片が入っていない状態から始めて，以下の操作のいずれかを繰り返す：</p>
+<ul>
+<li>装置に切片を <var>1</var> 枚新たに入れて，装置に何種類の鉱物が入っているかを調べる．</li>
+<li>装置に入っている切片を <var>1</var> 枚取り出して，装置に何種類の鉱物が入っているかを調べる．</li>
+</ul>
+<p>時間をかけて作業を行っていると JOI 教授に見つかってしまうので，ビ太郎は，装置に切片を出し入れする回数を合計 <var>1\,000\,000</var> 回以内に抑えたい．</p>
+<p>鉱物の種類数が与えられたとき，装置に切片を出し入れすることで，同じ種類の鉱物であるペアを特定するプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>実装の詳細</h3>
+<p>あなたは <var>1</var> つのファイルを提出しなければならない．</p>
+<p>あなたの提出するファイルは <code>minerals.cpp</code> という名前である．このファイルは以下の関数を実装していなければならない．そのプログラムは <code>minerals.h</code> をインクルードすること．</p>
+<ul>
+<li>
+<p><code>void Solve(int N)</code>
+    この関数は各テストケースにおいて <var>1</var> 回だけ呼び出される．</p>
+<ul>
+<li>引数 <code>N</code> は鉱物の種類数 <var>N</var> を表す．</li>
+</ul>
+<p>あなたのプログラムは以下の関数を呼び出すことができる．</p>
+<ul>
+<li>
+<p><code>int Query(int x)</code>
+    この関数は，切片の番号を指定すると，その切片がすでに装置の中に入っているのであれば装置から取り出し，切片が装置の中に入っていないのであれば装置に切片を入れる．その後，装置に入っている鉱物の種類数を調べ，その種類数を返す．</p>
+<ul>
+<li>切片の番号を引数 <code>x</code> で指定する．このとき，<var>1 \leqq x \leqq 2N</var> が成り立たなければならない．これが満たされない場合，不正解 <var>[1]</var> と判定される．関数 <code>Query</code> を <var>1\,000\,000</var> 回を超えて呼び出してはならない．<var>1\,000\,000</var> 回を超えて呼び出した場合，不正解 <var>[2]</var> と判定される．</li>
+</ul>
+</li>
+<li>
+<p><code>void Answer(int a, int b)</code>
+    この関数を用いて，同じ種類の鉱物の切片のペアを回答する．</p>
+<ul>
+<li>引数 <code>a</code>, <code>b</code> は，<var>a</var> 番目の切片と <var>b</var> 番目の切片が同じ種類の鉱物であることを表す．このとき， <var>1 \leqq a \leqq 2N</var>，<var>1 \leqq b \leqq 2N</var> が成り立たなければならない．これが満たされない場合，不正解 <var>[3]</var> と判定される ．<var>a</var> または <var>b</var> に同じ値が累計で <var>2</var> 回以上引数として登場した場合，不正解 <var>[4]</var> と判定される．異なる種類の鉱物が指定された場合，不正解 <var>[5]</var> と判定される．</li>
+</ul>
+</li>
+</ul>
+<p>関数 <code>Answer</code> はちょうど <var>N</var> 回呼び出される必要がある．関数 <code>Solve</code> の実行の終了時に関数 <code>Answer</code> の呼び出し回数が <var>N</var> 回でなかった場合，不正解 <var>[6]</var> と判定される．</p>
+</li>
+</ul>
+<h4>重要な注意</h4>
+<ul>
+<li>内部での使用のために他の関数を実装したり，グローバル変数を宣言するのは自由である．</li>
+<li>あなたの提出したプログラムは，標準入力・標準出力，あるいは他のファイルといかなる方法でもやりとりしてはならない．ただし，標準エラー出力にデバッグ情報等を出力することは許される．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>コンパイル・実行の方法</h3>
+<p>作成したプログラムをテストするための，採点プログラムのサンプルが，コンテストサイトからダウンロードできるアーカイブの中に含まれている．このアーカイブには，提出しなければならないファイルのサンプルも含まれている．</p>
+<p>採点プログラムのサンプルは <var>1</var> つのファイルからなる. そのファイルは <code>grader.cpp</code> である．作成したプログラムをテストするには，これらのファイル <code>grader.cpp</code>, <code>minerals.cpp</code>, <code>minerals.h</code> を同じディレクトリに置き，次のようにコマンドを実行する．</p>
+<pre>g++ -std=gnu++14 -O2 -o grader grader.cpp minerals.cpp
+</pre>
+<p>コンパイルが成功すれば，<code>grader</code> という実行ファイルが生成される．</p>
+<p>実際の採点プログラムは，採点プログラムのサンプルとは異なることに注意すること．採点プログラムのサンプルは単一のプロセスとして起動する．このプログラムは，標準入力から入力を読み込み，標準出力に結果を出力する．</p>
+<h4>採点プログラムのサンプルの入力</h4>
+<p>採点プログラムのサンプルは標準入力から以下の入力を読み込む．</p>
+<pre><var>N</var>
+<var>X_{1}</var> <var>Y_{1}</var>
+<var>\vdots</var>
+<var>X_{N}</var> <var>Y_{N}</var>
+</pre>
+<p><var>X_{i}, Y_{i}</var> (<var>1 \leqq i \leqq N</var>) は，<var>X_{i}</var> 番目の切片と <var>Y_{i}</var> 番目の切片が同じ種類の鉱物であることを表す．</p>
+<h4>採点プログラムのサンプルの出力</h4>
+<p>採点プログラムのサンプルは標準出力へ以下の情報を出力する (引用符は実際には出力されない)．</p>
+<ul>
+<li>正解の場合，関数 <code>Query</code> の呼び出し回数が “<code>Accepted: 100</code>” のように出力される．</li>
+<li>不正解の場合，不正解の種類が “<code>Wrong Answer [1]</code>” のように出力される．</li>
+</ul>
+<p>実行するプログラムが複数の不正解の条件を満たした場合，表示される不正解の種類はそれらのうち <var>1</var> つのみである．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<p>すべての入力データは以下の条件を満たす．<var>X_{i}, Y_{i}</var> の意味については「採点プログラムのサンプルの入力」の項目を参照せよ．</p>
+<ul>
+<li><var>1 \leqq N \leqq 43\,000</var>．</li>
+<li><var>1 \leqq X_{i} \leqq 2N</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>1 \leqq Y_{i} \leqq 2N</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>X_{i} \ne X_{j}</var> (<var>1 \leqq i &lt; j \leqq N</var>)．</li>
+<li><var>Y_{i} \ne Y_{j}</var> (<var>1 \leqq i &lt; j \leqq N</var>)．</li>
+<li><var>X_{i} \ne Y_{j}</var> (<var>1 \leqq i \leqq N</var>，<var>1 \leqq j \leqq N</var>)．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>6</var> 点) <var>N \leqq 100</var>．</li>
+<li>(<var>25</var> 点) <var>N \leqq 15\,000</var>，<var>1 \leqq X_{i} \leqq N</var>，<var>N + 1 \leqq Y_{i} \leqq 2N</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li>(<var>9</var> 点) <var>N \leqq 15\,000</var>．</li>
+<li>(<var>30</var> 点) <var>N \leqq 38\,000</var>．</li>
+<li>(<var>5</var> 点) <var>N \leqq 39\,000</var>．</li>
+<li>(<var>5</var> 点) <var>N \leqq 40\,000</var>．</li>
+<li>(<var>5</var> 点) <var>N \leqq 41\,000</var>．</li>
+<li>(<var>5</var> 点) <var>N \leqq 42\,000</var>．</li>
+<li>(<var>10</var> 点) 追加の制約はない．</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>やり取りの例</h3>
+<p>採点プログラムのサンプルが読み込む入力の例と，それに対応する関数の呼び出しの例を以下に示す．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>4
+1 5
+2 6
+3 4
+7 8
+</pre>
+<h4>関数の呼び出しの例</h4>
+<div class="joisc2019-minerals-ja-table">
+<table>
+<thead>
+<tr>
+<th>呼び出し</th>
+<th>呼び出し</th>
+<th>戻り値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Solve(4)</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Query(1)</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Query(2)</code></td>
+<td><code>2</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Query(5)</code></td>
+<td><code>2</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Query(2)</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Answer(3, 4)</code></td>
+<td>(なし)</td>
+</tr>
+<tr>
+<td></td>
+<td><code>Answer(5, 1)</code></td>
+<td>(なし)</td>
+</tr>
+<tr>
+<td></td>
+<td><code>Answer(8, 7)</code></td>
+<td>(なし)</td>
+</tr>
+<tr>
+<td></td>
+<td><code>Answer(2, 6)</code></td>
+<td>(なし)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<style>
+.joisc2019-minerals-ja-table { position:relative;max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisc2019-minerals-ja-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisc2019-minerals-ja-table th,.joisc2019-minerals-ja-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisc2019-minerals-ja-table th { background:#f5f5f5; }
+.joisc2019-minerals-ja-table code { white-space:nowrap; }
+</style></section>
+</div>
+</span>
+</span>

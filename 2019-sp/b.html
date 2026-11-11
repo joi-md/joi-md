@@ -1,0 +1,441 @@
+<span class="lang">
+<span class="lang-en">
+<blockquote>
+<p><strong>Submission on AtCoder</strong></p>
+<p>When using C++, follow the implementation instructions in the statement.</p>
+<details>
+<summary style="display:list-item;cursor:pointer;"><strong>Using other languages</strong></summary>
+<p>First, print <code>Start</code> followed by a newline and flush the output. Then read the integer <var>N</var> from the standard input.</p>
+<ul>
+<li>To call <code>Query</code>, print <code>Query</code> followed by a newline, then print <var>3</var> space-separated integers followed by a newline and flush. Read the return value from the standard input.</li>
+<li>To call <code>Bridge</code>, print <code>Bridge</code> followed by a newline, then print <var>2</var> space-separated integers followed by a newline and flush.</li>
+<li>Finally, print <code>End</code> followed by a newline and flush.</li>
+</ul>
+</details>
+<p><a href="https://www2.ioi-jp.org/camp/2019/2019-sp-tasks/day1/meetings-dist.zip">Distributed files</a></p>
+</blockquote>
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>There are <var>N</var> islands where beavers live, numbered from <var>0</var> through <var>N - 1</var>. These islands are connected by <var>N - 1</var> bidirectional bridges. It is possible to travel between any islands using some bridges. For each island, there are at most 18 bridges directly connected to it. Each island is inhabited by a beaver.</p>
+<p>Sometimes, some beavers gather at an island to hold a meeting. When exactly three beavers meet, they gather at the following island:</p>
+<blockquote>
+<p>The island which minimizes the total number of bridges the three beavers travel through when gathering (such island uniquely exists).</p>
+</blockquote>
+<p>Note that this island may coincide with an island where one of the three beavers lives.</p>
+<p>You are interested in how <var>N</var> islands are connected by bridges. You cannot go and check the islands directly, so you are going to issue some instructions to the beavers. An instruction is as follows:</p>
+<ul>
+<li>You specify three islands <var>u, v</var> and <var>w</var> (<var>0 \le u \le N - 1</var>, <var>0 \le v \le N - 1</var>, <var>0 \le w \le N - 1</var>, <var>u \ne v</var>, <var>u \ne w</var>, <var>v \ne w</var>), and let the beavers living in the islands <var>u, v</var> and <var>w</var> hold a meeting.</li>
+<li>Then, you can see the island where the three beavers gather.</li>
+</ul>
+<p>You want to determine how the islands are connected with few instructions.</p>
+<p>Write a program which, given the number of islands, communicating with beavers, determine how the islands are connected.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Implementation Details</h3>
+<p>You need to submit one file.</p>
+<p>The name of the file is <code>meetings.cpp</code>. It should implement the following function. The program should include <code>meetings.h</code>.</p>
+<ul>
+<li>
+<p><code>void Solve(int N)</code>
+    This function is called exactly once for each test case.</p>
+<ul>
+<li>The parameter <code>N</code> represents <var>N</var>, the number of islands.</li>
+</ul>
+<p>Your program can call the following functions.</p>
+<ul>
+<li><code>int Query(int u, int v, int w)</code>
+    This function returns, for the indices of three islands you specify, the index of the island where the beavers living there gather for a meeting.<ul>
+<li>You specify the indices <var>u, v</var> and <var>w</var> of the three islands via parameters <code>u</code>, <code>v</code> and <code>w</code>, respectively. These must satisfy <var>0 \le u \le N - 1</var>, <var>0 \le v \le N - 1</var>, <var>0 \le w \le N - 1</var>, <var>u \ne v</var>, <var>u \ne w</var> and <var>v \ne w</var>. Otherwise, your program is considered as Wrong Answer [1].</li>
+<li>The function <code>Query</code> must not be called more than 100 000 times. Otherwise, your program is considered as Wrong Answer [2].</li>
+</ul>
+</li>
+<li><code>void Bridge(int u, int v)</code>
+    Using this function, you answer how the islands are connected by bridges.<ul>
+<li>The parameters <code>u</code> and <code>v</code> represent that the islands <var>u</var> and <var>v</var> are directly connected by a bridge.</li>
+<li>If <var>0 \le u &lt; v \le N - 1</var> does not hold, your program is considered as Wrong Answer [3].</li>
+<li>If the islands <var>u</var> and <var>v</var> are not directly connected by a bridge, your program is considered as Wrong Answer [4].</li>
+<li>If the function <code>Bridge</code> is called with the same parameters <var>u</var> and <var>v</var> multiple times, your program is considered as Wrong Answer [5].</li>
+<li>Since there are <var>N - 1</var> bridges, the function <code>Bridge</code> must be called exactly <var>N - 1</var> times. If the number of calls to the function <code>Bridge</code> is not <var>N - 1</var> at the end of the execution of the function <code>Solve</code>, your program is considered as Wrong Answer [6].</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Important Notices</h3>
+<ul>
+<li>Your program can implement other functions for internal use, or use global variables.</li>
+<li>Your program should not use the standard input and the standard output. Your program should not communicate with other files by any methods. But, your program may output debugging information to the standard error.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Compilation and Test Run</h3>
+<p>You can download an archive file from the contest webpage which contains the sample grader to test your program. The archive file also contains a sample source file of your program.</p>
+<p>The sample grader is the file <code>grader.cpp</code>. In order to test your program, put <code>grader.cpp</code>, <code>meetings.cpp</code>, and <code>meetings.h</code> in the same directory, and run the following commands to compile your programs.</p>
+<pre>g++ -std=gnu++14 -O2 -o grader grader.cpp meetings.cpp
+</pre>
+<p>When the compilation succeeds, the executable file <code>grader</code> is generated.</p>
+<p>Note that the actual grader is different from the sample grader. The sample grader will be executed as a single process, which will read input data from the standard input and write the results to the standard output.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Input for the Sample Grader</h3>
+<p>The sample grader reads the following data from the standard input.</p>
+<pre><var>N</var>
+<var>A_{0}</var> <var>B_{0}</var>
+<var>\vdots</var>
+<var>A_{N - 2}</var> <var>B_{N - 2}</var>
+</pre>
+<p><var>A_{i}</var> and <var>B_{i}</var> (<var>0 \le i \le N - 2</var>) represent that the islands <var>A_{i}</var> and <var>B_{i}</var> are directly connected by a bridge.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Output for the Sample Grader</h3>
+<p>When the program terminates successfully, the sample grader writes the following information to the standard output (quotes for clarity).</p>
+<ul>
+<li>If your program is considered correct, it writes the number of calls to the function <code>Query</code> as “<code>Accepted: 100</code>”.</li>
+<li>If your program is considered as Wrong Answer, it writes its type as “<code>Wrong Answer [1]</code>”.</li>
+</ul>
+<p>If your program is considered as several types of Wrong Answer, the sample grader reports only one of them.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<p>Refer to the “Input for the Sample Grader” section for the definition of <var>A_{i}</var> and <var>B_{i}</var>.</p>
+<ul>
+<li><var>3 \le N \le 2\,000</var>.</li>
+<li><var>0 \le A_{i} &lt; B_{i} \le N - 1</var> (<var>0 \le i \le N - 2</var>).</li>
+<li>It is possible to travel between any islands using some bridges.</li>
+<li>For each island, there are at most 18 bridges directly connected to it.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li>(<var>7</var> points) <var>N \le 7</var>.</li>
+<li>(<var>10</var> points) <var>N \le 50</var>.</li>
+<li>(<var>12</var> points) <var>N \le 300</var>.</li>
+<li>(<var>71</var> points) No additional constraints.</li>
+</ol>
+<!-- -->
+
+<ul>
+<li>For Subtasks 1, 2 and 3, if your program is correct for all test cases in a subtask, you are given the full score.</li>
+<li>For Subtask 4, if your program is correct for all test cases, your score will be the following, where <var>X</var> is the maximum number of calls to the function <code>Query</code> for a test case.<ul>
+<li><var>49</var> points if <var>40\,000 &lt; X \le 100\,000</var>, and</li>
+<li><var>71</var> points if <var>X \le 40\,000</var>.</li>
+</ul>
+</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Communication</h3>
+<p>Here is a sample input for the sample grader and corresponding function calls.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>5
+0 1
+0 2
+1 3
+1 4
+</pre>
+<h4>Sample Calls</h4>
+<div class="joisc2019-meetings-en-table">
+<table>
+<thead>
+<tr>
+<th>Call</th>
+<th>Call</th>
+<th>Return</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Solve(5)</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Query(0, 1, 2)</code></td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Query(0, 3, 4)</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Bridge(1, 3)</code></td>
+<td>(none)</td>
+</tr>
+<tr>
+<td></td>
+<td><code>Bridge(0, 2)</code></td>
+<td>(none)</td>
+</tr>
+<tr>
+<td></td>
+<td><code>Bridge(1, 4)</code></td>
+<td>(none)</td>
+</tr>
+<tr>
+<td></td>
+<td><code>Bridge(0, 1)</code></td>
+<td>(none)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<style>
+.joisc2019-meetings-en-table { position:relative;max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisc2019-meetings-en-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisc2019-meetings-en-table th,.joisc2019-meetings-en-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisc2019-meetings-en-table th { background:#f5f5f5; }
+.joisc2019-meetings-en-table code { white-space:nowrap; }
+</style></section>
+</div>
+</span>
+<span class="lang-ja">
+<blockquote>
+<p><strong>AtCoder での提出方法</strong></p>
+<p>C++ を使用する場合は問題文の指示に従ってください．</p>
+<details>
+<summary style="display:list-item;cursor:pointer;"><strong>その他の言語を使用する場合</strong></summary>
+<p>最初に <code>Start</code> を出力して改行し，flush してください．その後，整数 <var>N</var> が標準入力から与えられます．</p>
+<ul>
+<li><code>Query</code> を呼び出すには，<code>Query</code> を出力して改行し，続いて <var>3</var> 個の整数を空白区切りで出力して改行し，flush してください．その後，標準入力から戻り値を受け取ってください．</li>
+<li><code>Bridge</code> を呼び出すには，<code>Bridge</code> を出力して改行し，続いて <var>2</var> 個の整数を空白区切りで出力して改行し，flush してください．</li>
+<li>最後に <code>End</code> を出力して改行し，flush してください．</li>
+</ul>
+</details>
+<p><a href="https://www2.ioi-jp.org/camp/2019/2019-sp-tasks/day1/meetings-dist.zip">配布ファイル</a></p>
+</blockquote>
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>ビーバーが住んでいる島が <var>N</var> 個あり，<var>0</var> から <var>N - 1</var> の番号が付けられている．これらの島は <var>N - 1</var> 本の双方向に通行可能な橋で結ばれており，どの島の間もいくつかの橋を通って移動が可能である．どの島に対しても，その島に直接つながっている橋の本数は <var>18</var> 本以下である．それぞれの島には <var>1</var> 匹のビーバーが住んでいる．</p>
+<p>時々，いくつかの島に住むビーバーが，<var>1</var> つの島に集まって会合を行う．集まるビーバーがちょうど <var>3</var> 匹のときは，ビーバーが集まる島は次のような島である：</p>
+<blockquote>
+<p>集まる際に，<var>3</var> 匹のビーバーが自分の住む島から移動する際に通る橋の本数の合計が最小になるような島 (このような島はただ一つ存在する)．</p>
+</blockquote>
+<p>この島は，<var>3</var> 匹のいずれかのビーバーが住む島であるかもしれないことに注意せよ．</p>
+<p>あなたは，<var>N</var> 個の島がどのように橋で結ばれているかが気になっている．あなたは直接島に行って橋の様子を確認することができないため，ビーバーに次のような指示を出して，島のつながり方を知ろうと考えた：</p>
+<ul>
+<li><var>3</var> つの島 <var>u, v, w</var> (<var>0 \leqq u \leqq N - 1</var>，<var>0 \leqq v \leqq N - 1</var>，<var>0 \leqq w \leqq N - 1</var>，<var>u \ne v</var>，<var>u \ne w</var>，<var>v \ne w</var>) を指定し，島 <var>u</var>，島 <var>v</var>，島 <var>w</var> に住むビーバーに会合を行わせる．</li>
+<li>このとき，あなたは <var>3</var> 匹のビーバーが集まった島の番号を知ることができる．</li>
+</ul>
+<p>あなたは，ビーバーたちに少ない回数の指示を送ることで，島のつながり方を特定したい．</p>
+<p>島の数が与えられたとき，ビーバーたちとやりとりを行うことで，島のつながり方を特定するプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>実装の詳細</h3>
+<p>あなたは <var>1</var> つのファイルを提出しなければならない．</p>
+<p>あなたの提出するファイルは <code>meetings.cpp</code> という名前である．このファイルは以下の関数を実装していなければならない．そのプログラムは <code>meetings.h</code> をインクルードすること．</p>
+<ul>
+<li>
+<p><code>void Solve(int N)</code>
+    この関数は各テストケースにおいて <var>1</var> 回だけ呼び出される．</p>
+<ul>
+<li>引数 <code>N</code> は島の数 <var>N</var> を表す．</li>
+</ul>
+<p>あなたのプログラムは以下の関数を呼び出すことができる．</p>
+<ul>
+<li><code>int Query(int u, int v, int w)</code>
+    この関数は，<var>3</var> つの島の番号を指定すると，それらの島に住むビーバーたちで会合を行うときに集まる島の番号を返す．<ul>
+<li><var>3</var> つの島の番号 <var>u, v, w</var> をそれぞれ引数 <code>u</code>，<code>v</code>，<code>w</code> で指定する．これらは，<var>0 \leqq u \leqq N - 1</var>，<var>0 \leqq v \leqq N - 1</var>，<var>0 \leqq w \leqq N - 1</var>, <var>u \ne v</var>, <var>u \ne w</var>, <var>v \ne w</var> を満たさなければならない．満たされない場合，不正解 <var>[1]</var> と判定される．</li>
+<li>関数 <code>Query</code> を <var>100\,000</var> 回を超えて呼び出してはならない ．<var>100\,000</var> 回を超えて呼び出した場合，不正解 <var>[2]</var> と判定される．</li>
+</ul>
+</li>
+<li><code>void Bridge(int u, int v)</code>
+    この関数を用いて，島が橋でどのように結ばれているかを回答する．<ul>
+<li>引数 <code>u</code>，<code>v</code> は，島 <var>u</var> と島 <var>v</var> が橋で直接結ばれていることを表す．</li>
+<li><var>0 \leqq u &lt; v \leqq N - 1</var> が成り立たない場合，不正解 <var>[3]</var> と判定される．</li>
+<li>島 <var>u</var> と島 <var>v</var> を直接結ぶ橋が存在しない場合，不正解 <var>[4]</var> と判定される．</li>
+<li>関数 <code>Bridge</code> を同じ引数 <var>u, v</var> で複数回呼び出した場合，不正解 <var>[5]</var> と判定される．</li>
+<li>橋は <var>N - 1</var> 本存在するため，関数 <code>Bridge</code> はちょうど <var>N - 1</var> 回呼び出される必要がある．関数 <code>Solve</code> の実行の終了時に関数 <code>Bridge</code> の呼び出し回数が <var>N - 1</var> 回でなかった場合，不正解 <var>[6]</var> と判定される．</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4>重要な注意</h4>
+<ul>
+<li>内部での使用のために他の関数を実装したり，グローバル変数を宣言するのは自由である．</li>
+<li>あなたの提出したプログラムは，標準入力・標準出力，あるいは他のファイルといかなる方法でもやりとりしてはならない．ただし，標準エラー出力にデバッグ情報等を出力することは許される．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>コンパイル・実行の方法</h3>
+<p>作成したプログラムをテストするための，採点プログラムのサンプルが，コンテストサイトからダウンロードできるアーカイブの中に含まれている．このアーカイブには，提出しなければならないファイルのサンプルも含まれている．</p>
+<p>採点プログラムのサンプルは <var>1</var> つのファイルからなる. そのファイルは <code>grader.cpp</code> である．作成したプログラムをテストするには，これらのファイル <code>grader.cpp</code>, <code>meetings.cpp</code>, <code>meetings.h</code> を同じディレクトリに置き，次のようにコマンドを実行する．</p>
+<pre>g++ -std=gnu++14 -O2 -o grader grader.cpp meetings.cpp
+</pre>
+<p>コンパイルが成功すれば，<code>grader</code> という実行ファイルが生成される．</p>
+<p>実際の採点プログラムは，採点プログラムのサンプルとは異なることに注意すること．採点プログラムのサンプルは単一のプロセスとして起動する．このプログラムは，標準入力から入力を読み込み，標準出力に結果を出力する．</p>
+<h4>採点プログラムのサンプルの入力</h4>
+<p>採点プログラムのサンプルは標準入力から以下の入力を読み込む．</p>
+<pre><var>N</var>
+<var>A_{0}</var> <var>B_{0}</var>
+<var>\vdots</var>
+<var>A_{N - 2}</var> <var>B_{N - 2}</var>
+</pre>
+<p><var>A_{i}, B_{i}</var> (<var>0 \leqq i \leqq N - 2</var>) は，島 <var>A_{i}</var> と島 <var>B_{i}</var> が直接橋で結ばれていることを表す．</p>
+<h4>採点プログラムのサンプルの出力</h4>
+<p>採点プログラムのサンプルは標準出力へ以下の情報を出力する (引用符は実際には出力されない)．</p>
+<ul>
+<li>正解の場合，関数 <code>Query</code> の呼び出し回数が “<code>Accepted: 100</code>” のように出力される．</li>
+<li>不正解の場合，不正解の種類が “<code>Wrong Answer [1]</code>” のように出力される．</li>
+</ul>
+<p>実行するプログラムが複数の不正解の条件を満たした場合，表示される不正解の種類はそれらのうち <var>1</var> つのみである．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<p><var>A_{i}, B_{i}</var> の意味については「採点プログラムのサンプルの入力」の項目を参照せよ．</p>
+<ul>
+<li><var>3 \leqq N \leqq 2\,000</var>．</li>
+<li><var>0 \leqq A_{i} &lt; B_{i} \leqq N - 1</var> (<var>0 \leqq i \leqq N - 2</var>)．</li>
+<li>どの島の間も，いくつかの橋を通って移動可能である．</li>
+<li>どの島に対しても，その島に直接つながっている橋の本数は <var>18</var> 本以下である．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>7</var> 点) <var>N \leqq 7</var>．</li>
+<li>(<var>10</var> 点) <var>N \leqq 50</var>．</li>
+<li>(<var>12</var> 点) <var>N \leqq 300</var>．</li>
+<li>(<var>71</var> 点) 追加の制約はない．</li>
+</ol>
+<!-- -->
+
+<ul>
+<li>小課題 <var>1, 2, 3</var> では，各小課題のすべてのテストケースに正解すると，満点が与えられる．</li>
+<li>小課題 <var>4</var> では，すべてのテストケースに正解したとき，各テストケースに対する関数 <code>Query</code> の呼び出し回数の最大値を <var>X</var> として，以下のように採点される．<ul>
+<li><var>40\,000 &lt; X \leqq 100\,000</var> のとき，<var>49</var> 点．</li>
+<li><var>X \leqq 40\,000</var> のとき，<var>71</var> 点．</li>
+</ul>
+</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>やり取りの例</h3>
+<p>採点プログラムのサンプルが読み込む入力の例と，それに対応する関数の呼び出しの例を以下に示す．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>5
+0 1
+0 2
+1 3
+1 4
+</pre>
+<h4>関数の呼び出しの例</h4>
+<div class="joisc2019-meetings-ja-table">
+<table>
+<thead>
+<tr>
+<th>呼び出し</th>
+<th>呼び出し</th>
+<th>戻り値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Solve(5)</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Query(0, 1, 2)</code></td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Query(0, 3, 4)</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Bridge(1, 3)</code></td>
+<td>(なし)</td>
+</tr>
+<tr>
+<td></td>
+<td><code>Bridge(0, 2)</code></td>
+<td>(なし)</td>
+</tr>
+<tr>
+<td></td>
+<td><code>Bridge(1, 4)</code></td>
+<td>(なし)</td>
+</tr>
+<tr>
+<td></td>
+<td><code>Bridge(0, 1)</code></td>
+<td>(なし)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<style>
+.joisc2019-meetings-ja-table { position:relative;max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisc2019-meetings-ja-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisc2019-meetings-ja-table th,.joisc2019-meetings-ja-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisc2019-meetings-ja-table th { background:#f5f5f5; }
+.joisc2019-meetings-ja-table code { white-space:nowrap; }
+</style></section>
+</div>
+</span>
+</span>
