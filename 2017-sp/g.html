@@ -1,0 +1,340 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>There is a long-distance coach between the city I and the city O. It has a water supply machine. Passengers and the driver can drink water from it. The coach departs from the city I at time 0, and arrives the city O at time <var>X</var>. On the route, there are <var>N</var> refilling points where we can put water into the machine. The coach will arrive at the <var>i</var>-th refilling point (<var>1 \le i \le N</var>) at time <var>S_{i}</var>.</p>
+<p>In the beginning, the machine does not have water in it. We can put water into it before departure. Also, we can put water into it when the coach is at a refilling point. The cost of water is <var>W</var> yen per liter regardless of the position of the coach.</p>
+<p>At the city I, <var>M</var> passengers get on the coach. The passengers are numbered from 1 to <var>M</var>. No passengers get on the coach at places other than the city I. The <var>j</var>-th passenger (<var>1 \le j \le M</var>) needs a liter of water at time <var>D_{j}</var>. If he drinks water, he will need a liter of water after a lapse of time <var>T</var>. In other words, the <var>j</var>-th passenger needs water at time <var>D_{j}+kT</var> (<var>k = 0, 1, 2, \ldots</var>). Here, <var>1 \le D_{j} &lt; T</var> is satisfied, and the value of <var>T</var> is the same for all passengers. If the machine does not have water in it when a passenger needs water, the passenger leaves the coach. If the <var>j</var>-th passenger leaves the coach before getting to the city O, we need to refund the fare. The cost for refund is <var>C_{j}</var> yen.</p>
+<p>The driver also needs water. If he drinks water, he will need a liter of water after a lapse of time <var>T</var>, just in the same way as passengers. In other words, the driver needs water at time <var>kT</var> (<var>k = 0, 1, 2, \ldots</var>). If the machine does not have water in it when the driver needs water, the operation of the coach is stopped</p>
+<p>No two people will need water at the same time. When the coach arrives at the city O or a refilling point, neither passengers nor the driver need water.</p>
+<p>Adjusting the amount of water put into machine at refilling points, we want to minimize the sum of the cost of water and the cost of refund, and to operate the coach until the city O. Your task is to decide where and how much we should put water into the water supply machine during the travel.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Task</h3>
+<p>Given the traveling time for the coach, information on refilling points, and information on passengers and the driver, write a program which calculates the minimum of the sum of the cost of water and the cost of refund assuming the coach gets to the city O.</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input.</p>
+<ul>
+<li>The first line of input contains five space separated integers <var>X, N, M, W, T</var>. This means the coach will arrive at the city O at time <var>X</var>, there are <var>N</var> refilling points, there are <var>M</var> passengers in the coach, the cost of water is <var>W</var> yen per liter, and the interval of time of water is <var>T</var> for passengers and the driver.</li>
+<li>The <var>i</var>-th line (<var>1 \le i \le N</var>) of the following <var>N</var> lines contains an integer <var>S_{i}</var>. This means the coach will arrive at the <var>i</var>-th refilling point at time <var>S_{i}</var>.</li>
+<li>The <var>j</var>-th line (<var>1 \le j \le M</var>) of the following <var>M</var> lines contains two space separated integers <var>D_{j},C_{j}</var>. This means the <var>j</var>-th passenger will need water at time <var>D_{j}</var> for the first time, and the cost for refund for the <var>j</var>-th passenger is <var>C_{j}</var>.</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>Write one line to the standard output. The output contains an integer, the minimum total cost.</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<p>All input data satisfy the following conditions.</p>
+<ul>
+<li><var>1 \le X \le 1\,000\,000\,000\,000</var>.</li>
+<li><var>1 \le N \le 200\,000</var>.</li>
+<li><var>1 \le M \le 200\,000</var>.</li>
+<li><var>1 \le W \le 1\,000\,000</var>.</li>
+<li><var>1 \le T \le X</var>.</li>
+<li><var>1 \le S_{i} &lt; X</var> (<var>1 \le i \le N</var>).</li>
+<li><var>1 \le D_{j} &lt; T</var> (<var>1 \le j \le M</var>).</li>
+<li><var>1 \le C_{j} \le 1\,000\,000\,000</var> (<var>1 \le j \le M</var>).</li>
+<li><var>D_{j}</var> (<var>1 \le j \le M</var>) are different from each other.</li>
+<li>When the coach arrives at the city O or a refilling point, neither passengers nor the driver need water.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtask</h3>
+<p>There are 4 subtasks. The score and additional constraints of each subtask are as follows:</p>
+<h4>Subtask 1 [<var>16</var> points]</h4>
+<ul>
+<li><var>N \le 8</var>.</li>
+<li><var>M \le 8</var>.</li>
+</ul>
+<h4>Subtask 2 [<var>30</var> points]</h4>
+<ul>
+<li><var>N \le 100</var>.</li>
+<li><var>M \le 100</var>.</li>
+</ul>
+<h4>Subtask 3 [<var>25</var> points]</h4>
+<ul>
+<li><var>N \le 2\,000</var>.</li>
+<li><var>M \le 2\,000</var>.</li>
+</ul>
+<h4>Subtask 4 [<var>29</var> points]</h4>
+<p>There are no additional constraints.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input and Output</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>19 1 4 8 7
+10
+1 20
+2 10
+4 5
+6 5
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>103
+</pre>
+<p>In this sample input, if we put 7 liters of water into the machine before departure, and 4 liters of water into the machine at the first refilling point, the coach will be operated as follows:</p>
+<ol>
+<li>The coach departs from the city I. At this time, the water supply machine has 7 liters of water.</li>
+<li>The driver and the passengers <var>1</var>, <var>2</var>, <var>3</var>, <var>4</var> drink 1 liter of water at time <var>0</var>, <var>1</var>, <var>2</var>, <var>4</var>, <var>6</var>, respectively. The remaining amount of water is 2 liters.</li>
+<li>The driver and the passenger <var>1</var> drink <var>1</var> liter of water at time <var>7, 8</var>, respectively. The remaining amount of water is 0 liter.</li>
+<li>At time 9, the passenger 2 needs water. But he leaves the coach because the machine does not have water in it.</li>
+<li>At time 10, we put 4 liters of water into the machine at the first refilling point. The remaining amount of water is 4 liters.</li>
+<li>The passengers <var>3</var>, <var>4</var>, the driver, and the passenger 1 drink 1 liter of water at time <var>11</var>, <var>13</var>, <var>14</var>, <var>15</var>, respectively. The remaining amount of water is 0 liter.</li>
+<li>At time 18, the passenger 3 needs water. But he leaves the coach because the machine does not have water in it.</li>
+<li>At time 19, the coach arrives at the city O.</li>
+</ol>
+<p>Total amount of water used is <var>11</var> liters. The cost of water is <var>88</var> yen. The sum of the cost of refund for the passengers <var>2</var>, <var>3</var> is 15 yen. The total sum is 103 yen.</p>
+<p>We output 103 because it is impossible to operate the coach if the total cost is less than or equal to 102 yen,</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>105 3 5 9 10
+59
+68
+71
+4 71
+6 32
+7 29
+3 62
+2 35
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>547
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 3</h3>
+<pre>1000000000000 1 1 1000000 6
+999999259244
+1 123456789
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 3</h3>
+<pre>333333209997456789
+</pre></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>IOI 国には都市 I と都市 O を結ぶ長距離バスが走っている．バスの車内には給水器が設置されており，乗客や運転手は水を飲むことができる．バスは時刻 <var>0</var> に都市 I を出発し，時刻 <var>X</var> に都市 O に到着する．途中には，水を補給できる地点が <var>N</var> 個ある．バスが <var>i</var> 番目 (<var>1 \leqq i \leqq N</var>) の補給地点を訪れる時刻は <var>S_{i}</var> である．</p>
+<p>最初，給水器には水は入っていない．バスの出発前に水を補給することができる．また，補給地点においても水を補給することができる．水を補給するコストは，場所によらず，<var>1</var> リットルあたり <var>W</var> 円である．</p>
+<p>このバスには都市 I で <var>M</var> 人の乗客が乗車し，乗客には <var>1</var> から <var>M</var> の番号が付けられている．都市 I 以外の場所では，新たな乗客が乗車することはない．乗客 <var>j</var> (<var>1 \leqq j \leqq M</var>) は時刻 <var>D_{j}</var> に <var>1</var> リットルの水を必要とする．また，水を必要としてから時間 <var>T</var> が経過する度に，再び <var>1</var> リットルの水を必要とする．すなわち，乗客 <var>j</var> が水を必要とするのは，時刻 <var>D_{j}+kT</var> (<var>k = 0, 1, 2, \ldots</var>) においてである．ここで，<var>1 \leqq D_{j} &lt; T</var> であり， <var>T</var> の値は乗客によらず一定である．乗客が水を必要としたときに給水器に水が残っていないと，その乗客は途中下車してしまう．乗客 <var>j</var> が都市 O に到着する前に途中下車した場合，運賃の払い戻しとして <var>C_{j}</var> 円のコストがかかる．</p>
+<p>運転手も水を必要とする．運転手は時刻 <var>0</var> に <var>1</var> リットルの水を必要とし，乗客と同様，水を必要としてから時間 <var>T</var> が経過する度に，再び <var>1</var> リットルの水を必要とする．すなわち，運転手が水を必要とするのは，時刻 <var>kT</var> (<var>k = 0, 1, 2, \ldots</var>) においてである．運転手が水を必要としたときに給水器に水が残っていないと，バスの運行を続けることができない．</p>
+<p><var>2</var> 人以上の人が同時に水を必要とすることはない．また，バスが都市 O や補給地点を訪れると同時に，乗客や運転手が水を必要とすることはない．</p>
+<p>補給地点における水の補給量を調整することで，水の補給にかかるコストと，運賃の払い戻しにかかるコストの合計を小さくして，バスを都市 O まで運行したい．あなたの仕事は，バスの運行中に，どの地点でどれだけ水を補給するかを決定することである．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p>バスの運行にかかる時間，補給地点の情報，乗客および運転手の情報が与えられたとき，バスを都市 O まで運行するための，水の補給にかかるコストと，運賃の払い戻しにかかるコストの合計の最小値を求めるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>標準入力から以下のデータを読み込め．</p>
+<ul>
+<li><var>1</var> 行目には，<var>5</var> 個の整数 <var>X, N, M, W, T</var> が空白を区切りとして書かれている．これは，バスが時刻 <var>X</var> に都市 O に到着し，補給地点が <var>N</var> 個あり，バスに乗客が <var>M</var> 人いて，水 <var>1</var> リットルの補給にかかるコストが <var>W</var> 円であって，乗客や運転手が水を必要とする間隔が <var>T</var> であることを表す．</li>
+<li>続く <var>N</var> 行のうちの <var>i</var> 行目 (<var>1 \leqq i \leqq N</var>) には，整数 <var>S_{i}</var> が書かれている．これは，バスが <var>i</var> 番目の補給地点を訪れるのが時刻 <var>S_{i}</var> であることを表す．</li>
+<li>続く <var>M</var> 行のうちの <var>j</var> 行目 (<var>1 \leqq j \leqq M</var>) には，<var>2</var> 個の整数 <var>D_{j},C_{j}</var> が空白を区切りとして書かれている．これは，乗客 <var>j</var> が最初に水を必要とする時刻が <var>D_{j}</var> であることと，乗客 <var>j</var> が途中下車した場合のコストが <var>C_{j}</var> 円であることを表す．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に，必要なコストの合計の最小値を表す整数を <var>1</var> 行で出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制限</h3>
+<p>すべての入力データは以下の条件を満たす．</p>
+<ul>
+<li><var>1 \leqq X \leqq 1\,000\,000\,000\,000</var>．</li>
+<li><var>1 \leqq N \leqq 200\,000</var>．</li>
+<li><var>1 \leqq M \leqq 200\,000</var>．</li>
+<li><var>1 \leqq W \leqq 1\,000\,000</var>．</li>
+<li><var>1 \leqq T \leqq X</var>．</li>
+<li><var>1 \leqq S_{i} &lt; X</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>1 \leqq D_{j} &lt; T</var> (<var>1 \leqq j \leqq M</var>)．</li>
+<li><var>1 \leqq C_{j} \leqq 1\,000\,000\,000</var> (<var>1 \leqq j \leqq M</var>)．</li>
+<li><var>D_{j}</var> (<var>1 \leqq j \leqq M</var>) は互いに異なる．</li>
+<li>バスが都市 O や補給地点を訪れると同時に乗客や運転手が水を必要とすることはない．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<p>この課題では小課題は全部で <var>4</var> 個ある．各小課題の配点および追加の制限は以下の通りである．</p>
+<h4>小課題 1 [<var>16</var> 点]</h4>
+<ul>
+<li><var>N \leqq 8</var>．</li>
+<li><var>M \leqq 8</var>．</li>
+</ul>
+<h4>小課題 2 [<var>30</var> 点]</h4>
+<ul>
+<li><var>N \leqq 100</var>．</li>
+<li><var>M \leqq 100</var>．</li>
+</ul>
+<h4>小課題 3 [<var>25</var> 点]</h4>
+<ul>
+<li><var>N \leqq 2\,000</var>．</li>
+<li><var>M \leqq 2\,000</var>．</li>
+</ul>
+<h4>小課題 4 [<var>29</var> 点]</h4>
+<p>追加の制限はない．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入出力例</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>19 1 4 8 7
+10
+1 20
+2 10
+4 5
+6 5
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>103
+</pre>
+<p>この入力例において，出発前に <var>7</var> リットル，<var>1</var> 番目の補給地点で <var>4</var> リットルの水を補給する場合，バスの運行は次のように行われる．</p>
+<ol>
+<li>バスが都市 I を出発する．この時点で給水器には <var>7</var> リットルの水が入っている．</li>
+<li>運転手および乗客 <var>1, 2, 3, 4</var> がそれぞれ時刻 <var>0, 1, 2, 4, 6</var> に水を <var>1</var> リットルずつ飲み，残りの水量は <var>2</var> リットルになる．</li>
+<li>運転手および乗客 <var>1</var> がそれぞれ時刻 <var>7, 8</var> に再び水を <var>1</var> リットルずつ飲み，残りの水量は <var>0</var> リットルになる．</li>
+<li>時刻 <var>9</var> に乗客 <var>2</var> が水を必要とするが，給水器に水が無いので途中下車する．</li>
+<li>時刻 <var>10</var> に <var>1</var> 番目の補給地点で水を <var>4</var> リットル補給する．残りの水量は <var>4</var> リットルになる．</li>
+<li>乗客 <var>3, 4</var>，運転手，および乗客 <var>1</var> がそれぞれ時刻 <var>11, 13, 14, 15</var> に水を <var>1</var> リットルずつ飲み，残りの水量は <var>0</var> リットルになる．</li>
+<li>時刻 <var>18</var> に乗客 <var>3</var> が水を必要とするが，給水器に水が無いので途中下車する．</li>
+<li>時刻 <var>19</var> にバスが都市 O に到着する．</li>
+</ol>
+<p>水の補給は計 <var>11</var> リットル行われるため給水にかかるコストは <var>88</var> 円である．乗客 <var>2, 3</var> が途中下車するコストは合計で <var>15</var> 円である．これらの合計は <var>103</var> 円である</p>
+<p><var>102</var> 円以下の合計コストでバスを最後まで運行することはできないので，<var>103</var> を出力する．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>105 3 5 9 10
+59
+68
+71
+4 71
+6 32
+7 29
+3 62
+2 35
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>547
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>1000000000000 1 1 1000000 6
+999999259244
+1 123456789
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>333333209997456789
+</pre></section>
+</div>
+</span>
+</span>

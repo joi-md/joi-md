@@ -1,0 +1,741 @@
+<span class="lang">
+<span class="lang-en">
+<blockquote>
+<p><strong>Submission on AtCoder</strong></p>
+<p>Use C++, include <code>Broken_device_lib.h</code>, and implement both <code>Anna</code> and <code>Bruno</code> in a single source file.</p>
+<p><a href="https://img.atcoder.jp/joisc2017/broken_device-dist-92c3463d37.zip">Distributed files</a></p>
+</blockquote>
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>Anna and Bruno are archaeologists. They are investigating ruins in Iran.</p>
+<p>Their tasks are as follows: Anna visits ruins and discovers artifacts, and Bruno analyzes the results in the base camp.</p>
+<p>Their investigation is scheduled for <var>Q(= 1\,000)</var> days. Every day, Anna sends the results to Bruno using a communication device. The results for each day is expressed as an integer <var>X</var>.</p>
+<p>Anna can use the communication device once per day only. It can send a sequence of length <var>N (= 150)</var> consisting of 0 or 1.</p>
+<p>However, it was broken. There are several broken places in the sequence of length <var>N</var>. For a broken place, it always sends the value 0 regardless of the actual set value. When Anna sends a sequence, she can see the positions of the broken places. But, Bruno does not know them. The positions of broken places and the number of broken places can change every day.</p>
+<p>There is a danger that their investigation will be delayed. Because you are a candidate of a contestant of an international programming contest in Iran, Anna and Bruno ask you to write a program which sends the results of their investigation.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Task</h3>
+<p>Write two programs which achieve the communication between Anna and Bruno.</p>
+<ul>
+<li>Given the length of the sequence <var>N</var>, the integer to be sent <var>X</var>, the number of broken places <var>K</var>, and the positions of broken places <var>P</var>, the first program sets the sequence <var>S</var> sent by Anna.</li>
+<li>Given the sequence <var>A</var> received by Bruno, the second program recovers the integer <var>X</var>.</li>
+</ul>
+<p>At a place where the communication device works, the sequence <var>S</var> and the sequence <var>A</var> have the same value. At a broken place, the sequence <var>A</var> always has the value 0 regardless of the values of the sequence <var>S</var>.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Implementation Details</h3>
+<p>You need to submit two files written by the same programming language. The first file is either <code>Anna.c</code> or <code>Anna.cpp</code>. This file sets a sequence sent by Anna, and implements the following function. The program should include <code>Annalib.h</code>.</p>
+<ul>
+<li>
+<p><code>void Anna( int N, long long X, int K, int P[] )</code>
+    For each test case, this function is called <var>Q = 1\,000</var> times.</p>
+<ul>
+<li>The parameter <code>N</code> is the length of the sequence to be sent.</li>
+<li>The parameter <code>X</code> is the integer to be sent.</li>
+<li>The parameter <code>K</code> is the number of broken places.</li>
+<li>The parameter <code>P[]</code> is a sequence of length <var>K</var>, describing the positions of broken places.</li>
+</ul>
+<p>In the function <code>Anna</code>, the following function must be called.</p>
+<ul>
+<li><code>void Set( int pos, int bit )</code>
+    This function sets a bit in the sequence <var>S</var> to be sent by the communication device.<ul>
+<li>The parameter <code>pos</code> is the position of the place to be set. <code>pos</code> must be an integer between <var>0</var> and <var>N - 1</var>, inclusive. Note that the positions are counted from <var>0</var>. If it is called with parameter outside this range, your program is considered as Wrong Answer[1]. It is not allowed to call this function more than once with the same parameter <code>pos</code>. If it is called more than once with the same parameter, your program is considered as Wrong Answer[2].</li>
+<li>The parameter <code>bit</code> is the value set to the <code>pos</code>-th position of the sequence. The value of <code>bit</code> must be either 0 or 1. If it is called with other parameters, your program is considered as Wrong Answer[3].</li>
+</ul>
+</li>
+</ul>
+<p>The function <code>Set</code> must be called exactly <var>N</var> times in the function <code>Anna</code>. When function <code>Anna</code> terminates, if the number of times the function <code>Set</code> is called is different from <var>N</var>, your program is considered as Wrong Answer[4].</p>
+<p>Your program is terminated if the function call by <code>Anna</code> is considered invalid.</p>
+</li>
+</ul>
+<p>The second file is either <code>Bruno.c</code> or <code>Bruno.cpp</code>. This file recovers the integer expressing the results of investigation, and implements the following function. The program should include <code>Brunolib.h</code>.</p>
+<ul>
+<li><code>long long Bruno( int N, int A[] )</code>
+    For each test case, this function is called <var>Q = 1\,000</var> times.<ul>
+<li>The parameter <code>N</code> is the length of the sequence received by Bruno.</li>
+<li>The parameter <code>A</code> is an integer sequence of length <var>N</var>. It is the sequence received by Bruno.</li>
+<li>The function <code>Bruno</code> must recover the value of <var>X</var>, and return it.</li>
+</ul>
+</li>
+</ul>
+<h4>Grading Procedure</h4>
+<p>The grading is done in the following way. If your program is considered as Wrong Answer, it is terminated immediately.</p>
+<ol>
+<li>Set <var>\texttt{cnt} = 0</var>.</li>
+<li>Call the function <code>Anna</code> once.</li>
+<li>Let <var>S</var> be the sequence set by the function <code>Anna</code>. In the sequence <var>S</var>, set the value 0 to the positions in <var>P</var>, and obtain the sequence <var>A</var>. Call the function <code>Bruno</code> once with parameter <var>A</var>.</li>
+<li>Set <var>\texttt{cnt} = \texttt{cnt} + 1</var>. If <var>\texttt{cnt} &lt; Q</var>, go to (2). If <var>\texttt{cnt} = Q</var>, go to (5).</li>
+<li>Your program will be scored.</li>
+</ol>
+<h4>Important Notices</h4>
+<ul>
+<li>Running time and memory usage are calculated for (1), (2), (3), (4) of Grading Procedure.</li>
+<li>Your program must not be considered as Wrong Answer in the function call to <code>Anna</code> in (2) or <code>Bruno</code> in (3). Your program must be executed without runtime error.</li>
+<li>Your program can implement other functions for internal use, or use global variables. Submitted programs will be compiled with the grader, and become a single executable file. All global variables and internal functions should be declared <code>static</code> to avoid confliction with other files. Since the programs of Anna and Bruno will be executed as 2 distinct processes when they are graded, they can not share global variables.</li>
+<li>In the process, each of the functions <code>Anna</code> and <code>Bruno</code> is called <var>Q = 1\,000</var> times. The variables used by your programs should be initialized appropriately.</li>
+<li>Your program should not use standard input and standard output. Your program should not communicate with other files by any methods.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Compilation and Test Run</h3>
+<p>You can download an archive file from the contest webpage which contains a sample grader to test your program. The archive file also contains a sample source file of your program.</p>
+<p>A sample grader consists of one source file which is either <code>grader.c</code> or <code>grader.cpp</code>. For example, if your programs are <code>Anna.c</code> and <code>Bruno.c</code>, or <code>Anna.cpp</code> and <code>Bruno.cpp</code>, you run the following commands to compile your programs.</p>
+<ul>
+<li>C</li>
+</ul>
+<pre>gcc -std=c11 -O2 -o grader grader.c Anna.c Bruno.c -lm
+</pre>
+<ul>
+<li>C++</li>
+</ul>
+<pre>g++ -std=c++14 -O2 -o grader grader.cpp Anna.cpp Bruno.cpp
+</pre>
+<p>When the compilation succeeds, the executable file <code>grader</code> is generated. Note that the actual grader is different from the sample grader. The sample grader will be executed as a single process, which will read input data from the standard input and write the results to the standard output.</p>
+<h4>Input for the sample grader</h4>
+<p>The sample grader reads the following data from the standard input.</p>
+<ul>
+<li>The first line contains an integer <var>Q</var>.</li>
+<li>Then, information of <var>Q</var> queries are given.</li>
+<li>Information of each query consists of two lines as follows.<ul>
+<li>The first line contains three space separated integers <var>N, X, K</var>. This means the length of the sequence to be sent is <var>N</var>, the integer to be sent by Anna is <var>X</var>, and there are <var>K</var> broken places.</li>
+<li>The second line contains <var>K</var> space separated integers <var>P_{0}, P_{1}, \cdots, P_{K - 1}</var>. This means, for each <var>i</var> (<var>0 \le i \le K - 1</var>), the <var>P_{i}</var>-th place in the sequence is broken.</li>
+</ul>
+</li>
+</ul>
+<h4>Output of the sample grader</h4>
+<p>When the program terminates successfully, the sample grader writes the following information to the standard output. (The quotation mark is not written actually.)</p>
+<ul>
+<li>If your program is considered as Wrong Answer, the sample grader writes its type in the following form “Wrong Answer [1],” and your program is terminated.</li>
+<li>If every function call to <code>Anna</code> is not considered as Wrong Answer, the sample grader writes “<code>Accepted</code>” and the value of <var>L^{\ast}</var>. For the value of <var>L^{\ast}</var>, see Scoring.</li>
+</ul>
+<p>If your program is considered as several types of Wrong Answer, the sample grader reports only one of them.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<p>All input data satisfy the following conditions.</p>
+<ul>
+<li><var>Q = 1000</var>.</li>
+<li><var>N = 150</var>.</li>
+<li><var>0 \le X \le 1\,000\,000\,000\,000\,000\,000</var>.</li>
+<li><var>1 \le K \le 40</var>.</li>
+<li><var>0 \le P_{i} \le N - 1</var> (<var>0 \le i \le K - 1</var>).</li>
+<li><var>P_{i} &lt; P_{i+1}</var> (<var>0 \le i \le K - 2</var>).</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Scoring</h3>
+<ul>
+<li>Let <var>L^{\ast}</var> be the minimum of the following value for all test cases of this task.<ul>
+<li>The maximum integer <var>L\le40</var> such that, for every query with <var>K\le L</var>, Bruno answers the correct value of <var>X</var>.</li>
+</ul>
+</li>
+<li>The score of this task is calculated by the following way:<ul>
+<li>If <var>L^{\ast}=0</var>, the score is <var>0</var> point.</li>
+<li>If <var>1\le L^{\ast}\le14</var>, the score is <var>8</var> points.</li>
+<li>If <var>15\le L^{\ast}\le37</var>, the score is <var>(L^{\ast} - 15)\times2+41</var> points.</li>
+<li>If <var>38\le L^{\ast}\le40</var>, the score is <var>(L^{\ast} - 38)\times5+90</var> points.</li>
+</ul>
+</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Communication</h3>
+<p>Here is a sample input for grader and corresponding function calls. Note that the following example does not satisfy the constraints of this task because <var>Q = 2</var>, <var>N = 3</var>.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input</h3>
+<pre>2
+3 14 1
+2
+3 9 2
+0 1
+</pre>
+<h4>Sample Calls</h4>
+<div class="joisc2017-broken-device-en-table">
+<table>
+<thead>
+<tr>
+<th>Call</th>
+<th>Return</th>
+<th>Call</th>
+<th>Return</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Anna(...)</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>Set(0,0)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>(none)</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>Set(1,0)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>(none)</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>Set(2,1)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>(none)</td>
+</tr>
+<tr>
+<td></td>
+<td>(none)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Bruno(...)</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>14</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Anna(...)</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>Set(0,0)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>(none)</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>Set(1,1)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>(none)</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>Set(2,1)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>(none)</td>
+</tr>
+<tr>
+<td><code>Bruno(...)</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>9</code></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Here the parameters for <code>Anna(...)</code>, <code>Bruno(...)</code>, <code>Anna(...)</code>, <code>Bruno(...)</code> are as follows.</p>
+<div class="joisc2017-broken-device-en-table">
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th><code>Anna(...)</code></th>
+<th><code>Bruno(...)</code></th>
+<th><code>Anna(...)</code></th>
+<th><code>Bruno(...)</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>N</code></td>
+<td><var>3</var></td>
+<td><var>3</var></td>
+<td><var>3</var></td>
+<td><var>3</var></td>
+</tr>
+<tr>
+<td><code>X</code></td>
+<td><var>14</var></td>
+<td></td>
+<td><var>9</var></td>
+<td></td>
+</tr>
+<tr>
+<td><code>K</code></td>
+<td><var>1</var></td>
+<td></td>
+<td><var>2</var></td>
+<td></td>
+</tr>
+<tr>
+<td><code>P</code></td>
+<td><var>\{ 2\}</var></td>
+<td></td>
+<td><var>\{ 0, 1\}</var></td>
+<td></td>
+</tr>
+<tr>
+<td><code>A</code></td>
+<td></td>
+<td><var>\{ 0, 0, 0\}</var></td>
+<td></td>
+<td><var>\{ 0, 0, 1\}</var></td>
+</tr>
+</tbody>
+</table>
+</div>
+<style>
+.joisc2017-broken-device-en-table { position:relative; max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisc2017-broken-device-en-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisc2017-broken-device-en-table th,.joisc2017-broken-device-en-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisc2017-broken-device-en-table th { background:#f5f5f5; }
+.joisc2017-broken-device-en-table code { white-space:nowrap; }
+</style>
+
+<style>
+.joisc2017-broken-device-en-table .katex {position:relative;}
+</style></section>
+</div>
+</span>
+<span class="lang-ja">
+<blockquote>
+<p><strong>AtCoder での提出方法</strong></p>
+<p>C++ を使用し，<code>Broken_device_lib.h</code> をインクルードして，<code>Anna</code> と <code>Bruno</code> を 1 つのファイルに実装して提出してください．</p>
+<p><a href="https://img.atcoder.jp/joisc2017/broken_device-dist-92c3463d37.zip">配布ファイル</a></p>
+</blockquote>
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>考古学者の Anna と Bruno はイランで遺跡調査を行っている．</p>
+<p>二人の役割分担は，Anna が遺跡に出向いて発掘し，Bruno はベースキャンプで発掘結果の解析を行うというものである．</p>
+<p>発掘は <var>Q(= 1\,000)</var> 日間に渡って行われる．毎日，Anna は通信機器を用いて Bruno に発掘結果を伝える． <var>1</var> 日の発掘結果は，<var>1</var> つの整数 <var>X</var> で表される． Anna は通信機器を <var>1</var> 日に <var>1</var> 回だけ使うことができる．通信機器は <var>0</var> または <var>1</var> からなる長さ <var>N(= 150)</var> の数列を一度に送信することができる．</p>
+<p>ところが，通信機器が壊れてしまい，送信する長さ <var>N</var> の数列のうち，機能しない箇所が発生するようになった．機能しない箇所については，どのように設定しても値が <var>0</var> として送信されてしまう．Anna は通信機器のどの箇所が機能しないかを送信前に確認できるが，Bruno は確認できない．また，機能しない箇所やその個数は，毎日，異なるかもしれない．</p>
+<p>このままでは遺跡調査に遅れが出てしまうので，Anna と Bruno はイランで開催される国際的なプログラミングコンテストの選手候補であるあなたに，発掘結果を伝えるためのプログラムを書くことを依頼した．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p>Anna と Bruno の通信を実現するために，次の <var>2</var> つのプログラムを作成せよ．</p>
+<ul>
+<li><var>1</var> つ目のプログラムは，送信する数列の長さ <var>N</var>，伝えるべき整数 <var>X</var>，機能しない箇所の個数 <var>K</var> とその位置の情報 <var>P</var> が与えられたとき，Anna が送信する数列 <var>S</var> の情報を設定する．</li>
+<li><var>2</var> つ目のプログラムは，Bruno が受信する数列 <var>A</var> の情報が与えられたとき，整数 <var>X</var> を復元する．</li>
+</ul>
+<p>通信機器が機能している箇所においては，数列 <var>S</var> と数列 <var>A</var> は同じ値である．通信機器が機能しない箇所においては，数列 <var>S</var> の値に関わらず，数列 <var>A</var> の値は <var>0</var> である．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>実装の詳細</h3>
+<p>あなたは同じプログラミング言語で <var>2</var> つのファイルを提出しなければならない．</p>
+<p><var>1</var> つ目のファイルは <code>Anna.c</code> または <code>Anna.cpp</code> という名前である．このファイルは Anna が送信する数列を設定するファイルであり，以下のルーチンを実装していなければならない．プログラムは <code>Annalib.h</code> をインクルードすること．</p>
+<ul>
+<li>
+<p><code>void Anna( int N, long long X, int K, int P[] )</code>
+    この関数は各テストケースにおいて <var>Q = 1\,000</var> 回だけ呼び出される．</p>
+<ul>
+<li>引数 <code>N</code> は送信する数列の長さを表す．</li>
+<li>引数 <code>X</code> は伝えるべき整数を表す．</li>
+<li>引数 <code>K</code> は機能しない箇所の個数を表す．</li>
+<li>引数 <code>P[]</code> は長さ <var>K</var> の数列であり，機能しない箇所を表す．</li>
+</ul>
+<p>関数 <code>Anna</code> 中では以下の関数を呼び出さなければならない．</p>
+<ul>
+<li><code>void Set( int pos, int bit )</code>
+    この関数は，通信機器に数列 <var>S</var> の一箇所を設定する操作を表す．<ul>
+<li>引数 <code>pos</code> は設定する数列の場所を表す．<code>pos</code> は <var>0</var> 以上 <var>N - 1</var> 以下の整数値でなければならない．場所を <var>0</var> から数えることに注意せよ．この範囲外の値を指定して呼び出した場合，不正解 [1] と判定される．また，同じ引数 <code>pos</code> で <var>2</var> 回以上呼び出すことはできない．同じ引数で <var>2</var> 回呼び出した場合，不正解 [2] と判定される．</li>
+<li>引数 <code>bit</code> は数列の <code>pos</code> 番目の箇所に設定する値を表す．<code>bit</code> は <var>0</var> または <var>1</var> でなければならない．これら以外の値を指定して呼び出した場合，不正解 [3] と判定される．</li>
+</ul>
+</li>
+</ul>
+<p>関数 <code>Anna</code> 中では，関数 <code>Set</code> をちょうど <var>N</var> 回呼び出さなければなさない．関数 <code>Anna</code> の実行の終了時に関数 <code>Set</code> の呼び出し回数が <var>N</var> でなかった場合，不正解 [4] と判定される．</p>
+<p><code>Anna</code> の呼び出しが不正解と判定された場合，その時点でプログラムは終了する．</p>
+</li>
+</ul>
+<p><var>2</var> つ目のファイルは <code>Bruno.c</code> または <code>Bruno.cpp</code> という名前である．このファイルは発掘結果を表す整数の復元方法を実装したファイルであり，以下のルーチンを実装していなければならない．プログラムは <code>Brunolib.h</code> をインクルードすること．</p>
+<ul>
+<li><code>long long Bruno( int N, int A[] )</code>
+    この関数は各テストケースにおいて <var>Q = 1\,000</var> 回だけ呼び出される．<ul>
+<li>引数 <code>N</code> は受信した数列の長さを表す．</li>
+<li>引数 <code>A</code> は長さ <var>N</var> の数列であり，受信した数列を表す．</li>
+<li>関数 <code>Bruno</code> は復元した <var>X</var> の値を戻り値として返さなければならない．</li>
+</ul>
+</li>
+</ul>
+<h4>採点の手順</h4>
+<p>採点は以下の手順で行われる．不正解と判定された場合はその時点でプログラムは終了される．</p>
+<ol>
+<li><var>\texttt{cnt} = 0</var> とする．</li>
+<li>関数 <code>Anna</code> を <var>1</var> 回呼び出す．</li>
+<li>関数 <code>Anna</code> 中で設定された数列を <var>S</var> とする．<var>S</var> のうち，<var>P</var> に含まれる箇所を <var>0</var> に変更したものを引数 <var>A</var> の値とし，関数 <code>Bruno</code> を <var>1</var> 回呼び出す．</li>
+<li><var>\texttt{cnt} = \texttt{cnt} + 1</var> とする．<var>\texttt{cnt} &lt; Q</var> ならば (2) へ戻る．<var>\texttt{cnt} = Q</var> ならば (5) へ進む．</li>
+<li>採点される．</li>
+</ol>
+<h4>重要な注意</h4>
+<ul>
+<li>実行時間計測・使用メモリ計測の対象となるのは，「採点の手順」における手順 (1), (2), (3), (4) である．</li>
+<li>手順 (2) における <code>Anna</code> の呼び出し，および手順 (3) における <code>Bruno</code> の呼び出しにおいて，不正解と判定されたり，実行時エラーとなったりしてはならない．</li>
+<li>内部での使用のために他のルーチンを実装したり，グローバル変数を宣言するのは自由である．ただし，提出された <var>2</var> つのプログラムは，採点プログラムとまとめてリンクされて <var>1</var> つの実行ファイルになるので，各ファイル内のすべてのグローバル変数と内部ルーチンを <code>static</code> で宣言して，他のファイルとの干渉を避ける必要がある．採点時には，このプログラムは Anna 側，Bruno 側として <var>2</var> 個のプロセスとして実行されるので，Anna 側と Bruno 側でプログラム中のグローバル変数を共有することはできない．</li>
+<li>関数 <code>Anna</code> と <code>Bruno</code> はプロセスの実行中に <var>Q = 1\,000</var> 回ずつ呼びだされるので，適切に変数を初期化しなければならない．</li>
+<li>あなたの提出は標準入力・標準出力，あるいは他のファイルといかなる方法でもやりとりしてはならない．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>コンパイル・実行の方法</h3>
+<p>作成したプログラムをテストするための，採点プログラムのサンプルが，コンテストサイトからダウンロードできるアーカイブの中に含まれている．このアーカイブには，提出しなければならないファイルのサンプルも含まれている．</p>
+<p>採点プログラムのサンプルは <var>1</var> つのファイルからなる．そのファイルは <code>grader.c</code> または <code>grader.cpp</code> である．作成したプログラムを <code>Anna.c</code> および <code>Bruno.c</code>，または <code>Anna.cpp</code> および <code>Bruno.cpp</code> とするとき，作成したプログラムをテストするには，次のようにコマンドを実行する．</p>
+<ul>
+<li>C の場合</li>
+</ul>
+<pre>gcc -std=c11 -O2 -o grader grader.c Anna.c Bruno.c -lm
+</pre>
+<ul>
+<li>C++ の場合</li>
+</ul>
+<pre>g++ -std=c++14 -O2 -o grader grader.cpp Anna.cpp Bruno.cpp
+</pre>
+<p>コンパイルが成功すれば，<code>grader</code> という実行ファイルが生成される．</p>
+<p>実際の採点プログラムは，採点プログラムのサンプルとは異なることに注意すること．採点プログラムのサンプルは単一のプロセスとして起動する．このプログラムは，標準入力から入力を読み込み，標準出力に結果を出力する．</p>
+<h4>採点プログラムのサンプルの入力</h4>
+<p>採点プログラムのサンプルは標準入力から以下の入力を読み込む．</p>
+<ul>
+<li><var>1</var> 行目には <var>1</var> つの整数 <var>Q</var> が書かれている．</li>
+<li>続いて，<var>Q</var> 個のクエリの情報が与えられる．</li>
+<li>各クエリの情報は <var>2</var> 行からなる．各クエリの情報は以下の通り．<ul>
+<li><var>1</var> 行目には <var>3</var> 個の整数 <var>N,X,K</var> が空白を区切りとして書かれている．これは送信する数列の長さが <var>N</var>，Anna が伝えるべき整数が <var>X</var>，機能しない箇所の個数が <var>K</var> であることを表す．</li>
+<li><var>2</var> 行目には <var>K</var> 個の整数 <var>P_0,P_1,\ldots,P_{K - 1}</var> が空白を区切りとして書かれている．これは，各 <var>i\ {}</var> (<var>0\leqq i\leqq K - 1</var>) について，送信する数列の <var>P_i</var> 番目の箇所が機能しないことを表す．</li>
+</ul>
+</li>
+</ul>
+<h4>採点プログラムのサンプルの出力</h4>
+<p>採点プログラムのサンプルは標準出力へ以下の情報を出力する（引用符は実際には出力されない）．</p>
+<ul>
+<li>プログラムの実行中にいずれかの不正解と判定された場合，不正解の種類が “<code>Wrong Answer [1]</code>” のように出力され，実行が終了される．</li>
+<li>各 <code>Anna</code> の呼び出しが不正解と判定されなかった場合，“<code>Accepted</code>” と出力される．また，<var>L^{\ast}</var> の値が出力される ．<var>L^{\ast}</var> の値については，採点基準の項を参照せよ．</li>
+</ul>
+<p>実行するプログラムが複数の不正解の条件を満たした場合，表示される不正解の種類はそれらのうち <var>1</var> つのみである．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>制限</h3>
+<p>すべての入力データは以下の条件を満たす．</p>
+<ul>
+<li><var>Q = 1000</var>．</li>
+<li><var>N = 150</var>．</li>
+<li><var>0 \leqq X \leqq 1\,000\,000\,000\,000\,000\,000</var>．</li>
+<li><var>1 \leqq K \leqq 40</var>．</li>
+<li><var>0 \leqq P_{i} \leqq N - 1</var> (<var>0 \leqq i \leqq K - 1</var>)．</li>
+<li><var>P_{i} &lt; P_{i+1}</var> (<var>0 \leqq i \leqq K - 2</var>)．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>採点基準</h3>
+<ul>
+<li>この課題の全てのテストケースにおける以下の値の最小値を <var>L^{\ast}</var> とする．<ul>
+<li><var>K\leqq L</var> を満たす全てのクエリについて Bruno が <var>X</var> と等しい整数を返すような最大の整数 <var>L\leqq40</var>．</li>
+</ul>
+</li>
+<li>このとき，この課題の得点は以下のように与えられる．<ul>
+<li><var>L^{\ast}=0</var> のとき，<var>0</var> 点．</li>
+<li><var>1\leqq L^{\ast}\leqq14</var> のとき，<var>8</var> 点．</li>
+<li><var>15\leqq L^{\ast}\leqq37</var> のとき，<var>(L^{\ast} - 15)\times2+41</var> 点．</li>
+<li><var>38\leqq L^{\ast}\leqq40</var> のとき，<var>(L^{\ast} - 38)\times5+90</var> 点．</li>
+</ul>
+</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>やり取りの例</h3>
+<p>grader が読み込む入力の例と，それに対応する関数の呼び出しの例を以下に示す．この例では <var>Q = 2</var>，<var>N = 3</var> なので，課題の制約は満たしていないことに注意せよ．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例</h3>
+<pre>2
+3 14 1
+2
+3 9 2
+0 1
+</pre>
+<h4>ルーチンの呼び出しの例</h4>
+<div class="joisc2017-broken-device-ja-table">
+<table>
+<thead>
+<tr>
+<th>呼び出し</th>
+<th>戻り値</th>
+<th>呼び出し</th>
+<th>戻り値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Anna(...)</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>Set(0,0)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>(なし)</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>Set(1,0)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>(なし)</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>Set(2,1)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>(なし)</td>
+</tr>
+<tr>
+<td></td>
+<td>(なし)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Bruno(...)</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>14</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Anna(...)</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>Set(0,0)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>(なし)</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>Set(1,1)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>(なし)</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><code>Set(2,1)</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>(なし)</td>
+</tr>
+<tr>
+<td><code>Bruno(...)</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>9</code></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>このとき，<code>Anna(...)</code>，<code>Bruno(...)</code>, <code>Anna(...)</code>，<code>Bruno(...)</code> に渡される引数はそれぞれ次の通りである．</p>
+<div class="joisc2017-broken-device-ja-table">
+<table>
+<thead>
+<tr>
+<th>引数</th>
+<th><code>Anna(...)</code></th>
+<th><code>Bruno(...)</code></th>
+<th><code>Anna(...)</code></th>
+<th><code>Bruno(...)</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>N</code></td>
+<td><var>3</var></td>
+<td><var>3</var></td>
+<td><var>3</var></td>
+<td><var>3</var></td>
+</tr>
+<tr>
+<td><code>X</code></td>
+<td><var>14</var></td>
+<td></td>
+<td><var>9</var></td>
+<td></td>
+</tr>
+<tr>
+<td><code>K</code></td>
+<td><var>1</var></td>
+<td></td>
+<td><var>2</var></td>
+<td></td>
+</tr>
+<tr>
+<td><code>P</code></td>
+<td><var>\{ 2\}</var></td>
+<td></td>
+<td><var>\{ 0, 1\}</var></td>
+<td></td>
+</tr>
+<tr>
+<td><code>A</code></td>
+<td></td>
+<td><var>\{ 0, 0, 0\}</var></td>
+<td></td>
+<td><var>\{ 0, 0, 1\}</var></td>
+</tr>
+</tbody>
+</table>
+</div>
+<style>
+.joisc2017-broken-device-ja-table { position:relative; max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisc2017-broken-device-ja-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisc2017-broken-device-ja-table th,.joisc2017-broken-device-ja-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisc2017-broken-device-ja-table th { background:#f5f5f5; }
+.joisc2017-broken-device-ja-table code { white-space:nowrap; }
+</style>
+
+<style>
+.joisc2017-broken-device-ja-table .katex {position:relative;}
+</style></section>
+</div>
+</span>
+</span>

@@ -1,0 +1,332 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>In Republic of JOI, there are <var>N</var> stations numbered from 1 to <var>N</var>. They are located clockwise on a circular railway in order.</p>
+<p>There are <var>N</var> types of train tickets numbered from <var>1</var> to <var>N</var>. By using one ticket of type <var>i</var> (<var>1 \le i \le N - 1</var>), one person can travel from the station <var>i</var> to the station <var>i + 1</var>, or from the station <var>i + 1</var> to the station <var>i</var>. By using one ticket of type <var>N</var>, one person can travel from the station 1 to the station <var>N</var>, or from the station <var>N</var> to the station 1. We can only buy a package of <var>N</var> tickets consisting of one ticket for each type.</p>
+<p>You are working at a travel agency in Republic of JOI. Your task is to arrange tickets for customers.</p>
+<p>Today, you have <var>M</var> requests for arranging tickets. The <var>i</var>-th request says <var>C_{i}</var> people want to travel from the station <var>A_{i}</var> to the station <var>B_{i}</var>. These <var>C_{i}</var> people need not to take the same route when they travel.</p>
+<p>You want to know the minimum number of packages of tickets you need to buy in order to deal with all the requests.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Task</h3>
+<p>Given the number of stations and information of requests, write a program which calculates the minimum number of packages of tickets you need to buy.</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input.</p>
+<ul>
+<li>The first line of input contains two space separated integers <var>N, M</var>. This means there are <var>N</var> stations in Republic of JOI, and you have <var>M</var> requests today.</li>
+<li>The <var>i</var>-th line (<var>1 \le i \le M</var>) of the following <var>M</var> lines contains three space separated integers <var>A_{i}, B_{i},C_{i}</var>. This means the <var>i</var>-th request says <var>C_{i}</var> people want to travel from the station <var>A_{i}</var> to the station <var>B_{i}</var>.</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>Write one line to the standard output. The output contains the minimum number of packages of tickets you need to buy.</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<p>All input data satisfy the following conditions.</p>
+<ul>
+<li><var>3 \le N \le 200\,000</var>.</li>
+<li><var>1 \le M \le 100\,000</var>.</li>
+<li><var>1 \le A_{i} \le N</var> (<var>1 \le i \le M</var>).</li>
+<li><var>1 \le B_{i} \le N</var> (<var>1 \le i \le M</var>).</li>
+<li><var>1 \le C_{i} \le 1\,000\,000\,000</var> (<var>1 \le i \le M</var>).</li>
+<li><var>A_{i} \ne B_{i}</var> (<var>1 \le i \le M</var>).</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtask</h3>
+<p>There are 5 subtasks. The score and additional constraints of each subtask are as follows:</p>
+<h4>Subtask 1 [<var>10</var> points]</h4>
+<ul>
+<li><var>N \le 20</var>.</li>
+<li><var>M \le 20</var>.</li>
+<li><var>C_{i} = 1</var> (<var>1 \le i \le M</var>).</li>
+</ul>
+<h4>Subtask 2 [<var>35</var> points]</h4>
+<ul>
+<li><var>N \le 300</var>.</li>
+<li><var>M \le 300</var>.</li>
+<li><var>C_{i} = 1</var> (<var>1 \le i \le M</var>).</li>
+</ul>
+<h4>Subtask 3 [<var>20</var> points]</h4>
+<ul>
+<li><var>N \le 3\,000</var>.</li>
+<li><var>M \le 3\,000</var>.</li>
+<li><var>C_{i} = 1</var> (<var>1 \le i \le M</var>).</li>
+</ul>
+<h4>Subtask 4 [<var>20</var> points]</h4>
+<ul>
+<li><var>C_{i} = 1</var> (<var>1 \le i \le M</var>).</li>
+</ul>
+<h4>Subtask 5 [<var>15</var> points]</h4>
+<p>There are no additional constraints.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input and Output</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>3 3
+1 2 1
+2 3 1
+3 1 1
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>1
+</pre>
+<p>If everybody travels clockwise, you need one ticket for each type. Hence you need to buy one package of tickets.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>3 2
+1 2 4
+1 2 2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>3
+</pre>
+<p>You need three tickets for each type if people travel in the following way:</p>
+<ul>
+<li>In the first request, three people travel clockwise, and one person travels counterclockwise.</li>
+<li>In the second request, two people travel counterclockwise.</li>
+</ul>
+<p>Hence it is enough to buy three packages of tickets.</p>
+<p>We output 3 because it is impossible to travel if you buy only two packages.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 3</h3>
+<pre>6 3
+1 4 1
+2 5 1
+3 6 1
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 3</h3>
+<pre>2
+</pre>
+<p>For example, you buy two packages of tickets, and distribute them in the following way:</p>
+<ul>
+<li>Give tickets <var>1</var>, <var>2</var>, <var>3</var> to the person who wants to travel from the station 1 to the station 4.</li>
+<li>Give tickets <var>1</var>, <var>6</var>, <var>5</var> to the person who wants to travel from the station 2 to the station 5.</li>
+<li>Give tickets <var>3</var>, <var>4</var>, <var>5</var> to the person who wants to travel from the station 3 to the station 6.</li>
+</ul>
+<p>We output 2 because it is impossible to travel if you buy one package only.</p></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>JOI 国には <var>N</var> 個の駅 <var>1, 2, \ldots, N</var> がある．これらは，円形の線路に沿って時計回りに順に並んでいる．</p>
+<p>鉄道に乗るための切符は <var>N</var> 種類あり，それぞれ <var>1, 2, \ldots, N</var> の番号が付けられている．切符 <var>i</var> (<var>1 \leqq i \leqq N - 1</var>) を <var>1</var> 枚用いると，駅 <var>i</var> から駅 <var>i + 1</var>，または駅 <var>i + 1</var> から駅 <var>i</var> へ <var>1</var> 人が移動できる．また，切符 <var>N</var> を <var>1</var> 枚用いると，駅 <var>1</var> から駅 <var>N</var>，または駅 <var>N</var> から駅 <var>1</var> へ <var>1</var> 人が移動できる．これらの切符は，<var>N</var> 種類の切符をちょうど <var>1</var> 枚ずつ含む <var>N</var> 枚セットの形でのみ販売されている．</p>
+<p>あなたは，JOI 国の旅行会社で切符の手配をする業務を行っている．</p>
+<p>本日，あなたは <var>M</var> 件の依頼を受けた ．<var>i</var> 番目 (<var>1 \leqq i \leqq M</var>) の依頼は，駅 <var>A_{i}</var> から駅 <var>B_{i}</var> に <var>C_{i}</var> 人が移動したい，というものである．ただし，移動する <var>C_{i}</var> 人は，全員が同じ経路で移動する必要はない．</p>
+<p>これらの依頼をすべて処理するために，切符を最小で何セット購入する必要があるかを求めたい．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p>駅の数および依頼の情報が与えられたとき，購入すべき切符のセット数の最小値を求めるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>標準入力から以下のデータを読み込め．</p>
+<ul>
+<li><var>1</var> 行目には，<var>2</var> 個の整数 <var>N, M</var> が空白を区切りとして書かれている．これは，JOI 国に <var>N</var> 個の駅があり，あなたが <var>M</var> 件の依頼を受けたことを表す．</li>
+<li>続く <var>M</var> 行のうちの <var>i</var> 行目（<var>1 \leqq i \leqq M</var>）には，<var>3</var> 個の整数 <var>A_{i}, B_{i},C_{i}</var> が空白を区切りとして書かれている．これは，<var>i</var> 番目の依頼が駅 <var>A_{i}</var> から駅 <var>B_{i}</var> に <var>C_{i}</var> 人が移動したい，というものであることを表す．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に購入すべき切符のセット数の最小値を <var>1</var> 行で出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制限</h3>
+<p>すべての入力データは以下の条件を満たす．</p>
+<ul>
+<li><var>3 \leqq N \leqq 200\,000</var>．</li>
+<li><var>1 \leqq M \leqq 100\,000</var>．</li>
+<li><var>1 \leqq A_{i} \leqq N</var> (<var>1 \leqq i \leqq M</var>)．</li>
+<li><var>1 \leqq B_{i} \leqq N</var> (<var>1 \leqq i \leqq M</var>)．</li>
+<li><var>1 \leqq C_{i} \leqq 1\,000\,000\,000</var> (<var>1 \leqq i \leqq M</var>)．</li>
+<li><var>A_{i} \ne B_{i}</var> (<var>1 \leqq i \leqq M</var>)．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<p>この課題では小課題は全部で <var>5</var> 個ある．各小課題の配点および追加の制限は以下の通りである．</p>
+<h4>小課題 1 [<var>10</var> 点]</h4>
+<ul>
+<li><var>N \leqq 20</var>．</li>
+<li><var>M \leqq 20</var>．</li>
+<li><var>C_{i} = 1</var> (<var>1 \leqq i \leqq M</var>)．</li>
+</ul>
+<h4>小課題 2 [<var>35</var> 点]</h4>
+<ul>
+<li><var>N \leqq 300</var>．</li>
+<li><var>M \leqq 300</var>．</li>
+<li><var>C_{i} = 1</var> (<var>1 \leqq i \leqq M</var>)．</li>
+</ul>
+<h4>小課題 3 [<var>20</var> 点]</h4>
+<ul>
+<li><var>N \leqq 3\,000</var>．</li>
+<li><var>M \leqq 3\,000</var>．</li>
+<li><var>C_{i} = 1</var> (<var>1 \leqq i \leqq M</var>)．</li>
+</ul>
+<h4>小課題 4 [<var>20</var> 点]</h4>
+<ul>
+<li><var>C_{i} = 1</var> (<var>1 \leqq i \leqq M</var>)．</li>
+</ul>
+<h4>小課題 5 [<var>15</var> 点]</h4>
+<p>追加の制限はない．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入出力例</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>3 3
+1 2 1
+2 3 1
+3 1 1
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>1
+</pre>
+<p>全員が時計回りに移動すると，それぞれの切符は <var>1</var> 枚ずつ必要となるので，<var>1</var> セット購入すればよい．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>3 2
+1 2 4
+1 2 2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>3
+</pre>
+<p>次のように移動することで，それぞれの切符は <var>3</var> 枚ずつ必要となる．</p>
+<ul>
+<li>最初の依頼において，<var>3</var> 人が時計回りに，<var>1</var> 人が反時計回りに移動する．</li>
+<li><var>2</var> 番目の依頼において，<var>2</var> 人が反時計回りに移動する．</li>
+</ul>
+<p>したがって，<var>3</var> セット購入すればよい．</p>
+<p><var>2</var> セットで移動することはできないので，<var>3</var> を出力する．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>6 3
+1 4 1
+2 5 1
+3 6 1
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>2
+</pre>
+<p>例えば，切符を <var>2</var> セット購入して，以下のように配ればよい．</p>
+<ul>
+<li>駅 <var>1</var> から駅 <var>4</var> に移動したい人に，切符 <var>1, 2, 3</var> を配る．</li>
+<li>駅 <var>2</var> から駅 <var>5</var> に移動したい人に，切符 <var>1, 6, 5</var> を配る．</li>
+<li>駅 <var>3</var> から駅 <var>6</var> に移動したい人に，切符 <var>3, 4, 5</var> を配る．</li>
+</ul>
+<p><var>1</var> セットで移動することはできないので，<var>2</var> を出力する．</p></section>
+</div>
+</span>
+</span>

@@ -1,0 +1,509 @@
+<span class="lang">
+<span class="lang-en">
+<blockquote>
+<p><strong>Submission on AtCoder</strong></p>
+<p>Use C++ and implement the functions specified in the statement without a <code>main</code> function.</p>
+<p><a href="https://img.atcoder.jp/joisc2017/natural_park-dist-2b1880bf4b.zip">Distributed files</a></p>
+</blockquote>
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>The JOI island is a sightseeing area. The whole island is designated as a natural park.</p>
+<p>There are <var>N</var> places and several roads in the JOI island. The places are numbered from 0 to <var>N - 1</var>. Every road connects two different places, and we can pass it in both directions. For each place, there are at most <var>7</var> roads connecting it with other places. For each pair of two different places, there is at most one road connecting them. We can travel from every place to any other places if we pass through several roads.</p>
+<p>You and your friend IOI-chan will investigate the JOI island. To investigate it efficiently, you need to figure out the structure of the JOI island. The JOI island is dangerous because there are many wild animals. Since IOI-chan has high athletic ability, she will explore the JOI island, and you will specify the structure of the JOI island according to IOI-chan’s reports.</p>
+<p>You will give two places <var>A, B</var> and several possibilities of intermediate places to IOI-chan, and ask whether it is possible to travel from the place <var>A</var> to the place <var>B</var> if we can pass through some of the given intermediate places only. Then, IOI-chan will explore the JOI island, and reports the results to you.</p>
+<p>Since they can not take too much time for investigation, the number of queries should be less than or equal to <var>45\,000</var>.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Task</h3>
+<p>Write a program which communicates with IOI-chan and specifies the structure of the JOI island.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Implementation Details</h3>
+<p>You need to write a program which implements the way to specify the structure of the JOI island. Your program should include <code>park.h</code>.</p>
+<p>Your program should implement the following routine.</p>
+<ul>
+<li><code>void Detect(int T, int N)</code>
+    This function is called only once.<ul>
+<li>The parameter <code>T</code> is the subtask number, and <code>N</code> is the number of places.</li>
+</ul>
+</li>
+</ul>
+<p>Your program should output the structure of the JOI island specified by it using the following function:</p>
+<ul>
+<li>
+<p><code>void Answer(int A, int B)</code>
+    The number of calls to this function should be the same as the number of roads in the JOI island.</p>
+<ul>
+<li>The parameters <code>A</code>, <code>B</code> denote there is a road connecting the place <code>A</code> and the place <code>B</code>.</li>
+</ul>
+<p>The parameters should satisfy the following conditions:</p>
+<ul>
+<li><code>A</code>, <code>B</code> should satisfy <var>0 \le \texttt{A} &lt; \texttt{B} \le N - 1</var>. If this condition is not satisfied, your program is considered as Wrong Answer[1].</li>
+<li>If the function is called with parameters (<code>A</code>, <code>B</code>), there must be a road connecting the place <code>A</code> and the place <code>B</code>. If this condition is not satisfied, your program is considered as Wrong Answer[2].</li>
+<li>The function should not be called more than once with the same parameter (<code>A</code>, <code>B</code>). If this condition is not satisfied, your program is considered as Wrong Answer[3].</li>
+</ul>
+</li>
+</ul>
+<p>Moreover, your program can call the following function:</p>
+<ul>
+<li>
+<p><code>int Ask(int A, int B, int Place[])</code>
+    This function is used to ask IOI-chan.</p>
+<ul>
+<li><code>Place</code> is the pointer of an array of possible intermediate places. For each <var>i</var> (<var>0 \le i \le N - 1</var>), <var>\texttt{Place}[i] = 1</var> is we can pass through the place <var>i</var>, and <var>\texttt{Place}[i] = 0</var> is we can not pass through the place <var>i</var>.</li>
+<li>The return value of this function is <var>1</var> if we can travel from the place <code>A</code> to the place <code>B</code> if we can pass through some of the places specified by the array <code>Place[]</code> only. Otherwise, the return value is 0.</li>
+</ul>
+<p>The parameters should satisfy the following conditions:</p>
+<ul>
+<li><var>0 \le \texttt{A} &lt; \texttt{B} \le N - 1</var>.</li>
+<li><var>0 \le \texttt{Place[i]} \le 1</var> (<var>0 \le \texttt{i} \le N - 1</var>).</li>
+<li><var>\texttt{Place}[A] = 1</var>.</li>
+<li><var>\texttt{Place}[B] = 1</var>.</li>
+</ul>
+<p>If these conditions are not satisfied, your program is considered as Wrong Answer[4]. However, the behavior of the function is not guaranteed if the length of the array <code>Place[]</code> is not equal to <var>N</var>.
+The function <code>Ask</code> should not be called more than 45 000 times. If it exceeds, your program is considered as Wrong Answer[5].</p>
+</li>
+</ul>
+<p>When the function <code>Detect</code> terminates, if there is a road which is not a parameter of the previous calls to the function <code>Answer</code>, your program is considered as Wrong Answer[6].</p>
+<p>Your program can implement other functions for internal use, or use global variables. Your program should not use standard input and standard output. Your program should not communicate with other files by any methods.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Compilation and Test Run</h3>
+<p>You can download an archive file from the contest webpage which contains a sample grader to test your program. The archive file also contains a sample source file of your program.</p>
+<p>A sample grader consists of one source file which is either <code>grader.c</code> or <code>grader.cpp</code>. For example, if your program is <code>park.c</code> or <code>park.cpp</code>, you run the following commands to compile your program.</p>
+<ul>
+<li>C</li>
+</ul>
+<pre>gcc -std=c11 -O2 -o grader grader.c park.c -lm
+</pre>
+<ul>
+<li>C++</li>
+</ul>
+<pre>g++ -std=c++14 -O2 -o grader grader.cpp park.cpp
+</pre>
+<p>When the compilation succeeds, the executable file <code>grader</code> is generated. Note that the actual grader is different from the sample grader. The sample grader will be executed as a single process, which will read input data from the standard input and write the results to the standard output.</p>
+<h4>Input for the Sample Grader</h4>
+<p>The sample grader reads the following data from the standard input.</p>
+<ul>
+<li>The first line of input contains an integer <var>T</var>, the subtask number.</li>
+<li>The second line of input contains an integer <var>N</var>, the number of places.</li>
+<li>The third line of input contains an integer <var>M</var>, the number of roads.</li>
+<li>In the <var>i</var>-th line (<var>1 \le i \le M</var>) of the following <var>M</var> lines contains two space separated integers <var>A_{i}, B_{i}</var>. This means there is a road connecting the place <var>A_{i}</var> and the place <var>B_{i}</var>, and we can pass it in both directions.</li>
+</ul>
+<h4>Output of the Sample Grader</h4>
+<p>When the program terminates successfully, the sample grader writes the following information to the standard output. (The quotation mark is not written actually.)</p>
+<ul>
+<li>If your program is considered as correct, the sample grader writes “<code>Accepted</code>.”</li>
+<li>If your program is considered as Wrong Answer, the sample grader writes its type in the following form “Wrong Answer [1],” and your program is terminated.</li>
+</ul>
+<p>If your program is considered as several types of Wrong Answer, the sample grader reports one of them only.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<p>All input data satisfy the following conditions. For the meaning of <var>T, N, M</var>, see Input for the Sample Grader.</p>
+<ul>
+<li><var>1 \le T \le 5</var>.</li>
+<li><var>2 \le N \le 1\,400</var>.</li>
+<li><var>1 \le M \le 1\,500</var>.</li>
+<li>For each place, there are at most 7 roads connecting it with other places.</li>
+<li>We can travel from every place to any other places if we pass through several roads.</li>
+<li>For each pair of two different places, there is at most one road connecting them.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtask</h3>
+<p>There are 5 subtasks. The score and additional constraints of each subtask are as follows:</p>
+<h4>Subtask 1 [<var>10</var> points]</h4>
+<ul>
+<li><var>T = 1</var>.</li>
+<li><var>N \le 250</var>.</li>
+</ul>
+<h4>Subtask 2 [<var>10</var> points]</h4>
+<ul>
+<li><var>T = 2</var>.</li>
+<li><var>M = N - 1</var>.</li>
+<li>For the place 0 or <var>N - 1</var>, there is exactly one road connecting it with another place. For every other place, there are exactly 2 roads connecting it with other places.</li>
+</ul>
+<h4>Subtask 3 [<var>27</var> points]</h4>
+<ul>
+<li><var>T = 3</var>.</li>
+<li><var>M = N - 1</var>.</li>
+<li>For every <var>i</var> (<var>1 \le i \le N - 1</var>), we can travel from the place 0 to the place <var>i</var> if we pass through at most 8 other places.</li>
+</ul>
+<h4>Subtask 4 [<var>30</var> points]</h4>
+<ul>
+<li><var>T = 4</var>.</li>
+<li><var>M = N - 1</var>.</li>
+</ul>
+<h4>Subtask 5 [<var>23</var> points]</h4>
+<ul>
+<li><var>T = 5</var>.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Communication</h3>
+<p>Here is a sample input for sample grader and corresponding function calls.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input</h3>
+<pre>1
+6
+7
+0 1
+0 3
+1 2
+1 4
+2 4
+2 5
+3 4
+</pre>
+<h4>Sample Calls</h4>
+<div class="joisc2017-natural-park-en-table">
+<table>
+<thead>
+<tr>
+<th>Call</th>
+<th>Return</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Ask(3, 5,{0,0,1,1,1,1})</code></td>
+<td><var>1</var></td>
+</tr>
+<tr>
+<td><code>Answer(2, 4)</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Answer(2, 5)</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Answer(3, 4)</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Ask(0, 4,{1,0,1,0,1,0})</code></td>
+<td><var>0</var></td>
+</tr>
+<tr>
+<td><code>Answer(0, 1)</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Answer(0, 3)</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Answer(1, 4)</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Answer(1, 2)</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Note that the function calls in this example do not necessarily have meaning. In this example, the function <code>Detect</code> is called with parameters <var>\texttt{T} = 1</var>, <var>\texttt{N} = 6</var>.</p>
+<p>In this example, the structure of the JOI island is as follows:</p>
+<p><img src="https://img.atcoder.jp/joisc2017/natural_park-en-p13-2.png" alt="Figure" style="max-width:100%;height:auto;"></p>
+
+<p>The structure of the JOI island. The circles and numbers denote the places and their numbers. The line segments denote the roads.</p>
+<ul>
+<li>The first call to the function <code>Ask</code> asks whether we can travel from the place 3 to the place 5 if we can pass through the places 2, 3, 4, 5 only. Because it is possible, the function <code>Ask</code> returns 1.</li>
+<li>The second call to the function <code>Ask</code> asks whether we can travel from the place <var>0</var> to the place <var>4</var> if we can pass through the places 0, 2, 4 only. Because it is impossible, the function <code>Ask</code> returns 0.</li>
+</ul>
+<style>
+.joisc2017-natural-park-en-table { position:relative; max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisc2017-natural-park-en-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisc2017-natural-park-en-table th,.joisc2017-natural-park-en-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisc2017-natural-park-en-table th { background:#f5f5f5; }
+.joisc2017-natural-park-en-table code { white-space:nowrap; }
+</style>
+
+<style>
+.joisc2017-natural-park-en-table .katex {position:relative;}
+</style></section>
+</div>
+</span>
+<span class="lang-ja">
+<blockquote>
+<p><strong>AtCoder での提出方法</strong></p>
+<p>C++ を使用し，問題文で指定された関数を実装してください．<code>main</code> 関数は実装しないでください．</p>
+<p><a href="https://img.atcoder.jp/joisc2017/natural_park-dist-2b1880bf4b.zip">配布ファイル</a></p>
+</blockquote>
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>JOI 島は観光地であり，島全体が自然公園として指定されている． JOI 島には <var>N</var> 個の広場といくつかの道がある．広場には <var>0</var> から <var>N - 1</var> までの番号が付けられている．道は島内の異なる <var>2</var> つの広場を結んでおり，双方向に移動可能である．どの広場についても，その広場と他の広場を結ぶ道は高々 <var>7</var> 本である．どの異なる <var>2</var> つの広場についても，それらを結ぶ道は高々 <var>1</var> 本しかない．また，どの <var>2</var> つの広場の間も，何本かの道を使うことで互いに移動できることが分かっている．</p>
+<p>あなたは友達の IOI ちゃんと JOI 島を調査することになった．調査を効率的に行うために，あなたは島の構造を把握しなければならない．島内は野生動物が多く危険なので，運動能力の高い IOI ちゃんが島を探索し，IOI ちゃんの報告に基づいて，あなたが島の構造を特定することになった．</p>
+<p>あなたは IOI ちゃんに対し，<var>2</var> つの広場 <var>A, B</var> と，経由可能な広場をいくつか指定し，広場 <var>A</var> から広場 <var>B</var> まで指定された広場のみを経由して移動できるか，という質問をする．IOI ちゃんは質問内容に従って島内を探索し，結果を報告する．</p>
+<p>調査に長く時間をかけることはできないので，質問回数を <var>45\,000</var> 回以内に抑えたい．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p>IOI ちゃんとやりとりをして，JOI 島の構造を特定するプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>実装の詳細</h3>
+<p>あなたは，島の構造を特定する方法を実装した <var>1</var> 個のプログラムを書かなければならない．プログラムは <code>park.h</code> をインクルードすること．</p>
+<p>プログラムは，以下のルーチンを実装しなければならない．</p>
+<ul>
+<li><code>void Detect(int T, int N)</code>
+    この関数は <var>1</var> 回だけ呼び出される．<ul>
+<li>引数 <code>T</code> は小課題番号を，<code>N</code> は広場の個数を表す．</li>
+</ul>
+</li>
+</ul>
+<p>また，プログラムの中では，以下の関数を呼び出して，特定した JOI 島の構造を出力しなければならない．</p>
+<ul>
+<li>
+<p><code>void Answer(int A, int B)</code>
+    この関数は，JOI 島の道の本数と等しい回数だけ呼び出されなければならない．</p>
+<ul>
+<li>引数 <code>A</code>, <code>B</code> は，広場 <code>A</code> と広場 <code>B</code> の間を結ぶ道があると特定したことを表す．</li>
+</ul>
+<p>引数は以下の条件を満たさなければならない．</p>
+<ul>
+<li><code>A</code>, <code>B</code> は，<var>0 \leqq \texttt{A} &lt; \texttt{B} \leqq N - 1</var> を満たさなければならない．これを満たさない場合，不正解 <var>[1]</var> となる．</li>
+<li>ある (<code>A</code>, <code>B</code>) の組を引数として呼び出した際，広場 <code>A</code> と広場 <code>B</code> の間には道がなければならない．これを満たさない場合，不正解 <var>[2]</var> となる．</li>
+<li>同じ (<code>A</code>, <code>B</code>) の組を引数として <var>2</var> 回以上呼び出してはならない．これを満たさない場合，不正解 <var>[3]</var> となる．</li>
+</ul>
+</li>
+</ul>
+<p>これに加え，プログラム中では以下の関数を呼び出すことができる．</p>
+<ul>
+<li>
+<p><code>int Ask(int A, int B, int Place[])</code>
+    この関数は，IOI ちゃんに質問をするために呼び出す関数である．</p>
+<ul>
+<li><code>Place</code> は経由可能な広場を表す配列のポインタである．各 <var>i</var> (<var>0 \leqq i \leqq N - 1</var>) に対し，広場 <var>i</var> が経由可能であるとき <var>\texttt{Place}[i] = 1</var> であり，広場 <var>i</var> が経由不可能であるとき <var>\texttt{Place}[i] = 0</var> である．</li>
+<li>この関数の戻り値は，広場 <code>A</code> から広場 <code>B</code> まで配列 <code>Place[]</code> によって指定された広場のみを経由して移動できるとき <var>1</var> である．移動できないとき <var>0</var> である．</li>
+</ul>
+<p>引数は以下の条件を満たさなければならない．</p>
+<ul>
+<li><var>0 \leqq \texttt{A} &lt; \texttt{B} \leqq N - 1</var>．</li>
+<li><var>0 \leqq \texttt{Place[i]} \leqq 1</var> (<var>0 \leqq \texttt{i} \leqq N - 1</var>)．</li>
+<li><var>\texttt{Place}[A] = 1</var>．</li>
+<li><var>\texttt{Place}[B] = 1</var>．</li>
+</ul>
+<p>これらの条件を満たさない場合，不正解 <var>[4]</var> となる．ただし，配列 <code>Place[]</code> の長さが <var>N</var> でないときの動作は保証されない．
+また，関数 <code>Ask</code> を呼び出す回数が <var>45\,000</var> 回を超えてはならない．超えた場合，不正解 <var>[5]</var> となる．</p>
+</li>
+</ul>
+<p>関数 <code>Detect</code> の終了時点で，関数 <code>Answer</code> の引数として呼び出していない道が存在する場合，不正解 <var>[6]</var> となる．</p>
+<p>内部での使用のために他の関数を実装したり，グローバル変数を宣言するのは自由である．ただし，あなたの提出は標準入力・標準出力，あるいは他のファイルといかなる方法でもやりとりしてはならない．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>コンパイル・実行の方法</h3>
+<p>作成したプログラムをテストするための，採点プログラムのサンプルが，コンテストサイトからダウンロードできるアーカイブの中に含まれている．このアーカイブには，提出しなければならないファイルのサンプルも含まれている．</p>
+<p>採点プログラムのサンプルは <var>1</var> つのファイルからなる．そのファイルは <code>grader.c</code> または <code>grader.cpp</code> である．作成したプログラムを <code>park.c</code> または <code>park.cpp</code> とするとき，作成したプログラムをテストするには，次のようにコマンドを実行する．</p>
+<ul>
+<li>C の場合</li>
+</ul>
+<pre>gcc -std=c11 -O2 -o grader grader.c park.c -lm
+</pre>
+<ul>
+<li>C++ の場合</li>
+</ul>
+<pre>g++ -std=c++14 -O2 -o grader grader.cpp park.cpp
+</pre>
+<p>コンパイルが成功すれば，<code>grader</code> という実行ファイルが生成される．</p>
+<p>実際の採点プログラムは，採点プログラムのサンプルとは異なることに注意すること．採点プログラムのサンプルは単一のプロセスとして起動する．このプログラムは，標準入力から入力を読み込み，標準出力に結果を出力する．</p>
+<h4>採点プログラムのサンプルの入力</h4>
+<p>採点プログラムのサンプルは標準入力から以下のデータを読み込む．</p>
+<ul>
+<li><var>1</var> 行目には整数 <var>T</var> が書かれている．これは小課題番号を表す．</li>
+<li><var>2</var> 行目には整数 <var>N</var> が書かれている．これは広場が <var>N</var> 個あることを表す．</li>
+<li><var>3</var> 行目には整数 <var>M</var> が書かれている．これは道が <var>M</var> 本あることを表す．</li>
+<li>続く <var>M</var> 行のうちの <var>i</var> 行目 (<var>1 \leqq i \leqq M</var>) には，整数 <var>A_{i}, B_{i}</var> が空白を区切りとして書かれている．これは広場 <var>A_{i}</var> と広場 <var>B_{i}</var> を双方向に結ぶ道があることを表す．</li>
+</ul>
+<h4>採点プログラムのサンプルの出力</h4>
+<p>採点プログラムのサンプルは標準出力へ以下の情報を出力する（引用符は実際には出力されない）．</p>
+<ul>
+<li>正解と判定された場合，“<code>Accepted</code>” と出力される．</li>
+<li>プログラムの実行中に不正解と判定された場合，不正解の種類が “<code>Wrong Answer [1]</code>” のように出力され，実行が終了される．</li>
+</ul>
+<p>実行するプログラムが複数の不正解の条件を満たした場合，表示される不正解の種類はそれらのうち <var>1</var> つのみである．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>制限</h3>
+<p>すべての入力データは以下の条件を満たす．<var>T, N, M</var> の意味については，「採点プログラムのサンプルの入力」の項目を参照せよ．</p>
+<ul>
+<li><var>1 \leqq T \leqq 5</var>．</li>
+<li><var>2 \leqq N \leqq 1\,400</var>．</li>
+<li><var>1 \leqq M \leqq 1\,500</var>．</li>
+<li>どの広場についても，その広場と他の広場を結ぶ道は高々 <var>7</var> 本である．</li>
+<li>どの異なる <var>2</var> つの広場の間も，何本かの道を使うことで互いに移動できる．</li>
+<li>どの異なる <var>2</var> つの広場の間も，それらを結ぶ道は高々 <var>1</var> 本である．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<p>この課題では小課題は全部で <var>5</var> 個ある．各小課題の配点および追加の制限は以下の通りである．</p>
+<h4>小課題 1 [<var>10</var> 点]</h4>
+<ul>
+<li><var>T = 1</var>．</li>
+<li><var>N \leqq 250</var>．</li>
+</ul>
+<h4>小課題 2 [<var>10</var> 点]</h4>
+<ul>
+<li><var>T = 2</var>．</li>
+<li><var>M = N - 1</var>．</li>
+<li>広場 <var>0</var> および広場 <var>N - 1</var> について，その広場と他の広場を結ぶ道はちょうど <var>1</var> 本ある．それ以外の広場については，その広場と他の広場を結ぶ道はちょうど <var>2</var> 本ある．</li>
+</ul>
+<h4>小課題 3 [<var>27</var> 点]</h4>
+<ul>
+<li><var>T = 3</var>．</li>
+<li><var>M = N - 1</var>．</li>
+<li>どの <var>i</var> (<var>1 \leqq i \leqq N - 1</var>) についても，広場 <var>0</var> から広場 <var>i</var> まで他に高々 <var>8</var> 個の広場のみを経由して移動可能である．</li>
+</ul>
+<h4>小課題 4 [<var>30</var> 点]</h4>
+<ul>
+<li><var>T = 4</var>．</li>
+<li><var>M = N - 1</var>．</li>
+</ul>
+<h4>小課題 5 [<var>23</var> 点]</h4>
+<ul>
+<li><var>T = 5</var>．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>やり取りの例</h3>
+<p>採点プログラムのサンプルが読み込む入力の例と，それに対応する関数の呼び出しの例を以下に示す．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例</h3>
+<pre>1
+6
+7
+0 1
+0 3
+1 2
+1 4
+2 4
+2 5
+3 4
+</pre>
+<h4>関数の呼び出しの例</h4>
+<div class="joisc2017-natural-park-ja-table">
+<table>
+<thead>
+<tr>
+<th>呼び出し</th>
+<th>戻り値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Ask(3, 5,{0,0,1,1,1,1})</code></td>
+<td><var>1</var></td>
+</tr>
+<tr>
+<td><code>Answer(2, 4)</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Answer(2, 5)</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Answer(3, 4)</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Ask(0, 4,{1,0,1,0,1,0})</code></td>
+<td><var>0</var></td>
+</tr>
+<tr>
+<td><code>Answer(0, 1)</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Answer(0, 3)</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Answer(1, 4)</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Answer(1, 2)</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>この例における関数呼び出しは，必ずしも意味のある呼び出しとは限らないことに注意せよ．</p>
+<p>この入力例において，関数 <code>Detect</code> は，<var>\texttt{T} = 1</var>，<var>\texttt{N} = 6</var> として呼び出される．</p>
+<p>この入力例において，JOI 島は下図に示された構造をしている．</p>
+<p><img src="https://img.atcoder.jp/joisc2017/natural_park-ja-p14-2.png" alt="図" style="max-width:100%;height:auto;"></p>
+
+<p>JOI 島の様子．円と数値は広場とその番号を，線分は道を表す．</p>
+<ul>
+<li><var>1</var> 回目の関数 <code>Ask</code> の呼び出しでは，広場 <var>2, 3, 4, 5</var> のみが経由可能であるとき，広場 <var>3</var> から広場 <var>5</var> まで移動可能かを尋ねている．移動可能なので，関数 <code>Ask</code> は <var>1</var> を返す．</li>
+<li><var>2</var> 回目の関数 <code>Ask</code> の呼び出しでは，広場 <var>0, 2, 4</var> のみが経由可能であるとき，広場 <var>0</var> から広場 <var>4</var> まで移動可能かを尋ねている．移動不可能なので，関数 <code>Ask</code> は <var>0</var> を返す．</li>
+</ul>
+<style>
+.joisc2017-natural-park-ja-table { position:relative; max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisc2017-natural-park-ja-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisc2017-natural-park-ja-table th,.joisc2017-natural-park-ja-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisc2017-natural-park-ja-table th { background:#f5f5f5; }
+.joisc2017-natural-park-ja-table code { white-space:nowrap; }
+</style>
+
+<style>
+.joisc2017-natural-park-ja-table .katex {position:relative;}
+</style></section>
+</div>
+</span>
+</span>

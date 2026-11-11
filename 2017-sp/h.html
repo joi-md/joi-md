@@ -1,0 +1,394 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>There is a wide mansion near JOI-kun’s house. The mansion has <var>N</var> rooms located in a row from east to west. The <var>i</var>-th room from the eastmost room is called the room <var>i</var>. For each <var>i</var> with <var>1 \le i \le N - 1</var>, the room <var>i</var> and the room <var>i + 1</var> are connected by a corridor. We can pass corridors in both directions. We need a key to enter a corridor from a room. Each key has a number called the type. More than one keys can have the same type.</p>
+<p>From the room <var>i</var> or the room <var>i + 1</var>, we need a key of type <var>C_{i}</var> to enter a corridor between them.</p>
+<p>There are <var>B_{i}</var> keys in the room <var>i</var>. Their types are <var>A_{i,j}</var> (<var>1 \le j \le B_{i}</var>). If JOI-kun enters a room, he will pick up all the keys in that room. After that, he can use them to enter corridors.</p>
+<p>JOI-kun can use keys as many times as he wants. Sometimes, he gets several keys of the same type. But, he has no special advantage to have several keys of the same type compared with the case where he has only one key of that type.</p>
+<p>To deal with the situation where he gets lost in the mansion, JOI-kun plans to write a program which answers the following queries:</p>
+<ul>
+<li>If JOI-kun comes into the room <var>x</var> without any keys, can he move to the room <var>y</var>?</li>
+</ul>
+<p>Your task is to write a program which answers the above queries, instead of JOI-kun.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Task</h3>
+<p>Given information of the mansion and the queries, write a program which determines, for each query, whether he can move from a room to another room assuming he is now in the mansion without any keys.</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input.</p>
+<ul>
+<li>The first line of input contains an integer <var>N</var>, the number of rooms in the mansion.</li>
+<li>The second line of input contains <var>N - 1</var> space separated integers <var>C_{1},C_{2}, \ldots,C_{N - 1}</var>. This means we need a key of type <var>C_{i}</var> to enter a corridor connecting the room <var>i</var> and the room <var>i + 1</var>.</li>
+<li>The <var>i</var>-th line (<var>1 \le i \le N</var>) of the following <var>N</var> lines contains a positive integer <var>B_{i}</var>, and <var>B_{i}</var> space separated integers <var>A_{i,1}, A_{i,2}, \ldots, A_{i,B_{i}}</var>. This means there are <var>B_{i}</var> keys in the room <var>i</var>, and their types are <var>A_{i,j}</var> (<var>1 \le j \le B_{i}</var>).</li>
+<li>The following line contains an integer <var>Q</var>, the number of queries.</li>
+<li>The <var>k</var>-th line (<var>1 \le k \le Q</var>) of the following <var>Q</var> lines contains two space separated integers <var>X_{k}, Y_{k}</var>. This means the <var>k</var>-th query asks whether JOI-kun can move from the room <var>X_{k}</var> to the room <var>Y_{k}</var> assuming he is now in the room <var>X_{k}</var> without any keys.</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>Write <var>Q</var> lines to the standard output. The <var>k</var>-th line (<var>1 \le k \le Q</var>) of the <var>Q</var> lines contains <code>YES</code> if he can move from the room <var>X_{k}</var> to the room <var>Y_{k}</var> assuming he is now in the room <var>X_{k}</var> without any keys. Otherwise, it contains <code>NO</code>.</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<p>All input data satisfy the following conditions.</p>
+<ul>
+<li><var>2 \le N \le 500\,000</var>.</li>
+<li><var>1 \le Q \le 500\,000</var>.</li>
+<li><var>1 \le B_{1} + B_{2} + \cdot \cdot \cdot + B_{N} \le 500\,000</var>.</li>
+<li><var>1 \le B_{i} \le N</var> (<var>1 \le i \le N</var>).</li>
+<li><var>1 \le C_{i} \le N</var> (<var>1 \le i \le N - 1</var>).</li>
+<li><var>1 \le A_{i,j} \le N</var> (<var>1 \le i \le N</var>, <var>1 \le j \le B_{i}</var>).</li>
+<li>The <var>B_{i}</var> integers <var>A_{i,1}, \ldots, A_{i,B_{i}}</var> are different from each other (<var>1 \le i \le N</var>).</li>
+<li><var>1 \le X_{k} \le N</var> (<var>1 \le k \le Q</var>).</li>
+<li><var>1 \le Y_{k} \le N</var> (<var>1 \le k \le Q</var>).</li>
+<li><var>X_{k} \ne Y_{k}</var> (<var>1 \le k \le Q</var>).</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtask</h3>
+<p>This task has 4 subtasks in total. The score and the additional constraints of each subtask are as follows:</p>
+<h4>Subtask 1 [<var>5</var> points]</h4>
+<ul>
+<li><var>N \le 5\,000</var>.</li>
+<li><var>Q \le 5\,000</var>.</li>
+<li><var>B_{1} + B_{2} + \cdot \cdot \cdot + B_{N} \le 5\,000</var>.</li>
+</ul>
+<h4>Subtask 2 [<var>5</var> points]</h4>
+<ul>
+<li><var>N \le 5\,000</var>.</li>
+<li><var>B_{1} + B_{2} + \cdot \cdot \cdot + B_{N} \le 5\,000</var>.</li>
+</ul>
+<h4>Subtask 3 [<var>15</var> points]</h4>
+<ul>
+<li><var>N \le 100\,000</var>.</li>
+<li><var>C_{i} \le 20</var> (<var>1 \le i \le N - 1</var>).</li>
+<li><var>A_{i,j} \le 20</var> (<var>1 \le i \le N</var>, <var>1 \le j \le B_{i}</var>).</li>
+</ul>
+<h4>Subtask 4 [<var>75</var> points]</h4>
+<p>There are no additional constraints.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input and Output</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>5
+1 2 3 4
+2 2 3
+1 1
+1 1
+1 3
+1 4
+4
+2 4
+4 2
+1 5
+5 3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>YES
+NO
+NO
+YES
+</pre>
+<ul>
+<li>In the first query, if JOI-kun visits the rooms <var>2</var>, <var>1</var>, <var>2</var>, <var>3</var>, <var>4</var> in this order, he gets to the room 4.</li>
+<li>In the second query, he can visit the rooms <var>3</var>, <var>4</var> only. Since he can get keys of type <var>1</var>, <var>3</var> only, he can not get to the room 2.</li>
+<li>In the third query, he can not get a key of type 4 from the room 5 to the room 4. Hence he can not get to the room 5</li>
+<li>In the fourth query, if he visits the rooms <var>5</var>, <var>4</var>, <var>3</var> in this order, he gets to the room 3.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>5
+2 3 1 3
+1 3
+1 2
+1 1
+1 3
+1 2
+4
+1 3
+3 1
+4 3
+2 5
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>NO
+YES
+NO
+YES
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 3</h3>
+<pre>7
+6 3 4 1 2 5
+1 1
+1 5
+1 1
+1 1
+2 2 3
+1 4
+1 6
+3
+4 1
+5 3
+4 7
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 3</h3>
+<pre>YES
+NO
+YES
+</pre></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>JOI くんの家の近くには細長い屋敷がある．この屋敷は部屋が東西に <var>N</var> 個並んだ構造をしており，東から <var>i</var> 番目の部屋を部屋 <var>i</var> と呼ぶ．部屋 <var>i</var> と部屋 <var>i + 1</var> (<var>1 \leqq i \leqq N - 1</var>) は廊下でつながっており，廊下は双方向に通行可能である．部屋と廊下を行き来するためには鍵が必要である．鍵には種類と呼ばれる番号が付けられている．同じ種類の鍵が複数あることもある．</p>
+<p>部屋 <var>i</var> や部屋 <var>i + 1</var> から，部屋 <var>i</var> と部屋 <var>i + 1</var> を結ぶ廊下に入るには，種類 <var>C_{i}</var> の鍵が必要である．</p>
+<p>部屋 <var>i</var> には <var>B_{i}</var> 個の鍵が落ちている．それらの鍵の種類は <var>A_{i,j}</var> (<var>1 \leqq j \leqq B_{i}</var>) である．JOI くんは，部屋に入るとその部屋に落ちている鍵を全て拾い，以後廊下に入るのに使うことができる．</p>
+<p>鍵は何度でも使うことができる．また，同じ鍵が複数手に入ることがあるが，<var>1</var> つ持っているときと比べて特別役に立つことはない．</p>
+<p>JOI くんは，この屋敷で迷子になったときに備えて，以下の形式のクエリに答えるプログラムを書くことにした．</p>
+<ul>
+<li>JOI くんが鍵を <var>1</var> つも持っていない状態で部屋 <var>x</var> に迷い込んだとき，部屋 <var>y</var> に到達することはできるか?</li>
+</ul>
+<p>あなたの仕事は，JOI くんに代わってこのクエリに答えるプログラムを書くことである．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p>屋敷の情報とクエリが与えられたとき，それぞれのクエリに対し，鍵を <var>1</var> つも持っていない状態で部屋に迷い込んだとき，部屋から部屋に到達することができるかを判定するプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>標準入力から以下の入力を読み込め．</p>
+<ul>
+<li><var>1</var> 行目には整数 <var>N</var> が書かれている．これは屋敷には部屋が <var>N</var> 個あることを表す．</li>
+<li><var>2</var> 行目には <var>N - 1</var> 個の整数 <var>C_{1},C_{2}, \ldots,C_{N - 1}</var> が空白を区切りとして書かれている．これらは，部屋 <var>i</var> や部屋 <var>i + 1</var> から，部屋 <var>i</var> と部屋 <var>i + 1</var> を結ぶ廊下に入るには種類 <var>C_{i}</var> の鍵が必要であることを表す．</li>
+<li>続く <var>N</var> 行のうちの <var>i</var> 行目 (<var>1 \leqq i \leqq N</var>) には，<var>1</var> 以上の整数 <var>B_{i}</var> と，<var>B_{i}</var> 個の整数 <var>A_{i,1}, A_{i,2}, \ldots, A_{i,B_{i}}</var> が空白を区切りとして書かれている．これは部屋 <var>i</var> には鍵が <var>B_{i}</var> 個落ちており，それらの鍵の種類が <var>A_{i,j}</var> (<var>1 \leqq j \leqq B_{i}</var>) であることを表す．</li>
+<li>次の行には整数 <var>Q</var> が書かれている．これはクエリが <var>Q</var> 個与えられることを表す．</li>
+<li>続く <var>Q</var> 行のうちの <var>k</var> 行目 (<var>1 \leqq k \leqq Q</var>) には，<var>2</var> 個の整数 <var>X_{k}</var> と <var>Y_{k}</var> が空白を区切りとして書かれている．これらは，<var>k</var> 番目のクエリが，鍵を <var>1</var> つも持っていない状態で部屋 <var>X_{k}</var> に迷い込んだとき，部屋 <var>X_{k}</var> から部屋 <var>Y_{k}</var> に到達できるかを尋ねるものであることを表す．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に <var>Q</var> 行で出力せよ ．<var>Q</var> 行のうちの <var>k</var> 行目 (<var>1 \leqq k \leqq Q</var>) には，鍵を <var>1</var> つも持っていない状態で部屋 <var>X_{k}</var> に迷い込んだとき，部屋 <var>X_{k}</var> から部屋 <var>Y_{k}</var> に到達することができるなら <code>YES</code> を，そうでないなら <code>NO</code> を出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制限</h3>
+<p>すべての入力データは以下の条件を満たす．</p>
+<ul>
+<li><var>2 \leqq N \leqq 500\,000</var>．</li>
+<li><var>1 \leqq Q \leqq 500\,000</var>．</li>
+<li><var>1 \leqq B_{1} + B_{2} + \cdot \cdot \cdot + B_{N} \leqq 500\,000</var>．</li>
+<li><var>1 \leqq B_{i} \leqq N</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>1 \leqq C_{i} \leqq N</var> (<var>1 \leqq i \leqq N - 1</var>)．</li>
+<li><var>1 \leqq A_{i,j} \leqq N</var> (<var>1 \leqq i \leqq N</var>，<var>1 \leqq j \leqq B_{i}</var>)．</li>
+<li><var>B_{i}</var> 個の整数 <var>A_{i,1}, \ldots, A_{i,B_{i}}</var> は互いに異なる (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>1 \leqq X_{k} \leqq N</var> (<var>1 \leqq k \leqq Q</var>)．</li>
+<li><var>1 \leqq Y_{k} \leqq N</var> (<var>1 \leqq k \leqq Q</var>)．</li>
+<li><var>X_{k} \ne Y_{k}</var> (<var>1 \leqq k \leqq Q</var>)．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<p>この課題では小課題は全部で <var>4</var> 個ある．各小課題の配点および追加の制限は以下の通りである．</p>
+<h4>小課題 1 [<var>5</var> 点]</h4>
+<ul>
+<li><var>N \leqq 5\,000</var>．</li>
+<li><var>Q \leqq 5\,000</var>．</li>
+<li><var>B_{1} + B_{2} + \cdot \cdot \cdot + B_{N} \leqq 5\,000</var>．</li>
+</ul>
+<h4>小課題 2 [<var>5</var> 点]</h4>
+<ul>
+<li><var>N \leqq 5\,000</var>．</li>
+<li><var>B_{1} + B_{2} + \cdot \cdot \cdot + B_{N} \leqq 5\,000</var>．</li>
+</ul>
+<h4>小課題 3 [<var>15</var> 点]</h4>
+<ul>
+<li><var>N \leqq 100\,000</var>．</li>
+<li><var>C_{i} \leqq 20</var> (<var>1 \leqq i \leqq N - 1</var>)．</li>
+<li><var>A_{i,j} \leqq 20</var> (<var>1 \leqq i \leqq N</var>，<var>1 \leqq j \leqq B_{i}</var>)．</li>
+</ul>
+<h4>小課題 4 [<var>75</var> 点]</h4>
+<p>追加の制限はない．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入出力例</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>5
+1 2 3 4
+2 2 3
+1 1
+1 1
+1 3
+1 4
+4
+2 4
+4 2
+1 5
+5 3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>YES
+NO
+NO
+YES
+</pre>
+<ul>
+<li><var>1</var> つ目のクエリでは，部屋 <var>2, 1, 2, 3, 4</var> の順に移動することで，部屋 <var>4</var> に到達することができる．</li>
+<li><var>2</var> つ目のクエリでは，部屋 <var>3, 4</var> にしか行くことができず，手に入れられる鍵の種類は <var>1, 3</var> のみなので，部屋 <var>2</var> に到達することができない．</li>
+<li><var>3</var> つ目のクエリでは，部屋 <var>4</var> から部屋 <var>5</var> に行く種類 <var>4</var> の鍵を手に入れることができないため，部屋 <var>5</var> に到達することができない．</li>
+<li><var>4</var> つ目のクエリでは，部屋 <var>5, 4, 3</var> の順に移動することで，部屋 <var>3</var> に到達することができる．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>5
+2 3 1 3
+1 3
+1 2
+1 1
+1 3
+1 2
+4
+1 3
+3 1
+4 3
+2 5
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>NO
+YES
+NO
+YES
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>7
+6 3 4 1 2 5
+1 1
+1 5
+1 1
+1 1
+2 2 3
+1 4
+1 6
+3
+4 1
+5 3
+4 7
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>YES
+NO
+YES
+</pre></section>
+</div>
+</span>
+</span>

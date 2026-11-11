@@ -1,0 +1,349 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>Many containers are transported by ships to the JOI Port every day. They are transported to all over the country by trucks.</p>
+<p>The JOI Port is very narrow. It has only two areas where we can put containers. In each area, we can put any number of containers vertically.</p>
+<p>For safety reasons, when a container is transported by a ship, we have to put it on one of the areas. If some containers are already put there, we have to put it on the top of them. When we transport a container by a truck, we have to take a container from the top of the containers on one of the areas.</p>
+<p>Today, <var>N</var> containers will be transported to the JOI Port. All of them will be transported by trucks.</p>
+<p>Your task is to manage the facilities of the JOI Port. For each container, you know when it will come and when it will leave. Write a program which calculates the number of ways to put and take containers modulo <var>1\,000\,000\,007</var>.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Task</h3>
+<p>Given the number of containers transported to the JOI Port and the time for each container to come and leave, write a program which calculates the number of ways to put and take containers satisfying the conditions modulo <var>1\,000\,000\,007</var>.</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input.</p>
+<ul>
+<li>The first line of input contains an integer <var>N</var>, the number of containers transported to the JOI Port.</li>
+<li>The <var>i</var>-th line (<var>1 \le i \le N</var>) of the following <var>N</var> lines contains two space separated integers <var>A_{i}, B_{i}</var>. This means the <var>i</var>-th container will come to the JOI Port at time <var>A_{i}</var>, and leave the JOI Port by a truck at time <var>B_{i}</var>.</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>Write one line to the standard output. The output contains the number of ways to put and take containers satisfying the conditions modulo 1 000 000 007.</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<p>All input data satisfy the following conditions.</p>
+<ul>
+<li><var>1 \le N \le 1\,000\,000</var>.</li>
+<li><var>1 \le A_{i} \le 2N</var> (<var>1 \le i \le N</var>).</li>
+<li><var>1 \le B_{i} \le 2N</var> (<var>1 \le i \le N</var>).</li>
+<li><var>A_{i} &lt; B_{i}</var> (<var>1 \le i \le N</var>).</li>
+<li>The <var>2N</var> integers <var>A_{1}, \cdot \cdot \cdot , A_{N}, B_{1}, \cdot \cdot \cdot , B_{N}</var> are different from each other.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtask</h3>
+<p>There are 4 subtasks. The score and additional constraints of each subtask are as follows:</p>
+<h4>Subtask 1 [<var>10</var> points]</h4>
+<ul>
+<li><var>N \le 20</var>.</li>
+</ul>
+<h4>Subtask 2 [<var>12</var> points]</h4>
+<ul>
+<li><var>N \le 2\,000</var>.</li>
+</ul>
+<h4>Subtask 3 [<var>56</var> points]</h4>
+<ul>
+<li><var>N \le 100\,000</var>.</li>
+</ul>
+<h4>Subtask 4 [<var>22</var> points]</h4>
+<p>There are no additional constraints.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input and Output</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>4
+1 3
+2 5
+4 8
+6 7
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>4
+</pre>
+<p>There are 4 ways to put and take containers. Denote the areas by A, B. The following ways to put containers satisfy the condition.</p>
+<ul>
+<li>Put <var>1</var>, <var>2</var>, <var>3</var>, <var>4</var>-th container to the area A,B,A,A, respectively.</li>
+<li>Put <var>1</var>, <var>2</var>, <var>3</var>, <var>4</var>-th container to the area A,B,A,B, respectively.</li>
+<li>Put <var>1</var>, <var>2</var>, <var>3</var>, <var>4</var>-th container to the area B,A,B,A, respectively.</li>
+<li>Put <var>1</var>, <var>2</var>, <var>3</var>, <var>4</var>-th container to the area B,A,B,B, respectively.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>3
+1 4
+2 5
+3 6
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>0
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 3</h3>
+<pre>5
+1 4
+2 10
+6 9
+7 8
+3 5
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 3</h3>
+<pre>8
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 4</h3>
+<pre>8
+1 15
+2 5
+3 8
+4 6
+14 16
+7 9
+10 13
+11 12
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 4</h3>
+<pre>16
+</pre></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>JOI 港には毎日たくさんのコンテナが船で運ばれてきて，全国各地へとトラックで運ばれていく． JOI 港は非常に狭く，コンテナを積んでおける区画が <var>2</var> つしかない．それぞれの区画には，コンテナを縦にいくらでも積んでおくことができる．</p>
+<p>作業の安全のため，船で運ばれてきたコンテナは，どちらかの区画に積まなければならない．その区画にすでにコンテナが積まれている場合は，すでに積まれているコンテナの一番上に積まなければならない．トラックで運ぶときは，どちらかの区画に積まれたコンテナの一番上から順番に運んでいかなければならない．</p>
+<p>本日，JOI 港には，<var>N</var> 個のコンテナが船で運ばれてくる予定である．そのすべての荷物が本日中にトラックで運ばれていく．</p>
+<p>あなたは JOI 港の港湾設備の管理を任されており，すべてのコンテナが船で運ばれてくる時刻と，トラックで運ばれていく時刻を知っている．コンテナを積み降ろしする方法は何通りあるかを <var>1\,000\,000\,007</var> で割った余りを求めるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p>JOI 港に運ばれてくるコンテナの個数と，それぞれのコンテナの運ばれてくる時刻と運ばれていく時刻が与えられたとき，コンテナを積み降ろしする方法は何通りあるかを <var>1\,000\,000\,007</var> で割った余りを求めるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>標準入力から以下の入力を読み込め．</p>
+<ul>
+<li><var>1</var> 行目には，整数 <var>N</var> が書かれており，JOI 港に船で運ばれてくるコンテナの個数を表す．</li>
+<li>続く <var>N</var> 行のうちの <var>i</var> 行目 (<var>1 \leqq i \leqq N</var>) には，整数 <var>A_{i}, B_{i}</var> が空白を区切りとして書かれている．これは， <var>i</var> 番目のコンテナは時刻 <var>A_{i}</var> に JOI 港に船で運ばれてきて，時刻 <var>B_{i}</var> にトラックで運ばれていくことを表す．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に，コンテナを積み降ろしする方法は何通りあるかを <var>1\,000\,000\,007</var> で割った余りを <var>1</var> 行で出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制限</h3>
+<p>すべての入力データは以下の条件を満たす．</p>
+<ul>
+<li><var>1 \leqq N \leqq 1\,000\,000</var>．</li>
+<li><var>1 \leqq A_{i} \leqq 2N</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>1 \leqq B_{i} \leqq 2N</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>A_{i} &lt; B_{i}</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>2N</var> 個の整数 <var>A_{1}, \cdot \cdot \cdot , A_{N}, B_{1}, \cdot \cdot \cdot , B_{N}</var> は互いに異なる．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<p>この課題では小課題は全部で <var>4</var> 個ある．各小課題の配点および追加の制限は以下の通りである．</p>
+<h4>小課題 1 [<var>10</var> 点]</h4>
+<ul>
+<li><var>N \leqq 20</var>．</li>
+</ul>
+<h4>小課題 2 [<var>12</var> 点]</h4>
+<ul>
+<li><var>N \leqq 2\,000</var>．</li>
+</ul>
+<h4>小課題 3 [<var>56</var> 点]</h4>
+<ul>
+<li><var>N \leqq 100\,000</var>．</li>
+</ul>
+<h4>小課題 4 [<var>22</var> 点]</h4>
+<p>追加の制限はない．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入出力例</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>4
+1 3
+2 5
+4 8
+6 7
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>4
+</pre>
+<p>この入力例では，<var>4</var> 通りの積み降ろしの方法が存在する ．<var>2</var> つの区画を A,B とする．条件を満たす積み方は以下の通りである．</p>
+<ul>
+<li><var>1,2,3,4</var> 番目のコンテナを，順に，A,B,A,A の区画に積む．</li>
+<li><var>1,2,3,4</var> 番目のコンテナを，順に，A,B,A,B の区画に積む．</li>
+<li><var>1,2,3,4</var> 番目のコンテナを，順に，B,A,B,A の区画に積む．</li>
+<li><var>1,2,3,4</var> 番目のコンテナを，順に，B,A,B,B の区画に積む．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>3
+1 4
+2 5
+3 6
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>0
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>5
+1 4
+2 10
+6 9
+7 8
+3 5
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>8
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 4</h3>
+<pre>8
+1 15
+2 5
+3 8
+4 6
+14 16
+7 9
+10 13
+11 12
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 4</h3>
+<pre>16
+</pre></section>
+</div>
+</span>
+</span>

@@ -1,0 +1,342 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>On a sunny day, there was an abduction incident at a crossing in a city. It is suspected that the criminals were Anna and Bruno, and they escaped from the abduction scene by a car. The car was not yet found. The police is searching it even now.</p>
+<p>The urban area where the criminals was driving the car is a city of rectangular grid with <var>H</var> streets running in the east-west direction and <var>W</var> streets running in the south-north direction. The distance between two adjacent crossings is 1 kilometer.</p>
+<p>Each street has an integer, the congestion degree. The congestion degree of the <var>i</var>-th street (<var>1 \le i \le H</var>) from north running in the east-west direction is <var>A_{i}</var>, and the congestion degree of the <var>j</var>-th street (<var>1 \le j \le W</var>) from west running in the south-north direction is <var>B_{j}</var>. These <var>H + W</var> values are different from each other. For each street, the congestion degree has the same value at any points on it.</p>
+<p>The investigation by the police revealed that the criminals moved in the city in the following way:</p>
+<ul>
+<li>They did not go out of the city, and they did not go out of the streets.</li>
+<li>In the beginning, the criminals chose one of the movable directions from the abduction scene, and moved toward that direction.</li>
+<li>When they came to a crossing, if the congestion degree of the transversing street is larger than that of the current street, they turned at that crossing. If it was possible to turn to the both directions, they could choose any one of them.</li>
+<li>When they came to a crossing, if the congestion degree of the current street is larger than that of the transversing street, they kept going straight. However, if they were in the boundary of the city and could not go straight, they stopped moving at that place.</li>
+</ul>
+<p>There are <var>Q</var> candidates of crossings for the abduction scene. These <var>Q</var> candidates are different from each other. To determine the number of investigators, the police wants to know, for each candidate of crossings, the maximum possible travel distance for the criminals assuming the abduction incident was occurred at that place.</p>
+<p>For each of <var>Q</var> queries, calculate the maximum possible travel distance from the given candidate of crossings.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Task</h3>
+<p>Given the congestion degrees of the streets in the city and <var>Q</var> candidates of crossings for the abduction scene, write a program which calculates the maximum possible travel distance from each candidate of crossings.</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input.</p>
+<ul>
+<li>The first line of input contains three space separated integers <var>H, W, Q</var>. This means the city is a rectangular grid with <var>H</var> streets running in the east-west direction and <var>W</var> streets running in the south-north direction, and there are <var>Q</var> candidates of crossings for the abduction scene.</li>
+<li>The second line of input contains <var>H</var> space separated integers <var>A_{1}, A_{2}, \ldots, A_{H}</var>. This means the congestion degree of the <var>i</var>-th street (<var>1 \le i \le H</var>) from north running in the east-west direction is <var>A_{i}</var>.</li>
+<li>The third line of input contains <var>W</var> space separated integers <var>B_{1}, B_{2}, \ldots, B_{W}</var>. This means the congestion degree of the <var>j</var>-th street (<var>1 \le j \le W</var>) from west running in the south-north direction is <var>B_{j}</var>.</li>
+<li>The <var>k</var>-th line (<var>1 \le k \le Q</var>) of the following <var>Q</var> lines contains two space separated integers <var>S_{k}, T_{k}</var>. This means the <var>k</var>-th candidate of crossings for the abduction scene is the crossing of the <var>S_{k}</var>-th street from north running in the east-west direction and the <var>T_{k}</var>-th street from west running in the south-north direction.</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>Write <var>Q</var> lines to the standard output. The <var>k</var>-th line of output should contain an integer, the maximum possible travel distance (in kilometers) from the <var>k</var>-th candidate of crossings for the abduction scene.</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<p>All input data satisfy the following conditions.</p>
+<ul>
+<li><var>2 \le H \le 50\,000</var>.</li>
+<li><var>2 \le W \le 50\,000</var>.</li>
+<li><var>1 \le Q \le 100</var>.</li>
+<li><var>1 \le A_{i} \le 1\,000\,000\,000</var> (<var>1 \le i \le H</var>).</li>
+<li><var>1 \le B_{j} \le 1\,000\,000\,000</var> (<var>1 \le j \le W</var>).</li>
+<li>The <var>H + W</var> integers <var>A_{1}, A_{2}, \ldots, A_{H}, B_{1}, B_{2}, \ldots, B_{W}</var> are different from each other.</li>
+<li><var>1 \le S_{k} \le H</var> (<var>1 \le k \le Q</var>).</li>
+<li><var>1 \le T_{k} \le W</var> (<var>1 \le k \le Q</var>).</li>
+<li><var>(S_{k}, T_{k}) \ne (S_{l}, T_{l})</var> (<var>1 \le k &lt; l \le Q</var>).</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtask</h3>
+<p>There are 5 subtasks. The score and additional constraints of each subtask are as follows:</p>
+<h4>Subtask 1 [<var>13</var> points]</h4>
+<ul>
+<li><var>H \le 8</var>.</li>
+<li><var>W \le 8</var>.</li>
+<li><var>Q = 1</var>.</li>
+</ul>
+<h4>Subtask 2 [<var>10</var> points]</h4>
+<ul>
+<li><var>H \le 2\,000</var>.</li>
+<li><var>W \le 2\,000</var>.</li>
+<li><var>Q = 1</var>.</li>
+</ul>
+<h4>Subtask 3 [<var>17</var> points]</h4>
+<ul>
+<li><var>Q = 1</var>.</li>
+</ul>
+<h4>Subtask 4 [<var>4</var> points]</h4>
+<ul>
+<li><var>H \le 2\,000</var>.</li>
+<li><var>W \le 2\,000</var>.</li>
+</ul>
+<h4>Subtask 5 [<var>56</var> points]</h4>
+<p>There are no additional constraints.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input and Output</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>3 3 5
+3 2 6
+1 4 5
+1 1
+1 2
+2 2
+3 1
+3 3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>4
+5
+4
+4
+2
+</pre>
+<p>For example, for the third query, the travel distance achieves the maximum value if the criminals moved in the following way:</p>
+<ul>
+<li>They moved east for <var>1</var> kilometer from the crossing of the second street from north and the second street from west.</li>
+<li>They could move south or north from the crossing of the second street from north and the third street from west. They chose to move south for 1 kilometer.</li>
+<li>They could move west only from the crossing of the third street from north and the third street from west. They moved west for 1 kilometer.</li>
+<li>They could move west only from the crossing of the third street from north and the second street from west. They moved west for 1 kilometer.</li>
+<li>They could not move from the crossing of the third street from north and the first street from west. They stopped moving at that place.</li>
+</ul>
+<p>If they moved as above, the travel distance is 4 kilometers.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>4 5 6
+30 10 40 20
+15 55 25 35 45
+1 3
+4 3
+2 2
+4 1
+2 5
+3 3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>7
+6
+9
+4
+6
+9
+</pre></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>ある晴天の日のこと，ある交差点で，誘拐事件が発生した．犯人は Anna と Bruno であり，二人は車に乗って誘拐現場から逃走したと考えられている．誘拐犯の車は未だ見つかっておらず，警察は今なお車の行方を追っている．</p>
+<p>誘拐犯の車の走った市街地は，東西にのびる道路が <var>H</var> 本，南北にのびる道路が <var>W</var> 本走る碁盤目状の街である ．<var>2</var> つの隣接する交差点間の距離は，<var>1</var> キロメートルである．</p>
+<p>それぞれの道路について，人通りの多さを表す整数が与えられる．北から <var>i</var> 本目 (<var>1 \leqq i \leqq H</var>) の東西方向の道路の人通りの多さは <var>A_{i}</var> であり，西から <var>j</var> 本目 (<var>1 \leqq j \leqq W</var>) の南北方向の道路の人通りの多さは <var>B_{j}</var> である．これら <var>H + W</var> 個の値は互いに異なる．それぞれの道路について，道路の人通りの多さは，道路上のどの地点においても同じである．</p>
+<p>また，警察による捜査の結果，誘拐犯は市街地で移動する際，次のような方法で移動をしていたことが明らかとなった．</p>
+<ul>
+<li>市街地の外や，道路ではない場所に出ることはない．</li>
+<li>最初は，誘拐犯は，誘拐した交差点から移動可能な方向のうちどれか <var>1</var> つを選んで移動する．</li>
+<li>ある交差点に差し掛かったとき，今まで移動してきた道路よりも交わっている道路の方が人通りが多いときは，その交差点で曲がる．もし，<var>2</var> 方向どちらにも曲がることができる場合は，どちらを選んだ可能性もある．</li>
+<li>ある交差点に差し掛かったとき，今まで移動してきた道路の方が交わっている道路よりも人通りが多いときは，そのまま直進する．ただし，市街地の端におり直進できないときは，そこで移動を終了する．</li>
+</ul>
+<p>誘拐現場の候補地として，<var>Q</var> 箇所の交差点が候補に挙がっている ．<var>Q</var> 箇所の候補地は互いに異なる．警察は，調査チームの人数を決めるときの参考として，それぞれの誘拐現場の候補地に対し，誘拐事件がそこで発生したと仮定したとき，誘拐犯がその場所から最長で何キロメートル移動できるかを知りたい．</p>
+<p><var>Q</var> 個のクエリについて，与えられた誘拐現場の候補地から移動可能な経路の最長の長さを求めよ．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>課題</h3>
+<p>市街地の道路の人通りの多さと，<var>Q</var> 箇所の誘拐現場の候補地が与えられたとき，それぞれの候補地から移動可能な経路の長さの最大値を求めるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>標準入力から以下の入力を読み込め．</p>
+<ul>
+<li><var>1</var> 行目には，<var>3</var> 個の整数 <var>H, W, Q</var> が空白を区切りとして書かれている．これは，市街地は東西方向にのびる <var>H</var> 本の道路と南北方向にのびる <var>W</var> 本の道路からなり，誘拐現場の候補地として <var>Q</var> 箇所が与えられることを表す．</li>
+<li><var>2</var> 行目には，<var>H</var> 個の整数 <var>A_{1}, A_{2}, \ldots, A_{H}</var> が空白を区切りとして書かれている．これは，北から <var>i</var> 本目 (<var>1 \leqq i \leqq H</var>) の東西方向の道路の人通りの多さが <var>A_{i}</var> であることを表す．</li>
+<li><var>3</var> 行目には，<var>W</var> 個の整数 <var>B_{1}, B_{2}, \ldots, B_{W}</var> が空白を区切りとして書かれている．これは，西から <var>j</var> 本目 (<var>1 \leqq j \leqq W</var>) の南北方向の道路の人通りの多さが <var>B_{j}</var> であることを表す．</li>
+<li>続く <var>Q</var> 行のうちの <var>k</var> 行目 (<var>1 \leqq k \leqq Q</var>) には，<var>2</var> 個の整数 <var>S_{k}, T_{k}</var> が空白を区切りとして書かれている．これは，<var>k</var> 番目の誘拐現場の候補地が，北から <var>S_{k}</var> 本目の東西方向の道路と西から <var>T_{k}</var> 本目の南北方向の道路の交差点であることを表す．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に <var>Q</var> 行出力せよ ．<var>k</var> 行目 (<var>1 \leqq k \leqq Q</var>) には，<var>k</var> 番目の誘拐現場の候補地から移動を開始したときの移動可能な経路の長さの最大値を，キロメートル単位で出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制限</h3>
+<p>すべての入力データは以下の条件を満たす．</p>
+<ul>
+<li><var>2 \leqq H \leqq 50\,000</var>．</li>
+<li><var>2 \leqq W \leqq 50\,000</var>．</li>
+<li><var>1 \leqq Q \leqq 100</var>．</li>
+<li><var>1 \leqq A_{i} \leqq 1\,000\,000\,000</var> (<var>1 \leqq i \leqq H</var>)．</li>
+<li><var>1 \leqq B_{j} \leqq 1\,000\,000\,000</var> (<var>1 \leqq j \leqq W</var>)．</li>
+<li><var>H + W</var> 個の整数 <var>A_{1}, A_{2}, \ldots, A_{H}, B_{1}, B_{2}, \ldots, B_{W}</var> は互いに異なる．</li>
+<li><var>1 \leqq S_{k} \leqq H</var> (<var>1 \leqq k \leqq Q</var>)．</li>
+<li><var>1 \leqq T_{k} \leqq W</var> (<var>1 \leqq k \leqq Q</var>)．</li>
+<li><var>(S_{k}, T_{k}) \ne (S_{l}, T_{l})</var> (<var>1 \leqq k &lt; l \leqq Q</var>)．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<p>この課題では小課題は全部で <var>5</var> 個ある．各小課題の配点および追加の制限は以下の通りである．</p>
+<h4>小課題 1 [<var>13</var> 点]</h4>
+<ul>
+<li><var>H \leqq 8</var>．</li>
+<li><var>W \leqq 8</var>．</li>
+<li><var>Q = 1</var>．</li>
+</ul>
+<h4>小課題 2 [<var>10</var> 点]</h4>
+<ul>
+<li><var>H \leqq 2\,000</var>．</li>
+<li><var>W \leqq 2\,000</var>．</li>
+<li><var>Q = 1</var>．</li>
+</ul>
+<h4>小課題 3 [<var>17</var> 点]</h4>
+<ul>
+<li><var>Q = 1</var>．</li>
+</ul>
+<h4>小課題 4 [<var>4</var> 点]</h4>
+<ul>
+<li><var>H \leqq 2\,000</var>．</li>
+<li><var>W \leqq 2\,000</var>．</li>
+</ul>
+<h4>小課題 5 [<var>56</var> 点]</h4>
+<p>追加の制限はない．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入出力例</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>3 3 5
+3 2 6
+1 4 5
+1 1
+1 2
+2 2
+3 1
+3 3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>4
+5
+4
+4
+2
+</pre>
+<p>例えば，<var>3</var> 番目のクエリに関しては，次のように移動する場合が最長となる．</p>
+<ul>
+<li>北から <var>2</var> 本目の道路と西から <var>2</var> 本目の道路の交差点から，東方向に <var>1</var> キロメートル移動する．</li>
+<li>北から <var>2</var> 本目の道路と西から <var>3</var> 本目の道路の交差点からは，南もしくは北に移動可能であり，南方向に <var>1</var> キロメートル移動する．</li>
+<li>北から <var>3</var> 本目の道路と西から <var>3</var> 本目の道路の交差点からは，西にのみ移動可能であり，西方向に <var>1</var> キロメートル移動する．</li>
+<li>北から <var>3</var> 本目の道路と西から <var>2</var> 本目の道路の交差点からは，西にのみ移動可能であり，西方向に <var>1</var> キロメートル移動する．</li>
+<li>北から <var>3</var> 本目の道路と西から <var>1</var> 本目の道路の交差点からは，もうどの方向にも移動することはできないので，ここで移動を終了する．</li>
+</ul>
+<p>このように移動すると，移動した経路の長さは <var>4</var> キロメートルとなる．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>4 5 6
+30 10 40 20
+15 55 25 35 45
+1 3
+4 3
+2 2
+4 1
+2 5
+3 3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>7
+6
+9
+4
+6
+9
+</pre></section>
+</div>
+</span>
+</span>
