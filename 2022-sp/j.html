@@ -1,0 +1,424 @@
+<span class="lang">
+<span class="lang-en">
+<blockquote>
+<p><strong>Submission on AtCoder</strong></p>
+<p>When using C++, include <code>dango3.h</code> and implement all functions in a single source file.</p>
+<details>
+<summary style="display:list-item;cursor:pointer;"><strong>Using standard input and output</strong></summary>
+<p>First, <var>N, M</var> are given in this order on one line.</p>
+<h4>Query</h4>
+<p>Consider an array <var>A</var> of length <var>N \times M</var>, where <var>A[i] = 1</var> if dango <var>i</var> is selected and <var>A[i] = 0</var> otherwise. Print the character <code>Q</code>, immediately followed by <var>A</var> <strong>in binary</strong>, then a newline.</p>
+<p>For example, if <span style="display:inline-block;max-width:100%;overflow-x:auto;vertical-align:middle;position:relative;"><var>A = (0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0)</var></span>, print <code>Q 4</code> followed by a newline.</p>
+<p>The return value of <code>Query</code> is then given on one line.</p>
+<h4>Answer</h4>
+<p>Define the selection array <var>A</var> in the same way. Print the character <code>A</code>, immediately followed by <var>A</var> <strong>in binary</strong>, then a newline. The integer <code>0</code> is then given on one line.</p>
+<h4>Other instructions</h4>
+<p>If the output format is incorrect or a Wrong Answer condition is met, the input you receive is <code>-1</code>. Terminate your program immediately in this case. After <var>M</var> calls to <code>Answer</code>, print the character <code>F</code>. <strong>Flush after every output.</strong></p>
+</details>
+<p><a href="https://www2.ioi-jp.org/camp/2022/2022-sp-tasks/contest4/dango3-dist.zip">Distributed files</a></p>
+</blockquote>
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>JOI-kun is a professional confectioner making dangos (Japanese dumplings). In JOI-kun’s shop, the colors of dangos are specified. There are <var>N</var> colors of dangos, numbered from 1 to <var>N</var>.</p>
+<p>A beautiful dango stick is a famous item in JOI-kun’s shop. A beautiful dango stick is made of <var>N</var> dangos of different colors skewered with a stick.</p>
+<p>For each of the <var>N</var> colors, JOI-kun has <var>M</var> dangos of that color. Therefore, JOI-kun has <var>N \times M</var> dangos in total. These dangos are numbered from <var>1</var> to <var>N \times M</var>. Using these dangos and <var>M</var> sticks, JOI-kun wants to make <var>M</var> beautiful skewered dango sticks.</p>
+<p>To avoid a mistake about the colors of the dangos, JOI-kun will use a dango checker. If JOI-kun inputs the indices of some dangos, the dango checker answers the maximum number of beautiful dango sticks he can make using the dangos in the input and sufficiently many sticks.</p>
+<p>Using the dango checker several times, JOI-kun wants to divide the <var>N \times M</var> dangos into <var>M</var> groups. Every group should consist of <var>N</var> dangos, and contain a dango of each color.</p>
+<p>JOI-kun wants to divide the <var>N \times M</var> dangos into <var>M</var> groups using the dango checker at most 50 000 times.</p>
+<p>Write a program which, given information of the dangos, implements JOI-kun’s strategy to divide the dangos into groups using the the dango checker at most 50 000 times.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Implementation Details</h3>
+<p>You need to submit one file. The name of the file is <code>dango3.cpp</code>. It should implement the following function. The program should include <code>dango3.h</code> using the preprocessing directive <code>#include</code>.</p>
+<ul>
+<li><code>void Solve(int N, int M)</code>
+    This function is called once for each test case.<ul>
+<li>The parameter <code>N</code> is the number of colors of dangos <var>N</var>.</li>
+<li>The parameter <code>M</code> is the number of beautiful dango sticks <var>M</var> JOI-kun wants to make.</li>
+</ul>
+</li>
+</ul>
+<p>Your program may call the following functions.</p>
+<ul>
+<li><code>int Query(const std::vector&lt;int&gt; &amp;x)</code>
+    Using this function, your program asks questions to the dango checker.<ul>
+<li>The parameter <code>x</code> is the list of the indices of the dangos sent to the dango checker.</li>
+<li>The return value is the maximum number of beautiful dango sticks JOI-kun can make using the dangos specified by the parameter <code>x</code> and sufficiently many sticks.</li>
+<li>Each element of the parameter <code>x</code> should be between 1 and <var>N \times M</var>, inclusive. If this condition is not satisfied, your program is judged as Wrong Answer [1].</li>
+<li>The elements of the parameter <code>x</code> should be different from each other. If this condition is not satisfied, your program is judged as Wrong Answer [2].</li>
+<li>It is not allowed to call the function <code>Query</code> more than 50 000 times. If the function <code>Query</code> is called more than 50 000 times, your program is judged as Wrong Answer [3].</li>
+</ul>
+</li>
+<li><code>void Answer(const std::vector&lt;int&gt; &amp;a)</code>
+    Using this function, your program answers groups of dangos to make beautiful dango sticks.<ul>
+<li>The parameter <code>a</code> is the list of the indices of dangos for a beautiful dango stick.</li>
+<li>The length of the parameter <code>a</code> should be <var>N</var>. If this condition is not satisfied, your program is judged as Wrong Answer [4].</li>
+<li>Every element of the parameter <code>a</code> should be between 1 and <var>N \times M</var>, inclusive. If this condition is not satisfied, your program is judged as Wrong Answer [5].</li>
+<li>Throughout the process, no value should appear in a more than once. If this condition is not satisfied, your program is judged as Wrong Answer [6].</li>
+<li>If it is impossible to make a beautiful dango stick using the dangos specified by <code>a</code> and a stick, your program is judged as Wrong Answer [7].</li>
+<li>The function <code>Answer</code> should be called exactly <var>M</var> times. If the number of function calls to <code>Answer</code> is different from <var>M</var> when the function <code>Solve</code> terminates, your program is judged as Wrong Answer <var>[8]</var>.</li>
+</ul>
+</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Important Notices</h3>
+<ul>
+<li>Your program can implement other functions for internal use, or use global variables.</li>
+<li>Your program must not use the standard input and the standard output. Your program must not communicate with other files by any methods. However, your program may output debugging information to the standard error.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Compilation and Test Run</h3>
+<p>You can download an archive file from the contest webpage which contains the sample grader to test your program. The archive file also contains a sample source file of your program.</p>
+<p>The sample grader is the file <code>grader.cpp</code>. In order to test your program, put <code>grader.cpp</code>, <code>dango3.cpp</code>, <code>dango3.h</code> in the same directory, and run the following command to compile your programs.</p>
+<pre>g++ -std=gnu++17 -O2 -o grader grader.cpp dango3.cpp
+</pre>
+<p>When the compilation succeeds, the executable file <code>grader</code> is generated.</p>
+<p>Note that the actual grader is different from the sample grader. The sample grader will be executed as a single process, which will read input data from the standard input and write the results to the standard output.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Input for the Sample Grader</h3>
+<p>The sample grader reads the following data from the standard input.</p>
+<pre><var>N</var> <var>M</var>
+<var>C_{1}</var> <var>C_{2}</var> <var>\cdots</var> <var>C_{N\times M}</var>
+</pre>
+<p>Here <var>C_{i}</var> (<var>1 \le i \le N \times M</var>) is the color of the dango <var>i</var>. It is an integer between 1 and <var>N</var>, inclusive.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Output of the Sample Grader</h3>
+<p>The sample grader outputs the following information to the standard output (quotes for clarity).</p>
+<ul>
+<li>If your program is judged as correct, it writes the number of times of the function calls to <code>Query</code> as “<code>Accepted: 2022</code>”.</li>
+<li>If your program is judged as any one of Wrong Answer, the sample grader writes its type as “<code>Wrong Answer [4]</code>”.</li>
+</ul>
+<p>If your program satisfies the conditions of several types of Wrong Answer, the sample grader reports only one of them.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<p>All input data satisfy the following constraints. For the values of <var>C</var>, see Input for the Sample Grader.</p>
+<ul>
+<li><var>1 \le C_{i} \le N</var> (<var>1 \le i \le N \times M</var>).</li>
+<li>For each <var>j</var> (<var>1 \le j \le N</var>), there are exactly <var>M</var> indices <var>i</var> (<var>1 \le i \le N \times M</var>) satisfying <var>C_{i} = j</var>.</li>
+<li><var>N, M</var> are integers.</li>
+<li><var>C_{i}</var> (<var>1 \le i \le N \times M</var>) is an integer.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li>(<var>2</var> points) <var>N = 4</var>, <var>M = 4</var>.</li>
+<li>(<var>5</var> points) <var>N = 100</var>, <var>M = 10</var>.</li>
+<li>(<var>15</var> points) <var>N = 200</var>, <var>M = 25</var>.</li>
+<li>(<var>78</var> points) <var>N = 400</var>, <var>M = 25</var>.</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Communication</h3>
+<p>Here is a sample input for the sample grader and corresponding function calls.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>3 2
+3 3 1 2 1 2
+</pre>
+<h4>Sample Function Calls</h4>
+<div class="joisc2022-dango3-en-table">
+<table>
+<thead>
+<tr>
+<th>Call</th>
+<th>Call</th>
+<th>Return Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Solve(3, 2)</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Query([])</code></td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Query([4, 2, 1 ,3])</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Query([3, 4, 5])</code></td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Query([2, 6, 5])</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Query([6, 5, 4, 3, 2, 1])</code></td>
+<td><code>2</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Answer([1, 6, 5])</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Answer([2, 3, 4])</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Note that this sample input does not satisfy the constraints of any subtask.</p>
+<p>Among the files which can be downloaded from the contest webpage, <code>sample-02.txt</code> satisfies the constraints of Subtask 1.</p>
+<style>
+.joisc2022-dango3-en-table { position:relative;max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisc2022-dango3-en-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisc2022-dango3-en-table th,.joisc2022-dango3-en-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisc2022-dango3-en-table th { background:#f5f5f5; }
+.joisc2022-dango3-en-table code { white-space:nowrap; }
+</style></section>
+</div>
+</span>
+<span class="lang-ja">
+<blockquote>
+<p><strong>AtCoder での提出方法</strong></p>
+<p>C++ を使用する場合は <code>dango3.h</code> をインクルードし，すべての関数を 1 つのファイルに実装してください．</p>
+<details>
+<summary style="display:list-item;cursor:pointer;"><strong>標準入出力を使用する場合</strong></summary>
+<p>はじめに <var>N, M</var> がこの順に <var>1</var> 行で与えられます．</p>
+<h4>Query</h4>
+<p>団子 <var>i</var> を選ぶとき <var>A[i] = 1</var>，選ばないとき <var>A[i] = 0</var> とする長さ <var>N \times M</var> の配列 <var>A</var> を考えます．文字 <code>Q</code> を出力し，その後空白を空けずに <var>A</var> を<strong>バイナリで</strong>出力し，最後に改行してください．</p>
+<p>例えば <span style="display:inline-block;max-width:100%;overflow-x:auto;vertical-align:middle;position:relative;"><var>A = (0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0)</var></span> のとき，<code>Q 4</code> を出力して改行してください．</p>
+<p>その後，<code>Query</code> の戻り値が <var>1</var> 行で与えられます．</p>
+<h4>Answer</h4>
+<p>同様に選択を表す配列 <var>A</var> を考えます．文字 <code>A</code> を出力し，その後空白を空けずに <var>A</var> を<strong>バイナリで</strong>出力し，最後に改行してください．その後，<code>0</code> が <var>1</var> 行で与えられます．</p>
+<h4>その他</h4>
+<p>出力形式が正しくない場合や不正解の条件に当てはまった場合，与えられる入力は <code>-1</code> になります．この場合，ただちにプログラムを終了してください．<var>M</var> 回の <code>Answer</code> の後，文字 <code>F</code> を出力してください．<strong>各出力の後には必ず flush をしてください．</strong></p>
+</details>
+<p><a href="https://www2.ioi-jp.org/camp/2022/2022-sp-tasks/contest4/dango3-dist.zip">配布ファイル</a></p>
+</blockquote>
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>JOI 君は団子職人である．JOI 君の店で用いられる団子にはそれぞれ色が定まっており，色は <var>N</var> 種類ある．色には <var>1</var> から <var>N</var> までの番号が付けられている．</p>
+<p>JOI 君の店の人気メニューはきれいな串団子である．きれいな串団子とは，色が相異なる合計 <var>N</var> 個の団子に <var>1</var> 本の串を刺したものである．</p>
+<p>JOI 君は色 <var>1</var> から色 <var>N</var> までの団子をそれぞれ <var>M</var> 個ずつ，合計 <var>N \times M</var> 個の団子を用意している．これらの団子には <var>1</var> から <var>N \times M</var> までの番号が付けられている．JOI 君はこれらの団子と <var>M</var> 本の串からきれいな串団子を <var>M</var> 本作りたい．</p>
+<p>団子の色を間違えてはならないため，JOI 君は団子チェッカーを用いることにした．団子チェッカーにいくつかの団子の番号を指定して質問すると，それらの団子と十分な量の串を用いて最大何本のきれいな串団子を作れるかを知ることができる．</p>
+<p>JOI 君は団子チェッカーに何度か質問をすることで，<var>M</var> 本のきれいな串団子を作るために，<var>N \times M</var> 個ある団子を <var>N</var> 個ずつ <var>M</var> 組に分けたい．このとき，それぞれの組には色 <var>1</var> から色 <var>N</var> までの団子が <var>1</var> つずつ含まれていなければならない．</p>
+<p>JOI 君は団子チェッカーに <var>50\,000</var> 回以下の質問を行うことで，団子を組分けしたい．</p>
+<p>団子の情報が与えられたとき，団子チェッカーに <var>50\,000</var> 回以下の質問を行うことで団子を組分けする JOI 君の戦略を実装したプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>実装の詳細</h3>
+<p>あなたは <var>1</var> つのファイルを提出しなければならない．</p>
+<p>あなたの提出するファイルは <code>dango3.cpp</code> という名前である．このファイルは以下の関数を実装していなければならない．そのプログラムは <code>#include</code> プリプロセッサ指令によって <code>dango3.h</code> を読み込むこと．</p>
+<ul>
+<li><code>void Solve(int N, int M)</code>
+    この関数は各テストケースにおいて <var>1</var> 回だけ呼び出される．<ul>
+<li>引数 <code>N</code> は団子の色の種類の数 <var>N</var> である．</li>
+<li>引数 <code>M</code> は JOI 君が作りたいきれいな串団子の本数 <var>M</var> である．</li>
+</ul>
+</li>
+</ul>
+<p>あなたのプログラムは以下の関数を呼び出すことができる．</p>
+<ul>
+<li><code>int Query(const std::vector&lt;int&gt; &amp;x)</code>
+    この関数を用いて，団子チェッカーに質問を行う．<ul>
+<li>引数 <code>x</code> は，団子チェッカーに質問する団子の番号のリストである．</li>
+<li>戻り値は，指定した団子と十分な量の串を用いて作れるきれいな串団子の本数の最大値である．</li>
+<li>引数 <code>x</code> の各要素は，<var>1</var> 以上 <var>N \times M</var> 以下でなければならない．これが満たされていない場合，不正解 <var>[1]</var> と判定される．</li>
+<li>引数 <code>x</code> の各要素はすべて異ならなければならない．これが満たされていない場合，不正解 <var>[2]</var> と判定される．</li>
+<li>関数 <code>Query</code> を <var>50\,000</var> 回を超えて呼び出してはならない ．<var>50\,000</var> 回を超えて呼び出した場合，不正解 <var>[3]</var> と判定される．</li>
+</ul>
+</li>
+<li><code>void Answer(const std::vector&lt;int&gt; &amp;a)</code>
+    この関数を用いて，きれいな串団子を作るための団子の組を解答する．<ul>
+<li>引数 <code>a</code> は, きれいな串団子を作るための団子の番号のリストである．</li>
+<li>引数 <code>a</code> の長さは，<var>N</var> でなければならない．これが満たされていない場合，不正解 <var>[4]</var> と判定される．</li>
+<li>引数 <code>a</code> の各要素は，<var>1</var> 以上 <var>N \times M</var> 以下でなければならない．これが満たされていない場合，不正解 <var>[5]</var> と判定される．</li>
+<li><code>a</code> の要素に同じ値を累計で <var>2</var> 回以上指定してはならない．これが満たされていない場合，不正解 <var>[6]</var> と判定される．</li>
+<li><code>a</code> で指定された各団子と <var>1</var> 本の串を用いてきれいな串団子を作ることができない場合，不正解 <var>[7]</var> と判定される．</li>
+<li>関数 <code>Answer</code> はちょうど <var>M</var> 回呼び出される必要がある．関数 <code>Solve</code> の実行の終了時に関数 <code>Answer</code> の呼び出し回数が <var>M</var> 回でなかった場合，不正解 <var>[8]</var> と判定される．</li>
+</ul>
+</li>
+</ul>
+<h4>重要な注意</h4>
+<ul>
+<li>内部での使用のために他の関数を実装したり，グローバル変数を宣言するのは自由である．</li>
+<li>あなたの提出したプログラムは，標準入力・標準出力，あるいは他のファイルといかなる方法でもやりとりしてはならない．ただし，標準エラー出力にデバッグ情報等を出力することは許される．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>コンパイル・実行の方法</h3>
+<p>作成したプログラムをテストするための，採点プログラムのサンプルが，コンテストサイトからダウンロードできるアーカイブの中に含まれている．このアーカイブには，提出しなければならないファイルのサンプルも含まれている．</p>
+<p>採点プログラムのサンプルは <var>1</var> つのファイルからなる. そのファイルは <code>grader.cpp</code> である．作成したプログラムをテストするには，これらのファイル <code>grader.cpp</code>, <code>dango3.cpp</code>, <code>dango3.h</code> を同じディレクトリに置き，次のようにコマンドを実行する．</p>
+<pre>g++ -std=gnu++17 -O2 -o grader grader.cpp dango3.cpp
+</pre>
+<p>コンパイルが成功すれば，<code>grader</code> という実行ファイルが生成される．</p>
+<p>実際の採点プログラムは，採点プログラムのサンプルとは異なることに注意すること．採点プログラムのサンプルは単一のプロセスとして起動する．このプログラムは，標準入力から入力を読み込み，標準出力に結果を出力する．</p>
+<h4>採点プログラムのサンプルの入力</h4>
+<p>採点プログラムのサンプルは標準入力から以下の形式で入力を読み込む．</p>
+<pre><var>N</var> <var>M</var>
+<var>C_{1}</var> <var>C_{2}</var> <var>\cdots</var> <var>C_{N\times M}</var>
+</pre>
+<p><var>C_{i}</var> (<var>1 \leqq i \leqq N \times M</var>) は，団子 <var>i</var> の色を表す，<var>1</var> 以上 <var>N</var> 以下の整数である．</p>
+<h4>採点プログラムのサンプルの出力</h4>
+<p>採点プログラムのサンプルは標準出力へ以下の情報を出力する (引用符は実際には出力されない)．</p>
+<ul>
+<li>正解の場合，関数 <code>Query</code> の呼び出し回数が “<code>Accepted: 2022</code>” のように出力される．</li>
+<li>不正解の場合，不正解の種類が “<code>Wrong Answer [4]</code>” のように出力される．</li>
+</ul>
+<p>実行するプログラムが複数の不正解の条件を満たした場合，表示される不正解の種類はそれらのうち <var>1</var> つのみである．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<p>すべての入力データは以下の条件を満たす．<var>C</var> の意味については「採点プログラムのサンプルの入力」の項目を参照せよ．</p>
+<ul>
+<li><var>1 \leqq C_{i} \leqq N</var> (<var>1 \leqq i \leqq N \times M</var>)．</li>
+<li>各 <var>j</var> (<var>1 \leqq j \leqq N</var>) に対し，<var>C_{i} = j</var> となる <var>i</var> (<var>1 \leqq i \leqq N \times M</var>) がちょうど <var>M</var> 個存在する．</li>
+<li><var>N, M</var> は整数である．</li>
+<li><var>C_{i}</var> (<var>1 \leqq i \leqq N \times M</var>) は整数である．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>2</var> 点) <var>N = 4</var>，<var>M = 4</var>．</li>
+<li>(<var>5</var> 点) <var>N = 100</var>，<var>M = 10</var>．</li>
+<li>(<var>15</var> 点) <var>N = 200</var>，<var>M = 25</var>．</li>
+<li>(<var>78</var> 点) <var>N = 400</var>，<var>M = 25</var>．</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>やりとりの例</h3>
+<p>採点プログラムのサンプルが読み込む入力の例と，それに対応する関数の呼び出しの例を以下に示す．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 <var>1</var></h3>
+<pre>3 2
+3 3 1 2 1 2
+</pre>
+<h4>関数の呼び出しの例</h4>
+<div class="joisc2022-dango3-ja-table">
+<table>
+<thead>
+<tr>
+<th>呼び出し</th>
+<th>呼び出し</th>
+<th>戻り値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Solve(3, 2)</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Query([])</code></td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Query([4, 2, 1 ,3])</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Query([3, 4, 5])</code></td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Query([2, 6, 5])</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Query([6, 5, 4, 3, 2, 1])</code></td>
+<td><code>2</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Answer([1, 6, 5])</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Answer([2, 3, 4])</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>この入力例はどの小課題の制約も満たさないことに注意すること．</p>
+<p>コンテストサイトからダウンロードできるファイルのうち，<code>sample-02.txt</code> は小課題 <var>1</var> の制約を満たす．</p>
+<style>
+.joisc2022-dango3-ja-table { position:relative;max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisc2022-dango3-ja-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisc2022-dango3-ja-table th,.joisc2022-dango3-ja-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisc2022-dango3-ja-table th { background:#f5f5f5; white-space:nowrap; }
+.joisc2022-dango3-ja-table code { white-space:nowrap; }
+</style></section>
+</div>
+</span>
+</span>

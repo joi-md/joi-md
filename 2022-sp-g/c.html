@@ -1,0 +1,289 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>There are <var>N</var> beavers in JOI University. All of them are working on competitive programming. Each beaver has three abilities: consideration skill, implementation skill, and luck. If the value of an ability is large, it means the level of the ability is high. For each <var>i</var> (<var>1 \le i \le N</var>), the consideration skill of the beaver <var>i</var> is <var>X_{i}</var>, the implementation skill of the beaver <var>i</var> is <var>Y_{i}</var>, and the luck of the beaver <var>i</var> is <var>Z_{i}</var>.</p>
+<p>This year, the beavers of JOI University will attend a programming contest for teams. In this contest, the participants solve programming tasks, and each team consists of three beavers. Bitaro is a coach of JOI University. Since teamwork is very important, Bitaro decided to choose three beavers among the <var>N</var> beavers and make a team so that the following condition is satisfied.</p>
+<ul>
+<li><strong>Condition</strong> Every member in the team has an advantage. This means every member has an ability whose value is strictly larger than the values of the same ability of the other two members.</li>
+</ul>
+<p>Among possible teams satisfying the above condition, Bitaro wants to choose a team whose total ability is as large as possible. Here, the total ability of a team is defined as the sum of the maximum value of the consideration skill of the members of the team, the maximum value of the implementation skill of the members of the team, and the maximum value of the luck of the members of the team.</p>
+<p>Write a program which, given information of the abilities of each beaver, determines whether it is possible to make a team satisfying the above condition, and, if it is possible to make a team, calculate the maximum possible value of the total ability of a team.</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input. Given values are all integers.</p>
+<pre><var>N</var>
+<var>X_{1}</var> <var>Y_{1}</var> <var>Z_{1}</var>
+<var>X_{2}</var> <var>Y_{2}</var> <var>Z_{2}</var>
+<var>\vdots</var>
+<var>X_{N}</var> <var>Y_{N}</var> <var>Z_{N}</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>Write one line to the standard output. The output should contain the maximum possible value of the total ability of a team. If it is impossible to make a team satisfying the condition, output <code>-1</code>.</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li><var>3 \le N \le 150\,000</var>.</li>
+<li><var>1 \le X_{i} \le 100\,000\,000 (= 10^{8})</var> (<var>1 \le i \le N</var>).</li>
+<li><var>1 \le Y_{i} \le 100\,000\,000 (= 10^{8})</var> (<var>1 \le i \le N</var>).</li>
+<li><var>1 \le Z_{i} \le 100\,000\,000 (= 10^{8})</var> (<var>1 \le i \le N</var>).</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li>(<var>8</var> points) <var>N \le 300</var>.</li>
+<li>(<var>29</var> points) <var>N \le 4\,000</var>.</li>
+<li>(<var>9</var> points) <var>X_{i} \le 5</var>，<var>Y_{i} \le 5</var>，<var>Z_{i} \le 5</var> (<var>1 \le i \le N</var>).</li>
+<li>(<var>9</var> points) <var>X_{i} \le 20</var>，<var>Y_{i} \le 20</var>，<var>Z_{i} \le 20</var> (<var>1 \le i \le N</var>).</li>
+<li>(<var>9</var> points) <var>X_{i} \le 300</var>，<var>Y_{i} \le 300</var>，<var>Z_{i} \le 300</var> (<var>1 \le i \le N</var>).</li>
+<li>(<var>9</var> points) <var>X_{i} \le 4\,000</var>，<var>Y_{i} \le 4\,000</var>，<var>Z_{i} \le 4\,000</var> (<var>1 \le i \le N</var>).</li>
+<li>(<var>27</var> points) No additional constraints.</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>5
+3 1 4
+2 3 1
+1 5 5
+4 4 2
+5 2 3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>13
+</pre>
+<p>If we make a team consisting of the beaver <var>1</var>, the beaver <var>4</var>, and the beaver <var>5</var>, the condition of the task is satisfied.</p>
+<ul>
+<li>The value of the luck of the beaver 1 is strictly larger than the values of the luck of the other two members.</li>
+<li>The value of the implementation skill of the beaver 4 is strictly larger than the values of the implementation skill of the other two members.</li>
+<li>The value of the consideration skill of the beaver 5 is strictly larger than the values of the consideration skill of the other two members.</li>
+</ul>
+<p>Then, the maximum values of the consideration skill, implementation skill, luck of the members of the team are <var>5</var>, <var>4</var>, <var>4</var>, respectively. The total ability of the team is 13. Since it is impossible to make a team whose total ability is larger than or equal to 14, output 13.</p>
+<p>Note that if we make a team consisting of the beaver <var>1</var>, the beaver <var>3</var>, and the beaver <var>5</var>, the total ability becomes 15. However, since the beaver 1 does not have an ability whose value is strictly larger than the values of the same ability of the other two members, the condition of the task is not satisfied.</p>
+<p>This sample input satisfies the constraints of all the subtasks.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>8
+1 1 1
+1 1 5
+1 5 1
+5 1 1
+1 5 5
+5 1 5
+5 5 1
+5 5 5
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>15
+</pre>
+<p>If we make a team consisting of the beaver 2, the beaver 3, and the beaver 4, the total ability of the team is <var>15</var>. Since it is impossible to make a team whose total ability is larger than or equal to 16, output 15. This sample input satisfies the constraints of all the subtasks.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 3</h3>
+<pre>4
+1 2 3
+1 2 3
+1 2 3
+1 2 3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 3</h3>
+<pre>-1
+</pre>
+<p>Since it is impossible to make a team satisfying the condition of the task, output <code>-1</code>.</p>
+<p>This sample input satisfies the constraints of all the subtasks.</p></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>JOI 大学には <var>N</var> 匹のビーバーが在籍しており，その全員が競技プログラミングに取り組んでいる．各ビーバーには考察力・実装力・運という <var>3</var> 種類の能力を表す数値が定められており，それらの値が大きいほど能力が高いことを示す．<var>i</var> 匹目 (<var>1 \leqq i \leqq N</var>) のビーバーの考察力は <var>X_{i}</var>，実装力は <var>Y_{i}</var>，運は <var>Z_{i}</var> である．</p>
+<p>今年，JOI 大学のビーバーたちはチーム対抗のプログラミングコンテストに出場することになった．このコンテストでは，<var>3</var> 匹でチームを組んで競技プログラミングの問題に取り組む．ここで，JOI 大学のコーチであるビ太郎は，チームワークを意識して，以下の条件を満たすように <var>N</var> 匹の中から <var>3</var> 匹を選んでチームを組むことにした．</p>
+<ul>
+<li><strong>条件</strong> どのチームメンバーにも長所がある．すなわち，どのチームメンバーも，他の <var>2</var> 匹より値が真に大きいような能力を持っている．</li>
+</ul>
+<p>ビ太郎は，この条件を満たすなかで可能な限り総合力が高いチームを組みたいと思っている．ここで，チームの総合力は，<var>3</var> 匹のチームメンバーの考察力の最大値，実装力の最大値，運の最大値の <var>3</var> つの値の合計として計算される．</p>
+<p>各ビーバーの能力の情報が与えられたとき，条件を満たすチームを作ることが可能か判定し，もし可能ならばチームの総合力として考えられる最大の値を求めるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力は以下の形式で標準入力から与えられる．入力される値はすべて整数である．</p>
+<pre><var>N</var>
+<var>X_{1}</var> <var>Y_{1}</var> <var>Z_{1}</var>
+<var>X_{2}</var> <var>Y_{2}</var> <var>Z_{2}</var>
+<var>\vdots</var>
+<var>X_{N}</var> <var>Y_{N}</var> <var>Z_{N}</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に，チームの総合力として考えられる最大の値を <var>1</var> 行で出力せよ．ただし，問題文中の条件を満たすようにチームを組むことが不可能な場合は，<code>-1</code> を出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>3 \leqq N \leqq 150\,000</var>．</li>
+<li><var>1 \leqq X_{i} \leqq 100\,000\,000 (= 10^{8})</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>1 \leqq Y_{i} \leqq 100\,000\,000 (= 10^{8})</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li><var>1 \leqq Z_{i} \leqq 100\,000\,000 (= 10^{8})</var> (<var>1 \leqq i \leqq N</var>)．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>8</var> 点) <var>N \leqq 300</var>．</li>
+<li>(<var>29</var> 点) <var>N \leqq 4\,000</var>．</li>
+<li>(<var>9</var> 点) <var>X_{i} \leqq 5</var>，<var>Y_{i} \leqq 5</var>，<var>Z_{i} \leqq 5</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li>(<var>9</var> 点) <var>X_{i} \leqq 20</var>，<var>Y_{i} \leqq 20</var>，<var>Z_{i} \leqq 20</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li>(<var>9</var> 点) <var>X_{i} \leqq 300</var>，<var>Y_{i} \leqq 300</var>，<var>Z_{i} \leqq 300</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li>(<var>9</var> 点) <var>X_{i} \leqq 4\,000</var>，<var>Y_{i} \leqq 4\,000</var>，<var>Z_{i} \leqq 4\,000</var> (<var>1 \leqq i \leqq N</var>)．</li>
+<li>(<var>27</var> 点) 追加の制約はない．</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>5
+3 1 4
+2 3 1
+1 5 5
+4 4 2
+5 2 3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>13
+</pre>
+<p><var>1, 4, 5</var> 匹目のビーバーでチームを組むと，以下のように問題文中の条件を満たす．</p>
+<ul>
+<li><var>1</var> 匹目のビーバーは他の <var>2</var> 匹よりも運の値が大きい．</li>
+<li><var>4</var> 匹目のビーバーは他の <var>2</var> 匹よりも実装力の値が大きい．</li>
+<li><var>5</var> 匹目のビーバーは他の <var>2</var> 匹よりも考察力の値が大きい．</li>
+</ul>
+<p>このとき，チームメンバーの考察力・実装力・運の最大値はそれぞれ <var>5, 4, 4</var> であるため，チームの総合力は <var>13</var> である．総合力を <var>14</var> 以上にするチームの組み方は存在しないので，<var>13</var> を出力する．</p>
+<p>なお，例えば <var>1, 3, 5</var> 匹目のビーバーでチームを組むと，チームの総合力は <var>15</var> となるものの，<var>1</var> 匹目のビーバーには他のメンバーよりも値が真に大きい能力がないため，問題文中の条件を満たさないことに注意せよ．</p>
+<p>この入力例はすべての小課題の制約を満たす．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>8
+1 1 1
+1 1 5
+1 5 1
+5 1 1
+1 5 5
+5 1 5
+5 5 1
+5 5 5
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>15
+</pre>
+<p><var>2, 3, 4</var> 匹目のビーバーでチームを組むと，問題文中の条件を満たし，チームの総合力は <var>15</var> となる．総合力を <var>16</var> 以上にするチームの組み方は存在しないので，<var>15</var> を出力する．</p>
+<p>この入力例はすべての小課題の制約を満たす．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>4
+1 2 3
+1 2 3
+1 2 3
+1 2 3
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>-1
+</pre>
+<p>問題文中の条件を満たすようにチームを組むことはできない．よって <code>-1</code> を出力する．</p>
+<p>この入力例はすべての小課題の制約を満たす．</p></section>
+</div>
+</span>
+</span>

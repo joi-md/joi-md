@@ -1,0 +1,788 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>JOI, Ltd. is a company known for their “just odd inventions.” Recently, JOI, Ltd. developed a text editor called “Just Odd Editor.”</p>
+<p>Using this text editor, we can input a string of characters by performing the following operations several times. Let <var>X</var> be the string displayed on the screen of the text editor. Let <var>Y</var> be the string saved in the clipboard. In the beginning, both of <var>X</var> and <var>Y</var> are the empty string.</p>
+<ul>
+<li>Operation A : We add one character in the end of the string. Namely, we choose a character <var>c</var>, and update <var>X</var> to be <var>X + c</var>.</li>
+<li>Operation B : We select all the characters and cut them. Namely, we update <var>Y</var> to be <var>X</var>. After that, we set <var>X</var> to be the empty string.</li>
+<li>Operation C : We paste the string from the clipboard at the end of the string. Namely, we update <var>X</var> to be <var>X + Y</var>.</li>
+</ul>
+<p>Here, for characters or strings <var>x, y</var>, the string <var>x + y</var> means the string obtained by connecting <var>x</var> with <var>y</var> in this order. Performing an operation takes time. If we perform the operation A, B, C once, it takes <var>A, B,C</var> unit time, respectively.</p>
+<p>You installed Just Odd Editor. You want to input a string <var>S</var> of length <var>N</var> as soon as possible. Performing operations, you want to make the string on the display be <var>S</var> as soon as possible.</p>
+<p>Write a program which, given the length <var>N</var>, the string <var>S</var>, and the amount of unit time needed to perform an operation, calculates the least amount of time needed to input the string <var>S</var>.</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input.</p>
+<pre><var>N</var>
+<var>S</var>
+<var>A</var>
+<var>B</var>
+<var>C</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>Write one line to the standard output. The output should contain the least amount of time needed to input the string <var>S</var>.</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li><var>1 \le N \le 2\,500</var>.</li>
+<li><var>S</var> is a string of length <var>N</var>. Each character of <var>S</var> is a lower-case alphabet (’<code>a</code>’ - ’<code>z</code>’).</li>
+<li><var>1 \le A \le 1\,000\,000\,000 (= 10^{9})</var>.</li>
+<li><var>1 \le B \le 1\,000\,000\,000 (= 10^{9})</var>.</li>
+<li><var>1 \le C \le 1\,000\,000\,000 (= 10^{9})</var>.</li>
+<li><var>N, A, B,C</var> are integers.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li>(<var>7</var> points) <var>N = 3</var>.</li>
+<li>(<var>18</var> points) Every character of <var>S</var> is ’<code>a</code>’.</li>
+<li>(<var>18</var> points) <var>N \le 30</var>.</li>
+<li>(<var>11</var> points) <var>N \le 200</var>.</li>
+<li>(<var>22</var> points) <var>N \le 1\,000</var>.</li>
+<li>(<var>24</var> points) No additional constraints.</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>11
+mississippi
+10
+5
+2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>88
+</pre>
+<p>By performing the following operations, we can input <code>mississippi</code> by <var>88</var> unit time. Since it is the least amount of time needed to input <code>mississippi</code>, output 88.</p>
+<div class="joigsc2022-copypaste3-joig-en-table">
+<table>
+<thead>
+<tr>
+<th>Order</th>
+<th>Operation</th>
+<th>Explanation</th>
+<th><var>X</var></th>
+<th><var>Y</var></th>
+<th>Time</th>
+<th>Total Time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td><code>""</code></td>
+<td><code>""</code></td>
+<td>-</td>
+<td><var>0</var></td>
+</tr>
+<tr>
+<td><var>1</var></td>
+<td>Operation A</td>
+<td>Add a character in end</td>
+<td><code>"s"</code></td>
+<td><code>""</code></td>
+<td><var>10</var></td>
+<td><var>10</var></td>
+</tr>
+<tr>
+<td><var>2</var></td>
+<td>Operation B</td>
+<td>Select all &amp; Cut</td>
+<td><code>""</code></td>
+<td><code>"s"</code></td>
+<td><var>5</var></td>
+<td><var>15</var></td>
+</tr>
+<tr>
+<td><var>3</var></td>
+<td>Operation C</td>
+<td>Paste at end</td>
+<td><code>"s"</code></td>
+<td><code>"s"</code></td>
+<td><var>2</var></td>
+<td><var>17</var></td>
+</tr>
+<tr>
+<td><var>4</var></td>
+<td>Operation C</td>
+<td>Paste at end</td>
+<td><code>"ss"</code></td>
+<td><code>"s"</code></td>
+<td><var>2</var></td>
+<td><var>19</var></td>
+</tr>
+<tr>
+<td><var>5</var></td>
+<td>Operation A</td>
+<td>Add a character in end</td>
+<td><code>"ssi"</code></td>
+<td><code>"s"</code></td>
+<td><var>10</var></td>
+<td><var>29</var></td>
+</tr>
+<tr>
+<td><var>6</var></td>
+<td>Operation B</td>
+<td>Select all &amp; Cut</td>
+<td><code>""</code></td>
+<td><code>"ssi"</code></td>
+<td><var>5</var></td>
+<td><var>34</var></td>
+</tr>
+<tr>
+<td><var>7</var></td>
+<td>Operation A</td>
+<td>Add a character in end</td>
+<td><code>"m"</code></td>
+<td><code>"ssi"</code></td>
+<td><var>10</var></td>
+<td><var>44</var></td>
+</tr>
+<tr>
+<td><var>8</var></td>
+<td>Operation A</td>
+<td>Add a character in end</td>
+<td><code>"mi"</code></td>
+<td><code>"ssi"</code></td>
+<td><var>10</var></td>
+<td><var>54</var></td>
+</tr>
+<tr>
+<td><var>9</var></td>
+<td>Operation C</td>
+<td>Paste at end</td>
+<td><code>"missi"</code></td>
+<td><code>"ssi"</code></td>
+<td><var>2</var></td>
+<td><var>56</var></td>
+</tr>
+<tr>
+<td><var>10</var></td>
+<td>Operation C</td>
+<td>Paste at end</td>
+<td><code>"mississi"</code></td>
+<td><code>"ssi"</code></td>
+<td><var>2</var></td>
+<td><var>58</var></td>
+</tr>
+<tr>
+<td><var>11</var></td>
+<td>Operation A</td>
+<td>Add a character in end</td>
+<td><code>"mississip"</code></td>
+<td><code>"ssi"</code></td>
+<td><var>10</var></td>
+<td><var>68</var></td>
+</tr>
+<tr>
+<td><var>12</var></td>
+<td>Operation A</td>
+<td>Add a character in end</td>
+<td><code>"mississipp"</code></td>
+<td><code>"ssi"</code></td>
+<td><var>10</var></td>
+<td><var>78</var></td>
+</tr>
+<tr>
+<td><var>13</var></td>
+<td>Operation A</td>
+<td>Add a character in end</td>
+<td><code>"mississippi"</code></td>
+<td><code>"ssi"</code></td>
+<td><var>10</var></td>
+<td><var>88</var></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>This sample input satisfies the constraints of Subtasks <var>3</var>, <var>4</var>, <var>5</var>, <var>6</var>.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>16
+aaaaaaaaaaaaaaaa
+1
+1
+1
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>9
+</pre>
+<p>By performing the following operations, we can input <code>aaaaaaaaaaaaaaaa</code> by <var>9</var> unit time. Since it is the least amount of time needed to input <code>aaaaaaaaaaaaaaaa</code>, output 9.</p>
+<div class="joigsc2022-copypaste3-joig-en-table">
+<table>
+<thead>
+<tr>
+<th>Order</th>
+<th>Operation</th>
+<th>Explanation</th>
+<th><var>X</var></th>
+<th><var>Y</var></th>
+<th>Time</th>
+<th>Total Time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td><code>""</code></td>
+<td><code>""</code></td>
+<td>-</td>
+<td><var>0</var></td>
+</tr>
+<tr>
+<td><var>1</var></td>
+<td>Operation A</td>
+<td>Add a character in end</td>
+<td><code>"a"</code></td>
+<td><code>""</code></td>
+<td><var>1</var></td>
+<td><var>1</var></td>
+</tr>
+<tr>
+<td><var>2</var></td>
+<td>Operation A</td>
+<td>Add a character in end</td>
+<td><code>"aa"</code></td>
+<td><code>""</code></td>
+<td><var>1</var></td>
+<td><var>2</var></td>
+</tr>
+<tr>
+<td><var>3</var></td>
+<td>Operation A</td>
+<td>Add a character in end</td>
+<td><code>"aaa"</code></td>
+<td><code>""</code></td>
+<td><var>1</var></td>
+<td><var>3</var></td>
+</tr>
+<tr>
+<td><var>4</var></td>
+<td>Operation A</td>
+<td>Add a character in end</td>
+<td><code>"aaaa"</code></td>
+<td><code>""</code></td>
+<td><var>1</var></td>
+<td><var>4</var></td>
+</tr>
+<tr>
+<td><var>5</var></td>
+<td>Operation B</td>
+<td>Select all &amp; Cut</td>
+<td><code>""</code></td>
+<td><code>"aaaa"</code></td>
+<td><var>1</var></td>
+<td><var>5</var></td>
+</tr>
+<tr>
+<td><var>6</var></td>
+<td>Operation C</td>
+<td>Paste at end</td>
+<td><code>"aaaa"</code></td>
+<td><code>"aaaa"</code></td>
+<td><var>1</var></td>
+<td><var>6</var></td>
+</tr>
+<tr>
+<td><var>7</var></td>
+<td>Operation C</td>
+<td>Paste at end</td>
+<td><code>"aaaaaaaa"</code></td>
+<td><code>"aaaa"</code></td>
+<td><var>1</var></td>
+<td><var>7</var></td>
+</tr>
+<tr>
+<td><var>8</var></td>
+<td>Operation C</td>
+<td>Paste at end</td>
+<td><code>"aaaaaaaaaaaa"</code></td>
+<td><code>"aaaa"</code></td>
+<td><var>1</var></td>
+<td><var>8</var></td>
+</tr>
+<tr>
+<td><var>9</var></td>
+<td>Operation C</td>
+<td>Paste at end</td>
+<td><code>"aaaaaaaaaaaaaaaa"</code></td>
+<td><code>"aaaa"</code></td>
+<td><var>1</var></td>
+<td><var>9</var></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>This sample input satisfies the constraints of Subtasks <var>2</var>, <var>3</var>, <var>4</var>, <var>5</var>, <var>6</var>.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 3</h3>
+<pre>18
+aababbbababbbaabbb
+1000000000
+100000
+10000000
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 3</h3>
+<pre>8060200000
+</pre>
+<p>This sample input satisfies the constraints of Subtasks <var>3</var>, <var>4</var>, <var>5</var>, <var>6</var>.</p>
+<style>
+.joigsc2022-copypaste3-joig-en-table { position:relative; max-width:100%;overflow-x:auto;margin:1em 0; }
+.joigsc2022-copypaste3-joig-en-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joigsc2022-copypaste3-joig-en-table th,.joigsc2022-copypaste3-joig-en-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; white-space:nowrap; }
+.joigsc2022-copypaste3-joig-en-table th { background:#f5f5f5; }
+.joigsc2022-copypaste3-joig-en-table code { white-space:nowrap; }
+.joigsc2022-copypaste3-joig-en-table .katex { position:relative; }
+</style></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>ただ奇妙な発明で知られる JOI 社は，最近 Just Odd Editor というテキストエディタを開発した．</p>
+<p>このテキストエディタでは，以下の操作のいずれかを繰り返すことで，文字列を入力することができる．説明の都合上，現在テキストエディタの画面に表示されている文字列を <var>X</var>，クリップボードに保存されている文字列を <var>Y</var> とする．最初の時点では，<var>X</var> と <var>Y</var> はどちらも空文字列である．</p>
+<ul>
+<li>操作 A：末尾に <var>1</var> 文字入力する．すなわち，ある文字 <var>c</var> を決めて，<var>X</var> を <var>X + c</var> に更新する．</li>
+<li>操作 B：全選択して切り取りする．すなわち，<var>Y</var> を <var>X</var> に更新した後，<var>X</var> を空文字列に更新する．</li>
+<li>操作 C：末尾に貼り付けする．すなわち，<var>X</var> を <var>X + Y</var> に更新する．</li>
+</ul>
+<p>ただし，文字または文字列 <var>x, y</var> に対し，<var>x + y</var> は「<var>x, y</var> をこの順で連結した文字列」を表すものとする．また，各操作には一定の時間がかかり，具体的には操作 A, B, C を <var>1</var> 回行うのにそれぞれ <var>A, B,C</var> 単位時間かかる．</p>
+<p>あなたは Just Odd Editor をインストールしたので，できるだけ早く長さ <var>N</var> の文字列 <var>S</var> を入力したいと思っている．すなわち，操作手順を工夫することで，できるだけ短い時間で画面に表示されている文字列を <var>S</var> に一致させたい．</p>
+<p>文字列の長さ <var>N</var>，文字列 <var>S</var> および各操作に必要な時間が与えられるので，文字列 <var>S</var> を入力するのに必要な時間の最小値を求めるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力は以下の形式で標準入力から与えられる．</p>
+<pre><var>N</var>
+<var>S</var>
+<var>A</var>
+<var>B</var>
+<var>C</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に，文字列 <var>S</var> を入力するのに必要な時間の最小値を <var>1</var> 行で出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>1 \leqq N \leqq 2\,500</var>．</li>
+<li><var>S</var> は英小文字 (’<code>a</code>’ - ’<code>z</code>’) からなる長さ <var>N</var> の文字列である．</li>
+<li><var>1 \leqq A \leqq 1\,000\,000\,000 (= 10^{9})</var>．</li>
+<li><var>1 \leqq B \leqq 1\,000\,000\,000 (= 10^{9})</var>．</li>
+<li><var>1 \leqq C \leqq 1\,000\,000\,000 (= 10^{9})</var>．</li>
+<li><var>N, A, B,C</var> は整数である．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>7</var> 点) <var>N = 3</var>．</li>
+<li>(<var>18</var> 点) <var>S</var> のすべての文字は ’<code>a</code>’ である．</li>
+<li>(<var>18</var> 点) <var>N \leqq 30</var>．</li>
+<li>(<var>11</var> 点) <var>N \leqq 200</var>．</li>
+<li>(<var>22</var> 点) <var>N \leqq 1\,000</var>．</li>
+<li>(<var>24</var> 点) 追加の制約はない．</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>11
+mississippi
+10
+5
+2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>88
+</pre>
+<p>以下の表のように操作すると，<var>88</var> 単位時間で <code>mississippi</code> を入力できる．これより少ない時間で <code>mississippi</code> を入力することはできないので，<var>88</var> を出力する．</p>
+<div class="joigsc2022-copypaste3-joig-ja-table">
+<table>
+<thead>
+<tr>
+<th>順番</th>
+<th>種類</th>
+<th>操作内容</th>
+<th><var>X</var></th>
+<th><var>Y</var></th>
+<th>時間</th>
+<th>累計時間</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td><code>""</code></td>
+<td><code>""</code></td>
+<td>-</td>
+<td><var>0</var></td>
+</tr>
+<tr>
+<td><var>1</var></td>
+<td>操作 A</td>
+<td>末尾に <var>1</var> 文字入力</td>
+<td><code>"s"</code></td>
+<td><code>""</code></td>
+<td><var>10</var></td>
+<td><var>10</var></td>
+</tr>
+<tr>
+<td><var>2</var></td>
+<td>操作 B</td>
+<td>全選択して切り取り</td>
+<td><code>""</code></td>
+<td><code>"s"</code></td>
+<td><var>5</var></td>
+<td><var>15</var></td>
+</tr>
+<tr>
+<td><var>3</var></td>
+<td>操作 C</td>
+<td>末尾に貼り付け</td>
+<td><code>"s"</code></td>
+<td><code>"s"</code></td>
+<td><var>2</var></td>
+<td><var>17</var></td>
+</tr>
+<tr>
+<td><var>4</var></td>
+<td>操作 C</td>
+<td>末尾に貼り付け</td>
+<td><code>"ss"</code></td>
+<td><code>"s"</code></td>
+<td><var>2</var></td>
+<td><var>19</var></td>
+</tr>
+<tr>
+<td><var>5</var></td>
+<td>操作 A</td>
+<td>末尾に <var>1</var> 文字入力</td>
+<td><code>"ssi"</code></td>
+<td><code>"s"</code></td>
+<td><var>10</var></td>
+<td><var>29</var></td>
+</tr>
+<tr>
+<td><var>6</var></td>
+<td>操作 B</td>
+<td>全選択して切り取り</td>
+<td><code>""</code></td>
+<td><code>"ssi"</code></td>
+<td><var>5</var></td>
+<td><var>34</var></td>
+</tr>
+<tr>
+<td><var>7</var></td>
+<td>操作 A</td>
+<td>末尾に <var>1</var> 文字入力</td>
+<td><code>"m"</code></td>
+<td><code>"ssi"</code></td>
+<td><var>10</var></td>
+<td><var>44</var></td>
+</tr>
+<tr>
+<td><var>8</var></td>
+<td>操作 A</td>
+<td>末尾に <var>1</var> 文字入力</td>
+<td><code>"mi"</code></td>
+<td><code>"ssi"</code></td>
+<td><var>10</var></td>
+<td><var>54</var></td>
+</tr>
+<tr>
+<td><var>9</var></td>
+<td>操作 C</td>
+<td>末尾に貼り付け</td>
+<td><code>"missi"</code></td>
+<td><code>"ssi"</code></td>
+<td><var>2</var></td>
+<td><var>56</var></td>
+</tr>
+<tr>
+<td><var>10</var></td>
+<td>操作 C</td>
+<td>末尾に貼り付け</td>
+<td><code>"mississi"</code></td>
+<td><code>"ssi"</code></td>
+<td><var>2</var></td>
+<td><var>58</var></td>
+</tr>
+<tr>
+<td><var>11</var></td>
+<td>操作 A</td>
+<td>末尾に <var>1</var> 文字入力</td>
+<td><code>"mississip"</code></td>
+<td><code>"ssi"</code></td>
+<td><var>10</var></td>
+<td><var>68</var></td>
+</tr>
+<tr>
+<td><var>12</var></td>
+<td>操作 A</td>
+<td>末尾に <var>1</var> 文字入力</td>
+<td><code>"mississipp"</code></td>
+<td><code>"ssi"</code></td>
+<td><var>10</var></td>
+<td><var>78</var></td>
+</tr>
+<tr>
+<td><var>13</var></td>
+<td>操作 A</td>
+<td>末尾に <var>1</var> 文字入力</td>
+<td><code>"mississippi"</code></td>
+<td><code>"ssi"</code></td>
+<td><var>10</var></td>
+<td><var>88</var></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>この入力例は小課題 <var>3, 4, 5, 6</var> の制約を満たす．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>16
+aaaaaaaaaaaaaaaa
+1
+1
+1
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>9
+</pre>
+<p>以下の表のように操作すると，<var>9</var> 単位時間で <code>aaaaaaaaaaaaaaaa</code> を入力できる．これより少ない時間で <code>aaaaaaaaaaaaaaaa</code> を入力することはできないので，<var>9</var> を出力する．</p>
+<div class="joigsc2022-copypaste3-joig-ja-table">
+<table>
+<thead>
+<tr>
+<th>順番</th>
+<th>種類</th>
+<th>操作内容</th>
+<th><var>X</var></th>
+<th><var>Y</var></th>
+<th>時間</th>
+<th>累計時間</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td><code>""</code></td>
+<td><code>""</code></td>
+<td>-</td>
+<td><var>0</var></td>
+</tr>
+<tr>
+<td><var>1</var></td>
+<td>操作 A</td>
+<td>末尾に <var>1</var> 文字入力</td>
+<td><code>"a"</code></td>
+<td><code>""</code></td>
+<td><var>1</var></td>
+<td><var>1</var></td>
+</tr>
+<tr>
+<td><var>2</var></td>
+<td>操作 A</td>
+<td>末尾に <var>1</var> 文字入力</td>
+<td><code>"aa"</code></td>
+<td><code>""</code></td>
+<td><var>1</var></td>
+<td><var>2</var></td>
+</tr>
+<tr>
+<td><var>3</var></td>
+<td>操作 A</td>
+<td>末尾に <var>1</var> 文字入力</td>
+<td><code>"aaa"</code></td>
+<td><code>""</code></td>
+<td><var>1</var></td>
+<td><var>3</var></td>
+</tr>
+<tr>
+<td><var>4</var></td>
+<td>操作 A</td>
+<td>末尾に <var>1</var> 文字入力</td>
+<td><code>"aaaa"</code></td>
+<td><code>""</code></td>
+<td><var>1</var></td>
+<td><var>4</var></td>
+</tr>
+<tr>
+<td><var>5</var></td>
+<td>操作 B</td>
+<td>全選択して切り取り</td>
+<td><code>""</code></td>
+<td><code>"aaaa"</code></td>
+<td><var>1</var></td>
+<td><var>5</var></td>
+</tr>
+<tr>
+<td><var>6</var></td>
+<td>操作 C</td>
+<td>末尾に貼り付け</td>
+<td><code>"aaaa"</code></td>
+<td><code>"aaaa"</code></td>
+<td><var>1</var></td>
+<td><var>6</var></td>
+</tr>
+<tr>
+<td><var>7</var></td>
+<td>操作 C</td>
+<td>末尾に貼り付け</td>
+<td><code>"aaaaaaaa"</code></td>
+<td><code>"aaaa"</code></td>
+<td><var>1</var></td>
+<td><var>7</var></td>
+</tr>
+<tr>
+<td><var>8</var></td>
+<td>操作 C</td>
+<td>末尾に貼り付け</td>
+<td><code>"aaaaaaaaaaaa"</code></td>
+<td><code>"aaaa"</code></td>
+<td><var>1</var></td>
+<td><var>8</var></td>
+</tr>
+<tr>
+<td><var>9</var></td>
+<td>操作 C</td>
+<td>末尾に貼り付け</td>
+<td><code>"aaaaaaaaaaaaaaaa"</code></td>
+<td><code>"aaaa"</code></td>
+<td><var>1</var></td>
+<td><var>9</var></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>この入力例は小課題 <var>2, 3, 4, 5, 6</var> の制約を満たす．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>18
+aababbbababbbaabbb
+1000000000
+100000
+10000000
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>8060200000
+</pre>
+<p>この入力例は小課題 <var>3, 4, 5, 6</var> の制約を満たす．</p>
+<style>
+.joigsc2022-copypaste3-joig-ja-table { position:relative; max-width:100%;overflow-x:auto;margin:1em 0; }
+.joigsc2022-copypaste3-joig-ja-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joigsc2022-copypaste3-joig-ja-table th,.joigsc2022-copypaste3-joig-ja-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; white-space:nowrap; }
+.joigsc2022-copypaste3-joig-ja-table th { background:#f5f5f5; }
+.joigsc2022-copypaste3-joig-ja-table code { white-space:nowrap; }
+.joigsc2022-copypaste3-joig-ja-table .katex { position:relative; }
+</style></section>
+</div>
+</span>
+</span>

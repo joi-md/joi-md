@@ -1,0 +1,428 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>JOI Town is an industrial area which had flourished some time ago. In order to transport products, many stations and railway tracks were constructed. Though it declined, there remain the stations and the railway tracks which are not used any more.</p>
+<p>There are <var>N</var> stations in JOI Town, numbered from 1 to <var>N</var>. There remain <var>M</var> railway tracks. The <var>i</var>-th railway track (<var>1 \le i \le M</var>) connects the station <var>A_{i}</var> and the station <var>B_{i}</var> bidirectionally. The width of the <var>i</var>-th railway track is <var>W_{i}</var>. It is possible to travel from any station to any other station using railway tracks.</p>
+<p>You are the mayor of JOI Town. You are planning to attract a railroad company using the remaining stations and railway tracks, and revive the JOI Town as the town of railway. Then, <var>Q</var> railroad companies applied for this revival project. However, the width of the railway track for trains varies for different companies. It turns out that they need to reconstruct the railway tracks so that the width of the railway tracks of JOI Town matches the width of the railway tracks for the trains of a company.</p>
+<p>The width of the railway tracks for the trains of the railroad company <var>j</var> (<var>1 \le j \le Q</var>) is <var>X_{j}</var>. To attract the railroad company <var>j</var>, it is required that the following condition is satisfied.</p>
+<ul>
+<li><strong>Condition</strong> It is possible to travel from any station to any other station using railway tracks of width <var>X_{j}</var> only.</li>
+</ul>
+<p>In order to satisfy the above condition, you can reconstruct the railway tracks as many times as needed.</p>
+<ul>
+<li><strong>Reconstruction</strong> You choose a railway track. Then you reconstruct the chosen track so that its width will be increased or decreased by 1. The cost is 1. However, if the width of a railway track is 1, it is impossible to decrease the width further.</li>
+</ul>
+<p>In order to decide on the company to be attracted, you want to estimate the minimum cost to attract each railroad company.</p>
+<p>White a program which, given information on the stations, the railway tracks, and the railroad companies, calculates the minimum cost to attract each railroad company.</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input. Given values are all integers.</p>
+<pre><var>N</var> <var>M</var>
+<var>A_{1}</var> <var>B_{1}</var> <var>W_{1}</var>
+<var>A_{2}</var> <var>B_{2}</var> <var>W_{2}</var>
+<var>\vdots</var>
+<var>A_{M}</var> <var>B_{M}</var> <var>W_{M}</var>
+<var>Q</var>
+<var>X_{1}</var>
+<var>X_{2}</var>
+<var>\vdots</var>
+<var>X_{Q}</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>Write <var>Q</var> lines to the standard output. The <var>j</var>-th line (<var>1 \le j \le Q</var>) of output should contain the minimum cost to attract the railroad company <var>j</var>.</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li><var>2 \le N \le 500</var>.</li>
+<li><var>N - 1 \le M \le 100\,000</var>.</li>
+<li><var>1 \le Q \le 1\,000\,000</var>.</li>
+<li><var>1 \le A_{i} &lt; B_{i} \le N</var> (<var>1 \le i \le M</var>).</li>
+<li><var>1 \le W_{i} \le 1\,000\,000\,000 (= 10^{9})</var> (<var>1 \le i \le M</var>).</li>
+<li><var>(A_{i}, B_{i}, W_{i}) \ne (A_{j}, B_{j}, W_{j})</var> (<var>1 \le i &lt; j \le M</var>).</li>
+<li>It is possible to travel from any station to any other station using railway tracks.</li>
+<li><var>1 \le X_{j} \le 1\,000\,000\,000 (= 10^{9})</var> (<var>1 \le j \le Q</var>).</li>
+<li><var>X_{j} &lt; X_{j+1}</var> (<var>1 \le j \le Q - 1</var>).</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li>(<var>9</var> points) <var>M \le 16</var>, <var>Q \le 10</var>.</li>
+<li>(<var>11</var> points) <var>Q \le 10</var>.</li>
+<li>(<var>18</var> points) <var>B_{i} = A_{i} + 1</var> (<var>1 \le i \le M</var>).</li>
+<li>(<var>23</var> points) <var>M \le 1\,000</var>.</li>
+<li>(<var>28</var> points) <var>Q \le 20\,000</var>.</li>
+<li>(<var>11</var> points) No additional constraints.</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>5 10
+1 2 8
+1 3 13
+1 4 5
+1 5 11
+1 5 3
+2 3 7
+2 4 15
+3 4 6
+3 5 6
+4 5 2
+6
+3
+6
+8
+10
+13
+17
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>8
+2
+5
+10
+9
+21
+</pre>
+<p>For example, to attract the railroad company 1, it will cost 8 if you reconstruct the railway tracks as follows.</p>
+<ol>
+<li>Decrease the width of the 6-th railway track by 4. The cost is 4.</li>
+<li>Decrease the width of the 9-th railway track by 3. The cost is 3.</li>
+<li>Increase the width of the 10-th railway track by 1. The cost is 1.</li>
+</ol>
+<p>It is impossible to attract the railroad company 1 at cost less than 8. Therefore, output 8 in the first line.</p>
+<p>This sample input satisfies the constraints of Subtasks <var>1</var>, <var>2</var>, <var>4</var>, <var>5</var>, <var>6</var>.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>3 4
+1 2 1
+1 2 4
+2 3 2
+2 3 4
+4
+1
+2
+3
+4
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>1
+1
+2
+0
+</pre>
+<p>This sample input satisfies the constraints of all the subtasks.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 3</h3>
+<pre>10 20
+6 7 914727791
+1 8 771674531
+3 5 632918108
+5 9 329296846
+1 7 237501112
+4 9 303328173
+2 6 216298255
+2 10 504024991
+3 8 158236886
+1 10 10176179
+8 9 918271145
+3 6 217165898
+3 6 624543444
+4 9 70147274
+8 9 976983490
+6 9 210108505
+2 9 972711062
+1 10 564567289
+3 7 411395464
+4 7 952470985
+10
+115721165
+198969744
+356664401
+429802521
+513343279
+610443927
+741016686
+786597783
+898772266
+903568946
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 3</h3>
+<pre>1121073688
+761832468
+1026806785
+1316097872
+1321500065
+1445238392
+1637513141
+1621778548
+1733953031
+1738749711
+</pre>
+<p>This sample input satisfies the constraints of Subtasks <var>2</var>, <var>4</var>, <var>5</var>, <var>6</var>.</p></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>JOI 町はかつて栄えた工業地域であり，物資の運搬のために数多くの駅や線路が建設された．現在は衰退してしまったが，使われなくなった駅や線路は今もなお残されたままである．</p>
+<p>JOI 町には <var>N</var> 個の駅が残されており，<var>1</var> から <var>N</var> までの番号が付けられている．また <var>M</var> 本の線路が残されており，<var>i</var> 本目 (<var>1 \leqq i \leqq M</var>) の線路は駅 <var>A_{i}</var> と駅 <var>B_{i}</var> を双方向に結び，そのレール幅は <var>W_{i}</var> である．どの駅からどの駅へもいくつかの線路を通って到達できる．</p>
+<p>JOI 町の町長であるあなたは，この残された駅と線路を用いて鉄道会社を誘致し，JOI 町を鉄道の町として復興させることにした．するとこの復興事業に <var>Q</var> 社の鉄道会社が名乗りを挙げた．しかし鉄道会社ごとに，保有する列車に対応するレール幅が決まっているため，線路のレール幅を列車に合わせるための工事が必要であることが分かった．</p>
+<p><var>j</var> 番目 (<var>1 \leqq j \leqq Q</var>) の鉄道会社の列車に対応するレール幅は <var>X_{j}</var> である．<var>j</var> 番目の鉄道会社を誘致するには次の条件を満たす必要がある．</p>
+<ul>
+<li><strong>条件</strong> どの駅からどの駅へも，レール幅が <var>X_{j}</var> である線路のみを通って到達できる．</li>
+</ul>
+<p>この条件を満たすようにするために，あなたは次の工事を好きなだけ行える．</p>
+<ul>
+<li><strong>工事</strong> 線路を <var>1</var> つ選び，その線路のレール幅を <var>1</var> だけ増やすまたは減らす．これにはコストが <var>1</var> だけかかる．ただし，レール幅が <var>1</var> である線路のレール幅をさらに減らすことはできない．</li>
+</ul>
+<p>あなたは誘致する鉄道会社を決めるために，各鉄道会社を誘致するのにそれぞれ最小でいくらコストがかかるのかを見積もりたい．</p>
+<p>駅と線路，鉄道会社の情報が与えられたとき，各鉄道会社を誘致するためにかかるコストの最小値を求めるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力は以下の形式で標準入力から与えられる．入力される値はすべて整数である．</p>
+<pre><var>N</var> <var>M</var>
+<var>A_{1}</var> <var>B_{1}</var> <var>W_{1}</var>
+<var>A_{2}</var> <var>B_{2}</var> <var>W_{2}</var>
+<var>\vdots</var>
+<var>A_{M}</var> <var>B_{M}</var> <var>W_{M}</var>
+<var>Q</var>
+<var>X_{1}</var>
+<var>X_{2}</var>
+<var>\vdots</var>
+<var>X_{Q}</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に <var>Q</var> 行で出力せよ．<var>j</var> 行目 (<var>1 \leqq j \leqq Q</var>) には <var>j</var> 番目の鉄道会社を誘致するためにかかるコストの最小値を出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>2 \leqq N \leqq 500</var>．</li>
+<li><var>N - 1 \leqq M \leqq 100\,000</var>．</li>
+<li><var>1 \leqq Q \leqq 1\,000\,000</var>．</li>
+<li><var>1 \leqq A_{i} &lt; B_{i} \leqq N</var> (<var>1 \leqq i \leqq M</var>)．</li>
+<li><var>1 \leqq W_{i} \leqq 1\,000\,000\,000 (= 10^{9})</var> (<var>1 \leqq i \leqq M</var>)．</li>
+<li><var>(A_{i}, B_{i}, W_{i}) \ne (A_{j}, B_{j}, W_{j})</var> (<var>1 \leqq i &lt; j \leqq M</var>)</li>
+<li>どの駅からどの駅へもいくつかの線路を通って到達できる．</li>
+<li><var>1 \leqq X_{j} \leqq 1\,000\,000\,000 (= 10^{9})</var> (<var>1 \leqq j \leqq Q</var>)．</li>
+<li><var>X_{j} &lt; X_{j+1}</var> (<var>1 \leqq j \leqq Q - 1</var>)．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>9</var> 点) <var>M \leqq 16</var>，<var>Q \leqq 10</var>．</li>
+<li>(<var>11</var> 点) <var>Q \leqq 10</var>．</li>
+<li>(<var>18</var> 点) <var>B_{i} = A_{i} + 1</var> (<var>1 \leqq i \leqq M</var>)．</li>
+<li>(<var>23</var> 点) <var>M \leqq 1\,000</var>．</li>
+<li>(<var>28</var> 点) <var>Q \leqq 20\,000</var>．</li>
+<li>(<var>11</var> 点) 追加の制約はない．</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>5 10
+1 2 8
+1 3 13
+1 4 5
+1 5 11
+1 5 3
+2 3 7
+2 4 15
+3 4 6
+3 5 6
+4 5 2
+6
+3
+6
+8
+10
+13
+17
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>8
+2
+5
+10
+9
+21
+</pre>
+<p>例えば <var>1</var> 番目の鉄道会社を誘致するとき，以下のように工事を行うとコストが <var>8</var> かかる．</p>
+<ol>
+<li><var>6</var> 本目の線路のレール幅を <var>4</var> だけ減らす．これにはコストが <var>4</var> だけかかる．</li>
+<li><var>9</var> 本目の線路のレール幅を <var>3</var> だけ減らす．これにはコストが <var>3</var> だけかかる．</li>
+<li><var>10</var> 本目の線路のレール幅を <var>1</var> だけ増やす．これにはコストが <var>1</var> だけかかる．</li>
+</ol>
+<p>コスト <var>8</var> 未満で <var>1</var> 番目の鉄道会社を誘致することはできないので，<var>1</var> 行目には <var>8</var> を出力する．</p>
+<p>この入力例は小課題 <var>1, 2, 4, 5, 6</var> の制約を満たす．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>3 4
+1 2 1
+1 2 4
+2 3 2
+2 3 4
+4
+1
+2
+3
+4
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>1
+1
+2
+0
+</pre>
+<p>この入力例はすべての小課題の制約を満たす．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>10 20
+6 7 914727791
+1 8 771674531
+3 5 632918108
+5 9 329296846
+1 7 237501112
+4 9 303328173
+2 6 216298255
+2 10 504024991
+3 8 158236886
+1 10 10176179
+8 9 918271145
+3 6 217165898
+3 6 624543444
+4 9 70147274
+8 9 976983490
+6 9 210108505
+2 9 972711062
+1 10 564567289
+3 7 411395464
+4 7 952470985
+10
+115721165
+198969744
+356664401
+429802521
+513343279
+610443927
+741016686
+786597783
+898772266
+903568946
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>1121073688
+761832468
+1026806785
+1316097872
+1321500065
+1445238392
+1637513141
+1621778548
+1733953031
+1738749711
+</pre>
+<p>この入力例は小課題 <var>2, 4, 5, 6</var> の制約を満たす．</p></section>
+</div>
+</span>
+</span>

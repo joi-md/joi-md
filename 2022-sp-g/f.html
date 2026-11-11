@@ -1,0 +1,380 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>In EGOI Airport, there are <var>N</var> runways, numbered from <var>1</var> to <var>N</var>. In this airport, for an airplane, it takes <var>K</var> minutes to take off, and <var>L</var> minutes to land. During a takeoff or landing of an airplane, a runway is occupied by the airplane for a duration of <var>K</var> or <var>L</var> minutes.</p>
+<p>JOI-kun is working at EGOI Airport. His job is to arrange the schedule of takeoffs and landings for a contiguous time slot of <var>T</var> minutes. The beginning of the time slot is time 0. The time when <var>t</var> minutes passed after the beginning of the time slot is time <var>t</var>. The end of the time slot is time <var>T</var>.</p>
+<p>In the time slot, <var>M</var> airplanes will arrive at EGOI Airport. They are numbered from 1 to <var>M</var>. The (<var>1 \le i \le M</var>) will start landing at time <var>A_{i}</var>. But the runway used by airplane <var>i</var> is not yet fixed. It will be fixed by JOI-kun. The schedule for the takeoffs is not fixed at all. JOI-kun will decide the number of airplanes which will take off, the time of a takeoff of each airplane, and the runway used by it.</p>
+<p>In summary, the schedule has to obey the following rules.</p>
+<ul>
+<li>It is not allowed that more than one airplane take off or land at the same time in the same runway. However, it is allowed that an airplane starts taking off or landing, just after another airplane finished taking off or landing in the same runway.</li>
+<li>All takeoffs and landings should be finished in the time slot of <var>T</var> minutes. Namely, it is not allowed for an airplane to start taking off or landing before time 0. It is not allowed for an airplane to finish taking off or landing after time <var>T</var>.</li>
+</ul>
+<p>JOI-kun wants to arrange the schedule so that it obeys the above rules, and the number of airplanes which will take off is maximized.</p>
+<p>Write a program which, given the number of runways, the number of airplanes which will land, the length of the time slot, the time required for a takeoff, the time required for a landing, and the time when each airplane will start landing, calculates the maximum possible number of airplanes which will take off from EGOI Airport. If it is not possible to arrange the schedule so that it obeys the rules, your program should report it.</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input. Given values are all integers.</p>
+<pre><var>N</var> <var>M</var> <var>T</var> <var>K</var> <var>L</var>
+<var>A_{1}</var> <var>A_{2}</var> <var>\cdots</var> <var>A_{M}</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>Write one line to the standard output. The output should contain the maximum possible number of airplanes which will take off from EGOI Airport. If it is not possible to arrange the schedule so that it obeys the rules, output <code>-1</code>.</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li><var>1 \le N \le 100\,000</var>.</li>
+<li><var>1 \le M \le 100\,000</var>.</li>
+<li><var>1 \le T \le 1\,000\,000\,000 (= 10^{9})</var>.</li>
+<li><var>1 \le K \le T</var>.</li>
+<li><var>1 \le L \le T</var>.</li>
+<li><var>0 \le A_{i} \le T - L</var> (<var>1 \le i \le M</var>).</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li>(<var>7</var> points) <var>N = 1</var>.</li>
+<li>(<var>12</var> points) <var>N = 2</var>, <var>M \le 20</var>.</li>
+<li>(<var>17</var> points) <var>N = 2</var>, <var>K = 2</var>, <var>L = 2</var>.</li>
+<li>(<var>28</var> points) <var>N = 2</var>.</li>
+<li>(<var>11</var> points) <var>N \le 100</var>.</li>
+<li>(<var>25</var> points) No additional constraints.</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>2 4 15 3 2
+4 1 5 12
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>5
+</pre>
+<p>For example, if JOI-kun arranges the schedule as follows, 5 airplanes will take off.</p>
+<ol>
+<li>At time 0, an airplane will start taking off in the runway 1.</li>
+<li>At time 1, the airplane 2 will start landing in the runway 2.</li>
+<li>At time 4, the airplane 1 will start landing in the runway 2.</li>
+<li>At time 5, the airplane 3 will start landing in the runway 1.</li>
+<li>At time 6, an airplane will start taking off in the runway 2.</li>
+<li>At time 7, an airplane will start taking off in the runway 1.</li>
+<li>At time 9, an airplane will start taking off in the runway 2.</li>
+<li>At time 10, an airplane will start taking off in the runway 1.</li>
+<li>At time 12, the airplane 4 will start landing in the runway 2.</li>
+</ol>
+<p>It is not possible to arrange the schedule so that it obeys the rules and more than <var>5</var> airplanes will take off. Therefore, output 5.</p>
+<p>This sample input satisfies the constraints of Subtasks <var>2</var>, <var>4</var>, <var>5</var>, <var>6</var>.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>2 6 23 3 6
+9 13 1 16 4 8
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>-1
+</pre>
+<p>It is not possible to arrange the schedule so that it obeys the rules. Therefore, output <code>-1</code>.</p>
+<p>This sample input satisfies the constraints of Subtasks <var>2</var>, <var>4</var>, <var>5</var>, <var>6</var>.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 3</h3>
+<pre>1 5 20 2 1
+2 8 11 15 5
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 3</h3>
+<pre>7
+</pre>
+<p>This sample input satisfies the constraints of Subtasks <var>1</var>, <var>5</var>, <var>6</var>.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 4</h3>
+<pre>2 6 13 2 2
+7 0 1 10 7 4
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 4</h3>
+<pre>5
+</pre>
+<p>This sample input satisfies the constraints of Subtasks <var>2</var>, <var>3</var>, <var>4</var>, <var>5</var>, <var>6</var>.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 5</h3>
+<pre>4 4 14 2 3
+5 6 3 9
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 5</h3>
+<pre>21
+</pre>
+<p>This sample input satisfies the constraints of Subtasks <var>5</var>, <var>6</var>.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 6</h3>
+<pre>8 15 100 4 7
+93 10 74 46 37 64 68 5 38 67 6 48 76 36 21
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 6</h3>
+<pre>170
+</pre>
+<p>This sample input satisfies the constraints of Subtasks <var>5</var>, <var>6</var>.</p></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>EGOI 空港には <var>N</var> 本の滑走路があり，<var>1</var> から <var>N</var> までの番号が付けられている．この空港では，飛行機の離陸開始から終了まで <var>K</var> 分かかり，着陸開始から終了まで <var>L</var> 分かかる．この連続する <var>K</var> 分または <var>L</var> 分の間，飛行機は <var>1</var> つの滑走路を占有することになる．</p>
+<p>EGOI 空港で働いている JOI 君は，ある <var>T</var> 分間の期間における離着陸のスケジュールを立てる仕事を任された．期間の開始時刻を時刻 <var>0</var> とし，時刻 <var>0</var> から <var>t</var> 分経過した時刻を時刻 <var>t</var> と表す．期間が終わるのは時刻 <var>T</var> である．</p>
+<p>期間中に着陸するのは，<var>1</var> から <var>M</var> まで番号付けられた <var>M</var> 機の飛行機である．飛行機 <var>i</var> (<var>1 \leqq i \leqq M</var>) は時刻 <var>A_{i}</var> に着陸を開始することが決まっているが，使用する滑走路はこれから JOI 君が決めることになっている．また，離陸のスケジュールは全く決められていないため，離陸する飛行機の数，各飛行機の離陸開始時刻と使用する滑走路はすべて JOI 君が決めることになる．</p>
+<p>以上を踏まえて，スケジュールは以下のルールをすべて守るように作らなければならない．</p>
+<ul>
+<li><var>1</var> つの滑走路で複数の飛行機が同時に離着陸を行っている状態にしてはならない．ただし，ある飛行機が離着陸を終えると同時に，同じ滑走路で別の飛行機が離着陸を開始することは許される．</li>
+<li>すべての離着陸は <var>T</var> 分間の期間中に行われなければならない．すなわち，時刻 <var>0</var> より前に離着陸を開始したり，時刻 <var>T</var> より後に離着陸を終了したりしてはならない．</li>
+</ul>
+<p>JOI 君はこのルールをすべて守ったうえで，できるだけ多くの飛行機が離陸できるようなスケジュールを立てたいと思った．</p>
+<p>滑走路の数，着陸する飛行機の数，期間の長さ，離陸にかかる時間，着陸にかかる時間，各飛行機が着陸を開始する時刻が与えられたとき，期間中に EGOI 空港を離陸できる飛行機の数の最大値を求めるプログラムを作成せよ．ただし，ルールをすべて守ったスケジュールを作ることが不可能である場合は，そのことを報告せよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力は以下の形式で標準入力から与えられる．入力される値はすべて整数である．</p>
+<pre><var>N</var> <var>M</var> <var>T</var> <var>K</var> <var>L</var>
+<var>A_{1}</var> <var>A_{2}</var> <var>\cdots</var> <var>A_{M}</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に，期間中に EGOI 空港を離陸できる飛行機の数の最大値を <var>1</var> 行で出力せよ．ただし，ルールをすべて守ったスケジュールを作ることが不可能である場合は，<code>-1</code> を出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>1 \leqq N \leqq 100\,000</var>．</li>
+<li><var>1 \leqq M \leqq 100\,000</var>．</li>
+<li><var>1 \leqq T \leqq 1\,000\,000\,000 (= 10^{9})</var>．</li>
+<li><var>1 \leqq K \leqq T</var>．</li>
+<li><var>1 \leqq L \leqq T</var>．</li>
+<li><var>0 \leqq A_{i} \leqq T - L</var> (<var>1 \leqq i \leqq M</var>)．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>7</var> 点) <var>N = 1</var>．</li>
+<li>(<var>12</var> 点) <var>N = 2</var>，<var>M \leqq 20</var>．</li>
+<li>(<var>17</var> 点) <var>N = 2</var>，<var>K = 2</var>，<var>L = 2</var>．</li>
+<li>(<var>28</var> 点) <var>N = 2</var>．</li>
+<li>(<var>11</var> 点) <var>N \leqq 100</var>．</li>
+<li>(<var>25</var> 点) 追加の制約はない．</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>2 4 15 3 2
+4 1 5 12
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>5
+</pre>
+<p>例えば，以下のようなスケジュールを立てることで，<var>5</var> 機の飛行機が離陸することができる．</p>
+<ol>
+<li>時刻 <var>0</var> に，滑走路 <var>1</var> で飛行機の離陸を開始する．</li>
+<li>時刻 <var>1</var> に，滑走路 <var>2</var> で飛行機 <var>2</var> の着陸を開始する．</li>
+<li>時刻 <var>4</var> に，滑走路 <var>2</var> で飛行機 <var>1</var> の着陸を開始する．</li>
+<li>時刻 <var>5</var> に，滑走路 <var>1</var> で飛行機 <var>3</var> の着陸を開始する．</li>
+<li>時刻 <var>6</var> に，滑走路 <var>2</var> で飛行機の離陸を開始する．</li>
+<li>時刻 <var>7</var> に，滑走路 <var>1</var> で飛行機の離陸を開始する．</li>
+<li>時刻 <var>9</var> に，滑走路 <var>2</var> で飛行機の離陸を開始する．</li>
+<li>時刻 <var>10</var> に，滑走路 <var>1</var> で飛行機の離陸を開始する．</li>
+<li>時刻 <var>12</var> に，滑走路 <var>2</var> で飛行機 <var>4</var> の着陸を開始する．</li>
+</ol>
+<p>どのようなスケジュールを立てても，ルールをすべて守ったうえで <var>6</var> 機以上が離陸することはできないため，<var>5</var> を出力する．</p>
+<p>この入出力例は小課題 <var>2, 4, 5, 6</var> の制約を満たす．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>2 6 23 3 6
+9 13 1 16 4 8
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>-1
+</pre>
+<p>ルールをすべて守ったスケジュールを作ることが不可能であるため，<code>-1</code> を出力する．</p>
+<p>この入出力例は小課題 <var>2, 4, 5, 6</var> の制約を満たす．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>1 5 20 2 1
+2 8 11 15 5
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>7
+</pre>
+<p>この入出力例は小課題 <var>1, 5, 6</var> の制約を満たす．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 4</h3>
+<pre>2 6 13 2 2
+7 0 1 10 7 4
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 4</h3>
+<pre>5
+</pre>
+<p>この入出力例は小課題 <var>2, 3, 4, 5, 6</var> の制約を満たす．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 5</h3>
+<pre>4 4 14 2 3
+5 6 3 9
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 5</h3>
+<pre>21
+</pre>
+<p>この入出力例は小課題 <var>5, 6</var> の制約を満たす．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 6</h3>
+<pre>8 15 100 4 7
+93 10 74 46 37 64 68 5 38 67 6 48 76 36 21
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 6</h3>
+<pre>170
+</pre>
+<p>この入出力例は小課題 <var>5, 6</var> の制約を満たす．</p></section>
+</div>
+</span>
+</span>

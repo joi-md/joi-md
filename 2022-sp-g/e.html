@@ -1,0 +1,322 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>In EGOI Farm, the employees are receiving and shipping melons. This morning, <var>N</var> melons are received. The melons are numbered from 1 to <var>N</var>. The weight of melon <var>i</var> (<var>1 \le i \le N</var>) is <var>A_{i}</var>.</p>
+<p>Rie is working at EGOI Farm. Her job is packing melons into boxes. Now, an integer <var>x</var> (<var>1 \le x \le N</var>) is determined in EGOI Farm. After that, she will receive the melons <var>x, x + 1, \ldots, N</var>, in this order. She will pack them into boxes by repeating the following process.</p>
+<ul>
+<li>Rie will take an empty box. She will repeat putting the melons into the box. However, if the total weight of the melons in the box will exceeds <var>L</var> after putting the next melon into the box, she will not put it into the box. Then, she will ship the box. (In this case, she will put the next melon into a new box.) After putting the melon <var>N</var> into a box, she will ship the box, and her job will be finished.</li>
+</ul>
+<p>Rie wants to prepare for her job for all possible values of <var>x</var>. Write a program which, given information of the melons and the maximum possible weight <var>L</var> of a box, calculates the number of boxes shipped by her and the total weight of the melons in the last box for all possible values of <var>x</var>.</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>Read the following data from the standard input. Given values are all integers.</p>
+<pre><var>N</var> <var>L</var>
+<var>A_{1}</var>
+<var>A_{2}</var>
+<var>\vdots</var>
+<var>A_{N}</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>Write <var>N</var> lines to the standard output. The <var>i</var>-th line (<var>1 \le i \le N</var>) of output corresponds to the case <var>x = i</var>. This line should contain the number of shipped boxes and the total weight of the melons in the last box if <var>x = i</var>. These two values should be separated by a space.</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li><var>1 \le N \le 200\,000</var>.</li>
+<li><var>1 \le L \le 1\,000\,000\,000 (= 10^{9})</var>.</li>
+<li><var>1 \le A_{i} \le L</var> (<var>1 \le i \le N</var>).</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li>(<var>6</var> points) <var>A_{1} = A_{2} = \cdots = A_{N}</var>.</li>
+<li>(<var>21</var> points) <var>N \le 1\,000</var>．</li>
+<li>(<var>29</var> points) For every <var>x</var>, the number of boxes shipped by Rie will be less than or equal to 10.</li>
+<li>(<var>33</var> points) For every <var>x</var>, Rie will put at most 10 melons into a box.</li>
+<li>(<var>11</var> points) No additional constraints.</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>7 100
+20
+80
+50
+40
+20
+80
+10
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>4 10
+4 10
+3 10
+2 90
+2 10
+1 90
+1 10
+</pre>
+<p>For example, if <var>x = 1</var>, Rie will pack melons into boxes as follows.</p>
+<ol>
+<li>Rie puts the melon 1 into a box. The total weight of the box is 20.</li>
+<li>Rie puts the melon 2 into the same box. The total weight of the box is 100.</li>
+<li>If Rie puts the melon 3 into the same box, the total weight of the box will be 150. Therefore, Rie ships the current box, and puts the melon 3 into a new box. The total weight of the new box is 50.</li>
+<li>Rie puts the melon 4 into the box. The total weight of the box is 90.</li>
+<li>If Rie puts the melon <var>5</var> into the box, the total weight of the box will be <var>110</var>. Therefore, Rie ships the current box, and puts the melon 5 into a new box. The total weight of the new box is 20.</li>
+<li>Rie puts the melon 6 into the box. The total weight of the box is 100.</li>
+<li>If Rie puts the melon <var>7</var> into the box, the total weight of the box will be <var>110</var>. Therefore, Rie ships the current box, and puts the melon 7 into a new box. The total weight of the new box is 10.</li>
+<li>Finally, Rie ships the current box.</li>
+</ol>
+<p>If <var>x = 1</var>, Rie ships 4 boxes, and the total weight of the melons in the last box is 10. Therefore, output 4 and 10 in this order. These two values should be separated by a space.</p>
+<p>This sample input satisfies the constraints of Subtasks <var>2, 3, 4, 5</var>.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>6 160
+63
+63
+63
+63
+63
+63
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>3 126
+3 63
+2 126
+2 63
+1 126
+1 63
+</pre>
+<p>For example, if <var>x = 1</var>, Rie puts the melons <var>1, 2</var> into the first box, the melons <var>3, 4</var> into the second box, and the melons <var>5, 6</var> into the third box. Rie ships 3 boxes, and the total weight of the melons in the last box is 126. Therefore, output 3 and 126 in the first line in this order. These two values should be separated by a space.</p>
+<p>This sample input satisfies the constraints of all the subtasks.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 3</h3>
+<pre>5 20
+7
+10
+4
+6
+8
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 3</h3>
+<pre>2 18
+2 8
+1 18
+1 14
+1 8
+</pre>
+<p>For example, if <var>x = 2</var>, Rie puts the melons <var>2, 3, 4</var> into the first box. Rie puts only the melon 5 into the second box. Rie ships 2 boxes, and the total weight of the melons in the last box is 8. Therefore, output 2 and 8 in the second line in this order. These two values should be separated by a space.</p>
+<p>This sample input satisfies the constraints of Subtasks <var>2, 3, 4, 5</var>.</p></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>EGOI 農場はメロンの入荷と出荷を行っており，今朝 <var>N</var> 個のメロンを入荷した．メロンには入荷した順に <var>1</var> から <var>N</var> までの番号が付けられており，メロン <var>i</var> (<var>1 \leqq i \leqq N</var>) の重さは <var>A_{i}</var> である．</p>
+<p>EGOI 農場で働く理恵さんは，メロンの箱詰めを担当している．今から，EGOI 農場で整数 <var>x</var> (<var>1 \leqq x \leqq N</var>) が決定される．その後，理恵さんにはメロン <var>x, x + 1, \ldots, N</var> がこの順に渡され，以下を繰り返して箱詰めを行うことになっている．</p>
+<ul>
+<li>空の箱を用意し，その箱に渡されたメロンを入れ続ける．ただし，渡されたメロンを入れたらその箱に入っているメロンの重さの合計が <var>L</var> を超えてしまう場合は，そのメロンを入れずに箱を出荷する． （そのメロンは次の箱に入れることになる．）メロン <var>N</var> を箱に入れたら，その箱を出荷して理恵さんの作業は終了する．</li>
+</ul>
+<p>理恵さんは <var>x</var> がどの値に決定されても大丈夫なように準備をしたいと思った．入荷するメロンの情報と箱の重量制限 <var>L</var> が与えられるので，すべての <var>x</var> の場合について，出荷する箱の個数と，最後に出荷する箱に入れるメロンの重さの合計を求めるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力は以下の形式で標準入力から与えられる．入力される値はすべて整数である．</p>
+<pre><var>N</var> <var>L</var>
+<var>A_{1}</var>
+<var>A_{2}</var>
+<var>\vdots</var>
+<var>A_{N}</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に <var>N</var> 行で出力せよ．<var>i</var> 行目 (<var>1 \leqq i \leqq N</var>) には，<var>x = i</var> の場合について，出荷する箱の個数と最後に出荷する箱に入れるメロンの重さの合計をこの順に空白区切りで出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>1 \leqq N \leqq 200\,000</var>．</li>
+<li><var>1 \leqq L \leqq 1\,000\,000\,000 (= 10^{9})</var>．</li>
+<li><var>1 \leqq A_{i} \leqq L</var> (<var>1 \leqq i \leqq N</var>)．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>6</var> 点) <var>A_{1} = A_{2} = \cdots = A_{N}</var>．</li>
+<li>(<var>21</var> 点) <var>N \leqq 1\,000</var>．</li>
+<li>(<var>29</var> 点) どの <var>x</var> に対しても，理恵さんが出荷する箱の数は <var>10</var> 個以下になる．</li>
+<li>(<var>33</var> 点) どの <var>x</var> に対しても，理恵さんが <var>1</var> つの箱に入れるメロンの個数は <var>10</var> 個以下になる．</li>
+<li>(<var>11</var> 点) 追加の制約はない．</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>7 100
+20
+80
+50
+40
+20
+80
+10
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>4 10
+4 10
+3 10
+2 90
+2 10
+1 90
+1 10
+</pre>
+<p>例えば <var>x = 1</var> の場合，理恵さんは以下のように箱詰めを行うことになる．</p>
+<ol>
+<li>メロン <var>1</var> を箱に入れる．箱のメロンの重さの合計は <var>20</var> となる．</li>
+<li>メロン <var>2</var> を箱に入れる．箱のメロンの重さの合計は <var>100</var> となる．</li>
+<li>もしメロン <var>3</var> を箱に入れたら，箱のメロンの重さの合計は <var>150</var> となってしまう．そのため，現在の箱を出荷し，メロン <var>3</var> は新しい箱に入れる．新しい箱のメロンの重さの合計は <var>50</var> となる．</li>
+<li>メロン <var>4</var> を箱に入れる．箱のメロンの重さの合計は <var>90</var> となる．</li>
+<li>もしメロン <var>5</var> を箱に入れたら，箱のメロンの重さの合計は <var>110</var> となってしまう．そのため，現在の箱を出荷し，メロン <var>5</var> は新しい箱に入れる．新しい箱のメロンの重さの合計は <var>20</var> となる．</li>
+<li>メロン <var>6</var> を箱に入れる．箱のメロンの重さの合計は <var>100</var> となる．</li>
+<li>もしメロン <var>7</var> を箱に入れたら，箱のメロンの重さの合計は <var>110</var> となってしまう．そのため，現在の箱を出荷し，メロン <var>7</var> は新しい箱に入れる．新しい箱のメロンの重さの合計は <var>10</var> となる．</li>
+<li>最後に現在の箱を出荷する．</li>
+</ol>
+<p>そのため，<var>x = 1</var> の場合，出荷する箱の個数は <var>4</var> 個であり，最後の箱に入れるメロンの重さの合計は <var>10</var> となる．したがって，<var>1</var> 行目には <var>4</var> と <var>10</var> をこの順に空白区切りで出力する．</p>
+<p>この入力例は小課題 <var>2, 3, 4, 5</var> の制約を満たす．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>6 160
+63
+63
+63
+63
+63
+63
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>3 126
+3 63
+2 126
+2 63
+1 126
+1 63
+</pre>
+<p>例えば <var>x = 1</var> の場合，最初の箱にはメロン <var>1, 2</var> を入れ，次の箱にはメロン <var>3, 4</var> を入れ，その次の箱にはメロン <var>5, 6</var> を入れることになる．そのため，出荷する箱の個数は <var>3</var> 個であり，最後に出荷する箱に入れるメロンの重さの合計は <var>126</var> となる．したがって，<var>1</var> 行目には <var>3</var> と <var>126</var> をこの順に空白区切りで出力する．</p>
+<p>この入力例はすべての小課題の制約を満たす．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>5 20
+7
+10
+4
+6
+8
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>2 18
+2 8
+1 18
+1 14
+1 8
+</pre>
+<p>例えば <var>x = 2</var> の場合，最初の箱にはメロン <var>2, 3, 4</var> を入れ，次の箱にはメロン <var>5</var> のみを入れることになる．そのため，出荷する箱の個数は <var>2</var> 個であり，最後に出荷する箱に入れるメロンの重さの合計は <var>8</var> となる．したがって，<var>2</var> 行目には <var>2</var> と <var>8</var> をこの順に空白区切りで出力する．</p>
+<p>この入力例は小課題 <var>2, 3, 4, 5</var> の制約を満たす．</p></section>
+</div>
+</span>
+</span>

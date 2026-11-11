@@ -1,0 +1,478 @@
+<span class="lang">
+<span class="lang-en">
+<p>Score: <var>100</var> points</p>
+
+<div class="part">
+<section>
+<h3>Problem Statement</h3>
+<p>In JOI Kingdom, the security of IOI Jail is strictly controlled. There are <var>N</var> rooms in IOI Jail, numbered from 1 to <var>N</var>. There are <var>N - 1</var> passages connecting rooms. The passage <var>i</var> (<var>1 \le i \le N - 1</var>) connects the room <var>A_{i}</var> and the room <var>B_{i}</var> bidirectionally. It is possible to move from any room to any other room by passing through several passages.</p>
+<p>There are <var>M</var> prisoners in IOI Jail. Each prisoner has a “ID number”, which is an integer between 1 and <var>M</var>, inclusive. The bedroom of the prisoner <var>j</var> (<var>1 \le j \le M</var>) is the room <var>S_{j}</var>, and the workroom of the prisoner <var>j</var> is the room <var>T_{j}</var>. A prisoner may work in the bedroom of another prisoner. However, no two prisoners share the same bedroom, and no two prisoners share the same workroom.</p>
+<p>One morning, the <var>M</var> prisoners have to move from their bed rooms to their work rooms. Mr. APIO is the director of IOI Jail. He will give the following directions to the prisoners to move.</p>
+<ul>
+<li><strong>Direction</strong> Choose a prisoner, and move the chosen prisoner from the current room to another room which is connected with the current room by a passage. In order to avoid communication between prisoners, it is not allowed to move the prisoner to a room where another prisoner stays.</li>
+</ul>
+<p>In order to start work as early as possible, Mr. APIO wants to know whether it is possible to give directions so that every prisoner does not pass through the same room more than once (it means that every prisoner takes a shortest path).</p>
+<p>Write a program which, given information of the rooms and the passages in IOI Jail and information on the prisoners, determines whether it is possible to move the prisoners so that every prisoner takes a shortest path.</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Input</h3>
+<p>A test case consists of <var>Q</var> scenarios, numbered from <var>1</var> to <var>Q</var>. The following values are specified for each scenario. For the range of these values, see Constraints.</p>
+<ul>
+<li>The number of rooms <var>N</var> in IOI Jail.</li>
+<li>Information on the passages in IOI Jail <var>(A_{1}, B_{1})</var>, <var>(A_{2}, B_{2})</var>, <var>\cdots</var>, <var>(A_{N - 1}, B_{N - 1})</var>.</li>
+<li>The number of prisoners <var>M</var> in IOI Jail.</li>
+<li>Information on the bedrooms and the workrooms of the prisoners <var>(S_{1}, T_{1}), (S_{2}, T_{2}), \cdots, (S_{M}, T_{M})</var>.</li>
+</ul>
+<p>The format of the input data is as follows. Given values are all integers.</p>
+<pre><var>Q</var>
+(Input for Scenario 1)
+(Input for Scenario 2)
+<var>\vdots</var>
+(Input for Scenario <var>Q</var>)
+</pre>
+<p>The format of the input data for each scenario is as follows. See Sample Input and Output for details.</p>
+<pre><var>N</var>
+<var>A_{1}</var> <var>B_{1}</var>
+<var>A_{2}</var> <var>B_{2}</var>
+<var>\vdots</var>
+<var>A_{N - 1}</var> <var>B_{N - 1}</var>
+<var>M</var>
+<var>S_{1}</var> <var>T_{1}</var>
+<var>S_{2}</var> <var>T_{2}</var>
+<var>\vdots</var>
+<var>S_{M}</var> <var>T_{M}</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>Output</h3>
+<p>Write <var>Q</var> lines to the standard output. The <var>k</var>-th line (<var>1 \le k \le Q</var>) should contain the following.</p>
+<ul>
+<li><code>Yes</code> if it is possible to move the prisoners for the scenario <var>k</var>.</li>
+<li><code>No</code> if it is not possible to move the prisoners for the scenario <var>k</var>.</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>Constraints</h3>
+<ul>
+<li><var>1 \le Q \le 1\,000</var>.</li>
+<li><var>2 \le N \le 120\,000</var>.</li>
+<li><var>1 \le A_{i} &lt; B_{i} \le N</var> (<var>1 \le i \le N - 1</var>).</li>
+<li><var>2 \le M \le N</var>.</li>
+<li><var>1 \le S_{j} \le N</var> (<var>1 \le j \le M</var>).</li>
+<li><var>1 \le T_{j} \le N</var> (<var>1 \le j \le M</var>).</li>
+<li><var>S_{1}, S_{2}, \cdots, S_{M}</var> are different from each other.</li>
+<li><var>T_{1}, T_{2}, \cdots, T_{M}</var> are different from each other.</li>
+<li><var>S_{j} \ne T_{j}</var> (<var>1 \le j \le M</var>).</li>
+<li>It is possible to move from any room to any other room by passing through several passages.</li>
+<li>The sum of <var>N</var> for the <var>Q</var> scenarios is less than or equal to 120 000.</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Subtasks</h3>
+<ol>
+<li>(<var>5</var> points) <var>A_{i} = i</var>, <var>B_{i} = i + 1</var> (<var>1 \le i \le N - 1</var>).</li>
+<li>(<var>5</var> points) <var>Q \le 20</var>, <var>N \le 250</var>, <var>M = 2</var>.</li>
+<li>(<var>16</var> points) <var>Q \le 20</var>, <var>N \le 250</var>, <var>M \le 6</var>.</li>
+<li>(<var>28</var> points) <var>Q \le 20</var>, <var>N \le 250</var>, <var>M \le 100</var>.</li>
+<li>(<var>12</var> points) <var>Q \le 20</var>, <var>M \le 500</var>.</li>
+<li>(<var>11</var> points) It is possible to move from any room to any other room by passing through at most <var>20</var> passages.</li>
+<li>(<var>23</var> points) No additional constraints.</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input and Output</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 1</h3>
+<pre>1
+8
+1 2
+2 3
+3 4
+4 5
+5 6
+6 7
+7 8
+2
+3 4
+4 8
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 1</h3>
+<pre>Yes
+</pre>
+<p>For this sample input, if the director gives the following directions, it is possible to move the prisoners so that every prisoner takes a shortest path.</p>
+<ol>
+<li>Move the prisoner 2 from the room 4 to the room 5.</li>
+<li>Move the prisoner 1 from the room 3 to the room 4.</li>
+<li>Move the prisoner 2 from the room 5 to the room 6.</li>
+<li>Move the prisoner 2 from the room 6 to the room 7.</li>
+<li>Move the prisoner 2 from the room 7 to the room 8.</li>
+</ol>
+<p>Therefore, output <code>Yes</code>. The structure of the jail for this sample input is as follows.</p>
+<p>This sample input satisfies the constraints of all the subtasks.</p>
+<p><img src="https://img.atcoder.jp/joisc2022/jail-en-p4-1.png" alt="Figure" style="max-width:100%;height:auto;"></p>
+
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 2</h3>
+<pre>2
+7
+1 2
+2 3
+3 4
+4 5
+3 6
+6 7
+2
+4 1
+5 7
+4
+1 2
+1 3
+1 4
+3
+2 3
+3 4
+4 2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 2</h3>
+<pre>Yes
+No
+</pre>
+<p>There are <var>Q = 2</var> scenarios. For Scenario 1, if the director gives the following directions, it is possible to move the prisoners so that every prisoner takes a shortest path.</p>
+<ol>
+<li>Move the prisoner 1 from the room 4 to the room 3.</li>
+<li>Move the prisoner 1 from the room 3 to the room 2.</li>
+<li>Move the prisoner 2 from the room 5 to the room 4.</li>
+<li>Move the prisoner 2 from the room 4 to the room 3.</li>
+<li>Move the prisoner 2 from the room 3 to the room 6.</li>
+<li>Move the prisoner 1 from the room 2 to the room 1.</li>
+<li>Move the prisoner 2 from the room 6 to the room 7.</li>
+</ol>
+<p>However, for Scenario 2, it is not possible to move the prisoners so that every prisoner takes a shortest path. Therefore, the first line of output should be <code>Yes</code>, and the second line of output should be <code>No</code>.</p>
+<p>This sample input satisfies the constraints of Subtasks <var>3</var>, <var>4</var>, <var>5</var>, <var>6</var>, <var>7</var>.</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Input 3</h3>
+<pre>3
+3
+1 2
+2 3
+2
+2 1
+3 2
+7
+1 2
+2 3
+3 4
+4 5
+5 6
+6 7
+3
+1 3
+4 2
+2 5
+8
+1 2
+2 3
+3 4
+4 5
+5 6
+6 7
+7 8
+4
+1 5
+2 6
+3 7
+4 8
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>Sample Output 3</h3>
+<pre>Yes
+No
+Yes
+</pre>
+<p>This sample input satisfies the constraints of Subtasks <var>1</var>, <var>3</var>, <var>4</var>, <var>5</var>, <var>6</var>, <var>7</var>.</p></section>
+</div>
+</span>
+<span class="lang-ja">
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>IOI 刑務所は，JOI 国で最も厳重に管理された刑務所として知られている．この刑務所には <var>N</var> 個の部屋があり，<var>1</var> から <var>N</var> までの番号が付けられている．また，この刑務所には <var>N - 1</var> 本の通路があり，<var>i</var> 番目 (<var>1 \leqq i \leqq N - 1</var>) の通路は部屋 <var>A_{i}</var> と部屋 <var>B_{i}</var> を双方向に結んでいる．どの部屋からどの部屋へも，いくつかの通路を通ることで移動することができる．</p>
+<p>IOI 刑務所には <var>M</var> 人の受刑者が収容されている．各受刑者には <var>1</var> から <var>M</var> までの「称呼番号」が付けられており，称呼番号 <var>j</var> (<var>1 \leqq j \leqq M</var>) の受刑者の寝室は部屋 <var>S_{j}</var>，作業場所は部屋 <var>T_{j}</var> である．ある受刑者の寝室が別の受刑者の作業場所に割り当てられていることはあるが，同じ部屋が複数の受刑者の寝室に割り当てられたり，同じ部屋が複数の受刑者の作業場所に割り当てられたりすることはない．</p>
+<p>ある日の朝，<var>M</var> 人の受刑者全員を寝室から作業場所まで移動させることになった．IOI 刑務所の所長である APIO 氏は，以下の命令を繰り返すことで受刑者を移動させる．</p>
+<ul>
+<li><strong>命令</strong> 受刑者を <var>1</var> 人選び，その受刑者を（現在いる部屋から）通路で直接結ばれている部屋に移動させる．ただし，刑務所内での私語を防ぐため，移動先の部屋には他の受刑者がいてはならない．</li>
+</ul>
+<p>刑務作業を早く始めるため，APIO 氏は，すべての受刑者が同じ部屋を二度通らずに最短経路で移動を完了させることが可能かどうかを判定したい．</p>
+<p>IOI 刑務所の部屋と通路の情報，受刑者の情報が与えられるので，すべての受刑者が最短経路で移動を完了させることが可能かどうかを判定するプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p><var>1</var> つのテストケースは <var>Q</var> 個のシナリオからなり，シナリオには <var>1</var> から <var>Q</var> までの番号が付けられている．各シナリオに対して，以下の値が定められている．ただし，以下に記された値の範囲については，制約の項を参照せよ．</p>
+<ul>
+<li>IOI 刑務所にある部屋の数 <var>N</var>．</li>
+<li>IOI 刑務所の通路の情報 <var>(A_{1}, B_{1})</var>, <var>(A_{2}, B_{2})</var>, <var>\cdots</var>, <var>(A_{N - 1}, B_{N - 1})</var>．</li>
+<li>IOI 刑務所に収容されている受刑者の数 <var>M</var>．</li>
+<li>各受刑者の寝室と作業場所の部屋番号 <var>(S_{1}, T_{1}), (S_{2}, T_{2}), \cdots, (S_{M}, T_{M})</var>．</li>
+</ul>
+<p>ここで，入力は以下の形式で標準入力から与えられる．入力される値はすべて整数である．</p>
+<pre><var>Q</var>
+(シナリオ <var>1</var> に対する入力)
+(シナリオ <var>2</var> に対する入力)
+<var>\vdots</var>
+(シナリオ <var>Q</var> に対する入力)
+</pre>
+<p>また，それぞれのシナリオに対する入力は，以下の形式で与えられる．詳しくは入出力例の項を参照せよ．</p>
+<pre><var>N</var>
+<var>A_{1}</var> <var>B_{1}</var>
+<var>A_{2}</var> <var>B_{2}</var>
+<var>\vdots</var>
+<var>A_{N - 1}</var> <var>B_{N - 1}</var>
+<var>M</var>
+<var>S_{1}</var> <var>T_{1}</var>
+<var>S_{2}</var> <var>T_{2}</var>
+<var>\vdots</var>
+<var>S_{M}</var> <var>T_{M}</var>
+</pre>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>標準出力に <var>Q</var> 行で出力せよ ．<var>k</var> 行目 (<var>1 \leqq k \leqq Q</var>) には，以下を出力せよ．</p>
+<ul>
+<li>シナリオ <var>k</var> について，すべての受刑者を最短経路で移動させることが可能なとき <code>Yes</code>．</li>
+<li>シナリオ <var>k</var> について，すべての受刑者を最短経路で移動させることが不可能なとき <code>No</code>．</li>
+</ul>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>制約</h3>
+<ul>
+<li><var>1 \leqq Q \leqq 1\,000</var>．</li>
+<li><var>2 \leqq N \leqq 120\,000</var>．</li>
+<li><var>1 \leqq A_{i} &lt; B_{i} \leqq N</var> (<var>1 \leqq i \leqq N - 1</var>)．</li>
+<li><var>2 \leqq M \leqq N</var>．</li>
+<li><var>1 \leqq S_{j} \leqq N</var> (<var>1 \leqq j \leqq M</var>)．</li>
+<li><var>1 \leqq T_{j} \leqq N</var> (<var>1 \leqq j \leqq M</var>)．</li>
+<li><var>S_{1}, S_{2}, \cdots, S_{M}</var> は相異なる．</li>
+<li><var>T_{1}, T_{2}, \cdots, T_{M}</var> は相異なる．</li>
+<li><var>S_{j} \ne T_{j}</var> (<var>1 \leqq j \leqq M</var>)．</li>
+<li>どの部屋からどの部屋へも，いくつかの通路を通ることで移動することができる．</li>
+<li><var>Q</var> 個のシナリオにおける <var>N</var> の値の合計は <var>120\,000</var> 以下である．</li>
+</ul>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>小課題</h3>
+<ol>
+<li>(<var>5</var> 点) <var>A_{i} = i</var>，<var>B_{i} = i + 1</var> (<var>1 \leqq i \leqq N - 1</var>)．</li>
+<li>(<var>5</var> 点) <var>Q \leqq 20</var>，<var>N \leqq 250</var>，<var>M = 2</var>．</li>
+<li>(<var>16</var> 点) <var>Q \leqq 20</var>，<var>N \leqq 250</var>，<var>M \leqq 6</var>．</li>
+<li>(<var>28</var> 点) <var>Q \leqq 20</var>，<var>N \leqq 250</var>，<var>M \leqq 100</var>．</li>
+<li>(<var>12</var> 点) <var>Q \leqq 20</var>，<var>M \leqq 500</var>．</li>
+<li>(<var>11</var> 点) どの部屋からどの部屋へも，高々 <var>20</var> 本の通路を使って移動することができる．</li>
+<li>(<var>23</var> 点) 追加の制約はない．</li>
+</ol>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入出力例</h3>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>1
+8
+1 2
+2 3
+3 4
+4 5
+5 6
+6 7
+7 8
+2
+3 4
+4 8
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>Yes
+</pre>
+<p>この入力例では，次のような手順で命令を出すことにより，すべての受刑者を最短経路で移動させることができる．</p>
+<ol>
+<li>称呼番号 <var>2</var> の受刑者を，部屋 <var>4</var> から部屋 <var>5</var> に移動させる．</li>
+<li>称呼番号 <var>1</var> の受刑者を，部屋 <var>3</var> から部屋 <var>4</var> に移動させる．</li>
+<li>称呼番号 <var>2</var> の受刑者を，部屋 <var>5</var> から部屋 <var>6</var> に移動させる．</li>
+<li>称呼番号 <var>2</var> の受刑者を，部屋 <var>6</var> から部屋 <var>7</var> に移動させる．</li>
+<li>称呼番号 <var>2</var> の受刑者を，部屋 <var>7</var> から部屋 <var>8</var> に移動させる．</li>
+</ol>
+<p>したがって，<code>Yes</code> を出力する．なお，この入力例における刑務所の構造は以下の図のようになっている．</p>
+<p>この入力例はすべての小課題の制約を満たす．</p>
+<p><img src="https://img.atcoder.jp/joisc2022/jail-ja-p4-1.png" alt="図" style="max-width:100%;height:auto;"></p>
+
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 2</h3>
+<pre>2
+7
+1 2
+2 3
+3 4
+4 5
+3 6
+6 7
+2
+4 1
+5 7
+4
+1 2
+1 3
+1 4
+3
+2 3
+3 4
+4 2
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 2</h3>
+<pre>Yes
+No
+</pre>
+<p>この入力例は <var>Q = 2</var> 個のシナリオからなる．シナリオ <var>1</var> では，次のような手順で命令を出すことにより，すべての受刑者を最短経路で移動させることができる．</p>
+<ol>
+<li>称呼番号 <var>1</var> の受刑者を，部屋 <var>4</var> から部屋 <var>3</var> に移動させる．</li>
+<li>称呼番号 <var>1</var> の受刑者を，部屋 <var>3</var> から部屋 <var>2</var> に移動させる．</li>
+<li>称呼番号 <var>2</var> の受刑者を，部屋 <var>5</var> から部屋 <var>4</var> に移動させる．</li>
+<li>称呼番号 <var>2</var> の受刑者を，部屋 <var>4</var> から部屋 <var>3</var> に移動させる．</li>
+<li>称呼番号 <var>2</var> の受刑者を，部屋 <var>3</var> から部屋 <var>6</var> に移動させる．</li>
+<li>称呼番号 <var>1</var> の受刑者を，部屋 <var>2</var> から部屋 <var>1</var> に移動させる．</li>
+<li>称呼番号 <var>2</var> の受刑者を，部屋 <var>6</var> から部屋 <var>7</var> に移動させる．</li>
+</ol>
+<p>一方，シナリオ <var>2</var> では，すべての受刑者を最短経路で移動させることはできない．したがって，<var>1</var> 行目には <code>Yes</code>，<var>2</var> 行目には <code>No</code> を出力する．</p>
+<p>この入力例は小課題 <var>3, 4, 5, 6, 7</var> の制約を満たす．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 3</h3>
+<pre>3
+3
+1 2
+2 3
+2
+2 1
+3 2
+7
+1 2
+2 3
+3 4
+4 5
+5 6
+6 7
+3
+1 3
+4 2
+2 5
+8
+1 2
+2 3
+3 4
+4 5
+5 6
+6 7
+7 8
+4
+1 5
+2 6
+3 7
+4 8
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 3</h3>
+<pre>Yes
+No
+Yes
+</pre>
+<p>この入力例は小課題 <var>1, 3, 4, 5, 6, 7</var> の制約を満たす．</p></section>
+</div>
+</span>
+</span>
