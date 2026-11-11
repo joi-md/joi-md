@@ -1,9 +1,7 @@
-<blockquote markdown="1">
+<blockquote class="joisp2024-h-submission" markdown="1">
 **AtCoder での提出方法**
 
 [配布ファイル](https://www2.ioi-jp.org/camp/2024/2024-sp-tasks/contest3/joitour-dist.zip)
-
-以下の「実装の詳細」「重要な注意」「コンパイル・実行の方法」は C++ の関数形式およびローカルでのテスト方法についての説明である．その他の言語を使用する場合は，この節の入出力形式で同じ処理を実装すること．
 
 #### C++ を使用する場合
 
@@ -20,10 +18,10 @@ C++ を使用する場合，`joitour.h` を include してください．実装�
 
 ~~~
 $N$
-$F_0$ $\cdots$ $F_{N-1}$
+$F_0$ $\cdots$ $F_{N - 1}$
 $U_0$ $V_0$
 $\vdots$
-$U_{N-2}$ $V_{N-2}$
+$U_{N - 2}$ $V_{N - 2}$
 $Q$
 ~~~
 
@@ -46,35 +44,7 @@ $X$ $Y$
 </details>
 </blockquote>
 
-配点： $100$ 点
-
-<style>
-#task-statement details {
-    margin: 1em 0;
-}
-#task-statement details > summary {
-    display: list-item;
-    cursor: pointer;
-}
-#task-statement table {
-    display: block;
-    width: fit-content;
-    max-width: 100%;
-    overflow-x: auto;
-    border-collapse: collapse;
-    margin: 1em 0;
-}
-#task-statement table th,
-#task-statement table td {
-    border: 1px solid #aaa;
-    padding: 0.3em 0.6em;
-    text-align: left;
-    vertical-align: top;
-}
-#task-statement table th {
-    background-color: #f5f5f5;
-}
-</style>
+配点 : $100$ 点
 
 ### 問題文
 
@@ -163,16 +133,16 @@ g++ -std=gnu++20 -O2 -o grader grader.cpp joitour.cpp
 
 ~~~
 $N$
-$F_0$ $F_1$ $\cdots$ $F_{N-1}$
+$F_0$ $F_1$ $\cdots$ $F_{N - 1}$
 $U_0$ $V_0$
 $U_1$ $V_1$
 $\vdots$
-$U_{N-2}$ $V_{N-2}$
+$U_{N - 2}$ $V_{N - 2}$
 $Q$
 $X_0$ $Y_0$
 $X_1$ $Y_1$
 $\vdots$
-$X_{Q-1}$ $Y_{Q-1}$
+$X_{Q - 1}$ $Y_{Q - 1}$
 ~~~
 
 ### 採点プログラムのサンプルの出力
@@ -223,10 +193,15 @@ $X_{Q-1}$ $Y_{Q-1}$
 1
 ~~~
 
+<div class="joisp2024-h-table" markdown="1">
+
 | 呼び出し | 戻り値 |
 | --- | --- |
 | `init(3, [0, 1, 2], [0, 1], [1, 2], 0)` | |
 | `num_tours()` | $1$ |
+
+</div>
+
 
 良い JOI ツアーは $(i_0, i_1, i_2) = (0, 1, 2)$ の $1$ 通りである．これが良い JOI ツアーであることは以下のように確かめられる．
 
@@ -261,6 +236,8 @@ $X_{Q-1}$ $Y_{Q-1}$
 1
 ~~~
 
+<div class="joisp2024-h-table" markdown="1">
+
 | 呼び出し | 戻り値 |
 | --- | --- |
 | `init(3, [0, 1, 2], [0, 1], [1, 2], 2)` | |
@@ -269,6 +246,9 @@ $X_{Q-1}$ $Y_{Q-1}$
 | `num_tours()` | $0$ |
 | `change(0, 2)` | |
 | `num_tours()` | $1$ |
+
+</div>
+
 
 はじめの時点では，良い JOI ツアーは $(i_0, i_1, i_2) = (0, 1, 2)$ の $1$ 通りである．したがって，$1$ 回目の `num_tours` の呼び出しは $1$ を返さなければならない．
 
@@ -315,3 +295,17 @@ $2$ 回目の変更では，街 $0$ にある飲食店がジュース専門店�
 ~~~
 
 この入力例は小課題 $1, 2, 5, 6, 7$ の制約を満たす．
+
+<style>
+.joisp2024-h-submission details { margin:1em 0; }
+.joisp2024-h-submission summary { display:list-item;cursor:pointer; }
+.joisp2024-h-table { position:relative;max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisp2024-h-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisp2024-h-table th,.joisp2024-h-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisp2024-h-table th { background:#f5f5f5; white-space:nowrap; }
+.joisp2024-h-table code { white-space:nowrap; }
+</style>
+
+<style>
+.joisp2024-h-table .katex {position:relative;}
+</style>

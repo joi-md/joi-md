@@ -1,7 +1,7 @@
-<blockquote markdown="1">
+<blockquote class="joisp2024-e-submission" markdown="1">
 **AtCoder での提出方法**
 
-配布ファイルは[こちら](https://www2.ioi-jp.org/camp/2024/2024-sp-tasks/)．
+[配布ファイル](https://www2.ioi-jp.org/camp/2024/2024-sp-tasks/contest2/tricolor-dist.zip)
 
 #### C++ を使用する場合
 
@@ -70,35 +70,7 @@ $u$
 </details>
 </blockquote>
 
-配点： $100$ 点
-
-<style>
-#task-statement details {
-    margin: 1em 0;
-}
-#task-statement details > summary {
-    display: list-item;
-    cursor: pointer;
-}
-#task-statement table {
-    display: block;
-    width: fit-content;
-    max-width: 100%;
-    overflow-x: auto;
-    border-collapse: collapse;
-    margin: 1em 0;
-}
-#task-statement table th,
-#task-statement table td {
-    border: 1px solid #aaa;
-    padding: 0.3em 0.6em;
-    text-align: left;
-    vertical-align: top;
-}
-#task-statement table th {
-    background-color: #f5f5f5;
-}
-</style>
+配点 : $100$ 点
 
 ### 問題文
 
@@ -112,7 +84,7 @@ Anna は，ゲーム開始時にこれらのライトそれぞれについて赤
 
 Anna はそれぞれのライトを点灯させたのち，$1 \leqq l \leqq \min(N,130)$ を満たす整数 $l$ を選び，ディ太郎に伝える．ディ太郎は，Bruno にライトの個数 $N$ と，Anna が選んだ整数 $l$ を伝える．その後，$Q$ 回のラウンドを行う．$j$ 回目 ($1 \leqq j \leqq Q$) のラウンドは，以下のように進行する．
 
-1. ディ太郎は $1$ 以上 $N-l+1$ 以下の整数 $a_j$ を選び，ライト $a_j,a_j+1,\ldots,a_j+l-1$ について点灯している色の並びを Bruno に見せる．
+1. ディ太郎は $1$ 以上 $N - l+1$ 以下の整数 $a_j$ を選び，ライト $a_j,a_j+1,\ldots,a_j+l - 1$ について点灯している色の並びを Bruno に見せる．
 2. Bruno は，見せられた色の並びをもとに，$1$ つの整数をディ太郎に伝える．この整数が $a_j$ と一致すれば，このラウンドで Anna と Bruno は勝利する．
 
 ただし，ディ太郎は，Anna が点灯させたライトの色の並びや整数 $l$ に応じて，$a_1,a_2,\ldots,a_Q$ の選び方を変える可能性がある．
@@ -122,10 +94,6 @@ Anna と Bruno が $Q$ 回すべてのラウンドで勝利するための戦略
 ---
 
 ### 実装の詳細
-
-以下は配布された採点プログラムで用いるファイル構成である．**AtCoder に提出する際のファイル構成や，他の言語での提出方法については，冒頭の「AtCoder での提出方法」を参照すること．**
-
-以下の関数形式および「重要な注意」にある標準入出力の制限は C++ を使用する場合の説明であり，その他の言語では冒頭の通信形式を用いること．
 
 あなたは $2$ つのファイルを提出しなければならない．
 
@@ -154,9 +122,9 @@ $2$ つ目のファイルは `Bruno.cpp` という名前である．このファ
 
 - `int bruno(std::string u)`
 
-    この関数は，関数 `init` が呼び出された後に，合計で $Q$ 回呼び出される．$j$ 回目 ($1 \leqq j \leqq Q$) の呼び出しは，ゲームにおける $j$ 回目のラウンドの手順 $1.$ および手順 $2.$ に相当する．
+    この関数は，関数 `init` が呼び出された後に，合計で $Q$ 回呼び出される．$j$ 回目 ($1 \leqq j \leqq Q$) の呼び出しは，ゲームにおける $j$ 回目のラウンドの手順 1. および手順 2. に相当する．
 
-    - 引数 `u` は `R`, `G`, `B` からなる長さ $l$ の文字列で，ライト $a_j,a_j+1,\ldots,a_j+l-1$ に点灯している色の並びを表す．$u$ の $k$ 文字目 ($1 \leqq k \leqq l$) を $u_k$ とすると，Anna が $a_j+k-1$ 番目のランプに点灯させた色は，$u_k$ が `R` のとき赤，`G` のとき緑，`B` のとき青である．
+    - 引数 `u` は `R`, `G`, `B` からなる長さ $l$ の文字列で，ライト $a_j,a_j+1,\ldots,a_j+l - 1$ に点灯している色の並びを表す．$u$ の $k$ 文字目 ($1 \leqq k \leqq l$) を $u_k$ とすると，Anna が $a_j+k - 1$ 番目のランプに点灯させた色は，$u_k$ が `R` のとき赤，`G` のとき緑，`B` のとき青である．
     - 戻り値は，Bruno が答える整数である．
     - 戻り値は，$a_j$ と一致していなければならない．これが満たされない場合，**不正解 [5]** と判定される．
 
@@ -190,14 +158,14 @@ $Q$
 $a_1$ $a_2$ $\cdots$ $a_Q$
 ~~~
 
-採点プログラムのサンプルは，実際の採点プログラムと異なり，初めから固定された答えを持つ必要がある．$a_j$ ($1 \leqq j \leqq Q$) は，ディ太郎が $j$ 回目のラウンドで選ぶ整数 $a_j$ を表す．あなたが書いたプログラムにおいて Anna が選んだ整数 $l$ に対して，$1 \leqq a_j \leqq N-l+1$ を満たさなければならない．
+採点プログラムのサンプルは，実際の採点プログラムと異なり，初めから固定された答えを持つ必要がある．$a_j$ ($1 \leqq j \leqq Q$) は，ディ太郎が $j$ 回目のラウンドで選ぶ整数 $a_j$ を表す．あなたが書いたプログラムにおいて Anna が選んだ整数 $l$ に対して，$1 \leqq a_j \leqq N - l+1$ を満たさなければならない．
 
 ### 採点プログラムのサンプルの出力
 
 採点プログラムのサンプルは標準出力へ以下の情報を出力する（引用符は実際には出力されない）．
 
-- 正解の場合，Anna が選んだ整数 $l$ が `Accepted: 130` のように出力される．
-- 不正解の場合，不正解の種類が `Wrong Answer [1]` のように出力される．
+- 正解の場合，Anna が選んだ整数 $l$ が “`Accepted: 130`” のように出力される．
+- 不正解の場合，不正解の種類が “`Wrong Answer [1]`” のように出力される．
 
 実行するプログラムが複数の不正解の条件を満たした場合，表示される不正解の種類はそれらのうち $1$ つのみである．
 
@@ -226,13 +194,18 @@ $a_1$ $a_2$ $\cdots$ $a_Q$
     - この小課題のテストケースの中で，$1$ つでも不正解 [1] 〜 [5]（実装の詳細を参照）と判定されたものや，実行時間制限超過，メモリ制限超過，実行時エラーと判定されたものがあった場合，小課題の得点は $0$ 点となる．
     - この小課題におけるすべてのテストケースに正解した場合，小課題の得点は以下のように決定される．
 
+<div class="joisp2024-e-table" markdown="1">
+
 | $l^*$ の値 | 得点 |
 | --- | --- |
 | $61 < l^* \leqq 130$ | $10$ 点 |
 | $41 < l^* \leqq 61$ | $20$ 点 |
-| $34 < l^* \leqq 41$ | $25+3\times(41-l^*)$ 点 |
-| $28 < l^* \leqq 34$ | $46+4\times(34-l^*)$ 点 |
+| $34 < l^* \leqq 41$ | $25+3\times(41 - l^*)$ 点 |
+| $28 < l^* \leqq 34$ | $46+4\times(34 - l^*)$ 点 |
 | $l^* \leqq 28$ | $70$ 点 |
+
+</div>
+
 
 ---
 
@@ -240,7 +213,7 @@ $a_1$ $a_2$ $\cdots$ $a_Q$
 
 採点プログラムのサンプルが読み込む入力の例と，それに対応する関数の呼び出しの例を以下に示す．
 
-#### 入力例 1
+### 入力例 1
 
 ~~~
 8
@@ -251,6 +224,8 @@ RGGBRBBG
 
 #### 関数の呼び出しの例
 
+<div class="joisp2024-e-table" markdown="1">
+
 | 呼び出し | 戻り値 |
 | --- | --- |
 | `anna(8, "RGGBRBBG")` | `("BBRGBGRR", 5)` |
@@ -258,8 +233,25 @@ RGGBRBBG
 | `bruno("RGBGR")` | `3` |
 | `bruno("BBRGB")` | `1` |
 
-このやりとりの例において，Anna はライトの個数 $N=8$，禁止色を表す文字列 $S=$ `"RGGBRBBG"` を受け取り，それぞれのライトに点灯させる色を表す文字列 $t$ として `"BBRGBGRR"`，整数 $l$ として $5$ を指定し，ディ太郎に伝える．その後，ディ太郎は Bruno に整数 $N=8,l=5$ を伝える．
+</div>
 
-$1$ 回目のラウンドでは，ディ太郎は $a_1=3$ としている．Bruno はライト $3,4,5,6,7$ に点灯している色の並びを表す文字列 $u=$ `"RGBGR"` を受け取り，$a_1$ である $3$ を答える．
+
+このやりとりの例において，Anna はライトの個数 $N=8$，禁止色を表す文字列 $S= {}$`"RGGBRBBG"` を受け取り，それぞれのライトに点灯させる色を表す文字列 $t$ として `"BBRGBGRR"`，整数 $l$ として $5$ を指定し，ディ太郎に伝える．その後，ディ太郎は Bruno に整数 $N=8$，$l=5$ を伝える．
+
+$1$ 回目のラウンドでは，ディ太郎は $a_1=3$ としている．Bruno はライト $3,4,5,6,7$ に点灯している色の並びを表す文字列 $u= {}$`"RGBGR"` を受け取り，$a_1$ である $3$ を答える．
 
 入力例 $1$ はすべての小課題の制約を満たす．コンテストサイトからダウンロードできるファイルのうち，`sample-01-in.txt` は入力例 $1$ に対応する．
+
+<style>
+.joisp2024-e-submission details { margin:1em 0; }
+.joisp2024-e-submission summary { display:list-item;cursor:pointer; }
+.joisp2024-e-table { position:relative;max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisp2024-e-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisp2024-e-table th,.joisp2024-e-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisp2024-e-table th { background:#f5f5f5; }
+.joisp2024-e-table code { white-space:nowrap; }
+</style>
+
+<style>
+.joisp2024-e-table .katex {position:relative;}
+</style>

@@ -4,13 +4,13 @@ Score: $100$ points
 
 The IOI Kingdom consists of $N$ cities lined up from west to east, with cities numbered from $1$ to $N$ in order from west.
 
-In the IOI Kingdom, they use Byou as the unit of time. A day in the IOI Kingdom is divided into $T$ units of time. The moment $x$ Byous ($0 \leq x < T$) after the beginning of a day is called time $x$. Therefore, when $1$ Byou passes from time $T - 1$ of a certain day, it becomes time $0$ of the next day.
+In the IOI Kingdom, they use Byou as the unit of time. A day in the IOI Kingdom is divided into $T$ units of time. The moment $x$ Byous ($0 \le x < T$) after the beginning of a day is called time $x$. Therefore, when $1$ Byou passes from time $T - 1$ of a certain day, it becomes time $0$ of the next day.
 
 JOI Group is one of the secret sects in the IOI Kingdom. Since it is a secret sect, members must navigate around the country's checkpoints. Consequently, JOI Group members are restricted to using only flights operated by JOY Airlines for intercity travel.
 
-JOY Airlines operate $M_i$ flights departing from city $i$ ($1 \leq i \leq N - 1$). The $j$-th flight ($1 \leq j \leq M_i$) departs from city $i$ at time $A_{i,j}$ every day and arrives at city $i + 1$ at time $B_{i,j}$ on the same day. Here, $A_{i,j} < B_{i,j}$ holds. These flights allow convenient transfers, and it is also possible to depart from a city immediately upon arrival or stay overnight at the company's airports.
+JOY Airlines operate $M_i$ flights departing from city $i$ ($1 \le i \le N - 1$). The $j$-th flight ($1 \le j \le M_i$) departs from city $i$ at time $A_{i,j}$ every day and arrives at city $i + 1$ at time $B_{i,j}$ on the same day. Here, $A_{i,j} < B_{i,j}$ holds. These flights allow convenient transfers, and it is also possible to depart from a city immediately upon arrival or stay overnight at the company's airports.
 
-The JOI Group has $Q$ members, numbered from $1$ to $Q$. Member $k$ ($1 \leq k \leq Q$) places their operational base in city $L_k$ and their living base in city $R_k$. Therefore, they want to know the minimum time required to travel from city $L_k$ to city $R_k$ by selecting the departure time from city $L_k$ and flights to use appropriately.
+The JOI Group has $Q$ members, numbered from $1$ to $Q$. Member $k$ ($1 \le k \le Q$) places their operational base in city $L_k$ and their living base in city $R_k$. Therefore, they want to know the minimum time required to travel from city $L_k$ to city $R_k$ by selecting the departure time from city $L_k$ and flights to use appropriately.
 
 Given information about the flights operated by JOY Airlines and the members of the JOI Group, create a program to find the minimum time required for each member $k$ to travel from city $L_k$ to city $R_k$.
 
@@ -33,11 +33,11 @@ $A_{2,2}$ $B_{2,2}$
 $\vdots$
 $A_{2,M_2}$ $B_{2,M_2}$
 $\vdots$
-$M_{N-1}$
-$A_{N-1,1}$ $B_{N-1,1}$
-$A_{N-1,2}$ $B_{N-1,2}$
+$M_{N - 1}$
+$A_{N - 1,1}$ $B_{N - 1,1}$
+$A_{N - 1,2}$ $B_{N - 1,2}$
 $\vdots$
-$A_{N-1,M_{N-1}}$ $B_{N-1,M_{N-1}}$
+$A_{N - 1,M_{N - 1}}$ $B_{N - 1,M_{N - 1}}$
 $Q$
 $L_1$ $R_1$
 $L_2$ $R_2$
@@ -47,28 +47,28 @@ $L_Q$ $R_Q$
 
 ### Output
 
-Output $Q$ lines to the standard output. On the $k$-th line ($1 \leq k \leq Q$), output the minimum time required for the member $k$ to travel from city $L_k$ to city $R_k$.
+Output $Q$ lines to the standard output. On the $k$-th line ($1 \le k \le Q$), output the minimum time required for the member $k$ to travel from city $L_k$ to city $R_k$.
 
 ---
 
 ### Constraints
 
-- $2 \leq N \leq 100\,000$.
-- $2 \leq T \leq 10^9$.
-- $M_i \geq 1$ ($1 \leq i \leq N - 1$).
-- $M_1 + M_2 + \cdots + M_{N-1} \leq 100\,000$.
-- $0 \leq A_{i,j} < B_{i,j} < T$ ($1 \leq i \leq N - 1$, $1 \leq j \leq M_i$).
-- $1 \leq Q \leq 300\,000$.
-- $1 \leq L_k < R_k \leq N$ ($1 \leq k \leq Q$).
+- $2 \le N \le 100\,000$.
+- $2 \le T \le 10^9$.
+- $M_i \ge 1$ ($1 \le i \le N - 1$).
+- $M_1 + M_2 + \cdots + M_{N - 1} \le 100\,000$.
+- $0 \le A_{i,j} < B_{i,j} < T$ ($1 \le i \le N - 1$, $1 \le j \le M_i$).
+- $1 \le Q \le 300\,000$.
+- $1 \le L_k < R_k \le N$ ($1 \le k \le Q$).
 - Given values are all integers.
 
 ### Subtasks
 
-1. ($6$ points) $N \leq 2\,000$, $M_i = 1$ ($1 \leq i \leq N - 1$).
-2. ($8$ points) $N \leq 2\,000$, $M_i \leq 5$ ($1 \leq i \leq N - 1$).
-3. ($17$ points) $M_i = 1$ ($1 \leq i \leq N - 1$).
-4. ($23$ points) $M_i \leq 5$ ($1 \leq i \leq N - 1$).
-5. ($36$ points) $N \leq 90\,000$, $Q \leq 90\,000$, $M_1 + M_2 + \cdots + M_{N-1} \leq 90\,000$.
+1. ($6$ points) $N \le 2\,000$, $M_i = 1$ ($1 \le i \le N - 1$).
+2. ($8$ points) $N \le 2\,000$, $M_i \le 5$ ($1 \le i \le N - 1$).
+3. ($17$ points) $M_i = 1$ ($1 \le i \le N - 1$).
+4. ($23$ points) $M_i \le 5$ ($1 \le i \le N - 1$).
+5. ($36$ points) $N \le 90\,000$, $Q \le 90\,000$, $M_1 + M_2 + \cdots + M_{N - 1} \le 90\,000$.
 6. ($10$ points) No additional constraints.
 
 ---

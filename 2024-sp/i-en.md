@@ -7,11 +7,11 @@ The IOI Tower is an extremely tall tower equipped with a staircase for ascending
 - Ascend $1$ step. This action takes $A$ seconds.
 - Jump from the current step to a step $D$ steps above, skipping the steps in between. This action takes $B$ seconds.
 
-Currently, construction is ongoing at several locations on the staircase, and steps undergoing construction cannot be stepped on. Specifically, there are $N$ ongoing constructions, and the $i$-th construction ($1 \leq i \leq N$) is being carried out at steps $L_i, L_i + 1, \ldots, R_i$.
+Currently, construction is ongoing at several locations on the staircase, and steps undergoing construction cannot be stepped on. Specifically, there are $N$ ongoing constructions, and the $i$-th construction ($1 \le i \le N$) is being carried out at steps $L_i, L_i + 1, \ldots, R_i$.
 
-The IOI Tower has $Q$ rooms numbered from $1$ to $Q$. One can enter room $j$ ($1 \leq j \leq Q$) from step $X_j$ of the staircase. Therefore, JOI-kun has decided to determine whether he can reach each room and, if possible, how many seconds it will take to reach there in the minimum time.
+The IOI Tower has $Q$ rooms numbered from $1$ to $Q$. One can enter room $j$ ($1 \le j \le Q$) from step $X_j$ of the staircase. Therefore, JOI-kun has decided to determine whether he can reach each room and, if possible, how many seconds it will take to reach there in the minimum time.
 
-Given the information about JOI-kun, constructions, and rooms, create a program that determines whether JOI-kun can reach step $X_j$ for each $j$ ($1 \leq j \leq Q$) and, if possible, calculates the minimum time it takes.
+Given the information about JOI-kun, constructions, and rooms, create a program that determines whether JOI-kun can reach step $X_j$ for each $j$ ($1 \le j \le Q$) and, if possible, calculates the minimum time it takes.
 
 ---
 
@@ -34,24 +34,24 @@ $X_Q$
 
 ### Output
 
-Output $Q$ lines to the standard output. On the $j$-th line ($1 \leq j \leq Q$), output the minimum number of seconds it takes if JOI-kun can reach step $X_j$; otherwise, output `-1`.
+Output $Q$ lines to the standard output. On the $j$-th line ($1 \le j \le Q$), output the minimum number of seconds it takes if JOI-kun can reach step $X_j$; otherwise, output `-1`.
 
 ### Constraints
 
-- $1 \leq N \leq 200\,000$.
-- $1 \leq Q \leq 200\,000$.
-- $1 \leq D \leq 10^{12}$.
-- $1 \leq A \leq 1\,000\,000$.
-- $1 \leq B \leq 1\,000\,000$.
-- $1 \leq L_i \leq R_i \leq 10^{12}$ ($1 \leq i \leq N$).
-- $R_i + 1 < L_{i+1}$ ($1 \leq i \leq N - 1$).
-- $1 \leq X_j \leq 10^{12}$ ($1 \leq j \leq Q$).
+- $1 \le N \le 200\,000$.
+- $1 \le Q \le 200\,000$.
+- $1 \le D \le 10^{12}$.
+- $1 \le A \le 1\,000\,000$.
+- $1 \le B \le 1\,000\,000$.
+- $1 \le L_i \le R_i \le 10^{12}$ ($1 \le i \le N$).
+- $R_i + 1 < L_{i+1}$ ($1 \le i \le N - 1$).
+- $1 \le X_j \le 10^{12}$ ($1 \le j \le Q$).
 - Given values are all integers.
 
 ### Subtasks
 
-1. ($5$ points) $R_i \leq 1\,000\,000$ ($1 \leq i \leq N$), $X_j \leq 1\,000\,000$ ($1 \leq j \leq Q$).
-2. ($38$ points) $N \leq 2\,000$, $Q \leq 2\,000$.
+1. ($5$ points) $R_i \le 1\,000\,000$ ($1 \le i \le N$), $X_j \le 1\,000\,000$ ($1 \le j \le Q$).
+2. ($38$ points) $N \le 2\,000$, $Q \le 2\,000$.
 3. ($25$ points) $A = 1$, $B = D$.
 4. ($32$ points) No additional constraints.
 

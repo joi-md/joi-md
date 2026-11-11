@@ -6,10 +6,10 @@
 <section>
 <h3>Problem Statement</h3>
 <p>The IOI Kingdom consists of <var>N</var> cities lined up from west to east, with cities numbered from <var>1</var> to <var>N</var> in order from west.</p>
-<p>In the IOI Kingdom, they use Byou as the unit of time. A day in the IOI Kingdom is divided into <var>T</var> units of time. The moment <var>x</var> Byous (<var>0 \leq x &lt; T</var>) after the beginning of a day is called time <var>x</var>. Therefore, when <var>1</var> Byou passes from time <var>T - 1</var> of a certain day, it becomes time <var>0</var> of the next day.</p>
+<p>In the IOI Kingdom, they use Byou as the unit of time. A day in the IOI Kingdom is divided into <var>T</var> units of time. The moment <var>x</var> Byous (<var>0 \le x &lt; T</var>) after the beginning of a day is called time <var>x</var>. Therefore, when <var>1</var> Byou passes from time <var>T - 1</var> of a certain day, it becomes time <var>0</var> of the next day.</p>
 <p>JOI Group is one of the secret sects in the IOI Kingdom. Since it is a secret sect, members must navigate around the country's checkpoints. Consequently, JOI Group members are restricted to using only flights operated by JOY Airlines for intercity travel.</p>
-<p>JOY Airlines operate <var>M_i</var> flights departing from city <var>i</var> (<var>1 \leq i \leq N - 1</var>). The <var>j</var>-th flight (<var>1 \leq j \leq M_i</var>) departs from city <var>i</var> at time <var>A_{i,j}</var> every day and arrives at city <var>i + 1</var> at time <var>B_{i,j}</var> on the same day. Here, <var>A_{i,j} &lt; B_{i,j}</var> holds. These flights allow convenient transfers, and it is also possible to depart from a city immediately upon arrival or stay overnight at the company's airports.</p>
-<p>The JOI Group has <var>Q</var> members, numbered from <var>1</var> to <var>Q</var>. Member <var>k</var> (<var>1 \leq k \leq Q</var>) places their operational base in city <var>L_k</var> and their living base in city <var>R_k</var>. Therefore, they want to know the minimum time required to travel from city <var>L_k</var> to city <var>R_k</var> by selecting the departure time from city <var>L_k</var> and flights to use appropriately.</p>
+<p>JOY Airlines operate <var>M_i</var> flights departing from city <var>i</var> (<var>1 \le i \le N - 1</var>). The <var>j</var>-th flight (<var>1 \le j \le M_i</var>) departs from city <var>i</var> at time <var>A_{i,j}</var> every day and arrives at city <var>i + 1</var> at time <var>B_{i,j}</var> on the same day. Here, <var>A_{i,j} &lt; B_{i,j}</var> holds. These flights allow convenient transfers, and it is also possible to depart from a city immediately upon arrival or stay overnight at the company's airports.</p>
+<p>The JOI Group has <var>Q</var> members, numbered from <var>1</var> to <var>Q</var>. Member <var>k</var> (<var>1 \le k \le Q</var>) places their operational base in city <var>L_k</var> and their living base in city <var>R_k</var>. Therefore, they want to know the minimum time required to travel from city <var>L_k</var> to city <var>R_k</var> by selecting the departure time from city <var>L_k</var> and flights to use appropriately.</p>
 <p>Given information about the flights operated by JOY Airlines and the members of the JOI Group, create a program to find the minimum time required for each member <var>k</var> to travel from city <var>L_k</var> to city <var>R_k</var>.</p>
 <hr />
 </section>
@@ -32,11 +32,11 @@
 <var>\vdots</var>
 <var>A_{2,M_2}</var> <var>B_{2,M_2}</var>
 <var>\vdots</var>
-<var>M_{N-1}</var>
-<var>A_{N-1,1}</var> <var>B_{N-1,1}</var>
-<var>A_{N-1,2}</var> <var>B_{N-1,2}</var>
+<var>M_{N - 1}</var>
+<var>A_{N - 1,1}</var> <var>B_{N - 1,1}</var>
+<var>A_{N - 1,2}</var> <var>B_{N - 1,2}</var>
 <var>\vdots</var>
-<var>A_{N-1,M_{N-1}}</var> <var>B_{N-1,M_{N-1}}</var>
+<var>A_{N - 1,M_{N - 1}}</var> <var>B_{N - 1,M_{N - 1}}</var>
 <var>Q</var>
 <var>L_1</var> <var>R_1</var>
 <var>L_2</var> <var>R_2</var>
@@ -51,7 +51,7 @@
 <div class="part">
 <section>
 <h3>Output</h3>
-<p>Output <var>Q</var> lines to the standard output. On the <var>k</var>-th line (<var>1 \leq k \leq Q</var>), output the minimum time required for the member <var>k</var> to travel from city <var>L_k</var> to city <var>R_k</var>.</p>
+<p>Output <var>Q</var> lines to the standard output. On the <var>k</var>-th line (<var>1 \le k \le Q</var>), output the minimum time required for the member <var>k</var> to travel from city <var>L_k</var> to city <var>R_k</var>.</p>
 <hr />
 </section>
 </div>
@@ -61,13 +61,13 @@
 <section>
 <h3>Constraints</h3>
 <ul>
-<li><var>2 \leq N \leq 100\,000</var>.</li>
-<li><var>2 \leq T \leq 10^9</var>.</li>
-<li><var>M_i \geq 1</var> (<var>1 \leq i \leq N - 1</var>).</li>
-<li><var>M_1 + M_2 + \cdots + M_{N-1} \leq 100\,000</var>.</li>
-<li><var>0 \leq A_{i,j} &lt; B_{i,j} &lt; T</var> (<var>1 \leq i \leq N - 1</var>, <var>1 \leq j \leq M_i</var>).</li>
-<li><var>1 \leq Q \leq 300\,000</var>.</li>
-<li><var>1 \leq L_k &lt; R_k \leq N</var> (<var>1 \leq k \leq Q</var>).</li>
+<li><var>2 \le N \le 100\,000</var>.</li>
+<li><var>2 \le T \le 10^9</var>.</li>
+<li><var>M_i \ge 1</var> (<var>1 \le i \le N - 1</var>).</li>
+<li><var>M_1 + M_2 + \cdots + M_{N - 1} \le 100\,000</var>.</li>
+<li><var>0 \le A_{i,j} &lt; B_{i,j} &lt; T</var> (<var>1 \le i \le N - 1</var>, <var>1 \le j \le M_i</var>).</li>
+<li><var>1 \le Q \le 300\,000</var>.</li>
+<li><var>1 \le L_k &lt; R_k \le N</var> (<var>1 \le k \le Q</var>).</li>
 <li>Given values are all integers.</li>
 </ul>
 </section>
@@ -77,11 +77,11 @@
 <section>
 <h3>Subtasks</h3>
 <ol>
-<li>(<var>6</var> points) <var>N \leq 2\,000</var>, <var>M_i = 1</var> (<var>1 \leq i \leq N - 1</var>).</li>
-<li>(<var>8</var> points) <var>N \leq 2\,000</var>, <var>M_i \leq 5</var> (<var>1 \leq i \leq N - 1</var>).</li>
-<li>(<var>17</var> points) <var>M_i = 1</var> (<var>1 \leq i \leq N - 1</var>).</li>
-<li>(<var>23</var> points) <var>M_i \leq 5</var> (<var>1 \leq i \leq N - 1</var>).</li>
-<li>(<var>36</var> points) <var>N \leq 90\,000</var>, <var>Q \leq 90\,000</var>, <var>M_1 + M_2 + \cdots + M_{N-1} \leq 90\,000</var>.</li>
+<li>(<var>6</var> points) <var>N \le 2\,000</var>, <var>M_i = 1</var> (<var>1 \le i \le N - 1</var>).</li>
+<li>(<var>8</var> points) <var>N \le 2\,000</var>, <var>M_i \le 5</var> (<var>1 \le i \le N - 1</var>).</li>
+<li>(<var>17</var> points) <var>M_i = 1</var> (<var>1 \le i \le N - 1</var>).</li>
+<li>(<var>23</var> points) <var>M_i \le 5</var> (<var>1 \le i \le N - 1</var>).</li>
+<li>(<var>36</var> points) <var>N \le 90\,000</var>, <var>Q \le 90\,000</var>, <var>M_1 + M_2 + \cdots + M_{N - 1} \le 90\,000</var>.</li>
 <li>(<var>10</var> points) No additional constraints.</li>
 </ol>
 <hr />
@@ -168,7 +168,7 @@
 </div>
 </span>
 <span class="lang-ja">
-<p>配点： <var>100</var> 点</p>
+<p>配点 : <var>100</var> 点</p>
 
 <div class="part">
 <section>
@@ -200,11 +200,11 @@
 <var>\vdots</var>
 <var>A_{2,M_2}</var> <var>B_{2,M_2}</var>
 <var>\vdots</var>
-<var>M_{N-1}</var>
-<var>A_{N-1,1}</var> <var>B_{N-1,1}</var>
-<var>A_{N-1,2}</var> <var>B_{N-1,2}</var>
+<var>M_{N - 1}</var>
+<var>A_{N - 1,1}</var> <var>B_{N - 1,1}</var>
+<var>A_{N - 1,2}</var> <var>B_{N - 1,2}</var>
 <var>\vdots</var>
-<var>A_{N-1,M_{N-1}}</var> <var>B_{N-1,M_{N-1}}</var>
+<var>A_{N - 1,M_{N - 1}}</var> <var>B_{N - 1,M_{N - 1}}</var>
 <var>Q</var>
 <var>L_1</var> <var>R_1</var>
 <var>L_2</var> <var>R_2</var>
@@ -232,7 +232,7 @@
 <li><var>2 \leqq N \leqq 100\,000</var>．</li>
 <li><var>2 \leqq T \leqq 10^9</var>．</li>
 <li><var>M_i \geqq 1</var> (<var>1 \leqq i \leqq N - 1</var>)．</li>
-<li><var>M_1 + M_2 + \cdots + M_{N-1} \leqq 100\,000</var>．</li>
+<li><var>M_1 + M_2 + \cdots + M_{N - 1} \leqq 100\,000</var>．</li>
 <li><var>0 \leqq A_{i,j} &lt; B_{i,j} &lt; T</var> (<var>1 \leqq i \leqq N - 1</var>，<var>1 \leqq j \leqq M_i</var>)．</li>
 <li><var>1 \leqq Q \leqq 300\,000</var>．</li>
 <li><var>1 \leqq L_k &lt; R_k \leqq N</var> (<var>1 \leqq k \leqq Q</var>)．</li>
@@ -249,7 +249,7 @@
 <li>(<var>8</var> 点) <var>N \leqq 2\,000</var>，<var>M_i \leqq 5</var> (<var>1 \leqq i \leqq N - 1</var>)．</li>
 <li>(<var>17</var> 点) <var>M_i = 1</var> (<var>1 \leqq i \leqq N - 1</var>)．</li>
 <li>(<var>23</var> 点) <var>M_i \leqq 5</var> (<var>1 \leqq i \leqq N - 1</var>)．</li>
-<li>(<var>36</var> 点) <var>N \leqq 90\,000</var>，<var>Q \leqq 90\,000</var>，<var>M_1 + M_2 + \cdots + M_{N-1} \leqq 90\,000</var>．</li>
+<li>(<var>36</var> 点) <var>N \leqq 90\,000</var>，<var>Q \leqq 90\,000</var>，<var>M_1 + M_2 + \cdots + M_{N - 1} \leqq 90\,000</var>．</li>
 <li>(<var>10</var> 点) 追加の制約はない．</li>
 </ol>
 <hr />

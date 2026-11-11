@@ -4,7 +4,7 @@ Score: $100$ points
 
 Mr. JOI, who manages a famous ski resort on the IOI Plateau, has decided to commemorate the $15$th anniversary of the ski resort's opening by constructing a new ski resort on the adjacent KOI Plateau.
 
-The KOI Plateau has $N$ points numbered from $1$ to $N$. Currently, the altitude of point $i$ ($1 \leq i \leq N$) is $H_i$ m, and there exist no courses connecting each point on the plateau. Additionally, each point is equipped with one unused connection facility available.
+The KOI Plateau has $N$ points numbered from $1$ to $N$. Currently, the altitude of point $i$ ($1 \le i \le N$) is $H_i$ m, and there exist no courses connecting each point on the plateau. Additionally, each point is equipped with one unused connection facility available.
 
 The goal of Mr. JOI is to construct KOI Hotel at one of the $N$ points and then construct some courses connecting each point on the plateau so that one can ski down to the hotel from any point. Specifically, Mr. JOI will construct the ski resort according to the following steps:
 
@@ -40,19 +40,19 @@ Write one line to the standard output. The output should contain the minimum cos
 
 ### Constraints
 
-- $1 \leq N \leq 300$.
-- $1 \leq K \leq 10^9$.
-- $0 \leq H_i \leq 10^9$ ($1 \leq i \leq N$).
-- $1 \leq C_i \leq 10^9$ ($1 \leq i \leq N$).
+- $1 \le N \le 300$.
+- $1 \le K \le 10^9$.
+- $0 \le H_i \le 10^9$ ($1 \le i \le N$).
+- $1 \le C_i \le 10^9$ ($1 \le i \le N$).
 - Given values are all integers.
 
 ### Subtasks
 
-1. ($5$ points) $K \geq 100\,000$, $H_i \leq 300$, $C_i \leq 100$ ($1 \leq i \leq N$).
-2. ($12$ points) $H_1 \leq H_i$, $C_1 \leq C_i$, $H_i \leq 300$ ($1 \leq i \leq N$).
-3. ($9$ points) $N \leq 10$, $H_i \leq 10$ ($1 \leq i \leq N$).
-4. ($33$ points) $N \leq 40$, $H_i \leq 40$ ($1 \leq i \leq N$).
-5. ($27$ points) $H_i \leq 300$ ($1 \leq i \leq N$).
+1. ($5$ points) $K \ge 100\,000$, $H_i \le 300$, $C_i \le 100$ ($1 \le i \le N$).
+2. ($12$ points) $H_1 \le H_i$, $C_1 \le C_i$, $H_i \le 300$ ($1 \le i \le N$).
+3. ($9$ points) $N \le 10$, $H_i \le 10$ ($1 \le i \le N$).
+4. ($33$ points) $N \le 40$, $H_i \le 40$ ($1 \le i \le N$).
+5. ($27$ points) $H_i \le 300$ ($1 \le i \le N$).
 6. ($14$ points) No additional constraints.
 
 ---

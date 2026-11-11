@@ -8,11 +8,11 @@
 <p>JOI-kun is breeding <var>N</var> fish in a large tank, and each fish is numbered from <var>1</var> to <var>N</var>.</p>
 <p>JOI-kun has two types of fish food, A and B, both in sufficient quantities. When one piece of food is added to the aquarium, exactly one fish eats it (any fish could potentially eat it), and depending on the type of food and which fish ate it, the intelligence of the fish changes as follows:</p>
 <ul>
-<li>When fish <var>k</var> (<var>1 \leq k \leq N</var>) eats one piece of type A food, the intelligence of fish <var>k</var> increases exactly by <var>D</var>.</li>
-<li>When fish <var>k</var> (<var>1 \leq k \leq N</var>) eats one piece of type B food, the intelligence of all fish numbered <var>k</var> and above increases exactly by <var>1</var> each.</li>
+<li>When fish <var>k</var> (<var>1 \le k \le N</var>) eats one piece of type A food, the intelligence of fish <var>k</var> increases exactly by <var>D</var>.</li>
+<li>When fish <var>k</var> (<var>1 \le k \le N</var>) eats one piece of type B food, the intelligence of all fish numbered <var>k</var> and above increases exactly by <var>1</var> each.</li>
 </ul>
-<p>Currently, the intelligence of all fish is <var>0</var>. JOI-kun wants to make the intelligence of fish <var>i</var> (<var>1 \leq i \leq N</var>) equal to its ideal intelligence <var>C_i</var>, but it may not always be possible.</p>
-<p>Therefore, he considered <var>Q</var> questions. The <var>j</var>-th question (<var>1 \leq j \leq Q</var>) is as follows:</p>
+<p>Currently, the intelligence of all fish is <var>0</var>. JOI-kun wants to make the intelligence of fish <var>i</var> (<var>1 \le i \le N</var>) equal to its ideal intelligence <var>C_i</var>, but it may not always be possible.</p>
+<p>Therefore, he considered <var>Q</var> questions. The <var>j</var>-th question (<var>1 \le j \le Q</var>) is as follows:</p>
 <ul>
 <li>Starting from the state where all fish have an intelligence of <var>0</var>, by repeating the action of putting food into the aquarium zero or more times, is it possible to reach the state where all fish <var>L_j, L_j + 1, \ldots, R_j</var> have their exact ideal intelligence values? Furthermore, if it is possible, what is the minimum number of pieces of type A food that needs to be put into the tank?</li>
 </ul>
@@ -42,7 +42,7 @@
 <div class="part">
 <section>
 <h3>Output</h3>
-<p>Write <var>Q</var> lines to the standard output. In the <var>j</var>-th line (<var>1 \leq j \leq Q</var>), if it is possible to reach the state where all fish <var>L_j, L_j + 1, \ldots, R_j</var> have their exact ideal intelligence values, output the minimum number of pieces of type A food that needs to be put into the tank. Otherwise, output <code>-1</code>.</p>
+<p>Write <var>Q</var> lines to the standard output. In the <var>j</var>-th line (<var>1 \le j \le Q</var>), if it is possible to reach the state where all fish <var>L_j, L_j + 1, \ldots, R_j</var> have their exact ideal intelligence values, output the minimum number of pieces of type A food that needs to be put into the tank. Otherwise, output <code>-1</code>.</p>
 </section>
 </div>
 </div>
@@ -51,11 +51,11 @@
 <section>
 <h3>Constraints</h3>
 <ul>
-<li><var>1 \leq N \leq 300\,000</var>.</li>
-<li><var>1 \leq Q \leq 300\,000</var>.</li>
-<li><var>1 \leq D \leq 10^{12}</var>.</li>
-<li><var>0 \leq C_i \leq 10^{12}</var> (<var>1 \leq i \leq N</var>).</li>
-<li><var>1 \leq L_j \leq R_j \leq N</var> (<var>1 \leq j \leq Q</var>).</li>
+<li><var>1 \le N \le 300\,000</var>.</li>
+<li><var>1 \le Q \le 300\,000</var>.</li>
+<li><var>1 \le D \le 10^{12}</var>.</li>
+<li><var>0 \le C_i \le 10^{12}</var> (<var>1 \le i \le N</var>).</li>
+<li><var>1 \le L_j \le R_j \le N</var> (<var>1 \le j \le Q</var>).</li>
 <li>Given values are all integers.</li>
 </ul>
 </section>
@@ -65,10 +65,10 @@
 <section>
 <h3>Subtasks</h3>
 <ol>
-<li>(<var>9</var> points) <var>N \leq 3\,000</var>, <var>Q \leq 3\,000</var>.</li>
-<li>(<var>7</var> points) <var>C_i \leq 1</var> (<var>1 \leq i \leq N</var>).</li>
+<li>(<var>9</var> points) <var>N \le 3\,000</var>, <var>Q \le 3\,000</var>.</li>
+<li>(<var>7</var> points) <var>C_i \le 1</var> (<var>1 \le i \le N</var>).</li>
 <li>(<var>28</var> points) <var>D = 1</var>.</li>
-<li>(<var>20</var> points) <var>C_i \geq C_{i+1}</var> (<var>1 \leq i \leq N - 1</var>).</li>
+<li>(<var>20</var> points) <var>C_i \ge C_{i+1}</var> (<var>1 \le i \le N - 1</var>).</li>
 <li>(<var>36</var> points) No additional constraints.</li>
 </ol>
 <hr />
@@ -180,7 +180,7 @@
 </div>
 </span>
 <span class="lang-ja">
-<p>配点： <var>100</var> 点</p>
+<p>配点 : <var>100</var> 点</p>
 
 <div class="part">
 <section>

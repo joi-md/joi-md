@@ -1,9 +1,7 @@
-<blockquote markdown="1">
+<blockquote class="joisp2024-k-submission" markdown="1">
 **Submission on AtCoder**
 
-Distributed files are [here](https://www2.ioi-jp.org/camp/2024/2024-sp-tasks/contest4/island-dist.zip).
-
-The Implementation Details, Important Notices, and Compilation and Test Run sections below describe the C++ function interface and local testing. If you use another language, implement the same strategy using the input/output protocol in this section.
+Distributed files are [here](https://img.atcoder.jp/joisp2024/island-dist-d4bce4dc5d.zip).
 
 #### Using C++
 
@@ -44,42 +42,14 @@ Then `0` is given on one line.
 
 Score: $100$ points
 
-<style>
-#task-statement details {
-    margin: 1em 0;
-}
-#task-statement details > summary {
-    display: list-item;
-    cursor: pointer;
-}
-#task-statement table {
-    display: block;
-    width: fit-content;
-    max-width: 100%;
-    overflow-x: auto;
-    border-collapse: collapse;
-    margin: 1em 0;
-}
-#task-statement table th,
-#task-statement table td {
-    border: 1px solid #aaa;
-    padding: 0.3em 0.6em;
-    text-align: left;
-    vertical-align: top;
-}
-#task-statement table th {
-    background-color: #f5f5f5;
-}
-</style>
-
 ### Problem Statement
 
-There are $N$ islands in JOI Kingdom, numbered from $1$ to $N$. There are $N - 1$ sea routes in JOI Kingdom, numbered from $1$ to $N - 1$. The sea route $j$ ($1 \leq j \leq N - 1$) connects island $A_j$ and island $B_j$ bi-directionally. It is possible to travel from any island to any other island by using some sea routes.
+There are $N$ islands in JOI Kingdom, numbered from $1$ to $N$. There are $N - 1$ sea routes in JOI Kingdom, numbered from $1$ to $N - 1$. The sea route $j$ ($1 \le j \le N - 1$) connects island $A_j$ and island $B_j$ bi-directionally. It is possible to travel from any island to any other island by using some sea routes.
 
 Aoi is planning a trip in JOI Kingdom. However, she doesn't know about sea routes in JOI Kingdom. She is going to ask questions with Bitaro, a citizen in JOI Kingdom, in the following way:
 
-1. Aoi tells Bitaro an integer $v$, where $1 \leq v \leq N$, and an integer $k$, where $1 \leq k \leq N - 1$.
-2. Bitaro tells Aoi the number on the island which is the $k$-th closest from island $v$ among the $N - 1$ islands except for island $v$. To be specific, he tells her an integer $i$ such that $\operatorname{dist}(v, i) \times N + i$ ($1 \leq i \leq N$, $i \neq v$) is the $k$-th smallest, where $\operatorname{dist}(v, i)$ is the minimum number of sea routes to move from island $v$ to island $i$.
+1. Aoi tells Bitaro an integer $v$, where $1 \le v \le N$, and an integer $k$, where $1 \le k \le N - 1$.
+2. Bitaro tells Aoi the number on the island which is the $k$-th closest from island $v$ among the $N - 1$ islands except for island $v$. To be specific, he tells her an integer $i$ such that $\operatorname{dist}(v, i) \times N + i$ ($1 \le i \le N$, $i \neq v$) is the $k$-th smallest, where $\operatorname{dist}(v, i)$ is the minimum number of sea routes to move from island $v$ to island $i$.
 
 Aoi wants to know all sea routes in JOI Kingdom by asking questions to Bitaro. Since Aoi does not want to spend too much time, she can ask at most $L$ questions to Bitaro.
 
@@ -117,7 +87,7 @@ In `island.cpp`, you can call the following functions.
 
     - The parameters `x` and `y` are the numbers of two islands connected by a sea route.
     - The parameters `x` and `y` must be between $1$ and $N$. If not, your program is judged as Wrong Answer [4].
-    - There must exist a sea route which connects islands $x$ and $y$. In other words, there must exist an integer $j$ ($1 \leq j \leq N - 1$) such that $x = A_j$ and $y = B_j$, or $x = B_j$ and $y = A_j$. If not, your program is judged as Wrong Answer [5].
+    - There must exist a sea route which connects islands $x$ and $y$. In other words, there must exist an integer $j$ ($1 \le j \le N - 1$) such that $x = A_j$ and $y = B_j$, or $x = B_j$ and $y = A_j$. If not, your program is judged as Wrong Answer [5].
     - The program must not answer the information of the same sea route twice or more. If this condition is not met, your program is judged as Wrong Answer [6].
     - Function `answer` must be called exactly $N - 1$ times. If the number of calls of function `answer` is not $N - 1$ when the execution of function `solve` ends, your program is judged as Wrong Answer [7].
 
@@ -149,15 +119,15 @@ $N$ $L$
 $A_1$ $B_1$
 $A_2$ $B_2$
 $\vdots$
-$A_{N-1}$ $B_{N-1}$
+$A_{N - 1}$ $B_{N - 1}$
 ~~~
 
 ### Output for the Sample Grader
 
 The sample grader outputs the following information to the standard output (quotes for clarity).
 
-- If your program is judged as correct, it reports the number of calls to `query` as `Accepted: 2024`.
-- If your program is judged as any type of Wrong Answer, the sample grader writes its type as `Wrong Answer [4]`.
+- If your program is judged as correct, it reports the number of calls to `query` as “`Accepted: 2024`”.
+- If your program is judged as any type of Wrong Answer, the sample grader writes its type as “`Wrong Answer [4]`”.
 
 If your program satisfies the conditions of several types of Wrong Answer, the sample grader reports only one of them.
 
@@ -171,10 +141,10 @@ The actual grader is not adaptive for all test cases. It means that the grader h
 
 All the input data satisfy the following conditions.
 
-- $3 \leq N \leq 300$.
-- $1 \leq A_j \leq N$ ($1 \leq j \leq N - 1$).
-- $1 \leq B_j \leq N$ ($1 \leq j \leq N - 1$).
-- $A_j \neq B_j$ ($1 \leq j \leq N - 1$).
+- $3 \le N \le 300$.
+- $1 \le A_j \le N$ ($1 \le j \le N - 1$).
+- $1 \le B_j \le N$ ($1 \le j \le N - 1$).
+- $A_j \neq B_j$ ($1 \le j \le N - 1$).
 - It is possible to travel from any island to any other island by using some sea routes.
 - Given values are all integers.
 
@@ -206,6 +176,8 @@ Here is a sample input for the sample grader and corresponding function calls.
 
 #### Sample Function Calls
 
+<div class="joisp2024-k-table" markdown="1">
+
 | Calls (Grader) | Calls (Submission) | Return Values |
 | --- | --- | --- |
 | `solve(4, 16)` | | |
@@ -217,6 +189,9 @@ Here is a sample input for the sample grader and corresponding function calls.
 | | `query(3, 2)` | `2` |
 | | `query(2, 1)` | `1` |
 | | `answer(3, 4)` | |
+
+</div>
+
 
 The minimum number of sea routes to move from island $2$ to islands $1, 3, 4$, are $1, 2, 1$, respectively. For example, to move from island $2$ to island $3$, we can use sea route $2$ and then sea route $3$.
 
@@ -238,6 +213,8 @@ Sample Input $1$ satisfies the constraints of Subtasks $2, 6$. Among the files w
 
 #### Sample Function Calls
 
+<div class="joisp2024-k-table" markdown="1">
+
 | Calls (Grader) | Calls (Submission) | Return Values |
 | --- | --- | --- |
 | `solve(5, 25)` | | |
@@ -251,6 +228,9 @@ Sample Input $1$ satisfies the constraints of Subtasks $2, 6$. Among the files w
 | | `answer(4, 1)` | |
 | | `answer(2, 5)` | |
 
+</div>
+
+
 The minimum number of sea routes to move from island $1$ to islands $2, 3, 4, 5$, are $2, 1, 1, 1$, respectively. For example, to move from island $1$ to island $2$, we can use sea route $4$ and then sea route $1$.
 
 Sorting the islands $i$ ($i \neq 1$) in increasing order of $\operatorname{dist}(1, i) \times N + i$, the result is island $3$, island $4$, island $5$, island $2$, in this order. Therefore, the return value of `query(1, 3)` is $5$, and the return value of `query(1, 4)` is $2$.
@@ -258,3 +238,13 @@ Sorting the islands $i$ ($i \neq 1$) in increasing order of $\operatorname{dist}
 Sample Input $2$ satisfies the constraints of Subtasks $4, 6$. Among the files which can be obtained from the contest webpage, `sample-02-in.txt` corresponds to Sample Input $2$.
 
 Both `sample-01-in.txt` and `sample-02-in.txt` can be used as inputs for the sample grader.
+
+<style>
+.joisp2024-k-submission details { margin:1em 0; }
+.joisp2024-k-submission summary { display:list-item;cursor:pointer; }
+.joisp2024-k-table { position:relative;max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisp2024-k-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisp2024-k-table th,.joisp2024-k-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisp2024-k-table th { background:#f5f5f5; }
+.joisp2024-k-table code { white-space:nowrap; }
+</style>

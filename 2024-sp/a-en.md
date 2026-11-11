@@ -6,12 +6,12 @@ JOI-kun is breeding $N$ fish in a large tank, and each fish is numbered from $1$
 
 JOI-kun has two types of fish food, A and B, both in sufficient quantities. When one piece of food is added to the aquarium, exactly one fish eats it (any fish could potentially eat it), and depending on the type of food and which fish ate it, the intelligence of the fish changes as follows:
 
-- When fish $k$ ($1 \leq k \leq N$) eats one piece of type A food, the intelligence of fish $k$ increases exactly by $D$.
-- When fish $k$ ($1 \leq k \leq N$) eats one piece of type B food, the intelligence of all fish numbered $k$ and above increases exactly by $1$ each.
+- When fish $k$ ($1 \le k \le N$) eats one piece of type A food, the intelligence of fish $k$ increases exactly by $D$.
+- When fish $k$ ($1 \le k \le N$) eats one piece of type B food, the intelligence of all fish numbered $k$ and above increases exactly by $1$ each.
 
-Currently, the intelligence of all fish is $0$. JOI-kun wants to make the intelligence of fish $i$ ($1 \leq i \leq N$) equal to its ideal intelligence $C_i$, but it may not always be possible.
+Currently, the intelligence of all fish is $0$. JOI-kun wants to make the intelligence of fish $i$ ($1 \le i \le N$) equal to its ideal intelligence $C_i$, but it may not always be possible.
 
-Therefore, he considered $Q$ questions. The $j$-th question ($1 \leq j \leq Q$) is as follows:
+Therefore, he considered $Q$ questions. The $j$-th question ($1 \le j \le Q$) is as follows:
 
 - Starting from the state where all fish have an intelligence of $0$, by repeating the action of putting food into the aquarium zero or more times, is it possible to reach the state where all fish $L_j, L_j + 1, \ldots, R_j$ have their exact ideal intelligence values? Furthermore, if it is possible, what is the minimum number of pieces of type A food that needs to be put into the tank?
 
@@ -35,23 +35,23 @@ $L_Q$ $R_Q$
 
 ### Output
 
-Write $Q$ lines to the standard output. In the $j$-th line ($1 \leq j \leq Q$), if it is possible to reach the state where all fish $L_j, L_j + 1, \ldots, R_j$ have their exact ideal intelligence values, output the minimum number of pieces of type A food that needs to be put into the tank. Otherwise, output `-1`.
+Write $Q$ lines to the standard output. In the $j$-th line ($1 \le j \le Q$), if it is possible to reach the state where all fish $L_j, L_j + 1, \ldots, R_j$ have their exact ideal intelligence values, output the minimum number of pieces of type A food that needs to be put into the tank. Otherwise, output `-1`.
 
 ### Constraints
 
-- $1 \leq N \leq 300\,000$.
-- $1 \leq Q \leq 300\,000$.
-- $1 \leq D \leq 10^{12}$.
-- $0 \leq C_i \leq 10^{12}$ ($1 \leq i \leq N$).
-- $1 \leq L_j \leq R_j \leq N$ ($1 \leq j \leq Q$).
+- $1 \le N \le 300\,000$.
+- $1 \le Q \le 300\,000$.
+- $1 \le D \le 10^{12}$.
+- $0 \le C_i \le 10^{12}$ ($1 \le i \le N$).
+- $1 \le L_j \le R_j \le N$ ($1 \le j \le Q$).
 - Given values are all integers.
 
 ### Subtasks
 
-1. ($9$ points) $N \leq 3\,000$, $Q \leq 3\,000$.
-2. ($7$ points) $C_i \leq 1$ ($1 \leq i \leq N$).
+1. ($9$ points) $N \le 3\,000$, $Q \le 3\,000$.
+2. ($7$ points) $C_i \le 1$ ($1 \le i \le N$).
 3. ($28$ points) $D = 1$.
-4. ($20$ points) $C_i \geq C_{i+1}$ ($1 \leq i \leq N - 1$).
+4. ($20$ points) $C_i \ge C_{i+1}$ ($1 \le i \le N - 1$).
 5. ($36$ points) No additional constraints.
 
 ---

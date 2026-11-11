@@ -1,9 +1,8 @@
 <span class="lang">
 <span class="lang-en">
-<blockquote>
+<blockquote class="joisp2024-h-submission">
 <p><strong>Submission on AtCoder</strong></p>
 <p><a href="https://www2.ioi-jp.org/camp/2024/2024-sp-tasks/contest3/joitour-dist.zip">Distributed Files</a></p>
-<p>The Implementation Details, Important Notices, and Compilation and Test Run sections below describe the C++ function interface and local testing. If you use another language, implement the same operations using the input/output protocol in this section.</p>
 <h4>When using C++</h4>
 <p>Your program must include <code>joitour.h</code>. See the problem statement below for the implementation details.</p>
 <details>
@@ -12,10 +11,10 @@
 <h5>init</h5>
 <p>Read input in the following format.</p>
 <pre><var>N</var>
-<var>F_0</var> <var>\cdots</var> <var>F_{N-1}</var>
+<var>F_0</var> <var>\cdots</var> <var>F_{N - 1}</var>
 <var>U_0</var> <var>V_0</var>
 <var>\vdots</var>
-<var>U_{N-2}</var> <var>V_{N-2}</var>
+<var>U_{N - 2}</var> <var>V_{N - 2}</var>
 <var>Q</var>
 </pre>
 <h5>change</h5>
@@ -31,40 +30,12 @@
 </details>
 </blockquote>
 <p>Score: <var>100</var> points</p>
-<style>
-#task-statement details {
-    margin: 1em 0;
-}
-#task-statement details > summary {
-    display: list-item;
-    cursor: pointer;
-}
-#task-statement table {
-    display: block;
-    width: fit-content;
-    max-width: 100%;
-    overflow-x: auto;
-    border-collapse: collapse;
-    margin: 1em 0;
-}
-#task-statement table th,
-#task-statement table td {
-    border: 1px solid #aaa;
-    padding: 0.3em 0.6em;
-    text-align: left;
-    vertical-align: top;
-}
-#task-statement table th {
-    background-color: #f5f5f5;
-}
-</style>
-
 
 <div class="part">
 <section>
 <h3>Problem Statement</h3>
-<p>In IOI country, there are <var>N</var> towns which are numbered from <var>0</var> to <var>N - 1</var>, and <var>N - 1</var> roads which are numbered from <var>0</var> to <var>N - 2</var>. Road <var>j</var> (<var>0 \leq j \leq N - 2</var>) connects town <var>U_j</var> and town <var>V_j</var> bidirectionally. You can move between any pair of towns by traversing some roads.</p>
-<p>There is a restaurant in each town of IOI country. The type of restaurant at town <var>i</var> (<var>0 \leq i \leq N - 1</var>) is represented by an integer <var>F_i</var>, which corresponds to:</p>
+<p>In IOI country, there are <var>N</var> towns which are numbered from <var>0</var> to <var>N - 1</var>, and <var>N - 1</var> roads which are numbered from <var>0</var> to <var>N - 2</var>. Road <var>j</var> (<var>0 \le j \le N - 2</var>) connects town <var>U_j</var> and town <var>V_j</var> bidirectionally. You can move between any pair of towns by traversing some roads.</p>
+<p>There is a restaurant in each town of IOI country. The type of restaurant at town <var>i</var> (<var>0 \le i \le N - 1</var>) is represented by an integer <var>F_i</var>, which corresponds to:</p>
 <ul>
 <li><var>F_i = 0</var>: Juice restaurant</li>
 <li><var>F_i = 1</var>: Omelette restaurant</li>
@@ -72,11 +43,11 @@
 </ul>
 <p>Rie is a tour guide in IOI country, who plans a sightseeing tour named JOI Tour. JOI Tour is a tour to visit <var>3</var> types of restaurants in a following way:</p>
 <ol>
-<li>Choose a town <var>i_0</var> with juice restaurant (<var>0 \leq i_0 \leq N - 1</var>), and start the tour at town <var>i_0</var>.</li>
+<li>Choose a town <var>i_0</var> with juice restaurant (<var>0 \le i_0 \le N - 1</var>), and start the tour at town <var>i_0</var>.</li>
 <li>Visit the juice restaurant at town <var>i_0</var>.</li>
-<li>Choose a town <var>i_1</var> with omelette restaurant (<var>0 \leq i_1 \leq N - 1</var>), and move from town <var>i_0</var> to town <var>i_1</var> along the roads by bus, using the shortest route.</li>
+<li>Choose a town <var>i_1</var> with omelette restaurant (<var>0 \le i_1 \le N - 1</var>), and move from town <var>i_0</var> to town <var>i_1</var> along the roads by bus, using the shortest route.</li>
 <li>Visit the omelette restaurant at town <var>i_1</var>.</li>
-<li>Choose a town <var>i_2</var> with ice cream restaurant (<var>0 \leq i_2 \leq N - 1</var>), and move from town <var>i_1</var> to town <var>i_2</var> along the roads by bus, using the shortest route.</li>
+<li>Choose a town <var>i_2</var> with ice cream restaurant (<var>0 \le i_2 \le N - 1</var>), and move from town <var>i_1</var> to town <var>i_2</var> along the roads by bus, using the shortest route.</li>
 <li>Visit the ice cream restaurant at town <var>i_2</var>.</li>
 <li>Finish the tour at town <var>i_2</var>.</li>
 </ol>
@@ -87,7 +58,7 @@
 <li>The restaurant at town <var>i_2</var> is an ice cream restaurant.</li>
 <li>When we move from town <var>i_0</var> to town <var>i_1</var> then from town <var>i_1</var> to town <var>i_2</var>, both using the shortest routes, we don't pass the same road twice.</li>
 </ul>
-<p>In IOI country, there will be <var>Q</var> events involving change of restaurant type. When the <var>(k + 1)</var>-th event (<var>0 \leq k \leq Q - 1</var>) happens, two integers <var>X_k</var> and <var>Y_k</var> will be given to you, which holds <var>0 \leq X_k \leq N - 1</var> and <var>0 \leq Y_k \leq 2</var>. Then, the type of the restaurant at town <var>X_k</var> is changed to the type represented by integer <var>Y_k</var>. That is, when <var>Y_k = 0, 1, 2</var>, it is changed to juice, omelette, ice cream restaurant, respectively. After each event, you should immediately compute the up-to-date number of good JOI tours and tell the result to Rie.</p>
+<p>In IOI country, there will be <var>Q</var> events involving change of restaurant type. When the <var>(k + 1)</var>-th event (<var>0 \le k \le Q - 1</var>) happens, two integers <var>X_k</var> and <var>Y_k</var> will be given to you, which holds <var>0 \le X_k \le N - 1</var> and <var>0 \le Y_k \le 2</var>. Then, the type of the restaurant at town <var>X_k</var> is changed to the type represented by integer <var>Y_k</var>. That is, when <var>Y_k = 0, 1, 2</var>, it is changed to juice, omelette, ice cream restaurant, respectively. After each event, you should immediately compute the up-to-date number of good JOI tours and tell the result to Rie.</p>
 <p>Write a program which, given information of roads and restaurants, computes the number of good JOI tours after each event of change of restaurant type.</p>
 </section>
 </div>
@@ -105,8 +76,8 @@
 <li>With this function call, the information of roads and restaurants is given.</li>
 <li>This function is called only once, at the beginning.</li>
 <li>The parameter <code>N</code> is the number of towns <var>N</var>.</li>
-<li>The parameter <code>F</code> is an array of length <var>N</var>. <code>F[i]</code> (<var>0 \leq i \leq N - 1</var>) represents the type of restaurant at town <var>i</var>, that is, <var>F_i</var>.</li>
-<li>The parameters <code>U</code> and <code>V</code> are arrays of length <var>N - 1</var>. <code>U[j]</code> and <code>V[j]</code> (<var>0 \leq j \leq N - 2</var>) are two towns connected by road <var>j</var>, that is, <var>U_j</var> and <var>V_j</var>.</li>
+<li>The parameter <code>F</code> is an array of length <var>N</var>. <code>F[i]</code> (<var>0 \le i \le N - 1</var>) represents the type of restaurant at town <var>i</var>, that is, <var>F_i</var>.</li>
+<li>The parameters <code>U</code> and <code>V</code> are arrays of length <var>N - 1</var>. <code>U[j]</code> and <code>V[j]</code> (<var>0 \le j \le N - 2</var>) are two towns connected by road <var>j</var>, that is, <var>U_j</var> and <var>V_j</var>.</li>
 <li>The parameter <code>Q</code> is the number of events of change of restaurant type, that is, <var>Q</var>.</li>
 </ul>
 </li>
@@ -115,8 +86,8 @@
 <ul>
 <li>With this function call, the information of change of restaurant type is given.</li>
 <li>This function is called <var>Q</var> times.</li>
-<li>In <var>(k + 1)</var>-th call of this function (<var>0 \leq k \leq Q - 1</var>), the parameter <code>X</code> is the index of town that change of restaurant type happens, that is, <var>X_k</var>.</li>
-<li>In <var>(k + 1)</var>-th call of this function (<var>0 \leq k \leq Q - 1</var>), the parameter <code>Y</code> represents the new type of restaurant, that is, <var>Y_k</var>. It is guaranteed that new type is different from the old type.</li>
+<li>In <var>(k + 1)</var>-th call of this function (<var>0 \le k \le Q - 1</var>), the parameter <code>X</code> is the index of town that change of restaurant type happens, that is, <var>X_k</var>.</li>
+<li>In <var>(k + 1)</var>-th call of this function (<var>0 \le k \le Q - 1</var>), the parameter <code>Y</code> represents the new type of restaurant, that is, <var>Y_k</var>. It is guaranteed that new type is different from the old type.</li>
 </ul>
 </li>
 <li>
@@ -162,16 +133,16 @@
 <h3>Input for the Sample Grader</h3>
 <p>The sample grader reads the following data from the standard input.</p>
 <pre><var>N</var>
-<var>F_0</var> <var>F_1</var> <var>\cdots</var> <var>F_{N-1}</var>
+<var>F_0</var> <var>F_1</var> <var>\cdots</var> <var>F_{N - 1}</var>
 <var>U_0</var> <var>V_0</var>
 <var>U_1</var> <var>V_1</var>
 <var>\vdots</var>
-<var>U_{N-2}</var> <var>V_{N-2}</var>
+<var>U_{N - 2}</var> <var>V_{N - 2}</var>
 <var>Q</var>
 <var>X_0</var> <var>Y_0</var>
 <var>X_1</var> <var>Y_1</var>
 <var>\vdots</var>
-<var>X_{Q-1}</var> <var>Y_{Q-1}</var>
+<var>X_{Q - 1}</var> <var>Y_{Q - 1}</var>
 </pre>
 </section>
 </div>
@@ -187,13 +158,13 @@
 <section>
 <h3>Constraints</h3>
 <ul>
-<li><var>3 \leq N \leq 200\,000</var>.</li>
-<li><var>0 \leq F_i \leq 2</var> (<var>0 \leq i \leq N - 1</var>).</li>
-<li><var>0 \leq U_j &lt; V_j \leq N - 1</var> (<var>0 \leq j \leq N - 2</var>).</li>
+<li><var>3 \le N \le 200\,000</var>.</li>
+<li><var>0 \le F_i \le 2</var> (<var>0 \le i \le N - 1</var>).</li>
+<li><var>0 \le U_j &lt; V_j \le N - 1</var> (<var>0 \le j \le N - 2</var>).</li>
 <li>You can move between any pair of towns by traversing some roads.</li>
-<li><var>0 \leq Q \leq 50\,000</var>.</li>
-<li><var>0 \leq X_k \leq N - 1</var> (<var>0 \leq k \leq Q - 1</var>).</li>
-<li><var>0 \leq Y_k \leq 2</var> (<var>0 \leq k \leq Q - 1</var>).</li>
+<li><var>0 \le Q \le 50\,000</var>.</li>
+<li><var>0 \le X_k \le N - 1</var> (<var>0 \le k \le Q - 1</var>).</li>
+<li><var>0 \le Y_k \le 2</var> (<var>0 \le k \le Q - 1</var>).</li>
 <li>For each call to the function <code>change</code>, the new type is different from the old type.</li>
 <li>Given values are all integers.</li>
 </ul>
@@ -204,12 +175,12 @@
 <section>
 <h3>Subtasks</h3>
 <ol>
-<li>(<var>6</var> points) <var>N \leq 400</var>, <var>Q \leq 100</var>.</li>
-<li>(<var>8</var> points) <var>N \leq 4\,000</var>, <var>Q \leq 1\,000</var>.</li>
+<li>(<var>6</var> points) <var>N \le 400</var>, <var>Q \le 100</var>.</li>
+<li>(<var>8</var> points) <var>N \le 4\,000</var>, <var>Q \le 1\,000</var>.</li>
 <li>(<var>6</var> points) <var>Q = 0</var>.</li>
-<li>(<var>16</var> points) <var>U_j = j</var>, <var>V_j = j + 1</var> (<var>0 \leq j \leq N - 2</var>).</li>
-<li>(<var>16</var> points) <var>U_j = \left\lfloor \frac{j}{2} \right\rfloor</var>, <var>V_j = j + 1</var> (<var>0 \leq j \leq N - 2</var>). (<var>\left\lfloor \frac{j}{2} \right\rfloor</var> denotes the largest integer not exceeding <var>\frac{j}{2}</var>.)</li>
-<li>(<var>34</var> points) <var>N \leq 100\,000</var>, <var>Q \leq 25\,000</var>.</li>
+<li>(<var>16</var> points) <var>U_j = j</var>, <var>V_j = j + 1</var> (<var>0 \le j \le N - 2</var>).</li>
+<li>(<var>16</var> points) <var>U_j = \left\lfloor \frac{j}{2} \right\rfloor</var>, <var>V_j = j + 1</var> (<var>0 \le j \le N - 2</var>). (<var>\left\lfloor \frac{j}{2} \right\rfloor</var> denotes the largest integer not exceeding <var>\frac{j}{2}</var>.)</li>
+<li>(<var>34</var> points) <var>N \le 100\,000</var>, <var>Q \le 25\,000</var>.</li>
 <li>(<var>14</var> points) No additional constraints.</li>
 </ol>
 <hr />
@@ -240,6 +211,7 @@
 <h3>Sample Output 1</h3>
 <pre>1
 </pre>
+<div class="joisp2024-h-table">
 <table>
 <thead>
 <tr>
@@ -258,6 +230,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <p>There are only one good JOI tour, which is represented by <var>(i_0, i_1, i_2) = (0, 1, 2)</var>. The following is the explanation that it meets the conditions of good JOI tours.</p>
 <ul>
 <li>Since <var>F_0 = 0</var>, the restaurant at town <var>0</var> is a juice restaurant.</li>
@@ -292,6 +265,7 @@
 0
 1
 </pre>
+<div class="joisp2024-h-table">
 <table>
 <thead>
 <tr>
@@ -326,6 +300,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <p>Initially, there is one good JOI tour, which is represented by <var>(i_0, i_1, i_2) = (0, 1, 2)</var>. Thus, the return value in the first call of <code>num_tours</code> should be <var>1</var>.</p>
 <p>In the first event, the restaurant at town <var>2</var> is changed from ice cream restaurant to juice restaurant. After the change, ice cream restaurants disappear from IOI country, and there are no good JOI tours. Thus, the return value in the second call of <code>num_tours</code> should be <var>0</var>.</p>
 <p>In the second event, the restaurant at town <var>0</var> is changed from juice restaurant to ice cream restaurant. After the change, there is one good JOI tour, which is represented by <var>(i_0, i_1, i_2) = (2, 1, 0)</var>. Thus, the return value in the third call of <code>num_tours</code> should be <var>1</var>.</p>
@@ -369,14 +344,26 @@
 5
 5
 </pre>
-<p>This sample input satisfies the constraints of Subtasks <var>1, 2, 5, 6, 7</var>.</p></section>
+<p>This sample input satisfies the constraints of Subtasks <var>1, 2, 5, 6, 7</var>.</p>
+<style>
+.joisp2024-h-submission details { margin:1em 0; }
+.joisp2024-h-submission summary { display:list-item;cursor:pointer; }
+.joisp2024-h-table { position:relative;max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisp2024-h-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisp2024-h-table th,.joisp2024-h-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisp2024-h-table th { background:#f5f5f5; }
+.joisp2024-h-table code { white-space:nowrap; }
+</style>
+
+<style>
+.joisp2024-h-table .katex {position:relative;}
+</style></section>
 </div>
 </span>
 <span class="lang-ja">
-<blockquote>
+<blockquote class="joisp2024-h-submission">
 <p><strong>AtCoder での提出方法</strong></p>
 <p><a href="https://www2.ioi-jp.org/camp/2024/2024-sp-tasks/contest3/joitour-dist.zip">配布ファイル</a></p>
-<p>以下の「実装の詳細」「重要な注意」「コンパイル・実行の方法」は C++ の関数形式およびローカルでのテスト方法についての説明である．その他の言語を使用する場合は，この節の入出力形式で同じ処理を実装すること．</p>
 <h4>C++ を使用する場合</h4>
 <p>C++ を使用する場合，<code>joitour.h</code> を include してください．実装の詳細は以下の問題文を参照してください．</p>
 <details>
@@ -385,10 +372,10 @@
 <h5>init</h5>
 <p>以下の形式で入力を受け取ってください．</p>
 <pre><var>N</var>
-<var>F_0</var> <var>\cdots</var> <var>F_{N-1}</var>
+<var>F_0</var> <var>\cdots</var> <var>F_{N - 1}</var>
 <var>U_0</var> <var>V_0</var>
 <var>\vdots</var>
-<var>U_{N-2}</var> <var>V_{N-2}</var>
+<var>U_{N - 2}</var> <var>V_{N - 2}</var>
 <var>Q</var>
 </pre>
 <h5>change</h5>
@@ -403,35 +390,7 @@
 </ul>
 </details>
 </blockquote>
-<p>配点： <var>100</var> 点</p>
-<style>
-#task-statement details {
-    margin: 1em 0;
-}
-#task-statement details > summary {
-    display: list-item;
-    cursor: pointer;
-}
-#task-statement table {
-    display: block;
-    width: fit-content;
-    max-width: 100%;
-    overflow-x: auto;
-    border-collapse: collapse;
-    margin: 1em 0;
-}
-#task-statement table th,
-#task-statement table td {
-    border: 1px solid #aaa;
-    padding: 0.3em 0.6em;
-    text-align: left;
-    vertical-align: top;
-}
-#task-statement table th {
-    background-color: #f5f5f5;
-}
-</style>
-
+<p>配点 : <var>100</var> 点</p>
 
 <div class="part">
 <section>
@@ -535,16 +494,16 @@
 <h3>採点プログラムのサンプルの入力</h3>
 <p>採点プログラムのサンプルは標準入力から以下の形式で入力を読み込む．</p>
 <pre><var>N</var>
-<var>F_0</var> <var>F_1</var> <var>\cdots</var> <var>F_{N-1}</var>
+<var>F_0</var> <var>F_1</var> <var>\cdots</var> <var>F_{N - 1}</var>
 <var>U_0</var> <var>V_0</var>
 <var>U_1</var> <var>V_1</var>
 <var>\vdots</var>
-<var>U_{N-2}</var> <var>V_{N-2}</var>
+<var>U_{N - 2}</var> <var>V_{N - 2}</var>
 <var>Q</var>
 <var>X_0</var> <var>Y_0</var>
 <var>X_1</var> <var>Y_1</var>
 <var>\vdots</var>
-<var>X_{Q-1}</var> <var>Y_{Q-1}</var>
+<var>X_{Q - 1}</var> <var>Y_{Q - 1}</var>
 </pre>
 </section>
 </div>
@@ -616,6 +575,7 @@
 <h3>出力例 1</h3>
 <pre>1
 </pre>
+<div class="joisp2024-h-table">
 <table>
 <thead>
 <tr>
@@ -634,6 +594,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <p>良い JOI ツアーは <var>(i_0, i_1, i_2) = (0, 1, 2)</var> の <var>1</var> 通りである．これが良い JOI ツアーであることは以下のように確かめられる．</p>
 <ul>
 <li><var>F_0 = 0</var> であるから，街 <var>0</var> にある飲食店はジュース専門店である．</li>
@@ -668,6 +629,7 @@
 0
 1
 </pre>
+<div class="joisp2024-h-table">
 <table>
 <thead>
 <tr>
@@ -702,6 +664,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <p>はじめの時点では，良い JOI ツアーは <var>(i_0, i_1, i_2) = (0, 1, 2)</var> の <var>1</var> 通りである．したがって，<var>1</var> 回目の <code>num_tours</code> の呼び出しは <var>1</var> を返さなければならない．</p>
 <p><var>1</var> 回目の変更では，街 <var>2</var> にある飲食店がアイスクリーム専門店からジュース専門店に変更される．このとき，IOI 国からアイスクリーム専門店がなくなるため，良い JOI ツアーは存在しない．したがって，<var>2</var> 回目の <code>num_tours</code> の呼び出しは <var>0</var> を返さなければならない．</p>
 <p><var>2</var> 回目の変更では，街 <var>0</var> にある飲食店がジュース専門店からアイスクリーム専門店に変更される．このとき，良い JOI ツアーは <var>(i_0, i_1, i_2) = (2, 1, 0)</var> の <var>1</var> 通りである．したがって，<var>3</var> 回目の <code>num_tours</code> の呼び出しは <var>1</var> を返さなければならない．</p>
@@ -745,7 +708,20 @@
 5
 5
 </pre>
-<p>この入力例は小課題 <var>1, 2, 5, 6, 7</var> の制約を満たす．</p></section>
+<p>この入力例は小課題 <var>1, 2, 5, 6, 7</var> の制約を満たす．</p>
+<style>
+.joisp2024-h-submission details { margin:1em 0; }
+.joisp2024-h-submission summary { display:list-item;cursor:pointer; }
+.joisp2024-h-table { position:relative;max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisp2024-h-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisp2024-h-table th,.joisp2024-h-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisp2024-h-table th { background:#f5f5f5; white-space:nowrap; }
+.joisp2024-h-table code { white-space:nowrap; }
+</style>
+
+<style>
+.joisp2024-h-table .katex {position:relative;}
+</style></section>
 </div>
 </span>
 </span>

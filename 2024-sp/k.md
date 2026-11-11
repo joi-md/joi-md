@@ -1,9 +1,7 @@
-<blockquote markdown="1">
+<blockquote class="joisp2024-k-submission" markdown="1">
 **AtCoder での提出方法**
 
-配布ファイルは [こちら](https://www2.ioi-jp.org/camp/2024/2024-sp-tasks/contest4/island-dist.zip)．
-
-以下の「実装の詳細」「重要な注意」「コンパイル・実行の方法」は C++ の関数形式およびローカルでのテスト方法についての説明である．その他の言語を使用する場合は，この節の入出力形式で同じ戦略を実装すること．
+配布ファイルは [こちら](https://img.atcoder.jp/joisp2024/island-dist-d4bce4dc5d.zip)．
 
 #### C++ を使用する場合
 
@@ -42,35 +40,7 @@ $-x$ $y$
 </details>
 </blockquote>
 
-配点： $100$ 点
-
-<style>
-#task-statement details {
-    margin: 1em 0;
-}
-#task-statement details > summary {
-    display: list-item;
-    cursor: pointer;
-}
-#task-statement table {
-    display: block;
-    width: fit-content;
-    max-width: 100%;
-    overflow-x: auto;
-    border-collapse: collapse;
-    margin: 1em 0;
-}
-#task-statement table th,
-#task-statement table td {
-    border: 1px solid #aaa;
-    padding: 0.3em 0.6em;
-    text-align: left;
-    vertical-align: top;
-}
-#task-statement table th {
-    background-color: #f5f5f5;
-}
-</style>
+配点 : $100$ 点
 
 ### 問題文
 
@@ -149,15 +119,15 @@ $N$ $L$
 $A_1$ $B_1$
 $A_2$ $B_2$
 $\vdots$
-$A_{N-1}$ $B_{N-1}$
+$A_{N - 1}$ $B_{N - 1}$
 ~~~
 
 ### 採点プログラムのサンプルの出力
 
 採点プログラムのサンプルは標準出力へ以下の情報を出力する（引用符は実際には出力されない）．
 
-- 正解の場合，関数 `query` の呼び出し回数が `Accepted: 2024` のように出力される．
-- 不正解の場合，不正解の種類が `Wrong Answer [4]` のように出力される．
+- 正解の場合，関数 `query` の呼び出し回数が “`Accepted: 2024`” のように出力される．
+- 不正解の場合，不正解の種類が “`Wrong Answer [4]`” のように出力される．
 
 実行するプログラムが複数の不正解の条件を満たした場合，表示される不正解の種類はそれらのうち $1$ つのみである．
 
@@ -206,6 +176,8 @@ $A_{N-1}$ $B_{N-1}$
 
 #### 関数の呼び出しの例
 
+<div class="joisp2024-k-table" markdown="1">
+
 | 呼び出し（採点プログラム） | 呼び出し（提出プログラム） | 戻り値 |
 | --- | --- | --- |
 | `solve(4, 16)` | | |
@@ -217,6 +189,9 @@ $A_{N-1}$ $B_{N-1}$
 | | `query(3, 2)` | `2` |
 | | `query(2, 1)` | `1` |
 | | `answer(3, 4)` | |
+
+</div>
+
 
 島 $2$ から島 $1$，島 $3$，島 $4$ へ移動するのに必要な航路の数の最小値はそれぞれ $1, 2, 1$ である．例えば，島 $2$ から島 $3$ へは航路 $2$，航路 $3$ をこの順に乗り継ぐことで移動できる．
 
@@ -238,6 +213,8 @@ $A_{N-1}$ $B_{N-1}$
 
 #### 関数の呼び出しの例
 
+<div class="joisp2024-k-table" markdown="1">
+
 | 呼び出し（採点プログラム） | 呼び出し（提出プログラム） | 戻り値 |
 | --- | --- | --- |
 | `solve(5, 25)` | | |
@@ -251,6 +228,9 @@ $A_{N-1}$ $B_{N-1}$
 | | `answer(4, 1)` | |
 | | `answer(2, 5)` | |
 
+</div>
+
+
 島 $1$ から島 $2$，島 $3$，島 $4$，島 $5$ へ移動するのに必要な航路の数の最小値はそれぞれ $2, 1, 1, 1$ である．例えば，島 $1$ から島 $2$ へは航路 $4$，航路 $1$ をこの順に乗り継ぐことで移動できる．
 
 島 $1$ 以外の島 $i$ を $\operatorname{dist}(1, i) \times N + i$ が小さい順に並び替えると島 $3$，島 $4$，島 $5$，島 $2$ となる．したがって，関数 `query(1, 3)` の戻り値は $5$ となる．また，関数 `query(1, 4)` の戻り値は $2$ となる．
@@ -258,3 +238,13 @@ $A_{N-1}$ $B_{N-1}$
 入力例 $2$ は小課題 $4, 6$ の制約を満たす．コンテストサイトからダウンロードできるファイルのうち，`sample-02-in.txt` は入力例 $2$ に対応する．
 
 コンテストサイトからダウンロードできるファイルに含まれる `sample-01-in.txt`，`sample-02-in.txt` は，採点プログラムのサンプルの入力として用いることができる．
+
+<style>
+.joisp2024-k-submission details { margin:1em 0; }
+.joisp2024-k-submission summary { display:list-item;cursor:pointer; }
+.joisp2024-k-table { position:relative;max-width:100%;overflow-x:auto;margin:1em 0; }
+.joisp2024-k-table table { display:table;width:auto;max-width:none;overflow:visible;border-collapse:collapse;margin:0; }
+.joisp2024-k-table th,.joisp2024-k-table td { border:1px solid #aaa;padding:0.3em 0.6em;text-align:left;vertical-align:top; }
+.joisp2024-k-table th { background:#f5f5f5; white-space:nowrap; }
+.joisp2024-k-table code { white-space:nowrap; }
+</style>

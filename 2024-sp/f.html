@@ -6,15 +6,15 @@
 <section>
 <h3>Problem Statement</h3>
 <p>Bitaro, who has been enjoying gardening for many years, is planning to grow a plant called Bita-radish starting this spring.</p>
-<p>Bitaro has prepared <var>2N</var> Bita-radish seedlings. The seedlings are numbered from <var>1</var> to <var>2N</var>, and Bitaro plans to arrange them in this order for cultivation. The size of seedling <var>i</var> (<var>1 \leq i \leq 2N</var>) is <var>A_i</var>. Bitaro wants every seedling to get enough sunlight, so the sizes of the seedlings satisfy the following conditions:</p>
+<p>Bitaro has prepared <var>2N</var> Bita-radish seedlings. The seedlings are numbered from <var>1</var> to <var>2N</var>, and Bitaro plans to arrange them in this order for cultivation. The size of seedling <var>i</var> (<var>1 \le i \le 2N</var>) is <var>A_i</var>. Bitaro wants every seedling to get enough sunlight, so the sizes of the seedlings satisfy the following conditions:</p>
 <ul>
-<li><var>A_1 \leq A_2 \leq \cdots \leq A_N \leq A_{N+1}</var>.</li>
-<li><var>A_{N+1} \geq A_{N+2} \geq \cdots \geq A_{2N-1} \geq A_{2N} \geq A_1</var>.</li>
+<li><var>A_1 \le A_2 \le \cdots \le A_N \le A_{N+1}</var>.</li>
+<li><var>A_{N+1} \ge A_{N+2} \ge \cdots \ge A_{2N - 1} \ge A_{2N} \ge A_1</var>.</li>
 </ul>
 <p>Note that seedling <var>1</var> is the smallest and seedling <var>N+1</var> is the largest.</p>
-<p>Bitaro has also prepared <var>N</var> red flowerpots and <var>N</var> blue flowerpots, each of which also has a certain size. The size of the <var>j</var>-th (<var>1 \leq j \leq N</var>) red flowerpot is <var>B_j</var>, and the size of the <var>k</var>-th (<var>1 \leq k \leq N</var>) blue flowerpot is <var>C_k</var>. Bitaro plants one Bita-radish seedling in each of these total <var>2N</var> flowerpots, and arranges the flowerpots in a row so that seedlings <var>1,2,\ldots,2N</var> are in this order.</p>
-<p>Considering the appearance, the <var>2N</var> flowerpots must be arranged in a <strong>beautiful order</strong>. Here, a beautiful order means an arrangement of flowerpots such that there exist consecutive <var>N</var> flowerpots with the same color. More precisely, an arrangement of flowerpots is said to be a beautiful order if and only if there exists an integer <var>l</var> between <var>1</var> and <var>N+1</var> inclusive such that the colors of the flowerpots planted with seedlings <var>l,l+1,\ldots,l+N-1</var> are all the same.</p>
-<p>When a seedling of size <var>y</var> is planted in a flowerpot of size <var>x</var>, the <strong>difficulty of cultivation</strong> for that pair is the absolute value <var>|x-y|</var>. Bitaro's <strong>workload</strong> in growing Bita-radish is the maximum difficulty of cultivation among the <var>2N</var> pairs of flowerpots and seedlings.</p>
+<p>Bitaro has also prepared <var>N</var> red flowerpots and <var>N</var> blue flowerpots, each of which also has a certain size. The size of the <var>j</var>-th (<var>1 \le j \le N</var>) red flowerpot is <var>B_j</var>, and the size of the <var>k</var>-th (<var>1 \le k \le N</var>) blue flowerpot is <var>C_k</var>. Bitaro plants one Bita-radish seedling in each of these total <var>2N</var> flowerpots, and arranges the flowerpots in a row so that seedlings <var>1,2,\ldots,2N</var> are in this order.</p>
+<p>Considering the appearance, the <var>2N</var> flowerpots must be arranged in a <strong>beautiful order</strong>. Here, a beautiful order means an arrangement of flowerpots such that there exist consecutive <var>N</var> flowerpots with the same color. More precisely, an arrangement of flowerpots is said to be a beautiful order if and only if there exists an integer <var>l</var> between <var>1</var> and <var>N+1</var> inclusive such that the colors of the flowerpots planted with seedlings <var>l,l+1,\ldots,l+N - 1</var> are all the same.</p>
+<p>When a seedling of size <var>y</var> is planted in a flowerpot of size <var>x</var>, the <strong>difficulty of cultivation</strong> for that pair is the absolute value <var>|x - y|</var>. Bitaro's <strong>workload</strong> in growing Bita-radish is the maximum difficulty of cultivation among the <var>2N</var> pairs of flowerpots and seedlings.</p>
 <p>Write a program which, given the information about the Bita-radish seedlings and flowerpots, finds the minimum possible value of Bitaro's workload when planting the seedlings so that the flowerpots are arranged in a beautiful order.</p>
 <hr />
 </section>
@@ -48,12 +48,12 @@
 <section>
 <h3>Constraints</h3>
 <ul>
-<li><var>1 \leq N \leq 300\,000</var>.</li>
-<li><var>1 \leq A_i \leq 10^9</var> (<var>1 \leq i \leq 2N</var>).</li>
-<li><var>1 \leq B_j \leq 10^9</var> (<var>1 \leq j \leq N</var>).</li>
-<li><var>1 \leq C_k \leq 10^9</var> (<var>1 \leq k \leq N</var>).</li>
-<li><var>A_1 \leq A_2 \leq \cdots \leq A_N \leq A_{N+1}</var>.</li>
-<li><var>A_{N+1} \geq A_{N+2} \geq \cdots \geq A_{2N-1} \geq A_{2N} \geq A_1</var>.</li>
+<li><var>1 \le N \le 300\,000</var>.</li>
+<li><var>1 \le A_i \le 10^9</var> (<var>1 \le i \le 2N</var>).</li>
+<li><var>1 \le B_j \le 10^9</var> (<var>1 \le j \le N</var>).</li>
+<li><var>1 \le C_k \le 10^9</var> (<var>1 \le k \le N</var>).</li>
+<li><var>A_1 \le A_2 \le \cdots \le A_N \le A_{N+1}</var>.</li>
+<li><var>A_{N+1} \ge A_{N+2} \ge \cdots \ge A_{2N - 1} \ge A_{2N} \ge A_1</var>.</li>
 <li>All input values are integers.</li>
 </ul>
 </section>
@@ -63,9 +63,9 @@
 <section>
 <h3>Subtasks</h3>
 <ol>
-<li>(<var>4</var> points) <var>N \leq 5</var>.</li>
-<li>(<var>5</var> points) <var>N \leq 10</var>.</li>
-<li>(<var>21</var> points) <var>N \leq 2\,000</var>.</li>
+<li>(<var>4</var> points) <var>N \le 5</var>.</li>
+<li>(<var>5</var> points) <var>N \le 10</var>.</li>
+<li>(<var>21</var> points) <var>N \le 2\,000</var>.</li>
 <li>(<var>37</var> points) All values of <var>A_i</var> are distinct. Additionally, <var>A_N &lt; A_{2N}</var> holds.</li>
 <li>(<var>33</var> points) No additional constraints.</li>
 </ol>
@@ -91,10 +91,10 @@
 </pre>
 <p>In this sample input, Bitaro can achieve a workload of <var>2</var> by planting the seedlings as follows:</p>
 <ul>
-<li>Plant seedling <var>1</var> in the first red flowerpot. The difficulty of cultivation for this pair is <var>|2-1|=1</var>.</li>
-<li>Plant seedling <var>2</var> in the second blue flowerpot. The difficulty of cultivation for this pair is <var>|3-2|=1</var>.</li>
-<li>Plant seedling <var>3</var> in the first blue flowerpot. The difficulty of cultivation for this pair is <var>|4-6|=2</var>.</li>
-<li>Plant seedling <var>4</var> in the second red flowerpot. The difficulty of cultivation for this pair is <var>|5-3|=2</var>.</li>
+<li>Plant seedling <var>1</var> in the first red flowerpot. The difficulty of cultivation for this pair is <var>|2 - 1|=1</var>.</li>
+<li>Plant seedling <var>2</var> in the second blue flowerpot. The difficulty of cultivation for this pair is <var>|3 - 2|=1</var>.</li>
+<li>Plant seedling <var>3</var> in the first blue flowerpot. The difficulty of cultivation for this pair is <var>|4 - 6|=2</var>.</li>
+<li>Plant seedling <var>4</var> in the second red flowerpot. The difficulty of cultivation for this pair is <var>|5 - 3|=2</var>.</li>
 </ul>
 <p>The colors of the flowerpots planted with seedlings <var>2</var> and <var>3</var> are both blue, so the flowerpots are arranged in a beautiful order.</p>
 <p>It is impossible to achieve a workload less than <var>2</var> when planting the seedlings so that the flowerpots are arranged in a beautiful order. Therefore, the output is <var>2</var>.</p>
@@ -144,7 +144,7 @@
 </div>
 </span>
 <span class="lang-ja">
-<p>配点： <var>100</var> 点</p>
+<p>配点 : <var>100</var> 点</p>
 
 <div class="part">
 <section>
@@ -153,12 +153,12 @@
 <p>ビ太郎はビバ草の苗を <var>2N</var> 株用意している．ビバ草の苗には <var>1</var> から <var>2N</var> までの番号が付けられており，ビ太郎はこの順に苗を並べて育てる予定である．苗 <var>i</var> (<var>1 \leqq i \leqq 2N</var>) の大きさは <var>A_i</var> である．ビ太郎は日当たりを考慮しており，苗の大きさは以下の条件をともに満たしている．</p>
 <ul>
 <li><var>A_1 \leqq A_2 \leqq \cdots \leqq A_N \leqq A_{N+1}</var>．</li>
-<li><var>A_{N+1} \geqq A_{N+2} \geqq \cdots \geqq A_{2N-1} \geqq A_{2N} \geqq A_1</var>．</li>
+<li><var>A_{N+1} \geqq A_{N+2} \geqq \cdots \geqq A_{2N - 1} \geqq A_{2N} \geqq A_1</var>．</li>
 </ul>
 <p>特に，苗 <var>1</var> は最も小さく，苗 <var>N+1</var> は最も大きい．</p>
 <p>ビ太郎はまた，赤色の植木鉢を <var>N</var> 個，青色の植木鉢を <var>N</var> 個用意しており，それぞれの植木鉢には大きさが定まっている．<var>j</var> 番目 (<var>1 \leqq j \leqq N</var>) の赤色の植木鉢の大きさは <var>B_j</var> であり，<var>k</var> 番目 (<var>1 \leqq k \leqq N</var>) の青色の植木鉢の大きさは <var>C_k</var> である．ビ太郎はこれら合計 <var>2N</var> 個の植木鉢に <var>1</var> 株ずつビバ草の苗を植え，苗 <var>1,2,\ldots,2N</var> がこの順に並ぶように植木鉢を横一列に並べる．</p>
-<p>ビ太郎は見栄えを考慮しており，<var>2N</var> 個の植木鉢は <strong>美しい並び</strong> で並んでいなければならない．ここで，美しい並びとは，ある連続した <var>N</var> 個の植木鉢の色が等しくなるような植木鉢の並びをいう．より厳密には，ある <var>1</var> 以上 <var>N+1</var> 以下の整数 <var>l</var> が存在して，苗 <var>l,l+1,\ldots,l+N-1</var> が植えられた植木鉢の色がすべて等しくなるような植木鉢の並びをいう．</p>
-<p>大きさ <var>x</var> の植木鉢に大きさ <var>y</var> の苗を植えたとき，その植木鉢と苗の組に対する <strong>育てにくさ</strong> は絶対値 <var>|x-y|</var> となる．ビ太郎がビバ草を育てる上での <strong>疲労度</strong> は，<var>2N</var> 組の植木鉢と苗の組に対する育てにくさの最大値である．</p>
+<p>ビ太郎は見栄えを考慮しており，<var>2N</var> 個の植木鉢は <strong>美しい並び</strong> で並んでいなければならない．ここで，美しい並びとは，ある連続した <var>N</var> 個の植木鉢の色が等しくなるような植木鉢の並びをいう．より厳密には，ある <var>1</var> 以上 <var>N+1</var> 以下の整数 <var>l</var> が存在して，苗 <var>l,l+1,\ldots,l+N - 1</var> が植えられた植木鉢の色がすべて等しくなるような植木鉢の並びをいう．</p>
+<p>大きさ <var>x</var> の植木鉢に大きさ <var>y</var> の苗を植えたとき，その植木鉢と苗の組に対する <strong>育てにくさ</strong> は絶対値 <var>|x - y|</var> となる．ビ太郎がビバ草を育てる上での <strong>疲労度</strong> は，<var>2N</var> 組の植木鉢と苗の組に対する育てにくさの最大値である．</p>
 <p>ビバ草の苗と植木鉢の情報が与えられたとき，植木鉢が美しい並びで並ぶように苗を植えるときのビ太郎の疲労度としてありうる最小値を求めるプログラムを作成せよ．</p>
 <hr />
 </section>
@@ -197,7 +197,7 @@
 <li><var>1 \leqq B_j \leqq 10^9</var> (<var>1 \leqq j \leqq N</var>)．</li>
 <li><var>1 \leqq C_k \leqq 10^9</var> (<var>1 \leqq k \leqq N</var>)．</li>
 <li><var>A_1 \leqq A_2 \leqq \cdots \leqq A_N \leqq A_{N+1}</var>．</li>
-<li><var>A_{N+1} \geqq A_{N+2} \geqq \cdots \geqq A_{2N-1} \geqq A_{2N} \geqq A_1</var>．</li>
+<li><var>A_{N+1} \geqq A_{N+2} \geqq \cdots \geqq A_{2N - 1} \geqq A_{2N} \geqq A_1</var>．</li>
 <li>入力される値はすべて整数である．</li>
 </ul>
 </section>
@@ -235,10 +235,10 @@
 </pre>
 <p>この入力例では，例えば以下のように苗を植えることで，ビ太郎の疲労度を <var>2</var> にすることができる．</p>
 <ul>
-<li>苗 <var>1</var> を <var>1</var> 番目の赤色の植木鉢に植える．この植木鉢と苗の組に対する育てにくさは <var>|2-1|=1</var> である．</li>
-<li>苗 <var>2</var> を <var>2</var> 番目の青色の植木鉢に植える．この植木鉢と苗の組に対する育てにくさは <var>|3-2|=1</var> である．</li>
-<li>苗 <var>3</var> を <var>1</var> 番目の青色の植木鉢に植える．この植木鉢と苗の組に対する育てにくさは <var>|4-6|=2</var> である．</li>
-<li>苗 <var>4</var> を <var>2</var> 番目の赤色の植木鉢に植える．この植木鉢と苗の組に対する育てにくさは <var>|5-3|=2</var> である．</li>
+<li>苗 <var>1</var> を <var>1</var> 番目の赤色の植木鉢に植える．この植木鉢と苗の組に対する育てにくさは <var>|2 - 1|=1</var> である．</li>
+<li>苗 <var>2</var> を <var>2</var> 番目の青色の植木鉢に植える．この植木鉢と苗の組に対する育てにくさは <var>|3 - 2|=1</var> である．</li>
+<li>苗 <var>3</var> を <var>1</var> 番目の青色の植木鉢に植える．この植木鉢と苗の組に対する育てにくさは <var>|4 - 6|=2</var> である．</li>
+<li>苗 <var>4</var> を <var>2</var> 番目の赤色の植木鉢に植える．この植木鉢と苗の組に対する育てにくさは <var>|5 - 3|=2</var> である．</li>
 </ul>
 <p>このように苗を植えることで，苗 <var>2</var>，苗 <var>3</var> が植えられた植木鉢の色がいずれも青色となり，植木鉢が美しい並びで並ぶ．</p>
 <p>植木鉢が美しい並びで並ぶように苗を植えるとき，ビ太郎の疲労度を <var>2</var> 未満にすることはできないので，<var>2</var> を出力する．</p>
