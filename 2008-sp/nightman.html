@@ -1,0 +1,80 @@
+<span class="lang">
+<span class="lang-ja">
+<blockquote>
+<p><strong>AtCoder での提出方法</strong></p>
+<p>標準入力から入力を読み込み，標準出力へ出力すること．</p>
+</blockquote>
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>広大な敷地の <var>Y</var> センターは，国営の複合研修施設であり，クラブの会合・合宿，市民楽団による定期演奏会，企業の新人研修など，多くの人々にさまざまな目的で利用されている．</p>
+<p>以下の図にように，<var>Y</var> センターの敷地は横 <var>w</var> ×縦 <var>h</var> の長方形である．左下の座標が <var>(0, 0)</var>，右上の座標が <var>(w, h)</var> である．</p>
+<div style="text-align: center;">
+<img alt="2008-nightman-grid.png" src="https://img.atcoder.jp/joisc2008/2008-nightman-grid.png" style="max-width: 100%; width: 247px;" />
+</div>
+
+<p>図 <var>1</var>: 横 <var>8</var>，縦 <var>6</var> の <var>Y</var> センター (<var>w = 8</var>，<var>h = 6</var> の場合 )</p>
+<p><var>Y</var> センターには <var>b</var> 個の建物がある．建物は全て長方形でその辺は座標軸のいずれかと平行である．建物の位置は <var>4</var> 個の整数 <var>(s_{i}, t_{i}, u_{i}, v_{i})</var> (<var>i = 1, ..., b</var>) で表される．<var>i</var> 番目の建物の左下の座標が <var>(s_{i}, t_{i})</var> であり，右上の座標が <var>(u_{i}, v_{i})</var> であり，辺上は建物の領域として含まれず，建物と建物が接していても間にはすきまがあり通ることができる．また建物の敷地は重複していない．</p>
+<p>夜間の利用者の安全を守るため，<var>a</var> 人の警備員が座標 <var>(x_{1}, y_{1})</var>, ..., <var>(x_{a}, y_{a})</var> に配置されている．警備員の配置位置は建物の外である．</p>
+<p>深夜，<var>Y</var> センター内の警備は以下のように行われる．敷地内のある点で不審物が発見されると，そのたびに全ての警備員に連絡が入る．そして，その点までの移動距離が最も短い警備員が現場に急行し，不審物の確認を行う．警備員は <var>Y</var> センター内を最短距離で移動するが，建物内は深夜はロックされているため，建物の内部を通ることはできない．</p>
+<p>（建物の辺は建物に含まれないので，建物の辺に沿って移動することはできる）不審物の確認が済むと，警備員は同じ経路で自分の位置に戻る．次に不審物が発見されたときも同様に警備される．</p>
+<div style="text-align: center;">
+<img alt="2008-nightman-example.png" src="https://img.atcoder.jp/joisc2008/2008-nightman-example.png" style="max-width: 100%; width: 258px;" />
+</div>
+
+<p>図 <var>2</var>: 警備員が現場に急行する図 (○が警備員，×が不審物 )</p>
+<p>ある日の深夜，<var>Y</var> センター内の建物の外で <var>c</var> 個の不審物が発見された．<var>Y</var> センターの大きさと，警備員の位置，建物の位置，そしてある日の深夜に発見された不審物の位置 <var>(p_{1}, q_{1})</var>, ..., <var>(p_{c}, q_{c})</var> が発見時刻の順に与えられたとき，警備員の移動距離の総和を求めるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力ファイル <code>nightman.in</code> の <var>1</var> 行目には警備員の数を表す整数 <var>a</var> (<var>1 \leqq a \leqq 10</var>) と建物の数を表す整数 <var>b</var> (<var>1 \leqq b \leqq 50</var>) と不審物の数を表す整数 <var>c</var> (<var>1 \leqq c \leqq 10</var>) が書かれている．</p>
+<p><var>2</var> 行目には <var>Y</var> センターの敷地の大きさを表す <var>2</var> つの整数 <var>w, h</var> (<var>1 \leqq w, h \leqq 1000</var>) が横，縦の順に書かれている．</p>
+<p><var>i + 2</var> 行目 (<var>1 \leqq i \leqq a</var>) には，<var>i</var> 人目の警備員の場所を表す <var>2</var> つの整数 <var>x_{i}, y_{i}</var> (<var>0 \leqq x_{i} \leqq w</var>，<var>0 \leqq y_{i} \leqq h</var>) が書かれている．<var>j + a + 2</var> 行目 (<var>1 \leqq j \leqq b</var>) には，<var>j</var> 人目の建物の場所を表す <var>4</var> つの整数 <var>s_{j}, t_{j}, u_{j}, v_{j}</var> (<var>0 \leqq s_{j} &lt; u_{j} \leqq w</var>，<var>0 \leqq t_{j} &lt; v_{j} \leqq h</var>) が書かれている．<var>k + a + b + 2</var> 行目 (<var>1 \leqq k \leqq c</var>) には，<var>k</var> 人目の不審物の数を表す <var>2</var> つの整数 <var>p_{k}, q_{k}</var> (<var>0 \leqq p_{k} \leqq w</var>，<var>0 \leqq q_{k} \leqq h</var>) が書かれている．</p>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>出力は標準出力に行う．</p>
+<p>警備員の移動距離の総和の小数点以下 <var>3</var> 桁で出力せよ．誤差は <var>0.001</var> 以下でなければならない．</p>
+<p>次の例は図 <var>2</var> の場合である．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>2 4 3
+8 6
+3 0
+8 0
+2 1 3 3
+3 2 5 4
+5 1 6 2
+6 4 7 5
+4 5
+6 4
+1 5
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>30.847
+</pre>
+<p>この場合，最短距離は <var>30.8473 \cdots</var> なので,<code>30.847</code> か <code>30.848</code> と出力すればよい．</p></section>
+</div>
+</span>
+</span>

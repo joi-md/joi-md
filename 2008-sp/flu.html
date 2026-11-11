@@ -1,0 +1,88 @@
+<span class="lang">
+<span class="lang-ja">
+<blockquote>
+<p><strong>AtCoder での提出方法</strong></p>
+<p>標準入力から入力を読み込み，標準出力へ出力すること．</p>
+</blockquote>
+<p>配点 : <var>100</var> 点</p>
+
+<div class="part">
+<section>
+<h3>問題文</h3>
+<p>今年は JOI 国でインフルエンザの大流行の兆しがある．JOI 国には <var>n</var> 個の都市 <var>P_{1}, \ldots, P_{n}</var> があり，都市 <var>P_{i}</var> の場所は座標を用いて <var>P_{i}(x_{i}, y_{i})</var> と表される．異なる都市が同じ座標を持つことはない．すなわち，<var>i\neq  j</var> であれば，<var>(x_{i}, y_{i})\neq  (x_{j}, y_{j})</var> である．また，都市 <var>P_{1}</var> は首都の JOI 市である．</p>
+<p>今年のインフルエンザは特別な型であり，次のような特徴がある．</p>
+<ol>
+<li>各都市において，インフルエンザの流行はちょうど <var>m</var> 日間続く．すなわち，もし都市 <var>P_i</var> でインフルエンザの流行が始まったとすると，<var>P_i</var> におけるインフルエンザの流行はちょうど <var>m</var> 日間続き，<var>m</var> 日後にはインフルエンザの流行は収まる．</li>
+<li>ある都市で一度インフルエンザが流行すると，その都市の市民の体内に抗体ができる．そのため，インフルエンザが <var>1</var> つの都市で <var>2</var> 回以上流行することはない．</li>
+<li>インフルエンザは日を追うごとに都市から都市へと流行を拡大する．その感染可能距離は <var>d</var> である．もし，都市 <var>P_i</var> でインフルエンザの流行が始まったとする．都市 <var>P_j</var> と <var>P_i</var> の距離が <var>d</var> 以下であり，まだ <var>P_j</var> ではインフルエンザは流行していない場合，その翌日には，都市 <var>P_j</var> でインフルエンザの流行が始まる．（都市 <var>P_i(x_i, y_i)</var> と <var>P_j(x_j, y_j)</var> の間の距離は <var>\sqrt{(x_i - x_j)^2+(y_i - y_j)^2}</var> である．）</li>
+<li>上に述べた以外の経路でインフルエンザの流行が拡大することはない．</li>
+</ol>
+<p>また，各 <var>i = 1, \ldots, n</var> に対し，都市 <var>P_{i}</var> からの距離が <var>d</var> 以下であるような <var>P_{i}</var> 以外の都市の数は <var>10</var> 個以下である．</p>
+<p>ある日，インフルエンザの流行が，JOI 市 <var>P_{1}</var> で始まった．JOI 市以外の都市では，今年は，まだインフルエンザは流行していない．JOI 国では，治療に必要なワクチンを効率よく手配するため，インフルエンザの流行状況を予測することにした．</p>
+<p>入力として，都市の数 <var>n</var>，<var>1</var> つの都市でインフルエンザの流行が続く日数 <var>m</var>，インフルエンザの感染可能距離 <var>d</var>，整数 <var>k \geqq 1</var>，各都市の座標が与えられたとき，JOI 市で流行が始まってから <var>k</var> 日後において，JOI 国内でインフルエンザが流行している都市の数を求めるプログラムを作成せよ．</p>
+</section>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>入力</h3>
+<p>入力ファイル <code>flu.in</code> の <var>1</var> 行目には，JOI 国の都市の数 <var>n</var> (<var>1 \leqq n \leqq 100, 000</var>) が書かれている．<var>2</var> 行目には，各都市で流行が続く日数 <var>m</var> (<var>1 \leqq m \leqq 100</var>) が書かれている．<var>3</var> 行目には感染可能距離 <var>d</var> (<var>1 \leqq d \leqq 25</var>) が書かれている．<var>4</var> 行目には整数 <var>k</var> (<var>1 \leqq k \leqq 100</var>) が書かれている．続く <var>n</var> 行 (<var>5</var> 行目～<var>n + 4</var> 行目 ) は都市 <var>P_{1}, \ldots, P_{n}</var> の位置を表す．<var>i + 4</var> 行目 (<var>1 \leqq i \leqq n</var>) には，<var>2</var> つの整数 <var>x_{i}, y_{i}</var> (<var>0 \leqq x_{i}, y_{i} &lt; 1, 000</var>) が空白を区切りとして書かれており，都市 <var>P_{i}</var> の座標が <var>P_{i}(x_{i}, y_{i})</var> であることを意味する．</p>
+</section>
+</div>
+</div>
+
+<div class="io-style">
+<div class="part">
+<section>
+<h3>出力</h3>
+<p>出力は，標準出力に行うこと．JOI 市で流行が始まってから <var>k</var> 日後において，JOI 国内でインフルエンザが流行している都市の数を表す整数を <var>1</var> 行で出力せよ．</p>
+</section>
+</div>
+</div>
+
+<div class="part">
+<section>
+<h3>採点基準</h3>
+<p>採点に用いる入力データのうち，配点の <var>20\%</var> 分は <var>n \leqq 1000, k \leqq 50, 0 \leqq x_{i}, y_{i} &lt; 100</var> をみたす．また，これとは別の配点の <var>30\%</var> 分は <var>n \leqq 10000, 0 \leqq x_{i}, y_{i} &lt; 1000</var> をみたす．</p>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>入力例 1</h3>
+<pre>9
+2
+2
+3
+1 3
+3 3
+2 2
+3 1
+0 0
+0 3
+0 5
+3 5
+5 5
+</pre>
+</section>
+</div>
+
+<div class="part">
+<section>
+<h3>出力例 1</h3>
+<pre>4
+</pre>
+<p>この入力例において，都市の数は <var>n = 9</var> である．また，<var>9</var> つの都市 <var>P_{1}, \ldots, P_{9}</var> の座標は順に</p>
+<p><var>P_{1}(1, 3)</var>, <var>P_{2}(3, 3)</var>, <var>P_{3}(2, 2)</var>, <var>P_{4}(3, 1)</var>, <var>P_{5}(0, 0)</var>, <var>P_{6}(0, 3)</var>, <var>P_{7}(0, 5)</var>, <var>P_{8}(3, 5)</var>, <var>P_{9}(5, 5)</var></p>
+<p>で与えられる．インフルエンザの感染可能距離は <var>d = 2</var> であり，各都市で流行が続く日数は <var>m = 2</var> である．また，<var>k = 3</var> である．</p>
+<div style="text-align: center;">
+<img alt="2008-flu-example.png" src="https://img.atcoder.jp/joisc2008/2008-flu-example.png" style="max-width: 100%; width: 379px;" />
+</div>
+
+<p>最初，インフルエンザが流行しているのは JOI 市 <var>P_{1}</var> のみである．<var>1</var> 日後には，インフルエンザの流行は，<var>P_{1}</var> からの距離が <var>2</var> 以下の都市 <var>P_{2}, P_{3}, P_{6}</var> に拡大する．また，JOI 市 <var>P_{1}</var> における流行はまだ収まらない．<var>2</var> 日後には，流行は <var>P_{4}, P_{7}, P_{8}</var> に拡大し，JOI 市 <var>P_{1}</var> における流行は収まる．<var>3</var> 日後には，流行は <var>P_{9}</var> に拡大し，<var>P_{2}, P_{3}, P_{6}</var> における流行は収まる．</p>
+<p>したがって，JOI 市で流行が始まってから <var>3</var> 日後において，インフルエンザが流行している都市は <var>P_{4}, P_{7}, P_{8}, P_{9}</var> の <var>4</var> つであるから，<var>4</var> を出力すればよい．</p>
+<p>この入力例では，都市 <var>P_{5}</var> においてインフルエンザが流行することはない．</p></section>
+</div>
+</span>
+</span>
